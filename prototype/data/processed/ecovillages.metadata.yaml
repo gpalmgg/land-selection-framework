@@ -1,0 +1,20 @@
+# V1 processed-layer metadata (Spec Step 9 requirement)
+criterion: regen_network
+askja_metric: 3            # Existing Regenerative Knowledge Network
+tier: 1                    # real ingested layer
+source: OpenStreetMap via Overpass API (cross-referenced with GEN directory)
+source_url: https://overpass-api.de
+vintage: "current OSM snapshot"
+license: ODbL 1.0
+native_unit: point locations
+time_framing: state        # network growth trend deferred to V2
+state: "intentional-community / ecovillage / permaculture site point density within ~100 km"
+trajectory: "null in V1 (network-growth trend is a V2 enrichment)"
+sovereignty_axes: [social]
+red_line_underlying: none
+files:
+  - { path: ecovillages.geojson, continent: europe, features: 30 }
+  - { path: ecovillages-na.geojson, continent: north-america, features: 76 }
+coverage: "PATCHY, real limitation. Volunteer-tagged OSM undercounts vs the full GEN directory (300+ sites). Honest coverage gap, not an error."
+processing_method: "scripts/fetch_ecovillages_na.py (Overpass) + scripts/process_vectors.py (continent-parameterized bbox)"
+notes: "Treated as hard data per Overview decision 6 (objective-but-hard-to-measure). Coverage limitation must be surfaced honestly wherever this layer is used."

@@ -1,0 +1,25 @@
+# Regenerative Network — Southern Appalachians (Western North Carolina), United States
+
+**Headline finding:** The Asheville area is one of the densest concentrations of intentional communities, ecovillages, permaculture projects, and regenerative-agriculture practitioners in North America. Within a 100 km radius of Asheville, the Foundation for Intentional Community (ic.org) directory lists at least 20+ active or forming communities, GEN (Global Ecovillage Network) lists Earthaven Ecovillage as a flagship member, and the Asheville Communities Network has catalogued 41 intentional communities in the beginning stages in WNC alone (as of 2025). This is not an emerging scene — it has 30 years of institutional depth.
+
+**Key data point (with vintage):** Intentional community / ecovillage / permaculture sites within ~100 km of Asheville: **25+ established or actively forming sites** (Foundation for Intentional Community directory ic.org, accessed 2025; GEN North America directory 2024; Asheville Communities Network census 2025). Named established sites include: Earthaven Ecovillage (Black Mountain), Celo Community (Yancey County), Westwood Cohousing, Terra Futura Regenerative Neighbourhood, Adawehi Wellness Village, High Cove (Bakersville), Mountain Meadows, Hickory Nut Forest, The Villages at Crest Mountain, Common Ground Ecovillage, Living Well Ecovillage (Otto), Coweeta Heritage Center, Mountain Hearth Village, CoCreate Cohousing, Emerson Commons Cohousing, Elderberry Cohousing Village, and multiple forming projects. The Asheville Communities Network count of 41 forming projects (2025) represents an exceptional pipeline density.
+
+**Supporting facts:**
+- Earthaven Ecovillage (founded 1994, Black Mountain NC, ~50 min from Asheville): 329 acres, 75+ adult residents, 25+ children, 12 residential neighborhoods, off-grid power and water, School of Integrated Living, GEN member. One of the longest-established and most visited ecovillages in North America (Earthaven.org, 2024; GEN directory, 2024).
+- Celo Community (Yancey County, founded 1937): 40+ families, 1,200 acres, operates as the oldest Community Land Trust in the US — an extraordinary institutional precedent for long-horizon land tenure.
+- The Appalachian region has historically been a countercultural refuge, with roots in the intentional community movement tracing to the 1930s (Celo) and the back-to-land wave of the 1970s (multiple smaller communities).
+- Regional infrastructure supporting the regen scene: Living Web Farms (nonprofit organic research farm), Organic Growers School (founded 1993, one of the largest permaculture and sustainable agriculture training programmes in the Southeast), Asheville Permaculture Guild, ASAP (Appalachian Sustainable Agriculture Project, connecting 700+ farms to local markets).
+- GEN North America lists Earthaven as a key node; the region is represented at global ecovillage gatherings and supplies significant leadership to the North American intentional community movement.
+- The NPR-covered Asheville Communities Network (2025) explicitly frames Western NC as a model for community-based climate resilience — national media visibility that accelerates network growth.
+
+**Practitioner-relevant nuance:**
+The regenerative network density here is a genuine asset for a new settlement — peer communities for knowledge exchange, established supply chains for natural building materials and organic inputs, a regional culture that normalises unconventional land use, and a practitioner talent pool that already lives here. The caveat worth naming: density also means land pressure. The most well-located parcels (accessible, flat coves, reliable water, south-facing) are increasingly sought by this same community of buyers, and prices reflect the competition. A new project entering this market in 2025–2026 will pay a premium over comparable rural land in regions with no regen scene — the network's richness is partially capitalised into the land price. Earthaven's decades of accumulated knowledge are genuinely shared through tours, workshops, and the School of Integrated Living; the real value to a forming community is not just proximity but active mentorship infrastructure.
+
+**Sources:**
+1. Foundation for Intentional Community (FIC) — ic.org directory, search radius Asheville NC (2025). https://www.ic.org/directory/
+2. Global Ecovillage Network (GEN) — Earthaven Ecovillage listing (2024). https://ecovillage.org/ecovillage/earthaven-ecovillage/
+3. Earthaven Ecovillage — community profile and School of Integrated Living (2024). https://www.earthaven.org/
+4. CommunityFinders.com — 15 Intentional Communities in North Carolina (2024). https://communityfinders.com/15-intentional-communities-in-north-carolina/
+5. NPR — "North Carolina community uses teamwork as climate change solution" (2025). https://www.npr.org/2025/06/10/nx-s1-5340713/north-carolina-climate-change-solutions
+6. Organic Growers School — About (2024). https://organicgrowersschool.org/about/
+7. ASAP — Appalachian Sustainable Agriculture Project (2024). https://asapconnections.org/

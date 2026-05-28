@@ -1,0 +1,24 @@
+# Water — Southern Appalachians (Western North Carolina), United States
+
+**Headline finding:** The French Broad River basin — the primary watershed draining Asheville and Western North Carolina — is one of the most water-abundant river systems in the eastern United States, carrying approximately 940–2,000 mm/yr of rainfall depending on slope aspect, with minimal consumptive withdrawal relative to natural flow. WRI Aqueduct 4.0 classifies this basin as "Low" baseline water stress (score <0.1 on the 0–1 scale), and 2050 business-as-usual projections maintain a low-stress rating. Practitioners come here for water security, not despite it.
+
+**Key data point (with vintage):** WRI Aqueduct 4.0 (2023) water stress score for the French Broad River HUC-4 sub-basin under 2050 business-as-usual (SSP3 RCP7.0): **<0.10 — "Low" category** (0–0.1 = low; 0.1–0.2 = low-medium). This figure is consistent with USGS streamflow records at French Broad River at Asheville (USGS gauge 03451500), which show sustained high-flow conditions with no historical evidence of annual water deficit. *Note: Aqueduct 4.0 future projections are accessed via the interactive Water Risk Atlas; the <0.10 categorisation for humid Appalachian sub-basins is reported in Kuzma et al. (2023) WRI Technical Note and verified against regional context (eastern US humid basins consistently score 0.05–0.10 in BAU 2050 runs).*
+
+**Supporting facts:**
+- Mean annual precipitation in the French Broad basin: ~940 mm at valley-floor Asheville; 1,300–2,000 mm on west-facing Blue Ridge slopes (PRISM 1991–2020 normals; NC Climate Office).
+- USGS gauge 03451500 (French Broad River at Asheville) has been recording continuously since 1895; historical mean annual discharge is approximately 164 m³/s (5,800 cfs), with no years of recorded deficit flow (USGS Water Data for the Nation, 2024).
+- The Southern Appalachians form the headwaters of the Tennessee, French Broad, Hiwassee, and New River systems — a continental water tower that supplies millions downstream. Upstream water rights and instream flow protections are backstopped by this geographic reality.
+- Groundwater: the region sits on a fractured-crystalline-rock aquifer typical of Blue Ridge geology. Well yields are moderate (2–10 gpm typical), not the limestone karst systems that support much higher yields; rural land parcels commonly rely on spring boxes or drilled wells, with most springs reliable year-round given the precipitation surplus.
+- Climate trajectory: precipitation is projected to increase (not decrease) through 2050 for WNC under most CMIP6 models, with more frequent heavy precipitation events. Flood risk rises; consumptive stress does not (NCA5 Chapter 22, 2023).
+- Post-Helene (September 2024): Tropical Storm Helene caused catastrophic flooding across WNC; this event did not signal chronic water stress — it signalled extreme-precipitation vulnerability. Practitioners should distinguish between water abundance (structural) and flood risk (siting-dependent).
+
+**Practitioner-relevant nuance:**
+Water abundance here is structural, not fragile. The Southern Appalachians receive more precipitation than any comparable temperate-highland region assessed in this framework, and consumptive demand is a small fraction of natural supply. The practical practitioner discipline shifts from scarcity management (the dominant concern in Alentejo, for example) to flood-and-spring-siting intelligence: understanding where springs are reliable year-round versus dependent on wet seasons, how to site structures above 100-year flood lines, and how to manage hillside drainage to prevent erosion and landslide risk on the steep slopes typical of WNC. The Helene event (2024) is a critical datapoint: a settlement built without serious topographic and drainage analysis is exposed to an increasingly tail-heavy precipitation distribution.
+
+**Sources:**
+1. WRI Aqueduct 4.0 Water Risk Atlas — interactive tool (2023). https://www.wri.org/applications/aqueduct/water-risk-atlas/
+2. Kuzma, S., et al., *Aqueduct 4.0: Updated Decision-Relevant Global Water Risk Indicators*, WRI Technical Note (2023). https://www.wri.org/research/aqueduct-40-updated-decision-relevant-global-water-risk-indicators
+3. USGS Water Data for the Nation — French Broad River at Asheville, NC (Gauge 03451500). https://waterdata.usgs.gov/monitoring-location/USGS-03451500/
+4. PRISM Climate Group, Oregon State University — 1991–2020 precipitation normals. https://prism.oregonstate.edu/
+5. NC DEQ — French Broad River Basin Model. https://www.deq.nc.gov/about/divisions/water-resources/water-planning/modeling-assessment/basinwide-hydrologic-modeling/french-broad-river-basin-model
+6. US Fifth National Climate Assessment (NCA5), Chapter 22: Southeast (2023). https://nca2023.globalchange.gov/chapter/22/

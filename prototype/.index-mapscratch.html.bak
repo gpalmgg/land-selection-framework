@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Land Selection Framework — Prototype</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+
+  <style>
+    :root {
+      --paper: #f6f2eb;
+      --paper-2: #efe9df;
+      --ink: #1a1a1a;
+      --ink-2: #3a3a3a;
+      --ink-3: #6b6258;
+      --rule: #d8d0c2;
+      --accent: #8a3a2a;
+      --accent-soft: #c97a5a;
+      --map-fade: #1a1a1a;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    #app {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* === Sidebar === */
+    aside {
+      background: var(--paper);
+      border-right: 1px solid var(--rule);
+      overflow-y: auto;
+      padding: 28px 28px 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .brand {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 500;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      color: var(--ink);
+      margin: 0 0 4px;
+    }
+
+    .brand em {
+      font-style: italic;
+      color: var(--ink-3);
+      font-weight: 400;
+    }
+
+    .sub {
+      font-size: 11.5px;
+      color: var(--ink-3);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 0 0 22px;
+    }
+
+    .frame {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--ink-2);
+      margin: 0 0 22px;
+      padding: 14px 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .frame strong {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin: 26px 0 12px;
+    }
+
+    /* === Layer list === */
+    .layer-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .layer {
+      background: var(--paper);
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .layer { border-left: 3px solid transparent; transition: background 0.15s ease, border-color 0.15s ease; }
+    .layer:hover { background: var(--paper-2); }
+    .layer.active {
+      background: var(--paper-2);
+      border-left-color: currentColor;
+    }
+    .layer.active .swatch { transform: scale(1.0); opacity: 1; }
+
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-top: 4px;
+      flex-shrink: 0;
+      opacity: 0.45;
+      transform: scale(0.85);
+      transition: all 0.15s ease;
+      background: currentColor;
+    }
+
+    .layer-text { flex: 1; min-width: 0; }
+
+    .layer-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 2px;
+    }
+
+    .layer-meta {
+      font-size: 10.5px;
+      color: var(--ink-3);
+      line-height: 1.4;
+      font-feature-settings: 'tnum' 1;
+    }
+
+    .layer-meta span + span::before {
+      content: ' · ';
+      color: var(--rule);
+    }
+
+    .layer.active .layer-name { color: var(--ink); font-weight: 600; }
+
+    .layer.pending { opacity: 0.55; }
+    .layer.pending .swatch { opacity: 0.25; }
+    .layer.pending:hover { background: var(--paper); cursor: default; }
+    .layer-note {
+      font-size: 10px;
+      font-style: italic;
+      color: var(--ink-3);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    /* === Footer / honest-note === */
+    .note {
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 1px solid var(--rule);
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 12px;
+      font-style: italic;
+      color: var(--ink-3);
+      line-height: 1.5;
+    }
+
+    .credit {
+      margin-top: 18px;
+      font-size: 10.5px;
+      color: var(--ink-3);
+      letter-spacing: 0.03em;
+    }
+
+    /* === Map === */
+    #map {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: var(--paper-2);
+    }
+
+    /* Floating value readout */
+    .readout {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 14px 16px;
+      max-width: 280px;
+      box-shadow: 0 1px 0 var(--rule), 0 8px 24px rgba(26, 26, 26, 0.06);
+      z-index: 3;
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--ink-2);
+      display: none;
+    }
+
+    .readout.visible { display: block; animation: readoutIn 0.25s ease; }
+    @keyframes readoutIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .map-status {
+      position: absolute;
+      bottom: 22px;
+      left: 22px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 8px 14px;
+      font-size: 11px;
+      color: var(--ink-3);
+      letter-spacing: 0.02em;
+      z-index: 3;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .readout h3 {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      margin: 0 0 6px;
+    }
+
+    .readout .val {
+      font-feature-settings: 'tnum' 1;
+      font-variant-numeric: tabular-nums;
+      font-size: 18px;
+      color: var(--ink);
+      font-weight: 500;
+      margin: 4px 0;
+    }
+
+    .readout .src {
+      font-size: 10.5px;
+      color: var(--ink-3);
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dotted var(--rule);
+    }
+
+    /* Intro overlay */
+    .intro {
+      position: absolute;
+      inset: 0;
+      background: rgba(246, 242, 235, 0.96);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      transition: opacity 0.4s ease;
+    }
+
+    .intro.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .intro-card {
+      max-width: 540px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 36px 40px 32px;
+      box-shadow: 0 12px 48px rgba(26, 26, 26, 0.08);
+    }
+
+    .intro-card h1 {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 500;
+      font-size: 26px;
+      letter-spacing: -0.01em;
+      margin: 0 0 6px;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+
+    .intro-card .label {
+      font-size: 10.5px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .intro-card p {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink-2);
+      margin: 0 0 14px;
+    }
+
+    .intro-card p:last-of-type { margin-bottom: 24px; }
+
+    .intro-card button {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--paper);
+      border: none;
+      padding: 12px 22px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .intro-card button:hover { background: var(--accent); }
+
+    /* MapLibre tweaks */
+    .maplibregl-ctrl-attrib { font-family: 'Inter', sans-serif; font-size: 10px; }
+    .maplibregl-ctrl-bottom-right { padding: 8px; }
+
+    @media (max-width: 720px) {
+      #app { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+      aside { max-height: 40vh; border-right: none; border-bottom: 1px solid var(--rule); }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <aside>
+      <h1 class="brand">Land Selection Framework <em>— prototype</em></h1>
+      <div class="sub">v1 · Europe · sketch build</div>
+
+      <div class="frame">
+        Eight criteria for siting a regenerative settlement on a fifty-to-hundred-year horizon. Each layer stands alone — <strong>no scoring, no ranking, no "best places."</strong> The viewer combines them themselves.
+      </div>
+
+      <h2>Layers</h2>
+      <ul class="layer-list" id="layer-list">
+        <!-- populated by JS -->
+      </ul>
+
+      <div class="note">
+        Every value carries its source and vintage. We never imply more precision than the data supports. Composite "livability" scores are explicitly out of scope.
+      </div>
+
+      <div class="credit">
+        Working group: Adam · Askja · Deca · Gustaf · Monty<br />
+        Documents: r3 (April 2026) · prototype r-sketch (May 2026)
+      </div>
+    </aside>
+
+    <div id="map">
+      <div class="map-status" id="map-status">v1 sketch · click any layer for details</div>
+      <div class="readout" id="readout">
+        <h3 id="readout-title">—</h3>
+        <div class="val" id="readout-value">—</div>
+        <div id="readout-desc"></div>
+        <div class="src" id="readout-source">—</div>
+      </div>
+
+      <div class="intro" id="intro">
+        <div class="intro-card">
+          <div class="label">Land Selection Framework — v1 sketch</div>
+          <h1>A data-honest view of land for the next century.</h1>
+          <p>
+            Choosing land for a community project meant to outlast a generation is not real-estate shopping. Climate trajectories, water stress, soil resilience, regenerative networks already in place — these decide whether the project still exists in fifty years.
+          </p>
+          <p>
+            This is a sketch of what the full tool will produce. Toggle the layers on the left to read each criterion on its own terms. The data shapes the question; the choice stays with you.
+          </p>
+          <button id="intro-close">Enter the map</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

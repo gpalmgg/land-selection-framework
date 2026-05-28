@@ -1,0 +1,23 @@
+# Political Stability — Cascadia (Western Oregon / Washington), United States
+
+**Headline finding:** Western Oregon and Washington are among the most politically stable jurisdictions in North America by any institutional metric: no armed conflict within 200 km for the entire UCDP GED recording period (1989–2023), consolidated democratic governance, strong rule of law, and locally progressive county governments that are generally hospitable to alternative-land-use models. The medium-horizon political risks are federal-level policy volatility (land-use regulations, carbon incentives, immigration status for non-citizen community members) and state-level housing-law complexity, not instability in any conflict sense.
+
+**Key data point (with vintage):** UCDP Georeferenced Event Dataset (GED) v24.1 — armed-conflict events recorded within ~200 km of the region centroid (−123.0, 44.5) covering 1989–2023: **0 events**. This is the expected result for all of continental North America outside Mexico's northern border zone; it is reported here honestly as a data point, not an absence of evidence. V-Dem Electoral Democracy Index for the United States 2023: **0.80** (V-Dem v14, March 2024).
+
+**Supporting facts:**
+- Oregon and Washington are both consolidated US states with continuous constitutional governance; no significant institutional discontinuity risk is projected under any mainstream scenario through 2060.
+- Linn, Benton, Lane, and Polk counties (the core Willamette Valley settlement zone) have elected county governments that have historically been permissive of intentional communities, ecovillages, and alternative housing (accessory dwelling units, tiny homes) — materially more so than many other US rural jurisdictions.
+- Oregon HB 2001 (2019) and subsequent zoning reforms have made accessory dwelling units (ADUs) and some cluster-housing models more legally accessible in rural-residential and agricultural zones — a practical gain for intentional communities.
+- Federal-level risks (as of 2025): rollback of Inflation Reduction Act clean-energy incentives, potential changes to EPA environmental permitting, and federal land-management policy shifts — none constituting "instability" but creating planning uncertainty for energy systems and agroforestry subsidies.
+- INFORM Risk Index 2024 for the United States: **3.1/10** (low-risk band; DRMKC/JRC, 2024 release). The elevated score versus Northern European peers reflects governance and infrastructure fragility at the federal scale, not local Cascadia conditions.
+- Seismic risk is the dominant natural-hazard concern: the Cascadia Subduction Zone (CSZ) is one of the world's largest seismogenic faults; a M8.0–9.3 megathrust event is projected at 37% probability within 50 years (Goldfinger et al., USGS, 2012 — the foundational estimate, still the scientific consensus basis as of NCA5 2023).
+
+**Practitioner-relevant nuance:**
+Cascadia's political stability is near-maximum for any assessed region. The factor that deserves equivalent or greater weight is the Cascadia Subduction Zone seismic risk, which is a legitimate long-horizon settlement constraint. A 37% probability of a magnitude 8–9 earthquake within 50 years, with projected 13–27 metre coastal tsunami inundation and likely multi-month regional grid and road-network disruption, is not a reason to rule out the region but is a reason to site carefully (>15 km inland from the coast, above flood plains, with structural resilience designed in), to invest in food and water reserves appropriate for 3–6 month grid-down scenarios, and to understand community building-code requirements for earthquake resistance. Non-US citizens living at a settlement should also account for visa and status implications — US rural residency on non-immigrant visas is legally complex and does not confer the stable long-term status that EU permanent residency does.
+
+**Sources:**
+1. UCDP Georeferenced Event Dataset (GED) v24.1, 2024. https://ucdp.uu.se/downloads/index.html#ged_global
+2. V-Dem Institute, V-Dem Dataset v14, country: United States (2024). https://www.v-dem.net/data_analysis/CountryGraph/
+3. INFORM Risk Index 2024, United States profile. https://drmkc.jrc.ec.europa.eu/inform-index/INFORM-Risk
+4. Goldfinger, C., et al., *Turbidite Event History — Methods and Implications for Holocene Paleoseismicity of the Cascadia Subduction Zone*, USGS Professional Paper 1661-F (2012, referenced in NCA5 2023). https://pubs.usgs.gov/pp/pp1661f/
+5. Oregon HB 2001 (2019) — Middle Housing, Oregon Legislature. https://www.oregonlegislature.gov/bills_laws/lawsstatutes/2019orLaw0001.pdf

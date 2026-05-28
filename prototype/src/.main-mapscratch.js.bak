@@ -1,0 +1,258 @@
+import { layers, europeBounds } from './layers.js';
+
+// ====================================================================
+// Map initialization
+// ====================================================================
+
+const map = new maplibregl.Map({
+  container: 'map',
+  style: {
+    version: 8,
+    sources: {
+      'carto-positron': {
+        type: 'raster',
+        tiles: [
+          'https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+          'https://b.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+          'https://c.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+        ],
+        tileSize: 256,
+        attribution: '© OpenStreetMap contributors, © CARTO',
+      },
+    },
+    layers: [
+      { id: 'base', type: 'raster', source: 'carto-positron', minzoom: 0, maxzoom: 22 },
+    ],
+  },
+  center: europeBounds.center,
+  zoom: europeBounds.zoom,
+  minZoom: 3,
+  maxZoom: 10,
+  attributionControl: true,
+});
+
+map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
+
+// ====================================================================
+// Layer registry — wiring functions per kind
+// ====================================================================
+
+const activeLayers = new Set();
+
+async function wireLayer(layer) {
+  if (!layer.kind) return false;
+
+  try {
+    if (layer.kind === 'raster-image') {
+      const meta = await fetch(layer.metaKey).then((r) => r.json());
+      const [w, s, e, n] = meta.bounds;
+      map.addSource(layer.id, {
+        type: 'image',
+        url: layer.dataKey,
+        coordinates: [[w, n], [e, n], [e, s], [w, s]],
+      });
+      map.addLayer({
+        id: layer.id,
+        source: layer.id,
+        type: 'raster',
+        layout: { visibility: 'none' },
+        paint: { 'raster-opacity': 0.78, 'raster-fade-duration': 200 },
+      });
+      return true;
+    }
+
+    if (layer.kind === 'point-symbol') {
+      map.addSource(layer.id, { type: 'geojson', data: layer.dataKey });
+      map.addLayer({
+        id: layer.id,
+        source: layer.id,
+        type: 'circle',
+        layout: { visibility: 'none' },
+        paint: {
+          'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 3.5, 7, 7],
+          'circle-color': layer.color,
+          'circle-stroke-color': '#f6f2eb',
+          'circle-stroke-width': 1.5,
+          'circle-opacity': 0.92,
+        },
+      });
+      return true;
+    }
+
+    if (layer.kind === 'polygon-fill') {
+      map.addSource(layer.id, { type: 'geojson', data: layer.dataKey });
+      const colorExpr = [
+        'interpolate', ['linear'], ['get', layer.fillProperty || 'score'],
+        ...layer.fillStops.flat(),
+      ];
+      map.addLayer({
+        id: layer.id,
+        source: layer.id,
+        type: 'fill',
+        layout: { visibility: 'none' },
+        paint: {
+          'fill-color': colorExpr,
+          'fill-outline-color': 'rgba(20, 60, 100, 0.08)',
+          'fill-opacity': ['interpolate', ['linear'], ['zoom'], 3, 0.85, 7, 0.7],
+        },
+      });
+      return true;
+    }
+
+    if (layer.kind === 'raster-tile') {
+      map.addSource(layer.id, {
+        type: 'raster',
+        tiles: [layer.tileUrl],
+        tileSize: 256,
+        attribution: layer.tileAttribution || '',
+      });
+      map.addLayer({
+        id: layer.id,
+        source: layer.id,
+        type: 'raster',
+        layout: { visibility: 'none' },
+        paint: { 'raster-opacity': 0.85, 'raster-fade-duration': 200 },
+      });
+      return true;
+    }
+
+    if (layer.kind === 'point-heatmap') {
+      map.addSource(layer.id, { type: 'geojson', data: layer.dataKey });
+      map.addLayer({
+        id: layer.id,
+        source: layer.id,
+        type: 'heatmap',
+        layout: { visibility: 'none' },
+        paint: {
+          'heatmap-weight': ['interpolate', ['linear'], ['get', 'deaths_best'], 0, 0.15, 100, 1],
+          'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 3, 0.8, 8, 2.4],
+          'heatmap-color': [
+            'interpolate', ['linear'], ['heatmap-density'],
+            0, 'rgba(0,0,0,0)',
+            0.15, 'rgba(138, 58, 42, 0.25)',
+            0.4, 'rgba(178, 70, 50, 0.55)',
+            0.7, 'rgba(220, 100, 70, 0.75)',
+            1, 'rgba(90, 26, 26, 0.9)',
+          ],
+          'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 3, 8, 7, 24],
+          'heatmap-opacity': 0.9,
+        },
+      });
+      return true;
+    }
+  } catch (err) {
+    console.warn(`[layer ${layer.id}] failed to wire:`, err);
+    return false;
+  }
+  return false;
+}
+
+// ====================================================================
+// Sidebar UI
+// ====================================================================
+
+const layerListEl = document.getElementById('layer-list');
+
+function el(tag, opts = {}) {
+  const node = document.createElement(tag);
+  if (opts.className) node.className = opts.className;
+  if (opts.text != null) node.textContent = opts.text;
+  if (opts.style) Object.assign(node.style, opts.style);
+  return node;
+}
+
+function buildLayerRow(layer) {
+  const li = el('li', { className: 'layer' + (activeLayers.has(layer.id) ? ' active' : '') });
+  if (!layer.kind) li.classList.add('pending');
+  li.style.color = layer.color;
+
+  li.appendChild(el('span', { className: 'swatch' }));
+
+  const text = el('div', { className: 'layer-text' });
+  text.appendChild(el('div', { className: 'layer-name', text: layer.name }));
+
+  const meta1 = el('div', { className: 'layer-meta' });
+  meta1.appendChild(el('span', { text: layer.metric }));
+  text.appendChild(meta1);
+
+  const meta2 = el('div', { className: 'layer-meta', style: { marginTop: '3px' } });
+  meta2.appendChild(el('span', { text: layer.source }));
+  meta2.appendChild(el('span', { text: layer.vintage }));
+  text.appendChild(meta2);
+
+  if (!layer.kind && layer.note) {
+    const noteEl = el('div', { className: 'layer-note', text: layer.note });
+    text.appendChild(noteEl);
+  }
+
+  li.appendChild(text);
+  li.addEventListener('click', () => toggleLayer(layer.id));
+  return li;
+}
+
+function renderLayerList() {
+  while (layerListEl.firstChild) layerListEl.removeChild(layerListEl.firstChild);
+  layers.forEach((layer) => layerListEl.appendChild(buildLayerRow(layer)));
+}
+
+function toggleLayer(id) {
+  const layer = layers.find((l) => l.id === id);
+  if (!layer.kind) {
+    // Pending layers — show readout but no map effect
+    showReadout(layer);
+    return;
+  }
+  if (activeLayers.has(id)) {
+    activeLayers.delete(id);
+    if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', 'none');
+  } else {
+    activeLayers.add(id);
+    if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', 'visible');
+    showReadout(layer);
+  }
+  renderLayerList();
+}
+
+function showReadout(layer) {
+  const readout = document.getElementById('readout');
+  document.getElementById('readout-title').textContent = layer.name;
+  document.getElementById('readout-value').textContent = layer.metric;
+  document.getElementById('readout-desc').textContent = layer.description;
+  document.getElementById('readout-source').textContent =
+    `${layer.source} · ${layer.vintage} · ${layer.nativeUnit} · ${layer.license}`;
+  readout.classList.add('visible');
+}
+
+// ====================================================================
+// Intro overlay
+// ====================================================================
+
+document.getElementById('intro-close').addEventListener('click', () => {
+  document.getElementById('intro').classList.add('hidden');
+});
+
+// ====================================================================
+// Boot
+// ====================================================================
+
+map.on('load', async () => {
+  renderLayerList();
+  // Wire layers with data ready, count successes
+  let wired = 0;
+  for (const layer of layers) {
+    if (layer.kind) {
+      const ok = await wireLayer(layer);
+      if (ok) wired += 1;
+    }
+  }
+  const total = layers.length;
+  const statusEl = document.getElementById('map-status');
+  if (statusEl) {
+    statusEl.textContent = `${wired} of ${total} layers wired · v1 sketch · click any layer for details`;
+  }
+  console.log(`Map ready. Wired ${wired}/${total} layers.`);
+});
+
+map.on('error', (e) => {
+  console.warn('MapLibre error:', e.error?.message || e);
+});

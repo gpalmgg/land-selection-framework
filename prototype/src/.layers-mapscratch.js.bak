@@ -1,0 +1,158 @@
+// Layer registry. Each entry describes a criterion, its data source, and how it renders.
+// Sources verified against Askja's framework (r2) and the v1 specifications doc.
+// Color ramps are chosen per data type — heat for climate, blue for water, etc.
+// No composite scoring. No ranking. Each layer stands alone.
+//
+// `kind` controls how main.js wires the layer:
+//   - 'raster-image'   → static PNG overlay (image source)
+//   - 'point-symbol'   → GeoJSON points rendered as circles
+//   - 'point-heatmap'  → GeoJSON points rendered as heatmap
+//   - 'polygon-fill'   → GeoJSON polygons with property-driven fill
+//   - null             → layer documented but data not yet wired (sidebar-only)
+
+export const layers = [
+  {
+    id: 'climate-trajectory',
+    name: 'Climate trajectory',
+    metric: 'Mean annual temperature, 2041–2060',
+    source: 'WorldClim CMIP6 (SSP2-4.5)',
+    vintage: 'projection 2041–2060',
+    nativeUnit: '~18 km raster',
+    license: 'WorldClim terms',
+    color: '#b44632',
+    descriptionShort: 'Projected temperature regime at mid-century.',
+    description:
+      'Mean annual temperature projected to 2041–2060 under a moderate-emissions scenario (SSP2-4.5). Multi-model ensemble (MPI-ESM1-2-HR). State + trajectory in one layer: future projected. Read alongside water stress — climate change cascades.',
+    sourceUrl: 'https://www.worldclim.org/data/cmip6/cmip6climate.html',
+    kind: 'raster-image',
+    dataKey: 'data/processed/climate-trajectory.png',
+    metaKey: 'data/processed/climate-trajectory.json',
+  },
+  {
+    id: 'water-stress',
+    name: 'Water stress',
+    metric: 'Projected baseline water scarcity',
+    source: 'WRI Aqueduct 4.0',
+    vintage: '2023 release, 2030 projection',
+    nativeUnit: 'sub-basin',
+    license: 'CC-BY 4.0',
+    color: '#2c5f7c',
+    descriptionShort: 'Ratio of demand to available renewable water supply.',
+    description:
+      'Baseline water stress projected to 2030. A region under high water stress today will be under higher stress in a hotter future. Red lines: water-deficit projection. Read with climate trajectory.',
+    sourceUrl: 'https://www.wri.org/aqueduct',
+    kind: 'polygon-fill',
+    dataKey: 'data/processed/water-stress.geojson',
+    fillProperty: 'score',
+    fillStops: [
+      [0.0, 'rgba(232, 244, 250, 0.0)'],
+      [0.1, 'rgba(192, 220, 235, 0.45)'],
+      [0.3, 'rgba(120, 170, 200, 0.6)'],
+      [0.6, 'rgba(60, 110, 150, 0.75)'],
+      [1.0, 'rgba(20, 60, 100, 0.9)'],
+    ],
+  },
+  {
+    id: 'soil-carbon',
+    name: 'Soil organic carbon',
+    metric: 'SOC stock, top 5 cm',
+    source: 'SoilGrids 2.0 (ISRIC)',
+    vintage: '2020',
+    nativeUnit: '250 m raster',
+    license: 'CC-BY 4.0',
+    color: '#4a3a1a',
+    descriptionShort: 'Carbon stored in topsoil — a proxy for regenerative starting condition.',
+    description:
+      'Soil organic carbon in the topmost 5 cm. Higher SOC indicates more living, structured soil — a better starting point for regenerative agriculture. Low SOC is not disqualifying; it indicates more soil-building work ahead.',
+    sourceUrl: 'https://soilgrids.org',
+    kind: null,
+    note: 'WCS endpoint slow from this network — deferred.',
+  },
+  {
+    id: 'forest-change',
+    name: 'Forest cover change',
+    metric: 'Tree cover loss, cumulative 2001–2023',
+    source: 'Global Forest Watch (Hansen v1.11)',
+    vintage: '2000–2023',
+    nativeUnit: '30 m tiles served by GFW',
+    license: 'CC-BY 4.0',
+    color: '#2d5a2a',
+    descriptionShort: 'Where forests are growing, where they are being cleared.',
+    description:
+      'Twenty-year forest cover trend. State + trajectory in one layer: current cover plus directional change. Reading this alongside biodiversity and soil tells a story about land-use history.',
+    sourceUrl: 'https://www.globalforestwatch.org/',
+    kind: 'raster-tile',
+    tileUrl: 'https://tiles.globalforestwatch.org/umd_tree_cover_loss/v1.13/dynamic/{z}/{x}/{y}.png',
+    tileAttribution: 'Hansen/UMD/Google/USGS/NASA via Global Forest Watch',
+  },
+  {
+    id: 'solar-pv',
+    name: 'Solar PV potential',
+    metric: 'Long-term average daily PV output',
+    source: 'Global Solar Atlas (World Bank / Solargis)',
+    vintage: '1999–2018 average',
+    nativeUnit: '~1 km raster',
+    license: 'CC-BY 4.0',
+    color: '#c97a3a',
+    descriptionShort: 'Photovoltaic output potential — energy autonomy starts here.',
+    description:
+      'Long-term average specific PV output (PVOUT), kWh per kWp installed. Foundational for off-grid feasibility. Combine mentally with wind and micro-hydro potential for full energy-autonomy picture (V2 work).',
+    sourceUrl: 'https://globalsolaratlas.info',
+    kind: null,
+    note: 'Source requires free registration — skipped for this sketch.',
+  },
+  {
+    id: 'conflict',
+    name: 'Conflict density',
+    metric: 'Recent armed-conflict events (2015–2024)',
+    source: 'UCDP GED v25.1',
+    vintage: '2015–2024',
+    nativeUnit: 'event points',
+    license: 'CC-BY 4.0',
+    color: '#5a1a1a',
+    descriptionShort: 'Where political violence has happened. Red-line proximity matters.',
+    description:
+      'Recent conflict events 2015–2024. Red lines: active-conflict proximity. Note this is observed events, not future risk — projection of political violence is far harder than projection of climate. Ukraine 2022+ dominates the heatmap.',
+    sourceUrl: 'https://ucdp.uu.se',
+    kind: 'point-heatmap',
+    dataKey: 'data/processed/conflict.geojson',
+  },
+  {
+    id: 'regen-network',
+    name: 'Regenerative network density',
+    metric: 'OSM-tagged intentional communities and permaculture sites',
+    source: 'OpenStreetMap via Overpass',
+    vintage: 'current OSM snapshot',
+    nativeUnit: 'point locations',
+    license: 'ODbL 1.0',
+    color: '#3a6a4a',
+    descriptionShort: 'Where the work is already happening. Knowledge networks are infrastructure.',
+    description:
+      'Established regenerative sites — ecovillages, intentional communities, permaculture projects — as tagged in OpenStreetMap. Real but volunteer-tagged: GEN\'s curated directory has 300+ European sites; OSM has ~30. Proximity to existing knowledge networks shortens learning curves and opens supply chains.',
+    sourceUrl: 'https://ecovillage.org/projects/map/',
+    kind: 'point-symbol',
+    dataKey: 'data/processed/ecovillages.geojson',
+  },
+  {
+    id: 'population',
+    name: 'Population grid',
+    metric: 'Population per km² (log scale)',
+    source: 'GHSL POP R2023A (JRC)',
+    vintage: '2030 projection',
+    nativeUnit: '1 km raster',
+    license: 'Open data (JRC)',
+    color: '#6a5a4a',
+    descriptionShort: 'Density context — accessibility without crowding.',
+    description:
+      'Gridded population, log-scaled because raw population is wildly skewed. Neither high nor low is "better." This is context — combine mentally with accessibility (distance to hospital, road density) for the full picture of how connected vs. isolated a candidate area is.',
+    sourceUrl: 'https://ghsl.jrc.ec.europa.eu/ghs_pop2023.php',
+    kind: null,
+    note: 'Data download in progress — pending arrival.',
+  },
+];
+
+export const europeBounds = {
+  center: [10, 50],
+  zoom: 4.1,
+  bbox: [-12, 35, 35, 60],
+};

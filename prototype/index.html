@@ -1,0 +1,1893 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Land Selection Framework, siting a regenerative community</title>
+  <meta name="description" content="Eight criteria for choosing where to site a regenerative settlement built to flourish on a fifty-to-hundred-year horizon, read, with sources, across twenty candidate regions across Europe and North America. The framework filters; it never scores." />
+  <link rel="canonical" href="https://land-selection-framework.vercel.app/" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Land Selection Framework",
+    "headline": "Eight criteria for siting a regenerative community on a 50–100 year horizon",
+    "description": "A data-honest sketch of eight criteria for choosing where to site a regenerative settlement, read with sources across twenty candidate regions across Europe and North America. The framework filters; it never scores.",
+    "url": "https://land-selection-framework.vercel.app/",
+    "inLanguage": "en",
+    "author": { "@type": "Organization", "name": "The Collective" },
+    "dateModified": "2026-05-26"
+  }
+  </script>
+
+  <!-- Open Graph / Twitter Card -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://land-selection-framework.vercel.app" />
+  <meta property="og:title" content="Land Selection Framework, siting a regenerative community" />
+  <meta property="og:description" content="Eight criteria for siting a regenerative settlement, read across twenty candidate regions across Europe and North America. Sliders filter; the framework never scores." />
+  <meta property="og:image" content="https://land-selection-framework.vercel.app/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Land Selection Framework, siting a regenerative community" />
+  <meta name="twitter:description" content="Eight criteria for siting a regenerative settlement. The framework filters, never scores." />
+  <meta name="twitter:image" content="https://land-selection-framework.vercel.app/og.png" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <!-- MapLibre self-hosted (v4.7.1), avoids a third-party CDN as a runtime single-point-of-failure -->
+  <link href="/vendor/maplibre/maplibre-gl.css" rel="stylesheet" />
+  <script src="/vendor/maplibre/maplibre-gl.js"></script>
+
+  <!-- Vercel Analytics (Hobby plan, no auth needed) -->
+  <script defer src="/_vercel/insights/script.js"></script>
+
+  <style>
+    :root {
+      --paper: #f6f2eb;
+      --paper-2: #efe9df;
+      --paper-3: #e6dfd0;
+      --ink: #1a1a1a;
+      --ink-2: #3a3a3a;
+      --ink-3: #6b6258;
+      --ink-4: #9a9082;
+      --rule: #d8d0c2;
+      --rule-soft: #e6dfd0;
+      --accent: #8a3a2a;
+      --accent-soft: #c97a5a;
+      --pass: #3a6a4a;
+      --fail: #a05050;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px; line-height: 1.55;
+      color: var(--ink); background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body { overflow-x: hidden; }
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+    .serif { font-family: 'Spectral', Georgia, serif; }
+    .mono { font-feature-settings: 'tnum' 1; font-variant-numeric: tabular-nums; }
+    h1, h2, h3, h4 { margin: 0; color: var(--ink); }
+    .eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+    }
+    .small { font-size: 11.5px; color: var(--ink-3); }
+    a { color: inherit; }
+
+    /* === Prototype announcement banner === */
+    .prototype-banner {
+      background: var(--accent);
+      color: var(--paper);
+      border-bottom: 1px solid rgba(26, 26, 26, 0.14);
+    }
+    .prototype-banner .container {
+      display: flex; align-items: center; gap: 16px;
+      padding-top: 14px; padding-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .proto-tag {
+      flex-shrink: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 10.5px; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--accent);
+      background: var(--paper);
+      padding: 5px 11px;
+    }
+    .proto-msg {
+      margin: 0;
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 16px; line-height: 1.45;
+      color: var(--paper);
+    }
+    .proto-msg strong { font-weight: 600; color: #ffffff; }
+    @media (max-width: 480px) {
+      .prototype-banner .container { gap: 10px; padding-top: 12px; padding-bottom: 12px; }
+      .proto-msg { font-size: 14.5px; }
+    }
+
+    /* === Hero === */
+    .hero {
+      padding: 100px 0 80px;
+      border-bottom: 1px solid var(--rule);
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(138, 58, 42, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 10% 80%, rgba(44, 95, 124, 0.05) 0%, transparent 50%),
+        var(--paper);
+    }
+    .hero .eyebrow { margin-bottom: 26px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .hero h1 {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(48px, 8vw, 96px);
+      line-height: 1.0;
+      letter-spacing: -0.024em;
+      margin-bottom: 20px;
+    }
+    .hero .subtitle {
+      font-family: 'Spectral', Georgia, serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(19px, 2.2vw, 26px);
+      line-height: 1.35;
+      color: var(--ink-2);
+      max-width: 26ch;
+      margin-bottom: 32px;
+    }
+    .hero .lede {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 17px; line-height: 1.55;
+      color: var(--ink-2); max-width: 48ch; margin-bottom: 24px;
+    }
+    .hero .lede-note {
+      font-family: 'Spectral', Georgia, serif;
+      font-style: italic;
+      font-size: 14.5px; line-height: 1.65;
+      color: var(--ink-3); max-width: 50ch; margin-bottom: 32px;
+      padding-left: 16px; border-left: 2px solid var(--accent-soft);
+    }
+    .hero .key {
+      font-size: 13px; color: var(--ink-3);
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+      border-top: 1px solid var(--rule); padding-top: 18px;
+      max-width: 560px;
+    }
+    .hero .key > div {
+      padding-right: 14px; padding-left: 12px;
+      border-right: 1px solid var(--rule);
+    }
+    .hero .key > div:first-child { padding-left: 0; }
+    .hero .key > div:last-child { border-right: none; }
+    .hero .key .num {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 24px; font-weight: 400; color: var(--ink);
+      letter-spacing: -0.01em; line-height: 1; margin-bottom: 4px;
+    }
+    .hero .key .lab {
+      font-size: 10.5px; color: var(--ink-3);
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+
+    /* === Hero signup card (atelier polish) === */
+    .signup-card {
+      background:
+        radial-gradient(ellipse at 100% 0%, rgba(138, 58, 42, 0.05) 0%, transparent 55%),
+        linear-gradient(180deg, var(--paper) 0%, rgba(246, 242, 235, 0.92) 100%);
+      border: 1px solid var(--rule);
+      padding: 36px 34px 30px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 1px 0 var(--rule), 0 18px 44px rgba(26, 26, 26, 0.06);
+      transition: transform 0.32s ease, box-shadow 0.32s ease;
+    }
+    .signup-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 1px 0 var(--rule), 0 26px 58px rgba(26, 26, 26, 0.08);
+    }
+    .signup-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 84px; height: 2px;
+      background: var(--accent);
+    }
+    .signup-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 84px;
+      width: 28px; height: 2px;
+      background: var(--accent);
+      opacity: 0.45;
+    }
+    .signup-card .topo-ornament {
+      position: absolute;
+      bottom: 12px; right: 14px;
+      width: 88px; height: 38px;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+    .signup-card h3 {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 500;
+      font-size: 24px;
+      letter-spacing: -0.008em;
+      margin-bottom: 10px;
+      position: relative;
+    }
+    .signup-card .blurb {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink-3);
+      margin-bottom: 24px;
+      max-width: 32ch;
+    }
+    .signup-card form {
+      display: flex; gap: 0;
+      border: 1px solid var(--rule);
+      background: var(--paper);
+      margin-bottom: 12px;
+      transition: border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+    .signup-card form:focus-within {
+      border-color: var(--ink);
+      box-shadow: 0 0 0 3px rgba(138, 58, 42, 0.08);
+    }
+    .signup-card input[type="email"] {
+      flex: 1;
+      padding: 13px 16px;
+      border: none; outline: none; background: transparent;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--ink);
+      min-width: 0;
+    }
+    .signup-card input[type="email"]::placeholder {
+      color: var(--ink-4); font-style: italic;
+    }
+    .signup-card button[type="submit"] {
+      padding: 13px 20px;
+      background: transparent;
+      color: var(--ink);
+      border: none;
+      border-left: 1px solid var(--rule);
+      cursor: pointer;
+      font-family: 'Spectral', Georgia, serif;
+      font-style: italic;
+      font-size: 15px; font-weight: 500;
+      letter-spacing: 0.005em;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.22s ease;
+      white-space: nowrap;
+    }
+    .signup-card button[type="submit"]:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .signup-card button[type="submit"] .arrow {
+      display: inline-block;
+      transition: transform 0.22s ease;
+      font-style: normal;
+    }
+    .signup-card button[type="submit"]:hover .arrow { transform: translateX(4px); }
+    .signup-card .form-status {
+      font-family: 'Spectral', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: var(--ink-3);
+      min-height: 1.3em;
+      margin-top: 8px;
+    }
+    .signup-card .form-status.error { color: var(--fail); }
+    .signup-card .form-status.success { color: var(--pass); }
+    .signup-card .form-status a {
+      color: var(--accent);
+      text-decoration: underline dotted;
+      text-underline-offset: 2px;
+    }
+    .signup-card .footnote {
+      font-size: 11px;
+      color: var(--ink-4);
+      letter-spacing: 0.02em;
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px dotted var(--rule);
+      font-family: 'Spectral', serif;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+    .signup-card .footnote a { color: var(--ink-3); text-decoration: underline dotted; text-underline-offset: 3px; }
+    .signup-card .footnote a:hover { color: var(--accent); }
+
+    /* === Hero secondary CTA (Deeper / Ethics) === */
+    .hero-cta {
+      display: block;
+      margin-top: 16px;
+      padding: 22px 26px 24px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      position: relative;
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+      cursor: pointer;
+      box-shadow: 0 1px 0 var(--rule);
+    }
+    .hero-cta::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 56px; height: 2px;
+      background: var(--accent);
+      opacity: 0.7;
+      transition: opacity 0.22s ease, background 0.22s ease;
+    }
+    .hero-cta:hover {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+      transform: translateY(-2px);
+      box-shadow: 0 1px 0 var(--ink), 0 16px 32px rgba(26, 26, 26, 0.10);
+    }
+    .hero-cta:hover::before {
+      background: var(--accent-soft);
+      opacity: 1;
+    }
+    .hero-cta-eyebrow {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      transition: color 0.22s ease;
+    }
+    .hero-cta:hover .hero-cta-eyebrow { color: var(--accent-soft); }
+    .hero-cta-body {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 18px;
+    }
+    .hero-cta-text {
+      font-family: 'Spectral', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 17.5px;
+      line-height: 1.35;
+      letter-spacing: -0.005em;
+      flex: 1;
+    }
+    .hero-cta-arrow {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 19px;
+      font-style: normal;
+      transition: transform 0.22s ease;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .hero-cta:hover .hero-cta-arrow { transform: translateX(5px); }
+
+    /* === Regions intro === */
+    .regions-intro { padding: 70px 0 50px; border-bottom: 1px solid var(--rule); }
+    .regions-intro h2 {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 30px; font-weight: 400;
+      letter-spacing: -0.01em; margin-bottom: 14px; max-width: 22ch;
+    }
+    .regions-intro p {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 16px; color: var(--ink-2);
+      max-width: 60ch; margin: 0 0 28px;
+    }
+
+    .map-wrap {
+      position: relative; width: 100%; height: 460px;
+      background: var(--paper-3); margin-bottom: 32px;
+      border: 1px solid var(--rule);
+    }
+    #map { position: absolute; inset: 0; }
+
+    .map-controls {
+      position: absolute; top: 14px; left: 14px;
+      background: var(--paper); border: 1px solid var(--rule);
+      padding: 12px 14px 10px; max-width: 240px; z-index: 2;
+      box-shadow: 0 1px 0 var(--rule), 0 6px 18px rgba(26,26,26,0.05);
+      max-height: calc(100% - 28px);
+      overflow-y: auto;
+    }
+    .map-controls .title {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.09em;
+      text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px;
+      /* rendered as a <button> so the panel can collapse on small screens */
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      width: 100%; background: none; border: none; padding: 0;
+      font-family: 'Inter', system-ui, sans-serif; cursor: pointer;
+    }
+    .map-controls .title .caret {
+      font-size: 9px; color: var(--ink-4); transition: transform 0.2s ease;
+    }
+    .map-controls.collapsed .title { margin-bottom: 0; }
+    .map-controls.collapsed .title .caret { transform: rotate(-90deg); }
+    .map-controls.collapsed #map-toggles { display: none; }
+    .map-controls .title:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* Continent switcher, only rendered (unhidden) when >1 continent has data */
+    .continent-switcher {
+      display: flex; gap: 2px; margin: 0 0 18px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .continent-tab {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px; font-weight: 600; letter-spacing: 0.01em;
+      color: var(--ink-3); background: none; border: none;
+      padding: 9px 18px 11px; cursor: pointer;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+    .continent-tab:hover { color: var(--ink-1); }
+    .continent-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .continent-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* Render-both-and-toggle: hide the inactive continent's nodes everywhere ,
+       region cards, criterion bars, summary columns, map markers, source items.
+       The :not(.continent-tab) exclusion keeps the SWITCHER tabs visible, they
+       also carry data-continent, but they're controls, not continent content. */
+    body[data-continent="europe"] [data-continent="north-america"]:not(.continent-tab),
+    body[data-continent="north-america"] [data-continent="europe"]:not(.continent-tab) {
+      display: none !important;
+    }
+
+    /* Graceful fallback if the map library or tiles fail to load */
+    .map-fallback {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 24px;
+      font-family: 'Spectral', Georgia, serif; font-size: 15px;
+      color: var(--ink-3); line-height: 1.6;
+    }
+    .map-fallback strong { color: var(--ink-2); font-weight: 500; }
+    .map-toggle-group-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 9.5px; font-weight: 600;
+      letter-spacing: 0.10em; text-transform: uppercase;
+      color: var(--ink-4);
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dotted var(--rule);
+    }
+    .map-toggle-group-label:first-of-type {
+      margin-top: 6px; padding-top: 0; border-top: none;
+    }
+    .map-toggle {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; color: var(--ink-2); padding: 4px 0;
+      cursor: pointer; user-select: none;
+    }
+    .map-toggle .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--toggle-color, var(--ink-3));
+      opacity: 0.35; transition: opacity 0.15s;
+    }
+    .map-toggle.on .dot { opacity: 1; }
+    .map-toggle .name { font-family: 'Spectral', serif; font-size: 13px; }
+    .map-toggle:hover { color: var(--ink); }
+
+    .region-marker {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--marker-color, var(--ink));
+      border: 3px solid var(--paper);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+      cursor: pointer; transition: transform 0.2s, opacity 0.2s;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--paper);
+      font-family: 'Spectral', serif; font-weight: 600; font-size: 13px;
+    }
+    .region-marker.dim { opacity: 0.32; transform: scale(0.78); }
+    .region-marker:hover { transform: scale(1.12); }
+    .region-label {
+      position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%);
+      white-space: nowrap; font-family: 'Spectral', serif;
+      font-size: 11.5px; font-weight: 500; color: var(--ink);
+      background: var(--paper); padding: 1px 7px;
+      border: 1px solid var(--rule); pointer-events: none;
+    }
+
+    .region-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+    }
+    .region-card {
+      background: var(--paper); padding: 22px 22px 26px;
+      position: relative; transition: opacity 0.3s, background 0.2s;
+    }
+    .region-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; height: 3px; width: 36%;
+      background: var(--accent-region, var(--accent));
+    }
+    .region-card.fail { opacity: 0.32; background: var(--paper); }
+    .region-card.fail::before { width: 18%; }
+    .region-card .name {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 22px; font-weight: 500;
+      letter-spacing: -0.005em; margin-bottom: 2px; color: var(--ink);
+    }
+    .region-card .country {
+      font-size: 11.5px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--ink-3); margin-bottom: 14px;
+    }
+    .region-card .blurb {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 13.5px; line-height: 1.55; color: var(--ink-2);
+    }
+    .region-card .status {
+      margin-top: 14px; font-size: 10.5px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--pass); font-weight: 600;
+    }
+    .region-card.fail .status { color: var(--fail); }
+
+    /* === Match summary === */
+    .match-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--paper-2); border: 1px solid var(--rule);
+      padding: 14px 18px; margin-bottom: 28px; font-size: 13px;
+    }
+    .match-bar .count {
+      font-family: 'Spectral', serif; font-size: 22px;
+      font-weight: 500; color: var(--ink); letter-spacing: -0.005em;
+    }
+    .match-bar .count em { font-style: italic; color: var(--ink-3); font-weight: 400; }
+    .match-bar .label {
+      font-size: 11px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--ink-3);
+    }
+    .match-bar .reset,
+    .match-bar .share {
+      font-family: 'Inter', sans-serif; font-size: 11px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      background: transparent; border: 1px solid var(--rule);
+      padding: 8px 14px; color: var(--ink-2);
+      cursor: pointer; transition: all 0.15s;
+    }
+    .match-bar .reset:hover,
+    .match-bar .share:hover {
+      background: var(--ink); color: var(--paper); border-color: var(--ink);
+    }
+    .match-bar .share:focus-visible,
+    .match-bar .reset:focus-visible {
+      outline: 2px solid var(--accent, #8a3a2a); outline-offset: 2px;
+    }
+    .match-bar-actions {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .match-bar .share { display: none; }
+    .match-bar.has-filters .share { display: inline-block; }
+    .match-bar .share.copied {
+      background: var(--ink); color: var(--paper); border-color: var(--ink);
+    }
+    .match-bar .share-note {
+      font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--ink-3);
+      opacity: 0; transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+    .match-bar .share-note.visible { opacity: 1; }
+
+    /* === Criteria grid === */
+    .criteria { padding: 60px 0 40px; }
+    .criteria > h2 {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 30px; font-weight: 400;
+      letter-spacing: -0.01em; margin-bottom: 8px;
+    }
+    .criteria > .desc {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 16px; color: var(--ink-2);
+      max-width: 64ch; margin: 0 0 32px;
+    }
+
+    .crit-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: var(--rule); border: 1px solid var(--rule);
+    }
+    .crit-card {
+      background: var(--paper); padding: 26px 26px 22px;
+      display: flex; flex-direction: column;
+    }
+    .crit-card .head {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; margin-bottom: 6px;
+    }
+    .crit-card .num {
+      font-family: 'Spectral', serif; font-size: 16px;
+      font-style: italic; color: var(--ink-4); font-weight: 400;
+    }
+    .crit-card h3 {
+      font-family: 'Spectral', serif;
+      font-size: 22px; font-weight: 500;
+      letter-spacing: -0.005em; line-height: 1.15; margin-bottom: 4px;
+    }
+    .crit-card .metric {
+      font-size: 11.5px; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--ink-3); margin-bottom: 14px;
+    }
+    .crit-card .framing {
+      font-family: 'Spectral', serif;
+      font-size: 13.5px; line-height: 1.55;
+      color: var(--ink-2); margin-bottom: 18px;
+    }
+
+    /* Threshold slider */
+    .slider-block {
+      background: var(--paper-2); padding: 12px 14px 14px;
+      margin-bottom: 18px; border-left: 2px solid var(--rule);
+    }
+    .slider-row {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .slider-label {
+      font-size: 10.5px; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--ink-3); font-weight: 600;
+    }
+    .slider-val {
+      font-family: 'Spectral', serif;
+      font-size: 16px; font-weight: 500; color: var(--ink);
+      font-feature-settings: 'tnum' 1; font-variant-numeric: tabular-nums;
+    }
+    .slider-val .u { font-size: 11px; color: var(--ink-3); margin-left: 2px; }
+
+    input[type="range"] {
+      -webkit-appearance: none; appearance: none;
+      width: 100%; height: 4px;
+      background: var(--rule); outline: none; margin: 8px 0 4px;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 18px; height: 18px;
+      background: var(--ink); border: 2px solid var(--paper);
+      cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 18px; height: 18px;
+      background: var(--ink); border: 2px solid var(--paper);
+      cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .slider-hint {
+      font-size: 10.5px; color: var(--ink-3);
+      font-family: 'Spectral', serif; font-style: italic;
+    }
+
+    /* Bars */
+    .bar-rows { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .bar-row {
+      display: grid; grid-template-columns: 90px 1fr 88px 16px;
+      align-items: center; gap: 12px;
+      font-size: 12px; transition: opacity 0.25s;
+    }
+    .bar-row.fail { opacity: 0.4; }
+    .bar-row .reg {
+      font-family: 'Spectral', serif;
+      font-size: 13px; font-weight: 500;
+      color: var(--ink-2); letter-spacing: -0.005em;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .bar-track { position: relative; height: 8px; background: var(--paper-3); }
+    .bar-fill {
+      position: absolute; left: 0; top: 0; height: 100%;
+      background: var(--bar-color, var(--accent));
+      transition: width 0.4s ease;
+    }
+    .bar-threshold {
+      position: absolute; top: -3px; bottom: -3px;
+      width: 2px; background: var(--ink);
+      transition: left 0.15s; pointer-events: none;
+    }
+    .bar-val {
+      font-feature-settings: 'tnum' 1; font-variant-numeric: tabular-nums;
+      font-size: 13px; font-weight: 500; color: var(--ink);
+      text-align: right;
+    }
+    .bar-mark {
+      font-size: 13px; color: var(--pass);
+      text-align: center; font-weight: 600;
+    }
+    .bar-row.fail .bar-mark { color: var(--fail); }
+
+    .crit-card .footer {
+      margin-top: auto; padding-top: 14px;
+      border-top: 1px dotted var(--rule);
+      font-size: 10.5px; color: var(--ink-3); line-height: 1.45;
+    }
+    .crit-card .footer a {
+      color: var(--ink-2);
+      text-decoration: underline dotted; text-underline-offset: 2px;
+    }
+
+    /* === Summary table === */
+    .summary { padding: 60px 0 40px; border-top: 1px solid var(--rule); }
+    .summary h2 {
+      font-family: 'Spectral', serif;
+      font-size: 30px; font-weight: 400;
+      letter-spacing: -0.01em; margin-bottom: 8px;
+    }
+    .summary .desc {
+      font-family: 'Spectral', serif;
+      font-size: 16px; color: var(--ink-2);
+      max-width: 60ch; margin: 0 0 32px;
+    }
+    .sum-table {
+      width: 100%; border: 1px solid var(--rule);
+      border-collapse: collapse; background: var(--paper);
+      font-size: 12.5px;
+    }
+    .sum-table th.sum-table td {
+      padding: 10px 12px; text-align: left;
+      border-bottom: 1px solid var(--rule-soft);
+      border-right: 1px solid var(--rule-soft);
+      vertical-align: top;
+      transition: opacity 0.25s, background 0.2s;
+    }
+    .sum-table th {
+      background: var(--paper-2);
+      font-family: 'Inter', sans-serif; font-weight: 600;
+      font-size: 11px; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--ink-2);
+    }
+    .sum-table th.region-fail { opacity: 0.4; }
+    .sum-table td.region-fail { opacity: 0.32; background: var(--paper); }
+    .sum-table td:first-child {
+      font-family: 'Spectral', serif; font-weight: 500;
+      font-size: 13px; color: var(--ink);
+      background: var(--paper-2);
+    }
+    .sum-table .v {
+      font-feature-settings: 'tnum' 1; font-variant-numeric: tabular-nums;
+      font-weight: 500;
+    }
+    .sum-table .lab {
+      display: block; font-size: 10.5px;
+      color: var(--ink-3); letter-spacing: 0.01em; margin-top: 3px;
+    }
+    .sum-table .swatch {
+      display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+      margin-right: 8px; vertical-align: 0;
+    }
+
+    /* === Contact / Stay in touch === */
+    .contact {
+      padding: 70px 0 70px;
+      border-top: 1px solid var(--rule);
+      background:
+        radial-gradient(ellipse at 90% 30%, rgba(138, 58, 42, 0.045) 0%, transparent 60%),
+        var(--paper);
+    }
+    .contact .col {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .contact h2 {
+      font-family: 'Spectral', serif;
+      font-size: 30px; font-weight: 400;
+      letter-spacing: -0.01em; margin-bottom: 10px;
+    }
+    .contact .lead {
+      font-family: 'Spectral', serif;
+      font-size: 16px; line-height: 1.55;
+      color: var(--ink-2); margin-bottom: 22px;
+    }
+    .contact .lead em { font-style: italic; color: var(--ink-3); }
+    .contact form {
+      display: flex; gap: 0; max-width: 460px; margin-bottom: 14px;
+      border: 1px solid var(--ink); background: var(--paper);
+    }
+    .contact input[type="email"] {
+      flex: 1; padding: 14px 16px;
+      border: none; outline: none; background: transparent;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px; color: var(--ink);
+    }
+    .contact input[type="email"]::placeholder {
+      color: var(--ink-4); font-style: italic;
+    }
+    .contact button[type="submit"] {
+      padding: 14px 22px;
+      background: var(--ink); color: var(--paper);
+      border: none; cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: background 0.15s;
+    }
+    .contact button[type="submit"]:hover { background: var(--accent); }
+    .contact .form-status {
+      font-family: 'Spectral', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: var(--ink-3);
+      margin-bottom: 18px;
+      min-height: 1.2em;
+    }
+    .contact .form-status.error { color: var(--fail); }
+    .contact .form-status.success { color: var(--pass); }
+
+    .contact .socials {
+      display: flex; gap: 14px; align-items: center;
+      margin-bottom: 22px;
+    }
+    .contact .socials a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 46px; height: 46px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      color: var(--ink-2);
+      transition: all 0.15s;
+      text-decoration: none;
+    }
+    .contact .socials a:hover {
+      background: var(--ink); color: var(--paper); border-color: var(--ink);
+    }
+    .contact .socials svg { width: 20px; height: 20px; }
+    .contact .direct {
+      font-family: 'Spectral', serif;
+      font-size: 14.5px; color: var(--ink-2); line-height: 1.7;
+      margin: 0;
+    }
+    .contact .direct a {
+      color: var(--accent); text-decoration: underline dotted;
+      text-underline-offset: 3px;
+    }
+    .contact .direct a:hover { color: var(--ink); }
+
+    .invitation-cta {
+      padding: 22px 26px;
+      background: var(--paper-2);
+      border-left: 3px solid var(--accent);
+      font-family: 'Spectral', serif;
+      font-size: 14.5px; color: var(--ink-2);
+      line-height: 1.65;
+    }
+    .invitation-cta strong { color: var(--ink); font-weight: 500; }
+    .invitation-cta a {
+      color: var(--accent); text-decoration: underline dotted;
+      text-underline-offset: 3px; font-weight: 500;
+    }
+
+    /* === Footer === */
+    footer {
+      padding: 60px 0 80px;
+      border-top: 1px solid var(--rule);
+      background: var(--paper-2);
+    }
+    footer .frame {
+      font-family: 'Spectral', serif; font-style: italic;
+      font-size: 14.5px; line-height: 1.6;
+      color: var(--ink-2); max-width: 62ch; margin-bottom: 36px;
+    }
+    footer .credits {
+      display: grid; grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 40px; font-size: 12px; color: var(--ink-3);
+    }
+    footer h4 {
+      font-size: 10.5px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--ink);
+      margin: 0 0 10px; font-weight: 600;
+    }
+    footer ul { list-style: none; padding: 0; margin: 0; }
+    footer li { margin-bottom: 4px; line-height: 1.5; }
+    footer .about-p {
+      font-family: 'Spectral', serif;
+      font-size: 13px; line-height: 1.6;
+      color: var(--ink-3); margin: 0 0 12px;
+    }
+    footer .about-p a {
+      color: var(--ink-2);
+      text-decoration: underline dotted; text-underline-offset: 2px;
+    }
+    footer .stamp {
+      margin-top: 36px; padding-top: 24px;
+      border-top: 1px dotted var(--rule);
+      font-size: 10.5px; letter-spacing: 0.05em; color: var(--ink-4);
+    }
+    footer .stamp .sep { color: var(--rule); margin: 0 8px; }
+
+    /* === Signup modal === */
+    body.modal-open { overflow: hidden; }
+
+    .modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(26, 22, 18, 0.42);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.32s ease;
+    }
+    .modal-backdrop.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-card {
+      background:
+        radial-gradient(ellipse at 100% 0%, rgba(138, 58, 42, 0.06) 0%, transparent 55%),
+        var(--paper);
+      border: 1px solid var(--rule);
+      padding: 44px 44px 36px;
+      max-width: 520px; width: 100%;
+      position: relative;
+      box-shadow: 0 30px 80px rgba(26, 22, 18, 0.25);
+      transform: translateY(12px) scale(0.985);
+      opacity: 0;
+      transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.32s ease;
+    }
+    .modal-backdrop.visible .modal-card {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    .modal-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 92px; height: 2px;
+      background: var(--accent);
+    }
+    .modal-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 92px;
+      width: 32px; height: 2px;
+      background: var(--accent);
+      opacity: 0.45;
+    }
+    .modal-topo {
+      position: absolute;
+      bottom: 18px; right: 22px;
+      width: 100px; height: 42px;
+      opacity: 0.22;
+      pointer-events: none;
+    }
+    .modal-close {
+      position: absolute;
+      top: 18px; right: 18px;
+      width: 36px; height: 36px;
+      background: transparent;
+      border: 1px solid var(--rule);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink-3);
+      transition: all 0.18s ease;
+      padding: 0;
+    }
+    .modal-close:hover {
+      background: var(--ink); color: var(--paper); border-color: var(--ink);
+    }
+    .modal-close svg { width: 14px; height: 14px; }
+    .modal-eyebrow {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+    }
+    .modal-card h2 {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(28px, 4vw, 38px);
+      line-height: 1.08;
+      letter-spacing: -0.014em;
+      margin-bottom: 16px;
+      color: var(--ink);
+      max-width: 18ch;
+    }
+    .modal-card h2 em {
+      font-style: italic;
+      color: var(--ink-3);
+      font-weight: 300;
+    }
+    .modal-card .modal-blurb {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink-2);
+      margin-bottom: 24px;
+      max-width: 36ch;
+    }
+    .modal-form {
+      display: flex; gap: 0;
+      border: 1px solid var(--rule);
+      background: var(--paper);
+      margin-bottom: 10px;
+      transition: border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+    .modal-form:focus-within {
+      border-color: var(--ink);
+      box-shadow: 0 0 0 3px rgba(138, 58, 42, 0.1);
+    }
+    .modal-form input[type="email"] {
+      flex: 1;
+      padding: 14px 16px;
+      border: none; outline: none; background: transparent;
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px;
+      color: var(--ink);
+      min-width: 0;
+    }
+    .modal-form input[type="email"]::placeholder {
+      color: var(--ink-4); font-style: italic;
+    }
+    .modal-form button[type="submit"] {
+      padding: 14px 22px;
+      background: transparent;
+      color: var(--ink);
+      border: none;
+      border-left: 1px solid var(--rule);
+      cursor: pointer;
+      font-family: 'Spectral', Georgia, serif;
+      font-style: italic;
+      font-size: 15.5px; font-weight: 500;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.22s ease;
+      white-space: nowrap;
+    }
+    .modal-form button[type="submit"]:hover {
+      background: var(--ink); color: var(--paper);
+    }
+    .modal-form button[type="submit"] .arrow {
+      display: inline-block;
+      transition: transform 0.22s ease;
+      font-style: normal;
+    }
+    .modal-form button[type="submit"]:hover .arrow {
+      transform: translateX(4px);
+    }
+    .modal-status {
+      font-family: 'Spectral', serif;
+      font-style: italic;
+      font-size: 13px;
+      color: var(--ink-3);
+      min-height: 1.3em;
+      margin-bottom: 8px;
+    }
+    .modal-status.error { color: var(--fail); }
+    .modal-status.success { color: var(--pass); }
+    .modal-divider {
+      display: flex; align-items: center; gap: 14px;
+      margin: 22px 0 18px;
+      font-family: 'Spectral', serif;
+      font-style: italic;
+      font-size: 12.5px;
+      color: var(--ink-4);
+      letter-spacing: 0.05em;
+    }
+    .modal-divider::before,
+    .modal-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+    .modal-decline {
+      background: transparent;
+      border: 1px solid var(--rule);
+      padding: 12px 22px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--ink-2);
+      transition: all 0.18s ease;
+      width: 100%;
+    }
+    .modal-decline:hover {
+      background: var(--paper-2);
+      border-color: var(--ink-3);
+      color: var(--ink);
+    }
+    .modal-footnote {
+      font-size: 11px;
+      color: var(--ink-4);
+      letter-spacing: 0.02em;
+      margin-top: 14px;
+      font-family: 'Spectral', serif;
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* === Mobile polish === */
+    @media (max-width: 880px) {
+      .container { padding: 0 22px; }
+      .hero { padding: 64px 0 52px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+      .hero h1 { font-size: clamp(40px, 9vw, 60px); }
+      .hero .subtitle { font-size: clamp(17px, 3vw, 22px); max-width: 100%; }
+      .hero .lede { font-size: 16px; margin-bottom: 28px; }
+      .hero .key { grid-template-columns: repeat(2, 1fr); gap: 18px 0; max-width: 100%; }
+      .hero .key > div { border-right: none; padding-left: 0; }
+      .hero .key > div:nth-child(2n) { padding-left: 14px; border-left: 1px solid var(--rule); }
+      .signup-card { padding: 22px 22px 20px; }
+      .map-wrap { height: 360px; }
+      .map-controls { top: 8px; left: 8px; max-width: 200px; padding: 8px 10px; }
+      .region-grid { grid-template-columns: 1fr 1fr; }
+      .crit-grid { grid-template-columns: 1fr; }
+      .bar-row { grid-template-columns: 76px 1fr 70px 14px; }
+      .contact .col { grid-template-columns: 1fr; gap: 32px; }
+      footer .credits { grid-template-columns: 1fr; gap: 28px; }
+    }
+
+    @media (max-width: 600px) {
+      .modal-card { padding: 36px 28px 28px; }
+      .modal-card h2 { font-size: clamp(24px, 6vw, 32px); }
+      .modal-card .modal-blurb { font-size: 14px; }
+      .modal-topo { width: 70px; height: 30px; bottom: 12px; right: 14px; }
+      .modal-form { flex-direction: column; }
+      .modal-form input[type="email"] { border-bottom: 1px solid var(--rule); }
+      .modal-form button[type="submit"] { border-left: none; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 18px; }
+      .hero { padding: 48px 0 40px; }
+      .hero h1 { font-size: 38px; line-height: 1.02; letter-spacing: -0.02em; }
+      .hero .subtitle { font-size: 17px; line-height: 1.4; }
+      .hero .lede { font-size: 15.5px; }
+      .hero .key { grid-template-columns: 1fr 1fr; }
+      .hero .key .num { font-size: 22px; }
+      .signup-card h3 { font-size: 20px; }
+      .signup-card .blurb { font-size: 13px; }
+      /* Hero signup form: stack input + button on phones so Subscribe is reachable */
+      .signup-card form { flex-direction: column; }
+      .signup-card input[type="email"] { border-bottom: 1px solid var(--rule); }
+      .signup-card button[type="submit"] {
+        border-left: none; border-top: 1px solid var(--rule);
+        justify-content: center; padding: 14px 20px;
+      }
+      .map-wrap { height: 280px; }
+      .region-grid { grid-template-columns: 1fr; }
+      .crit-card { padding: 22px 18px 18px; min-height: 0; }
+      .crit-card h3 { font-size: 19px; }
+      .crit-card .framing { font-size: 13px; }
+      /* Widen value column so "1760 kWh/kWp" isn't clipped at 375 */
+      .bar-row { grid-template-columns: 60px 1fr 78px 12px; gap: 8px; }
+      .bar-row .reg { font-size: 12px; }
+      .bar-val { font-size: 11.5px; }
+      input[type="range"]::-webkit-slider-thumb { width: 22px; height: 22px; }
+      input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; }
+      .sum-table th.sum-table td { padding: 9px 8px; font-size: 11px; }
+      .contact form { flex-direction: column; }
+      .contact input[type="email"] { border-bottom: 1px solid var(--rule); }
+      .match-bar { flex-direction: column; align-items: stretch; gap: 12px; }
+      .match-bar-actions { width: 100%; justify-content: space-between; }
+      .match-bar .share.match-bar .reset { flex: 1; text-align: center; }
+    }
+
+    /* === Touch-device tuning (iOS HIG / Material 44px target) === */
+    @media (pointer: coarse) {
+      input[type="range"] { height: 6px; }
+      input[type="range"]::-webkit-slider-thumb {
+        width: 28px; height: 28px;
+      }
+      input[type="range"]::-moz-range-thumb {
+        width: 28px; height: 28px;
+      }
+      .match-bar .share,
+      .match-bar .reset {
+        padding: 12px 16px;
+        min-height: 44px;
+      }
+      .modal-close {
+        width: 44px; height: 44px; top: 14px; right: 14px;
+      }
+      .map-toggle {
+        padding: 8px 4px;
+        min-height: 36px;
+      }
+      .map-controls {
+        padding: 10px 12px;
+      }
+    }
+
+    /* === Usability layer: onboarding + presets === */
+    .onboarding { margin: 0 0 24px; }
+    .onboarding-cue {
+      font-family: 'Spectral', Georgia, serif;
+      font-style: italic;
+      font-size: 14.5px; line-height: 1.5;
+      color: var(--ink-3);
+      margin: 0 0 14px;
+      max-width: 60ch;
+    }
+    .preset-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .preset-chip {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 12.5px; font-weight: 500; letter-spacing: 0.01em;
+      color: var(--ink-2); background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 8px 14px; cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
+    }
+    .preset-chip:hover {
+      background: var(--ink); color: var(--paper); border-color: var(--ink);
+      transform: translateY(-1px);
+    }
+    .preset-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* Shortlist button on the match bar */
+    .match-bar .shortlist-btn {
+      font-family: 'Inter', sans-serif; font-size: 11px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      background: transparent; border: 1px solid var(--rule);
+      padding: 8px 14px; color: var(--ink-2);
+      cursor: pointer; transition: all 0.15s;
+    }
+    .match-bar .shortlist-btn:hover {
+      background: var(--ink); color: var(--paper); border-color: var(--ink);
+    }
+    .match-bar .shortlist-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* Star control on region cards */
+    .region-card { cursor: pointer; }
+    .region-card:hover { background: var(--paper-2); }
+    .region-card:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+    .region-star {
+      position: absolute; top: 12px; right: 12px;
+      width: 30px; height: 30px;
+      background: transparent; border: none; cursor: pointer;
+      font-size: 19px; line-height: 1; color: var(--ink-4);
+      display: flex; align-items: center; justify-content: center;
+      transition: color 0.15s, transform 0.15s;
+      z-index: 1;
+    }
+    .region-star:hover { color: var(--accent); transform: scale(1.15); }
+    .region-star.on { color: var(--accent); }
+    .region-star:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .region-card.starred { box-shadow: inset 0 0 0 1px var(--accent-soft); }
+
+    /* Actionable next-step row */
+    .next-step {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+      margin: -16px 0 28px; padding: 12px 18px;
+      background: var(--paper); border: 1px solid var(--rule); border-top: none;
+      font-size: 13px;
+    }
+    .next-step-lead {
+      font-family: 'Spectral', Georgia, serif; font-style: italic;
+      font-size: 14px; color: var(--ink-2);
+    }
+    .next-step.empty .next-step-lead { color: var(--ink-3); }
+    .next-step-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .ns-action {
+      font-family: 'Inter', sans-serif; font-size: 11px;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      background: transparent; border: 1px solid var(--rule);
+      padding: 8px 13px; color: var(--ink-2);
+      cursor: pointer; text-decoration: none; display: inline-block;
+      transition: all 0.15s;
+    }
+    .ns-action:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .ns-action:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .next-step.empty #ns-asks { opacity: 0.4; pointer-events: none; }
+
+    /* === Region detail drawer === */
+    body.panel-open { overflow: hidden; }
+    .drawer-backdrop {
+      position: fixed; inset: 0; z-index: 1100;
+      background: rgba(26, 22, 18, 0.42);
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      display: flex; justify-content: flex-end;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .drawer-backdrop.open { opacity: 1; pointer-events: auto; }
+    .drawer-panel {
+      background: var(--paper); border-left: 1px solid var(--rule);
+      width: 100%; max-width: 540px; height: 100%;
+      overflow-y: auto; position: relative;
+      transform: translateX(28px);
+      transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: -20px 0 60px rgba(26, 22, 18, 0.18);
+    }
+    .drawer-backdrop.open .drawer-panel { transform: translateX(0); }
+    .drawer-close {
+      position: absolute; top: 16px; right: 16px;
+      width: 36px; height: 36px; padding: 0;
+      background: var(--paper); border: 1px solid var(--rule); border-radius: 50%;
+      cursor: pointer; color: var(--ink-3);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.18s ease; z-index: 2;
+    }
+    .drawer-close:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .drawer-close svg { width: 14px; height: 14px; }
+    .drawer-body { padding: 40px 36px 44px; }
+    .drawer-head {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 16px; padding-top: 8px; margin-bottom: 14px; padding-right: 28px;
+      position: relative;
+    }
+    .drawer-head::before {
+      content: ''; position: absolute; top: -8px; left: 0;
+      width: 56px; height: 3px; background: var(--accent-region, var(--accent));
+    }
+    .drawer-name { font-size: 30px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.1; }
+    .drawer-country {
+      font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-3); margin-top: 6px;
+    }
+    .drawer-star {
+      flex-shrink: 0; white-space: nowrap;
+      font-family: 'Inter', sans-serif; font-size: 11px;
+      letter-spacing: 0.04em;
+      background: transparent; border: 1px solid var(--rule);
+      padding: 8px 12px; color: var(--ink-2); cursor: pointer;
+      transition: all 0.15s;
+    }
+    .drawer-star:hover { background: var(--paper-2); border-color: var(--ink-3); }
+    .drawer-star.on { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+    .drawer-blurb {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 15px; line-height: 1.6; color: var(--ink-2);
+      margin: 0 0 22px;
+    }
+    .drawer-asks {
+      background: var(--paper-2); border-left: 2px solid var(--accent);
+      padding: 16px 18px; margin-bottom: 24px;
+    }
+    .drawer-asks h4 {
+      font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin-bottom: 10px;
+    }
+    .drawer-asks-text {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 14.5px; line-height: 1.6; color: var(--ink-2); margin: 0;
+    }
+    .drawer-deeplink {
+      display: inline-block; margin-top: 10px;
+      font-family: 'Spectral', Georgia, serif; font-style: italic;
+      font-size: 14px; color: var(--accent);
+      text-decoration: underline dotted; text-underline-offset: 3px;
+    }
+    .drawer-deeplink:hover { color: var(--ink); }
+    .drawer-asks-src {
+      margin-top: 10px; font-size: 11px; color: var(--ink-3);
+      font-family: 'Inter', sans-serif; letter-spacing: 0.01em;
+    }
+    .drawer-asks-src a { color: var(--ink-2); text-decoration: underline dotted; text-underline-offset: 2px; }
+    .drawer-criteria h4 {
+      font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-3); font-weight: 600; margin-bottom: 4px;
+    }
+    .drawer-crit-row { padding: 12px 0; border-bottom: 1px dotted var(--rule); }
+    .drawer-crit-name {
+      font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--ink-3); margin-bottom: 4px;
+    }
+    .drawer-crit-val { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .drawer-crit-val .dc-num {
+      font-family: 'Spectral', serif; font-size: 17px; font-weight: 500; color: var(--ink);
+    }
+    .drawer-crit-val .dc-lab { font-size: 12.5px; color: var(--ink-2); }
+    .drawer-crit-src { margin-top: 5px; font-size: 10.5px; color: var(--ink-4); }
+    .drawer-crit-src a { color: var(--ink-3); text-decoration: underline dotted; text-underline-offset: 2px; }
+
+    /* === Shortlist compare overlay === */
+    .compare-backdrop {
+      position: fixed; inset: 0; z-index: 1100;
+      background: rgba(26, 22, 18, 0.42);
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    }
+    .compare-backdrop.open { opacity: 1; pointer-events: auto; }
+    .compare-panel {
+      background: var(--paper); border: 1px solid var(--rule);
+      max-width: 960px; width: 100%; max-height: 86vh; overflow-y: auto;
+      padding: 32px 32px 36px; position: relative;
+      box-shadow: 0 30px 80px rgba(26, 22, 18, 0.25);
+      transform: translateY(12px) scale(0.99);
+      transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .compare-backdrop.open .compare-panel { transform: translateY(0) scale(1); }
+    .compare-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; margin-bottom: 8px;
+    }
+    .compare-head h3 { font-size: 24px; font-weight: 500; letter-spacing: -0.008em; }
+    .compare-close {
+      width: 36px; height: 36px; padding: 0; flex-shrink: 0;
+      background: var(--paper); border: 1px solid var(--rule); border-radius: 50%;
+      cursor: pointer; color: var(--ink-3);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.18s ease;
+    }
+    .compare-close:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .compare-close svg { width: 14px; height: 14px; }
+    .compare-note {
+      font-family: 'Spectral', Georgia, serif; font-style: italic;
+      font-size: 13.5px; color: var(--ink-3); margin: 0 0 20px; max-width: 60ch;
+    }
+    .compare-empty {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 15px; line-height: 1.6; color: var(--ink-3);
+      padding: 28px 0; max-width: 48ch;
+    }
+
+    @media (max-width: 600px) {
+      .drawer-backdrop { justify-content: center; align-items: flex-end; }
+      .drawer-panel {
+        max-width: 100%; height: auto; max-height: 90vh;
+        border-left: none; border-top: 1px solid var(--rule);
+        border-radius: 14px 14px 0 0;
+        transform: translateY(32px);
+        box-shadow: 0 -20px 60px rgba(26, 22, 18, 0.22);
+      }
+      .drawer-backdrop.open .drawer-panel { transform: translateY(0); }
+      .drawer-body { padding: 32px 22px 36px; }
+      .drawer-name { font-size: 25px; }
+      .compare-panel { padding: 26px 18px 28px; max-height: 90vh; }
+      .next-step { margin-top: -12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="prototype-banner" role="note">
+    <div class="container">
+      <span class="proto-tag">Prototype</span>
+      <p class="proto-msg">This is a working prototype. The full <strong>V1</strong> release lands <strong>before June 2026</strong>.</p>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <div class="eyebrow">Prototype · A project of The Collective · May 2026</div>
+      <div class="hero-grid">
+        <div class="hero-left">
+          <h1>Land Selection Framework</h1>
+          <p class="subtitle">Eight criteria for siting a regenerative settlement built to flourish on a fifty-to-hundred-year horizon.</p>
+          <p class="lede">
+            Choosing where to settle is too important to leave to gut-feel and real-estate listings. This site sketches how the framework reads real candidate regions, ten in Europe and ten in North America, against criteria developed by The Collective, the working group behind it. Switch between Europe and North America, and drag the sliders to set your own thresholds. The system filters, never scores.
+          </p>
+          <p class="lede-note">
+            This project leans into bioregioning. It is meant as a tool used in respect for the local communities and land stewards already rooted in any part of the earth, an aid to arriving in relationship with a place, not over the people and lifeways already there.
+          </p>
+          <div class="key">
+            <div><div class="num">8</div><div class="lab">Criteria</div></div>
+            <div><div class="num">20</div><div class="lab">Candidate regions</div></div>
+            <div><div class="num">50–100<span style="font-size: 14px;">yr</span></div><div class="lab">Horizon</div></div>
+            <div><div class="num">r3</div><div class="lab">Doc round</div></div>
+          </div>
+        </div>
+
+        <aside class="hero-right">
+          <div class="signup-card">
+            <svg class="topo-ornament" viewBox="0 0 88 38" aria-hidden="true">
+              <path d="M0 24 C 14 18, 28 28, 42 22 S 70 14, 88 20" stroke="#8a3a2a" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <path d="M0 30 C 16 25, 32 33, 48 28 S 74 22, 88 27" stroke="#8a3a2a" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.65"/>
+              <path d="M0 36 C 18 32, 36 38, 54 34 S 78 30, 88 33" stroke="#8a3a2a" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/>
+            </svg>
+            <h3 class="serif">Stay in touch</h3>
+            <p class="blurb">Low-frequency updates from The Collective as this work evolves. Your address stays with us, never traded.</p>
+            <form id="signup-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+              <input type="hidden" name="access_key" value="bc932e1b-363e-4d22-ba3c-c27ec1530615" />
+              <input type="email" name="email" id="signup-email" placeholder="your email" required autocomplete="email" />
+              <button type="submit">Subscribe <span class="arrow">→</span></button>
+              <input type="hidden" name="subject" value="Land Selection Framework, new signup (hero)" />
+              <input type="hidden" name="from_name" value="Land Selection Framework" />
+              <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+              <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" />
+            </form>
+            <div class="form-status" id="form-status"></div>
+            <div class="footnote">Or write directly: <a href="mailto:hello@islands-of-coherence.com">hello@islands-of-coherence.com</a></div>
+          </div>
+
+          <a class="hero-cta" href="/deeper.html#ethics">
+            <span class="hero-cta-eyebrow">Deeper</span>
+            <span class="hero-cta-body">
+              <span class="hero-cta-text">On the ethics of a framework like this</span>
+              <span class="hero-cta-arrow">→</span>
+            </span>
+          </a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="regions-intro">
+    <div class="container">
+      <h2 class="serif">The candidate regions, briefly named.</h2>
+      <p>Illustrative, chosen because each tells a different story across the criteria. The map shows real data layers: forest cover trajectory (Hansen via Global Forest Watch), water stress sub-basins (WRI Aqueduct 2050), conflict event density (UCDP), and intentional-community sites (OSM).</p>
+
+      <div id="continent-switcher" class="continent-switcher" hidden></div>
+
+      <div class="map-wrap">
+        <div id="map"></div>
+        <div class="map-controls">
+          <button class="title" id="layers-toggle" type="button" aria-expanded="true" aria-controls="map-toggles">Layers<span class="caret" aria-hidden="true">▾</span></button>
+          <div id="map-toggles"></div>
+        </div>
+      </div>
+
+      <div class="region-grid" id="region-grid"></div>
+    </div>
+  </section>
+
+  <section class="criteria">
+    <div class="container">
+      <h2 class="serif">The eight criteria, region by region.</h2>
+      <p class="desc">Each card is one criterion from the framework. Drag the threshold to filter, regions that meet your criterion stay highlighted; others fade. The framework filters, it never scores.</p>
+
+      <div class="onboarding">
+        <p class="onboarding-cue">New here? Start with a scenario, then adjust the sliders to taste. These are starting points, not recommendations.</p>
+        <div class="preset-chips" id="preset-chips" role="group" aria-label="Scenario starting points"></div>
+      </div>
+
+      <div class="match-bar">
+        <div>
+          <div class="count"><span id="match-count">10</span><em> of <span id="match-total">10</span> regions match</em></div>
+          <div class="label" id="match-detail">No filters active</div>
+        </div>
+        <div class="match-bar-actions">
+          <span class="share-note" id="share-note" role="status" aria-live="polite"></span>
+          <button class="shortlist-btn" id="shortlist-btn" type="button" aria-label="Open your shortlist, 0 regions pinned">Your shortlist (0)</button>
+          <button class="share" id="share-btn" type="button" aria-label="Copy the current filter URL to clipboard">Share these criteria</button>
+          <button class="reset" id="reset-btn" type="button" aria-label="Reset all thresholds to defaults">Reset thresholds</button>
+        </div>
+      </div>
+
+      <div class="next-step" id="next-step">
+        <span class="next-step-lead" id="next-step-lead"></span>
+        <span class="next-step-actions">
+          <button class="ns-action" id="ns-asks" type="button">What they ask of you</button>
+          <button class="ns-action" id="ns-share" type="button">Share this view</button>
+          <a class="ns-action" id="ns-contact" href="mailto:hello@islands-of-coherence.com">Talk to The Collective</a>
+        </span>
+      </div>
+
+      <div class="crit-grid" id="crit-grid"></div>
+    </div>
+  </section>
+
+  <section class="summary">
+    <div class="container">
+      <h2 class="serif">Everything together.</h2>
+      <p class="desc">The same data in one matrix. Read columns to see how a single region reads across criteria; read rows to see how regions compare on a single criterion. Filter results from above propagate here.</p>
+      <div style="overflow-x: auto;">
+        <table class="sum-table" id="sum-table"></table>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="container">
+      <div class="col">
+        <div class="left">
+          <h2 class="serif">Reach The Collective.</h2>
+          <p class="lead">
+            <em>If you want to talk about this work</em>, the framework, the regions, the project as a whole, or how to join The Collective, reach out on any of these channels.
+          </p>
+          <div class="socials">
+            <a href="mailto:hello@islands-of-coherence.com" title="Email" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/>
+                <path d="M2 8l10 7 10-7"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/gustaf.palm/" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="0.9" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+            <a href="https://substack.com/@gustafpalm" target="_blank" rel="noopener" title="Substack" aria-label="Substack">
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                <path d="M4 4h16v2.6H4z"/>
+                <path d="M4 8.6h16v2.6H4z"/>
+                <path d="M4 13.2v8l8-4.6 8 4.6v-8H4z"/>
+              </svg>
+            </a>
+          </div>
+          <p class="direct">
+            Email: <a href="mailto:hello@islands-of-coherence.com">hello@islands-of-coherence.com</a><br/>
+            Substack: <a href="https://substack.com/@gustafpalm" target="_blank" rel="noopener">@gustafpalm</a><br/>
+            Instagram: <a href="https://www.instagram.com/gustaf.palm/" target="_blank" rel="noopener">@gustaf.palm</a>
+          </p>
+        </div>
+
+        <div class="right">
+          <div class="invitation-cta">
+            <strong>Want the methodology, case studies, and the questions still being worked through?</strong><br/>
+            Read the
+            <a href="/deeper.html">deeper material</a>
+          , methodology, three regional case studies (Alentejo, Connemara, Transylvania), and the design tensions deferred to V2.
+          </div>
+          <div class="invitation-cta" style="margin-top: 18px;">
+            <strong>Want to join The Collective?</strong><br/>
+            Read
+            <a href="/invitation.pdf" target="_blank" rel="noopener">The Collective's invitation (PDF)</a>
+            and reach out, I'll introduce you to the group.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p class="frame">
+        Values are best-available midpoints from the cited public sources, WorldClim CMIP6, WRI Aqueduct, SoilGrids, Hansen GFC, Global Solar Atlas, UCDP, GEN/OSM, JRC GHSL. Nothing here is composite, weighted, or scored across criteria. Thresholds let the viewer apply their own preferences, the framework never collapses a place into a single number.
+      </p>
+      <div class="credits">
+        <div>
+          <h4>About The Collective</h4>
+          <p class="about-p">
+            The land-selection framework is the work of <strong>The Collective</strong>, a small, cross-disciplinary working group of practitioners and researchers developing a shared, open framework for choosing land for regenerative settlements on a fifty-to-hundred-year horizon. The full documents and contributor list stay private until the group agrees on public attribution.
+          </p>
+          <p class="about-p">
+            This prototype was built by <strong>a member of The Collective</strong>, the regions, copy, and interactions shown here are one contributor's cut of the shared work.
+          </p>
+          <p class="about-p">
+            The values the project is thinking with, <em>localism, bioregioning, healthy integration, land stewardship</em>, are laid out in the <a href="/deeper.html#ethics">ethics and values</a> section of the deeper page. They are open conversations The Collective keeps returning to, not stated commitments.
+          </p>
+          <p class="about-p">
+            Reach out with any questions: <a href="mailto:hello@islands-of-coherence.com">hello@islands-of-coherence.com</a>
+          </p>
+        </div>
+        <div>
+          <h4>Sources cited</h4>
+          <ul id="sources-list"></ul>
+        </div>
+        <div>
+          <h4>Frame</h4>
+          <ul>
+            <li>Open-source, open-data</li>
+            <li>No commercial product</li>
+            <li>State + trajectory framing</li>
+            <li>Native units throughout</li>
+            <li>Source + vintage per value</li>
+          </ul>
+        </div>
+      </div>
+      <div class="stamp">
+        prototype
+        <span class="sep">·</span>
+        <a href="https://land-selection-framework.vercel.app" style="color: inherit; text-decoration: none;">land-selection-framework.vercel.app</a>
+        <span class="sep">·</span>
+        last updated <span id="updated-stamp">2026-05-26</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Region detail drawer -->
+  <div class="drawer-backdrop" id="region-drawer" role="dialog" aria-modal="true" aria-label="Region detail" aria-hidden="true">
+    <div class="drawer-panel">
+      <button class="drawer-close" id="drawer-close" type="button" aria-label="Close region detail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+        </svg>
+      </button>
+      <div class="drawer-body" id="drawer-body"></div>
+    </div>
+  </div>
+
+  <!-- Shortlist compare overlay -->
+  <div class="compare-backdrop" id="compare-overlay" role="dialog" aria-modal="true" aria-label="Compare your shortlist" aria-hidden="true">
+    <div class="compare-panel">
+      <div class="compare-head">
+        <h3 class="serif">Your shortlist, side by side</h3>
+        <button class="compare-close" id="compare-close" type="button" aria-label="Close shortlist comparison">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <p class="compare-note">The same values as the main table, narrowed to the regions you pinned. Shown in the order you added them, never ranked.</p>
+      <div class="compare-body" id="compare-body"></div>
+    </div>
+  </div>
+
+  <!-- Signup modal -->
+  <div class="modal-backdrop" id="signup-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close" id="modal-close-btn" type="button" aria-label="Close, continue without subscribing">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+        </svg>
+      </button>
+
+      <svg class="modal-topo" viewBox="0 0 100 42" aria-hidden="true">
+        <path d="M0 24 C 18 16, 35 32, 52 22 S 82 14, 100 20" stroke="#8a3a2a" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <path d="M0 32 C 20 26, 40 36, 60 30 S 86 24, 100 30" stroke="#8a3a2a" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.65"/>
+        <path d="M0 38 C 22 34, 46 40, 66 36 S 90 32, 100 35" stroke="#8a3a2a" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/>
+      </svg>
+
+      <div class="modal-eyebrow">While you're exploring</div>
+      <h2 id="modal-title">Want to keep up with this work?</h2>
+      <p class="modal-blurb">Leave your email and The Collective will send what's coming next, additional regions, deeper data layers, and material from the group's research as it becomes ready to share. Subscribers see it first.</p>
+
+      <form class="modal-form" id="modal-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <input type="hidden" name="access_key" value="bc932e1b-363e-4d22-ba3c-c27ec1530615" />
+        <input type="email" name="email" id="modal-email" placeholder="your email" required autocomplete="email" />
+        <button type="submit">Subscribe <span class="arrow">→</span></button>
+        <input type="hidden" name="subject" value="Land Selection Framework, modal signup" />
+        <input type="hidden" name="from_name" value="Land Selection Framework" />
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" />
+      </form>
+      <div class="modal-status" id="modal-status"></div>
+
+      <p class="modal-footnote">The rest of the page stays open either way. Your address stays with The Collective, never traded.</p>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.js?v=usab3"></script>
+
+  <!-- Per-value source citations: appended after main.js renders. -->
+  <style>
+    .crit-card .sources {
+      margin-top: 16px;
+      border-top: 1px solid var(--rule-soft);
+      padding-top: 10px;
+      font-family: 'Spectral', Georgia, serif;
+      font-style: italic;
+      font-size: 11px;
+      color: var(--ink-3);
+    }
+    .crit-card .sources summary {
+      cursor: pointer;
+      font-style: normal;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 10.5px;
+      color: var(--ink-2);
+      list-style: none;
+      padding: 2px 0;
+    }
+    .crit-card .sources summary::-webkit-details-marker { display: none; }
+    .crit-card .sources summary::before {
+      content: '▸';
+      display: inline-block;
+      width: 14px;
+      transition: transform 0.15s;
+      color: var(--ink-3);
+    }
+    .crit-card .sources[open] summary::before { transform: rotate(90deg); }
+    .crit-card .sources ul {
+      list-style: none;
+      margin: 8px 0 0 14px;
+      padding: 0;
+    }
+    .crit-card .sources li {
+      padding: 3px 0;
+      line-height: 1.45;
+    }
+    .crit-card .sources li .reg-name {
+      font-style: normal;
+      font-weight: 500;
+      color: var(--ink-2);
+      margin-right: 6px;
+    }
+    .crit-card .sources li a {
+      color: var(--ink-2);
+      text-decoration: underline;
+      text-decoration-color: var(--rule);
+      text-underline-offset: 2px;
+    }
+    .crit-card .sources li a:hover {
+      color: var(--ink);
+      text-decoration-color: var(--ink);
+    }
+  </style>
+  <script type="module">
+    import { regions, values, criteria } from './data/regions.js?v=usab3';
+
+    const activeContinent = () => document.body.dataset.continent || 'europe';
+    const regionCountFor = (c) => regions.filter((r) => r.continent === c).length;
+
+    function buildSourcesBlock(crit) {
+      const det = document.createElement('details');
+      det.className = 'sources';
+
+      const sum = document.createElement('summary');
+      sum.dataset.critName = crit.name.toLowerCase();
+      sum.textContent = `Sources for ${crit.name.toLowerCase()} (${regionCountFor(activeContinent())} regions)`;
+      det.appendChild(sum);
+
+      const ul = document.createElement('ul');
+      regions.forEach((r) => {
+        const v = values[r.id] && values[r.id][crit.id];
+        if (!v) return;
+        const li = document.createElement('li');
+        li.dataset.continent = r.continent; // CSS hides the inactive continent's items
+
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'reg-name';
+        nameSpan.textContent = `${r.name}:`;
+        li.appendChild(nameSpan);
+
+        if (v.source && v.sourceUrl) {
+          const a = document.createElement('a');
+          a.href = v.sourceUrl;
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.textContent = v.source;
+          li.appendChild(a);
+        } else if (v.source) {
+          li.appendChild(document.createTextNode(v.source));
+        } else {
+          li.appendChild(document.createTextNode('(no source)'));
+        }
+
+        if (v.vintage) {
+          li.appendChild(document.createTextNode(` · ${v.vintage}`));
+        }
+
+        ul.appendChild(li);
+      });
+      det.appendChild(ul);
+      return det;
+    }
+
+    function augmentCriterionCards() {
+      criteria.forEach((c) => {
+        const card = document.getElementById(`crit-${c.id}`);
+        if (!card) return;
+        if (card.querySelector(':scope > .sources')) return; // already augmented
+        const footer = card.querySelector(':scope > .footer');
+        const block = buildSourcesBlock(c);
+        if (footer) {
+          card.insertBefore(block, footer);
+        } else {
+          card.appendChild(block);
+        }
+      });
+    }
+
+    // main.js renders synchronously on module load. By the time this script
+    // runs (also a module, loaded after the main.js script element), the
+    // crit-cards exist. requestAnimationFrame defers to the next paint as a
+    // safety net for any async work.
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => requestAnimationFrame(augmentCriterionCards));
+    } else {
+      requestAnimationFrame(augmentCriterionCards);
+    }
+
+    // Keep the per-criterion source counts in step with the active continent.
+    document.addEventListener('lsf:continentchange', () => {
+      const n = regionCountFor(activeContinent());
+      document.querySelectorAll('.crit-card > .sources > summary').forEach((sum) => {
+        sum.textContent = `Sources for ${sum.dataset.critName || ''} (${n} regions)`;
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "metric": "Mean annual temperature, 2041\u20132060 (projected)",
+  "source": "WorldClim CMIP6 (MPI-ESM1-2-HR, SSP2-4.5)",
+  "vintage": "projection target 2041\u20132060",
+  "native_unit": "~18 km raster",
+  "license": "WorldClim terms; CMIP6 attribution",
+  "color_lo": "#3a648a",
+  "color_hi": "#b44632",
+  "units": "\u00b0C",
+  "bounds": [
+    -12.0,
+    35.0,
+    40.0,
+    72.0
+  ],
+  "value_range": {
+    "min": -5.0,
+    "max": 22.0
+  }
+}

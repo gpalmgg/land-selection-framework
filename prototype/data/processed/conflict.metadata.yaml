@@ -1,0 +1,20 @@
+# V1 processed-layer metadata (Spec Step 9 requirement)
+criterion: conflict
+askja_metric: 1            # Geopolitical & Institutional Resilience
+tier: 1                    # real ingested layer
+source: UCDP Georeferenced Event Dataset v25.1
+source_url: https://ucdp.uu.se
+vintage: "events 2015-2024"
+license: CC BY 4.0
+native_unit: event points
+time_framing: trend        # observed recent events, NOT projected
+state: "fatal political-violence event locations within ~200 km of a candidate"
+trajectory: "observed recent trend; political-violence projection is not credible at this horizon (per Askja/Spec)"
+sovereignty_axes: [geopolitical]
+red_line_underlying: active-conflict-within-200km
+files:
+  - { path: conflict.geojson, continent: europe, features: 14546 }
+  - { path: conflict-na.geojson, continent: north-america, features: 16333 }
+coverage: "global source (CSV), clipped to EU and NA bounding boxes, years 2015-2024"
+processing_method: "scripts/process_vectors.py (UCDP CSV -> points, continent-parameterized bbox)"
+notes: "OBSERVED, not future risk. Ukraine 2022+ dominates recent EU years. NA bbox currently includes Central America (Oaxaca conflict signal); layer off by default."

@@ -1,0 +1,25 @@
+# Accessibility + Demographics — Ozarks (Arkansas / southern Missouri), United States
+
+**Headline finding:** The Ozarks are among the least densely populated parts of the contiguous United States outside of the high desert West. Core plateau counties run 5–15 persons/km², placing them in the global low-density tier. The region is experiencing net population decline in most rural counties, driven by outmigration of working-age adults, with no meaningful reversal since the 1980s. Accessibility is adequate for interstate travel — commercial airports at Fort Smith (1 hr) and Fayetteville/XNA (1.5 hr) serve the southern Ozarks — but rural healthcare infrastructure is critically thin. The region's remote character is its defining attraction and its defining constraint: those who come here to escape density find it; those who depend on specialist healthcare, high-speed broadband, or urban amenities will find the gaps non-trivial.
+
+**Key data point (with vintage):** Population density of core Ozark plateau counties (US Census 2020): Newton County, AR: **8.8 persons/mi² (~3.4 persons/km²)**; Searcy County, AR: ~**12 persons/mi² (~4.6 persons/km²)**; Stone County, AR: ~**15 persons/mi² (~5.8 persons/km²)**. Arkansas state average: **58.2 persons/mi² (22.5 persons/km²)** (US Census Bureau, 2020). JRC GHSL 2020 urban/rural classification confirms all three counties as fully "rural" grid cells (population density class 1–2/6).
+
+**Supporting facts:**
+- Nearest commercial airports to the central Ozark Plateau: Fort Smith Regional Airport (FSM) — ~1 hr drive from Harrison, AR; Northwest Arkansas Regional Airport (XNA, Bentonville) — ~1.5 hr from Harrison; Springfield–Branson National Airport (SGF, MO) — ~1.5–2 hr from the northern Ozarks. No Ozark county has its own scheduled commercial service (Rome2rio / airport data, 2024).
+- Major urban centres: Fayetteville/Bentonville (fast-growing tech/commerce hub, ~250,000 metro) — 1–2 hr drive west. Springfield, MO (~170,000) — 1–2 hr drive north. Little Rock — 2.5–3 hr drive south. None are within 30-minute commuting range of the core rural plateau.
+- Healthcare: nearest Level I or II trauma centres are Mercy Northwest Arkansas (Springdale) and Baxter Regional Medical Center (Mountain Home, AR) — 45–90 min drive from most Ozark plateau parcels. Rural hospital closures have accelerated in Arkansas since 2010; several Ozark-adjacent counties are "healthcare deserts" for specialist care.
+- Internet: fibre broadband penetration is low outside towns; 4G LTE coverage is present but inconsistent in forested hollows. Starlink satellite internet has become the standard solution for remote Ozark properties as of 2022–2024 and delivers 50–200 Mbps — functionally adequate for remote work.
+- Population trend: most Ozark counties have lost population in every census since 1980. Newton County had ~7,600 in 2020, down from peaks of ~13,000 in the early 20th century. Searcy County had ~7,800 in 2020. This depopulation produces cheap real estate but also shrinks the local service and labour base.
+- Demographic profile: predominantly non-Hispanic white (>95% in core counties), older median age (45–50), limited ethnic diversity, strong evangelical Protestant cultural identity — a social context that incoming communities from different cultural backgrounds should assess honestly.
+- Emergency response: rural fire departments are primarily volunteer; response times can exceed 20–30 min in remote hollows; this directly affects building material choices and fire-preparedness design.
+
+**Practitioner-relevant nuance:**
+The Ozarks' accessibility profile requires a pragmatic assessment of what "remote" actually means for daily life across a 50-year settlement horizon. Commercial airport access is workable — not Alentejo's proximity to Lisbon, but no worse than West Cork. The healthcare gap is more serious: for a multigenerational community with elderly members or families with complex medical needs, the 45–90 minute drive to a trauma centre is a real constraint. Starlink has genuinely transformed remote broadband and enabled a first wave of knowledge-economy workers to relocate to the region — a positive demographic signal. The cultural landscape (rural, conservative, religious) is not hostile to alternative living but is not the progressive-regen social soup that a European candidate might provide; relationships with neighbours are built on practical competence and respect, not shared ideology.
+
+**Sources:**
+1. US Census Bureau QuickFacts — Newton County, Arkansas (2020). https://www.census.gov/quickfacts/newtoncountyarkansas
+2. US Census Bureau — Arkansas 2020 Census Population Density by County. https://www.census.gov/quickfacts/AR
+3. JRC Global Human Settlement Layer (GHSL) 2020. https://ghsl.jrc.ec.europa.eu/
+4. Rome2rio — Airports near the Ozarks. https://www.rome2rio.com/s/Nearby-Airports/Ozarks
+5. Travelmath — Airports Near Ozark, AR. https://www.travelmath.com/nearest-airport/Ozark,+AR
+6. Stacker — Most Rural Counties in Arkansas (2020 Census data). https://stacker.com/stories/arkansas/most-rural-counties-arkansas

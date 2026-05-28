@@ -1,0 +1,23 @@
+# Soil — Oaxaca highlands, Mexico
+
+**Headline finding:** The Oaxaca highland soils are highly varied by vegetation cover and land-use history: intact pine-oak and cloud-forest stands in the Sierra Norte hold substantial organic carbon pools, while long-cultivated valley floors in the Valles Centrales and the degraded Mixteca Alta show significantly depleted profiles. Site-specific soil assessment is essential — the range within the region is wider than the pan-European comparison regions in this framework. The best highland forest soils are genuinely excellent; the worst (eroded Mixteca) are among the most depleted in Mexico.
+
+**Key data point (with vintage):** SoilGrids 2.0 (ISRIC), topsoil soil organic carbon (0–30 cm) for the Oaxaca City / Sierra Norte centroid (~17.1°N, 96.7°W): **approximately 25–40 g/kg** for valley/cultivated areas; **60–90 g/kg** for intact highland pine-oak forest soils (derived from SoilGrids 2.0 published 2020; cross-referenced with field measurements in Oaxacan temperate forests, Ruiz-Palacios et al. 2016 and González-Molina et al. 2014). *Direct SoilGrids portal query was not possible via this research pipeline; the range is derived from published field studies and ISRIC global model outputs for highland Mexico. Confidence: medium. INEGI soil mapping at 1:250,000 is the recommended national cross-check.*
+
+**Supporting facts:**
+- Field studies in high-elevation (>2,000 m) temperate forests of Oaxaca (Sierra Juárez / Sierra Norte) record soil carbon stocks of 158–222 t C/ha to 30 cm depth (equivalent to approximately 55–80 g/kg bulk SOC depending on bulk density), with soil organic matter constituting 38–59% of total ecosystem carbon (González-Molina et al., 2014; accessed via ResearchGate).
+- Soil carbon stocks decrease with elevation gradient from cloud forest to pine forest in Oaxacan highlands; 70% of total carbon stock in Oaxacan agroforestry systems resides in the soil fraction (Juárez Mountain Range studies).
+- Mexico baseline mean SOC stock across all land uses: approximately 2.96 kg C/m² (a national average that masks extreme regional variation); Oaxacan highland forest soils substantially exceed this (Projecting spatiotemporal changes in SOC stocks in Mexico, PMC12922974, 2026).
+- The Mixteca Alta sub-region (northwestern Oaxaca) has some of the most severely eroded soils in Mexico; CEDICAM reforestation work has documented multi-decade soil rehabilitation efforts as context for land selection — avoid the Mixteca without a remediation plan.
+- INEGI classifies dominant soil types for the Valles Centrales as Phaeozem and Vertisol (fertile when cultivated, prone to cracking in dry season); Sierra Norte: Cambisol and Luvisol under forest cover; Sierra Sur: Acrisol (leached, acidic, needs amendment).
+- Annual soil carbon sequestration rates under agroforestry and milpa systems in Oaxaca: 0.5–1.2 t C/ha/yr documented in CEDICAM-adjacent communities (Resilience.org, 2015).
+
+**Practitioner-relevant nuance:**
+The variance within Oaxaca's highland soils is the story, not the mean. A parcel in the Sierra Norte under secondary pine-oak forest can have excellent SOC, good aggregate stability, and a working mycorrhizal network — a strong regenerative starting point. A parcel on a south-facing slope that has been maize-milpa for 40 years without cover cropping is depleted and will need a multi-year intervention. The practitioner move here is not to use a regional average but to conduct a field-level Munsell colour assessment and basic loss-on-ignition test before committing. The strong local agroecology knowledge base (CEDICAM, Alternativa Suchixtepec, Tierra del Sol) makes it unusually easy to find competent local soil practitioners who can read the land before purchase.
+
+**Sources:**
+1. ISRIC — SoilGrids 2.0, soil organic carbon content (global, 250 m resolution, 2020). https://soilgrids.org/ and https://data.isric.org/geonetwork/srv/api/records/713396f6-1687-11ea-a7c0-a0481ca9e724
+2. González-Molina, L. et al., *Soil carbon dynamics in high-elevation temperate forests of Oaxaca (Mexico): Thinning and rainfall effects* (2014). https://www.researchgate.net/publication/259603479
+3. Ruiz-Palacios, P. et al., *Vertical distribution and soil organic matter composition in a montane cloud forest, Oaxaca, Mexico*. https://www.researchgate.net/publication/257496532
+4. PMC12922974 — *Projecting spatiotemporal changes in Soil Organic Carbon stocks in Mexico under coupled socioeconomic and climate scenarios* (2026). https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12922974/
+5. INEGI, Uso de suelo y vegetación, Serie VII (2018). https://www.inegi.org.mx/temas/usosuelo/

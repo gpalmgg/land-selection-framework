@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Land Selection Framework, Deeper material</title>
+  <meta name="description" content="The methodology behind the framework, three deep regional case studies (Alentejo, Connemara, Transylvania), the design tensions deferred to V2, and the full source bibliography. The deeper material promised to subscribers." />
+  <link rel="canonical" href="https://land-selection-framework.vercel.app/deeper.html" />
+
+  <!-- Open Graph / Twitter Card -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://land-selection-framework.vercel.app/deeper.html" />
+  <meta property="og:title" content="Land Selection Framework, In Depth" />
+  <meta property="og:description" content="Methodology, three regional case studies, the deferred V2/V3 design tensions, and the full source bibliography." />
+  <meta property="og:image" content="https://land-selection-framework.vercel.app/og-deeper.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Land Selection Framework, In Depth" />
+  <meta name="twitter:description" content="Methodology, three regional case studies, and the questions The Collective is still working through." />
+  <meta name="twitter:image" content="https://land-selection-framework.vercel.app/og-deeper.png" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Vercel Analytics (Hobby plan, no auth needed) -->
+  <script defer src="/_vercel/insights/script.js"></script>
+
+  <style>
+    :root {
+      --paper: #f6f2eb;
+      --paper-2: #efe9df;
+      --paper-3: #e6dfd0;
+      --ink: #1a1a1a;
+      --ink-2: #3a3a3a;
+      --ink-3: #6b6258;
+      --ink-4: #9a9082;
+      --rule: #d8d0c2;
+      --rule-soft: #e6dfd0;
+      --accent: #8a3a2a;
+      --accent-soft: #c97a5a;
+      --pass: #3a6a4a;
+      --fail: #a05050;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 15px; line-height: 1.55;
+      color: var(--ink); background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body { overflow-x: hidden; }
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+    .narrow { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+    .serif { font-family: 'Spectral', Georgia, serif; }
+    h1, h2, h3, h4 { margin: 0; color: var(--ink); }
+    .eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+    }
+    .small { font-size: 11.5px; color: var(--ink-3); }
+    a { color: inherit; }
+
+    /* === Top nav (back to main) === */
+    .topbar {
+      padding: 22px 0 18px;
+      border-bottom: 1px dotted var(--rule);
+      background: var(--paper);
+      font-size: 12px; color: var(--ink-3);
+      letter-spacing: 0.04em;
+    }
+    .topbar .row {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px;
+    }
+    .topbar a.back {
+      font-family: 'Spectral', serif; font-style: italic;
+      font-size: 14px; color: var(--ink-2);
+      text-decoration: underline dotted; text-underline-offset: 3px;
+    }
+    .topbar a.back:hover { color: var(--accent); }
+    .topbar .stamp {
+      font-size: 10.5px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--ink-4);
+    }
+
+    /* === Hero === */
+    .hero {
+      padding: 96px 0 80px;
+      border-bottom: 1px solid var(--rule);
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(138, 58, 42, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse at 10% 80%, rgba(44, 95, 124, 0.05) 0%, transparent 50%),
+        var(--paper);
+    }
+    .hero .eyebrow { margin-bottom: 26px; }
+    .hero h1 {
+      font-family: 'Spectral', Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(44px, 7.5vw, 88px);
+      line-height: 1.02;
+      letter-spacing: -0.024em;
+      margin-bottom: 22px;
+      max-width: 16ch;
+    }
+    .hero .subtitle {
+      font-family: 'Spectral', Georgia, serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(19px, 2.2vw, 26px);
+      line-height: 1.35;
+      color: var(--ink-2);
+      max-width: 36ch;
+      margin-bottom: 32px;
+    }
+    .hero .lede {
+      font-family: 'Spectral', Georgia, serif;
+      font-size: 17px; line-height: 1.6;
+      color: var(--ink-2); max-width: 56ch; margin-bottom: 28px;
+    }
+    .hero .toc {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0; border-top: 1px solid var(--rule);
+      max-width: 720px; padding-top: 18px; font-size: 12px;
+    }
+    .hero .toc a {
+      display: block; padding: 8px 14px 8px 0;
+      color: var(--ink-2);
+      text-decoration: underline dotted; text-underline-offset: 3px;
+      font-family: 'Spectral', serif;
+      font-size: 13.5px;
+    }
+    .hero .toc a:hover { color: var(--accent); }
+
+    /* === Section scaffolding === */
+    section.block {
+      padding: 80px 0 70px;
+      border-bottom: 1px solid var(--rule);
+    }
+    section.block h2 {
+      font-family: 'Spectral', serif;
+      font-size: clamp(28px, 4vw, 38px); font-weight: 400;
+      letter-spacing: -0.012em; margin-bottom: 14px;
+      max-width: 22ch;
+    }
+    section.block .section-eyebrow {
+      margin-bottom: 16px;
+    }
+    section.block .intro {
+      font-family: 'Spectral', serif;
+      font-size: 17px; line-height: 1.6;
+      color: var(--ink-2); max-width: 60ch; margin: 0 0 36px;
+    }
+
+    /* === Body prose === */
+    .prose {
+      font-family: 'Spectral', serif;
+      font-size: 16.5px; line-height: 1.7;
+      color: var(--ink-2);
+      max-width: 64ch;
+    }
+    .prose p { margin: 0 0 18px; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { color: var(--ink); font-weight: 500; }
+    .prose em { color: var(--ink-3); }
+    .prose a {
+      color: var(--accent);
+      text-decoration: underline dotted; text-underline-offset: 3px;
+    }
+    .prose a:hover { color: var(--ink); }
+    .prose h3 {
+      font-family: 'Spectral', serif;
+      font-size: 22px; font-weight: 500;
+      letter-spacing: -0.005em;
+      margin: 36px 0 10px;
+      color: var(--ink);
+    }
+    .prose h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent);
+      margin: 28px 0 10px;
+    }
+
+    /* === Methodology points === */
+    .method-list {
+      display: grid; gap: 1px;
+      background: var(--rule); border: 1px solid var(--rule);
+      margin-top: 36px;
+    }
+    .method-point {
+      background: var(--paper);
+      padding: 24px 28px 22px;
+    }
+    .method-point .num {
+      font-family: 'Spectral', serif;
+      font-style: italic; font-size: 14px; color: var(--ink-4);
+      margin-bottom: 4px;
+    }
+    .method-point h4 {
+      font-family: 'Spectral', serif;
+      font-size: 19px; font-weight: 500;
+      letter-spacing: -0.005em;
+      margin: 0 0 8px;
+      color: var(--ink);
+    }
+    .method-point p {
+      font-family: 'Spectral', serif;
+      font-size: 14.5px; line-height: 1.6;
+      color: var(--ink-2); margin: 0;
+    }
+
+    /* === Case study === */
+    .case-study {
+      border-top: 1px solid var(--rule);
+      padding: 70px 0 60px;
+    }
+    .case-study:first-of-type { border-top: none; padding-top: 0; }
+    .case-study .case-head {
+      margin-bottom: 28px;
+    }
+    .case-study .country {
+      font-size: 11px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .case-study h3.case-name {
+      font-family: 'Spectral', serif;
+      font-size: clamp(34px, 5vw, 52px); font-weight: 400;
+      letter-spacing: -0.018em; line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .case-study .case-tag {
+      font-family: 'Spectral', serif; font-style: italic;
+      font-size: 17px; color: var(--ink-3);
+      max-width: 38ch;
+    }
+    .case-study .closing {
+      font-family: 'Spectral', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 18px; line-height: 1.6;
+      color: var(--ink-3);
+      max-width: 56ch;
+      margin: 32px 0 0;
+      padding: 22px 0 0;
+      border-top: 1px solid var(--rule);
+    }
+    .case-study .closing-label {
+      font-family: 'Inter', sans-serif;
+      font-style: normal;
+      font-size: 10.5px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent);
+      display: block; margin-bottom: 10px;
+    }
+
+    /* === Tensions === */
+    .tension-pair {
+      background: var(--paper-2);
+      border-left: 3px solid var(--accent);
+      padding: 24px 28px 22px;
+      margin: 26px 0;
+    }
+    .tension-pair .pair-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10.5px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 10px;
+    }
+    .tension-pair p {
+      font-family: 'Spectral', serif;
+      font-size: 15.5px; line-height: 1.65;
+      color: var(--ink-2); margin: 0 0 12px;
+    }
+    .tension-pair p:last-child { margin-bottom: 0; }
+    .tension-resolve {
+      font-family: 'Spectral', serif;
+      font-style: italic;
+      font-size: 17px; line-height: 1.65;
+      color: var(--ink-2);
+      max-width: 56ch;
+      margin: 32px 0 0;
+      padding: 22px 0 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* === Sources === */
+    .sources-grid {
+      display: grid; gap: 36px;
+      margin-top: 28px;
+    }
+    .source-group h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .source-group ul {
+      list-style: none; padding: 0; margin: 0;
+      display: grid; gap: 10px;
+    }
+    .source-group li {
+      font-family: 'Spectral', serif;
+      font-size: 14px; line-height: 1.55;
+      color: var(--ink-2);
+    }
+    .source-group li .src-name {
+      color: var(--ink); font-weight: 500;
+    }
+    .source-group li a {
+      color: var(--accent);
+      text-decoration: underline dotted; text-underline-offset: 2px;
+      word-break: break-word;
+    }
+    .source-group li a:hover { color: var(--ink); }
+    .source-group li .used-for {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 10.5px; letter-spacing: 0.04em;
+      color: var(--ink-4); margin-top: 2px;
+    }
+
+    /* === Footer === */
+    footer {
+      padding: 56px 0 80px;
+      border-top: 1px solid var(--rule);
+      background: var(--paper-2);
+    }
+    footer .frame {
+      font-family: 'Spectral', serif; font-style: italic;
+      font-size: 14.5px; line-height: 1.6;
+      color: var(--ink-2); max-width: 62ch; margin-bottom: 30px;
+    }
+    footer .links {
+      display: flex; gap: 28px; flex-wrap: wrap;
+      font-size: 13px;
+    }
+    footer .links a {
+      color: var(--ink-2);
+      text-decoration: underline dotted; text-underline-offset: 3px;
+    }
+    footer .links a:hover { color: var(--accent); }
+    footer .stamp {
+      margin-top: 36px; padding-top: 24px;
+      border-top: 1px dotted var(--rule);
+      font-size: 10.5px; letter-spacing: 0.05em; color: var(--ink-4);
+    }
+    footer .stamp .sep { color: var(--rule); margin: 0 8px; }
+
+    @media (max-width: 780px) {
+      .container { padding: 0 22px; }
+      .narrow { padding: 0 22px; }
+      .hero { padding: 64px 0 56px; }
+      section.block { padding: 56px 0 50px; }
+      .hero .toc { grid-template-columns: 1fr 1fr; }
+      .method-list { grid-template-columns: 1fr; }
+      .case-study .closing { font-size: 16.5px; }
+    }
+    @media (min-width: 781px) {
+      .method-list { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="container">
+      <div class="row">
+        <a class="back" href="/">← Back to the framework</a>
+        <span class="stamp">Deeper material · for subscribers</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <div class="eyebrow">Land Selection Framework, In Depth</div>
+      <h1>The framework, in depth.</h1>
+      <p class="subtitle">Methodology, regional case studies, and the open questions The Collective is still working through.</p>
+      <p class="lede">
+        The home page sketches eight criteria across ten regions. This page is the layer underneath it. Why these criteria. How the values were sourced. What three contrasting regions actually feel like to plan a settlement into. Which design tensions the framework has deliberately deferred until V2.
+      </p>
+      <nav class="toc">
+        <a href="#methodology">1 · Methodology</a>
+        <a href="#case-studies">2 · Case studies</a>
+        <a href="#tensions">3 · Deferred tensions</a>
+        <a href="#ethics">4 · Ethics and values</a>
+        <a href="#whats-next">5 · What's coming next</a>
+        <a href="#sources">6 · Sources</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="block" id="methodology">
+    <div class="narrow">
+      <div class="eyebrow section-eyebrow">Methodology</div>
+      <h2>How the framework decides what to look at, and what to leave aside.</h2>
+      <p class="intro">
+        The framework is a sketch, not a product. But the choices it embeds are deliberate. Eight criteria, not twelve. Native units, not normalised scores. State paired with trajectory. Source plus vintage for every value. The points below are the operating commitments behind this prototype.
+      </p>
+
+      <div class="prose">
+        <h3>Why eight criteria, not twelve or twenty.</h3>
+        <p>
+          The eight criteria the dashboard holds, each with a threshold the viewer can set, are <strong>climate trajectory</strong>, <strong>water stress</strong>, <strong>soil organic carbon</strong>, <strong>forest-cover trajectory</strong>, <strong>solar-energy potential</strong>, <strong>conflict proximity</strong>, <strong>regenerative-network density</strong>, and <strong>population density</strong>. They share the one property that makes them filterable: each reduces to a sourced number in a native unit. That is the quantitative spine of a fifty-to-hundred-year settlement decision, lose any one axis and the project's runway collapses on it.
+        </p>
+        <p>
+          A dimension The Collective treats as just as load-bearing sits deliberately <em>outside</em> that slider set: <strong>legal and economic context</strong>, who may buy land, under which ownership regime, at what price. It is documented region by region in the dossiers and the case studies, with its own source list below. But it is not a threshold criterion, because it does not reduce to a single sliderable number. "Non-EU citizens may acquire farmland only through a domestic company" is a categorical fact, not a point on a scale; forcing it onto a slider would be the exact false quantification the framework refuses. So legal and economic context lives in the prose and the dossiers, where it can stay honest, rather than in the filters.
+        </p>
+        <p>
+          Other candidate criteria, cultural fit, food sovereignty, language barrier, biome-specific factors, are real but derivable downstream from the eight: cultural fit follows from regenerative network, population, and legal context; food sovereignty from water, soil, and energy; language barrier sits inside the demographic picture. The pruning principle is to keep as a <em>filter</em> only what reduces to a checkable number, and to hold everything else as honest prose.
+        </p>
+
+        <h3>State paired with trajectory.</h3>
+        <p>
+          A current value tells the practitioner what the region is now. A trajectory tells them what it will be by 2070. Both matter, and the framework holds both. For climate, the current value is the 1991–2020 normal from a regional meteorological agency; the trajectory comes from the WorldClim CMIP6 downscaled ensemble under SSP2-4.5 for 2041–2060. For water, the current value is WRI Aqueduct 4.0 baseline stress; the trajectory is the 2050 projection from the same dataset. The framework presents both, never collapses them, and asks the viewer to apply their own weighting to "this is fine today" versus "this is going to keep being fine."
+        </p>
+
+        <h3>No composite scoring.</h3>
+        <p>
+          One of The Collective's non-negotiables is that the framework never produces a single composite score across criteria. A composite score requires coefficients, how much rainfall offsets a degree of warming, how much cheap land offsets a thin civil-society stack, and once those coefficients live inside the framework, the framework is making the decision instead of the practitioner. Composites also let regions with one fatal flaw rank highly because compensating scores average it away, which is exactly the failure mode for fifty-year decisions where no flaw is averageable. The alternative is filtering: each criterion has a threshold the viewer sets, regions that pass all thresholds remain visible, regions that fail any one threshold dim. The shape of the result is a smaller honest set, never a ranked list.
+        </p>
+
+        <h3>Native units throughout.</h3>
+        <p>
+          Water stays in mm/year. Temperature in degrees Celsius. Soil organic carbon in g/kg. Land cost in euros per hectare. The framework refuses to reshape every variable onto one normalised grid because reshaping costs information. The modifiable areal unit problem (MAUP), familiar to anyone who has worked with spatial data, has two parts: the <em>scale effect</em>, where statistics change as the unit of aggregation changes, and the <em>zoning effect</em>, where they change as the boundaries shift. Water stress on a one-kilometre grid loses the catchment that actually matters. Cost-per-hectare averaged across a NUTS-II region disguises the difference between marginal upland and irrigated valley. Keeping each variable in its native unit, at the analytical scale where it makes sense, is the discipline the framework chose over visual neatness.
+        </p>
+
+        <h3>Source plus vintage for every value.</h3>
+        <p>
+          Every value the framework presents points back to a public source with a date. The per-region dossier files in <code>/data/research-dossier/&lt;region&gt;/&lt;dimension&gt;.md</code> are the audit trail, open one and follow the citations. The commitment is straightforward: no value without a source, no source without a vintage, no claim that cannot be checked. Where two sources disagree the dossier notes it; where the value is uncertain the dossier says so.
+        </p>
+
+        <h3>What this prototype cannot do yet.</h3>
+        <p>
+          This is a hand-built prototype. There is no live ingestion pipeline from WorldClim, Aqueduct or SoilGrids, the values are extracted by hand from PDF reports and dataset previews, then entered into a static region file. There are no user accounts, no group collaboration features, no parcel-level granularity. The V1 release coming before June 2026 polishes this layer; it is not the automated build. A later <strong>V2</strong> would automate the ingestion, surface source plus vintage in the interface, and let practitioners overlay their own thresholds against live data. That V2 is months of work for a small team, not a single-person sprint. It hasn't started.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="case-studies">
+    <div class="narrow">
+      <div class="eyebrow section-eyebrow">Three regional case studies</div>
+      <h2>Three contrasting regions, read across the eight criteria.</h2>
+      <p class="intro">
+        Alentejo, Connemara, Transylvania. Hot-dry, mild-wet, continental-forested. Established regen networks, restrictive planning, post-communist commons. Each case study walks through what the place is, what the data says, and what a settlement project would actually inherit there.
+      </p>
+
+      <article class="case-study" id="alentejo">
+        <div class="case-head">
+          <div class="country">Portugal · hot-dry Mediterranean</div>
+          <h3 class="case-name">Alentejo</h3>
+          <p class="case-tag">Cork-oak silvopasture on thin red ground, the most water-stressed region in the set, anchored by thirty years of Tamera.</p>
+        </div>
+        <div class="prose">
+          <p>
+            By July the cork-oak shade in inland Alentejo stops being scenery and starts being infrastructure. Settlements here either build around what the trees already do, collecting deep shade in southwest corners, channelling air through stone, or design against the climate and lose ground every decade. The light at five in the afternoon is heavy and slow, the cicadas constant, the soil red where the stone breaks through. This is the dry southwest corner of the Iberian Peninsula: twenty-two inhabitants per square kilometre, a flat-roofed landscape of cork and holm oak, wheat stubble, and reservoirs that absorb rivers.
+          </p>
+          <p>
+            The current climate is hot-summer Mediterranean (Csa); by 2041–2060 the WorldClim CMIP6 v2.1 multi-model ensemble centres on around <strong>19.5°C</strong> mean annual temperature under SSP2-4.5, with the warmest-month maximum settling between 34.5 and 36°C. Annual rainfall already sits in a 500–650 mm envelope concentrated between October and April; high-resolution CMIP6 work for southern Portugal trims wet-day frequency another 10–15% by mid-century (<a href="https://www.nature.com/articles/s41598-024-67996-6">Soares et al., Scientific Reports 2024</a>). WRI Aqueduct 4.0 places much of the southern interior in the "extremely high" baseline water-stress band by 2050. Soils are thin Cambisols and Luvisols on schist and granite, topsoil organic carbon in the 15–25 g/kg range on degraded ground (SoilGrids 2.0, 2020 release), well below temperate-Atlantic baselines. The dominant living landscape is the <em>montado</em>: cork-oak and holm-oak silvopasture, an EU Habitats Directive 6310 habitat covering roughly 700,000 ha of Alentejo alone, a working ecosystem older than the Portuguese state.
+          </p>
+          <p>
+            Alentejo's population density is the lowest in Portugal, around 22 inh/km² against the national 111, and its median age is approaching fifty (INE Censos 2021, Pordata 2023). Schools close, retirees arrive: French, German, Dutch, Belgian. Lisbon airport sits 1.5–2.5 hours from most of the region; Évora, Beja and Odemira anchor the regional hospital and school networks. Portuguese law places no nationality restriction on rural-land purchase, but the Golden Visa real-estate route closed in October 2023 (Lei 56/2023); residency now runs through D7, D8 or D2 visa categories. Cost-per-hectare for dry, extensive parcels falls in the <strong>€8,000–€20,000</strong> band (Idealista Alentejo Q4 2024, Savills Global Farmland September 2024); irrigated land inside the Alqueva scheme reaches €25,000–€45,000. The trap is assuming a purchase implies water rights or buildable area, RAN-classified parcels can be bought freely but often forbid construction outright.
+          </p>
+          <p>
+            Tamera, founded 1995 near Colos in Odemira municipality, 154 hectares, around 160 residents, an EEA-recognised water-retention landscape, gives Alentejo Europe's most internationally visible regen anchor. Around it, Aldeia das Amoreiras runs permaculture demonstration and PDC trainings via the Bons Padroais collective; Vale da Lama partners with Schumacher College; Quinta das Moitas, Awakening Culture and Mount of Oaks fill out roughly eight active GEN-listed projects within 150 km of central Alentejo. National funding flows through PEPAC-Portugal (the CAP Strategic Plan, ~€7.3 bn over 2023–2027), Fundo Ambiental ecological-restoration calls, and a small but real impact-VC layer (Maze Impact in Lisbon). The cork-oak agroforestry tradition, UNESCO-recognised as a cultural landscape, is the deeper regen lineage, older than the foreign newcomers, with its own grammar of nine-year bark cycles and grazing rhythms that any siting project ignores at its cost.
+          </p>
+          <p>
+            Temperature continues to climb. Plant-available water modelled out to 2050 contracts by 15–25% under SSP2-4.5 (<a href="https://iwaponline.com/jwcc/article/15/7/2899/102481/">Pereira et al., Journal of Water and Climate Change 2024</a>). Heat-related mortality rises sharply on the present trajectory (<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11662523/">Gomes et al., PMC11662523</a>). PV resource is exceptional, 1,830–1,900 kWh/kWp/yr (Global Solar Atlas, 2020), and Portuguese self-consumption law (DL 162/2019 as amended 2022) makes shared-storage CER community-energy structures straightforward; energy abundance is not the problem. Water is. The post-Alqueva irrigation boom continues to draw down aquifers in sub-basins that Aqueduct already flags as stressed (EASAC 2020). Civil society holds: Portugal sits in V-Dem's top quintile globally (0.86 in 2023), with no UCDP-recorded conflict events in Alentejo since 2019. The trajectory is hotter, drier, politically stable, increasingly attractive to mobile capital. The settlement question is whether the rainwater-catchment maths still closes by 2070.
+          </p>
+          <p class="closing">
+            <span class="closing-label">What this region asks of you</span>
+            Alentejo asks for design from the rainwater equation backward. It asks for shade as infrastructure, for cisterns sized for six summer months on roof catchment, for dry toilets and greywater loops not as gestures but as load-bearing systems. It asks for patience with thirty-year-old neighbours in Tamera and three-hundred-year-old neighbours in the village. And it asks for honesty about what the next fifty Augusts will be, because the projects that mistake July 2025 for July 2075 will not survive the difference.
+          </p>
+        </div>
+      </article>
+
+      <article class="case-study" id="connemara">
+        <div class="case-head">
+          <div class="country">Ireland · mild-wet Atlantic</div>
+          <h3 class="case-name">West Cork &amp; Connemara</h3>
+          <p class="case-tag">Blanket-peat carbon stores, the gentlest climate trajectory in Europe, and a planning regime tighter than the open land suggests.</p>
+        </div>
+        <div class="prose">
+          <p>
+            The Atlantic wind in Connemara doesn't move air so much as it moves time, pressure systems rolling east from the open ocean in eight- or twelve-hour cycles, the sky redoing itself before lunch. Light is silver and unstable. The Twelve Bens rise from a saturated peat plain that holds water like a sponge held under a tap, and the colour palette is mostly weather: dark mountain, paler bog, grey lake, gorse-yellow in spring. This is the west of Ireland: low population density (~22 inhabitants/km²), Atlantic-maritime air, two-thousand-millimetre rainfall years, and a landscape so different from continental Europe that the criteria themselves shift weight.
+          </p>
+          <p>
+            Projected mean annual temperature for the western Irish counties in 2041–2060 lands at <strong>11.0–11.8°C</strong> under SSP2-4.5 (<a href="https://www.epa.ie/publications/research/climate-change/research-471-updated-high-resolution-climate-projections-for-ireland.php">EPA Research 471 / ICHEC TRANSLATE, 2023</a>), among the slowest warmings in continental Europe. Rainfall sits at 1,200 mm in the West Cork lowlands and rises past 2,400 mm into the Twelve Bens; two hundred or more rain-days a year are typical (Met Éireann 1991–2020 normals). WRI Aqueduct 4.0 returns a stress score below 0.1 for the entire region. The dominant soil is blanket peat: SoilGrids 2.0 reports topsoil organic carbon above 120 g/kg on most blanket-bog terrain and well over 300 g/kg on intact bog, with stocks ranging from 240 t C/ha on lowland peats to over 3,000 t C/ha on deep raised bogs. Ireland's bogs hold roughly 53–62% of the national soil organic carbon on around 20% of the land area (EPA / Teagasc estimates; recent Sentinel-2 refinements, 2024).
+          </p>
+          <p>
+            West Cork's rural-county density is roughly 29 inh/km², Connemara's around 22 (CSO Census 2022); median age sits at 42–43 in both, but the migration story diverges. West Cork has been receiving "blow-ins" continuously since the 1970s and accommodates non-Irish newcomers with low friction. Connemara's Gaeltacht core operates socially and educationally in Irish, Údarás na Gaeltachta planning policy adds language and community-commitment criteria to applications. Ireland places no nationality restriction on land purchase; foreign buyers face the same terms as Irish citizens. The binding constraint is planning. Cork and Galway County Councils both run restrictive one-off rural-housing regimes under their 2022–2028 Development Plans; greenfield community-build is hard. Median agricultural land in 2024 reached <strong>€17,875/acre</strong> (≈€44,200/ha) in Cork but only <strong>€7,027/acre</strong> (≈€17,360/ha) in the West region, <a href="https://www.cso.ie/en/releasesandpublications/ep/p-alp/agriculturallandprices2024/keyfindings/">CSO Ireland, Agricultural Land Prices 2024, released November 2025</a>.
+          </p>
+          <p>
+            Cloughjordan Ecovillage, 67 acres in Tipperary, founded 1999, around 150 residents across 132 designed dwellings, is Europe's largest planned ecovillage and runs Ireland's first CSA farm. Within West Cork itself, <a href="https://www.thehollies.ie/">The Hollies Centre for Practical Sustainability</a> at Enniskeane has anchored permaculture education and ecobuild for decades; small-batch artisan dairying around Skibbereen and Castletownshend gives the food economy unusual depth. Connemara's regen presence is thinner but specific: Brigit's Garden at Roscahill, <a href="https://www.hometree.ie/">Hometree</a>'s native-woodland work across the west, Atlantic Salmon Trust restoration on the Owenmore and Erriff catchments. CAP Strategic Plan Ireland (2023–2027, €9.8 bn), the ACRES agri-environment scheme (55,000 farmers enrolled by mid-2024), LEADER local-action groups, and SEAI energy grants form the institutional stack. The catch: nearly all national grants require an Irish herd number, which functionally locks foreign newcomers into partnership with an existing farmer.
+          </p>
+          <p>
+            Climate trajectory is among the gentlest in Europe. No heat-stress regime change; no drought regime change; no fire regime change. The risks are subtler: storm intensification reinforces the case for sheltered siting and over-built roof structures, wetter winters favour fungal disease pressure on crops and structures, and the AMOC-shift tail risk is non-trivial on a multi-generational horizon, IPCC AR6 keeps it low-probability but not negligible by 2100. Energy assumptions invert: PV alone runs 900–1,050 kWh/kWp/yr (Global Solar Atlas 2020), about half Alentejo's, but wind at the coast hits IEC Class I conditions at 8–11 m/s and SEAI's Microgeneration Support Scheme makes small-wind viable. The peat tension stays present: disturbing blanket bog releases century-deep carbon irreversibly on settlement timescales. Civil society sits in the top decile (V-Dem 0.86 in 2023); UCDP records no conflict events. The trajectory is mild, wet, stable, slowly drifting warmer.
+          </p>
+          <p class="closing">
+            <span class="closing-label">What this region asks of you</span>
+            Connemara asks for a different relationship with weight. Bog is not a foundation. Bog is a body of stored carbon that the wrong settlement design opens up like a wound. It asks for buildings that float rather than press, for drainage that respects watersheds rather than fights them, for a willingness to engage NPWS designations as live partners rather than paper obstructions. It asks newcomers to learn what the place was already doing, and in the Gaeltacht, to do that learning in Irish.
+          </p>
+        </div>
+      </article>
+
+      <article class="case-study" id="transylvania">
+        <div class="case-head">
+          <div class="country">Romania · continental forested basin</div>
+          <h3 class="case-name">Transylvania</h3>
+          <p class="case-tag">Hay-meadow biodiversity unmatched on the continent, large-carnivore Carpathians, and a peasant economy that the industrial wave largely missed.</p>
+        </div>
+        <div class="prose">
+          <p>
+            A Saturday-morning hay meadow above Viscri in late June holds something between fifty and seventy plant species per square metre, a botanical density almost nowhere else on the European continent matches. The scythes still come out at dawn in the Saxon villages, the cattle still walk to common pasture behind a paid herdsman. The Făgăraș Mountains hold Europe's last substantial concentration of brown bears and wolves. This is the Transylvanian Plateau: a forested basin ringed by Carpathian crests at 300–900 m elevation, six languages within a day's drive, a still-living peasant economy that the EU's industrial-agriculture wave largely missed.
+          </p>
+          <p>
+            Current annual mean temperature sits at 8–10°C across the plateau, with continental winters bottoming at −10 to −15°C (ANM 1991–2020 normals). Mid-century projection under SSP2-4.5 lifts the mean to <strong>10.5–11.5°C</strong>, with summer warming concentrated at +2.5–3.0°C over the 1961–1990 baseline (<a href="https://link.springer.com/book/10.1007/978-3-319-02886-6">Bojariu et al., Climate of the Romanian Carpathians, Springer 2014</a>; CMIP6 via World Bank CCKP 2024). Rainfall runs 600–800 mm in lowlands and 1,000–1,400 mm in the surrounding ranges; WRI Aqueduct 4.0 returns water stress below 0.2 for most of the plateau. Most of Romania's major rivers originate in or flow through Transylvania, the Mureș, the Olt, the Someș, and per-capita renewable water for the region runs comfortably above the national 1,700 m³/year mean. Soils are healthy by EU standards: SoilGrids 2.0 reports <strong>25–45 g/kg</strong> SOC under cropland and 40–70 g/kg under intact forest and meadow (ISRIC 2020), preserved by the absence of twentieth-century industrial farming.
+          </p>
+          <p>
+            The Centru and Nord-Vest NUTS-II regions covering Transylvania carry around 70 inh/km² (INS 2022 Census), substantially denser than Alentejo or Connemara, but unevenly distributed: Cluj-Napoca is one of the EU's fastest-growing secondary cities, while rural villages have lost 30–50% of their population since 1990. Median age in rural Transylvania is around 46; in Cluj, around 38. The legal regime divides sharply: EU/EEA citizens may purchase agricultural and forest land in freehold since January 2014, but non-EU citizens cannot acquire land directly in their own name without a bilateral treaty (Constitution art. 44; Law 312/2005). The standard non-EU workaround is a Romanian SRL, a limited company with a low capital threshold (~€40) that counts as a Romanian legal person. Arable land averages <strong>€8,656/ha</strong> nationally in 2024 (<a href="https://insse.ro/cms/en/content/agricultural-land-prices-romania-and-eu-member-states-2024">INS Romania 2024 release</a>); Transylvania-region pasture sits below €7,000/ha for marginal parcels.
+          </p>
+          <p>
+            <a href="https://www.carpathia.org/">Foundation Conservation Carpathia</a> is restoring around 27,000 hectares of Carpathian forest as of 2024, the largest private rewilding operation in Europe outside Iberia. The <a href="https://www.mihaieminescutrust.ro/">Mihai Eminescu Trust</a> (founded 1987, patron King Charles III) has spent three decades stewarding Saxon-village heritage in Viscri, Mălâncrav and Floreni. <a href="https://www.fundatia-adept.org/">ADEPT Foundation</a> works the Hârtibaciu–Târnava Mare landscape with EU LIFE-financed pasture restoration. Aurora Foundation at Stânceni in Mureș county anchors the intentional-community side. The PNS 2023–2027 (Romania's CAP plan, ~€15.8 bn) carries dedicated HNV grassland measures; AFM (the Environmental Fund), <a href="https://rewildingeurope.com/landscapes/southern-carpathians/">Rewilding Europe</a>, and Arcadia / Endangered Landscapes fund the larger rewilding work. The deeper regen presence is the living one: most grassland is still mown by hand or with small machinery, and the practitioner skill that integrates here is closer to ecological stewardship than to reclamation, continue, don't restart.
+          </p>
+          <p>
+            Climate trajectory matters but the starting point is cool enough that "hotter and drier" still leaves rain-fed agriculture, working forests, and uncooled architecture viable. Summers will lengthen growing seasons by two to four weeks. AMOC-shift sensitivity is low, this is continental, not Atlantic. The under-weighted risk is forest-pathogen dynamics: bark beetle outbreaks in the spruce monocultures planted under Communist-era forestry are a present-tense issue, not a future one. Energy resource is moderate across the board: PV around 1,250–1,350 kWh/kWp/yr (Global Solar Atlas 2020), wind 5–9 m/s on Carpathian ridges, and small/micro-hydro genuinely strong on the dense stream network. Biomass, firewood from sustainable forest yield, remains the cultural and practical winter backbone, at 5–10 tonnes per household per year in older stock. The political-stability story is one of resilience tested in 2024–2025 (the annulled December 2024 presidential election, May 2025 re-run won by Nicușor Dan) rather than placid baseline; UCDP records zero conflict events in Transylvania, and institutional process held under stress.
+          </p>
+          <p class="closing">
+            <span class="closing-label">What this region asks of you</span>
+            Transylvania asks for continuation rather than invention. The hay-meadow biodiversity holds because someone mows. The wood-pasture mosaic holds because someone grazes. The Saxon villages hold because someone keeps the roofs on. It asks the newcomer to learn an existing rhythm, the mowing calendar, the transhumance route, the <em>composesorat</em> membership and its closed doors, and to make a project that thickens that rhythm rather than replaces it. The project that thrives here is one the village can recognise as adjacent to its own.
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="tensions">
+    <div class="narrow">
+      <div class="eyebrow section-eyebrow">Design tensions deferred to V2</div>
+      <h2>Two questions the framework has chosen not to answer yet.</h2>
+      <p class="intro">
+        Both tensions below were debated at length inside The Collective without resolution. The documents are private; the tensions themselves are real intellectual content worth understanding before relying on the framework for any serious decision.
+      </p>
+
+      <div class="prose">
+        <h3>Composite scores.</h3>
+        <p>
+          The first tension is whether a regenerative-settlement framework should ever produce a single composite "livability" or "suitability" score across criteria.
+        </p>
+
+        <div class="tension-pair">
+          <div class="pair-label">One perspective</div>
+          <p>
+            Never build a composite score. Any single number requires trade-off coefficients, how many millimetres of rainfall offset a thousand euros per hectare, how much cheap land offsets a thin civil-society stack, and once those coefficients live inside the framework, the framework is making the decision instead of the practitioner. A composite presents itself as objective when its inputs are arguments. Worse, it lets a region with one fatal flaw rank highly because its other scores compensate, which is precisely the failure mode for fifty-year decisions where no flaw is averageable.
+          </p>
+        </div>
+
+        <div class="tension-pair">
+          <div class="pair-label">The other perspective</div>
+          <p>
+            The general principle is right but it overshoots. A domain-specific feasibility composite, for example, a year-round household water budget that combines roof catchment, cistern volume, evapotranspiration and projected aquifer drawdown, is not the same as a livability composite. It collapses variables that are physically and dimensionally compatible and produces an answer to a single, well-defined question. A framework that refuses all composites loses the ability to answer those single questions clearly, and pushes the work onto each practitioner to reinvent the same calculation.
+          </p>
+        </div>
+
+        <h3>Weighting authority.</h3>
+        <p>
+          The second tension is about who decides how much a given criterion matters.
+        </p>
+
+        <div class="tension-pair">
+          <div class="pair-label">One perspective</div>
+          <p>
+            Users should weight their own criteria. The framework provides values; the practitioner brings the value system. A family planning for children weights schools and healthcare differently than a hermit-settlement weights solitude. To embed weights inside the framework is to embed one project's values inside everyone else's decision. The framework's job is to lay out the data honestly, not to tell the viewer which dimensions to care about.
+          </p>
+        </div>
+
+        <div class="tension-pair">
+          <div class="pair-label">The other perspective</div>
+          <p>
+            Some criteria are baseline non-negotiable, and the framework should resist drift toward "every preference is equally valid." Civil-society stability, for example, is not a preference; if a region's V-Dem score is below a threshold, no amount of personal weighting on cheap land should be allowed to override it. The framework loses its purpose if it lets users weight critical safeguards out of the picture entirely.
+          </p>
+        </div>
+
+        <p class="tension-resolve">
+          Both tensions are deliberately deferred to V2 design. This site, the prototype and the upcoming V1 alike, neither scores nor weights; it shows the data and lets the viewer apply their own criteria. The viewer who needs the framework to do more than that should treat it as a sketch and wait for the next layer, or read the dossier files directly.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="ethics">
+    <div class="narrow">
+      <div class="eyebrow section-eyebrow">Ethics and values</div>
+      <h2>Four values the project is thinking with.</h2>
+      <p class="intro">
+        A framework about land carries questions a data set alone cannot answer. The values below are not stated commitments of The Collective. They are values that resonate with the project's underlying intentions as I read them, and that I personally hold. Whether and how they get centred in future iterations is an open conversation.
+      </p>
+
+      <div class="prose">
+        <p>
+          <strong>Localism.</strong> Decisions about land are best made primarily by people whose lives are continuous with the place. A tool that helps a stranger imagine a place cannot substitute for the slow work of becoming someone the place knows.
+        </p>
+
+        <p>
+          <strong>Bioregioning.</strong> Thinking in terms of watersheds, ecotones and cultural geographies rather than national borders and real-estate markets. A region can contain three watersheds and three different settlement traditions, and the bioregional scale is the scale that actually matters for land that is meant to last a century.
+        </p>
+
+        <p>
+          <strong>Healthy integration.</strong> Whether a place welcomes new arrivals, and on what terms, is a matter of trust built across decades. It is not a checkbox a framework can verify. The work of integration sits with the arriving person, in relationship with the people already there.
+        </p>
+
+        <p>
+          <strong>Land stewardship.</strong> Stewardship as relationship over time, not transaction. Buying land is the easy part; becoming responsible to it over decades is the work the framework cannot represent in a data layer.
+        </p>
+
+        <p class="tension-resolve">
+          The framework is one input among many, most of which live not in datasets but in conversations with the people who already know a place. The values above are how I would want to keep that conversation honest, and where The Collective's thinking is evolving toward.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="whats-next">
+    <div class="narrow">
+      <div class="eyebrow section-eyebrow">What's coming next</div>
+      <h2>What the framework is working toward, and what it isn't promising.</h2>
+
+      <div class="prose">
+        <p>
+          The dossier work behind this page now covers twenty regions, ten in Europe and ten in North America, all live on the site as of May 2026. The European set came first: Alentejo, West Cork / Connemara, and Transylvania (explored in depth above) anchored the cut, with Galicia, Pembrokeshire, the Cévennes, South Tirol, Asturias, Saxony-Anhalt and rural Estonia joining as their dossiers were ratified. North America extends the framework to a second continent, Cascadia, Vermont, the Southern Appalachians, the Driftless Area, the Ozarks, Northern New Mexico, Nova Scotia, the BC Kootenays, Québec's Eastern Townships, and the Oaxaca highlands, spanning the arid Southwest to the maritime Pacific Northwest and a far wider catalogue of land-tenure regimes: US fee-simple with agricultural-use zoning, Canadian agricultural-land reserves, Québec civil law and CPTAQ farmland protection, and Mexican <em>ejido</em> communal title. The North American values are an honest first pass, every cell is sourced and dated, but several lean on national datasets and triangulation rather than a single pixel read, and that confidence is recorded alongside the data. The slate itself remains a proposal pending The Collective's sign-off.
+        </p>
+        <p>
+          A V2 data-ingestion build is in early planning. The current site is a hand-built prototype, values extracted by hand from PDF source documents, no live pipeline, no parcel-level granularity, and the V1 release coming before June 2026 polishes that prototype rather than replacing its engine. A serious V2 would ingest WorldClim CMIP6, WRI Aqueduct, SoilGrids and the regional cadastres on a scheduled cadence; surface per-cell source plus vintage in the interface; and let practitioners overlay their own thresholds against live data rather than a static snapshot. That build is months of work for a small team, not a single-person sprint. It hasn't started.
+        </p>
+        <p>
+          The Collective's invitation status: subscribers receive a link to the invitation PDF with context about the project, the contributor list, and how to join. The full framework documents remain private until everyone involved agrees on public attribution. The site itself stays open; The Collective is opt-in.
+        </p>
+        <p>
+          This page exists because the modal promised more. If you signed up expecting a deeper layer, this is the first instalment. Further regional case studies, a fourth, a fifth, will be drafted as time allows, and the page will grow with the work.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="sources">
+    <div class="container">
+      <div class="eyebrow section-eyebrow">Sources</div>
+      <h2>Every source cited in the dossier files, grouped by dimension.</h2>
+      <p class="intro" style="max-width: 64ch;">
+        The bibliography below collects the public sources the dossier files cite across all twenty researched regions. Canonical pan-continental datasets (WorldClim, Aqueduct, SoilGrids, Hansen/GFW, Global Solar Atlas, UCDP, GHSL) sit at the top of each group and carry both continents; region-specific national sources follow, European ones first, then the North American additions (NOAA/NCA5, USDA NRCS, NREL, US Census; ClimateData.ca, Soil Landscapes of Canada, StatCan; INEGI, RAN). The <em>Used for</em> tag on each entry lists the regions where the dossier draws on it. Every URL was live at the time of last dossier update.
+      </p>
+
+      <div class="sources-grid">
+
+        <div class="source-group">
+          <h3>Climate</h3>
+          <ul>
+            <li><span class="src-name">WorldClim CMIP6 downscaled bioclimatic variables, v2.1 (2024).</span> <a href="https://www.worldclim.org/data/cmip6/cmip6climate.html">worldclim.org/data/cmip6</a> <span class="used-for">Used for: all twenty regions</span></li>
+            <li><span class="src-name">World Bank Climate Change Knowledge Portal, CMIP6 country projections.</span> <a href="https://climateknowledgeportal.worldbank.org/country/romania/climate-data-projections">climateknowledgeportal.worldbank.org</a> <span class="used-for">Used for: Transylvania, Estonia, Saxony-Anhalt, Galicia, Asturias, Pembrokeshire, Cévennes, South Tirol</span></li>
+            <li><span class="src-name">Soares, P. M. M., et al., <em>High-resolution surface temperature changes for Portugal under CMIP6</em>, Scientific Reports (2024).</span> <a href="https://www.nature.com/articles/s41598-024-67996-6">nature.com/articles/s41598-024-67996-6</a> <span class="used-for">Used for: Alentejo</span></li>
+            <li><span class="src-name">IPMA, Instituto Português do Mar e da Atmosfera, Climate Scenarios Portal (2023).</span> <a href="https://www.ipma.pt/pt/oclima/cenarios.clima/">ipma.pt</a> <span class="used-for">Used for: Alentejo, Galicia (border context)</span></li>
+            <li><span class="src-name">EPA Research 471, Updated High-Resolution Climate Projections for Ireland (2023).</span> <a href="https://www.epa.ie/publications/research/climate-change/research-471-updated-high-resolution-climate-projections-for-ireland.php">epa.ie</a> <span class="used-for">Used for: Connemara, Pembrokeshire (sea-area reference)</span></li>
+            <li><span class="src-name">Met Éireann, Climate Change overview (2024).</span> <a href="https://www.met.ie/climate/climate-change">met.ie/climate/climate-change</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">ICHEC, Updated High-Resolution Climate Projections for Ireland (2023).</span> <a href="https://www.ichec.ie/news/updated-high-resolution-climate-projections-ireland-key-findings-and-implications">ichec.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">Met Office UK, UK climate averages.</span> <a href="https://www.metoffice.gov.uk/research/climate/maps-and-data/uk-climate-averages">metoffice.gov.uk</a> <span class="used-for">Used for: Pembrokeshire</span></li>
+            <li><span class="src-name">Bojariu, R., et al. (eds.), <em>Climate of the Romanian Carpathians</em>, Springer (2014).</span> <a href="https://link.springer.com/book/10.1007/978-3-319-02886-6">link.springer.com</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">ANM, Administrația Națională de Meteorologie, Romania (2023).</span> <a href="https://www.meteoromania.ro/">meteoromania.ro</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">AEMET, Spanish meteorological service climate-services portal.</span> <a href="https://www.aemet.es/en/serviciosclimaticos/cambio_climat">aemet.es</a> <span class="used-for">Used for: Galicia, Asturias</span></li>
+            <li><span class="src-name">Météo-France, Le climat futur en France.</span> <a href="https://meteofrance.com/changement-climatique/quel-climat-futur/le-climat-futur-en-france">meteofrance.com</a> <span class="used-for">Used for: Cévennes</span></li>
+            <li><span class="src-name">DRIAS, French climate-projection portal.</span> <a href="https://www.drias-climat.fr/">drias-climat.fr</a> <span class="used-for">Used for: Cévennes</span></li>
+            <li><span class="src-name">DWD, Deutscher Wetterdienst, climate prediction.</span> <a href="https://www.dwd.de/EN/climate_environment/climateresearch/climateprediction/climateprediction_node.html">dwd.de</a> <span class="used-for">Used for: Saxony-Anhalt</span></li>
+            <li><span class="src-name">Provincia di Bolzano, Climate observatory.</span> <a href="https://www.provincia.bz.it/natura-ambiente/aria-rumore/clima.asp">provincia.bz.it</a> <span class="used-for">Used for: South Tirol</span></li>
+            <li><span class="src-name">Ilmateenistus, Estonian Weather Service.</span> <a href="https://www.ilmateenistus.ee/?lang=en">ilmateenistus.ee</a> <span class="used-for">Used for: Estonia</span></li>
+            <li><span class="src-name">Gomes, B., et al., <em>Historical and future heat-related mortality in Portugal's Alentejo region</em> (2024).</span> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11662523/">PMC11662523</a> <span class="used-for">Used for: Alentejo</span></li>
+          </ul>
+        </div>
+
+        <div class="source-group">
+          <h3>Water</h3>
+          <ul>
+            <li><span class="src-name">WRI Aqueduct 4.0 Water Risk Atlas (2023).</span> <a href="https://www.wri.org/aqueduct">wri.org/aqueduct</a> <span class="used-for">Used for: all twenty regions</span></li>
+            <li><span class="src-name">EASAC, <em>Groundwater in the Southern Member States of the European Union: Portugal</em> (2020).</span> <a href="https://easac.eu/fileadmin/PDF_s/reports_statements/Portugal_Groundwater_country_report.pdf">easac.eu</a> <span class="used-for">Used for: Alentejo</span></li>
+            <li><span class="src-name">Pereira et al., <em>Assessing climate change impacts on water availability in southern Portugal</em>, Journal of Water and Climate Change (2024).</span> <a href="https://iwaponline.com/jwcc/article/15/7/2899/102481/">iwaponline.com</a> <span class="used-for">Used for: Alentejo</span></li>
+            <li><span class="src-name">APA, Agência Portuguesa do Ambiente, PGRH Alentejo 2022–2027.</span> <a href="https://apambiente.pt/agua/pgrh-alentejo">apambiente.pt</a> <span class="used-for">Used for: Alentejo</span></li>
+            <li><span class="src-name">EPA Ireland, Drinking Water Quality Reports.</span> <a href="https://www.epa.ie/our-services/monitoring--assessment/drinking-water/">epa.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">Geological Survey Ireland, aquifer and groundwater mapping.</span> <a href="https://www.gsi.ie/en-ie/data-and-maps/Pages/Groundwater.aspx">gsi.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">Met Éireann, climate of Ireland normals.</span> <a href="https://www.met.ie/climate/climate-of-ireland">met.ie/climate</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">ICPDR, International Commission for the Protection of the Danube River, Romania profile.</span> <a href="https://www.icpdr.org/danube-basin/countries/romania">icpdr.org</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">WISE Freshwater, Romania country profile, EEA.</span> <a href="https://water.europa.eu/freshwater/freshwater/countries/water-resources/romania">water.europa.eu</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">ANM Apele Române, water resources reports.</span> <a href="https://rowater.ro/">rowater.ro</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">BRGM, French geological survey, groundwater monitoring.</span> <a href="https://www.brgm.fr/en/state-groundwater-monitoring-brgm">brgm.fr</a> <span class="used-for">Used for: Cévennes</span></li>
+            <li><span class="src-name">Confederación Hidrográfica del Cantábrico.</span> <a href="https://www.chcantabrico.es/">chcantabrico.es</a> <span class="used-for">Used for: Asturias</span></li>
+            <li><span class="src-name">Natural Resources Wales, State of Natural Resources Report 2025, Soil.</span> <a href="https://naturalresources.wales/evidence-and-data/research-and-reports/state-of-natural-resources-report-2025/soil/">naturalresources.wales</a> <span class="used-for">Used for: Pembrokeshire</span></li>
+            <li><span class="src-name">BGS, Hydrogeology of Wales.</span> <a href="https://www.bgs.ac.uk/groundwater/hydrogeology-of-wales/">bgs.ac.uk</a> <span class="used-for">Used for: Pembrokeshire</span></li>
+            <li><span class="src-name">Umweltbundesamt, German Environment Agency, Water topics.</span> <a href="https://www.umweltbundesamt.de/en/topics/water">umweltbundesamt.de</a> <span class="used-for">Used for: Saxony-Anhalt</span></li>
+            <li><span class="src-name">BGR, German Federal Geological Survey, water resources.</span> <a href="https://www.bgr.bund.de/EN/Themen/Wasser/wasser_node_en.html">bgr.bund.de</a> <span class="used-for">Used for: Saxony-Anhalt</span></li>
+            <li><span class="src-name">Provincia di Bolzano, Wetter (alpine hydrology).</span> <a href="https://wetter.provinz.bz.it/">wetter.provinz.bz.it</a> <span class="used-for">Used for: South Tirol</span></li>
+            <li><span class="src-name">KAUR, Estonian Environment Agency.</span> <a href="https://kaur.ee/en">kaur.ee</a> <span class="used-for">Used for: Estonia</span></li>
+          </ul>
+        </div>
+
+        <div class="source-group">
+          <h3>Soil &amp; biodiversity</h3>
+          <ul>
+            <li><span class="src-name">SoilGrids 2.0, ISRIC World Soil Information (2020).</span> <a href="https://soilgrids.org/">soilgrids.org</a> <span class="used-for">Used for: all twenty regions</span></li>
+            <li><span class="src-name">Hansen / UMD / Google Global Forest Change v1.11, via Global Forest Watch (tree-cover trend 2001–2023).</span> <a href="https://www.globalforestwatch.org/">globalforestwatch.org</a> <span class="used-for">Used for: all twenty regions (forest-cover trajectory)</span></li>
+            <li><span class="src-name">European Soil Data Centre (ESDAC), JRC Soil Atlas of Europe.</span> <a href="https://esdac.jrc.ec.europa.eu/">esdac.jrc.ec.europa.eu</a> <span class="used-for">Used for: the ten European regions</span></li>
+            <li><span class="src-name">Montado in Alentejo Natura 2000, DEIMS-SDR catalogue.</span> <a href="https://deims.org/10e6a0e2-a593-43d0-b915-31ec6e2d840e">deims.org</a> <span class="used-for">Used for: Alentejo</span></li>
+            <li><span class="src-name">Costa, A., et al., <em>Cork and carbon across land use scenarios in Portuguese montado</em>, PLOS One (2019).</span> <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0212174">journals.plos.org</a> <span class="used-for">Used for: Alentejo</span></li>
+            <li><span class="src-name">Tomlinson, R. W., <em>Soil carbon stocks and changes in the Republic of Ireland</em>, J. Environmental Management (2005).</span> <a href="https://www.researchgate.net/publication/7882775">researchgate.net</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name"><em>Quantifying peatland land use and CO2 emissions in Irish raised bogs</em>, Sentinel-2 mapping (2024).</span> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10786884/">PMC10786884</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">NPWS Ireland, designated sites.</span> <a href="https://www.npws.ie/protected-sites">npws.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name"><em>Walking the Wild Heart of Natura 2000 in Transylvania</em>, EC Environment (2025).</span> <a href="https://environment.ec.europa.eu/news/walking-wild-heart-natura-2000-transylvania-2025-05-20_en">environment.ec.europa.eu</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">WWF, Transylvania biodiversity research.</span> <a href="https://wwf.panda.org/wwf_news/?232050/Transylvania-is-a-biodiversity-hotspot-of-international-importance-research-shows">wwf.panda.org</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">Diaz et al., <em>Soil quality in Natura 2000 croplands and grasslands</em>, STOTEN (2018).</span> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6087710/">PMC6087710</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">Fundación Biodiversidad, Natura 2000 Spain.</span> <a href="https://fundacion-biodiversidad.es/en/actualidad_home/the-natura-2000-network-an-essential-pillar-for-the-conservation-of-biodiversity-in-spain-and-europe/">fundacion-biodiversidad.es</a> <span class="used-for">Used for: Galicia, Asturias</span></li>
+            <li><span class="src-name">Parc national des Cévennes, Biosphere reserve.</span> <a href="https://www.cevennes-parcnational.fr/fr/le-parc-national-des-cevennes/un-territoire-reconnu/une-reserve-de-biosphere">cevennes-parcnational.fr</a> <span class="used-for">Used for: Cévennes</span></li>
+            <li><span class="src-name">EUNIS, Spanish protected sites database.</span> <a href="https://eunis.eea.europa.eu/sites/ES1200001">eunis.eea.europa.eu</a> <span class="used-for">Used for: Asturias</span></li>
+            <li><span class="src-name">Reservas de la Biosfera de Asturias.</span> <a href="https://reservasdelabiosfera.asturias.es/">reservasdelabiosfera.asturias.es</a> <span class="used-for">Used for: Asturias</span></li>
+            <li><span class="src-name">UNESCO MAB, Cévennes biosphere reserve.</span> <a href="https://www.unesco.org/en/mab/cevennes">unesco.org/en/mab/cevennes</a> <span class="used-for">Used for: Cévennes</span></li>
+            <li><span class="src-name">UNESCO, Flusslandschaft Elbe biosphere reserve.</span> <a href="https://en.unesco.org/biosphere/eu-na/flusslandschaft-elbe">unesco.org</a> <span class="used-for">Used for: Saxony-Anhalt</span></li>
+            <li><span class="src-name">EURAC, Biodiversity monitoring South Tyrol.</span> <a href="https://www.eurac.edu/en/institutes-centers/institute-for-alpine-environment/projects/biodiversity-monitoring-south-tyrol">eurac.edu</a> <span class="used-for">Used for: South Tirol</span></li>
+            <li><span class="src-name">Biodiversity Europe, Estonia profile.</span> <a href="https://biodiversity.europa.eu/countries/estonia">biodiversity.europa.eu</a> <span class="used-for">Used for: Estonia</span></li>
+            <li><span class="src-name">LIFE Peat Restore, Estonia project.</span> <a href="https://life-peat-restore.eu/en/project/estonia/">life-peat-restore.eu</a> <span class="used-for">Used for: Estonia</span></li>
+          </ul>
+        </div>
+
+        <div class="source-group">
+          <h3>Energy autonomy</h3>
+          <ul>
+            <li><span class="src-name">Global Solar Atlas, Solargis / World Bank (2020 release).</span> <a href="https://globalsolaratlas.info/">globalsolaratlas.info</a> <span class="used-for">Used for: all twenty regions</span></li>
+            <li><span class="src-name">Global Wind Atlas, DTU / World Bank, v3.3 (2023).</span> <a href="https://globalwindatlas.info/">globalwindatlas.info</a> <span class="used-for">Used for: all twenty regions</span></li>
+            <li><span class="src-name">World Bank, <em>Global Photovoltaic Power Potential by Country</em> (2020).</span> <a href="https://documents1.worldbank.org/curated/en/466331592817725242/pdf/Global-Photovoltaic-Power-Potential-by-Country.pdf">documents1.worldbank.org</a> <span class="used-for">Used for: Alentejo, Galicia, Saxony-Anhalt</span></li>
+            <li><span class="src-name">DGEG Portugal, Autoconsumo and CER framework (2022).</span> <a href="https://www.dgeg.gov.pt/">dgeg.gov.pt</a> <span class="used-for">Used for: Alentejo</span></li>
+            <li><span class="src-name">SEAI, Microgeneration Support Scheme (2022–).</span> <a href="https://www.seai.ie/grants/microgeneration-support-scheme">seai.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">ESB International, Green Atlantic @ Moneypoint.</span> <a href="https://www.esbinternational.ie/media-centre/article/green-atlantic-@-moneypoint">esbinternational.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">ANRE, Romanian Energy Regulatory Authority, prosumator framework.</span> <a href="https://www.anre.ro/">anre.ro</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name"><em>Data-driven analysis of Romania's renewable energy landscape</em>, PMC (2024).</span> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10955258/">PMC10955258</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">ADEME, French ecological transition agency.</span> <a href="https://www.ademe.fr/">ademe.fr</a> <span class="used-for">Used for: Cévennes</span></li>
+            <li><span class="src-name">REE, Spanish electricity system, installed capacity.</span> <a href="https://www.sistemaelectrico-ree.es/en/spanish-electricity-system/generation/installed-capacity">sistemaelectrico-ree.es</a> <span class="used-for">Used for: Galicia, Asturias</span></li>
+            <li><span class="src-name">Ofgem, Smart Export Guarantee (SEG).</span> <a href="https://www.ofgem.gov.uk/environmental-and-social-schemes/smart-export-guarantee-seg">ofgem.gov.uk</a> <span class="used-for">Used for: Pembrokeshire</span></li>
+            <li><span class="src-name">Bundesnetzagentur, German renewables (Jan 2025).</span> <a href="https://www.bundesnetzagentur.de/SharedDocs/Pressemitteilungen/EN/2025/20250108_EE.html">bundesnetzagentur.de</a> <span class="used-for">Used for: Saxony-Anhalt</span></li>
+            <li><span class="src-name">EURAC, Solar Tirol solar-potential database.</span> <a href="https://www.eurac.edu/en/institutes-centers/institute-for-renewable-energy/tools-services/gis-energy-maps/solar-tirol-solar-potential-database">eurac.edu</a> <span class="used-for">Used for: South Tirol</span></li>
+            <li><span class="src-name">Estonia 100% renewable target by 2030, Invest in Estonia.</span> <a href="https://investinestonia.com/estonia-sets-its-sights-on-100-renewable-energy-by-2030/">investinestonia.com</a> <span class="used-for">Used for: Estonia</span></li>
+            <li><span class="src-name">EU Islands Secretariat, Estonia barriers and recommendations (2022).</span> <a href="https://clean-energy-islands.ec.europa.eu/system/files/2022-12/PUBLIC-IslandSecretariatII_Study%20on%20barriers%20and%20recommendations-ESTONIA.20221214%20clean.pdf">clean-energy-islands.ec.europa.eu</a> <span class="used-for">Used for: Estonia</span></li>
+          </ul>
+        </div>
+
+        <div class="source-group">
+          <h3>Political stability</h3>
+          <ul>
+            <li><span class="src-name">V-Dem Institute, V-Dem Dataset v14 (March 2024 release).</span> <a href="https://www.v-dem.net/data_analysis/CountryGraph/">v-dem.net</a> <span class="used-for">Used for: all twenty regions</span></li>
+            <li><span class="src-name">UCDP Georeferenced Event Dataset (GED) v25.1 (2025).</span> <a href="https://ucdp.uu.se/country/235">ucdp.uu.se</a> <span class="used-for">Used for: all twenty regions (per-country pages: PT 235, IE 205, RO 360, ES 230, FR 220, DE 255, UK 200, IT 325, EE 366; US 2, CA 20, MX 70)</span></li>
+            <li><span class="src-name">INFORM Risk Index 2024, JRC.</span> <a href="https://drmkc.jrc.ec.europa.eu/inform-index/INFORM-Risk">drmkc.jrc.ec.europa.eu</a> <span class="used-for">Used for: all twenty regions</span></li>
+            <li><span class="src-name">Comissão Nacional de Eleições (Portugal).</span> <a href="https://www.cne.pt/">cne.pt</a> <span class="used-for">Used for: Alentejo</span></li>
+            <li><span class="src-name">Election Ireland, November 2024 general election.</span> <a href="https://www.gov.ie/en/publication/9c2e6-general-election-2024/">gov.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">Romania Constitutional Court (December 2024 ruling).</span> <a href="https://www.ccr.ro/">ccr.ro</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">Assemblée nationale, French legislative records.</span> <a href="https://www.assemblee-nationale.fr/">assemblee-nationale.fr</a> <span class="used-for">Used for: Cévennes</span></li>
+            <li><span class="src-name">Parc national des Cévennes.</span> <a href="https://www.cevennes-parcnational.fr/">cevennes-parcnational.fr</a> <span class="used-for">Used for: Cévennes</span></li>
+            <li><span class="src-name">Eleccions Xunta de Galicia.</span> <a href="https://eleccions.xunta.gal/">eleccions.xunta.gal</a> <span class="used-for">Used for: Galicia</span></li>
+            <li><span class="src-name">ASTAT, South Tyrol statistics.</span> <a href="https://astat.provinz.bz.it/">astat.provinz.bz.it</a> <span class="used-for">Used for: South Tirol</span></li>
+            <li><span class="src-name">Provincia di Bolzano, diritto / autonomy.</span> <a href="https://www.provincia.bz.it/politica-diritto-relazioni-estere/diritto/default.asp">provincia.bz.it</a> <span class="used-for">Used for: South Tirol</span></li>
+            <li><span class="src-name">Statistik Sachsen-Anhalt, election records.</span> <a href="https://www.statistik.sachsen-anhalt.de/wahlen/ew24/">statistik.sachsen-anhalt.de</a> <span class="used-for">Used for: Saxony-Anhalt</span></li>
+            <li><span class="src-name">UK Commons Library, Senedd / Wales briefings.</span> <a href="https://commonslibrary.parliament.uk/research-briefings/cbp-10009/">commonslibrary.parliament.uk</a> <span class="used-for">Used for: Pembrokeshire</span></li>
+          </ul>
+        </div>
+
+        <div class="source-group">
+          <h3>Regenerative networks</h3>
+          <ul>
+            <li><span class="src-name">Global Ecovillage Network (GEN), project directory.</span> <a href="https://ecovillage.org/project/tamera-0/">ecovillage.org</a> <span class="used-for">Used for: all twenty regions</span></li>
+            <li><span class="src-name">RIE, Red Ibérica de Ecoaldeas.</span> <a href="https://rie.ecovillage.org/">rie.ecovillage.org</a> <span class="used-for">Used for: Alentejo, Galicia, Asturias</span></li>
+            <li><span class="src-name">EEA Climate-ADAPT, Tamera Water Retention Landscape case study.</span> <a href="https://climate-adapt.eea.europa.eu/en/metadata/case-studies/tamera-water-retention-landscape-to-restore-the-water-cycle-and-reduce-vulnerability-to-droughts">climate-adapt.eea.europa.eu</a> <span class="used-for">Used for: Alentejo</span></li>
+            <li><span class="src-name">PDR2030 / PEPAC-Portugal CAP Strategic Plan 2023–2027.</span> <a href="https://www.gpp.pt/index.php/pepac/pepac">gpp.pt</a> <span class="used-for">Used for: Alentejo</span></li>
+            <li><span class="src-name">Cloughjordan Ecovillage.</span> <a href="https://www.thevillage.ie/">thevillage.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">The Hollies Centre for Practical Sustainability.</span> <a href="https://www.thehollies.ie/">thehollies.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">Hometree, West-of-Ireland native woodland.</span> <a href="https://www.hometree.ie/">hometree.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">Foundation Conservation Carpathia.</span> <a href="https://www.carpathia.org/">carpathia.org</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">Mihai Eminescu Trust.</span> <a href="https://www.mihaieminescutrust.ro/">mihaieminescutrust.ro</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">ADEPT Foundation.</span> <a href="https://www.fundatia-adept.org/">fundatia-adept.org</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">Rewilding Europe, Southern Carpathians.</span> <a href="https://rewildingeurope.com/landscapes/southern-carpathians/">rewildingeurope.com</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">Terre &amp; Humanisme, French agroecology network.</span> <a href="https://www.terre-humaniste.org/">terre-humaniste.org</a> <span class="used-for">Used for: Cévennes</span></li>
+            <li><span class="src-name">Longo maï, international cooperative network.</span> <a href="https://www.prolongomai.ch/">prolongomai.ch</a> <span class="used-for">Used for: Cévennes</span></li>
+            <li><span class="src-name">Lammas, Welsh ecovillage / One Planet Development.</span> <a href="https://lammas.org.uk/">lammas.org.uk</a> <span class="used-for">Used for: Pembrokeshire</span></li>
+            <li><span class="src-name">One Planet Council (Wales).</span> <a href="http://www.oneplanetcouncil.org.uk/">oneplanetcouncil.org.uk</a> <span class="used-for">Used for: Pembrokeshire</span></li>
+            <li><span class="src-name">Sieben Linden ecovillage (Saxony-Anhalt).</span> <a href="https://siebenlinden.org/">siebenlinden.org</a> <span class="used-for">Used for: Saxony-Anhalt</span></li>
+            <li><span class="src-name">ZEGG (Brandenburg, comparator).</span> <a href="https://www.zegg.de/">zegg.de</a> <span class="used-for">Used for: Saxony-Anhalt (regional context)</span></li>
+            <li><span class="src-name">Bioland Südtirol, organic-farming association.</span> <a href="https://www.bioland-suedtirol.it/">bioland-suedtirol.it</a> <span class="used-for">Used for: South Tirol</span></li>
+            <li><span class="src-name">Lilleoru, Estonian intentional community.</span> <a href="https://www.lilleoru.ee/">lilleoru.ee</a> <span class="used-for">Used for: Estonia</span></li>
+            <li><span class="src-name">Permakultuur Eesti.</span> <a href="https://www.permakultuur.ee/">permakultuur.ee</a> <span class="used-for">Used for: Estonia</span></li>
+            <li><span class="src-name">Aldeas Modelo, Galicia rural revitalisation.</span> <a href="https://aldeasmodelo.xunta.gal/">aldeasmodelo.xunta.gal</a> <span class="used-for">Used for: Galicia</span></li>
+            <li><span class="src-name">CAP Strategic Plan Ireland 2023–2027.</span> <a href="https://www.gov.ie/en/publication/76026-irelands-cap-strategic-plan-2023-2027/">gov.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">ACRES, Agri-Climate Rural Environment Scheme.</span> <a href="https://www.gov.ie/en/service/12700-agri-climate-rural-environment-scheme-acres/">gov.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">Romania CAP Strategic Plan 2023–2027 (PNS).</span> <a href="https://www.madr.ro/pac-2023-2027.html">madr.ro</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">Maze Impact, Portuguese impact VC.</span> <a href="https://maze-impact.com/">maze-impact.com</a> <span class="used-for">Used for: Alentejo</span></li>
+          </ul>
+        </div>
+
+        <div class="source-group">
+          <h3>Legal &amp; economic</h3>
+          <ul>
+            <li><span class="src-name">Eurostat, agricultural land prices (2024 release).</span> <a href="https://ec.europa.eu/eurostat/en/web/products-eurostat-news/w/ddn-20260128-2">ec.europa.eu/eurostat</a> <span class="used-for">Used for: the ten European regions</span></li>
+            <li><span class="src-name">Portuguese Land Law DL 555/99 (consolidated 2024).</span> <a href="https://dre.pt/web/guest/legislacao-consolidada/-/lc/34465475/view">dre.pt</a> <span class="used-for">Used for: Alentejo</span></li>
+            <li><span class="src-name">Idealista, Alentejo agricultural listings (Q4 2024–Q1 2025).</span> <a href="https://www.idealista.pt/comprar-terrenos/alentejo/">idealista.pt</a> <span class="used-for">Used for: Alentejo</span></li>
+            <li><span class="src-name">Savills Portugal, Global Farmland (September 2024).</span> <a href="https://en.savills.pt/research_articles/254204/366736-0">en.savills.pt</a> <span class="used-for">Used for: Alentejo</span></li>
+            <li><span class="src-name">CSO Ireland, Agricultural Land Prices 2024 (released November 2025).</span> <a href="https://www.cso.ie/en/releasesandpublications/ep/p-alp/agriculturallandprices2024/keyfindings/">cso.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">Tailte Éireann, Property registration.</span> <a href="https://www.tailte.ie/">tailte.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">Cork County Development Plan 2022–2028.</span> <a href="https://www.corkcoco.ie/en/resident/planning/development-plan">corkcoco.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">Constituția României, art. 44 (land ownership).</span> <a href="https://legislatie.just.ro/Public/DetaliiDocument/47355">legislatie.just.ro</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">Legea 17/2014 (sale of agricultural land).</span> <a href="https://legislatie.just.ro/Public/DetaliiDocument/156631">legislatie.just.ro</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">INS Romania, Agricultural Land Prices 2024.</span> <a href="https://insse.ro/cms/en/content/agricultural-land-prices-romania-and-eu-member-states-2024">insse.ro</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">Code rural et de la pêche maritime (Légifrance).</span> <a href="https://www.legifrance.gouv.fr/codes/id/LEGITEXT000006071367/">legifrance.gouv.fr</a> <span class="used-for">Used for: Cévennes</span></li>
+            <li><span class="src-name">SAFER Occitanie, French farmland prices.</span> <a href="https://www.safer-occitanie.com/fr/page/le-prix-des-terres.php">safer-occitanie.com</a> <span class="used-for">Used for: Cévennes</span></li>
+            <li><span class="src-name">MAPA, Spanish agricultural land prices.</span> <a href="https://www.mapa.gob.es/es/estadistica/temas/estadisticas-agrarias/economia/precios-tierra/">mapa.gob.es</a> <span class="used-for">Used for: Galicia, Asturias</span></li>
+            <li><span class="src-name">Xunta de Galicia, Aldeas Modelo legal framework.</span> <a href="https://www.xunta.gal/dog/Publicados/2016/20160215/AnuncioC3B0-100216-0001_es.html">xunta.gal</a> <span class="used-for">Used for: Galicia</span></li>
+            <li><span class="src-name">Knight Frank, English Farmland Index.</span> <a href="https://www.knightfrank.co.uk/research/reports/english-farmland-index-157">knightfrank.co.uk</a> <span class="used-for">Used for: Pembrokeshire</span></li>
+            <li><span class="src-name">Welsh Government, Land Transaction Tax rates.</span> <a href="https://www.gov.wales/land-transaction-tax-rates-and-bands">gov.wales</a> <span class="used-for">Used for: Pembrokeshire</span></li>
+            <li><span class="src-name">Welsh Government, TAN 6 (sustainable rural communities).</span> <a href="https://www.gov.wales/technical-advice-note-tan-6-planning-sustainable-rural-communities">gov.wales</a> <span class="used-for">Used for: Pembrokeshire</span></li>
+            <li><span class="src-name">Welsh Government, One Planet Developments.</span> <a href="https://www.gov.wales/planning-permission-one-planet-developments-open-countryside">gov.wales</a> <span class="used-for">Used for: Pembrokeshire</span></li>
+            <li><span class="src-name">Grundstücksverkehrsgesetz (Germany).</span> <a href="https://www.gesetze-im-internet.de/grdstvg/">gesetze-im-internet.de</a> <span class="used-for">Used for: Saxony-Anhalt</span></li>
+            <li><span class="src-name">Normattiva, Italian legislation (maso chiuso).</span> <a href="https://www.normattiva.it/">normattiva.it</a> <span class="used-for">Used for: South Tirol</span></li>
+            <li><span class="src-name">Provincia di Bolzano, Maso chiuso framework.</span> <a href="https://www.provincia.bz.it/agricoltura-foreste/agricoltura/agricoltura-montana/maso-chiuso.asp">provincia.bz.it</a> <span class="used-for">Used for: South Tirol</span></li>
+            <li><span class="src-name">Riigi Teataja, Estonian land laws.</span> <a href="https://www.riigiteataja.ee/en/eli/ee/501032023002/consolide">riigiteataja.ee</a> <span class="used-for">Used for: Estonia</span></li>
+            <li><span class="src-name">Maa-amet, Estonian Land Board.</span> <a href="https://www.maaamet.ee/">maaamet.ee</a> <span class="used-for">Used for: Estonia</span></li>
+            <li><span class="src-name">Lei 56/2023, Mais Habitação (Portugal).</span> <a href="https://dre.pt/dre/detalhe/lei/56-2023-224779655">dre.pt</a> <span class="used-for">Used for: Alentejo</span></li>
+            <li><span class="src-name">Legea 1/2000, composesorate restitution (Romania).</span> <a href="https://legislatie.just.ro/Public/DetaliiDocument/20211">legislatie.just.ro</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">ELRA, limitations to foreigners, Romania.</span> <a href="https://www.elra.eu/contact-point-contribution/romania/limitations-to-foreigners-14/">elra.eu</a> <span class="used-for">Used for: Transylvania</span></li>
+          </ul>
+        </div>
+
+        <div class="source-group">
+          <h3>Accessibility &amp; demographics</h3>
+          <ul>
+            <li><span class="src-name">INE Portugal, Censos 2021.</span> <a href="https://www.ine.pt/scripts/db_censos_2021.html">ine.pt</a> <span class="used-for">Used for: Alentejo</span></li>
+            <li><span class="src-name">Pordata, Portuguese regional statistics.</span> <a href="https://www.pordata.pt/portugal">pordata.pt</a> <span class="used-for">Used for: Alentejo</span></li>
+            <li><span class="src-name">CSO Ireland, Census 2022 small-area statistics.</span> <a href="https://www.cso.ie/en/census/census2022/">cso.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">National Broadband Plan Ireland, coverage.</span> <a href="https://nbi.ie/">nbi.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">Údarás na Gaeltachta.</span> <a href="https://www.udaras.ie/">udaras.ie</a> <span class="used-for">Used for: Connemara</span></li>
+            <li><span class="src-name">INS Romania, Recensământul Populației 2021.</span> <a href="https://www.recensamantromania.ro/">recensamantromania.ro</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">ANCOM, Romanian broadband coverage 2024.</span> <a href="https://www.ancom.ro/">ancom.ro</a> <span class="used-for">Used for: Transylvania</span></li>
+            <li><span class="src-name">Eurostat, NUTS-II regional indicators.</span> <a href="https://ec.europa.eu/eurostat/web/regions">ec.europa.eu/eurostat/web/regions</a> <span class="used-for">Used for: the ten European regions</span></li>
+            <li><span class="src-name">INSEE, French national statistics.</span> <a href="https://www.insee.fr/">insee.fr</a> <span class="used-for">Used for: Cévennes</span></li>
+            <li><span class="src-name">INE, Spanish National Statistics Institute.</span> <a href="https://www.ine.es/">ine.es</a> <span class="used-for">Used for: Galicia, Asturias</span></li>
+            <li><span class="src-name">ONS, UK Office for National Statistics.</span> <a href="https://www.ons.gov.uk/visualisations/customprofiles/build/">ons.gov.uk</a> <span class="used-for">Used for: Pembrokeshire</span></li>
+            <li><span class="src-name">Statistik Sachsen-Anhalt.</span> <a href="https://www.statistik.sachsen-anhalt.de/">statistik.sachsen-anhalt.de</a> <span class="used-for">Used for: Saxony-Anhalt</span></li>
+            <li><span class="src-name">ASTAT, South Tyrol provincial statistics.</span> <a href="https://astat.provinz.bz.it/">astat.provinz.bz.it</a> <span class="used-for">Used for: South Tirol</span></li>
+            <li><span class="src-name">ISTAT, Italian National Statistics.</span> <a href="https://www.istat.it/">istat.it</a> <span class="used-for">Used for: South Tirol</span></li>
+            <li><span class="src-name">Statistics Estonia (Stat.ee).</span> <a href="https://www.stat.ee/">stat.ee</a> <span class="used-for">Used for: Estonia</span></li>
+            <li><span class="src-name">IGE, Instituto Galego de Estatística.</span> <a href="https://www.ige.gal/">ige.gal</a> <span class="used-for">Used for: Galicia</span></li>
+            <li><span class="src-name">SADEI, Sociedad Asturiana de Estudios Económicos.</span> <a href="https://www.sadei.es/">sadei.es</a> <span class="used-for">Used for: Asturias</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p class="frame">
+        Every value on the main framework page and in the case studies above traces back to one of these sources, with vintage noted in the per-region dossier files. The framework is opinionated about method and quiet about preference, read the data, weight it yourself, decide for yourself.
+      </p>
+      <div class="links">
+        <a href="/">← Back to the framework</a>
+        <a href="/invitation.pdf" target="_blank" rel="noopener">The Collective's invitation (PDF)</a>
+        <a href="mailto:hello@islands-of-coherence.com">hello@islands-of-coherence.com</a>
+      </div>
+      <div class="stamp">
+        prototype · deeper material
+        <span class="sep">·</span>
+        <a href="https://land-selection-framework.vercel.app" style="color: inherit; text-decoration: none;">land-selection-framework.vercel.app</a>
+        <span class="sep">·</span>
+        last updated 2026-05-26
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

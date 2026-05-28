@@ -1,0 +1,25 @@
+# Soil & Biodiversity — Ozarks (Arkansas / southern Missouri), United States
+
+**Headline finding:** Ozark soils are the defining constraint of the region's agricultural and regenerative potential. The dominant series — Clarksville (very cherty silt loam), Noark (cherty), and Gepp (dolomitic residuum) — are skeletal, shallow (A horizon 3–10 cm thick before the chert layer), droughty, and low in baseline organic carbon. SoilGrids 2.0 (ISRIC) indicates topsoil SOC for forested Ozark upland soils typically in the **15–25 g/kg** range (0–5 cm depth), moderate by US forest standards but constrained by thin effective rooting depth over chert and dolomite bedrock. Valley bottomland soils are considerably deeper and more productive. The region carries high biodiversity value — the Arkansas Ozarks host endemic species and are part of the Interior Highlands, one of the most botanically diverse temperate regions in North America — but upland soil fertility must be built, not assumed.
+
+**Key data point (with vintage):** SoilGrids 2.0 (ISRIC, 2020 release) indicates topsoil SOC (0–5 cm) for Ozark Plateau forested uplands at approximately **15–25 g/kg** — consistent with Ultisol / Inceptisol benchmarks documented across the region. The dominant Clarksville series (Loamy-skeletal, siliceous, semiactive, mesic Typic Paleudults, MLRA 116A/116B) has an A horizon of only 3–10 cm before transitioning to a chert-laden Bt; organic matter in this thin layer is moderate but cannot accumulate depth given the skeletal structure (USDA NRCS Official Series Description, Clarksville, accessed 2025). USDA NRCS RaCA (Rapid Carbon Assessment) samples across the region corroborate forest-floor SOC stocks in the low-to-moderate range.
+
+**Supporting facts:**
+- Dominant soil orders: Ultisols (Hapludults, Paleudults) on upland slopes and ridges; Inceptisols (Dystrudepts) on steeper terrain; Alfisols (Hapludalfs) on gentler slopes with less leaching; deeper Mollisols and Entisols in valley alluvium (USDA NRCS SSURGO / Web Soil Survey).
+- Clarksville series — the defining Ozark upland soil — is "loamy-skeletal, siliceous, semiactive, mesic Typic Paleudult" with A horizon 3–10 cm, gravelly silt loam texture, 30% chert gravel by volume; usable topsoil is exceptionally thin (USDA NRCS OSD, 2025).
+- Soils are generally acidic (pH 4.5–6.0 on uplands); chert content impedes mechanical tillage and limits deep-rooted tree establishment on skeletal phases.
+- The shallow, skeletal soil profile limits soil organic carbon stock: effective rooting depth is often <50 cm on ridges and side slopes, severely restricting SOC accumulation potential vs. deeper Prairie soils to the west.
+- Valley bottomlands (floodplain Entisols, Inceptisols) are the productive exception: deeper, darker, more fertile — site selection matters enormously at the parcel scale.
+- Biodiversity: the Ozark Highlands ecoregion hosts over 2,500 vascular plant species with high endemism; the Interior Highlands are a floristic refugium from Pleistocene glaciation, supporting diverse oak-hickory forest, glades, and prairie remnants (TNC Ozark-Ouachita Highlands assessment).
+- Forest cover provides a functioning SOC input pathway: oak-hickory litter decomposition builds 0.5–1 cm of humus annually under undisturbed canopy, but slow decomposition rates in chert soils mean recovery from tillage disturbance is generational.
+
+**Practitioner-relevant nuance:**
+The honest soil assessment for the Ozarks is: thin upland soils that resist tillage-based farming but respond well to perennial systems — fruit trees, nut trees, silvopasture, food forest — once trees have found roothold in the chert. Valley parcels along creek hollows are agricultural gold relative to the ridges; price per acre reflects this. A practitioner designing a food system here should plan for 5–15 years before perennial systems reach productive maturity, rely heavily on raised beds and imported compost for annual vegetables, and build long-term fertility through mulching, biochar, and cover cropping in any cleared ground. The good news: the region's oak-hickory forest is a restoration resource, not a starting-from-zero canvas; parcels with intact canopy are already performing ecosystem services that bare fields elsewhere would take decades to replicate.
+
+**Sources:**
+1. USDA NRCS — Official Series Description: Clarksville Series (accessed 2025). https://soilseries.sc.egov.usda.gov/OSD_Docs/C/CLARKSVILLE.html
+2. SoilGrids 2.0 — ISRIC World Soil Information (2020). https://soilgrids.org/
+3. USDA NRCS — Soil Survey Geographic Database (SSURGO) / Web Soil Survey. https://websoilsurvey.nrcs.usda.gov/app/
+4. USDA NRCS — Rapid Carbon Assessment (RaCA). https://www.nrcs.usda.gov/resources/data-and-reports/rapid-carbon-assessment-raca
+5. Encyclopedia of Arkansas — Soils entry. https://encyclopediaofarkansas.net/entries/soils-5141/
+6. The Nature Conservancy — Ozark Highlands Karst Program (biological diversity reference). https://www.nature.org/en-us/get-involved/how-to-help/places-we-protect/ozark-karst-program/

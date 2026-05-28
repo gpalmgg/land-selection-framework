@@ -1,0 +1,29 @@
+# Exclude development-only artifacts from the Vercel build
+
+# Python virtualenv (256 MB)
+.venv/
+__pycache__/
+*.pyc
+
+# Raw downloaded data (1.4 GB — only processed/ is needed by the app)
+data/raw/
+data/aqueduct-extract/
+
+# Processing scripts (Python-only, not used at runtime)
+scripts/
+
+# Old broken prototype attempt
+*.bak
+.*.bak
+
+# Unused PNG from the scrapped raster-overlay approach
+data/processed/climate-trajectory.png
+data/processed/climate-trajectory.json
+
+# OG image source HTML (used to render og.png via Chrome headless, not needed live)
+public/og.html
+public/
+
+# Staged data awaiting human verification before it ships
+data/regions-na.staging.js
+data/region-depth.staging.js

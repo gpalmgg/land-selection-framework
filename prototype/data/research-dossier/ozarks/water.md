@@ -1,0 +1,24 @@
+# Water — Ozarks (Arkansas / southern Missouri), United States
+
+**Headline finding:** The Ozarks sit on one of North America's major karst aquifer systems — the Ozark Plateaus Aquifer — which recharges at approximately 280 mm/yr (11 in/yr), roughly 24% of total annual precipitation. Current human withdrawal represents only ~2% of annual recharge, placing the region in a low-stress category by global standards. WRI Aqueduct 4.0 shows baseline water-stress scores in the low-to-medium range (roughly 0.1–0.2) for the Ozark Plateau. The ecosystem's vulnerability is not scarcity but karst sensitivity: the porous limestone-dolomite geology that creates abundant springs and caves also makes groundwater acutely susceptible to surface-derived contamination, and any CAFO or chemical agriculture upstream of a karst spring can compromise a private water source rapidly and irreversibly.
+
+**Key data point (with vintage):** WRI Aqueduct 4.0 baseline water-stress score for the Ozark Plateau sub-basins: **approximately 0.1–0.2 (low-to-medium)**, with the 2050 BAU (SSP3-RCP7.0) projection showing only marginal increase in most Ozark sub-basins — areas of projected water-level decline remain confined primarily to the southwest Missouri / northeast Oklahoma fringe, not the Arkansas core of the plateau (USGS groundwater availability study, Professional Paper 1854, 2024). WRI Aqueduct 4.0 interactive data accessed 2025 confirms low-stress classification for the central Ozark region.
+
+**Supporting facts:**
+- The Ozark Plateaus Aquifer supplies water to ~5.3 million people across Missouri, Arkansas, Kansas, and Oklahoma; total withdrawal of ~380 million gallons/day represents only ~2% of estimated annual recharge (USGS Professional Paper 1854, 2024).
+- Annual recharge estimated at ~280 mm (11 in), approximately 24% of mean annual precipitation of 44 in (USGS hydrogeology study, 2024).
+- Arkansas has abundant perennial springs from the karst system; Mammoth Spring in Fulton County discharges among the largest flows of any spring in the state; Buffalo River maintains high water quality as one of the few undammed rivers in the lower 48 (USGS Springs data, ScienceBase 2016; Encyclopedia of Arkansas).
+- USGS modelling projects that water-level decline patterns under 2016–2060 scenarios (baseline, increased pumping, and climate scenarios) are "only marginally different" from one another for most of the Arkansas Ozarks — the aquifer is resilient under current demand trajectories (USGS PP 1854, 2024).
+- Karst vulnerability: the thin soil and fractured limestone allow rapid infiltration of surface pollutants to groundwater; CAFO contamination (nitrates, E. coli) is documented in northwest Arkansas karst systems near Benton/Washington counties (USGS science brief, 2023).
+- Annual precipitation of ~1,280 mm (50 in), distributed year-round, supports rainwater harvesting at scale without the seasonal aridity constraints of Mediterranean climates; roof catchment plus cistern systems can realistically supply domestic needs.
+
+**Practitioner-relevant nuance:**
+The Ozarks' karst abundance is a double-edged asset. On a well-sited parcel away from industrial agriculture, a spring or shallow well can supply a settlement indefinitely with minimal energy input — one of the region's most compelling features relative to the European candidates in this slate. The danger is invisible and cumulative: karst aquifers respond to land use changes kilometres away, and conventional farming or development upstream can reach a spring head within years. Site selection requires mapping the contributing watershed for the spring or well — not just the property boundary. For settlements on unconnected ridge-top parcels relying on drilled wells, the system is more isolated but also more exposed to the documented southwest Missouri water-level decline zone; that zone is ~150 km west of the Arkansas Ozark core, so most Newton/Searcy/Stone county sites are well within the stable recharge area.
+
+**Sources:**
+1. USGS — Groundwater Availability in the Ozark Plateaus Aquifer System, Professional Paper 1854 (2024). https://www.usgs.gov/publications/groundwater-availability-ozark-plateaus-aquifer-system
+2. USGS — Hydrogeology and Hydrologic Conditions of the Ozark Plateaus Aquifer System. https://www.usgs.gov/publications/hydrogeology-and-hydrologic-conditions-ozark-plateaus-aquifer-system
+3. WRI Aqueduct 4.0 Water Risk Atlas (2023 / accessed 2025). https://www.wri.org/aqueduct
+4. USGS — Springs of the Ozark Physiographic Province, Northern Arkansas, ScienceBase Catalog (2016). https://www.sciencebase.gov/catalog/item/5728fd86e4b0b13d3918aa3e
+5. The Nature Conservancy — Ozark Highlands Karst Program. https://www.nature.org/en-us/get-involved/how-to-help/places-we-protect/ozark-karst-program/
+6. Encyclopedia of Arkansas — Springs entry. https://encyclopediaofarkansas.net/entries/springs-5155/

@@ -1,0 +1,64 @@
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Node / JS
+node_modules/
+.next/
+.nuxt/
+.turbo/
+.parcel-cache/
+.cache/
+dist/
+build/
+out/
+.vercel/
+.svelte-kit/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.python-version
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+*.egg-info/
+*.egg
+htmlcov/
+.coverage
+coverage/
+
+# Rust
+target/
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# IDE
+.idea/
+.vscode/
+.cursor/
+
+# Temp
+tmp/
+.tmp/
+*.swp
+*.swo
+prototype/data/raw/

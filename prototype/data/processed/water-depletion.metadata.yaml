@@ -1,0 +1,20 @@
+# V1 processed-layer metadata (Spec Step 9 requirement)
+criterion: water_depletion
+askja_metric: 4            # Water Resources (second signal)
+tier: 1                    # real ingested layer
+source: WRI Aqueduct 4.0
+source_url: https://www.wri.org/aqueduct
+vintage: "2023 release, business-as-usual 2050 projection"
+license: CC BY 4.0
+native_unit: HydroBASINS Level 6 sub-basins
+time_framing: projection   # 2050 BAU
+state: "share of renewable supply actively consumed (Aqueduct depletion category, rendered 0-5 bands)"
+trajectory: "projection, worsening under business-as-usual emissions"
+sovereignty_axes: [material]
+red_line_underlying: water-deficit-by-2050
+files:
+  - { path: water-depletion.geojson, continent: europe, features: 995 }
+  - { path: water-depletion-na.geojson, continent: north-america, features: 2039 }
+coverage: "global source, clipped to EU and NA bounding boxes"
+processing_method: "scripts/process_aqueduct_depletion.py (continent-parameterized bbox)"
+notes: "Drawdown signal: higher = aquifer/reservoir consumed faster than recharge. Complements water_stress; different question."

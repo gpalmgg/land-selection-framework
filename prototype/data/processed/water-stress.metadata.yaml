@@ -1,0 +1,20 @@
+# V1 processed-layer metadata (Spec Step 9 requirement)
+criterion: water_stress
+askja_metric: 4            # Water Resources
+tier: 1                    # real ingested layer
+source: WRI Aqueduct 4.0
+source_url: https://www.wri.org/aqueduct
+vintage: "2023 release, business-as-usual 2050 projection"
+license: CC BY 4.0
+native_unit: HydroBASINS Level 6 sub-basins
+time_framing: projection   # 2050 BAU
+state: "ratio of demand to available renewable supply (Aqueduct category score, rendered 0-5 bands Low..Extremely-high)"
+trajectory: "projection, worsening under business-as-usual emissions"
+sovereignty_axes: [material]
+red_line_underlying: water-deficit-by-2050
+files:
+  - { path: water-stress.geojson, continent: europe, features: 995 }
+  - { path: water-stress-na.geojson, continent: north-america, features: 2039 }
+coverage: "global source, clipped to EU and NA bounding boxes; basins intersecting bbox retained"
+processing_method: "scripts/process_aqueduct.py (continent-parameterized bbox; argv continent key)"
+notes: "Distinct from water_depletion (demand:supply ratio vs drawdown rate). Carries the red-line water-deficit underlying data per Overview decision 9."

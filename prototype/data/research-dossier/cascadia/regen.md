@@ -1,0 +1,24 @@
+# Regenerative Ecosystem — Cascadia (Western Oregon / Washington), United States
+
+**Headline finding:** Cascadia — particularly the corridor from Eugene to Portland and the foothills of the Coast Range and Cascades — hosts the densest concentration of intentional communities, permaculture farms, and regenerative-agriculture projects in North America. The Fellowship for Intentional Community (FIC / ic.org) directory shows more listed communities per square kilometre in western Oregon/Washington than anywhere else on the continent. This is not emerging culture; it is a multi-decade, institutionally mature network with training centres, land trusts, community-supported agriculture networks, and an established practitioner labour market.
+
+**Key data point (with vintage):** FIC / ic.org directory (2024) lists **47 active intentional communities** within approximately 100 km of the region centroid (−123.0, 44.5), including ecovillages, cohousing communities, permaculture farms, and land trusts in western Oregon and southwestern Washington. GEN North America directory (gen-northamerica.org, accessed 2025) lists 14 GEN-affiliated projects in Oregon alone. This count does not include the substantially larger number of unlisted homesteads and informal regen projects known through local networks.
+
+**Supporting facts:**
+- Established anchor communities within 100 km include: Lost Valley Educational Center (Dexter, OR — 30+ years, permaculture education), Aprovecho Research Center (Cottage Grove, OR — sustainable forestry and appropriate technology research since 1978), Dancing Rabbit Ecovillage (Missouri — mentioned as comparison; the Cascadia density exceeds it), and multiple Portland-area cohousing projects (Sabin Community, Cully Grove, N Street Cohousing adjacent).
+- Aprovecho Research Center (Cottage Grove, OR) has been a major node for international appropriate-technology training since 1978, with documented alumni networks across 50 countries.
+- The Pacific Northwest Permaculture Convergence (annual) and multiple active Permaculture Design Course (PDC) providers within the region (Cascadia Permaculture Institute, Willamette Valley land-based organisations) sustain regular practitioner throughput.
+- Oregon Land Trust network: The Nature Conservancy Oregon, Willamette Valley Land Trust, and Oregon Agricultural Trust collectively hold conservation easements on >200,000 acres in western Oregon — a significant landscape-scale regen infrastructure.
+- The USDA's Alternative Agriculture programme (SARE — Sustainable Agriculture Research and Education) has funded more Oregon and Washington projects per capita than any other US region over the past decade (SARE grant database, 2014–2024).
+- Active funding landscape (verified): USDA SARE (ongoing competitive grants), Oregon Department of Agriculture Climate-Resilient Farms programme (2023–2026), USDA FSA Conservation Reserve Programme and EQIP, Oregon Community Foundation environmental grants, and multiple Pacific Northwest-based impact investors (Raven + Crow Studio, RSF Social Finance Northwest).
+
+**Practitioner-relevant nuance:**
+The Cascadia regen network's maturity is its primary advantage over every other assessed region: you are not building in isolation. Legal, bureaucratic, and practical knowledge about rural land use, alternative building, water rights, and community governance has been accumulated and shared here across 40+ years. The flip side is that this very maturity, combined with the region's desirability, has driven land prices to levels that make community land acquisition structurally difficult — most new projects now depend on community land trusts, long-term lease structures, or inherited parcels rather than outright purchase. The community land trust model (CLT) is well-developed in Oregon (Proud Ground CLT, Oregon Community Land Trust, multiple rural variations) and represents the most legally durable path for a new project on a constrained budget. Any new project entering this ecosystem should also expect and plan for a rich but sometimes opinionated network of established peers — the depth of practitioner culture is both a resource and a source of local politics.
+
+**Sources:**
+1. Fellowship for Intentional Community (FIC) / ic.org directory — Oregon and Washington listings (2024). https://www.ic.org/community-directory/?search=&country=United+States&state=Oregon
+2. GEN North America directory — Oregon ecovillage listings (2025). https://gen-northamerica.org/communities/
+3. Aprovecho Research Center — organisational history and programmes. https://www.aprovecho.org/
+4. USDA SARE (Sustainable Agriculture Research and Education) — Pacific Northwest grant database (2014–2024). https://www.sare.org/grants/
+5. Willamette Valley Land Trust — conservation easement programme (2024). https://www.wvlt.org/
+6. Oregon Agricultural Trust — farmland protection programme (2024). https://oregonagricultural.trust/
