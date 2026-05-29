@@ -209,20 +209,14 @@ function scheduleURLWrite() {
 // Logic: no filters -> default og.png; filters narrow to exactly one
 // passing region -> region-specific variant; otherwise -> og-filtered.png.
 
-// Per-region OG variants exist only for the original four regions. Filtering
-// to a single region outside this set must fall back to og-filtered.png to
-// avoid a 404 on share cards.
-const REGIONS_WITH_OG_VARIANT = new Set([
-  'alentejo', 'galicia', 'transylvania', 'connemara',
-]);
-
+// With filters active, point og:image at the dynamic card (/api/og) carrying the
+// current query so a JS-aware consumer sees the live result. Crawlers (no JS)
+// get correct meta from the /share route instead — see shareTargetUrl below.
+// No filters → the static default card.
 function pickOgImagePath() {
   if (!anyFilterActive()) return 'og.png';
-  const passing = activeRegions().filter((r) => regionPasses(r.id));
-  if (passing.length === 1 && REGIONS_WITH_OG_VARIANT.has(passing[0].id)) {
-    return `og-${passing[0].id}.png`;
-  }
-  return 'og-filtered.png';
+  const qs = window.location.search;
+  return 'api/og' + (qs && qs !== '?' ? qs : '');
 }
 
 function updateOgImageMeta() {
@@ -828,11 +822,12 @@ function refreshAll() {
   if (!anyFilterActive()) {
     detailEl.textContent = 'No filters active';
   } else {
-    const passing = inView.filter((r) => state.passing[r.id]).map((r) => r.name);
+    const passing = inView.filter((r) => state.passing[r.id]);
     detailEl.textContent = passing.length === 0
-      ? 'No regions match, relax a threshold'
-      : `Matching: ${passing.join(', ')}`;
+      ? 'No regions match — relax a threshold'
+      : (passing.length === 1 ? 'Your matching region' : 'Your matching regions');
   }
+  renderMatchRegions();
 
   // Update region cards
   regions.forEach((r) => {
@@ -956,6 +951,15 @@ function trackEvent(name, data) {
 // Share button, copies the current URL to clipboard
 // ====================================================================
 
+// The URL we actually hand out when sharing. With state in the query, share the
+// /share route (crawler-facing meta + dynamic card, then redirects humans to the
+// app). With no state, share the bare app URL.
+function shareTargetUrl() {
+  const qs = window.location.search;
+  if (!qs || qs === '?') return `${window.location.origin}/`;
+  return `${window.location.origin}/share${qs}`;
+}
+
 function initShareButton() {
   const btn = document.getElementById('share-btn');
   const note = document.getElementById('share-note');
@@ -971,7 +975,7 @@ function initShareButton() {
       _urlWriteTimer = null;
       writeThresholdsToURL();
     }
-    const url = window.location.href;
+    const url = shareTargetUrl();
 
     // On touch devices with a native share sheet, prefer it over clipboard.
     if (navigator.share && window.matchMedia('(pointer: coarse)').matches) {
@@ -1327,6 +1331,73 @@ function renderPresetChips() {
 }
 
 // ====================================================================
+// Guided entry, the top-of-page on-ramp (Phase A)
+// ====================================================================
+// Surfaces the SAME presets as the primary hook above the fold. A guided
+// choice sets thresholds (filtering, never scoring), then carries the visitor
+// down to their result and pulses it. The neutral chip clears all thresholds
+// so "show me everything" is one tap too.
+
+function scrollToResultMoment() {
+  const bar = document.querySelector('.match-bar');
+  if (!bar) return;
+  bar.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  // Retrigger the pulse animation even if it ran moments ago.
+  bar.classList.remove('pulse');
+  void bar.offsetWidth; // force reflow
+  bar.classList.add('pulse');
+  setTimeout(() => bar.classList.remove('pulse'), 1600);
+}
+
+function renderGuidedEntry() {
+  const mount = document.getElementById('guided-chips');
+  if (!mount) return;
+
+  PRESETS.forEach((p) => {
+    const chip = el('button', { className: 'guided-chip', text: p.label, attrs: { type: 'button' } });
+    const summary = presetThresholdSummary(p);
+    chip.title = `Sets ${summary}. A starting point, adjust freely after.`;
+    chip.setAttribute('aria-label', `${p.label}. Sets ${summary}. A starting point you can adjust.`);
+    chip.addEventListener('click', () => {
+      applyPreset(p);                       // applyPreset already writes URL + tracks preset_applied
+      trackEvent('guided_start', { preset: p.id });
+      scrollToResultMoment();
+    });
+    mount.appendChild(chip);
+  });
+
+  // Neutral entry: clear everything and reveal all candidates.
+  const all = el('button', { className: 'guided-chip neutral', text: 'Show all 20 regions', attrs: { type: 'button' } });
+  all.setAttribute('aria-label', 'Clear all thresholds and show every candidate region.');
+  all.addEventListener('click', () => {
+    resetThresholds();
+    trackEvent('guided_start', { preset: 'all' });
+    scrollToResultMoment();
+  });
+  mount.appendChild(all);
+}
+
+// The "result moment": once any filter is active, name the matching regions as
+// clickable chips. A membership list in declaration order, never ranked.
+function renderMatchRegions() {
+  const mount = document.getElementById('match-regions');
+  if (!mount) return;
+  while (mount.firstChild) mount.removeChild(mount.firstChild);
+  if (!anyFilterActive()) return; // no result moment until the visitor has chosen
+  const passing = activeRegions().filter((r) => state.passing[r.id]);
+  passing.forEach((r) => {
+    const chip = el('button', { className: 'region-chip', attrs: { type: 'button' } });
+    const dot = el('span', { className: 'region-chip-dot' });
+    dot.style.background = r.accent;
+    chip.appendChild(dot);
+    chip.appendChild(document.createTextNode(r.short || r.name));
+    chip.setAttribute('aria-label', `Open details for ${r.name}`);
+    chip.addEventListener('click', () => openDrawer(r.id));
+    mount.appendChild(chip);
+  });
+}
+
+// ====================================================================
 // Shortlist, a user-pinned Set (never ranked) + a compare view
 // ====================================================================
 
@@ -1497,6 +1568,18 @@ function openDrawer(regionId) {
 
   body.appendChild(el('p', { className: 'drawer-blurb', text: r.blurb }));
 
+  // Permalink to the region's own indexable page (internal linking + a shareable
+  // deep link). The page itself links back into the tool pre-pinned to this region.
+  body.appendChild(el('a', {
+    text: `Open ${r.name} as a full page →`,
+    attrs: { href: `/region/${r.id}.html` },
+    style: {
+      display: 'inline-block', marginBottom: '20px',
+      fontFamily: "'Spectral', Georgia, serif", fontStyle: 'italic', fontSize: '14px',
+      color: 'var(--accent)', textDecoration: 'underline dotted', textUnderlineOffset: '3px',
+    },
+  }));
+
   // "What living here asks of you", deep-link for case studies, prose for the
   // verified regions, nothing rendered when there is no depth entry yet.
   const depth = regionDepth[r.id];
@@ -1621,7 +1704,7 @@ function initNextStep() {
     let revert = null;
     shareBtn.addEventListener('click', async () => {
       if (_urlWriteTimer) { clearTimeout(_urlWriteTimer); _urlWriteTimer = null; writeThresholdsToURL(); }
-      const url = window.location.href;
+      const url = shareTargetUrl();
       let copied = false;
       try {
         if (navigator.clipboard && window.isSecureContext) {
@@ -1664,6 +1747,7 @@ renderCriteriaGrid();
 renderSummaryTable();
 renderSourcesList();
 renderPresetChips();
+renderGuidedEntry();
 initContinentSwitcher();
 initDrawer();
 initCompare();

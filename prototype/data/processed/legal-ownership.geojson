@@ -1,0 +1,595 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "source": "Per-region legal.md dossiers; each entry carries its primary legal source inline",
+    "source_url": "data/research-dossier/<id>/legal.md",
+    "vintage": "2026-05 compilation; per-feature regulatory_notes carry the latest known change",
+    "native_unit": "per-jurisdiction (point at region centroid)",
+    "license": "Research dossiers internal; underlying primary sources carry their own licenses (typically open government)",
+    "note": "Per-jurisdiction qualitative legal-ownership layer. State + trajectory per Spec: state = current regime; trajectory = per-feature regulatory_direction."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.9,
+          38.6
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "yes",
+          "notes": "Portugal allows foreign ownership of rural land with no nationality restriction under Decreto-Lei 555/99."
+        },
+        "collective_ownership_path": "Cooperativa Agrícola (DL 335/99), Associação (Code Civil art. 157+), or SCI/Sociedade Civil for asset-pooling",
+        "multi_household_residence_as_of_right": "conditional",
+        "residency_required_for_purchase": "no",
+        "preemption_or_first_claim_holders": [],
+        "planning_gate_for_living": "Municipal câmara construction permit, with RAN/REN protected-zone clearance required on agricultural/ecological reserve land",
+        "key_legal_restriction": "RAN-classified parcels can be bought freely but rarely permit residential construction, so buying land does not imply buildable area.",
+        "regulatory_direction": "tightening",
+        "regulatory_notes": "Golden Visa real-estate route removed October 2023 under Lei 56/2023 (Mais Habitação); land purchase no longer grants residency.",
+        "source": "Portuguese Land Law DL 555/99 (consolidated, 2024)",
+        "source_url": "https://dre.pt/web/guest/legislacao-consolidada/-/lc/34465475/view",
+        "gaps": "",
+        "region_id": "alentejo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4,
+          42.9
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "yes",
+          "notes": "Spain places no nationality restriction on rural-land ownership; non-EU buyers acquire on the same legal terms as EU citizens with only an NIE and (over EUR 500k) a Banco de Espana declaration."
+        },
+        "collective_ownership_path": "Cooperativa (Ley 27/1999 / Galician Ley 5/1998), Sociedad Agraria de Transformacion (SAT), or for asset-pooling an SL; comunidade de montes veciñais membership is hereditary by parish and not purchasable",
+        "multi_household_residence_as_of_right": "conditional",
+        "residency_required_for_purchase": "no",
+        "preemption_or_first_claim_holders": [],
+        "planning_gate_for_living": "Municipal building permit under Lei 2/2016 do solo de Galicia plus the local Plan Xeral de Ordenacion Municipal; solo rustico de proteccion agropecuaria/forestal heavily restricts residential construction",
+        "key_legal_restriction": "Minifundio fragmentation means assembling a viable parcel often requires negotiating with dozens of scattered heirs, and Catastro vs Registro de la Propiedad disagreements are the buyer's problem.",
+        "regulatory_direction": "stable",
+        "regulatory_notes": "Spain Golden Visa (Ley 14/2013) repealed for new applications April 2025; non-lucrative, digital-nomad and entrepreneurial visas remain.",
+        "source": "Lei 2/2016 do solo de Galicia",
+        "source_url": "https://www.xunta.gal/dog/Publicados/2016/20160215/AnuncioC3B0-100216-0001_es.html",
+        "gaps": "Dossier does not explicitly list any statutory pre-emption right holder for ordinary Galician rural sales.",
+        "region_id": "galicia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.0,
+          46.0
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "restricted",
+          "notes": "EU/EEA citizens have full freehold since January 2014; non-EU individuals cannot acquire land directly absent a bilateral treaty (none exists) and must use a Romanian SRL."
+        },
+        "collective_ownership_path": "Romanian SRL (limited company) as land-holder for non-EU groups; Asociatie (NGO Law 26/2000), Cooperativa agricola (Law 566/2004), or traditional Composesorat for forest/pasture commons",
+        "multi_household_residence_as_of_right": "conditional",
+        "residency_required_for_purchase": "no",
+        "preemption_or_first_claim_holders": [
+          "co-owners",
+          "lessees",
+          "neighbouring landowners",
+          "young farmers",
+          "Romanian state"
+        ],
+        "planning_gate_for_living": "Municipal primarie building permit under Romanian urbanism law (PUG / PUZ)",
+        "key_legal_restriction": "Non-EU buyers cannot hold agricultural land in their own name and must operate through a Romanian SRL, plus Law 17/2014 imposes a 45-day pre-emption advertisement at the primarie and an 80% anti-speculation tax on resales within 8 years.",
+        "regulatory_direction": "stable",
+        "regulatory_notes": "Pre-emption mechanics under Law 17/2014 were amended in 2020 to add the 8-year/80% anti-speculation tax; no new tightening flagged.",
+        "source": "Legea 17/2014 (sale of agricultural land outside city limits)",
+        "source_url": "https://legislatie.just.ro/Public/DetaliiDocument/156631",
+        "gaps": "Dossier does not detail a specific planning permit name for rural residential construction beyond noting municipal/primarie process.",
+        "region_id": "transylvania"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.4,
+          53.0
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "yes",
+          "notes": "Ireland places no nationality restriction on land ownership; non-EU buyers acquire on the same terms as Irish or EU citizens with no minimum residency or government approval."
+        },
+        "collective_ownership_path": "Cooperative Society (Industrial and Provident Societies Acts 1893 to 2021), Company Limited by Guarantee, or Charity (Charities Act 2009); Cloughjordan-style Co-op plus development company is the replicable model",
+        "multi_household_residence_as_of_right": "no",
+        "residency_required_for_purchase": "no",
+        "preemption_or_first_claim_holders": [],
+        "planning_gate_for_living": "County Council planning permission under the Cork or Galway County Development Plan 2022 to 2028, with Udaras na Gaeltachta language-commitment input in Gaeltacht areas",
+        "key_legal_restriction": "Cork and Galway County Councils operate strict one-off rural-housing policies requiring demonstrated local need or family connection, and Gaeltacht applications may require Irish-language competence.",
+        "regulatory_direction": "stable",
+        "regulatory_notes": "Tailte Eireann merger of PRAI and Valuation Office took effect April 2023; rural housing policy under current CDPs remains the binding constraint.",
+        "source": "Cork County Development Plan 2022 to 2028",
+        "source_url": "https://www.corkcoco.ie/en/resident/planning/development-plan",
+        "gaps": "Dossier does not identify any statutory pre-emption right in Irish rural land sales.",
+        "region_id": "connemara"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.9,
+          51.85
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "yes",
+          "notes": "The UK places no nationality restriction on land ownership; non-UK and EU buyers acquire freehold on equal terms with no residency precondition, though living on the land requires a separate visa."
+        },
+        "collective_ownership_path": "Community Land Trust (Housing and Regeneration Act 2008), Community Benefit Society (Co-operative and Community Benefit Societies Act 2014), Company Limited by Guarantee, or Charitable Incorporated Organisation",
+        "multi_household_residence_as_of_right": "conditional",
+        "residency_required_for_purchase": "no",
+        "preemption_or_first_claim_holders": [],
+        "planning_gate_for_living": "One Planet Development (TAN 6) management plan with ecological-footprint calculations and 5-year subsistence trajectory, processed by the County Council or, inside the park, by Pembrokeshire Coast National Park Authority",
+        "key_legal_restriction": "Open countryside residential construction is only realistically available via the TAN 6 OPD route, which demands a detailed management plan and committed subsistence trajectory; Pembrokeshire Coast National Park land faces materially stricter scrutiny.",
+        "regulatory_direction": "tightening",
+        "regulatory_notes": "Inheritance Tax Agricultural Property Relief was capped at GBP 1m of value in the November 2024 UK Budget, effective April 2026, affecting family-succession planning.",
+        "source": "Welsh Government TAN 6 One Planet Development",
+        "source_url": "https://www.gov.wales/planning-permission-one-planet-developments-open-countryside",
+        "gaps": "Dossier does not identify any statutory pre-emption right in Welsh rural land sales.",
+        "region_id": "pembrokeshire"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.85,
+          44.2
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "yes",
+          "notes": "France places no nationality restriction on rural-land ownership; non-EU and EU citizens purchase agricultural land on equal terms via a French notaire."
+        },
+        "collective_ownership_path": "GFA (Groupement Foncier Agricole) for community-scale land-holding, GAEC for joint farming, Association Loi 1901 for non-commercial community, SCI for general real-estate holding, or a Fonciere on the Terre de Liens model",
+        "multi_household_residence_as_of_right": "conditional",
+        "residency_required_for_purchase": "no",
+        "preemption_or_first_claim_holders": [
+          "SAFER"
+        ],
+        "planning_gate_for_living": "Municipal permis de construire under the PLU, plus Parc National des Cevennes charter compliance for heart-zone or adhesion-zone parcels",
+        "key_legal_restriction": "SAFER holds 2-month pre-emption rights on virtually every agricultural sale above ~0.7 ha and can substitute itself for the buyer to reassign land to a young farmer or installation project.",
+        "regulatory_direction": "stable",
+        "regulatory_notes": "Annual SAFER barème continues; no major legal changes flagged in 2024 dossier.",
+        "source": "Code rural et de la peche maritime",
+        "source_url": "https://www.legifrance.gouv.fr/codes/id/LEGITEXT000006071367/",
+        "gaps": "Dossier does not name the specific French residential building-permit instrument for rural sites.",
+        "region_id": "cevennes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.35,
+          46.5
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "yes",
+          "notes": "Italy allows foreign freehold ownership under EU rules and reciprocity (Art. 16 Disposizioni); most OECD nationals including US and Swiss enjoy full ownership rights."
+        },
+        "collective_ownership_path": "Standard Italian vehicles (SRL, Societa Semplice, cooperative, Associazione) for asset-pooling; native collective forms (Eigenverwaltete Burgerliche Nutzungsrechte, Interessentschaften) are not open to outsiders",
+        "multi_household_residence_as_of_right": "no",
+        "residency_required_for_purchase": "no",
+        "preemption_or_first_claim_holders": [],
+        "planning_gate_for_living": "Municipal building permit under the Landesraumordnungsgesetz 2018 and the local Bauleitplan, with Maso Chiuso commission oversight for designated closed farms",
+        "key_legal_restriction": "The Maso Chiuso / Hofegesetz regime forbids partition of designated closed farms and forces single-heir succession at assessed Hofschatzwert, structurally constraining inventory and inflating prices on what does transact.",
+        "regulatory_direction": "stable",
+        "regulatory_notes": "Provincial law LP 17/2001 continues with periodic adjustments; no major 2024 to 2025 changes flagged.",
+        "source": "LP 17/2001 Legge provinciale sui masi chiusi / Hofegesetz",
+        "source_url": "https://lexbrowser.provinz.bz.it/",
+        "gaps": "Dossier does not explicitly list general statutory pre-emption rights for non-Hof agricultural sales.",
+        "region_id": "south-tirol"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.85,
+          43.3
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "yes",
+          "notes": "Spain places no nationality restriction on land ownership; non-EU buyers acquire on equal terms via NIE registration, with transactions over EUR 500k reported to Banco de Espana."
+        },
+        "collective_ownership_path": "Sociedad Cooperativa Asturiana (Ley 4/2010 del Principado de Asturias de Cooperativas), SAT, or Asociacion",
+        "multi_household_residence_as_of_right": "conditional",
+        "residency_required_for_purchase": "no",
+        "preemption_or_first_claim_holders": [],
+        "planning_gate_for_living": "Ayuntamiento building permit under Decreto Legislativo 1/2004 (urbanismo Asturias); suelo no urbanizable categories of proteccion agraria or forestal restrict residential construction",
+        "key_legal_restriction": "Many abandoned aldeas have unresolved title from pre-1970 emigrant heirs in Latin America, so cheap headline prices mask long, expensive notarial title-clean-up.",
+        "regulatory_direction": "stable",
+        "regulatory_notes": "Spain Golden Visa (Ley 14/2013) repealed April 2025; alternative visas (non-lucrative, digital-nomad, entrepreneurial) remain.",
+        "source": "Decreto Legislativo 1/2004 (urbanismo Asturias)",
+        "source_url": "https://sede.asturias.es/",
+        "gaps": "Dossier notes montes vecinales/comunales tradition is less codified than Galician comunidades de montes, but does not identify formal pre-emption right holders.",
+        "region_id": "asturias"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.6,
+          51.95
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "yes",
+          "notes": "Germany imposes no nationality restriction on freehold land ownership, but agricultural-land purchases over ~1 ha require Landwirtschaftsbehorde approval under GrdstVG regardless of nationality."
+        },
+        "collective_ownership_path": "Agricultural eingetragene Genossenschaft or GmbH with a farmer-shareholder (plus written Nutzungskonzept) is the standard vehicle; GbR, Stiftung, and e.V. are also available for community functions",
+        "multi_household_residence_as_of_right": "no",
+        "residency_required_for_purchase": "no",
+        "preemption_or_first_claim_holders": [
+          "active farmers via the GrdstVG / Landwirtschaftsbehorde",
+          "Landgesellschaft Sachsen-Anhalt"
+        ],
+        "planning_gate_for_living": "Bauordnung permit under Baugesetzbuch sec. 35 (Aussenbereich), normally via the §35 privilegierte Vorhaben farm-related route",
+        "key_legal_restriction": "The Grundstucksverkehrsgesetz lets the Landwirtschaftsbehorde refuse purchases by non-active farmers if a farmer will buy at the same price, so pure-investor or non-agricultural community purchases are routinely blocked.",
+        "regulatory_direction": "stable",
+        "regulatory_notes": "BVVG is in wind-down per the 2018 Bundestag decision; remaining ex-GDR state-land sales continue through 2024 to 2030.",
+        "source": "Grundstucksverkehrsgesetz (GrdstVG)",
+        "source_url": "https://www.gesetze-im-internet.de/grdstvg/",
+        "gaps": "",
+        "region_id": "saxony-anhalt"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.0,
+          58.6
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "restricted",
+          "notes": "EU/EEA citizens have full freehold of all land categories; non-EU/EEA individuals need county governor authorisation for agricultural and forest land and must show 6 months prior Estonian residence or 1 year as a sole proprietor in agri/forestry."
+        },
+        "collective_ownership_path": "Estonian OU (limited company) is the standard vehicle and sidesteps the KAOKS §3 individual restriction; MTU (non-profit), Tulundusuhistu (cooperative), and SA (foundation) also available",
+        "multi_household_residence_as_of_right": "conditional",
+        "residency_required_for_purchase": "conditional",
+        "preemption_or_first_claim_holders": [],
+        "planning_gate_for_living": "Municipal (vald) building permit under the uldplaneering general plan plus a detailplaneering detailed plan",
+        "key_legal_restriction": "Non-EU/EEA natural persons cannot buy agricultural or forest land without prior county governor authorisation, and e-Residency does NOT grant any privilege toward this; the standard workaround is an Estonian OU buying the land.",
+        "regulatory_direction": "tightening",
+        "regulatory_notes": "The OU workaround for non-EU buyers is being more closely scrutinised by Estonian authorities post-2022; forest-land purchases now also require specific notifications under recent forest-policy regulations.",
+        "source": "Restrictions on Acquisition of Immovables Act / KAOKS (consolidated)",
+        "source_url": "https://www.riigiteataja.ee/en/eli/ee/501032023002/consolide",
+        "gaps": "Dossier does not identify any specific statutory pre-emption right holder in Estonian agricultural sales.",
+        "region_id": "estonia-rural"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.0,
+          44.5
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "yes",
+          "notes": "No US federal or Oregon state nationality restriction on rural-land purchase; AFIDA (7 USC 3501) requires disclosure of foreign agricultural acquisitions but does not restrict them."
+        },
+        "collective_ownership_path": "LLC, Oregon Land Trust, 501(c)(3) nonprofit, community land trust (CLT), or limited-equity cooperative; CLT is most aligned with long-horizon community stability",
+        "multi_household_residence_as_of_right": "no",
+        "residency_required_for_purchase": "no",
+        "preemption_or_first_claim_holders": [],
+        "planning_gate_for_living": "Conditional Use Permit (CUP) or zone exception under ORS 215 / Oregon SB 100 Goals 3 and 4 for additional dwellings on Exclusive Farm Use or Forest Conservation land",
+        "key_legal_restriction": "Most rural Oregon land is zoned Exclusive Farm Use, which limits non-agricultural residential development to one farm dwelling and forces intentional-community configurations through county Conditional Use Permits or zone exceptions.",
+        "regulatory_direction": "stable",
+        "regulatory_notes": "New Oregon projects face a more scrutinised CUP environment than legacy grandfathered communities; Washington county implementation of WAC 365-196 remains more variable.",
+        "source": "Oregon Revised Statutes Chapter 215 County Planning; Zoning; Farm Land",
+        "source_url": "https://www.oregonlegislature.gov/bills_laws/ors/ors215.html",
+        "gaps": "Dossier does not identify a statutory pre-emption right holder for Oregon rural land.",
+        "region_id": "cascadia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.7,
+          44.0
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "yes",
+          "notes": "No citizenship or residency requirement to own land in Vermont; AFIDA disclosure applies and FIRPTA withholding applies on sale, but neither restricts purchase."
+        },
+        "collective_ownership_path": "LLC, LLP, Community Land Trust under Vermont Statutes, nonprofit corporation, tenancy-in-common with recorded co-ownership agreement, or cooperative housing under 11 V.S.A. Chapter 15",
+        "multi_household_residence_as_of_right": "conditional",
+        "residency_required_for_purchase": "no",
+        "preemption_or_first_claim_holders": [],
+        "planning_gate_for_living": "Act 250 permit (10 V.S.A. Chapter 151) triggered for developments over 10 acres, more than 10 housing lots/units within 5 years, above 2,500 feet elevation, or commercial development on more than 1 acre in unzoned towns; municipal zoning otherwise",
+        "key_legal_restriction": "Any multi-household intentional community on more than 10 acres typically triggers an Act 250 permit review against 10 criteria including primary agricultural soils and forest fragmentation, adding 3 to 12 months and USD 5,000 to USD 50,000 in consultant costs.",
+        "regulatory_direction": "tightening",
+        "regulatory_notes": "Act 181 of 2024 reformed Act 250 and created the Land Use Review Board; new Criterion 8C (forest fragmentation) effective 31 December 2026.",
+        "source": "Act 250 Program and History, Vermont Land Use Review Board",
+        "source_url": "https://act250.vermont.gov/act250-program",
+        "gaps": "",
+        "region_id": "vermont"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.6,
+          35.6
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "yes",
+          "notes": "No nationality restriction on US real estate purchase in North Carolina; foreign nationals may own as individuals or US LLCs, with FIRPTA withholding applying only on future sale."
+        },
+        "collective_ownership_path": "LLC, limited partnership, housing cooperative (NC Gen. Stat. §§54B series), or nonprofit land trust; Community Land Trust has 90-year precedent in the region via Celo Community (1937)",
+        "multi_household_residence_as_of_right": "conditional",
+        "residency_required_for_purchase": "no",
+        "preemption_or_first_claim_holders": [],
+        "planning_gate_for_living": "County-level zoning and building permit; many mountain counties (Madison, Yancey, Mitchell, Graham) have limited or no zoning outside floodplains, while Buncombe County has comprehensive zoning",
+        "key_legal_restriction": "Present-Use Value status is the dominant ongoing tax instrument and any change in ownership that fails to file the AV-4 within 60 days triggers three years of deferred taxes plus interest, a material liability on a USD 500k-plus parcel.",
+        "regulatory_direction": "stable",
+        "regulatory_notes": "Land prices rising fast (NC farmland up 8.4% YoY in 2024); no major restrictive legal changes flagged.",
+        "source": "NC General Statutes §§105-277.2 to 105-277.7 Present-Use Value Programme",
+        "source_url": "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/ByChapter/Chapter_105.pdf",
+        "gaps": "Dossier does not identify any pre-emption right holder for WNC rural land.",
+        "region_id": "southern-appalachians"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.8,
+          43.5
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "restricted",
+          "notes": "Wisconsin Stat. §710.02 caps non-resident aliens and >20% foreign-owned entities at 640 acres; AB 218 (2025, pending Senate) would reduce the cap to 50 acres for agricultural land."
+        },
+        "collective_ownership_path": "Cooperative corporation under Wisconsin Statutes Chapter 185, Community Land Trust as 501(c)(3) nonprofit, or LLC with multi-member operating agreement; cooperatives and nonprofit land trusts are explicit carve-outs from the corporate-farming statute §182.001",
+        "multi_household_residence_as_of_right": "conditional",
+        "residency_required_for_purchase": "no",
+        "preemption_or_first_claim_holders": [],
+        "planning_gate_for_living": "Municipal/township zoning and county building permit; Farmland Preservation Program covenants (Chapter 91) constrain non-agricultural use on enrolled parcels",
+        "key_legal_restriction": "Wisconsin Stat. §710.02 caps foreign-individual or >20%-foreign-owned-entity holdings at 640 acres with 4-year divestiture for violations, and AB 218 (2025) would tighten this to 50 acres for agricultural land.",
+        "regulatory_direction": "tightening",
+        "regulatory_notes": "AB 218 (2025) passed the Wisconsin Assembly and is pending in the Senate as of early 2026; if enacted it would cut the foreign-ownership cap to 50 acres for agricultural land, require 3-year divestiture, and add military-installation prohibitions.",
+        "source": "Wisconsin Statute §710.02 Foreign Ownership of Land",
+        "source_url": "https://docs.legis.wisconsin.gov/statutes/statutes/710/02",
+        "gaps": "Dossier does not identify a specific statutory pre-emption right holder for Wisconsin rural sales.",
+        "region_id": "driftless"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.8,
+          36.3
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "yes",
+          "notes": "No nationality restriction on rural-land purchase in Arkansas; Arkansas Act 636 of 2023 only restricts entities from designated foreign-adversary nations near military installations and is not relevant to civilian rural parcels."
+        },
+        "collective_ownership_path": "Arkansas LLC, Land Trust under the Arkansas Land Trust Act, or Non-Profit Corporation",
+        "multi_household_residence_as_of_right": "yes",
+        "residency_required_for_purchase": "no",
+        "preemption_or_first_claim_holders": [],
+        "planning_gate_for_living": "None or standard residential. Several Ozark counties (Sharp, Izard, Fulton, Newton, Searcy) have not adopted the IRC for agricultural/unincorporated land, so cabins and accessory structures need no building permit.",
+        "key_legal_restriction": "Permissive by omission means the main legal trap is title and access: landlocked parcels have no guaranteed road access without an express easement, and historical mineral-rights splits create deed-research burdens.",
+        "regulatory_direction": "stable",
+        "regulatory_notes": "Arkansas Act 636 of 2023 (Foreign Land Ownership) is broadly worded and could affect non-US nationals structuring purchase through a non-US entity; direct individual purchase avoids this.",
+        "source": "Arkansas Department of Finance and Administration 2024 Cropland, Pastureland and Timberland Valuation",
+        "source_url": "https://www.dfa.arkansas.gov/wp-content/uploads/2024-agrireportupdated.pdf",
+        "gaps": "Dossier does not cite the Arkansas statutory citation for Act 636 directly, only practitioner sources; Missouri-side legal regime is only briefly touched.",
+        "region_id": "ozarks"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.6,
+          36.4
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "yes",
+          "notes": "No New Mexico state law restricts foreign purchase; AFIDA disclosure applies federally and FIRPTA withholding applies on sale, but neither restricts purchase."
+        },
+        "collective_ownership_path": "LLC, land trust, limited partnership, or Community Land Trust under the New Mexico Community Land Trust Act (2007)",
+        "multi_household_residence_as_of_right": "conditional",
+        "residency_required_for_purchase": "no",
+        "preemption_or_first_claim_holders": [
+          "acequia commissioners (statutory approval over water-right transfers in/out of an acequia under NM Stat. §73-2-28)"
+        ],
+        "planning_gate_for_living": "Taos County building permit under A-1 / A-3 zoning with NM Construction Industries Division alternative-methods approval for earthship/rammed-earth/strawbale/adobe construction",
+        "key_legal_restriction": "Acequia law makes water rights inseparable from democratic ditch-association governance: any transfer of water into or out of an acequia requires written approval from elected commissioners and the Office of the State Engineer, and senior priority dates govern shortage allocation under prior appropriation.",
+        "regulatory_direction": "stable",
+        "regulatory_notes": "Upper Rio Grande is fully appropriated; new surface-water rights are not available and new well permits in Taos County sub-basins are increasingly difficult.",
+        "source": "New Mexico Statutes §73-2-28 (2025) Acequia and community ditch associations",
+        "source_url": "https://law.justia.com/codes/new-mexico/chapter-73/article-2/section-73-2-28/",
+        "gaps": "",
+        "region_id": "northern-new-mexico"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.0,
+          45.4
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "yes",
+          "notes": "The federal foreign-buyer ban (extended to January 2027) only applies inside Census Metropolitan Areas and Agglomerations, so most rural NS and Cape Breton land is exempt; vacant agricultural land is also effectively unrestricted federally."
+        },
+        "collective_ownership_path": "Cooperative corporation under the Nova Scotia Cooperatives Act (SNS 1998, c.4), non-profit association, or land trust; community land trusts are emerging",
+        "multi_household_residence_as_of_right": "conditional",
+        "residency_required_for_purchase": "conditional",
+        "preemption_or_first_claim_holders": [],
+        "planning_gate_for_living": "Municipal building permit (issued by one of NS's 49 municipalities) or provincial Department of Municipal Affairs land-use by-law approval in unincorporated areas",
+        "key_legal_restriction": "A 10% provincial Non-Resident Deed Transfer Tax applies to residential properties with up to 3 dwelling units bought by non-NS residents (agreements after 31 March 2025), avoidable only by establishing residency within 6 months, buying vacant/agricultural land, or buying 4+ unit / commercial property.",
+        "regulatory_direction": "tightening",
+        "regulatory_notes": "Non-Resident Deed Transfer Tax doubled from 5% to 10% effective April 2025; federal PNP allocations cut ~50% for 2025 to 2027, materially tightening NSNP-based immigration pathways.",
+        "source": "Nova Scotia Finance Non-Resident Provincial Deed Transfer Tax guidelines",
+        "source_url": "https://novascotia.ca/finance/en/home/taxation/tax101/docs/Nova-Scotia-Provincial-Non-resident-Deed-Transfer-Tax-Guidelines.pdf",
+        "gaps": "Dossier does not identify a statutory pre-emption right holder for NS rural sales.",
+        "region_id": "nova-scotia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0,
+          49.5
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "yes",
+          "notes": "BC has no provincial restriction on foreign or non-resident purchase of agricultural land; the federal foreign-buyer ban (in force to January 2027) exempts rural Kootenay properties outside CMAs/CAs and vacant non-residential land."
+        },
+        "collective_ownership_path": "Society under the BC Societies Act 2016, Cooperative Association under the BC Cooperative Association Act, or a Society + Society-owned corporation hybrid",
+        "multi_household_residence_as_of_right": "no",
+        "residency_required_for_purchase": "no",
+        "preemption_or_first_claim_holders": [
+          "Agricultural Land Commission (over ALR land uses and exclusions)"
+        ],
+        "planning_gate_for_living": "Agricultural Land Commission application under the ALR Use Regulation (BC Reg 30/2019) for any additional residence beyond the one principal residence allowed as of right, plus regional district zoning approval",
+        "key_legal_restriction": "ALR Use Regulation permits only one principal residence per parcel as of right, so a community planning 5 to 10 dwellings on a shared ALR farm must either secure ALC approval (6 to 18 months, not guaranteed), demonstrate farm-worker housing necessity, or buy non-ALR land at higher cost.",
+        "regulatory_direction": "stable",
+        "regulatory_notes": "DRIPA (2019) duty to consult adds timeline uncertainty to ALC and major permit applications; water licences under the 2016 Water Sustainability Act remain prior-appropriation allocated.",
+        "source": "ALR Use Regulation, BC Reg 30/2019",
+        "source_url": "https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/30_2019",
+        "gaps": "",
+        "region_id": "kootenays"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0,
+          45.4
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "restricted",
+          "notes": "Non-residents of Quebec acquiring agricultural land over 4 hectares need CPTAQ authorization (A-4.1), and under Bill 86 (SQ 2025, c. 5) most non-farmer buyers and non-resident share acquisitions now also require CPTAQ approval."
+        },
+        "collective_ownership_path": "Cooperative under the Loi sur les cooperatives, Association (non-profit), Fiducie or Fiducie d'utilite sociale under CCQ art. 1260 to 1298, or Emphyteose to separate ground from surface improvements",
+        "multi_household_residence_as_of_right": "no",
+        "residency_required_for_purchase": "conditional",
+        "preemption_or_first_claim_holders": [
+          "CPTAQ (authorization gate over non-farmer and non-resident agricultural land acquisitions)"
+        ],
+        "planning_gate_for_living": "CPTAQ authorization for non-agricultural use within the Green Zone, plus municipal building permit; applications are public, contested, and typically 12 to 36 months",
+        "key_legal_restriction": "CPTAQ Green Zone designation restricts agricultural-land activities to agriculture by default, and Bill 86 (March 2025) now requires prior CPTAQ authorization for most non-farmer buyers and bans agricultural land purchases by investment funds and non-agricultural legal entities (retroactive to 5 December 2024).",
+        "regulatory_direction": "tightening",
+        "regulatory_notes": "Bill 86 (SQ 2025, c. 5, assented 25 March 2025) is the most significant LPTAA revision since 1978: investment-fund/non-agricultural-legal-entity moratorium, expanded non-farmer authorization requirement, non-resident share-acquisition trigger, and penalties up to CAD 5,000 (natural) / CAD 10,000 (legal).",
+        "source": "CanLII SQ 2025, c 5 (Bill 86, assented 25 March 2025)",
+        "source_url": "https://www.canlii.org/en/qc/laws/astat/sq-2025-c-5/latest/sq-2025-c-5.html",
+        "gaps": "",
+        "region_id": "quebec-eastern-townships"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.7,
+          17.1
+        ]
+      },
+      "properties": {
+        "foreign_ownership": {
+          "allowed": "restricted",
+          "notes": "Foreigners cannot directly purchase ejido or comunidad agraria land; over half of Oaxaca's territory is held in those forms. Once a parcel is converted to dominio pleno and lies outside the 50 km coastal / 100 km border restricted zone (the Oaxaca highlands qualify), foreigners can hold freehold without fideicomiso."
+        },
+        "collective_ownership_path": "Mexican SRL or SA (foreign shareholders may hold 100%) for joint freehold ownership of dominio-pleno parcels; for comunal land, a long-term usufruct acta de posesion negotiated with the comunal assembly is the structural ceiling. Prestanombre is illegal.",
+        "multi_household_residence_as_of_right": "conditional",
+        "residency_required_for_purchase": "no",
+        "preemption_or_first_claim_holders": [
+          "ejido assembly (asamblea)",
+          "comunidad agraria assembly",
+          "RAN (Registro Agrario Nacional) for ejido/comunal certifications and conversions",
+          "usos y costumbres community government (in 418 of 570 Oaxaca municipalities)"
+        ],
+        "planning_gate_for_living": "Negotiated entry with the ejido or comunal assembly (and, in usos-y-costumbres municipalities, the community government) plus municipal building permit on dominio-pleno parcels",
+        "key_legal_restriction": "Over half of Oaxaca's rural land is ejido or comunidad agraria with collective title in the RAN, and foreigners cannot directly own either; legal occupancy depends on either a 6 to 18 month dominio pleno conversion via assembly vote and RAN deregistration, or a usufruct acta de posesion which is not ownership under Mexican civil law.",
+        "regulatory_direction": "stable",
+        "regulatory_notes": "Ley Agraria 1992 framework remains in force; no major 2024 to 2026 federal changes flagged in dossier.",
+        "source": "Ley Agraria (1992, reformed), Articulos 76 to 82 (dominio pleno) and 98 to 107 (comunidades agrarias)",
+        "source_url": "https://mexico.justia.com/federales/leyes/ley-agraria/titulo-tercero/capitulo-ii/seccion-sexta/",
+        "gaps": "No systematic published price series for Oaxaca rural land; dossier flags price confidence as LOW. No formal numeric pre-emption procedure equivalent to Romania Law 17/2014 is cited.",
+        "region_id": "oaxaca"
+      }
+    }
+  ]
+}

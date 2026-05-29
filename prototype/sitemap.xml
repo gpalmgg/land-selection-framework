@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://land-selection-framework.vercel.app/</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://land-selection-framework.vercel.app/deeper.html</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <url><loc>https://land-selection-framework.vercel.app/</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/deeper.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/alentejo.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/galicia.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/transylvania.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/connemara.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/pembrokeshire.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/cevennes.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/south-tirol.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/asturias.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/saxony-anhalt.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/estonia-rural.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/cascadia.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/vermont.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/southern-appalachians.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/driftless.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/ozarks.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/northern-new-mexico.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/nova-scotia.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/kootenays.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/quebec-eastern-townships.html</loc></url>
+  <url><loc>https://land-selection-framework.vercel.app/region/oaxaca.html</loc></url>
 </urlset>

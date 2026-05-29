@@ -1,0 +1,9 @@
+{
+  "name": "land-selection-framework",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Prototype for the Land Selection Framework. Static site + two edge functions (dynamic share card).",
+  "dependencies": {
+    "@vercel/og": "^0.6.5"
+  }
+}

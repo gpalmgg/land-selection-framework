@@ -1,0 +1,33 @@
+# V1 processed-layer metadata (Spec Step 9 requirement)
+criterion: land_cost
+askja_metric: 10            # Economic and Legal Context (currently buried; r4-proposed first-class promotion)
+tier: 1                     # per-jurisdiction structured layer
+source: "Per-region dossiers (legal.md / regen.md / accessibility.md); each entry carries its primary cost-citation source where available in its `source` property"
+source_url: "data/research-dossier/<id>/{legal,regen,accessibility}.md (intermediate); see per-feature `source_url` for primary"
+vintage: "2026-05 compilation; per-feature `price_vintage` carries the cited figure's year"
+license: "Research dossiers internal; underlying primary sources carry their own licenses (typically open government / national agriculture-ministry data)"
+native_unit: "per-jurisdiction (point at region centroid)"
+time_framing: "state + trajectory"
+state: "current price-per-hectare range, currency, vintage (where dossier-supported; null otherwise)"
+trajectory: "per-feature `appreciation_trajectory` enum (stable|rising|rising_fast|volatile|unknown)"
+sovereignty_axes: [legal, material]
+red_line_underlying: none
+files:
+  - { path: land-cost.geojson, scope: "EU + NA", features: 20 }
+  - { path: land-cost.json, kind: "structured extraction (human-verifiable intermediate)" }
+coverage: "20 of 20 in-scope regions ATTEMPTED; per-feature `data_confidence` records actual evidence strength (high|medium|low). Cost data in the dossiers is genuinely thinner than legal data; honest sparsity is surfaced, not hidden."
+processing_method: "scripts/compile_land_cost.py reads the land-cost.json intermediate + regions.js coords and emits the GeoJSON FeatureCollection. The JSON intermediate is extracted from the dossier files (LLM-assisted; human-verifiable per Spec Step 4)."
+notes: "Delivers r4 Finding 1b (land_cost as first-class criterion candidate). Behaves as a binding constraint in practice (Cascadia 3-5x Alentejo, Appalachian regen-premium, BC ALR pricing). Pairs with legal_ownership as the two 'first gate' criteria. data_confidence is the integrity field — read it before using a region's figure."
+properties_schema:
+  price_per_ha_low: "number or null"
+  price_per_ha_high: "number or null"
+  price_currency: "USD|EUR|GBP|CAD|MXN|local or null"
+  price_vintage: "string or null"
+  price_notes: "string"
+  appreciation_trajectory: "stable|rising|rising_fast|volatile|unknown"
+  appreciation_notes: "string"
+  affordability_band: "cheapest|low|moderate|premium|very_premium|unknown"
+  data_confidence: "high|medium|low"
+  source: "string"
+  source_url: "string"
+  gaps: "string"

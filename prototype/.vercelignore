@@ -27,3 +27,7 @@ public/
 # Staged data awaiting human verification before it ships
 data/regions-na.staging.js
 data/region-depth.staging.js
+
+# Local install (Vercel reinstalls from package.json)
+node_modules/
+ogtest.mjs

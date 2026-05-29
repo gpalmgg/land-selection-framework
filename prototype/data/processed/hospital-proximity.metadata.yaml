@@ -1,0 +1,31 @@
+# V1 processed-layer metadata (Spec Step 9 requirement)
+criterion: hospital_proximity
+askja_metric: 9            # Accessibility & Connectivity (red-line underlying: 60-min hospital)
+tier: 1                    # real ingested + processed layer (OSM fetch -> per-region aggregation)
+source: "OpenStreetMap via Overpass API (amenity=hospital), aggregated per region from EU+NA snapshots"
+source_url: "https://overpass-api.de"
+vintage: "current OSM snapshot (2026-05 compile)"
+license: "ODbL 1.0"
+native_unit: "per-jurisdiction (point at region centroid; distance in km)"
+time_framing: "state"      # network changes slowly; no trajectory in V1
+state: "geodesic distance from region centroid to nearest OSM amenity=hospital, plus counts within 50 km and 100 km"
+trajectory: "null in V1; hospital-network change is slow and OSM-snapshot-dependent"
+sovereignty_axes: [material]
+red_line_underlying: hospital-within-60-minutes
+files:
+  - { path: hospital-proximity.geojson, scope: "EU + NA", features: 20 }
+  - { path: ../raw/hospitals/hospitals-eu.geojson, kind: "raw OSM points (EU bbox)" }
+  - { path: ../raw/hospitals/hospitals-na.geojson, kind: "raw OSM points (NA bbox)" }
+coverage: "20 of 20 in-scope regions; each carries nearest-hospital distance and within-50/100 km counts."
+processing_method: "scripts/fetch_hospitals.py (Overpass query, urllib stdlib) -> raw points in data/raw/hospitals/ -> scripts/process_hospital_proximity.py (haversine nearest-distance per region centroid) -> hospital-proximity.geojson"
+notes: |
+  HONEST PROXY CAVEAT: this is geodesic distance, NOT a road-network 60-minute isochrone. The Spec's red line is "no hospital within 60 minutes," which requires road routing (OSRM / Valhalla / OpenRouteService). V1 uses a 50 km geodesic threshold as a coarse proxy under the rule-of-thumb that ~50 km == ~60 min on rural roads. Mountainous regions (e.g. Kootenays, Cevennes, South Tirol, Northern New Mexico) take materially longer for the same distance; highway corridors take less. Per-feature `proxy_caveat` carries the warning. V2 should refine to true road-time isochrones.
+  COVERAGE LIMITATION: OSM amenity=hospital tagging quality varies by country. Western Europe and North America are reasonably complete; volunteer-tagging gaps possible.
+properties_schema:
+  nearest_hospital_km: "number (geodesic km)"
+  nearest_hospital_name: "string"
+  hospitals_within_50km: "integer count"
+  hospitals_within_100km: "integer count"
+  red_line_60min_proxy_passes: "boolean (nearest_hospital_km <= 50)"
+  proxy_caveat: "string (constant disclaimer per feature)"
+  region_id: "string"

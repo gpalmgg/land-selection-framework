@@ -1,0 +1,393 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "source": "OpenStreetMap via Overpass API (amenity=hospital), aggregated per region from EU+NA snapshots",
+    "source_url": "https://overpass-api.de",
+    "vintage": "current OSM snapshot (2026-05 compile)",
+    "native_unit": "per-jurisdiction (point at region centroid; distance in km)",
+    "license": "ODbL 1.0",
+    "note": "Geodesic nearest-hospital distance, NOT a road-network 60-min isochrone. The red_line_60min_proxy_passes field uses 50 km as a coarse proxy; refine in V2 with routing."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.9,
+          38.6
+        ]
+      },
+      "properties": {
+        "region_id": "alentejo",
+        "nearest_hospital_km": 4.27,
+        "nearest_hospital_name": "Hospital da Miseric\u00f3rdia de \u00c9vora",
+        "hospitals_within_50km": 2,
+        "hospitals_within_100km": 27,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4,
+          42.9
+        ]
+      },
+      "properties": {
+        "region_id": "galicia",
+        "nearest_hospital_km": 2.9,
+        "nearest_hospital_name": "Sanatorio Hestia La Robleda",
+        "hospitals_within_50km": 10,
+        "hospitals_within_100km": 36,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.0,
+          46.0
+        ]
+      },
+      "properties": {
+        "region_id": "transylvania",
+        "nearest_hospital_km": 17.55,
+        "nearest_hospital_name": "Spitalul Or\u0103\u0219enesc Rupea",
+        "hospitals_within_50km": 21,
+        "hospitals_within_100km": 165,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.4,
+          53.0
+        ]
+      },
+      "properties": {
+        "region_id": "connemara",
+        "nearest_hospital_km": 9.07,
+        "nearest_hospital_name": "Ennistymon Community Hospital",
+        "hospitals_within_50km": 9,
+        "hospitals_within_100km": 32,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.9,
+          51.85
+        ]
+      },
+      "properties": {
+        "region_id": "pembrokeshire",
+        "nearest_hospital_km": 6.05,
+        "nearest_hospital_name": "Withybush Hospital",
+        "hospitals_within_50km": 6,
+        "hospitals_within_100km": 34,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.85,
+          44.2
+        ]
+      },
+      "properties": {
+        "region_id": "cevennes",
+        "nearest_hospital_km": 13.65,
+        "nearest_hospital_name": "Centre soins et suite de r\u00e9adaptation SAMDO La Pomar\u00e8de",
+        "hospitals_within_50km": 20,
+        "hospitals_within_100km": 142,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.35,
+          46.5
+        ]
+      },
+      "properties": {
+        "region_id": "south-tirol",
+        "nearest_hospital_km": 3.01,
+        "nearest_hospital_name": "Ospedale di Bolzano - Krankenhaus Bozen",
+        "hospitals_within_50km": 19,
+        "hospitals_within_100km": 108,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.85,
+          43.3
+        ]
+      },
+      "properties": {
+        "region_id": "asturias",
+        "nearest_hospital_km": 7.32,
+        "nearest_hospital_name": "Cruz Roja",
+        "hospitals_within_50km": 23,
+        "hospitals_within_100km": 33,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.6,
+          51.95
+        ]
+      },
+      "properties": {
+        "region_id": "saxony-anhalt",
+        "nearest_hospital_km": 9.75,
+        "nearest_hospital_name": "Rehabilitationsklinik Bad Salzelmen",
+        "hospitals_within_50km": 34,
+        "hospitals_within_100km": 113,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.0,
+          58.6
+        ]
+      },
+      "properties": {
+        "region_id": "estonia-rural",
+        "nearest_hospital_km": 35.32,
+        "nearest_hospital_name": "P\u00e4rnu Haigla",
+        "hospitals_within_50km": 7,
+        "hospitals_within_100km": 34,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.0,
+          44.5
+        ]
+      },
+      "properties": {
+        "region_id": "cascadia",
+        "nearest_hospital_km": 9.28,
+        "nearest_hospital_name": "Samaritan Lebanon Community Hospital",
+        "hospitals_within_50km": 13,
+        "hospitals_within_100km": 24,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.7,
+          44.0
+        ]
+      },
+      "properties": {
+        "region_id": "vermont",
+        "nearest_hospital_km": 9.71,
+        "nearest_hospital_name": "Gifford Medical Center",
+        "hospitals_within_50km": 7,
+        "hospitals_within_100km": 24,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.6,
+          35.6
+        ]
+      },
+      "properties": {
+        "region_id": "southern-appalachians",
+        "nearest_hospital_km": 5.27,
+        "nearest_hospital_name": "Mission Hospital",
+        "hospitals_within_50km": 9,
+        "hospitals_within_100km": 46,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.8,
+          43.5
+        ]
+      },
+      "properties": {
+        "region_id": "driftless",
+        "nearest_hospital_km": 9.14,
+        "nearest_hospital_name": "Vernon Memorial Hospital",
+        "hospitals_within_50km": 7,
+        "hospitals_within_100km": 28,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.8,
+          36.3
+        ]
+      },
+      "properties": {
+        "region_id": "ozarks",
+        "nearest_hospital_km": 28.53,
+        "nearest_hospital_name": "North Arkansas Regional Medical Center",
+        "hospitals_within_50km": 2,
+        "hospitals_within_100km": 21,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.6,
+          36.4
+        ]
+      },
+      "properties": {
+        "region_id": "northern-new-mexico",
+        "nearest_hospital_km": 3.9,
+        "nearest_hospital_name": "Taos-Picuris Indian Health Center",
+        "hospitals_within_50km": 2,
+        "hospitals_within_100km": 15,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.0,
+          45.4
+        ]
+      },
+      "properties": {
+        "region_id": "nova-scotia",
+        "nearest_hospital_km": 33.78,
+        "nearest_hospital_name": "Aberdeen Hospital",
+        "hospitals_within_50km": 5,
+        "hospitals_within_100km": 20,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0,
+          49.5
+        ]
+      },
+      "properties": {
+        "region_id": "kootenays",
+        "nearest_hospital_km": 20.6,
+        "nearest_hospital_name": "Kootenay Lake Hospital",
+        "hospitals_within_50km": 1,
+        "hospitals_within_100km": 6,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0,
+          45.4
+        ]
+      },
+      "properties": {
+        "region_id": "quebec-eastern-townships",
+        "nearest_hospital_km": 8.98,
+        "nearest_hospital_name": "Maison de naissances de l'Estrie",
+        "hospitals_within_50km": 5,
+        "hospitals_within_100km": 25,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.7,
+          17.1
+        ]
+      },
+      "properties": {
+        "region_id": "oaxaca",
+        "nearest_hospital_km": 1.49,
+        "nearest_hospital_name": "Centro de Salud \"San Felipe del Agua\"",
+        "hospitals_within_50km": 75,
+        "hospitals_within_100km": 82,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      }
+    }
+  ]
+}

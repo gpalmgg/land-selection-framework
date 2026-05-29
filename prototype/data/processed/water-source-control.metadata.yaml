@@ -1,0 +1,30 @@
+# V1 processed-layer metadata (Spec Step 9 requirement)
+criterion: water_source_control
+askja_metric: 4            # Water Resources (red-line underlying: single-entity water-source control)
+tier: 1                    # per-jurisdiction structured layer
+source: "Per-region dossiers (water.md / legal.md); each entry carries its primary water-rights citation where available"
+source_url: "data/research-dossier/<id>/{water,legal}.md"
+vintage: "2026-05 compilation"
+license: "Research dossiers internal; underlying primary sources (water-rights statutes, regulator docs) carry their own licenses"
+native_unit: "per-jurisdiction (point at region centroid)"
+time_framing: "state"
+state: "water-rights regime + holder type + single-entity control risk + drought-priority mechanism per region"
+trajectory: "null in V1; regulatory direction captured in regulatory_notes prose where dossier flagged change"
+sovereignty_axes: [material, legal]
+red_line_underlying: single-entity-water-source-control
+files:
+  - { path: water-source-control.geojson, scope: "EU + NA", features: 20 }
+  - { path: water-source-control.json, kind: "structured extraction (human-verifiable intermediate)" }
+coverage: "20 of 20 in-scope regions ATTEMPTED; data_confidence records evidence quality. Most regions discussed water rights at least qualitatively; some only inferentially."
+processing_method: "scripts/compile_per_jurisdiction.py water-source-control reads the JSON intermediate + regions.js coords and emits the GeoJSON FeatureCollection."
+notes: "Carries red-line underlying data for single-entity water-source control (Overview decision 9). Community-commons regimes (acequia in N New Mexico, comunidade de montes in Galicia, ALR in BC) generally score low risk; prior-appropriation regimes can shut off late-priority holders in drought (Cascadia, Kootenays) which is a different risk profile than single-entity control."
+properties_schema:
+  water_rights_regime: "string"
+  water_rights_holder_type: "public_utility|private_corporate|community_commons|state|mixed|unknown"
+  single_entity_control_risk: "low|moderate|high|very_high|unknown"
+  control_risk_notes: "string"
+  drought_priority_mechanism: "string"
+  data_confidence: "high|medium|low"
+  source: "string"
+  source_url: "string"
+  gaps: "string"

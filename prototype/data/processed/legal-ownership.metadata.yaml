@@ -1,0 +1,33 @@
+# V1 processed-layer metadata (Spec Step 9 requirement)
+criterion: legal_ownership
+askja_metric: 10           # Economic & Legal Context (the r4-promoted gate criterion)
+tier: 1                    # per-jurisdiction structured layer, compiled from primary legal sources via the dossiers
+source: "Per-region legal.md dossiers; each entry carries its primary legal source (national statute / regulator) in its `source` property"
+source_url: "data/research-dossier/<id>/legal.md (intermediate); see per-feature `source_url` for primary"
+vintage: "2026-05 compilation; per-feature regulatory_notes carry the latest known change"
+license: "Research dossiers internal; underlying primary sources carry their own licenses (typically open government)"
+native_unit: "per-jurisdiction (point at region centroid)"
+time_framing: "state + trajectory"
+state: "current ownership / collective-form / residency / preemption / planning regime per region"
+trajectory: "per-feature regulatory_direction enum (stable|tightening|loosening|volatile)"
+sovereignty_axes: [legal]
+red_line_underlying: collective-ownership-legality
+files:
+  - { path: legal-ownership.geojson, scope: "EU + NA", features: 20 }
+  - { path: legal-ownership.json, kind: "structured extraction (human-verifiable intermediate)" }
+coverage: "20 of 20 in-scope regions = 100% per-jurisdiction completeness. Per-jurisdiction qualitative criteria use completeness rather than areal coverage (see coverage-report.md three-way metric)."
+processing_method: "scripts/compile_legal_ownership.py reads the legal-ownership.json intermediate + regions.js coords and emits the GeoJSON FeatureCollection. The JSON intermediate is extracted from the dossier legal.md files (LLM-assisted; the JSON is the human-verifiable artifact per Spec Step 4)."
+notes: "Carries red-line underlying data for collective-ownership legality (Overview decision 9). r4 Finding 1a delivered: legal/ownership now exists as a first-class V1 layer rather than buried mid-list."
+properties_schema:
+  foreign_ownership: { allowed: "yes|restricted|no", notes: "string" }
+  collective_ownership_path: "string"
+  multi_household_residence_as_of_right: "yes|no|conditional"
+  residency_required_for_purchase: "yes|no|conditional"
+  preemption_or_first_claim_holders: "array of strings"
+  planning_gate_for_living: "string"
+  key_legal_restriction: "string"
+  regulatory_direction: "stable|tightening|loosening|volatile"
+  regulatory_notes: "string"
+  source: "string (primary legal source)"
+  source_url: "string"
+  gaps: "string (anything the dossier did not cover)"

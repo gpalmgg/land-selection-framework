@@ -1,0 +1,453 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "source": "Per-region dossiers (water.md / legal.md); each entry carries its primary water-rights citation where available",
+    "source_url": "data/research-dossier/<id>/{water,legal}.md",
+    "vintage": "2026-05 compilation",
+    "native_unit": "per-jurisdiction (point at region centroid)",
+    "license": "Research dossiers internal; underlying primary sources (water-rights statutes, regulator docs) carry their own licenses",
+    "note": "Carries red-line underlying data for single-entity water-source control (Overview decision 9). Community-commons regimes (acequia in N New Mexico, comunidade de montes in Galicia, ALR in BC) generally score low risk; prior-appropriation regimes can shut off late-priority holders in drought (Cascadia, Kootenays) which is a different risk profile than single-entity control."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.9,
+          38.6
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "EU WFD implementation via Portuguese public dominion (DPH); ARH regional water authority licences boreholes",
+        "water_rights_holder_type": "state",
+        "single_entity_control_risk": "moderate",
+        "control_risk_notes": "Water in Alqueva-served areas is contractually allocated; outside Alqueva, boreholes require ARH (regional water authority) authorisation, with state as primary gatekeeper.",
+        "drought_priority_mechanism": "public-utility/state-managed allocation (Alqueva contracts; ARH authorisations)",
+        "data_confidence": "medium",
+        "source": "APA Plano de Gestao de Regiao Hidrografica Alentejo (2022-2027); Alentejo legal dossier",
+        "source_url": "https://apambiente.pt/agua/pgrh-alentejo",
+        "gaps": "Dossier does not name a single private/corporate operator controlling supply; precise allocation rules of Alqueva concession not detailed.",
+        "region_id": "alentejo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4,
+          42.9
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "EU WFD implementation via Spanish public dominion; Plan Hidrologico Galicia-Costa; community traidas vecinales tradition",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "Galicia's community-water tradition (traidas vecinales) is a culturally established and legally recognised model that maps directly onto cohousing and ecovillage water-governance designs.",
+        "drought_priority_mechanism": "state hydrological-plan abstraction controls plus communal traida governance",
+        "data_confidence": "high",
+        "source": "Plan Hidrologico Galicia-Costa, third cycle (2023); Community-owned rural water supplies in Galicia (2021)",
+        "source_url": "https://www.lamoncloa.gob.es/lang/en/gobierno/councilministers/paginas/2023/20230124_council.aspx",
+        "gaps": "Dossier does not quantify share of supply under community vs state regime.",
+        "region_id": "galicia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.0,
+          46.0
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "EU WFD implementation via Romanian state water authority (Apele Romane); traditional hand-dug wells and springs at parcel level",
+        "water_rights_holder_type": "state",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "Traditional rural water access in the region is dominated by hand-dug wells (often 3-8 m deep) and natural springs, both of which remain reliable in most communes.",
+        "drought_priority_mechanism": "state-managed via ANM/Apele Romane; localised self-supply via wells and springs",
+        "data_confidence": "medium",
+        "source": "ANM Apele Romane water resources reports; ICPDR Romania profile",
+        "source_url": "https://rowater.ro/",
+        "gaps": "Dossier does not detail formal water-rights priority or any concession holders.",
+        "region_id": "transylvania"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.4,
+          53.0
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "EU WFD implementation via Irish EPA; private boreholes and springs at parcel level; Uisce Eireann public mains",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "Rainwater harvesting from a 200 m2 roof captures roughly 240,000-480,000 L/year, comfortably above any plausible household demand; spring/well plus rainwater is the canonical self-supply pattern.",
+        "drought_priority_mechanism": "public-utility-managed mains; abundant rainfall removes priority-rationing pressure",
+        "data_confidence": "medium",
+        "source": "EPA Ireland Drinking Water Quality Reports; Geological Survey Ireland",
+        "source_url": "https://www.epa.ie/our-services/monitoring--assessment/drinking-water/",
+        "gaps": "Dossier does not explicitly describe the abstraction-licensing regime.",
+        "region_id": "connemara"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.9,
+          51.85
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "EU WFD implementation via NRW abstraction regime; Welsh Water mains; One Planet Development requires on-site supply",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "OPD policy framework actively requires practitioners to engineer rainwater harvesting and on-site wastewater treatment to high standards as part of the planning approval pathway.",
+        "drought_priority_mechanism": "public-utility-managed (Welsh Water) plus mandated on-site self-supply under TAN 6",
+        "data_confidence": "medium",
+        "source": "Welsh Government TAN 6 Planning for Sustainable Rural Communities (2010); BGS Hydrogeology of Wales",
+        "source_url": "https://www.gov.wales/technical-advice-note-tan-6-planning-sustainable-rural-communities",
+        "gaps": "Dossier does not detail private-ownership concentration in Welsh Water successor structure.",
+        "region_id": "pembrokeshire"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.85,
+          44.2
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "French Code de l'environnement public-dominion regime; water rights tied to land (bealieres and spring rights); Parc national constraints",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "moderate",
+        "control_risk_notes": "Cevennes water-politics are notoriously contested; downstream agricultural and tourist demand drives abstraction conflicts and Parc national des Cevennes biosphere reserve regulations constrain any large-scale abstraction or impoundment.",
+        "drought_priority_mechanism": "state prefectoral arretes secheresse plus historic bealiere allocations",
+        "data_confidence": "medium",
+        "source": "BRGM Groundwater monitoring; Parc national des Cevennes Charte",
+        "source_url": "https://www.brgm.fr/en/state-groundwater-monitoring-brgm",
+        "gaps": "Dossier does not quantify the share of contested abstraction held by single agricultural or tourist operators.",
+        "region_id": "cevennes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.35,
+          46.5
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "EU WFD implementation via Provincia Autonoma di Bolzano; historic Wasserrechte attached to parcels; Waale gravity-irrigation commons",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "Historic spring or Waale rights are valuable, legally durable, and not transferable without due process; the Waale network is a communally maintained centuries-old irrigation system.",
+        "drought_priority_mechanism": "provincial water-rights administration plus Waale rotational allocations",
+        "data_confidence": "high",
+        "source": "Provincia Autonoma di Bolzano Ufficio Idrografico; EURAC Alpine Environment Institute",
+        "source_url": "https://wetter.provinz.bz.it/",
+        "gaps": "Dossier does not enumerate concentration risk in provincial hydropower concessions.",
+        "region_id": "south-tirol"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.85,
+          43.3
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "EU WFD implementation via Confederacion Hidrografica del Cantabrico (Spanish state public dominion)",
+        "water_rights_holder_type": "state",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "Spain's Third Cycle Hydrological Plans for the Cantabrian basin (2022-2027) tighten abstraction controls and emphasise ecological-flow protection; abundant precipitation and many small springs reduce concentration risk.",
+        "drought_priority_mechanism": "state-managed via Confederacion Hidrografica del Cantabrico ecological-flow priorities",
+        "data_confidence": "medium",
+        "source": "Confederacion Hidrografica del Cantabrico; Plan Hidrologico Demarcacion Cantabrico Occidental",
+        "source_url": "https://www.chcantabrico.es/",
+        "gaps": "Dossier does not discuss municipal water company structures or concessions.",
+        "region_id": "asturias"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.6,
+          51.95
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "EU WFD implementation via German Wasserhaushaltsgesetz; Wasserrechte and Brunnenanzeige codified at Land level",
+        "water_rights_holder_type": "state",
+        "single_entity_control_risk": "moderate",
+        "control_risk_notes": "Groundwater levels are dropping after consecutive dry summers (2018, 2019, 2020, 2022); long-term resilience favours diversified supply (well plus roof catchment plus dedicated greywater recycling), and rural Saxony-Anhalt regulatory navigation requires fluent local engagement.",
+        "drought_priority_mechanism": "state-permit Wasserrechte regime with groundwater-protection priority",
+        "data_confidence": "medium",
+        "source": "Umweltbundesamt Water Resources in Germany; DWD",
+        "source_url": "https://www.umweltbundesamt.de/en/topics/water",
+        "gaps": "Dossier does not name large private agricultural irrigators that might concentrate abstraction.",
+        "region_id": "saxony-anhalt"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.0,
+          58.6
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "EU WFD implementation via Estonian Environment Agency; state-managed public waters under recent forest and water policy",
+        "water_rights_holder_type": "state",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "Mainland southeast Estonia offers near-textbook freshwater resilience with high precipitation, deep glacial aquifers, abundant springs, and a culturally normal pattern of hand-dug wells and shallow boreholes.",
+        "drought_priority_mechanism": "state-administered abstraction permits; Saaremaa limestone karst yields locally variable",
+        "data_confidence": "medium",
+        "source": "Estonian Environment Agency Keskkonnaagentuur water resources data",
+        "source_url": "https://kaur.ee/en",
+        "gaps": "Dossier does not detail formal abstraction-licensing priority or any private concession holders.",
+        "region_id": "estonia-rural"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.0,
+          44.5
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "Oregon prior appropriation doctrine (first in time, first in right)",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "moderate",
+        "control_risk_notes": "Water rights in Oregon operate under a prior-appropriation doctrine which matters critically for any settlement drawing surface water or large-volume groundwater; historic water rights on farm properties may be appurtenant to the land and are valuable and transferable.",
+        "drought_priority_mechanism": "first-in-time first-in-right; domestic-use exemption up to 15,000 gallons/day under ORS 537.545",
+        "data_confidence": "high",
+        "source": "Oregon Water Resources Department Groundwater Resources (2022); Oregon Revised Statutes 537.545",
+        "source_url": "https://www.oregon.gov/owrd/programs/groundwater/Pages/default.aspx",
+        "gaps": "Dossier does not name specific senior irrigation district holders in target sub-basins.",
+        "region_id": "cascadia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.7,
+          44.0
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "Riparian-derived common law; Vermont ANR Streamflow Protection Program; lightly regulated spring and well development",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "Spring and well development is lightly regulated in Vermont; rainwater harvesting is legal and common, and water availability is rarely a problem in forests of the humid, temperate northeastern US.",
+        "drought_priority_mechanism": "state in-stream flow protection; abundant precipitation removes priority rationing pressure",
+        "data_confidence": "medium",
+        "source": "Vermont Agency of Natural Resources Streamflow Protection Program; USGS Sleepers River FS-166-99 (1999)",
+        "source_url": "https://dec.vermont.gov/watershed/rivers/streamflow-protection",
+        "gaps": "Dossier does not detail any large private water-utility concentration.",
+        "region_id": "vermont"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.6,
+          35.6
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "North Carolina riparian rights doctrine; groundwater wells permitted by NC Division of Water Resources with no allocation permit for domestic use",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "NC follows the riparian rights doctrine; landowners with property adjoining a stream have the right to make reasonable use of the water; groundwater allows landowners to drill wells on their own property with no allocation permit required for domestic use.",
+        "drought_priority_mechanism": "riparian reasonable-use rule; no prior appropriation",
+        "data_confidence": "high",
+        "source": "NC Division of Water Resources Water Wells and Groundwater Use; WRI Aqueduct 4.0",
+        "source_url": "https://deq.nc.gov/about/divisions/water-resources/water-resources-permits/wastewater-branch/water-supply-well-permits",
+        "gaps": "Dossier does not enumerate municipal-utility concession structures around Asheville.",
+        "region_id": "southern-appalachians"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.8,
+          43.5
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "Wisconsin riparian rights for surface water; groundwater well permits via WI DNR; karst aquifer at parcel scale",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "Private wells dominate the rural water-supply picture and use-value assessment plus minimal allocation barriers leave control highly distributed; primary risk is karst-conveyed nitrate from neighbouring CAFOs rather than corporate water capture.",
+        "drought_priority_mechanism": "riparian reasonable-use rule plus state well-permitting; spring-fed cold-water streams maintain year-round flow",
+        "data_confidence": "medium",
+        "source": "Wisconsin Groundwater Coordinating Council 2024 Report; USGS streamflow trends",
+        "source_url": "https://dnr.wisconsin.gov/newsroom/release/98396",
+        "gaps": "Dossier does not detail formal abstraction-licensing priority for large irrigators.",
+        "region_id": "driftless"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.8,
+          36.3
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "Arkansas riparian doctrine for surface water; groundwater regulated by Arkansas Natural Resources Commission with minimal permitting for domestic use",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "moderate",
+        "control_risk_notes": "Karst aquifers respond to land use changes kilometres away, and conventional farming or development upstream can reach a spring head within years; CAFO contamination (nitrates, E. coli) is documented in northwest Arkansas karst systems near Benton/Washington counties.",
+        "drought_priority_mechanism": "riparian reasonable-use rule; rainwater harvesting unlimited; no statewide volume cap",
+        "data_confidence": "medium",
+        "source": "USGS Professional Paper 1854 (2024); USGS Springs of the Ozark Physiographic Province",
+        "source_url": "https://www.usgs.gov/publications/groundwater-availability-ozark-plateaus-aquifer-system",
+        "gaps": "Dossier does not name specific corporate CAFO operators or quantify their share of abstraction.",
+        "region_id": "ozarks"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.6,
+          36.4
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "Prior appropriation doctrine; acequia community commons under NM Stat. 73-2-28; NM Office of the State Engineer adjudication",
+        "water_rights_holder_type": "community_commons",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "Acequia associations have statutory authority to veto water right transfers into or out of their ditch systems; acequia culture is the deepest living expression of commons-based water management in North America, governed by elected mayordomo and commissioners.",
+        "drought_priority_mechanism": "first-in-time first-in-right plus rotational acequia limpia; Upper Rio Grande fully appropriated with junior rights curtailed first",
+        "data_confidence": "high",
+        "source": "New Mexico Statutes 73-2-28 (2025); NM Office of the State Engineer Water Rights Division; New Mexico Water Advocates (2025)",
+        "source_url": "https://law.justia.com/codes/new-mexico/chapter-73/article-2/section-73-2-28/",
+        "gaps": "Dossier does not assess specific risk of senior-rights consolidation by external buyers within named acequias.",
+        "region_id": "northern-new-mexico"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.0,
+          45.4
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "Nova Scotia Water Resources Protection Act (2019, consolidated); provincial licence required above 23,000 L/day; private wells dominant",
+        "water_rights_holder_type": "state",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "Surface water rights are administered under the Water Resources Protection Act (2019) and taking water from surface sources requires a provincial licence for volumes exceeding 23,000 L/day; 42% of Nova Scotians rely on private wells, leaving control highly distributed.",
+        "drought_priority_mechanism": "provincial licence threshold plus emerging mandatory water conservation orders (2024 drought)",
+        "data_confidence": "medium",
+        "source": "Nova Scotia Government Surface Water and Groundwater Availability resource pages",
+        "source_url": "https://novascotia.ca/nse/surface.water/surfacewaterNS.asp",
+        "gaps": "Dossier does not name any large industrial or agricultural licensees that might concentrate abstraction.",
+        "region_id": "nova-scotia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0,
+          49.5
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "BC Water Sustainability Act (2016); prior-appropriation licences administered provincially",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "high",
+        "control_risk_notes": "Water licences are the second trap: Kootenay rivers and streams have existing licence holders (irrigation districts, municipalities, industry), and late-priority licences can be shut off in drought years.",
+        "drought_priority_mechanism": "first-in-time first-in-right under Water Sustainability Act; provincial drought-level curtailment of junior licences",
+        "data_confidence": "high",
+        "source": "BC Water Sustainability Act 2016; BC Drought Information Portal; Kootenays legal dossier",
+        "source_url": "https://www2.gov.bc.ca/gov/content/environment/air-land-water/water/drought-flooding-dikes-dams/drought-information",
+        "gaps": "Dossier does not enumerate specific senior licensees by sub-basin.",
+        "region_id": "kootenays"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0,
+          45.4
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "Quebec public-dominion water under MELCCFP; Quebec Water Strategy 2018-2030; municipal supply from Lake Memphremagog",
+        "water_rights_holder_type": "public_utility",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "Lake Memphremagog is the primary drinking-water source for Sherbrooke (population ~172,000); municipal water security is classified as high by the Quebec Ministry of Environment; rural settlements typically use private fractured-rock wells with high success rates.",
+        "drought_priority_mechanism": "public-utility-managed reservoirs (18 managed reservoirs in Saint-Francois watershed); abundant precipitation minimises priority rationing",
+        "data_confidence": "medium",
+        "source": "MELCCFP Quebec's Water resource page; Quebec Water Strategy 2018-2030",
+        "source_url": "https://www.environnement.gouv.qc.ca/eau/inter_en.htm",
+        "gaps": "Dossier does not detail private bottled-water or agricultural-irrigation concession holders.",
+        "region_id": "quebec-eastern-townships"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.7,
+          17.1
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "Communal water under ejido and usos y costumbres; Conagua federal licensing in private-title contexts; no formal water rights in most comunal territories",
+        "water_rights_holder_type": "community_commons",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "Water use is governed internally by ejido/comunal assembly rules, not by Conagua licences, which can be an advantage or a vulnerability depending on community relations; cloud-forest catchments at elevation yield year-round spring flow.",
+        "drought_priority_mechanism": "comunal assembly allocation in usos-y-costumbres territories; Conagua licences elsewhere; gravity-fed spring systems with 90-day reservoir capacity as baseline",
+        "data_confidence": "medium",
+        "source": "Conagua Statistics on Water in Mexico (2017 edition); SIPAZ Facts about Oaxaca",
+        "source_url": "https://www.conagua.gob.mx/CONAGUA07/Publicaciones/Publicaciones/SGP-6-10-EAM2010Ingles.pdf",
+        "gaps": "Dossier does not document specific cases of corporate water capture in highland comunas; Atoyac contamination affects valley supply but not directly described as single-entity control.",
+        "region_id": "oaxaca"
+      }
+    }
+  ]
+}

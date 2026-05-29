@@ -1,0 +1,33 @@
+# V1 processed-layer metadata (Spec Step 9 requirement)
+criterion: demographic_trajectory
+askja_metric: 1            # Geopolitical & Institutional Resilience (the explicit Spec Step 1 gap-candidate)
+tier: 1                    # per-jurisdiction structured layer
+source: "Per-region dossiers (accessibility.md / regen.md / stability.md / climate.md); each entry carries its primary citation where available in its `source` property"
+source_url: "data/research-dossier/<id>/{accessibility,regen,stability,climate}.md"
+vintage: "2026-05 compilation"
+license: "Research dossiers internal; underlying primary sources carry their own licenses"
+native_unit: "per-jurisdiction (point at region centroid)"
+time_framing: "state + trajectory"
+state: "population trend + median age band + migration dynamic + rural density signal per region"
+trajectory: "per-feature population_trend enum (growing|stable|declining|volatile|unknown)"
+sovereignty_axes: [social]
+red_line_underlying: none
+files:
+  - { path: demographic-trajectory.geojson, scope: "EU + NA", features: 20 }
+  - { path: demographic-trajectory.json, kind: "structured extraction (human-verifiable intermediate)" }
+coverage: "20 of 20 in-scope regions ATTEMPTED; per-feature data_confidence records evidence strength. Demographic data was scattered in dossiers, not a structured section, so honest sparsity is expected."
+processing_method: "scripts/compile_per_jurisdiction.py demographic-trajectory reads the JSON intermediate + regions.js coords and emits the GeoJSON FeatureCollection."
+notes: "Delivers the Spec Step 1 explicit gap-candidate (Overview Open Q3 / Spec Step 1 top-down review). Population/demographic dimensions added under metric #1 as r4 proposed."
+properties_schema:
+  population_trend: "growing|stable|declining|volatile|unknown"
+  population_trend_notes: "string"
+  median_age_band: "young|moderate|aging|aging_fast|unknown"
+  median_age_notes: "string"
+  migration_dynamic: "net_in|stable|net_out|mixed|unknown"
+  migration_notes: "string"
+  rural_density_signal: "very_low|low|moderate|moderate_high|high|unknown"
+  rural_density_notes: "string"
+  data_confidence: "high|medium|low"
+  source: "string"
+  source_url: "string"
+  gaps: "string"

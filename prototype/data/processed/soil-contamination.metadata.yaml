@@ -1,0 +1,30 @@
+# V1 processed-layer metadata (Spec Step 9 requirement)
+criterion: soil_contamination
+askja_metric: 5            # Land & Ecology (red-line underlying: soil contamination requiring 5+ yr remediation)
+tier: 1                    # per-jurisdiction structured layer; THIN — honest sparsity expected
+source: "Per-region dossiers (legal.md / water.md / soil.md); contamination data was NOT a structured research focus, so the layer captures regulatory regime + known signals only"
+source_url: "data/research-dossier/<id>/{legal,water,soil}.md"
+vintage: "2026-05 compilation"
+license: "Research dossiers internal; underlying primary sources (national contamination registers) carry their own licenses"
+native_unit: "per-jurisdiction (point at region centroid)"
+time_framing: "state"
+state: "regulatory regime + register-availability + known contamination signal + due-diligence burden per region"
+trajectory: "null in V1; contamination signals change slowly"
+sovereignty_axes: [material]
+red_line_underlying: soil-contamination-needing-5yr-remediation
+files:
+  - { path: soil-contamination.geojson, scope: "EU + NA", features: 20 }
+  - { path: soil-contamination.json, kind: "structured extraction (human-verifiable intermediate)" }
+coverage: "20 of 20 in-scope regions ATTEMPTED; layer is expected to be HEAVY on 'unknown' and 'low data_confidence' because the dossiers did not systematically research contamination. Known signals (Asturias legacy mining, Driftless nitrate, etc.) are captured where the dossier surfaced them."
+processing_method: "scripts/compile_per_jurisdiction.py soil-contamination reads the JSON intermediate + regions.js coords and emits the GeoJSON FeatureCollection."
+notes: "Carries red-line underlying data for soil-contamination-needing-5yr-remediation (Overview decision 9). V1 ships a thin honest version (regulatory regime + known signals); V2 would integrate national contamination registers (BASIAS/BASOL France, EPA Superfund US, Bundes-Bodenschutzgesetz Germany registers, etc.) for direct register hits per parcel."
+properties_schema:
+  contamination_regulatory_regime: "string"
+  contamination_register_availability: "public|partial|opaque|unknown"
+  known_contamination_signal: "none_documented|legacy_industrial|legacy_mining|legacy_agriculture|complex|unknown"
+  known_contamination_notes: "string"
+  due_diligence_burden: "low|moderate|high|very_high|unknown"
+  data_confidence: "high|medium|low"
+  source: "string"
+  source_url: "string"
+  gaps: "string"
