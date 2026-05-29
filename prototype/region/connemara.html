@@ -51,6 +51,28 @@
   .region-nav a:hover{background:var(--paper-2);} .region-nav span{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:2px;}
   footer{padding:40px 0 70px;} footer p{font-size:11.5px;color:var(--ink-3);max-width:70ch;line-height:1.6;}
   @media(max-width:600px){ th[scope=row]{width:auto;display:block;} td{display:block;border-top:none;padding:2px 0;} tr{display:block;border-top:1px solid var(--rule);padding:12px 0;} }
+
+  /* V1 layer sections (the r4 round's per-jurisdiction data) */
+  .v1-lead{font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--ink-3);max-width:62ch;margin:0 0 22px;}
+  .v1-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .v1-card{background:var(--paper);padding:20px 22px 18px;}
+  .v1-card-h{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .v1-kv{margin:0;padding:0;font-size:13.5px;}
+  .v1-kv > div{padding:7px 0;border-bottom:1px dotted var(--rule);display:flex;flex-direction:column;gap:3px;}
+  .v1-kv > div:last-child{border-bottom:none;}
+  .v1-kv dt{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0;}
+  .v1-kv dd{font-family:'Spectral',serif;font-size:14px;color:var(--ink);margin:0;line-height:1.45;}
+  .v1-kv dd em{color:var(--ink-2);font-style:italic;}
+  .v1-note{font-size:12px;color:var(--ink-3);font-family:'Spectral',serif;font-style:italic;}
+  .v1-src{font-size:11.5px;color:var(--ink-3);margin:14px 0 0;font-family:'Inter',sans-serif;}
+  .v1-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .badge{display:inline-block;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);margin-right:6px;}
+  /* Semantic badge tints — read at a glance, never numeric, never scoring. */
+  .badge-yes,.badge-passes,.badge-low,.badge-stable,.badge-community_commons,.badge-net_in,.badge-growing,.badge-cheapest,.badge-young,.badge-none_documented{background:#e8efe5;color:#3a5a3a;border-color:#bcd1b5;}
+  .badge-no,.badge-fails,.badge-very_high,.badge-aging_fast,.badge-net_out,.badge-declining,.badge-very_premium,.badge-tightening,.badge-rising_fast,.badge-legacy_industrial,.badge-legacy_mining,.badge-complex{background:#f3e5e2;color:#6a2a1a;border-color:#cfa89e;}
+  .badge-restricted,.badge-conditional,.badge-moderate,.badge-high,.badge-aging,.badge-mixed,.badge-premium,.badge-rising,.badge-volatile,.badge-legacy_agriculture,.badge-public_utility,.badge-state{background:#f0e8d2;color:#6a5a2a;border-color:#cdbf95;}
+  .badge-unknown,.badge-low_data{background:#ede9e0;color:#7a716a;border-color:#cdc6ba;}
+  @media(max-width:760px){.v1-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -72,6 +94,120 @@
         <p>This region has a full case study in the deeper material.</p>
         <p><a href="/deeper.html#connemara">Read the full case study &rarr;</a></p>
       </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>The first gate, legal and cost</h2>
+        <p class="v1-lead">Across the slate the data shows these two as the decisive constraints, more often than soil, climate or water. They sit before everything else.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Legal &amp; ownership</div>
+      <dl class="v1-kv">
+        <div><dt>Foreign ownership</dt><dd><span class="badge badge-yes">yes</span> <span class="v1-note">Ireland places no nationality restriction on land ownership; non-EU buyers acquire on the same terms as Irish or EU citizens with no minimum residency or government approval.</span></dd></div>
+        <div><dt>Collective ownership path</dt><dd>Cooperative Society (Industrial and Provident Societies Acts 1893 to 2021), Company Limited by Guarantee, or Charity (Charities Act 2009); Cloughjordan-style Co-op plus development company is the replicable model</dd></div>
+        <div><dt>Multi-household residence as-of-right</dt><dd><span class="badge badge-no">no</span></dd></div>
+        <div><dt>Planning gate for living</dt><dd>County Council planning permission under the Cork or Galway County Development Plan 2022 to 2028, with Udaras na Gaeltachta language-commitment input in Gaeltacht areas</dd></div>
+        
+        <div><dt>Key restriction</dt><dd><em>Cork and Galway County Councils operate strict one-off rural-housing policies requiring demonstrated local need or family connection, and Gaeltacht applications may require Irish-language competence.</em></dd></div>
+        <div><dt>Regulatory direction</dt><dd><span class="badge badge-stable">stable</span> <span class="v1-note">Tailte Eireann merger of PRAI and Valuation Office took effect April 2023; rural housing policy under current CDPs remains the binding constraint.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.corkcoco.ie/en/resident/planning/development-plan" target="_blank" rel="noopener">Cork County Development Plan 2022 to 2028</a></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Land cost</div>
+      <dl class="v1-kv">
+        <div><dt>Price per ha</dt><dd class="mono"><strong>17,360–44,200 EUR</strong> <span class="v1-note">(2024)</span></dd></div>
+        <div><dt>Affordability band</dt><dd><span class="badge badge-moderate">moderate</span></dd></div>
+        <div><dt>Appreciation trajectory</dt><dd><span class="badge badge-rising_fast">rising_fast</span> <span class="v1-note">National YoY change 2023 to 2024 +10.3% per CSO Ireland.</span></dd></div>
+        <div><dt>Detail</dt><dd>West region (Galway/Mayo/Roscommon) median 7027 EUR/acre (~17360 EUR/ha), Ireland's most affordable; Cork region 17875 EUR/acre (~44200 EUR/ha); national median 9988 EUR/acre (~24680 EUR/ha); marginal Connemara mountain/bog often below 5000 EUR/acre. Per-acre to per-ha via /0.4047.</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.cso.ie/en/releasesandpublications/ep/p-alp/agriculturallandprices2024/keyfindings/" target="_blank" rel="noopener">CSO Ireland Agricultural Land Prices 2024 (released November 2025); SCSI/Teagasc Agricultural Land Market Review 2024 to 2025</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Practical fit</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Hospital access</div>
+      <dl class="v1-kv">
+        <div><dt>Nearest hospital</dt><dd class="mono"><strong>9.1 km</strong> <span class="v1-note">geodesic, see caveat</span></dd></div>
+        <div><dt>Hospitals within 50 km</dt><dd class="mono">9</dd></div>
+        <div><dt>Hospitals within 100 km</dt><dd class="mono">32</dd></div>
+        <div><dt>60-minute proxy</dt><dd><span class="badge badge-yes">passes</span></dd></div>
+      </dl>
+      <p class="v1-src"><em>Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower.</em></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Demographics</div>
+      <dl class="v1-kv">
+        <div><dt>Population trend</dt><dd><span class="badge badge-mixed">mixed</span> <span class="v1-note">West Cork experienced significant in-migration through 2020-2024; Connemara Gaeltacht core declining slowly but supported by Udaras na Gaeltachta investment.</span></dd></div>
+        <div><dt>Median age band</dt><dd><span class="badge badge-moderate">moderate</span> <span class="v1-note">Median age in rural West Cork 2022: ~42 years; Connemara Gaeltacht core: ~43 years per CSO Census 2022.</span></dd></div>
+        <div><dt>Migration dynamic</dt><dd><span class="badge badge-mixed">mixed</span> <span class="v1-note">West Cork net positive driven by remote-work and lifestyle migration; Connemara Gaeltacht core net negative slowly.</span></dd></div>
+        <div><dt>Rural density</dt><dd><span class="badge badge-low">low</span> <span class="v1-note">West Cork ~29 inhabitants/km2 and Connemara/Galway West ~22 inhabitants/km2 per CSO Census 2022, vs Ireland national ~73/km2.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.cso.ie/en/census/census2022/" target="_blank" rel="noopener">accessibility.md, CSO Ireland Census 2022</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Field reality, water and soil</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Water source control</div>
+      <dl class="v1-kv">
+        <div><dt>Rights regime</dt><dd>EU WFD implementation via Irish EPA; private boreholes and springs at parcel level; Uisce Eireann public mains</dd></div>
+        <div><dt>Holder type</dt><dd><span class="badge badge-mixed">mixed</span></dd></div>
+        <div><dt>Single-entity control risk</dt><dd><span class="badge badge-low">low</span> <span class="v1-note">Rainwater harvesting from a 200 m2 roof captures roughly 240,000-480,000 L/year, comfortably above any plausible household demand; spring/well plus rainwater is the canonical self-supply pattern.</span></dd></div>
+        <div><dt>Drought-priority mechanism</dt><dd>public-utility-managed mains; abundant rainfall removes priority-rationing pressure</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.epa.ie/our-services/monitoring--assessment/drinking-water/" target="_blank" rel="noopener">EPA Ireland Drinking Water Quality Reports; Geological Survey Ireland</a> · confidence: <strong>medium</strong></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Soil contamination</div>
+      <dl class="v1-kv">
+        <div><dt>Known signal</dt><dd><span class="badge badge-legacy_agriculture">legacy_agriculture</span> <span class="v1-note">water.md notes microbial contamination from poorly managed septic systems and peat-staining as primary private-supply quality issues; EPA Drinking Water Quality reports flag west-coast private supplies as country's main quality concern.</span></dd></div>
+        <div><dt>Due-diligence burden</dt><dd><span class="badge badge-moderate">moderate</span></dd></div>
+        
+        <div><dt>Known data gaps</dt><dd><em>No Irish soil-contamination statute or public register cited; no industrial legacy signals explored.</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: EPA Ireland Drinking Water Quality reports as cited in Connemara water.md · confidence: <strong>low</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Climate buffering</h2>
+        <p class="v1-lead">Structural microclimate features that hold the place steady, paired with how fast warming is eroding them. State plus trajectory, per the framework.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Buffering features (state)</div>
+      <dl class="v1-kv">
+        <div><dt>Primary features</dt><dd><span class="badge">coastal moderation</span> <span class="badge">peat water storage</span></dd></div>
+        
+        <div><dt>Buffering strength</dt><dd><span class="badge badge-neutral">very_high</span></dd></div>
+        <div><dt>Detail</dt><dd>Climate.md describes Atlantic-maritime climate that drifts rather than transforms with no projected heat-stress regime change; water.md and soil.md document blanket peat storing 240 to 3000+ t C/ha with order-of-magnitude reliable summer flow.</dd></div>
+      </dl>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Trajectory under warming</div>
+      <dl class="v1-kv">
+        <div><dt>Direction</dt><dd><span class="badge badge-stable">stable</span> <span class="v1-note">Projected +0.7 to 1.5C by mid-century, one of the slowest-warming European candidates; no projected drought, heat, or fire regime change.</span></dd></div>
+        <div><dt>Primary vulnerability</dt><dd><em>Atlantic storm intensification and AMOC-shift tail risk</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.epa.ie/publications/research/climate-change/research-471-updated-high-resolution-climate-projections-for-ireland.php" target="_blank" rel="noopener">EPA Research 471 (2023); Met Eireann 2024; ICHEC 2023; WorldClim CMIP6 v2.1</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
 
   <section>
     <div class="wrap">

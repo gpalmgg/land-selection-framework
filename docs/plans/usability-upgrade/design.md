@@ -39,7 +39,7 @@ Turn the live prototype (land-selection-framework.vercel.app, 20 regions across 
 
 ### 3.4 Actionable next step on results *(close the loop)*
 - On the match bar, when regions pass the active thresholds: a contextual next-step row — *"N regions meet your criteria → [What they ask of you] · [Share this view] · [Talk to The Collective]."*
-- "Share this view" rides the existing URL state (thresholds + shortlist + continent). "Talk to The Collective" = existing contact (hello@islands-of-coherence.com). "What they ask of you" opens the first passing region's drawer (3.2).
+- "Share this view" rides the existing URL state (thresholds + shortlist + continent). "Talk to The Collective" = existing contact (gustaf@islands-of-coherence.com). "What they ask of you" opens the first passing region's drawer (3.2).
 
 ## 4. Build staging (phaseable; all four are in scope)
 

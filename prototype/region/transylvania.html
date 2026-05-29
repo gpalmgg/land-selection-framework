@@ -51,6 +51,28 @@
   .region-nav a:hover{background:var(--paper-2);} .region-nav span{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:2px;}
   footer{padding:40px 0 70px;} footer p{font-size:11.5px;color:var(--ink-3);max-width:70ch;line-height:1.6;}
   @media(max-width:600px){ th[scope=row]{width:auto;display:block;} td{display:block;border-top:none;padding:2px 0;} tr{display:block;border-top:1px solid var(--rule);padding:12px 0;} }
+
+  /* V1 layer sections (the r4 round's per-jurisdiction data) */
+  .v1-lead{font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--ink-3);max-width:62ch;margin:0 0 22px;}
+  .v1-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .v1-card{background:var(--paper);padding:20px 22px 18px;}
+  .v1-card-h{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .v1-kv{margin:0;padding:0;font-size:13.5px;}
+  .v1-kv > div{padding:7px 0;border-bottom:1px dotted var(--rule);display:flex;flex-direction:column;gap:3px;}
+  .v1-kv > div:last-child{border-bottom:none;}
+  .v1-kv dt{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0;}
+  .v1-kv dd{font-family:'Spectral',serif;font-size:14px;color:var(--ink);margin:0;line-height:1.45;}
+  .v1-kv dd em{color:var(--ink-2);font-style:italic;}
+  .v1-note{font-size:12px;color:var(--ink-3);font-family:'Spectral',serif;font-style:italic;}
+  .v1-src{font-size:11.5px;color:var(--ink-3);margin:14px 0 0;font-family:'Inter',sans-serif;}
+  .v1-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .badge{display:inline-block;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);margin-right:6px;}
+  /* Semantic badge tints — read at a glance, never numeric, never scoring. */
+  .badge-yes,.badge-passes,.badge-low,.badge-stable,.badge-community_commons,.badge-net_in,.badge-growing,.badge-cheapest,.badge-young,.badge-none_documented{background:#e8efe5;color:#3a5a3a;border-color:#bcd1b5;}
+  .badge-no,.badge-fails,.badge-very_high,.badge-aging_fast,.badge-net_out,.badge-declining,.badge-very_premium,.badge-tightening,.badge-rising_fast,.badge-legacy_industrial,.badge-legacy_mining,.badge-complex{background:#f3e5e2;color:#6a2a1a;border-color:#cfa89e;}
+  .badge-restricted,.badge-conditional,.badge-moderate,.badge-high,.badge-aging,.badge-mixed,.badge-premium,.badge-rising,.badge-volatile,.badge-legacy_agriculture,.badge-public_utility,.badge-state{background:#f0e8d2;color:#6a5a2a;border-color:#cdbf95;}
+  .badge-unknown,.badge-low_data{background:#ede9e0;color:#7a716a;border-color:#cdc6ba;}
+  @media(max-width:760px){.v1-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -72,6 +94,120 @@
         <p>This region has a full case study in the deeper material.</p>
         <p><a href="/deeper.html#transylvania">Read the full case study &rarr;</a></p>
       </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>The first gate, legal and cost</h2>
+        <p class="v1-lead">Across the slate the data shows these two as the decisive constraints, more often than soil, climate or water. They sit before everything else.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Legal &amp; ownership</div>
+      <dl class="v1-kv">
+        <div><dt>Foreign ownership</dt><dd><span class="badge badge-restricted">restricted</span> <span class="v1-note">EU/EEA citizens have full freehold since January 2014; non-EU individuals cannot acquire land directly absent a bilateral treaty (none exists) and must use a Romanian SRL.</span></dd></div>
+        <div><dt>Collective ownership path</dt><dd>Romanian SRL (limited company) as land-holder for non-EU groups; Asociatie (NGO Law 26/2000), Cooperativa agricola (Law 566/2004), or traditional Composesorat for forest/pasture commons</dd></div>
+        <div><dt>Multi-household residence as-of-right</dt><dd><span class="badge badge-conditional">conditional</span></dd></div>
+        <div><dt>Planning gate for living</dt><dd>Municipal primarie building permit under Romanian urbanism law (PUG / PUZ)</dd></div>
+        <div><dt>Pre-emption / first-claim holders</dt><dd>co-owners; lessees; neighbouring landowners; young farmers; Romanian state</dd></div>
+        <div><dt>Key restriction</dt><dd><em>Non-EU buyers cannot hold agricultural land in their own name and must operate through a Romanian SRL, plus Law 17/2014 imposes a 45-day pre-emption advertisement at the primarie and an 80% anti-speculation tax on resales within 8 years.</em></dd></div>
+        <div><dt>Regulatory direction</dt><dd><span class="badge badge-stable">stable</span> <span class="v1-note">Pre-emption mechanics under Law 17/2014 were amended in 2020 to add the 8-year/80% anti-speculation tax; no new tightening flagged.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://legislatie.just.ro/Public/DetaliiDocument/156631" target="_blank" rel="noopener">Legea 17/2014 (sale of agricultural land outside city limits)</a></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Land cost</div>
+      <dl class="v1-kv">
+        <div><dt>Price per ha</dt><dd class="mono"><strong>4,000–18,000 EUR</strong> <span class="v1-note">(2024)</span></dd></div>
+        <div><dt>Affordability band</dt><dd><span class="badge badge-low">low</span></dd></div>
+        <div><dt>Appreciation trajectory</dt><dd><span class="badge badge-rising">rising</span> <span class="v1-note">National rises of ~4% in 2024 and ~25 to 40% cumulative over the prior decade per INS Romania.</span></dd></div>
+        <div><dt>Detail</dt><dd>Pasture/marginal 4000 to 7000 EUR/ha; general arable 7000 to 10000 EUR/ha; top-quality irrigated Mures basin 12000 to 18000 EUR/ha; Romania national average 8656 EUR/ha.</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://insse.ro/cms/en/content/agricultural-land-prices-romania-and-eu-member-states-2024" target="_blank" rel="noopener">INS Romania Agricultural land prices 2024; PBS Worldwide / NAI Romania commentary 2025</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Practical fit</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Hospital access</div>
+      <dl class="v1-kv">
+        <div><dt>Nearest hospital</dt><dd class="mono"><strong>18 km</strong> <span class="v1-note">geodesic, see caveat</span></dd></div>
+        <div><dt>Hospitals within 50 km</dt><dd class="mono">21</dd></div>
+        <div><dt>Hospitals within 100 km</dt><dd class="mono">165</dd></div>
+        <div><dt>60-minute proxy</dt><dd><span class="badge badge-yes">passes</span></dd></div>
+      </dl>
+      <p class="v1-src"><em>Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower.</em></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Demographics</div>
+      <dl class="v1-kv">
+        <div><dt>Population trend</dt><dd><span class="badge badge-declining">declining</span> <span class="v1-note">Romania national rural population trajectory 2011-2021 was -9.6% per INS Census 2021; many rural villages have lost 30-50% of population since 1990 while Cluj-Napoca grows.</span></dd></div>
+        <div><dt>Median age band</dt><dd><span class="badge badge-aging">aging</span> <span class="v1-note">Median age in rural Transylvania 2022: ~46 years; in Cluj-Napoca 2022: ~38 years.</span></dd></div>
+        <div><dt>Migration dynamic</dt><dd><span class="badge badge-mixed">mixed</span> <span class="v1-note">Dominant emigration outflow (~3-4 million Romanians abroad); modest return migration post-2020; Saxon-village foreign-resident pockets in Sibiu and Brasov counties grew through 2023-2024.</span></dd></div>
+        <div><dt>Rural density</dt><dd><span class="badge badge-moderate">moderate</span> <span class="v1-note">Centru and Nord-Vest NUTS-II regions density ~70 inhabitants/km2 per 2022 Census, with Cluj concentration and thin rural backcountry.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.recensamantromania.ro/" target="_blank" rel="noopener">accessibility.md, INS Recensamantul Populatiei 2021</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Field reality, water and soil</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Water source control</div>
+      <dl class="v1-kv">
+        <div><dt>Rights regime</dt><dd>EU WFD implementation via Romanian state water authority (Apele Romane); traditional hand-dug wells and springs at parcel level</dd></div>
+        <div><dt>Holder type</dt><dd><span class="badge badge-state">state</span></dd></div>
+        <div><dt>Single-entity control risk</dt><dd><span class="badge badge-low">low</span> <span class="v1-note">Traditional rural water access in the region is dominated by hand-dug wells (often 3-8 m deep) and natural springs, both of which remain reliable in most communes.</span></dd></div>
+        <div><dt>Drought-priority mechanism</dt><dd>state-managed via ANM/Apele Romane; localised self-supply via wells and springs</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://rowater.ro/" target="_blank" rel="noopener">ANM Apele Romane water resources reports; ICPDR Romania profile</a> · confidence: <strong>medium</strong></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Soil contamination</div>
+      <dl class="v1-kv">
+        <div><dt>Known signal</dt><dd><span class="badge badge-complex">complex</span> <span class="v1-note">water.md notes legacy agricultural and mining contamination in specific micro-watersheds, particularly downstream of former Communist-era industrial sites; recommends verifying via regional ANM groundwater monitoring network.</span></dd></div>
+        <div><dt>Due-diligence burden</dt><dd><span class="badge badge-moderate">moderate</span></dd></div>
+        
+        <div><dt>Known data gaps</dt><dd><em>Romanian contamination law not cited, no explicit public-register URL or system named beyond ANM monitoring.</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: Transylvania water.md practitioner reading · confidence: <strong>medium</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Climate buffering</h2>
+        <p class="v1-lead">Structural microclimate features that hold the place steady, paired with how fast warming is eroding them. State plus trajectory, per the framework.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Buffering features (state)</div>
+      <dl class="v1-kv">
+        <div><dt>Primary features</dt><dd><span class="badge">altitude</span> <span class="badge">forest canopy</span></dd></div>
+        <div><dt>Altitude range</dt><dd class="mono">300-900 m</dd></div>
+        <div><dt>Buffering strength</dt><dd><span class="badge badge-neutral">moderate</span></dd></div>
+        <div><dt>Detail</dt><dd>Climate.md cites elevation, forest cover, and continental setting as providing partial buffering; high-elevation Carpathian valleys are EEA-flagged refugia.</dd></div>
+      </dl>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Trajectory under warming</div>
+      <dl class="v1-kv">
+        <div><dt>Direction</dt><dd><span class="badge badge-worsening">worsening</span> <span class="v1-note">Summer warming of +2.5 to 3.0C by 2050 over 1961-1990 baseline; heatwave frequency in Romanian lowlands roughly tripled since 1990s with uplands trending similarly.</span></dd></div>
+        <div><dt>Primary vulnerability</dt><dd><em>forest-pathogen and bark-beetle outbreaks in spruce monocultures</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://link.springer.com/book/10.1007/978-3-319-02886-6" target="_blank" rel="noopener">WorldClim CMIP6 v2.1 (2024); Bojariu et al. Springer 2014; World Bank CCKP Romania</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
 
   <section>
     <div class="wrap">

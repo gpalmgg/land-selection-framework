@@ -51,6 +51,28 @@
   .region-nav a:hover{background:var(--paper-2);} .region-nav span{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:2px;}
   footer{padding:40px 0 70px;} footer p{font-size:11.5px;color:var(--ink-3);max-width:70ch;line-height:1.6;}
   @media(max-width:600px){ th[scope=row]{width:auto;display:block;} td{display:block;border-top:none;padding:2px 0;} tr{display:block;border-top:1px solid var(--rule);padding:12px 0;} }
+
+  /* V1 layer sections (the r4 round's per-jurisdiction data) */
+  .v1-lead{font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--ink-3);max-width:62ch;margin:0 0 22px;}
+  .v1-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .v1-card{background:var(--paper);padding:20px 22px 18px;}
+  .v1-card-h{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .v1-kv{margin:0;padding:0;font-size:13.5px;}
+  .v1-kv > div{padding:7px 0;border-bottom:1px dotted var(--rule);display:flex;flex-direction:column;gap:3px;}
+  .v1-kv > div:last-child{border-bottom:none;}
+  .v1-kv dt{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0;}
+  .v1-kv dd{font-family:'Spectral',serif;font-size:14px;color:var(--ink);margin:0;line-height:1.45;}
+  .v1-kv dd em{color:var(--ink-2);font-style:italic;}
+  .v1-note{font-size:12px;color:var(--ink-3);font-family:'Spectral',serif;font-style:italic;}
+  .v1-src{font-size:11.5px;color:var(--ink-3);margin:14px 0 0;font-family:'Inter',sans-serif;}
+  .v1-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .badge{display:inline-block;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);margin-right:6px;}
+  /* Semantic badge tints — read at a glance, never numeric, never scoring. */
+  .badge-yes,.badge-passes,.badge-low,.badge-stable,.badge-community_commons,.badge-net_in,.badge-growing,.badge-cheapest,.badge-young,.badge-none_documented{background:#e8efe5;color:#3a5a3a;border-color:#bcd1b5;}
+  .badge-no,.badge-fails,.badge-very_high,.badge-aging_fast,.badge-net_out,.badge-declining,.badge-very_premium,.badge-tightening,.badge-rising_fast,.badge-legacy_industrial,.badge-legacy_mining,.badge-complex{background:#f3e5e2;color:#6a2a1a;border-color:#cfa89e;}
+  .badge-restricted,.badge-conditional,.badge-moderate,.badge-high,.badge-aging,.badge-mixed,.badge-premium,.badge-rising,.badge-volatile,.badge-legacy_agriculture,.badge-public_utility,.badge-state{background:#f0e8d2;color:#6a5a2a;border-color:#cdbf95;}
+  .badge-unknown,.badge-low_data{background:#ede9e0;color:#7a716a;border-color:#cdc6ba;}
+  @media(max-width:760px){.v1-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -72,6 +94,120 @@
         <p>Cascadia asks you to accept that the hard part is not buying land but being allowed to use it. Oregon's statewide Senate Bill 100 planning zones most rural parcels as Exclusive Farm Use, so a multi-household community will likely need a Conditional Use Permit and multi-year county planning engagement, and you should hire an ORS 215 land-use attorney before purchasing, not after. Land is costly here, 3 to 5 times the Alentejo baseline even in the Cascade foothills, which is why most new projects depend on a community land trust rather than outright purchase. In return you join one of the densest and most institutionally mature regen networks in North America, with mild wet winters and abundant water, tempered by a real and worsening late-summer wildfire-smoke season.</p>
         <p class="asks-src">Source: <a href="https://www.nass.usda.gov/Publications/Todays_Reports/reports/land0824.pdf" target="_blank" rel="noopener">USDA NASS, Land Values 2024 Summary</a></p>
       </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>The first gate, legal and cost</h2>
+        <p class="v1-lead">Across the slate the data shows these two as the decisive constraints, more often than soil, climate or water. They sit before everything else.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Legal &amp; ownership</div>
+      <dl class="v1-kv">
+        <div><dt>Foreign ownership</dt><dd><span class="badge badge-yes">yes</span> <span class="v1-note">No US federal or Oregon state nationality restriction on rural-land purchase; AFIDA (7 USC 3501) requires disclosure of foreign agricultural acquisitions but does not restrict them.</span></dd></div>
+        <div><dt>Collective ownership path</dt><dd>LLC, Oregon Land Trust, 501(c)(3) nonprofit, community land trust (CLT), or limited-equity cooperative; CLT is most aligned with long-horizon community stability</dd></div>
+        <div><dt>Multi-household residence as-of-right</dt><dd><span class="badge badge-no">no</span></dd></div>
+        <div><dt>Planning gate for living</dt><dd>Conditional Use Permit (CUP) or zone exception under ORS 215 / Oregon SB 100 Goals 3 and 4 for additional dwellings on Exclusive Farm Use or Forest Conservation land</dd></div>
+        
+        <div><dt>Key restriction</dt><dd><em>Most rural Oregon land is zoned Exclusive Farm Use, which limits non-agricultural residential development to one farm dwelling and forces intentional-community configurations through county Conditional Use Permits or zone exceptions.</em></dd></div>
+        <div><dt>Regulatory direction</dt><dd><span class="badge badge-stable">stable</span> <span class="v1-note">New Oregon projects face a more scrutinised CUP environment than legacy grandfathered communities; Washington county implementation of WAC 365-196 remains more variable.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.oregonlegislature.gov/bills_laws/ors/ors215.html" target="_blank" rel="noopener">Oregon Revised Statutes Chapter 215 County Planning; Zoning; Farm Land</a></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Land cost</div>
+      <dl class="v1-kv">
+        <div><dt>Price per ha</dt><dd class="mono"><strong>3,700–39,530 USD</strong> <span class="v1-note">(2024)</span></dd></div>
+        <div><dt>Affordability band</dt><dd><span class="badge badge-very_premium">very_premium</span></dd></div>
+        <div><dt>Appreciation trajectory</dt><dd><span class="badge badge-rising">rising</span> <span class="v1-note">Dossier states land prices rising driven by regen-culture demand premium, climate-haven migration, and California capital.</span></dd></div>
+        <div><dt>Detail</dt><dd>Oregon farm real estate average 2380 USD/acre (5880 USD/ha); unimproved timber/foothills 1500 to 4000 USD/acre (3700 to 9880 USD/ha); Willamette Valley irrigated cropland 8000 to 16000 USD/acre (19760 to 39530 USD/ha). Western Oregon costs 3 to 5x the Alentejo baseline. Per-acre to per-ha via /0.4047.</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.nass.usda.gov/Publications/Todays_Reports/reports/land0824.pdf" target="_blank" rel="noopener">USDA NASS Land Values 2024 Summary (August 2024); Farmer Mac 2024 U.S. Farmland Values Report Oregon section</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Practical fit</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Hospital access</div>
+      <dl class="v1-kv">
+        <div><dt>Nearest hospital</dt><dd class="mono"><strong>9.3 km</strong> <span class="v1-note">geodesic, see caveat</span></dd></div>
+        <div><dt>Hospitals within 50 km</dt><dd class="mono">13</dd></div>
+        <div><dt>Hospitals within 100 km</dt><dd class="mono">24</dd></div>
+        <div><dt>60-minute proxy</dt><dd><span class="badge badge-yes">passes</span></dd></div>
+      </dl>
+      <p class="v1-src"><em>Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower.</em></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Demographics</div>
+      <dl class="v1-kv">
+        <div><dt>Population trend</dt><dd><span class="badge badge-growing">growing</span> <span class="v1-note">Oregon's population grew 10.6% 2010-2020 per US Census 2020, driven primarily by net in-migration from California; Lane, Benton, and Linn counties all recorded positive net migration 2015-2022.</span></dd></div>
+        <div><dt>Median age band</dt><dd><span class="badge badge-moderate">moderate</span> <span class="v1-note">Median age in Oregon 2022: 39.7 years per US Census ACS 2022, younger than EU peer regions with a significantly younger in-migration stream.</span></dd></div>
+        <div><dt>Migration dynamic</dt><dd><span class="badge badge-net_in">net_in</span> <span class="v1-note">Net-attracting younger, educated migrants from California and across the US; climate-haven migration noted; not building into an ageing, shrinking community but an arriving one.</span></dd></div>
+        <div><dt>Rural density</dt><dd><span class="badge badge-low">low</span> <span class="v1-note">Willamette Valley regional average ~55 persons/km2 per JRC GHSL R2023; rural hinterland 5-30/km2 with urban cores (Salem ~2,000/km2, Eugene ~1,800/km2).</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://ghsl.jrc.ec.europa.eu/ghs_pop2023.php" target="_blank" rel="noopener">accessibility.md, JRC GHSL R2023 and US Census 2020</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Field reality, water and soil</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Water source control</div>
+      <dl class="v1-kv">
+        <div><dt>Rights regime</dt><dd>Oregon prior appropriation doctrine (first in time, first in right)</dd></div>
+        <div><dt>Holder type</dt><dd><span class="badge badge-mixed">mixed</span></dd></div>
+        <div><dt>Single-entity control risk</dt><dd><span class="badge badge-moderate">moderate</span> <span class="v1-note">Water rights in Oregon operate under a prior-appropriation doctrine which matters critically for any settlement drawing surface water or large-volume groundwater; historic water rights on farm properties may be appurtenant to the land and are valuable and transferable.</span></dd></div>
+        <div><dt>Drought-priority mechanism</dt><dd>first-in-time first-in-right; domestic-use exemption up to 15,000 gallons/day under ORS 537.545</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.oregon.gov/owrd/programs/groundwater/Pages/default.aspx" target="_blank" rel="noopener">Oregon Water Resources Department Groundwater Resources (2022); Oregon Revised Statutes 537.545</a> · confidence: <strong>high</strong></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Soil contamination</div>
+      <dl class="v1-kv">
+        <div><dt>Known signal</dt><dd><span class="badge badge-none_documented">none_documented</span> <span class="v1-note"></span></dd></div>
+        <div><dt>Due-diligence burden</dt><dd><span class="badge badge-unknown">unknown</span></dd></div>
+        
+        <div><dt>Known data gaps</dt><dd><em>Oregon DEQ contaminated-site program and Willamette Valley agricultural-chemical legacy not addressed in dossier.</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: Cascadia water.md and soil.md · confidence: <strong>low</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Climate buffering</h2>
+        <p class="v1-lead">Structural microclimate features that hold the place steady, paired with how fast warming is eroding them. State plus trajectory, per the framework.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Buffering features (state)</div>
+      <dl class="v1-kv">
+        <div><dt>Primary features</dt><dd><span class="badge">coastal moderation</span></dd></div>
+        
+        <div><dt>Buffering strength</dt><dd><span class="badge badge-neutral">high</span></dd></div>
+        <div><dt>Detail</dt><dd>Climate.md cites NCA5 projection that the Pacific Northwest will have the fewest very-hot days of any contiguous US region through 2060 because western Cascadia marine airflow buffers inland heat.</dd></div>
+      </dl>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Trajectory under warming</div>
+      <dl class="v1-kv">
+        <div><dt>Direction</dt><dd><span class="badge badge-worsening">worsening</span> <span class="v1-note">Projected +1.5 to 2.0C by mid-century; 2021 heat dome (Portland 46.7C) attribution studies indicate such events become 2-3x more likely by 2060; AQI above 150 days increasing.</span></dd></div>
+        <div><dt>Primary vulnerability</dt><dd><em>late-summer wildfire smoke and heat-dome tail risk</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://nca2023.globalchange.gov/chapter/24/" target="_blank" rel="noopener">WorldClim CMIP6 v2.1 (2024); NCA5 Chapter 24; PRISM 1991-2020; Philip et al. WWA 2022</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
 
   <section>
     <div class="wrap">

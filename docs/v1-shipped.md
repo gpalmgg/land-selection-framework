@@ -35,7 +35,7 @@ The prototype's design — show all criteria equally, let user set thresholds, b
 Same pipeline, same data quality, ten real regions in North America with full dossiers and Tier-1 layers. Direct evidence for the Overview's emergent-scope decision (decision 3). V1 ships at **EU + NA**.
 
 ### 9. LLM-assisted extraction needs a human-verifiable intermediate
-The `legal_ownership` layer was compiled via LLM extraction from the dossiers, which Spec Step 4 explicitly allows ("LLM-assisted source surfacing acceptable, but every candidate must be manually verified by a human"). The discipline that worked: stage the extraction as a structured `legal-ownership.json` **before** compiling the GeoJSON, so the JSON is the human-verifiable artifact. The `compile_legal_ownership.py` script is mechanical from there. This pattern is reusable for other per-jurisdiction qualitative criteria (`land_cost`, soil-contamination registers, hospital-proximity if/when added).
+The `legal_ownership` layer was compiled via LLM extraction from the dossiers, which Spec Step 4 explicitly allows ("LLM-assisted source surfacing acceptable, but every candidate must be manually verified by a human"). The discipline that worked: stage the extraction as a structured `legal-ownership.json` **before** compiling the GeoJSON, so the JSON is the human-verifiable artifact. A single generic compile script (`scripts/compile_per_jurisdiction.py`) consumes any per-jurisdiction layer's JSON + sidecar and emits the GeoJSON — the same pattern was reused for land_cost, demographic_trajectory, soil_contamination, water_source_control, and climate_buffering. Adding the next per-jurisdiction layer requires only a JSON + sidecar, no new script.
 
 ### 10. Per-region dossiers double as primary-source compilations
 Writing per-region research dossiers (legal.md, regen.md, water.md, climate.md, etc.) wasn't planned as a V1 ingestion mechanism — it was demonstration prep. But the dossiers were rigorously source-cited, which means each one is **already a verified-by-use micro-inventory of the most load-bearing sources for that region.** The data-source-inventory's "verified by use" tag exists because of this. V2 should formalize "regional dossier as Spec-Step-4 deliverable" — it consistently surfaces gettable sources that desk-research alone would miss.
@@ -52,4 +52,29 @@ Writing per-region research dossiers (legal.md, regen.md, water.md, climate.md, 
 - Keep the public demonstration artifact alongside the pipeline (don't ship "pure V1" without a visible thing for the group/community to see).
 - Specify "regional dossier" as a Step-4 sub-deliverable for per-jurisdiction qualitative criteria.
 
-(See also `docs/plans/r4-v1-production-run/r4-contribution.draft.md` for the full r4 reality-check.)
+---
+
+## Lessons from the late-session round-out (12 Tier-1 layers, reach-layer wiring)
+
+### 11. The data-fetch wall has gettable workarounds for non-raster red-line data
+Hospital_proximity shipped as a real fetch-and-process pipeline: OSM Overpass query → 42,593 hospital points across EU + NA bounding boxes → per-region haversine to nearest point → per-region GeoJSON with nearest_km + 50/100 km counts. The fetch took ~6 minutes but worked first try (urllib stdlib, no extra deps). Pattern is reusable for any global point-based source that has reasonable OSM tagging. The raster-wall pattern (CMIP6, SoilGrids, etc.) is narrower than it first seemed — *raster* fetches break; vector / point / API fetches generally don't.
+
+### 12. Honest proxy is better than skipping a red-line criterion
+The Spec's red line is "no hospital within 60 minutes" — a road-routing problem requiring infrastructure (OSRM / Valhalla / OpenRouteService) V1 doesn't have. Two options were: skip the criterion until V2, or ship a coarse proxy with the caveat surfaced. Shipped the proxy: 50 km geodesic distance stands in for 60 min on rural roads (rough rule of thumb). The proxy_caveat is recorded per-feature *and* in the layer's metadata sidecar. V2 refines. The pattern is reusable: when V1 can ship a useful approximation honestly, do so — don't let perfect-form requirements block ingestion of the underlying data.
+
+### 13. State + trajectory works as a UI-visible paired-card pattern
+Climate_buffering rendered on region pages as two adjacent cards: "Buffering features (state)" + "Trajectory under warming" — making Askja's state+trajectory framing literally legible to a reader. Pattern is reusable for any criterion with both axes (water trajectory, land cost + appreciation, regulatory direction). When the data carries both axes, render both as paired structure rather than collapsing into one line.
+
+### 14. Generic compile script supersedes per-layer scripts after the third use
+The original compile_legal_ownership.py + compile_land_cost.py worked but copying them for each new per-jurisdiction layer was scope-creep. At the fifth per-jurisdiction layer (climate_buffering, after legal/cost/demographic/soil/water-control) the generic `scripts/compile_per_jurisdiction.py` paid off: reads any JSON intermediate + sidecar, emits the GeoJSON, parameterised by layer name. Adding the next per-jurisdiction layer needs only a JSON + sidecar, zero new code. The old per-layer scripts have been deleted; metadata sidecars and docs updated to reference the generic. Pattern: after the third copy-paste, refactor.
+
+### 15. A single shared lookup module keeps the data flow honest
+`data/v1-lookup.js` is generated alongside the region pages, contains the 7 per-jurisdiction layers in one ESM module, and is the single source the page generator, the OG card, and the main dashboard all read from. Pattern: when the same data must appear in multiple surfaces (static pages, edge functions, runtime app), generate a single source-of-truth module and import it everywhere. Rebuild on data change with one command (`node scripts/gen_region_pages.mjs`). Prevents the silent drift that happens when each consumer parses raw JSON separately.
+
+### 16. Filtering and qualitative filtering are the same discipline, different unit
+The dashboard's qualitative-filter dropdowns (foreign_ownership, affordability_band, buffering_strength, regulatory_direction) extend `regionPasses()` with the same pass/fail semantics as the existing threshold sliders. No weighting, no composite, no scoring — just `region.field === selected || selected === 'any'` AND'd together with the threshold checks. This proves the filtering/scoring split is implementable cleanly: enum filters are filters, not scores. They live under the same `?q.<field>=<value>` URL discipline as `?t.<crit>=<value>` and integrate with the same reset.
+
+### 17. The public reach layer becomes the visible front of V1
+What started as static prototype + ingestion track grew (mid-round) into per-region indexable pages + dynamic OG share cards + sitemap + dashboard qualitative filters — *all wired to the same V1 data*. A visitor opening `/region/cascadia.html` sees the legal regime, the cost range, the hospital proximity, the climate buffering, and so on, with sources clickable per cell. The data has an audience. This isn't decoration — for a working-group project that depends on external collaborators (research partners, funders, future community members), a visible artifact that *shows the V1 output to a reader who didn't attend the sync meetings* is what makes the round real beyond the immediate group. Recommend treating the public surface as an explicit V1/V2 dual track rather than something to wind down.
+
+(See also `source-docs/Land Project v1 r4 Overview.md` for the full r4 commentary now placed in the immutable docs, and `Docs/v1-ship-candidate.md` for the formal proposal to ratify V1.)

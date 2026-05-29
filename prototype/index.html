@@ -1224,6 +1224,28 @@
       max-width: 60ch;
     }
     .preset-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    /* Qualitative (per-jurisdiction) enum filters from the r4 V1 layers — filters, never scores. */
+    .qual-filters {
+      display: flex; flex-wrap: wrap; gap: 12px 18px;
+      margin-top: 14px; padding-top: 12px;
+      border-top: 1px dotted var(--rule);
+    }
+    .qual-filter {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'Inter', system-ui, sans-serif; font-size: 12px;
+      color: var(--ink-3);
+    }
+    .qual-filter-label {
+      font-weight: 600; letter-spacing: 0.04em;
+      text-transform: uppercase; font-size: 10.5px;
+    }
+    .qual-filter-select {
+      font-family: 'Inter', system-ui, sans-serif; font-size: 12px;
+      color: var(--ink); background: var(--paper);
+      border: 1px solid var(--rule); padding: 5px 8px;
+      cursor: pointer;
+    }
+    .qual-filter-select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .preset-chip {
       font-family: 'Inter', system-ui, sans-serif;
       font-size: 12.5px; font-weight: 500; letter-spacing: 0.01em;
@@ -1580,7 +1602,7 @@
               <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" />
             </form>
             <div class="form-status" id="form-status"></div>
-            <div class="footnote">Or write directly: <a href="mailto:hello@islands-of-coherence.com">hello@islands-of-coherence.com</a></div>
+            <div class="footnote">Or write directly: <a href="mailto:gustaf@islands-of-coherence.com">gustaf@islands-of-coherence.com</a></div>
           </div>
 
           <a class="hero-cta" href="/deeper.html#ethics">
@@ -1635,6 +1657,7 @@
       <div class="onboarding">
         <p class="onboarding-cue">New here? Start with a scenario, then adjust the sliders to taste. These are starting points, not recommendations.</p>
         <div class="preset-chips" id="preset-chips" role="group" aria-label="Scenario starting points"></div>
+        <div class="qual-filters" id="qual-filters" role="group" aria-label="Field filters from the r4 V1 layers, all filters never scores"></div>
       </div>
 
       <div class="match-bar">
@@ -1656,7 +1679,7 @@
         <span class="next-step-actions">
           <button class="ns-action" id="ns-asks" type="button">What they ask of you</button>
           <button class="ns-action" id="ns-share" type="button">Share this view</button>
-          <a class="ns-action" id="ns-contact" href="mailto:hello@islands-of-coherence.com">Talk to The Collective</a>
+          <a class="ns-action" id="ns-contact" href="mailto:gustaf@islands-of-coherence.com">Talk to The Collective</a>
         </span>
       </div>
 
@@ -1683,7 +1706,7 @@
             <em>If you want to talk about this work</em>, the framework, the regions, the project as a whole, or how to join The Collective, reach out on any of these channels.
           </p>
           <div class="socials">
-            <a href="mailto:hello@islands-of-coherence.com" title="Email" aria-label="Email">
+            <a href="mailto:gustaf@islands-of-coherence.com" title="Email" aria-label="Email">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/>
                 <path d="M2 8l10 7 10-7"/>
@@ -1705,7 +1728,7 @@
             </a>
           </div>
           <p class="direct">
-            Email: <a href="mailto:hello@islands-of-coherence.com">hello@islands-of-coherence.com</a><br/>
+            Email: <a href="mailto:gustaf@islands-of-coherence.com">gustaf@islands-of-coherence.com</a><br/>
             Substack: <a href="https://substack.com/@gustafpalm" target="_blank" rel="noopener">@gustafpalm</a><br/>
             Instagram: <a href="https://www.instagram.com/gustaf.palm/" target="_blank" rel="noopener">@gustaf.palm</a>
           </p>
@@ -1747,7 +1770,7 @@
             The values the project is thinking with, <em>localism, bioregioning, healthy integration, land stewardship</em>, are laid out in the <a href="/deeper.html#ethics">ethics and values</a> section of the deeper page. They are open conversations The Collective keeps returning to, not stated commitments.
           </p>
           <p class="about-p">
-            Reach out with any questions: <a href="mailto:hello@islands-of-coherence.com">hello@islands-of-coherence.com</a>
+            Reach out with any questions: <a href="mailto:gustaf@islands-of-coherence.com">gustaf@islands-of-coherence.com</a>
           </p>
         </div>
         <div>
@@ -1837,7 +1860,7 @@
     </div>
   </div>
 
-  <script type="module" src="./src/main.js?v=usab6"></script>
+  <script type="module" src="./src/main.js?v=usab7"></script>
 
   <!-- Per-value source citations: appended after main.js renders. -->
   <style>
@@ -1897,7 +1920,7 @@
     }
   </style>
   <script type="module">
-    import { regions, values, criteria } from './data/regions.js?v=usab3';
+    import { regions, values, criteria } from './data/regions.js?v=usab7';
 
     const activeContinent = () => document.body.dataset.continent || 'europe';
     const regionCountFor = (c) => regions.filter((r) => r.continent === c).length;

@@ -51,6 +51,28 @@
   .region-nav a:hover{background:var(--paper-2);} .region-nav span{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:2px;}
   footer{padding:40px 0 70px;} footer p{font-size:11.5px;color:var(--ink-3);max-width:70ch;line-height:1.6;}
   @media(max-width:600px){ th[scope=row]{width:auto;display:block;} td{display:block;border-top:none;padding:2px 0;} tr{display:block;border-top:1px solid var(--rule);padding:12px 0;} }
+
+  /* V1 layer sections (the r4 round's per-jurisdiction data) */
+  .v1-lead{font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--ink-3);max-width:62ch;margin:0 0 22px;}
+  .v1-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .v1-card{background:var(--paper);padding:20px 22px 18px;}
+  .v1-card-h{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .v1-kv{margin:0;padding:0;font-size:13.5px;}
+  .v1-kv > div{padding:7px 0;border-bottom:1px dotted var(--rule);display:flex;flex-direction:column;gap:3px;}
+  .v1-kv > div:last-child{border-bottom:none;}
+  .v1-kv dt{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0;}
+  .v1-kv dd{font-family:'Spectral',serif;font-size:14px;color:var(--ink);margin:0;line-height:1.45;}
+  .v1-kv dd em{color:var(--ink-2);font-style:italic;}
+  .v1-note{font-size:12px;color:var(--ink-3);font-family:'Spectral',serif;font-style:italic;}
+  .v1-src{font-size:11.5px;color:var(--ink-3);margin:14px 0 0;font-family:'Inter',sans-serif;}
+  .v1-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .badge{display:inline-block;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);margin-right:6px;}
+  /* Semantic badge tints — read at a glance, never numeric, never scoring. */
+  .badge-yes,.badge-passes,.badge-low,.badge-stable,.badge-community_commons,.badge-net_in,.badge-growing,.badge-cheapest,.badge-young,.badge-none_documented{background:#e8efe5;color:#3a5a3a;border-color:#bcd1b5;}
+  .badge-no,.badge-fails,.badge-very_high,.badge-aging_fast,.badge-net_out,.badge-declining,.badge-very_premium,.badge-tightening,.badge-rising_fast,.badge-legacy_industrial,.badge-legacy_mining,.badge-complex{background:#f3e5e2;color:#6a2a1a;border-color:#cfa89e;}
+  .badge-restricted,.badge-conditional,.badge-moderate,.badge-high,.badge-aging,.badge-mixed,.badge-premium,.badge-rising,.badge-volatile,.badge-legacy_agriculture,.badge-public_utility,.badge-state{background:#f0e8d2;color:#6a5a2a;border-color:#cdbf95;}
+  .badge-unknown,.badge-low_data{background:#ede9e0;color:#7a716a;border-color:#cdc6ba;}
+  @media(max-width:760px){.v1-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -72,6 +94,120 @@
         <p>Saxony-Anhalt asks you to prove you intend to farm before it will sell you land. Germany sets no nationality bar, but the Grundstücksverkehrsgesetz and the Landgesellschaft give active farmers pre-emption priority, so community projects without an agricultural Nutzungskonzept routinely get blocked at the Landwirtschaftsbehörde, and the standard route is a German agricultural Genossenschaft or GmbH with a farmer-shareholder. Physically, this is one of Germany's driest regions, the Mitteldeutsches Trockengebiet, where you must design for 6 to 9 month dry-summer bridges and real winter frost at once. The hardest part is social: rural Saxony-Anhalt has lost population continuously since 1990, AfD strength shapes local dynamics, and you will need German-language capacity and years of local-economic relationship-building before newcomers are trusted.</p>
         <p class="asks-src">Source: <a href="https://www.gesetze-im-internet.de/grdstvg/" target="_blank" rel="noopener">Grundstücksverkehrsgesetz (GrdstVG)</a></p>
       </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>The first gate, legal and cost</h2>
+        <p class="v1-lead">Across the slate the data shows these two as the decisive constraints, more often than soil, climate or water. They sit before everything else.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Legal &amp; ownership</div>
+      <dl class="v1-kv">
+        <div><dt>Foreign ownership</dt><dd><span class="badge badge-yes">yes</span> <span class="v1-note">Germany imposes no nationality restriction on freehold land ownership, but agricultural-land purchases over ~1 ha require Landwirtschaftsbehorde approval under GrdstVG regardless of nationality.</span></dd></div>
+        <div><dt>Collective ownership path</dt><dd>Agricultural eingetragene Genossenschaft or GmbH with a farmer-shareholder (plus written Nutzungskonzept) is the standard vehicle; GbR, Stiftung, and e.V. are also available for community functions</dd></div>
+        <div><dt>Multi-household residence as-of-right</dt><dd><span class="badge badge-no">no</span></dd></div>
+        <div><dt>Planning gate for living</dt><dd>Bauordnung permit under Baugesetzbuch sec. 35 (Aussenbereich), normally via the §35 privilegierte Vorhaben farm-related route</dd></div>
+        <div><dt>Pre-emption / first-claim holders</dt><dd>active farmers via the GrdstVG / Landwirtschaftsbehorde; Landgesellschaft Sachsen-Anhalt</dd></div>
+        <div><dt>Key restriction</dt><dd><em>The Grundstucksverkehrsgesetz lets the Landwirtschaftsbehorde refuse purchases by non-active farmers if a farmer will buy at the same price, so pure-investor or non-agricultural community purchases are routinely blocked.</em></dd></div>
+        <div><dt>Regulatory direction</dt><dd><span class="badge badge-stable">stable</span> <span class="v1-note">BVVG is in wind-down per the 2018 Bundestag decision; remaining ex-GDR state-land sales continue through 2024 to 2030.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.gesetze-im-internet.de/grdstvg/" target="_blank" rel="noopener">Grundstucksverkehrsgesetz (GrdstVG)</a></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Land cost</div>
+      <dl class="v1-kv">
+        <div><dt>Price per ha</dt><dd class="mono"><strong>20,000–22,022 EUR</strong> <span class="v1-note">(2024)</span></dd></div>
+        <div><dt>Affordability band</dt><dd><span class="badge badge-moderate">moderate</span></dd></div>
+        <div><dt>Appreciation trajectory</dt><dd><span class="badge badge-stable">stable</span> <span class="v1-note">Bodenrichtwert reported as stable YoY 2024 per Gutachterausschuss Sachsen-Anhalt.</span></dd></div>
+        <div><dt>Detail</dt><dd>Average purchase price for Ackerland 22022 EUR/ha; Bodenrichtwert 2.00 EUR/m2 = 20000 EUR/ha (stable YoY); Magdeburger Borde black-earth substantially higher; rental 429 EUR/ha.</dd></div>
+      </dl>
+      <p class="v1-src">Source: agrarheute / Bauernzeitung 2024 analysis citing state statistics office; Gutachterausschuss Sachsen-Anhalt 2024 · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Practical fit</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Hospital access</div>
+      <dl class="v1-kv">
+        <div><dt>Nearest hospital</dt><dd class="mono"><strong>9.8 km</strong> <span class="v1-note">geodesic, see caveat</span></dd></div>
+        <div><dt>Hospitals within 50 km</dt><dd class="mono">34</dd></div>
+        <div><dt>Hospitals within 100 km</dt><dd class="mono">113</dd></div>
+        <div><dt>60-minute proxy</dt><dd><span class="badge badge-yes">passes</span></dd></div>
+      </dl>
+      <p class="v1-src"><em>Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower.</em></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Demographics</div>
+      <dl class="v1-kv">
+        <div><dt>Population trend</dt><dd><span class="badge badge-declining">declining</span> <span class="v1-note">Lost population continuously since 1990; population 2011 to 2023: -4.5% per LSA 2024, with continued decline projected.</span></dd></div>
+        <div><dt>Median age band</dt><dd><span class="badge badge-aging_fast">aging_fast</span> <span class="v1-note">Median age 2024: ~48 years, among Germany's oldest per Destatis 2024.</span></dd></div>
+        <div><dt>Migration dynamic</dt><dd><span class="badge badge-net_out">net_out</span> <span class="v1-note">Continuous net out-migration since 1990; modest stabilisation post-2015 in metropolitan Halle/Magdeburg; rural depopulation continues; foreign-resident share remains low (~7%) but growing.</span></dd></div>
+        <div><dt>Rural density</dt><dd><span class="badge badge-low">low</span> <span class="v1-note">State ~106 inhabitants/km2 in 2024; rural Landkreis density e.g. Altmarkkreis Salzwedel: ~32/km2 per LSA 2024.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.statistik.sachsen-anhalt.de/" target="_blank" rel="noopener">accessibility.md, Statistisches Landesamt Sachsen-Anhalt 2024</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Field reality, water and soil</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Water source control</div>
+      <dl class="v1-kv">
+        <div><dt>Rights regime</dt><dd>EU WFD implementation via German Wasserhaushaltsgesetz; Wasserrechte and Brunnenanzeige codified at Land level</dd></div>
+        <div><dt>Holder type</dt><dd><span class="badge badge-state">state</span></dd></div>
+        <div><dt>Single-entity control risk</dt><dd><span class="badge badge-moderate">moderate</span> <span class="v1-note">Groundwater levels are dropping after consecutive dry summers (2018, 2019, 2020, 2022); long-term resilience favours diversified supply (well plus roof catchment plus dedicated greywater recycling), and rural Saxony-Anhalt regulatory navigation requires fluent local engagement.</span></dd></div>
+        <div><dt>Drought-priority mechanism</dt><dd>state-permit Wasserrechte regime with groundwater-protection priority</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.umweltbundesamt.de/en/topics/water" target="_blank" rel="noopener">Umweltbundesamt Water Resources in Germany; DWD</a> · confidence: <strong>medium</strong></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Soil contamination</div>
+      <dl class="v1-kv">
+        <div><dt>Known signal</dt><dd><span class="badge badge-legacy_industrial">legacy_industrial</span> <span class="v1-note">water.md notes Elbe, Saale and Mulde surface-water quality remains affected by historical mining and industrial legacy. Dossier does not name Bitterfeld, Leuna, or specific ex-GDR contamination sites.</span></dd></div>
+        <div><dt>Due-diligence burden</dt><dd><span class="badge badge-high">high</span></dd></div>
+        
+        <div><dt>Known data gaps</dt><dd><em>German BBodSchG (Bundes-Bodenschutzgesetz) not cited, no Altlasten-Kataster reference, no parcel-level guidance for ex-GDR industrial heritage.</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: Saxony-Anhalt water.md · confidence: <strong>low</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Climate buffering</h2>
+        <p class="v1-lead">Structural microclimate features that hold the place steady, paired with how fast warming is eroding them. State plus trajectory, per the framework.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Buffering features (state)</div>
+      <dl class="v1-kv">
+        
+        
+        <div><dt>Buffering strength</dt><dd><span class="badge badge-neutral">very_low</span></dd></div>
+        <div><dt>Detail</dt><dd>Climate.md flags the central loess plain as exposed within Germany's primary inland-drought zone (Mitteldeutsches Trockengebiet); only the Harz foothills offer some microclimate variability.</dd></div>
+      </dl>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Trajectory under warming</div>
+      <dl class="v1-kv">
+        <div><dt>Direction</dt><dd><span class="badge badge-worsening">worsening</span> <span class="v1-note">Projected +1.8 to 2.5C by mid-century with pronounced drying trend; 2018, 2019, 2020, and 2022 summers already caused major agricultural impacts.</span></dd></div>
+        <div><dt>Primary vulnerability</dt><dd><em>summer drought and groundwater drawdown</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11322161/" target="_blank" rel="noopener">WorldClim CMIP6 v2.1 (2024); DWD; PMC11322161 (2024); World Bank CCKP Germany</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
 
   <section>
     <div class="wrap">

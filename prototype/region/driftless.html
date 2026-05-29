@@ -51,6 +51,28 @@
   .region-nav a:hover{background:var(--paper-2);} .region-nav span{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:2px;}
   footer{padding:40px 0 70px;} footer p{font-size:11.5px;color:var(--ink-3);max-width:70ch;line-height:1.6;}
   @media(max-width:600px){ th[scope=row]{width:auto;display:block;} td{display:block;border-top:none;padding:2px 0;} tr{display:block;border-top:1px solid var(--rule);padding:12px 0;} }
+
+  /* V1 layer sections (the r4 round's per-jurisdiction data) */
+  .v1-lead{font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--ink-3);max-width:62ch;margin:0 0 22px;}
+  .v1-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .v1-card{background:var(--paper);padding:20px 22px 18px;}
+  .v1-card-h{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .v1-kv{margin:0;padding:0;font-size:13.5px;}
+  .v1-kv > div{padding:7px 0;border-bottom:1px dotted var(--rule);display:flex;flex-direction:column;gap:3px;}
+  .v1-kv > div:last-child{border-bottom:none;}
+  .v1-kv dt{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0;}
+  .v1-kv dd{font-family:'Spectral',serif;font-size:14px;color:var(--ink);margin:0;line-height:1.45;}
+  .v1-kv dd em{color:var(--ink-2);font-style:italic;}
+  .v1-note{font-size:12px;color:var(--ink-3);font-family:'Spectral',serif;font-style:italic;}
+  .v1-src{font-size:11.5px;color:var(--ink-3);margin:14px 0 0;font-family:'Inter',sans-serif;}
+  .v1-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .badge{display:inline-block;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);margin-right:6px;}
+  /* Semantic badge tints — read at a glance, never numeric, never scoring. */
+  .badge-yes,.badge-passes,.badge-low,.badge-stable,.badge-community_commons,.badge-net_in,.badge-growing,.badge-cheapest,.badge-young,.badge-none_documented{background:#e8efe5;color:#3a5a3a;border-color:#bcd1b5;}
+  .badge-no,.badge-fails,.badge-very_high,.badge-aging_fast,.badge-net_out,.badge-declining,.badge-very_premium,.badge-tightening,.badge-rising_fast,.badge-legacy_industrial,.badge-legacy_mining,.badge-complex{background:#f3e5e2;color:#6a2a1a;border-color:#cfa89e;}
+  .badge-restricted,.badge-conditional,.badge-moderate,.badge-high,.badge-aging,.badge-mixed,.badge-premium,.badge-rising,.badge-volatile,.badge-legacy_agriculture,.badge-public_utility,.badge-state{background:#f0e8d2;color:#6a5a2a;border-color:#cdbf95;}
+  .badge-unknown,.badge-low_data{background:#ede9e0;color:#7a716a;border-color:#cdc6ba;}
+  @media(max-width:760px){.v1-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -72,6 +94,120 @@
         <p>The Driftless asks you to farm the land actively and to treat every land-use choice as a water-quality choice. Use-value assessment can put property tax near 30 to 80 dollars per acre instead of 500 to 900, and a US-registered cooperative or community land trust is the pragmatic land-holding entity given a live 2025 bill (AB 218) that may tighten foreign individual ownership. Water is abundant, but the fractured karst geology means nitrate from manure, fertilizer, or septic reaches private wells directly, with 15 to 20 percent of wells in some counties already over the EPA limit, so multi-season well testing before purchase is non-negotiable. You land in an exceptionally mature organic and CSA network anchored by Organic Valley and Marbleseed, though that reputation has pushed up prices in the Viroqua-La Farge-Cashton triangle, and cold winters remain a genuine design constraint.</p>
         <p class="asks-src">Source: <a href="https://www.revenue.wi.gov/Pages/FAQS/slf-useassmt.aspx" target="_blank" rel="noopener">Wisconsin Statute §70.32(2), Use-Value Agricultural Assessment</a></p>
       </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>The first gate, legal and cost</h2>
+        <p class="v1-lead">Across the slate the data shows these two as the decisive constraints, more often than soil, climate or water. They sit before everything else.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Legal &amp; ownership</div>
+      <dl class="v1-kv">
+        <div><dt>Foreign ownership</dt><dd><span class="badge badge-restricted">restricted</span> <span class="v1-note">Wisconsin Stat. §710.02 caps non-resident aliens and &gt;20% foreign-owned entities at 640 acres; AB 218 (2025, pending Senate) would reduce the cap to 50 acres for agricultural land.</span></dd></div>
+        <div><dt>Collective ownership path</dt><dd>Cooperative corporation under Wisconsin Statutes Chapter 185, Community Land Trust as 501(c)(3) nonprofit, or LLC with multi-member operating agreement; cooperatives and nonprofit land trusts are explicit carve-outs from the corporate-farming statute §182.001</dd></div>
+        <div><dt>Multi-household residence as-of-right</dt><dd><span class="badge badge-conditional">conditional</span></dd></div>
+        <div><dt>Planning gate for living</dt><dd>Municipal/township zoning and county building permit; Farmland Preservation Program covenants (Chapter 91) constrain non-agricultural use on enrolled parcels</dd></div>
+        
+        <div><dt>Key restriction</dt><dd><em>Wisconsin Stat. §710.02 caps foreign-individual or &gt;20%-foreign-owned-entity holdings at 640 acres with 4-year divestiture for violations, and AB 218 (2025) would tighten this to 50 acres for agricultural land.</em></dd></div>
+        <div><dt>Regulatory direction</dt><dd><span class="badge badge-tightening">tightening</span> <span class="v1-note">AB 218 (2025) passed the Wisconsin Assembly and is pending in the Senate as of early 2026; if enacted it would cut the foreign-ownership cap to 50 acres for agricultural land, require 3-year divestiture, and add military-installation prohibitions.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://docs.legis.wisconsin.gov/statutes/statutes/710/02" target="_blank" rel="noopener">Wisconsin Statute §710.02 Foreign Ownership of Land</a></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Land cost</div>
+      <dl class="v1-kv">
+        <div><dt>Price per ha</dt><dd class="mono"><strong>8,600–16,800 USD</strong> <span class="v1-note">(2024)</span></dd></div>
+        <div><dt>Affordability band</dt><dd><span class="badge badge-moderate">moderate</span></dd></div>
+        <div><dt>Appreciation trajectory</dt><dd><span class="badge badge-rising">rising</span> <span class="v1-note">Wisconsin cropland up 180 USD/acre from 2023 to 2024 per USDA NASS; dossier notes Viroqua-La Farge-Cashton land values rising due to organic premium.</span></dd></div>
+        <div><dt>Detail</dt><dd>Wisconsin cropland 6800 USD/acre (16800 USD/ha); overall farm real estate 6120 USD/acre (15100 USD/ha); Driftless-specific mixed/wooded parcels 3500 to 6500 USD/acre (8600 to 16000 USD/ha) depending on slope, road access, tillable proportion. Per-acre to per-ha via /0.4047.</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.nass.usda.gov/Statistics_by_State/Wisconsin/Publications/Economic_Releases/2024/WI-Cash-Rent-Land-Values-08-24.pdf" target="_blank" rel="noopener">USDA NASS Wisconsin Cash Rent and Land Values 2024; Vernon County transaction data from Farmland Intel and local listings 2024</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Practical fit</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Hospital access</div>
+      <dl class="v1-kv">
+        <div><dt>Nearest hospital</dt><dd class="mono"><strong>9.1 km</strong> <span class="v1-note">geodesic, see caveat</span></dd></div>
+        <div><dt>Hospitals within 50 km</dt><dd class="mono">7</dd></div>
+        <div><dt>Hospitals within 100 km</dt><dd class="mono">28</dd></div>
+        <div><dt>60-minute proxy</dt><dd><span class="badge badge-yes">passes</span></dd></div>
+      </dl>
+      <p class="v1-src"><em>Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower.</em></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Demographics</div>
+      <dl class="v1-kv">
+        <div><dt>Population trend</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note">Dossier describes density and infrastructure but does not give an explicit recent population trend direction for the core Driftless counties.</span></dd></div>
+        <div><dt>Median age band</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note"></span></dd></div>
+        <div><dt>Migration dynamic</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note"></span></dd></div>
+        <div><dt>Rural density</dt><dd><span class="badge badge-very_low">very_low</span> <span class="v1-note">Driftless core counties per 2020 Census: Vernon ~15.0 persons/km2, Crawford ~10.9/km2, Richland ~11.3/km2; 5-county regional average ~18.9/km2.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.census.gov/quickfacts/vernoncountywisconsin" target="_blank" rel="noopener">accessibility.md, US Census Bureau 2020 Decennial Census</a> · confidence: <strong>medium</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Field reality, water and soil</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Water source control</div>
+      <dl class="v1-kv">
+        <div><dt>Rights regime</dt><dd>Wisconsin riparian rights for surface water; groundwater well permits via WI DNR; karst aquifer at parcel scale</dd></div>
+        <div><dt>Holder type</dt><dd><span class="badge badge-mixed">mixed</span></dd></div>
+        <div><dt>Single-entity control risk</dt><dd><span class="badge badge-low">low</span> <span class="v1-note">Private wells dominate the rural water-supply picture and use-value assessment plus minimal allocation barriers leave control highly distributed; primary risk is karst-conveyed nitrate from neighbouring CAFOs rather than corporate water capture.</span></dd></div>
+        <div><dt>Drought-priority mechanism</dt><dd>riparian reasonable-use rule plus state well-permitting; spring-fed cold-water streams maintain year-round flow</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://dnr.wisconsin.gov/newsroom/release/98396" target="_blank" rel="noopener">Wisconsin Groundwater Coordinating Council 2024 Report; USGS streamflow trends</a> · confidence: <strong>medium</strong></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Soil contamination</div>
+      <dl class="v1-kv">
+        <div><dt>Known signal</dt><dd><span class="badge badge-legacy_agriculture">legacy_agriculture</span> <span class="v1-note">water.md documents karst-aquifer vulnerability with 15-20% of private wells in Pierce and Pepin counties exceeding EPA 10 mg/L nitrate limit; Wisconsin Groundwater Coordinating Council 2024 report flags nitrates, PFAS, and pesticides as primary statewide groundwater concerns with Driftless karst counties among highest-risk.</span></dd></div>
+        <div><dt>Due-diligence burden</dt><dd><span class="badge badge-high">high</span></dd></div>
+        
+        <div><dt>Known data gaps</dt><dd><em>Wisconsin contaminated-land statutory framework not cited; well-by-well register access not documented.</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.lakepepinlegacyalliance.org/lplablog/2023/3/6/nitrates-in-driftless-groundwaters-problems-amp-possible-solutions" target="_blank" rel="noopener">Lake Pepin Legacy Alliance and Wisconsin Groundwater Coordinating Council as cited in Driftless water.md</a> · confidence: <strong>medium</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Climate buffering</h2>
+        <p class="v1-lead">Structural microclimate features that hold the place steady, paired with how fast warming is eroding them. State plus trajectory, per the framework.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Buffering features (state)</div>
+      <dl class="v1-kv">
+        <div><dt>Primary features</dt><dd><span class="badge">forest canopy</span> <span class="badge">valley inversion</span></dd></div>
+        
+        <div><dt>Buffering strength</dt><dd><span class="badge badge-neutral">moderate</span></dd></div>
+        <div><dt>Detail</dt><dd>Climate.md notes the karst and deep-coulee topography handles intense rain events better than flat tilled land but does not describe explicit thermal-buffering features.</dd></div>
+      </dl>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Trajectory under warming</div>
+      <dl class="v1-kv">
+        <div><dt>Direction</dt><dd><span class="badge badge-worsening">worsening</span> <span class="v1-note">WICCI projects +2.3C statewide warming by 2041-2060 with 90F+ days rising from 9 to 26 per year; trajectory called the most benign in the framework but still substantial.</span></dd></div>
+        <div><dt>Primary vulnerability</dt><dd><em>precipitation volatility with more intense rain interspersed with dry spells</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://wicci.wisc.edu/the-future-of-wisconsin-climate/" target="_blank" rel="noopener">Wisconsin State Climatology Office; WICCI 2024; NCA5 Great Lakes Chapter; WorldClim CMIP6 v2.1</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
 
   <section>
     <div class="wrap">

@@ -11,8 +11,9 @@ Inputs:
 Output:
     data/processed/<layer-name>.geojson        FeatureCollection, point-per-region
 
-Mirrors compile_legal_ownership.py / compile_land_cost.py but parameterised — adding a
-new per-jurisdiction layer just needs a JSON + sidecar, not a new compile script.
+The single compile script for every per-jurisdiction qualitative V1 layer: legal_ownership,
+land_cost, demographic_trajectory, soil_contamination, water_source_control, climate_buffering,
+and any future siblings. Adding a new layer needs only a JSON + sidecar, never a new script.
 Idempotent.
 """
 import json

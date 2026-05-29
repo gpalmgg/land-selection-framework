@@ -16,7 +16,8 @@
 8. **Per-region dossiers + national statistical agencies** — demographic_trajectory (priority 16; population trend + median age + migration + density per region; Spec Step 1 gap-candidate delivered)
 9. **Per-region dossiers (legal/water)** — water_source_control (priority 20; water-rights regime + holder type + control risk; carries red-line single-entity-water-control underlying data)
 10. **Per-region dossiers (thin by design)** — soil_contamination (priority 12; regulatory regime + known signals per region; carries red-line soil-contamination underlying data; heavy on honest 'unknown' where dossiers were silent)
-11. *(blocked)* WorldClim CMIP6 / Global Solar Atlas / SoilGrids / GHSL — high relevance, **low gettability on this connection (raster wall)**; deferred to V2 or an alternate bulk-fetch path.
+11. **Per-region climate.md dossiers + national climate-projection sources** — climate_buffering (priority 20; state + trajectory: primary buffering features + buffering strength + trajectory_under_warming; closes Overview decision 8.1's explicit gap; all 20 data_confidence=high)
+12. *(blocked)* WorldClim CMIP6 / Global Solar Atlas / SoilGrids / GHSL — high relevance, **low gettability on this connection (raster wall)**; deferred to V2 or an alternate bulk-fetch path.
 
 ## Proposed V1 scope lock
 **Geographic scope:** Europe + North America (NA proved as tractable as EU in the demo — evidence for the Overview's emergent-scope decision; do not revert to Europe-only).
@@ -28,13 +29,14 @@
 - demographic_trajectory ✅ (per-jurisdiction, 20/20; Spec Step 1 gap-candidate delivered)
 - soil_contamination ✅ (per-jurisdiction, 20/20; carries red-line soil-contamination; thin by design with honest 'unknown' for V2 deepening)
 - water_source_control ✅ (per-jurisdiction, 20/20; carries red-line single-entity-water-control)
+- climate_buffering ✅ (per-jurisdiction, 20/20, all high-confidence; closes Overview decision 8.1's explicit gap)
 - water_stress ✅ (areal)
 - water_depletion ✅ (areal)
 - conflict ✅ (presence; carries red-line active-conflict)
 - regen_network ✅ (presence; with documented coverage limitation)
 - forest_change ✅ (tile-served)
 
-That is **11 criteria fully processed across 2 continents** — clears the illustrative ship gate (≥3 criteria) by a wide margin, covers all three completeness modes (areal, presence, per-jurisdiction), and **ingests all 6 red-line underlying datasets** the Overview decision 9 names. The four Tier-2 criteria (climate, soil_carbon, solar_pv, population) stay as curated demonstration values, **explicitly not counted as ingested V1 coverage**, pending a raster-fetch path (V2).
+That is **12 criteria fully processed across 2 continents** — clears the illustrative ship gate (≥3 criteria) by a wide margin, covers all three completeness modes (areal, presence, per-jurisdiction), **ingests all 6 red-line underlying datasets** the Overview decision 9 names, and **closes Overview decision 8.1's named climate-buffering features gap**. The four Tier-2 criteria (climate-as-temperature, soil_carbon, solar_pv, population) stay as curated demonstration values, **explicitly not counted as ingested V1 coverage**, pending a raster-fetch path (V2).
 
 **Proposed ship-gate refinement (r4 Finding 5):** adopt the three-way completeness measure (areal / presence / per-jurisdiction) from `coverage-report.md` rather than a single areal %.
 

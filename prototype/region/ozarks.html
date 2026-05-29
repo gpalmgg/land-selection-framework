@@ -51,6 +51,28 @@
   .region-nav a:hover{background:var(--paper-2);} .region-nav span{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:2px;}
   footer{padding:40px 0 70px;} footer p{font-size:11.5px;color:var(--ink-3);max-width:70ch;line-height:1.6;}
   @media(max-width:600px){ th[scope=row]{width:auto;display:block;} td{display:block;border-top:none;padding:2px 0;} tr{display:block;border-top:1px solid var(--rule);padding:12px 0;} }
+
+  /* V1 layer sections (the r4 round's per-jurisdiction data) */
+  .v1-lead{font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--ink-3);max-width:62ch;margin:0 0 22px;}
+  .v1-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .v1-card{background:var(--paper);padding:20px 22px 18px;}
+  .v1-card-h{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .v1-kv{margin:0;padding:0;font-size:13.5px;}
+  .v1-kv > div{padding:7px 0;border-bottom:1px dotted var(--rule);display:flex;flex-direction:column;gap:3px;}
+  .v1-kv > div:last-child{border-bottom:none;}
+  .v1-kv dt{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0;}
+  .v1-kv dd{font-family:'Spectral',serif;font-size:14px;color:var(--ink);margin:0;line-height:1.45;}
+  .v1-kv dd em{color:var(--ink-2);font-style:italic;}
+  .v1-note{font-size:12px;color:var(--ink-3);font-family:'Spectral',serif;font-style:italic;}
+  .v1-src{font-size:11.5px;color:var(--ink-3);margin:14px 0 0;font-family:'Inter',sans-serif;}
+  .v1-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .badge{display:inline-block;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);margin-right:6px;}
+  /* Semantic badge tints — read at a glance, never numeric, never scoring. */
+  .badge-yes,.badge-passes,.badge-low,.badge-stable,.badge-community_commons,.badge-net_in,.badge-growing,.badge-cheapest,.badge-young,.badge-none_documented{background:#e8efe5;color:#3a5a3a;border-color:#bcd1b5;}
+  .badge-no,.badge-fails,.badge-very_high,.badge-aging_fast,.badge-net_out,.badge-declining,.badge-very_premium,.badge-tightening,.badge-rising_fast,.badge-legacy_industrial,.badge-legacy_mining,.badge-complex{background:#f3e5e2;color:#6a2a1a;border-color:#cfa89e;}
+  .badge-restricted,.badge-conditional,.badge-moderate,.badge-high,.badge-aging,.badge-mixed,.badge-premium,.badge-rising,.badge-volatile,.badge-legacy_agriculture,.badge-public_utility,.badge-state{background:#f0e8d2;color:#6a5a2a;border-color:#cdbf95;}
+  .badge-unknown,.badge-low_data{background:#ede9e0;color:#7a716a;border-color:#cdc6ba;}
+  @media(max-width:760px){.v1-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -72,6 +94,120 @@
         <p>The Ozarks ask you to be a pioneer rather than a joiner. Land is the cheapest in this slate, and several counties (Sharp, Izard, Fulton, Newton) require no building permit on agricultural land while composting toilets, rainwater harvesting, and off-grid solar are all legal and lightly regulated, but the freedom is permissive by omission, not supportive by design, so commission a full title search for mineral-rights complications and confirm road-access easements before buying. Water is abundant from the karst aquifer, yet that same porous limestone lets upstream farming or CAFO contamination reach a spring within years, so you must map the spring's contributing watershed, not just your property line. The formal regen layer is thin, with only a handful of established communities nearby, meaning you build relationships from scratch through homestead networks and Permies.com rather than tapping an existing support scene.</p>
         <p class="asks-src">Source: <a href="https://www.nass.usda.gov/Publications/Todays_Reports/reports/land0824.pdf" target="_blank" rel="noopener">USDA NASS, Land Values 2024 Summary</a></p>
       </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>The first gate, legal and cost</h2>
+        <p class="v1-lead">Across the slate the data shows these two as the decisive constraints, more often than soil, climate or water. They sit before everything else.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Legal &amp; ownership</div>
+      <dl class="v1-kv">
+        <div><dt>Foreign ownership</dt><dd><span class="badge badge-yes">yes</span> <span class="v1-note">No nationality restriction on rural-land purchase in Arkansas; Arkansas Act 636 of 2023 only restricts entities from designated foreign-adversary nations near military installations and is not relevant to civilian rural parcels.</span></dd></div>
+        <div><dt>Collective ownership path</dt><dd>Arkansas LLC, Land Trust under the Arkansas Land Trust Act, or Non-Profit Corporation</dd></div>
+        <div><dt>Multi-household residence as-of-right</dt><dd><span class="badge badge-yes">yes</span></dd></div>
+        <div><dt>Planning gate for living</dt><dd>None or standard residential. Several Ozark counties (Sharp, Izard, Fulton, Newton, Searcy) have not adopted the IRC for agricultural/unincorporated land, so cabins and accessory structures need no building permit.</dd></div>
+        
+        <div><dt>Key restriction</dt><dd><em>Permissive by omission means the main legal trap is title and access: landlocked parcels have no guaranteed road access without an express easement, and historical mineral-rights splits create deed-research burdens.</em></dd></div>
+        <div><dt>Regulatory direction</dt><dd><span class="badge badge-stable">stable</span> <span class="v1-note">Arkansas Act 636 of 2023 (Foreign Land Ownership) is broadly worded and could affect non-US nationals structuring purchase through a non-US entity; direct individual purchase avoids this.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.dfa.arkansas.gov/wp-content/uploads/2024-agrireportupdated.pdf" target="_blank" rel="noopener">Arkansas Department of Finance and Administration 2024 Cropland, Pastureland and Timberland Valuation</a></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Land cost</div>
+      <dl class="v1-kv">
+        <div><dt>Price per ha</dt><dd class="mono"><strong>2,470–12,350 USD</strong> <span class="v1-note">(2024)</span></dd></div>
+        <div><dt>Affordability band</dt><dd><span class="badge badge-cheapest">cheapest</span></dd></div>
+        <div><dt>Appreciation trajectory</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note"></span></dd></div>
+        <div><dt>Detail</dt><dd>Arkansas farm real estate average 4110 USD/acre (10160 USD/ha); recreational/timberland 2000 to 5000 USD/acre (4940 to 12350 USD/ha); Sharp/Izard counties offer raw land at 1000 to 3000 USD/acre (2470 to 7410 USD/ha); cheapest rural land of any region in this slate per dossier. Per-acre to per-ha via /0.4047.</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.nass.usda.gov/Publications/Todays_Reports/reports/land0824.pdf" target="_blank" rel="noopener">USDA NASS Land Values 2024 Summary; Arkansas Farm Bureau Land Values 2024; Mossy Oak Properties Arkansas data; Shamrock Lands 2024 to 2025 market data</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Practical fit</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Hospital access</div>
+      <dl class="v1-kv">
+        <div><dt>Nearest hospital</dt><dd class="mono"><strong>29 km</strong> <span class="v1-note">geodesic, see caveat</span></dd></div>
+        <div><dt>Hospitals within 50 km</dt><dd class="mono">2</dd></div>
+        <div><dt>Hospitals within 100 km</dt><dd class="mono">21</dd></div>
+        <div><dt>60-minute proxy</dt><dd><span class="badge badge-yes">passes</span></dd></div>
+      </dl>
+      <p class="v1-src"><em>Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower.</em></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Demographics</div>
+      <dl class="v1-kv">
+        <div><dt>Population trend</dt><dd><span class="badge badge-declining">declining</span> <span class="v1-note">Most Ozark counties have lost population in every census since 1980; Newton County had ~7,600 in 2020 down from peaks of ~13,000 in the early 20th century; Searcy County ~7,800 in 2020.</span></dd></div>
+        <div><dt>Median age band</dt><dd><span class="badge badge-aging">aging</span> <span class="v1-note">Older median age 45-50 in core counties per accessibility.md demographic profile.</span></dd></div>
+        <div><dt>Migration dynamic</dt><dd><span class="badge badge-mixed">mixed</span> <span class="v1-note">Outmigration of working-age adults dominant since 1980; Starlink-enabled first wave of knowledge-economy workers relocating to the region is a positive demographic signal but not enough to reverse decline.</span></dd></div>
+        <div><dt>Rural density</dt><dd><span class="badge badge-very_low">very_low</span> <span class="v1-note">Newton County, AR: ~3.4 persons/km2; Searcy County: ~4.6/km2; Stone County: ~5.8/km2 per US Census 2020; all JRC GHSL fully rural.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.census.gov/quickfacts/newtoncountyarkansas" target="_blank" rel="noopener">accessibility.md, US Census Bureau 2020</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Field reality, water and soil</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Water source control</div>
+      <dl class="v1-kv">
+        <div><dt>Rights regime</dt><dd>Arkansas riparian doctrine for surface water; groundwater regulated by Arkansas Natural Resources Commission with minimal permitting for domestic use</dd></div>
+        <div><dt>Holder type</dt><dd><span class="badge badge-mixed">mixed</span></dd></div>
+        <div><dt>Single-entity control risk</dt><dd><span class="badge badge-moderate">moderate</span> <span class="v1-note">Karst aquifers respond to land use changes kilometres away, and conventional farming or development upstream can reach a spring head within years; CAFO contamination (nitrates, E. coli) is documented in northwest Arkansas karst systems near Benton/Washington counties.</span></dd></div>
+        <div><dt>Drought-priority mechanism</dt><dd>riparian reasonable-use rule; rainwater harvesting unlimited; no statewide volume cap</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.usgs.gov/publications/groundwater-availability-ozark-plateaus-aquifer-system" target="_blank" rel="noopener">USGS Professional Paper 1854 (2024); USGS Springs of the Ozark Physiographic Province</a> · confidence: <strong>medium</strong></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Soil contamination</div>
+      <dl class="v1-kv">
+        <div><dt>Known signal</dt><dd><span class="badge badge-legacy_agriculture">legacy_agriculture</span> <span class="v1-note">water.md documents karst vulnerability: thin soil and fractured limestone allow rapid infiltration of surface pollutants; CAFO contamination (nitrates, E. coli) documented in northwest Arkansas karst systems near Benton/Washington counties per USGS science brief 2023. Site selection requires mapping contributing watershed not just parcel boundary.</span></dd></div>
+        <div><dt>Due-diligence burden</dt><dd><span class="badge badge-high">high</span></dd></div>
+        
+        <div><dt>Known data gaps</dt><dd><em>Arkansas Department of Environmental Quality contaminated-sites register not named; no statutory regime cited.</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.nature.org/en-us/get-involved/how-to-help/places-we-protect/ozark-karst-program/" target="_blank" rel="noopener">USGS science brief 2023 and TNC Ozark Highlands Karst Program as cited in Ozarks water.md</a> · confidence: <strong>medium</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Climate buffering</h2>
+        <p class="v1-lead">Structural microclimate features that hold the place steady, paired with how fast warming is eroding them. State plus trajectory, per the framework.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Buffering features (state)</div>
+      <dl class="v1-kv">
+        <div><dt>Primary features</dt><dd><span class="badge">altitude</span> <span class="badge">forest canopy</span></dd></div>
+        <div><dt>Altitude range</dt><dd class="mono">300-700 m</dd></div>
+        <div><dt>Buffering strength</dt><dd><span class="badge badge-neutral">moderate</span></dd></div>
+        <div><dt>Detail</dt><dd>Climate.md states ridgeline and plateau sites at 500-700 m run 3-5C cooler than valley floors in summer, extending the comfortable working season.</dd></div>
+      </dl>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Trajectory under warming</div>
+      <dl class="v1-kv">
+        <div><dt>Direction</dt><dd><span class="badge badge-worsening">worsening</span> <span class="v1-note">Projected +2.0 to 2.5C above 1991-2020 by mid-century, pushing the region firmly into humid subtropical territory; days above 38C roughly doubling.</span></dd></div>
+        <div><dt>Primary vulnerability</dt><dd><em>intensifying dry-spell to flood cycle with diminishing summer baseflow</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://nca2023.globalchange.gov/chapter/22/" target="_blank" rel="noopener">NOAA NCEI 1991-2020; NWS Tulsa; NOAA NCICS Arkansas 2022; NCA5 Chapter 22; KSMU 2025</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
 
   <section>
     <div class="wrap">

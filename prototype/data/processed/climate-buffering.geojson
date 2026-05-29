@@ -1,0 +1,543 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "source": "Per-region climate.md dossiers + national/regional climate-projection sources (CMIP6 SSP2-4.5, IPMA, AEMET, Meteo-France DRIAS, Met Office UKCP18, NCA5, Ouranos, WICCI, etc.)",
+    "source_url": "data/research-dossier/<id>/climate.md (intermediate); see per-feature source_url for primary",
+    "vintage": "2026-05 compilation; per-feature source vintages 2020-2025",
+    "native_unit": "per-jurisdiction (point at region centroid)",
+    "license": "Research dossiers internal; underlying climate-projection sources are typically open government / publicly funded",
+    "note": "Delivers Overview decision 8.1's 'climate-buffering features (altitude, distance-to-coast, mountain-shelter exposure)' as a structured per-jurisdiction layer. Pairs the static buffering features with the dynamic trajectory_under_warming so the layer surfaces both 'how resilient is the microclimate' and 'how fast is it being eroded.'"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.9,
+          38.6
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [],
+        "altitude_range_m": null,
+        "buffering_strength": "very_low",
+        "buffering_notes": "Dossier describes Alentejo as one of the hotter, drier corners of Europe with no buffering features named in climate.md.",
+        "primary_vulnerability_signal": "extreme summer heat and drought",
+        "trajectory_under_warming": "worsening",
+        "trajectory_notes": "Projected +2.7 to 2.9C warming envelope per IPMA, with summer warming of +2.0 to 2.5C and 10 to 15% reduction in wet-day frequency by 2041 to 2060.",
+        "data_confidence": "high",
+        "source": "WorldClim CMIP6 v2.1 (2024); Soares et al. Scientific Reports 2024; IPMA Climate Scenarios 2023; Gomes et al. 2024",
+        "source_url": "https://www.nature.com/articles/s41598-024-67996-6",
+        "gaps": "No explicit altitude band or microclimate-buffering feature discussed.",
+        "region_id": "alentejo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.4,
+          42.9
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "coastal_moderation"
+        ],
+        "altitude_range_m": null,
+        "buffering_strength": "high",
+        "buffering_notes": "Climate.md identifies Galicia as a partial climate refugium in IPCC AR6, buffered against extreme heat by Atlantic maritime influence.",
+        "primary_vulnerability_signal": "more intense winter storms and AMOC-shift tail risk",
+        "trajectory_under_warming": "stable",
+        "trajectory_notes": "Projected +1.5 to 2.0C by mid-century, more modest than Iberian interior; summer heat unlikely to become a primary stress this century.",
+        "data_confidence": "high",
+        "source": "WorldClim CMIP6 v2.1 (2024); AEMET 2023; MDPI Land 14:85 (2025)",
+        "source_url": "https://www.mdpi.com/2073-445X/14/1/85",
+        "gaps": "No specific altitude range given for coastal versus interior siting.",
+        "region_id": "galicia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.0,
+          46.0
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "altitude",
+          "forest_canopy"
+        ],
+        "altitude_range_m": "300-900 m",
+        "buffering_strength": "moderate",
+        "buffering_notes": "Climate.md cites elevation, forest cover, and continental setting as providing partial buffering; high-elevation Carpathian valleys are EEA-flagged refugia.",
+        "primary_vulnerability_signal": "forest-pathogen and bark-beetle outbreaks in spruce monocultures",
+        "trajectory_under_warming": "worsening",
+        "trajectory_notes": "Summer warming of +2.5 to 3.0C by 2050 over 1961-1990 baseline; heatwave frequency in Romanian lowlands roughly tripled since 1990s with uplands trending similarly.",
+        "data_confidence": "high",
+        "source": "WorldClim CMIP6 v2.1 (2024); Bojariu et al. Springer 2014; World Bank CCKP Romania",
+        "source_url": "https://link.springer.com/book/10.1007/978-3-319-02886-6",
+        "gaps": "Plateau-versus-Carpathian-flank altitude bands not differentiated in detail.",
+        "region_id": "transylvania"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.4,
+          53.0
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "coastal_moderation",
+          "peat_water_storage"
+        ],
+        "altitude_range_m": null,
+        "buffering_strength": "very_high",
+        "buffering_notes": "Climate.md describes Atlantic-maritime climate that drifts rather than transforms with no projected heat-stress regime change; water.md and soil.md document blanket peat storing 240 to 3000+ t C/ha with order-of-magnitude reliable summer flow.",
+        "primary_vulnerability_signal": "Atlantic storm intensification and AMOC-shift tail risk",
+        "trajectory_under_warming": "stable",
+        "trajectory_notes": "Projected +0.7 to 1.5C by mid-century, one of the slowest-warming European candidates; no projected drought, heat, or fire regime change.",
+        "data_confidence": "high",
+        "source": "EPA Research 471 (2023); Met Eireann 2024; ICHEC 2023; WorldClim CMIP6 v2.1",
+        "source_url": "https://www.epa.ie/publications/research/climate-change/research-471-updated-high-resolution-climate-projections-for-ireland.php",
+        "gaps": "Altitude range for siting not specified; AMOC-shift probability not quantified.",
+        "region_id": "connemara"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.9,
+          51.85
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "coastal_moderation"
+        ],
+        "altitude_range_m": null,
+        "buffering_strength": "high",
+        "buffering_notes": "Climate.md frames west Wales as a relatively stable maritime climate with mild winters (Jan min 3-4C) and moderate summers (July max 19-21C) thanks to Atlantic exposure.",
+        "primary_vulnerability_signal": "intense hourly rainfall and flash-flood risk",
+        "trajectory_under_warming": "volatile",
+        "trajectory_notes": "Hourly rainfall extremes above 20 mm/h projected to become roughly 4x more frequent by 2070s under high emissions; +1.2 to 1.8C mean warming by mid-century.",
+        "data_confidence": "high",
+        "source": "Met Office UKCP18; PMC9992391 (2023); World Bank CCKP UK",
+        "source_url": "https://www.metoffice.gov.uk/research/approach/collaboration/ukcp/summaries/climate-change-projections-over-land",
+        "gaps": "Altitude range not specified; coastal cliff versus inland buffering not differentiated.",
+        "region_id": "pembrokeshire"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.85,
+          44.2
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "altitude",
+          "mountain_shelter"
+        ],
+        "altitude_range_m": "200-1500 m",
+        "buffering_strength": "moderate",
+        "buffering_notes": "Climate.md identifies Mont Lozere, Aigoual, and Mejean plateau as elevation-mediated climate refugia where mean July maxima at 1500 m remain ~22-24C even under +2C global warming.",
+        "primary_vulnerability_signal": "cevenol autumn flash-flood storms with debris-flow risk",
+        "trajectory_under_warming": "volatile",
+        "trajectory_notes": "Southern France warming above the national +1.7 to 2.7C trajectory; maximum daily autumn precipitation up ~30% since mid-20th century; summer precipitation projected down 15 to 25% by 2050.",
+        "data_confidence": "high",
+        "source": "Meteo-France DRIAS 2024; WorldClim CMIP6 v2.1",
+        "source_url": "https://www.drias-climat.fr/",
+        "gaps": "Lower-slope versus high-plateau microclimate boundaries not mapped quantitatively.",
+        "region_id": "cevennes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.35,
+          46.5
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "altitude",
+          "mountain_shelter",
+          "valley_inversion"
+        ],
+        "altitude_range_m": "250-1400 m",
+        "buffering_strength": "very_high",
+        "buffering_notes": "Climate.md describes a 1000-metre altitudinal gradient as a climate-selection lever; a settlement at 1000 m today experiences a climate similar to the Bolzano valley floor of 1950.",
+        "primary_vulnerability_signal": "glacier-fed irrigation baseflow loss and debris flows",
+        "trajectory_under_warming": "worsening",
+        "trajectory_notes": "Alpine warming roughly twice the global mean; Ortles-Cevedale and Stubai glaciers lost over 30% of 1980 ice volume by 2024; more debris flows and convective storms since 2000.",
+        "data_confidence": "high",
+        "source": "WorldClim CMIP6 v2.1 (2024); Bucchignani et al. Scientific Data 2023; Crespi et al. Scientific Reports 2020; EURAC",
+        "source_url": "https://www.nature.com/articles/s41597-023-02144-9",
+        "gaps": "Valley-inversion frequency and cold-air-pooling sites not enumerated.",
+        "region_id": "south-tirol"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.85,
+          43.3
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "coastal_moderation",
+          "mountain_shelter",
+          "altitude"
+        ],
+        "altitude_range_m": "0-1000+ m",
+        "buffering_strength": "very_high",
+        "buffering_notes": "Climate.md frames Asturias as buffered against extreme heat by Atlantic maritime influence with an abrupt coast-to-Cordillera-Cantabrica gradient and IPCC-recognised cool-temperate refugia above 1000 m.",
+        "primary_vulnerability_signal": "intense Atlantic storms and AMOC-shift tail risk",
+        "trajectory_under_warming": "stable",
+        "trajectory_notes": "Projected +1.5 to 2.0C by mid-century; Atlantic regime moderates the broader Spanish 14 to 20% rainfall decline projected for 2050.",
+        "data_confidence": "high",
+        "source": "WorldClim CMIP6 v2.1 (2024); AEMET 2023; MDPI Land 14:85 (2025)",
+        "source_url": "https://www.mdpi.com/2073-445X/14/1/85",
+        "gaps": "Specific upper altitude limit for habitable buffering not stated.",
+        "region_id": "asturias"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.6,
+          51.95
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [],
+        "altitude_range_m": null,
+        "buffering_strength": "very_low",
+        "buffering_notes": "Climate.md flags the central loess plain as exposed within Germany's primary inland-drought zone (Mitteldeutsches Trockengebiet); only the Harz foothills offer some microclimate variability.",
+        "primary_vulnerability_signal": "summer drought and groundwater drawdown",
+        "trajectory_under_warming": "worsening",
+        "trajectory_notes": "Projected +1.8 to 2.5C by mid-century with pronounced drying trend; 2018, 2019, 2020, and 2022 summers already caused major agricultural impacts.",
+        "data_confidence": "high",
+        "source": "WorldClim CMIP6 v2.1 (2024); DWD; PMC11322161 (2024); World Bank CCKP Germany",
+        "source_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11322161/",
+        "gaps": "Harz-foothill altitude buffering not quantified; only flagged qualitatively.",
+        "region_id": "saxony-anhalt"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.0,
+          58.6
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "coastal_moderation"
+        ],
+        "altitude_range_m": null,
+        "buffering_strength": "moderate",
+        "buffering_notes": "Climate.md notes Saaremaa coastal sites are 2-3C warmer in winter than mainland southeast due to Baltic moderation, with less snow but more wind-storm exposure.",
+        "primary_vulnerability_signal": "shrinking winter snow regime and Baltic Sea ecosystem shifts",
+        "trajectory_under_warming": "worsening",
+        "trajectory_notes": "Northern latitudes amplify warming; +2.0 to 2.5C by mid-century, with Baltic SST projected +2 to 4C by 2100; growing season expands 2 to 4 weeks.",
+        "data_confidence": "high",
+        "source": "WorldClim CMIP6 v2.1 (2024); Estonian Weather Service; World Bank CCKP Estonia; PMC4447695 (2015)",
+        "source_url": "https://climateknowledgeportal.worldbank.org/country/estonia/climate-data-projections",
+        "gaps": "Estonia is low-altitude with no mountain buffering; dossier does not give an altitude range.",
+        "region_id": "estonia-rural"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.0,
+          44.5
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "coastal_moderation"
+        ],
+        "altitude_range_m": null,
+        "buffering_strength": "high",
+        "buffering_notes": "Climate.md cites NCA5 projection that the Pacific Northwest will have the fewest very-hot days of any contiguous US region through 2060 because western Cascadia marine airflow buffers inland heat.",
+        "primary_vulnerability_signal": "late-summer wildfire smoke and heat-dome tail risk",
+        "trajectory_under_warming": "worsening",
+        "trajectory_notes": "Projected +1.5 to 2.0C by mid-century; 2021 heat dome (Portland 46.7C) attribution studies indicate such events become 2-3x more likely by 2060; AQI above 150 days increasing.",
+        "data_confidence": "high",
+        "source": "WorldClim CMIP6 v2.1 (2024); NCA5 Chapter 24; PRISM 1991-2020; Philip et al. WWA 2022",
+        "source_url": "https://nca2023.globalchange.gov/chapter/24/",
+        "gaps": "Willamette Valley altitude band not given numerically.",
+        "region_id": "cascadia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.7,
+          44.0
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "forest_canopy"
+        ],
+        "altitude_range_m": null,
+        "buffering_strength": "moderate",
+        "buffering_notes": "Climate.md describes Vermont as wet, green, and free of heat-stress extremes; the design-relevant risk is precipitation intensity rather than thermal collapse.",
+        "primary_vulnerability_signal": "flash flooding on river-bottomlands per Irene 2011 and 2023 events",
+        "trajectory_under_warming": "worsening",
+        "trajectory_notes": "NCA5 names the Northeast as the fastest-warming region in the contiguous US; +1.7 to 2.5C by mid-century with heat-index above 38C tripling by mid-century.",
+        "data_confidence": "high",
+        "source": "NOAA NCEI 1991-2020; Vermont Climate Assessment 2021 (UVM Gund); NCA5 Chapter 21; WorldClim CMIP6 v2.1",
+        "source_url": "https://nca5.climate.us/chapter/21/",
+        "gaps": "Specific altitude buffering bands for the Green Mountains not enumerated in climate.md.",
+        "region_id": "vermont"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.6,
+          35.6
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "altitude",
+          "forest_canopy",
+          "mountain_shelter"
+        ],
+        "altitude_range_m": "~670 m and above",
+        "buffering_strength": "high",
+        "buffering_notes": "Climate.md credits Asheville's ~670 m elevation for holding the baseline MAT to 13.5C and notes Appalachian highland zones track the lower end of the regional warming range due to elevation buffering; ridges shelter from Gulf tropical systems.",
+        "primary_vulnerability_signal": "extreme-precipitation flash flooding per Tropical Storm Helene 2024",
+        "trajectory_under_warming": "volatile",
+        "trajectory_notes": "Projected +1.5 to 2.0C mean warming by mid-century; extreme-heat days above 31.8C projected to rise from ~7/yr to ~45/yr by 2050; annual precipitation rising from ~940 to ~1215 mm.",
+        "data_confidence": "high",
+        "source": "WorldClim CMIP6 v2.1 (2024); NCA5 Chapter 22; NOAA NCEI; NC Climate Office; ClimateCheck 2025",
+        "source_url": "https://nca2023.globalchange.gov/chapter/22/",
+        "gaps": "Upper altitude range and ridge-specific buffering not quantified.",
+        "region_id": "southern-appalachians"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.8,
+          43.5
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "forest_canopy",
+          "valley_inversion"
+        ],
+        "altitude_range_m": null,
+        "buffering_strength": "moderate",
+        "buffering_notes": "Climate.md notes the karst and deep-coulee topography handles intense rain events better than flat tilled land but does not describe explicit thermal-buffering features.",
+        "primary_vulnerability_signal": "precipitation volatility with more intense rain interspersed with dry spells",
+        "trajectory_under_warming": "worsening",
+        "trajectory_notes": "WICCI projects +2.3C statewide warming by 2041-2060 with 90F+ days rising from 9 to 26 per year; trajectory called the most benign in the framework but still substantial.",
+        "data_confidence": "high",
+        "source": "Wisconsin State Climatology Office; WICCI 2024; NCA5 Great Lakes Chapter; WorldClim CMIP6 v2.1",
+        "source_url": "https://wicci.wisc.edu/the-future-of-wisconsin-climate/",
+        "gaps": "Coulee-versus-ridge thermal differential not quantified; no altitude range given.",
+        "region_id": "driftless"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.8,
+          36.3
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "altitude",
+          "forest_canopy"
+        ],
+        "altitude_range_m": "300-700 m",
+        "buffering_strength": "moderate",
+        "buffering_notes": "Climate.md states ridgeline and plateau sites at 500-700 m run 3-5C cooler than valley floors in summer, extending the comfortable working season.",
+        "primary_vulnerability_signal": "intensifying dry-spell to flood cycle with diminishing summer baseflow",
+        "trajectory_under_warming": "worsening",
+        "trajectory_notes": "Projected +2.0 to 2.5C above 1991-2020 by mid-century, pushing the region firmly into humid subtropical territory; days above 38C roughly doubling.",
+        "data_confidence": "high",
+        "source": "NOAA NCEI 1991-2020; NWS Tulsa; NOAA NCICS Arkansas 2022; NCA5 Chapter 22; KSMU 2025",
+        "source_url": "https://nca2023.globalchange.gov/chapter/22/",
+        "gaps": "Specific ridge versus valley microclimate maps not in dossier.",
+        "region_id": "ozarks"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.6,
+          36.4
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "altitude",
+          "mountain_shelter"
+        ],
+        "altitude_range_m": "2100-2400 m",
+        "buffering_strength": "moderate",
+        "buffering_notes": "Climate.md frames the 2100 m elevation as the region's greatest climate asset and also its greatest illusion, currently below physiological heat danger but eroding fast.",
+        "primary_vulnerability_signal": "landscape-scale wildfire per Hermits Peak/Calf Canyon 2022",
+        "trajectory_under_warming": "worsening",
+        "trajectory_notes": "New Mexico warmed 1.85C between 1970 and 2018, the fastest of any contiguous US state; NCA5 projects NM annual temperatures to most likely exceed historical record levels by mid-century even under lower emissions.",
+        "data_confidence": "high",
+        "source": "WorldClim CMIP6 v2.1 (2024); NCA5 Chapter 2; Sillmann et al. ESEv 2022; 350newmexico.org",
+        "source_url": "https://nca5.climate.us/chapter/2",
+        "gaps": "Sangre de Cristo upper altitude limits for habitable buffering not exhaustively given.",
+        "region_id": "northern-new-mexico"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.0,
+          45.4
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "coastal_moderation"
+        ],
+        "altitude_range_m": null,
+        "buffering_strength": "very_high",
+        "buffering_notes": "Climate.md identifies the Atlantic Ocean as regulating temperature year-round, keeping the feels-like summer ceiling substantially lower than continental interior comparators like Ottawa or Montreal.",
+        "primary_vulnerability_signal": "intensifying noreasters, ice storms, and emerging wildfire risk",
+        "trajectory_under_warming": "worsening",
+        "trajectory_notes": "Provincial projection of +2.6C by mid-century lifting MAT toward 9.3C; 2023 Upper Tantallon and 2025 fires were the province's most destructive on record.",
+        "data_confidence": "high",
+        "source": "Nova Scotia Government Changing Climate (2023-2024); WorldClim CMIP6 v2.1; ClimateData.ca; ECCC normals",
+        "source_url": "https://climatechange.novascotia.ca/changing-climate",
+        "gaps": "Cape Breton Highlands altitude band quantified only as 1-2C colder than provincial mean.",
+        "region_id": "nova-scotia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0,
+          49.5
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "altitude",
+          "mountain_shelter"
+        ],
+        "altitude_range_m": "540-1200 m",
+        "buffering_strength": "high",
+        "buffering_notes": "Climate.md calls the altitudinal gradient the region's most valuable climate-adaptation lever; a settlement at 900 m today experiences roughly what the valley floor experienced in the 1970s.",
+        "primary_vulnerability_signal": "mega-fire season and shrinking glacial summer baseflow",
+        "trajectory_under_warming": "worsening",
+        "trajectory_notes": "Columbia Basin projected 2.5 to 3.5C warmer than 1960s by 2050s; 2023 BC fire season burned over 2.84 million ha (more than double any prior year) with Drought Level 5 in the Kootenays.",
+        "data_confidence": "high",
+        "source": "ClimateNA / AdaptWest CMIP6 SSP2-4.5; Nelson Climate Profile 2022; ClimateData.ca; BC Wildfire Service 2023",
+        "source_url": "https://nelson.bc.libraries.coop/files/2022/09/ClimateProfile_Nelson.pdf",
+        "gaps": "Glacier-loss timing relative to settlement horizons not fully resolved.",
+        "region_id": "kootenays"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -72.0,
+          45.4
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "forest_canopy"
+        ],
+        "altitude_range_m": null,
+        "buffering_strength": "moderate",
+        "buffering_notes": "Climate.md frames Estrie as one of northeastern North America's most livable climate zones, with reliable snowpack feeding spring soil moisture across rolling Appalachian terrain, but no explicit mountain-shelter or coastal-moderation feature.",
+        "primary_vulnerability_signal": "rising flash-flood risk from precipitation intensity",
+        "trajectory_under_warming": "stable",
+        "trajectory_notes": "Ouranos projects +2 to 3C for southern Quebec under SSP3-7.0 with SSP2-4.5 at the low end (~2C); frost-free period lengthens 2 to 3 weeks; growing season net-positive for regen operations.",
+        "data_confidence": "high",
+        "source": "Environment Canada 1981-2010 Normals; Ouranos CMIP6 / ESPO-G6-R2; WorldClim CMIP6 v2.1",
+        "source_url": "https://www.ouranos.ca/en/climate-phenomena/temperatures-projected-changes",
+        "gaps": "Altitude band of the southern Appalachian foothills not numerically given.",
+        "region_id": "quebec-eastern-townships"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.7,
+          17.1
+        ]
+      },
+      "properties": {
+        "primary_buffering_features": [
+          "altitude",
+          "mountain_shelter"
+        ],
+        "altitude_range_m": "1550-2500 m",
+        "buffering_strength": "very_high",
+        "buffering_notes": "Climate.md calls altitude the primary site-selection variable; a Sierra Norte settlement at 1800-2500 m gains 2-4C of thermal buffer and remains temperate through 2050 under SSP2-4.5, arguably the most climate-resilient band in the North American regen landscape.",
+        "primary_vulnerability_signal": "intensifying dry season requiring storage and fog-harvest",
+        "trajectory_under_warming": "worsening",
+        "trajectory_notes": "South-southeast Mexico projected +1.5 to 2.0C by 2041-2060 with dry-season (March-May) temperatures warming fastest at +1.8C; Oaxaca named among states with most high-exposure municipalities.",
+        "data_confidence": "high",
+        "source": "Vazquez-Aguirre et al. MDPI Climate 11(5):111 (2023); WorldClim CMIP6 v2.1; World Bank CCKP Mexico",
+        "source_url": "https://www.mdpi.com/2225-1154/11/5/111",
+        "gaps": "Cloud-forest fog-belt elevation not quantified beyond night-frost above 2500 m.",
+        "region_id": "oaxaca"
+      }
+    }
+  ]
+}

@@ -51,6 +51,28 @@
   .region-nav a:hover{background:var(--paper-2);} .region-nav span{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:2px;}
   footer{padding:40px 0 70px;} footer p{font-size:11.5px;color:var(--ink-3);max-width:70ch;line-height:1.6;}
   @media(max-width:600px){ th[scope=row]{width:auto;display:block;} td{display:block;border-top:none;padding:2px 0;} tr{display:block;border-top:1px solid var(--rule);padding:12px 0;} }
+
+  /* V1 layer sections (the r4 round's per-jurisdiction data) */
+  .v1-lead{font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--ink-3);max-width:62ch;margin:0 0 22px;}
+  .v1-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .v1-card{background:var(--paper);padding:20px 22px 18px;}
+  .v1-card-h{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .v1-kv{margin:0;padding:0;font-size:13.5px;}
+  .v1-kv > div{padding:7px 0;border-bottom:1px dotted var(--rule);display:flex;flex-direction:column;gap:3px;}
+  .v1-kv > div:last-child{border-bottom:none;}
+  .v1-kv dt{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0;}
+  .v1-kv dd{font-family:'Spectral',serif;font-size:14px;color:var(--ink);margin:0;line-height:1.45;}
+  .v1-kv dd em{color:var(--ink-2);font-style:italic;}
+  .v1-note{font-size:12px;color:var(--ink-3);font-family:'Spectral',serif;font-style:italic;}
+  .v1-src{font-size:11.5px;color:var(--ink-3);margin:14px 0 0;font-family:'Inter',sans-serif;}
+  .v1-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .badge{display:inline-block;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);margin-right:6px;}
+  /* Semantic badge tints — read at a glance, never numeric, never scoring. */
+  .badge-yes,.badge-passes,.badge-low,.badge-stable,.badge-community_commons,.badge-net_in,.badge-growing,.badge-cheapest,.badge-young,.badge-none_documented{background:#e8efe5;color:#3a5a3a;border-color:#bcd1b5;}
+  .badge-no,.badge-fails,.badge-very_high,.badge-aging_fast,.badge-net_out,.badge-declining,.badge-very_premium,.badge-tightening,.badge-rising_fast,.badge-legacy_industrial,.badge-legacy_mining,.badge-complex{background:#f3e5e2;color:#6a2a1a;border-color:#cfa89e;}
+  .badge-restricted,.badge-conditional,.badge-moderate,.badge-high,.badge-aging,.badge-mixed,.badge-premium,.badge-rising,.badge-volatile,.badge-legacy_agriculture,.badge-public_utility,.badge-state{background:#f0e8d2;color:#6a5a2a;border-color:#cdbf95;}
+  .badge-unknown,.badge-low_data{background:#ede9e0;color:#7a716a;border-color:#cdc6ba;}
+  @media(max-width:760px){.v1-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -72,6 +94,120 @@
         <p>The Southern Appalachians ask you to use the tax and easement tools well and to read the land's drainage honestly. Open ownership plus the Present-Use Value deferral can cut property tax up to 90 percent for qualifying forestry or agriculture, but you must file the AV-4 within 60 days of purchase or face three years of back taxes plus interest. Water is structurally abundant in the French Broad basin, so the real risk is siting: Tropical Storm Helene in 2024 showed these highland watersheds can flash-flood catastrophically, making below-ridge placement and serious drainage analysis non-negotiable, alongside roughly 45 extreme-heat days a year projected by 2050. You arrive into one of the densest regen networks in North America, anchored by Earthaven and Celo, but that same demand is capitalised into land prices, so expect to pay a premium over comparable rural land elsewhere.</p>
         <p class="asks-src">Source: <a href="https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/ByChapter/Chapter_105.pdf" target="_blank" rel="noopener">NC General Statutes §§105-277.2–105-277.7, Present-Use Value Programme</a></p>
       </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>The first gate, legal and cost</h2>
+        <p class="v1-lead">Across the slate the data shows these two as the decisive constraints, more often than soil, climate or water. They sit before everything else.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Legal &amp; ownership</div>
+      <dl class="v1-kv">
+        <div><dt>Foreign ownership</dt><dd><span class="badge badge-yes">yes</span> <span class="v1-note">No nationality restriction on US real estate purchase in North Carolina; foreign nationals may own as individuals or US LLCs, with FIRPTA withholding applying only on future sale.</span></dd></div>
+        <div><dt>Collective ownership path</dt><dd>LLC, limited partnership, housing cooperative (NC Gen. Stat. §§54B series), or nonprofit land trust; Community Land Trust has 90-year precedent in the region via Celo Community (1937)</dd></div>
+        <div><dt>Multi-household residence as-of-right</dt><dd><span class="badge badge-conditional">conditional</span></dd></div>
+        <div><dt>Planning gate for living</dt><dd>County-level zoning and building permit; many mountain counties (Madison, Yancey, Mitchell, Graham) have limited or no zoning outside floodplains, while Buncombe County has comprehensive zoning</dd></div>
+        
+        <div><dt>Key restriction</dt><dd><em>Present-Use Value status is the dominant ongoing tax instrument and any change in ownership that fails to file the AV-4 within 60 days triggers three years of deferred taxes plus interest, a material liability on a USD 500k-plus parcel.</em></dd></div>
+        <div><dt>Regulatory direction</dt><dd><span class="badge badge-stable">stable</span> <span class="v1-note">Land prices rising fast (NC farmland up 8.4% YoY in 2024); no major restrictive legal changes flagged.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/ByChapter/Chapter_105.pdf" target="_blank" rel="noopener">NC General Statutes §§105-277.2 to 105-277.7 Present-Use Value Programme</a></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Land cost</div>
+      <dl class="v1-kv">
+        <div><dt>Price per ha</dt><dd class="mono"><strong>12,350–74,100 USD</strong> <span class="v1-note">(2024)</span></dd></div>
+        <div><dt>Affordability band</dt><dd><span class="badge badge-premium">premium</span></dd></div>
+        <div><dt>Appreciation trajectory</dt><dd><span class="badge badge-rising_fast">rising_fast</span> <span class="v1-note">NC farmland up 8.4% YoY in 2024 per USDA NASS, one of the highest appreciation rates in the Southeast.</span></dd></div>
+        <div><dt>Detail</dt><dd>Western North Carolina unimproved rural farmland/forest 5000 to 15000 USD/acre (12350 to 37060 USD/ha); parcels with road access/views/Asheville proximity 15000 to 30000 USD/acre (37000 to 74100 USD/ha); Buncombe County can reach 50000+ USD/acre; NC statewide farm real estate average 5150 USD/acre. Per-acre to per-ha via /0.4047.</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.nass.usda.gov/Publications/Todays_Reports/reports/land0824.pdf" target="_blank" rel="noopener">USDA NASS Land Values 2024 Summary; unityknows.com 2025 residential land analysis; Conserving Carolina market commentary 2024</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Practical fit</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Hospital access</div>
+      <dl class="v1-kv">
+        <div><dt>Nearest hospital</dt><dd class="mono"><strong>5.3 km</strong> <span class="v1-note">geodesic, see caveat</span></dd></div>
+        <div><dt>Hospitals within 50 km</dt><dd class="mono">9</dd></div>
+        <div><dt>Hospitals within 100 km</dt><dd class="mono">46</dd></div>
+        <div><dt>60-minute proxy</dt><dd><span class="badge badge-yes">passes</span></dd></div>
+      </dl>
+      <p class="v1-src"><em>Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower.</em></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Demographics</div>
+      <dl class="v1-kv">
+        <div><dt>Population trend</dt><dd><span class="badge badge-growing">growing</span> <span class="v1-note">Climate-haven and back-to-the-land migration into Western North Carolina; Asheville Communities Network catalogued 41 intentional communities in beginning stages in WNC alone as of 2025, indicating exceptional pipeline density.</span></dd></div>
+        <div><dt>Median age band</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note"></span></dd></div>
+        <div><dt>Migration dynamic</dt><dd><span class="badge badge-net_in">net_in</span> <span class="v1-note">Regen-driven and climate-haven in-migration has driven land prices upward; the region has 30 years of institutional depth attracting practitioners.</span></dd></div>
+        <div><dt>Rural density</dt><dd><span class="badge badge-moderate">moderate</span> <span class="v1-note">Western NC 18-county regional density ~47 persons/km2 per WNC Vitality Index 2022; Buncombe County (Asheville hub) ~120-158/km2; surrounding rural counties (Haywood, Madison, Yancey, Mitchell, Avery) 15-40/km2.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://wncvitalityindex.org/population/current-population" target="_blank" rel="noopener">accessibility.md, WNC Vitality Index and US Census 2020</a> · confidence: <strong>medium</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Field reality, water and soil</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Water source control</div>
+      <dl class="v1-kv">
+        <div><dt>Rights regime</dt><dd>North Carolina riparian rights doctrine; groundwater wells permitted by NC Division of Water Resources with no allocation permit for domestic use</dd></div>
+        <div><dt>Holder type</dt><dd><span class="badge badge-mixed">mixed</span></dd></div>
+        <div><dt>Single-entity control risk</dt><dd><span class="badge badge-low">low</span> <span class="v1-note">NC follows the riparian rights doctrine; landowners with property adjoining a stream have the right to make reasonable use of the water; groundwater allows landowners to drill wells on their own property with no allocation permit required for domestic use.</span></dd></div>
+        <div><dt>Drought-priority mechanism</dt><dd>riparian reasonable-use rule; no prior appropriation</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://deq.nc.gov/about/divisions/water-resources/water-resources-permits/wastewater-branch/water-supply-well-permits" target="_blank" rel="noopener">NC Division of Water Resources Water Wells and Groundwater Use; WRI Aqueduct 4.0</a> · confidence: <strong>high</strong></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Soil contamination</div>
+      <dl class="v1-kv">
+        <div><dt>Known signal</dt><dd><span class="badge badge-none_documented">none_documented</span> <span class="v1-note"></span></dd></div>
+        <div><dt>Due-diligence burden</dt><dd><span class="badge badge-unknown">unknown</span></dd></div>
+        
+        <div><dt>Known data gaps</dt><dd><em>Coal-mining legacy (acid mine drainage), coal-ash impoundment, and TVA-region industrial heritage not addressed in dossier.</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: Southern Appalachians water.md and soil.md · confidence: <strong>low</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Climate buffering</h2>
+        <p class="v1-lead">Structural microclimate features that hold the place steady, paired with how fast warming is eroding them. State plus trajectory, per the framework.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Buffering features (state)</div>
+      <dl class="v1-kv">
+        <div><dt>Primary features</dt><dd><span class="badge">altitude</span> <span class="badge">forest canopy</span> <span class="badge">mountain shelter</span></dd></div>
+        <div><dt>Altitude range</dt><dd class="mono">~670 m and above</dd></div>
+        <div><dt>Buffering strength</dt><dd><span class="badge badge-neutral">high</span></dd></div>
+        <div><dt>Detail</dt><dd>Climate.md credits Asheville's ~670 m elevation for holding the baseline MAT to 13.5C and notes Appalachian highland zones track the lower end of the regional warming range due to elevation buffering; ridges shelter from Gulf tropical systems.</dd></div>
+      </dl>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Trajectory under warming</div>
+      <dl class="v1-kv">
+        <div><dt>Direction</dt><dd><span class="badge badge-volatile">volatile</span> <span class="v1-note">Projected +1.5 to 2.0C mean warming by mid-century; extreme-heat days above 31.8C projected to rise from ~7/yr to ~45/yr by 2050; annual precipitation rising from ~940 to ~1215 mm.</span></dd></div>
+        <div><dt>Primary vulnerability</dt><dd><em>extreme-precipitation flash flooding per Tropical Storm Helene 2024</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://nca2023.globalchange.gov/chapter/22/" target="_blank" rel="noopener">WorldClim CMIP6 v2.1 (2024); NCA5 Chapter 22; NOAA NCEI; NC Climate Office; ClimateCheck 2025</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
 
   <section>
     <div class="wrap">

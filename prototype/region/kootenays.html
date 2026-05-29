@@ -51,6 +51,28 @@
   .region-nav a:hover{background:var(--paper-2);} .region-nav span{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:2px;}
   footer{padding:40px 0 70px;} footer p{font-size:11.5px;color:var(--ink-3);max-width:70ch;line-height:1.6;}
   @media(max-width:600px){ th[scope=row]{width:auto;display:block;} td{display:block;border-top:none;padding:2px 0;} tr{display:block;border-top:1px solid var(--rule);padding:12px 0;} }
+
+  /* V1 layer sections (the r4 round's per-jurisdiction data) */
+  .v1-lead{font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--ink-3);max-width:62ch;margin:0 0 22px;}
+  .v1-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .v1-card{background:var(--paper);padding:20px 22px 18px;}
+  .v1-card-h{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .v1-kv{margin:0;padding:0;font-size:13.5px;}
+  .v1-kv > div{padding:7px 0;border-bottom:1px dotted var(--rule);display:flex;flex-direction:column;gap:3px;}
+  .v1-kv > div:last-child{border-bottom:none;}
+  .v1-kv dt{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0;}
+  .v1-kv dd{font-family:'Spectral',serif;font-size:14px;color:var(--ink);margin:0;line-height:1.45;}
+  .v1-kv dd em{color:var(--ink-2);font-style:italic;}
+  .v1-note{font-size:12px;color:var(--ink-3);font-family:'Spectral',serif;font-style:italic;}
+  .v1-src{font-size:11.5px;color:var(--ink-3);margin:14px 0 0;font-family:'Inter',sans-serif;}
+  .v1-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .badge{display:inline-block;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);margin-right:6px;}
+  /* Semantic badge tints — read at a glance, never numeric, never scoring. */
+  .badge-yes,.badge-passes,.badge-low,.badge-stable,.badge-community_commons,.badge-net_in,.badge-growing,.badge-cheapest,.badge-young,.badge-none_documented{background:#e8efe5;color:#3a5a3a;border-color:#bcd1b5;}
+  .badge-no,.badge-fails,.badge-very_high,.badge-aging_fast,.badge-net_out,.badge-declining,.badge-very_premium,.badge-tightening,.badge-rising_fast,.badge-legacy_industrial,.badge-legacy_mining,.badge-complex{background:#f3e5e2;color:#6a2a1a;border-color:#cfa89e;}
+  .badge-restricted,.badge-conditional,.badge-moderate,.badge-high,.badge-aging,.badge-mixed,.badge-premium,.badge-rising,.badge-volatile,.badge-legacy_agriculture,.badge-public_utility,.badge-state{background:#f0e8d2;color:#6a5a2a;border-color:#cdbf95;}
+  .badge-unknown,.badge-low_data{background:#ede9e0;color:#7a716a;border-color:#cdc6ba;}
+  @media(max-width:760px){.v1-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -72,6 +94,120 @@
         <p>The Kootenays ask you to work with the Agricultural Land Reserve and the water-licence system rather than around them. ALR land is affordable but permits only one principal residence as of right, so a multi-household community must either prove farm-worker housing need, pursue a slow 6 to 18 month Agricultural Land Commission application, or pay materially more for non-ALR land. Water is a siting and timing problem, not scarcity today: prior-appropriation licences mean late-priority holders get shut off in drought, glacial baseflow is already past peak, and summer storage matters by mid-century. Most of the region is unceded Sinixt, Ktunaxa, and Syilx territory with a Crown duty to consult, and you arrive into one of North America's densest intentional-community legacies, neighbours who are knowledgeable, skeptical, and expect engagement rather than a ready-made model.</p>
         <p class="asks-src">Source: <a href="https://www.fcc-fac.ca/en/knowledge/economics/farmland-values-report" target="_blank" rel="noopener">Farm Credit Canada, 2024 FCC Farmland Values Report (BC and Kootenay region)</a></p>
       </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>The first gate, legal and cost</h2>
+        <p class="v1-lead">Across the slate the data shows these two as the decisive constraints, more often than soil, climate or water. They sit before everything else.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Legal &amp; ownership</div>
+      <dl class="v1-kv">
+        <div><dt>Foreign ownership</dt><dd><span class="badge badge-yes">yes</span> <span class="v1-note">BC has no provincial restriction on foreign or non-resident purchase of agricultural land; the federal foreign-buyer ban (in force to January 2027) exempts rural Kootenay properties outside CMAs/CAs and vacant non-residential land.</span></dd></div>
+        <div><dt>Collective ownership path</dt><dd>Society under the BC Societies Act 2016, Cooperative Association under the BC Cooperative Association Act, or a Society + Society-owned corporation hybrid</dd></div>
+        <div><dt>Multi-household residence as-of-right</dt><dd><span class="badge badge-no">no</span></dd></div>
+        <div><dt>Planning gate for living</dt><dd>Agricultural Land Commission application under the ALR Use Regulation (BC Reg 30/2019) for any additional residence beyond the one principal residence allowed as of right, plus regional district zoning approval</dd></div>
+        <div><dt>Pre-emption / first-claim holders</dt><dd>Agricultural Land Commission (over ALR land uses and exclusions)</dd></div>
+        <div><dt>Key restriction</dt><dd><em>ALR Use Regulation permits only one principal residence per parcel as of right, so a community planning 5 to 10 dwellings on a shared ALR farm must either secure ALC approval (6 to 18 months, not guaranteed), demonstrate farm-worker housing necessity, or buy non-ALR land at higher cost.</em></dd></div>
+        <div><dt>Regulatory direction</dt><dd><span class="badge badge-stable">stable</span> <span class="v1-note">DRIPA (2019) duty to consult adds timeline uncertainty to ALC and major permit applications; water licences under the 2016 Water Sustainability Act remain prior-appropriation allocated.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/30_2019" target="_blank" rel="noopener">ALR Use Regulation, BC Reg 30/2019</a></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Land cost</div>
+      <dl class="v1-kv">
+        <div><dt>Price per ha</dt><dd class="mono"><strong>7,410–111,200 CAD</strong> <span class="v1-note">(2024)</span></dd></div>
+        <div><dt>Affordability band</dt><dd><span class="badge badge-very_premium">very_premium</span></dd></div>
+        <div><dt>Appreciation trajectory</dt><dd><span class="badge badge-volatile">volatile</span> <span class="v1-note">Kootenay ALR sub-region saw 21.1% decline in farmland values in 2024 mid-year report period, driven by fruit-sector contraction.</span></dd></div>
+        <div><dt>Detail</dt><dd>Kootenay ALR farmland 15000 to 45000 CAD/acre (~37000 to 111200 CAD/ha) for cultivated valley benches; raw/Class 5 parcels 3000 to 12000 CAD/acre (~7410 to 29650 CAD/ha); 2018 mean 45073 CAD/acre with 90% of sales in 4400 to 23900 CAD/acre range; comparable acreage costs 3 to 5x more than Alentejo. Per-acre to per-ha via /0.4047.</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.fcc-fac.ca/en/knowledge/economics/farmland-values-report" target="_blank" rel="noopener">Farm Credit Canada 2024 Farmland Values Report; Statistics Canada land-value tables; Young Agrarians land listings 2023</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Practical fit</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Hospital access</div>
+      <dl class="v1-kv">
+        <div><dt>Nearest hospital</dt><dd class="mono"><strong>21 km</strong> <span class="v1-note">geodesic, see caveat</span></dd></div>
+        <div><dt>Hospitals within 50 km</dt><dd class="mono">1</dd></div>
+        <div><dt>Hospitals within 100 km</dt><dd class="mono">6</dd></div>
+        <div><dt>60-minute proxy</dt><dd><span class="badge badge-yes">passes</span></dd></div>
+      </dl>
+      <p class="v1-src"><em>Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower.</em></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Demographics</div>
+      <dl class="v1-kv">
+        <div><dt>Population trend</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note">Dossier covers density and intentional-community depth but does not give an explicit recent population trend direction for the Central Kootenay.</span></dd></div>
+        <div><dt>Median age band</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note"></span></dd></div>
+        <div><dt>Migration dynamic</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note"></span></dd></div>
+        <div><dt>Rural density</dt><dd><span class="badge badge-very_low">very_low</span> <span class="v1-note">Regional District of Central Kootenay density 2.8 persons/km2 per Statistics Canada 2021 Census (62,509 people over 22,265 km2); electoral sub-districts range from 0.3/km2 to 23.8/km2; Nelson city ~820/km2.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/details/page.cfm?Lang=E" target="_blank" rel="noopener">accessibility.md, Statistics Canada 2021 Census</a> · confidence: <strong>medium</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Field reality, water and soil</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Water source control</div>
+      <dl class="v1-kv">
+        <div><dt>Rights regime</dt><dd>BC Water Sustainability Act (2016); prior-appropriation licences administered provincially</dd></div>
+        <div><dt>Holder type</dt><dd><span class="badge badge-mixed">mixed</span></dd></div>
+        <div><dt>Single-entity control risk</dt><dd><span class="badge badge-high">high</span> <span class="v1-note">Water licences are the second trap: Kootenay rivers and streams have existing licence holders (irrigation districts, municipalities, industry), and late-priority licences can be shut off in drought years.</span></dd></div>
+        <div><dt>Drought-priority mechanism</dt><dd>first-in-time first-in-right under Water Sustainability Act; provincial drought-level curtailment of junior licences</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www2.gov.bc.ca/gov/content/environment/air-land-water/water/drought-flooding-dikes-dams/drought-information" target="_blank" rel="noopener">BC Water Sustainability Act 2016; BC Drought Information Portal; Kootenays legal dossier</a> · confidence: <strong>high</strong></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Soil contamination</div>
+      <dl class="v1-kv">
+        <div><dt>Known signal</dt><dd><span class="badge badge-none_documented">none_documented</span> <span class="v1-note"></span></dd></div>
+        <div><dt>Due-diligence burden</dt><dd><span class="badge badge-unknown">unknown</span></dd></div>
+        
+        <div><dt>Known data gaps</dt><dd><em>Historic hardrock mining legacy in West Kootenay (Trail smelter, Sullivan mine catchment) and BC Site Registry not addressed in dossier.</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: Kootenays water.md, soil.md, legal.md · confidence: <strong>low</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Climate buffering</h2>
+        <p class="v1-lead">Structural microclimate features that hold the place steady, paired with how fast warming is eroding them. State plus trajectory, per the framework.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Buffering features (state)</div>
+      <dl class="v1-kv">
+        <div><dt>Primary features</dt><dd><span class="badge">altitude</span> <span class="badge">mountain shelter</span></dd></div>
+        <div><dt>Altitude range</dt><dd class="mono">540-1200 m</dd></div>
+        <div><dt>Buffering strength</dt><dd><span class="badge badge-neutral">high</span></dd></div>
+        <div><dt>Detail</dt><dd>Climate.md calls the altitudinal gradient the region's most valuable climate-adaptation lever; a settlement at 900 m today experiences roughly what the valley floor experienced in the 1970s.</dd></div>
+      </dl>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Trajectory under warming</div>
+      <dl class="v1-kv">
+        <div><dt>Direction</dt><dd><span class="badge badge-worsening">worsening</span> <span class="v1-note">Columbia Basin projected 2.5 to 3.5C warmer than 1960s by 2050s; 2023 BC fire season burned over 2.84 million ha (more than double any prior year) with Drought Level 5 in the Kootenays.</span></dd></div>
+        <div><dt>Primary vulnerability</dt><dd><em>mega-fire season and shrinking glacial summer baseflow</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://nelson.bc.libraries.coop/files/2022/09/ClimateProfile_Nelson.pdf" target="_blank" rel="noopener">ClimateNA / AdaptWest CMIP6 SSP2-4.5; Nelson Climate Profile 2022; ClimateData.ca; BC Wildfire Service 2023</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
 
   <section>
     <div class="wrap">

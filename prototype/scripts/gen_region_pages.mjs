@@ -11,7 +11,7 @@
 // pre-pinned to this region (/?pin=<id>), and internal links to every other
 // region for crawl discovery.
 
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -22,6 +22,39 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const OUT_DIR = join(ROOT, 'region');
 const SITE = 'https://land-selection-framework.vercel.app';
+
+// V1 per-jurisdiction layers (the r4 round's data). Each is a JSON array keyed
+// by region_id. Loaded once into a single lookup so each page just looks up
+// `v1[layer][region.id]`. Missing layer files are silently skipped (the page
+// just won't render that section), so the generator stays robust to data churn.
+const V1_LAYERS = {
+  legal_ownership:        'data/processed/legal-ownership.json',
+  land_cost:              'data/processed/land-cost.json',
+  hospital_proximity:     'data/processed/hospital-proximity.geojson',  // GeoJSON: features[].properties
+  demographic_trajectory: 'data/processed/demographic-trajectory.json',
+  soil_contamination:     'data/processed/soil-contamination.json',
+  water_source_control:   'data/processed/water-source-control.json',
+  climate_buffering:      'data/processed/climate-buffering.json',
+};
+
+function loadV1Layers() {
+  const out = {};
+  for (const [layer, rel] of Object.entries(V1_LAYERS)) {
+    const path = join(ROOT, rel);
+    if (!existsSync(path)) { out[layer] = {}; continue; }
+    const raw = JSON.parse(readFileSync(path, 'utf8'));
+    const records = Array.isArray(raw)
+      ? raw
+      : (raw.features || []).map((f) => f.properties || {});
+    const byId = {};
+    for (const rec of records) {
+      if (rec && rec.region_id) byId[rec.region_id] = rec;
+    }
+    out[layer] = byId;
+  }
+  return out;
+}
+const v1 = loadV1Layers();
 
 const esc = (s) =>
   String(s)
@@ -77,6 +110,188 @@ function asksBlock(r) {
       </section>`;
   }
   return '';
+}
+
+// Small badge for `data_confidence`/`regulatory_direction`/etc. enum-ish fields.
+function badge(text, kind = 'neutral') {
+  if (!text) return '';
+  return `<span class="badge badge-${esc(kind)}">${esc(String(text))}</span>`;
+}
+
+function sourceLine(rec) {
+  if (!rec || !rec.source) return '';
+  const src = rec.source_url
+    ? `<a href="${esc(rec.source_url)}" target="_blank" rel="noopener">${esc(rec.source)}</a>`
+    : esc(rec.source);
+  const conf = rec.data_confidence ? ` · confidence: <strong>${esc(rec.data_confidence)}</strong>` : '';
+  return `<p class="v1-src">Source: ${src}${conf}</p>`;
+}
+
+// Section 1 — the "first gate" pair: legal_ownership + land_cost.
+// These are the r4 reality-check's headline finding: legal feasibility and
+// affordability decide whether a project happens before any other criterion matters.
+function firstGateBlock(r) {
+  const legal = v1.legal_ownership[r.id];
+  const cost = v1.land_cost[r.id];
+  if (!legal && !cost) return '';
+
+  const legalRow = !legal ? '' : `
+    <div class="v1-card">
+      <div class="v1-card-h">Legal &amp; ownership</div>
+      <dl class="v1-kv">
+        ${legal.foreign_ownership ? `<div><dt>Foreign ownership</dt><dd>${badge(legal.foreign_ownership.allowed, legal.foreign_ownership.allowed)} <span class="v1-note">${esc(legal.foreign_ownership.notes || '')}</span></dd></div>` : ''}
+        ${legal.collective_ownership_path ? `<div><dt>Collective ownership path</dt><dd>${esc(legal.collective_ownership_path)}</dd></div>` : ''}
+        ${legal.multi_household_residence_as_of_right ? `<div><dt>Multi-household residence as-of-right</dt><dd>${badge(legal.multi_household_residence_as_of_right, legal.multi_household_residence_as_of_right)}</dd></div>` : ''}
+        ${legal.planning_gate_for_living ? `<div><dt>Planning gate for living</dt><dd>${esc(legal.planning_gate_for_living)}</dd></div>` : ''}
+        ${legal.preemption_or_first_claim_holders && legal.preemption_or_first_claim_holders.length ? `<div><dt>Pre-emption / first-claim holders</dt><dd>${legal.preemption_or_first_claim_holders.map(esc).join('; ')}</dd></div>` : ''}
+        ${legal.key_legal_restriction ? `<div><dt>Key restriction</dt><dd><em>${esc(legal.key_legal_restriction)}</em></dd></div>` : ''}
+        ${legal.regulatory_direction ? `<div><dt>Regulatory direction</dt><dd>${badge(legal.regulatory_direction, legal.regulatory_direction)} <span class="v1-note">${esc(legal.regulatory_notes || '')}</span></dd></div>` : ''}
+      </dl>
+      ${sourceLine(legal)}
+    </div>`;
+
+  const costRow = !cost ? '' : `
+    <div class="v1-card">
+      <div class="v1-card-h">Land cost</div>
+      <dl class="v1-kv">
+        ${cost.price_per_ha_low != null && cost.price_per_ha_high != null ? `<div><dt>Price per ha</dt><dd class="mono"><strong>${esc(fmtVal(cost.price_per_ha_low))}–${esc(fmtVal(cost.price_per_ha_high))} ${esc(cost.price_currency || '')}</strong>${cost.price_vintage ? ` <span class="v1-note">(${esc(cost.price_vintage)})</span>` : ''}</dd></div>` : ''}
+        ${cost.affordability_band ? `<div><dt>Affordability band</dt><dd>${badge(cost.affordability_band, cost.affordability_band)}</dd></div>` : ''}
+        ${cost.appreciation_trajectory ? `<div><dt>Appreciation trajectory</dt><dd>${badge(cost.appreciation_trajectory, cost.appreciation_trajectory)} <span class="v1-note">${esc(cost.appreciation_notes || '')}</span></dd></div>` : ''}
+        ${cost.price_notes ? `<div><dt>Detail</dt><dd>${esc(cost.price_notes)}</dd></div>` : ''}
+      </dl>
+      ${sourceLine(cost)}
+    </div>`;
+
+  return `
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>The first gate, legal and cost</h2>
+        <p class="v1-lead">Across the slate the data shows these two as the decisive constraints, more often than soil, climate or water. They sit before everything else.</p>
+        <div class="v1-grid">${legalRow}${costRow}</div>
+      </div>
+    </section>`;
+}
+
+// Section 2 — practical fit: hospital proximity + demographic trajectory.
+function practicalFitBlock(r) {
+  const hosp = v1.hospital_proximity[r.id];
+  const demo = v1.demographic_trajectory[r.id];
+  if (!hosp && !demo) return '';
+
+  const hospRow = !hosp ? '' : `
+    <div class="v1-card">
+      <div class="v1-card-h">Hospital access</div>
+      <dl class="v1-kv">
+        <div><dt>Nearest hospital</dt><dd class="mono"><strong>${esc(fmtVal(hosp.nearest_hospital_km))} km</strong> <span class="v1-note">geodesic, see caveat</span></dd></div>
+        <div><dt>Hospitals within 50 km</dt><dd class="mono">${hosp.hospitals_within_50km}</dd></div>
+        <div><dt>Hospitals within 100 km</dt><dd class="mono">${hosp.hospitals_within_100km}</dd></div>
+        <div><dt>60-minute proxy</dt><dd>${badge(hosp.red_line_60min_proxy_passes ? 'passes' : 'fails', hosp.red_line_60min_proxy_passes ? 'yes' : 'no')}</dd></div>
+      </dl>
+      <p class="v1-src"><em>${esc(hosp.proxy_caveat || '')}</em></p>
+    </div>`;
+
+  const demoRow = !demo ? '' : `
+    <div class="v1-card">
+      <div class="v1-card-h">Demographics</div>
+      <dl class="v1-kv">
+        ${demo.population_trend ? `<div><dt>Population trend</dt><dd>${badge(demo.population_trend, demo.population_trend)} <span class="v1-note">${esc(demo.population_trend_notes || '')}</span></dd></div>` : ''}
+        ${demo.median_age_band ? `<div><dt>Median age band</dt><dd>${badge(demo.median_age_band, demo.median_age_band)} <span class="v1-note">${esc(demo.median_age_notes || '')}</span></dd></div>` : ''}
+        ${demo.migration_dynamic ? `<div><dt>Migration dynamic</dt><dd>${badge(demo.migration_dynamic, demo.migration_dynamic)} <span class="v1-note">${esc(demo.migration_notes || '')}</span></dd></div>` : ''}
+        ${demo.rural_density_signal ? `<div><dt>Rural density</dt><dd>${badge(demo.rural_density_signal, demo.rural_density_signal)} <span class="v1-note">${esc(demo.rural_density_notes || '')}</span></dd></div>` : ''}
+      </dl>
+      ${sourceLine(demo)}
+    </div>`;
+
+  return `
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Practical fit</h2>
+        <div class="v1-grid">${hospRow}${demoRow}</div>
+      </div>
+    </section>`;
+}
+
+// Section 3 — field reality: water source control + soil contamination.
+// Honest about sparsity where the dossiers didn't speak.
+function fieldRealityBlock(r) {
+  const water = v1.water_source_control[r.id];
+  const soil = v1.soil_contamination[r.id];
+  if (!water && !soil) return '';
+
+  const waterRow = !water ? '' : `
+    <div class="v1-card">
+      <div class="v1-card-h">Water source control</div>
+      <dl class="v1-kv">
+        ${water.water_rights_regime ? `<div><dt>Rights regime</dt><dd>${esc(water.water_rights_regime)}</dd></div>` : ''}
+        ${water.water_rights_holder_type ? `<div><dt>Holder type</dt><dd>${badge(water.water_rights_holder_type, water.water_rights_holder_type)}</dd></div>` : ''}
+        ${water.single_entity_control_risk ? `<div><dt>Single-entity control risk</dt><dd>${badge(water.single_entity_control_risk, water.single_entity_control_risk)} <span class="v1-note">${esc(water.control_risk_notes || '')}</span></dd></div>` : ''}
+        ${water.drought_priority_mechanism ? `<div><dt>Drought-priority mechanism</dt><dd>${esc(water.drought_priority_mechanism)}</dd></div>` : ''}
+      </dl>
+      ${sourceLine(water)}
+    </div>`;
+
+  const soilRow = !soil ? '' : `
+    <div class="v1-card">
+      <div class="v1-card-h">Soil contamination</div>
+      <dl class="v1-kv">
+        ${soil.known_contamination_signal ? `<div><dt>Known signal</dt><dd>${badge(soil.known_contamination_signal, soil.known_contamination_signal)} <span class="v1-note">${esc(soil.known_contamination_notes || '')}</span></dd></div>` : ''}
+        ${soil.due_diligence_burden ? `<div><dt>Due-diligence burden</dt><dd>${badge(soil.due_diligence_burden, soil.due_diligence_burden)}</dd></div>` : ''}
+        ${soil.contamination_regulatory_regime && soil.contamination_regulatory_regime !== 'unknown' ? `<div><dt>Regulatory regime</dt><dd>${esc(soil.contamination_regulatory_regime)}</dd></div>` : ''}
+        ${soil.gaps ? `<div><dt>Known data gaps</dt><dd><em>${esc(soil.gaps)}</em></dd></div>` : ''}
+      </dl>
+      ${sourceLine(soil)}
+    </div>`;
+
+  return `
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Field reality, water and soil</h2>
+        <div class="v1-grid">${waterRow}${soilRow}</div>
+      </div>
+    </section>`;
+}
+
+// Section 4 — climate buffering (state + trajectory).
+// Surfaces the structural microclimate features and their dynamic erosion under
+// warming, paired as state-and-trajectory (the Spec's two-axis framing for every
+// criterion, applied here explicitly).
+function climateBufferingBlock(r) {
+  const cb = v1.climate_buffering[r.id];
+  if (!cb) return '';
+
+  const featureChips = (cb.primary_buffering_features || [])
+    .map((f) => `<span class="badge">${esc(f.replace(/_/g, ' '))}</span>`)
+    .join(' ');
+
+  const stateCard = `
+    <div class="v1-card">
+      <div class="v1-card-h">Buffering features (state)</div>
+      <dl class="v1-kv">
+        ${featureChips ? `<div><dt>Primary features</dt><dd>${featureChips}</dd></div>` : ''}
+        ${cb.altitude_range_m ? `<div><dt>Altitude range</dt><dd class="mono">${esc(cb.altitude_range_m)}</dd></div>` : ''}
+        ${cb.buffering_strength ? `<div><dt>Buffering strength</dt><dd>${badge(cb.buffering_strength)}</dd></div>` : ''}
+        ${cb.buffering_notes ? `<div><dt>Detail</dt><dd>${esc(cb.buffering_notes)}</dd></div>` : ''}
+      </dl>
+    </div>`;
+
+  const trajCard = `
+    <div class="v1-card">
+      <div class="v1-card-h">Trajectory under warming</div>
+      <dl class="v1-kv">
+        ${cb.trajectory_under_warming ? `<div><dt>Direction</dt><dd>${badge(cb.trajectory_under_warming, cb.trajectory_under_warming)} <span class="v1-note">${esc(cb.trajectory_notes || '')}</span></dd></div>` : ''}
+        ${cb.primary_vulnerability_signal ? `<div><dt>Primary vulnerability</dt><dd><em>${esc(cb.primary_vulnerability_signal)}</em></dd></div>` : ''}
+      </dl>
+      ${sourceLine(cb)}
+    </div>`;
+
+  return `
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Climate buffering</h2>
+        <p class="v1-lead">Structural microclimate features that hold the place steady, paired with how fast warming is eroding them. State plus trajectory, per the framework.</p>
+        <div class="v1-grid">${stateCard}${trajCard}</div>
+      </div>
+    </section>`;
 }
 
 function otherRegionsNav(current) {
@@ -159,6 +374,28 @@ function page(r) {
   .region-nav a:hover{background:var(--paper-2);} .region-nav span{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:2px;}
   footer{padding:40px 0 70px;} footer p{font-size:11.5px;color:var(--ink-3);max-width:70ch;line-height:1.6;}
   @media(max-width:600px){ th[scope=row]{width:auto;display:block;} td{display:block;border-top:none;padding:2px 0;} tr{display:block;border-top:1px solid var(--rule);padding:12px 0;} }
+
+  /* V1 layer sections (the r4 round's per-jurisdiction data) */
+  .v1-lead{font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--ink-3);max-width:62ch;margin:0 0 22px;}
+  .v1-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .v1-card{background:var(--paper);padding:20px 22px 18px;}
+  .v1-card-h{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .v1-kv{margin:0;padding:0;font-size:13.5px;}
+  .v1-kv > div{padding:7px 0;border-bottom:1px dotted var(--rule);display:flex;flex-direction:column;gap:3px;}
+  .v1-kv > div:last-child{border-bottom:none;}
+  .v1-kv dt{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0;}
+  .v1-kv dd{font-family:'Spectral',serif;font-size:14px;color:var(--ink);margin:0;line-height:1.45;}
+  .v1-kv dd em{color:var(--ink-2);font-style:italic;}
+  .v1-note{font-size:12px;color:var(--ink-3);font-family:'Spectral',serif;font-style:italic;}
+  .v1-src{font-size:11.5px;color:var(--ink-3);margin:14px 0 0;font-family:'Inter',sans-serif;}
+  .v1-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .badge{display:inline-block;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);margin-right:6px;}
+  /* Semantic badge tints — read at a glance, never numeric, never scoring. */
+  .badge-yes,.badge-passes,.badge-low,.badge-stable,.badge-community_commons,.badge-net_in,.badge-growing,.badge-cheapest,.badge-young,.badge-none_documented{background:#e8efe5;color:#3a5a3a;border-color:#bcd1b5;}
+  .badge-no,.badge-fails,.badge-very_high,.badge-aging_fast,.badge-net_out,.badge-declining,.badge-very_premium,.badge-tightening,.badge-rising_fast,.badge-legacy_industrial,.badge-legacy_mining,.badge-complex{background:#f3e5e2;color:#6a2a1a;border-color:#cfa89e;}
+  .badge-restricted,.badge-conditional,.badge-moderate,.badge-high,.badge-aging,.badge-mixed,.badge-premium,.badge-rising,.badge-volatile,.badge-legacy_agriculture,.badge-public_utility,.badge-state{background:#f0e8d2;color:#6a5a2a;border-color:#cdbf95;}
+  .badge-unknown,.badge-low_data{background:#ede9e0;color:#7a716a;border-color:#cdc6ba;}
+  @media(max-width:760px){.v1-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -175,6 +412,14 @@ function page(r) {
   </header>
 
   ${asksBlock(r)}
+
+  ${firstGateBlock(r)}
+
+  ${practicalFitBlock(r)}
+
+  ${fieldRealityBlock(r)}
+
+  ${climateBufferingBlock(r)}
 
   <section>
     <div class="wrap">
@@ -233,4 +478,14 @@ ${urls.map((u) => `  <url><loc>${u}</loc></url>`).join('\n')}
 `;
 writeFileSync(join(ROOT, 'sitemap.xml'), sitemap, 'utf8');
 
-console.log(`Generated ${count} region pages in region/ + sitemap.xml (${urls.length} urls)`);
+// v1-lookup.js — a small ESM module the main app imports for per-jurisdiction
+// filter dropdowns. Single source of truth: the same JSONs the region-page
+// generator + edge OG card use. Rebuild whenever a layer changes by re-running
+// this script. Keeps every consumer in lockstep without runtime fetches.
+const lookupJs =
+  `// AUTO-GENERATED by scripts/gen_region_pages.mjs. Do not edit by hand.\n` +
+  `// Re-run that script after any data/processed/*.json change.\n` +
+  `export const v1Lookup = ${JSON.stringify(v1, null, 2)};\n`;
+writeFileSync(join(ROOT, 'data', 'v1-lookup.js'), lookupJs, 'utf8');
+
+console.log(`Generated ${count} region pages in region/ + sitemap.xml (${urls.length} urls) + data/v1-lookup.js`);

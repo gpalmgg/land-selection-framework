@@ -51,6 +51,28 @@
   .region-nav a:hover{background:var(--paper-2);} .region-nav span{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:2px;}
   footer{padding:40px 0 70px;} footer p{font-size:11.5px;color:var(--ink-3);max-width:70ch;line-height:1.6;}
   @media(max-width:600px){ th[scope=row]{width:auto;display:block;} td{display:block;border-top:none;padding:2px 0;} tr{display:block;border-top:1px solid var(--rule);padding:12px 0;} }
+
+  /* V1 layer sections (the r4 round's per-jurisdiction data) */
+  .v1-lead{font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--ink-3);max-width:62ch;margin:0 0 22px;}
+  .v1-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .v1-card{background:var(--paper);padding:20px 22px 18px;}
+  .v1-card-h{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .v1-kv{margin:0;padding:0;font-size:13.5px;}
+  .v1-kv > div{padding:7px 0;border-bottom:1px dotted var(--rule);display:flex;flex-direction:column;gap:3px;}
+  .v1-kv > div:last-child{border-bottom:none;}
+  .v1-kv dt{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0;}
+  .v1-kv dd{font-family:'Spectral',serif;font-size:14px;color:var(--ink);margin:0;line-height:1.45;}
+  .v1-kv dd em{color:var(--ink-2);font-style:italic;}
+  .v1-note{font-size:12px;color:var(--ink-3);font-family:'Spectral',serif;font-style:italic;}
+  .v1-src{font-size:11.5px;color:var(--ink-3);margin:14px 0 0;font-family:'Inter',sans-serif;}
+  .v1-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .badge{display:inline-block;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);margin-right:6px;}
+  /* Semantic badge tints — read at a glance, never numeric, never scoring. */
+  .badge-yes,.badge-passes,.badge-low,.badge-stable,.badge-community_commons,.badge-net_in,.badge-growing,.badge-cheapest,.badge-young,.badge-none_documented{background:#e8efe5;color:#3a5a3a;border-color:#bcd1b5;}
+  .badge-no,.badge-fails,.badge-very_high,.badge-aging_fast,.badge-net_out,.badge-declining,.badge-very_premium,.badge-tightening,.badge-rising_fast,.badge-legacy_industrial,.badge-legacy_mining,.badge-complex{background:#f3e5e2;color:#6a2a1a;border-color:#cfa89e;}
+  .badge-restricted,.badge-conditional,.badge-moderate,.badge-high,.badge-aging,.badge-mixed,.badge-premium,.badge-rising,.badge-volatile,.badge-legacy_agriculture,.badge-public_utility,.badge-state{background:#f0e8d2;color:#6a5a2a;border-color:#cdbf95;}
+  .badge-unknown,.badge-low_data{background:#ede9e0;color:#7a716a;border-color:#cdc6ba;}
+  @media(max-width:760px){.v1-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -72,6 +94,120 @@
         <p>Galicia asks you to untangle the minifundio. Headline prices are low, but assembling a viable 10 to 20 ha parcel can mean negotiating with 30-plus scattered heirs and budgeting 12 to 24 months for clean title. It rains 1,100 to 1,800 mm a year, almost all between October and April, so your water resilience hinges on storage that bridges a 3 to 4 month dry summer, not on scarcity. The living substrate is the montes vecinales commons and a Galego-speaking neorrural revival, where the most accessible route runs through partnering with an existing comunidade de montes rather than buying freehold.</p>
         <p class="asks-src">Source: <a href="https://www.xunta.gal/dog/Publicados/1989/19891103/Anuncio154EA_es.html" target="_blank" rel="noopener">Lei 13/1989 das Comunidades de Montes Veciñais en Man Común</a></p>
       </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>The first gate, legal and cost</h2>
+        <p class="v1-lead">Across the slate the data shows these two as the decisive constraints, more often than soil, climate or water. They sit before everything else.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Legal &amp; ownership</div>
+      <dl class="v1-kv">
+        <div><dt>Foreign ownership</dt><dd><span class="badge badge-yes">yes</span> <span class="v1-note">Spain places no nationality restriction on rural-land ownership; non-EU buyers acquire on the same legal terms as EU citizens with only an NIE and (over EUR 500k) a Banco de Espana declaration.</span></dd></div>
+        <div><dt>Collective ownership path</dt><dd>Cooperativa (Ley 27/1999 / Galician Ley 5/1998), Sociedad Agraria de Transformacion (SAT), or for asset-pooling an SL; comunidade de montes veciñais membership is hereditary by parish and not purchasable</dd></div>
+        <div><dt>Multi-household residence as-of-right</dt><dd><span class="badge badge-conditional">conditional</span></dd></div>
+        <div><dt>Planning gate for living</dt><dd>Municipal building permit under Lei 2/2016 do solo de Galicia plus the local Plan Xeral de Ordenacion Municipal; solo rustico de proteccion agropecuaria/forestal heavily restricts residential construction</dd></div>
+        
+        <div><dt>Key restriction</dt><dd><em>Minifundio fragmentation means assembling a viable parcel often requires negotiating with dozens of scattered heirs, and Catastro vs Registro de la Propiedad disagreements are the buyer's problem.</em></dd></div>
+        <div><dt>Regulatory direction</dt><dd><span class="badge badge-stable">stable</span> <span class="v1-note">Spain Golden Visa (Ley 14/2013) repealed for new applications April 2025; non-lucrative, digital-nomad and entrepreneurial visas remain.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.xunta.gal/dog/Publicados/2016/20160215/AnuncioC3B0-100216-0001_es.html" target="_blank" rel="noopener">Lei 2/2016 do solo de Galicia</a></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Land cost</div>
+      <dl class="v1-kv">
+        <div><dt>Price per ha</dt><dd class="mono"><strong>3,000–18,000 EUR</strong> <span class="v1-note">(2024)</span></dd></div>
+        <div><dt>Affordability band</dt><dd><span class="badge badge-low">low</span></dd></div>
+        <div><dt>Appreciation trajectory</dt><dd><span class="badge badge-rising">rising</span> <span class="v1-note">Spain national agricultural mean 2024 up 2.8% YoY current prices per MAPA.</span></dd></div>
+        <div><dt>Detail</dt><dd>Dry pasture/rough land 3000 to 8000 EUR/ha; prado/labradio productive parcels 8000 to 18000 EUR/ha; Ribeira Sacra and Rias Baixas vineyard land 40000 to 80000+ EUR/ha; Spain national mean 10248 EUR/ha (+2.8% YoY).</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.mapa.gob.es/es/estadistica/temas/estadisticas-agrarias/economia/precios-tierra/" target="_blank" rel="noopener">MAPA Encuesta de Precios de la Tierra 2024; Vinetur 2024</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Practical fit</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Hospital access</div>
+      <dl class="v1-kv">
+        <div><dt>Nearest hospital</dt><dd class="mono"><strong>2.9 km</strong> <span class="v1-note">geodesic, see caveat</span></dd></div>
+        <div><dt>Hospitals within 50 km</dt><dd class="mono">10</dd></div>
+        <div><dt>Hospitals within 100 km</dt><dd class="mono">36</dd></div>
+        <div><dt>60-minute proxy</dt><dd><span class="badge badge-yes">passes</span></dd></div>
+      </dl>
+      <p class="v1-src"><em>Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower.</em></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Demographics</div>
+      <dl class="v1-kv">
+        <div><dt>Population trend</dt><dd><span class="badge badge-declining">declining</span> <span class="v1-note">Interior Ourense province has lost ~15% of population since 2000 per IGE; net negative for interior with coastal areas stable.</span></dd></div>
+        <div><dt>Median age band</dt><dd><span class="badge badge-aging_fast">aging_fast</span> <span class="v1-note">Median age ~49.5 years in 2023, Spain's oldest NUTS-II region by median age per INE 2023.</span></dd></div>
+        <div><dt>Migration dynamic</dt><dd><span class="badge badge-mixed">mixed</span> <span class="v1-note">Net negative for interior; positive net migration into coastal towns; neorrural return-to-village movement statistically marginal but locally visible.</span></dd></div>
+        <div><dt>Rural density</dt><dd><span class="badge badge-moderate">moderate</span> <span class="v1-note">Galicia overall density ~91 inhabitants/km2 in 2023, close to Spain national 95/km2, but bimodal with coastal arc dense and interior Ourense/Lugo at depopulation-frontier densities.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.ige.gal/" target="_blank" rel="noopener">accessibility.md, IGE Galicia and INE 2023</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Field reality, water and soil</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Water source control</div>
+      <dl class="v1-kv">
+        <div><dt>Rights regime</dt><dd>EU WFD implementation via Spanish public dominion; Plan Hidrologico Galicia-Costa; community traidas vecinales tradition</dd></div>
+        <div><dt>Holder type</dt><dd><span class="badge badge-mixed">mixed</span></dd></div>
+        <div><dt>Single-entity control risk</dt><dd><span class="badge badge-low">low</span> <span class="v1-note">Galicia's community-water tradition (traidas vecinales) is a culturally established and legally recognised model that maps directly onto cohousing and ecovillage water-governance designs.</span></dd></div>
+        <div><dt>Drought-priority mechanism</dt><dd>state hydrological-plan abstraction controls plus communal traida governance</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.lamoncloa.gob.es/lang/en/gobierno/councilministers/paginas/2023/20230124_council.aspx" target="_blank" rel="noopener">Plan Hidrologico Galicia-Costa, third cycle (2023); Community-owned rural water supplies in Galicia (2021)</a> · confidence: <strong>high</strong></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Soil contamination</div>
+      <dl class="v1-kv">
+        <div><dt>Known signal</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note">water.md flags aquifer pollution as a binding constraint alongside summer low-flow management but does not specify source or sector.</span></dd></div>
+        <div><dt>Due-diligence burden</dt><dd><span class="badge badge-unknown">unknown</span></dd></div>
+        
+        <div><dt>Known data gaps</dt><dd><em>No Spanish or Galician contamination regulatory regime cited, no register identified, no specific contamination drivers named.</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: Galicia water.md headline finding · confidence: <strong>low</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Climate buffering</h2>
+        <p class="v1-lead">Structural microclimate features that hold the place steady, paired with how fast warming is eroding them. State plus trajectory, per the framework.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Buffering features (state)</div>
+      <dl class="v1-kv">
+        <div><dt>Primary features</dt><dd><span class="badge">coastal moderation</span></dd></div>
+        
+        <div><dt>Buffering strength</dt><dd><span class="badge badge-neutral">high</span></dd></div>
+        <div><dt>Detail</dt><dd>Climate.md identifies Galicia as a partial climate refugium in IPCC AR6, buffered against extreme heat by Atlantic maritime influence.</dd></div>
+      </dl>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Trajectory under warming</div>
+      <dl class="v1-kv">
+        <div><dt>Direction</dt><dd><span class="badge badge-stable">stable</span> <span class="v1-note">Projected +1.5 to 2.0C by mid-century, more modest than Iberian interior; summer heat unlikely to become a primary stress this century.</span></dd></div>
+        <div><dt>Primary vulnerability</dt><dd><em>more intense winter storms and AMOC-shift tail risk</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.mdpi.com/2073-445X/14/1/85" target="_blank" rel="noopener">WorldClim CMIP6 v2.1 (2024); AEMET 2023; MDPI Land 14:85 (2025)</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
 
   <section>
     <div class="wrap">

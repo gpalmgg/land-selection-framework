@@ -51,6 +51,28 @@
   .region-nav a:hover{background:var(--paper-2);} .region-nav span{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:2px;}
   footer{padding:40px 0 70px;} footer p{font-size:11.5px;color:var(--ink-3);max-width:70ch;line-height:1.6;}
   @media(max-width:600px){ th[scope=row]{width:auto;display:block;} td{display:block;border-top:none;padding:2px 0;} tr{display:block;border-top:1px solid var(--rule);padding:12px 0;} }
+
+  /* V1 layer sections (the r4 round's per-jurisdiction data) */
+  .v1-lead{font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--ink-3);max-width:62ch;margin:0 0 22px;}
+  .v1-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .v1-card{background:var(--paper);padding:20px 22px 18px;}
+  .v1-card-h{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .v1-kv{margin:0;padding:0;font-size:13.5px;}
+  .v1-kv > div{padding:7px 0;border-bottom:1px dotted var(--rule);display:flex;flex-direction:column;gap:3px;}
+  .v1-kv > div:last-child{border-bottom:none;}
+  .v1-kv dt{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0;}
+  .v1-kv dd{font-family:'Spectral',serif;font-size:14px;color:var(--ink);margin:0;line-height:1.45;}
+  .v1-kv dd em{color:var(--ink-2);font-style:italic;}
+  .v1-note{font-size:12px;color:var(--ink-3);font-family:'Spectral',serif;font-style:italic;}
+  .v1-src{font-size:11.5px;color:var(--ink-3);margin:14px 0 0;font-family:'Inter',sans-serif;}
+  .v1-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .badge{display:inline-block;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);margin-right:6px;}
+  /* Semantic badge tints — read at a glance, never numeric, never scoring. */
+  .badge-yes,.badge-passes,.badge-low,.badge-stable,.badge-community_commons,.badge-net_in,.badge-growing,.badge-cheapest,.badge-young,.badge-none_documented{background:#e8efe5;color:#3a5a3a;border-color:#bcd1b5;}
+  .badge-no,.badge-fails,.badge-very_high,.badge-aging_fast,.badge-net_out,.badge-declining,.badge-very_premium,.badge-tightening,.badge-rising_fast,.badge-legacy_industrial,.badge-legacy_mining,.badge-complex{background:#f3e5e2;color:#6a2a1a;border-color:#cfa89e;}
+  .badge-restricted,.badge-conditional,.badge-moderate,.badge-high,.badge-aging,.badge-mixed,.badge-premium,.badge-rising,.badge-volatile,.badge-legacy_agriculture,.badge-public_utility,.badge-state{background:#f0e8d2;color:#6a5a2a;border-color:#cdbf95;}
+  .badge-unknown,.badge-low_data{background:#ede9e0;color:#7a716a;border-color:#cdc6ba;}
+  @media(max-width:760px){.v1-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -72,6 +94,120 @@
         <p>Northern New Mexico asks you to join a commons before you own a thing. Acequia-served land comes with a governance obligation, not just a water allocation: you attend parciante meetings, contribute labor to the annual ditch limpia, and vote on distribution, including in drought years when water is scarce and tensions run high. Water is the single most load-bearing constraint here, the Upper Rio Grande is fully appropriated and in structural deficit, so off-acequia sites need permitted wells or aggressive rainwater harvesting and closed-loop reuse. You inherit one of the fastest-warming states in the continental US and a real wildfire threat in the montane belt, set against a deep, generations-old earthship and intentional-community network that already holds the desert-appropriate knowledge.</p>
         <p class="asks-src">Source: <a href="https://law.justia.com/codes/new-mexico/chapter-73/article-2/section-73-2-28/" target="_blank" rel="noopener">New Mexico Statutes §73-2-28 (2025), Acequia and community ditch associations</a></p>
       </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>The first gate, legal and cost</h2>
+        <p class="v1-lead">Across the slate the data shows these two as the decisive constraints, more often than soil, climate or water. They sit before everything else.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Legal &amp; ownership</div>
+      <dl class="v1-kv">
+        <div><dt>Foreign ownership</dt><dd><span class="badge badge-yes">yes</span> <span class="v1-note">No New Mexico state law restricts foreign purchase; AFIDA disclosure applies federally and FIRPTA withholding applies on sale, but neither restricts purchase.</span></dd></div>
+        <div><dt>Collective ownership path</dt><dd>LLC, land trust, limited partnership, or Community Land Trust under the New Mexico Community Land Trust Act (2007)</dd></div>
+        <div><dt>Multi-household residence as-of-right</dt><dd><span class="badge badge-conditional">conditional</span></dd></div>
+        <div><dt>Planning gate for living</dt><dd>Taos County building permit under A-1 / A-3 zoning with NM Construction Industries Division alternative-methods approval for earthship/rammed-earth/strawbale/adobe construction</dd></div>
+        <div><dt>Pre-emption / first-claim holders</dt><dd>acequia commissioners (statutory approval over water-right transfers in/out of an acequia under NM Stat. §73-2-28)</dd></div>
+        <div><dt>Key restriction</dt><dd><em>Acequia law makes water rights inseparable from democratic ditch-association governance: any transfer of water into or out of an acequia requires written approval from elected commissioners and the Office of the State Engineer, and senior priority dates govern shortage allocation under prior appropriation.</em></dd></div>
+        <div><dt>Regulatory direction</dt><dd><span class="badge badge-stable">stable</span> <span class="v1-note">Upper Rio Grande is fully appropriated; new surface-water rights are not available and new well permits in Taos County sub-basins are increasingly difficult.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://law.justia.com/codes/new-mexico/chapter-73/article-2/section-73-2-28/" target="_blank" rel="noopener">New Mexico Statutes §73-2-28 (2025) Acequia and community ditch associations</a></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Land cost</div>
+      <dl class="v1-kv">
+        <div><dt>Price per ha</dt><dd class="mono"><strong>1,791–58,137 USD</strong> <span class="v1-note">(2024-2025)</span></dd></div>
+        <div><dt>Affordability band</dt><dd><span class="badge badge-premium">premium</span></dd></div>
+        <div><dt>Appreciation trajectory</dt><dd><span class="badge badge-rising">rising</span> <span class="v1-note">Dossier notes regen network visibility has attracted land speculators and short-term vacation rental operators inflating land values.</span></dd></div>
+        <div><dt>Detail</dt><dd>Taos County median listing 12846 USD/acre (~31740 USD/ha); average on listed properties ~23529 USD/acre (~58137 USD/ha); USDA NASS 2025 New Mexico statewide farm real estate average 725 USD/acre (~1791 USD/ha, lowest statewide agricultural average in continental US). Per-acre to per-ha via /0.4047.</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.landboss.net/post/how-much-is-one-acre-of-land-worth-in-new-mexico" target="_blank" rel="noopener">LandSearch market data 2024 to 2025; USDA NASS 2025 New Mexico statewide; LandBoss 2026 Guide</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Practical fit</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Hospital access</div>
+      <dl class="v1-kv">
+        <div><dt>Nearest hospital</dt><dd class="mono"><strong>3.9 km</strong> <span class="v1-note">geodesic, see caveat</span></dd></div>
+        <div><dt>Hospitals within 50 km</dt><dd class="mono">2</dd></div>
+        <div><dt>Hospitals within 100 km</dt><dd class="mono">15</dd></div>
+        <div><dt>60-minute proxy</dt><dd><span class="badge badge-yes">passes</span></dd></div>
+      </dl>
+      <p class="v1-src"><em>Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower.</em></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Demographics</div>
+      <dl class="v1-kv">
+        <div><dt>Population trend</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note">Dossier does not give explicit recent population trend direction for Taos County.</span></dd></div>
+        <div><dt>Median age band</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note"></span></dd></div>
+        <div><dt>Migration dynamic</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note">Dossier notes earthship and arts/tourism economy attract practitioners and inflate land values via earthship B and B and short-term rental operators, but does not quantify recent net migration.</span></dd></div>
+        <div><dt>Rural density</dt><dd><span class="badge badge-very_low">very_low</span> <span class="v1-note">Taos County population density 6.05 persons/km2 per US Census 2020 (population 34,489; land area 5,710 km2); 54.6% of residents live in rural areas.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.census.gov/quickfacts/taoscountynewmexico" target="_blank" rel="noopener">accessibility.md, US Census Bureau 2020</a> · confidence: <strong>medium</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Field reality, water and soil</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Water source control</div>
+      <dl class="v1-kv">
+        <div><dt>Rights regime</dt><dd>Prior appropriation doctrine; acequia community commons under NM Stat. 73-2-28; NM Office of the State Engineer adjudication</dd></div>
+        <div><dt>Holder type</dt><dd><span class="badge badge-community_commons">community_commons</span></dd></div>
+        <div><dt>Single-entity control risk</dt><dd><span class="badge badge-low">low</span> <span class="v1-note">Acequia associations have statutory authority to veto water right transfers into or out of their ditch systems; acequia culture is the deepest living expression of commons-based water management in North America, governed by elected mayordomo and commissioners.</span></dd></div>
+        <div><dt>Drought-priority mechanism</dt><dd>first-in-time first-in-right plus rotational acequia limpia; Upper Rio Grande fully appropriated with junior rights curtailed first</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://law.justia.com/codes/new-mexico/chapter-73/article-2/section-73-2-28/" target="_blank" rel="noopener">New Mexico Statutes 73-2-28 (2025); NM Office of the State Engineer Water Rights Division; New Mexico Water Advocates (2025)</a> · confidence: <strong>high</strong></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Soil contamination</div>
+      <dl class="v1-kv">
+        <div><dt>Known signal</dt><dd><span class="badge badge-none_documented">none_documented</span> <span class="v1-note"></span></dd></div>
+        <div><dt>Due-diligence burden</dt><dd><span class="badge badge-unknown">unknown</span></dd></div>
+        
+        <div><dt>Known data gaps</dt><dd><em>Legacy uranium and molybdenum mining contamination across northern New Mexico, and Los Alamos/LANL plume not addressed in dossier.</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: Northern New Mexico water.md, soil.md, legal.md · confidence: <strong>low</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Climate buffering</h2>
+        <p class="v1-lead">Structural microclimate features that hold the place steady, paired with how fast warming is eroding them. State plus trajectory, per the framework.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Buffering features (state)</div>
+      <dl class="v1-kv">
+        <div><dt>Primary features</dt><dd><span class="badge">altitude</span> <span class="badge">mountain shelter</span></dd></div>
+        <div><dt>Altitude range</dt><dd class="mono">2100-2400 m</dd></div>
+        <div><dt>Buffering strength</dt><dd><span class="badge badge-neutral">moderate</span></dd></div>
+        <div><dt>Detail</dt><dd>Climate.md frames the 2100 m elevation as the region's greatest climate asset and also its greatest illusion, currently below physiological heat danger but eroding fast.</dd></div>
+      </dl>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Trajectory under warming</div>
+      <dl class="v1-kv">
+        <div><dt>Direction</dt><dd><span class="badge badge-worsening">worsening</span> <span class="v1-note">New Mexico warmed 1.85C between 1970 and 2018, the fastest of any contiguous US state; NCA5 projects NM annual temperatures to most likely exceed historical record levels by mid-century even under lower emissions.</span></dd></div>
+        <div><dt>Primary vulnerability</dt><dd><em>landscape-scale wildfire per Hermits Peak/Calf Canyon 2022</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://nca5.climate.us/chapter/2" target="_blank" rel="noopener">WorldClim CMIP6 v2.1 (2024); NCA5 Chapter 2; Sillmann et al. ESEv 2022; 350newmexico.org</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
 
   <section>
     <div class="wrap">

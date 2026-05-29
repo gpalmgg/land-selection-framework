@@ -16,7 +16,7 @@ files:
   - { path: land-cost.geojson, scope: "EU + NA", features: 20 }
   - { path: land-cost.json, kind: "structured extraction (human-verifiable intermediate)" }
 coverage: "20 of 20 in-scope regions ATTEMPTED; per-feature `data_confidence` records actual evidence strength (high|medium|low). Cost data in the dossiers is genuinely thinner than legal data; honest sparsity is surfaced, not hidden."
-processing_method: "scripts/compile_land_cost.py reads the land-cost.json intermediate + regions.js coords and emits the GeoJSON FeatureCollection. The JSON intermediate is extracted from the dossier files (LLM-assisted; human-verifiable per Spec Step 4)."
+processing_method: "scripts/compile_per_jurisdiction.py land-cost reads the JSON intermediate + regions.js coords and emits the GeoJSON FeatureCollection. The JSON intermediate is extracted from the dossier files (LLM-assisted; human-verifiable per Spec Step 4)."
 notes: "Delivers r4 Finding 1b (land_cost as first-class criterion candidate). Behaves as a binding constraint in practice (Cascadia 3-5x Alentejo, Appalachian regen-premium, BC ALR pricing). Pairs with legal_ownership as the two 'first gate' criteria. data_confidence is the integrity field — read it before using a region's figure."
 properties_schema:
   price_per_ha_low: "number or null"

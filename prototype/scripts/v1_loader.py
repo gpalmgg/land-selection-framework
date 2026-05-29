@@ -32,6 +32,7 @@ LAYERS = {
     "demographic_trajectory": {"files": [("demographic-trajectory.geojson", "both")]},
     "soil_contamination":     {"files": [("soil-contamination.geojson", "both")]},
     "water_source_control":   {"files": [("water-source-control.geojson", "both")]},
+    "climate_buffering":      {"files": [("climate-buffering.geojson", "both")]},
 }
 
 # Sidecar metadata filename per criterion.
@@ -46,6 +47,7 @@ SIDECAR = {
     "demographic_trajectory": "demographic-trajectory.metadata.yaml",
     "soil_contamination":     "soil-contamination.metadata.yaml",
     "water_source_control":   "water-source-control.metadata.yaml",
+    "climate_buffering":      "climate-buffering.metadata.yaml",
 }
 
 criteria = list(LAYERS.keys())

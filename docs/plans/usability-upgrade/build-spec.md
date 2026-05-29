@@ -30,7 +30,7 @@ Cache-bust: bump `?v=na2` → `?v=usab1` everywhere as the final engineering ste
   - Depends on: T-3
   - Notes: NEUTRAL ORDER — never sort by value/pass-count. Framework-critical.
 
-- [ ] **T-5 [subagent] Next-step row on match bar.** Inside `refreshAll()`, render/update a next-step row in `.match-bar`: "What they ask of you" (opens first passing region's drawer), "Share this view" (copies full URL incl. `?t.*`+`?pin=`+continent, with copied feedback), "Talk to The Collective" (mailto hello@islands-of-coherence.com). Hide or show loosen-hint when 0 pass.
+- [ ] **T-5 [subagent] Next-step row on match bar.** Inside `refreshAll()`, render/update a next-step row in `.match-bar`: "What they ask of you" (opens first passing region's drawer), "Share this view" (copies full URL incl. `?t.*`+`?pin=`+continent, with copied feedback), "Talk to The Collective" (mailto gustaf@islands-of-coherence.com). Hide or show loosen-hint when 0 pass.
   - Files: src/main.js, index.html
   - Satisfies: AC-8
   - Depends on: T-2, T-3

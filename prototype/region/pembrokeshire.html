@@ -51,6 +51,28 @@
   .region-nav a:hover{background:var(--paper-2);} .region-nav span{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:2px;}
   footer{padding:40px 0 70px;} footer p{font-size:11.5px;color:var(--ink-3);max-width:70ch;line-height:1.6;}
   @media(max-width:600px){ th[scope=row]{width:auto;display:block;} td{display:block;border-top:none;padding:2px 0;} tr{display:block;border-top:1px solid var(--rule);padding:12px 0;} }
+
+  /* V1 layer sections (the r4 round's per-jurisdiction data) */
+  .v1-lead{font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--ink-3);max-width:62ch;margin:0 0 22px;}
+  .v1-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .v1-card{background:var(--paper);padding:20px 22px 18px;}
+  .v1-card-h{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .v1-kv{margin:0;padding:0;font-size:13.5px;}
+  .v1-kv > div{padding:7px 0;border-bottom:1px dotted var(--rule);display:flex;flex-direction:column;gap:3px;}
+  .v1-kv > div:last-child{border-bottom:none;}
+  .v1-kv dt{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0;}
+  .v1-kv dd{font-family:'Spectral',serif;font-size:14px;color:var(--ink);margin:0;line-height:1.45;}
+  .v1-kv dd em{color:var(--ink-2);font-style:italic;}
+  .v1-note{font-size:12px;color:var(--ink-3);font-family:'Spectral',serif;font-style:italic;}
+  .v1-src{font-size:11.5px;color:var(--ink-3);margin:14px 0 0;font-family:'Inter',sans-serif;}
+  .v1-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .badge{display:inline-block;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);margin-right:6px;}
+  /* Semantic badge tints — read at a glance, never numeric, never scoring. */
+  .badge-yes,.badge-passes,.badge-low,.badge-stable,.badge-community_commons,.badge-net_in,.badge-growing,.badge-cheapest,.badge-young,.badge-none_documented{background:#e8efe5;color:#3a5a3a;border-color:#bcd1b5;}
+  .badge-no,.badge-fails,.badge-very_high,.badge-aging_fast,.badge-net_out,.badge-declining,.badge-very_premium,.badge-tightening,.badge-rising_fast,.badge-legacy_industrial,.badge-legacy_mining,.badge-complex{background:#f3e5e2;color:#6a2a1a;border-color:#cfa89e;}
+  .badge-restricted,.badge-conditional,.badge-moderate,.badge-high,.badge-aging,.badge-mixed,.badge-premium,.badge-rising,.badge-volatile,.badge-legacy_agriculture,.badge-public_utility,.badge-state{background:#f0e8d2;color:#6a5a2a;border-color:#cdbf95;}
+  .badge-unknown,.badge-low_data{background:#ede9e0;color:#7a716a;border-color:#cdc6ba;}
+  @media(max-width:760px){.v1-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -72,6 +94,120 @@
         <p>Pembrokeshire asks you to win planning, not just buy land. Ownership is fully open to non-UK buyers, but living on agricultural land means clearing the One Planet Development route under TAN 6, with a detailed management plan, ecological footprint accounting, and a binding commitment to 65 percent household subsistence within 5 years. Water is abundant to a fault, so the real constraints are surface flooding, intensifying rainfall, and septic performance on heavy clay-shale soils, with OPD legally requiring you to engineer your own water and wastewater. Note too that buying land never grants residency, the National Park boundary tightens scrutiny sharply, and practitioners often target parcels just outside it.</p>
         <p class="asks-src">Source: <a href="https://www.gov.wales/planning-permission-one-planet-developments-open-countryside" target="_blank" rel="noopener">Welsh Government, TAN 6 One Planet Development</a></p>
       </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>The first gate, legal and cost</h2>
+        <p class="v1-lead">Across the slate the data shows these two as the decisive constraints, more often than soil, climate or water. They sit before everything else.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Legal &amp; ownership</div>
+      <dl class="v1-kv">
+        <div><dt>Foreign ownership</dt><dd><span class="badge badge-yes">yes</span> <span class="v1-note">The UK places no nationality restriction on land ownership; non-UK and EU buyers acquire freehold on equal terms with no residency precondition, though living on the land requires a separate visa.</span></dd></div>
+        <div><dt>Collective ownership path</dt><dd>Community Land Trust (Housing and Regeneration Act 2008), Community Benefit Society (Co-operative and Community Benefit Societies Act 2014), Company Limited by Guarantee, or Charitable Incorporated Organisation</dd></div>
+        <div><dt>Multi-household residence as-of-right</dt><dd><span class="badge badge-conditional">conditional</span></dd></div>
+        <div><dt>Planning gate for living</dt><dd>One Planet Development (TAN 6) management plan with ecological-footprint calculations and 5-year subsistence trajectory, processed by the County Council or, inside the park, by Pembrokeshire Coast National Park Authority</dd></div>
+        
+        <div><dt>Key restriction</dt><dd><em>Open countryside residential construction is only realistically available via the TAN 6 OPD route, which demands a detailed management plan and committed subsistence trajectory; Pembrokeshire Coast National Park land faces materially stricter scrutiny.</em></dd></div>
+        <div><dt>Regulatory direction</dt><dd><span class="badge badge-tightening">tightening</span> <span class="v1-note">Inheritance Tax Agricultural Property Relief was capped at GBP 1m of value in the November 2024 UK Budget, effective April 2026, affecting family-succession planning.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.gov.wales/planning-permission-one-planet-developments-open-countryside" target="_blank" rel="noopener">Welsh Government TAN 6 One Planet Development</a></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Land cost</div>
+      <dl class="v1-kv">
+        <div><dt>Price per ha</dt><dd class="mono"><strong>19,770–27,180 GBP</strong> <span class="v1-note">(2024)</span></dd></div>
+        <div><dt>Affordability band</dt><dd><span class="badge badge-premium">premium</span></dd></div>
+        <div><dt>Appreciation trajectory</dt><dd><span class="badge badge-rising">rising</span> <span class="v1-note">Marginal rise from 9152 to 9164 GBP/acre Q4 2024 to early 2025 per Knight Frank Farmland Index.</span></dd></div>
+        <div><dt>Detail</dt><dd>Pembrokeshire bare-land 8000 to 11000 GBP/acre (~19770 to 27180 GBP/ha) for mixed/grass; Wales/England average 9152 GBP/acre (~22605 GBP/ha); prime parcels can reach 20000+ GBP/acre. Per-acre to per-ha via /0.4047.</dd></div>
+      </dl>
+      <p class="v1-src">Source: Knight Frank Farmland Index Q4 2024; Farmers Weekly Farmland in your area 2024 Wales · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Practical fit</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Hospital access</div>
+      <dl class="v1-kv">
+        <div><dt>Nearest hospital</dt><dd class="mono"><strong>6.0 km</strong> <span class="v1-note">geodesic, see caveat</span></dd></div>
+        <div><dt>Hospitals within 50 km</dt><dd class="mono">6</dd></div>
+        <div><dt>Hospitals within 100 km</dt><dd class="mono">34</dd></div>
+        <div><dt>60-minute proxy</dt><dd><span class="badge badge-yes">passes</span></dd></div>
+      </dl>
+      <p class="v1-src"><em>Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower.</em></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Demographics</div>
+      <dl class="v1-kv">
+        <div><dt>Population trend</dt><dd><span class="badge badge-stable">stable</span> <span class="v1-note">Pembrokeshire population stable-to-slightly-declining since 2011; coastal areas see seasonal and retirement in-migration; rural inland wards lose young adults.</span></dd></div>
+        <div><dt>Median age band</dt><dd><span class="badge badge-aging">aging</span> <span class="v1-note">Median age in Pembrokeshire 2021 Census: ~46 years vs Wales 42, UK 40.</span></dd></div>
+        <div><dt>Migration dynamic</dt><dd><span class="badge badge-mixed">mixed</span> <span class="v1-note">Coastal towns receive in-migration from across the UK and (post-Brexit) reduced inflow from continental Europe; rural inland wards lose young adults.</span></dd></div>
+        <div><dt>Rural density</dt><dd><span class="badge badge-low">low</span> <span class="v1-note">Pembrokeshire ~78 inhabitants/km2 per 2021 Census; rural ward density materially lower at 10-30/km2.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.ons.gov.uk/visualisations/customprofiles/build/" target="_blank" rel="noopener">accessibility.md, ONS Census 2021</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Field reality, water and soil</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Water source control</div>
+      <dl class="v1-kv">
+        <div><dt>Rights regime</dt><dd>EU WFD implementation via NRW abstraction regime; Welsh Water mains; One Planet Development requires on-site supply</dd></div>
+        <div><dt>Holder type</dt><dd><span class="badge badge-mixed">mixed</span></dd></div>
+        <div><dt>Single-entity control risk</dt><dd><span class="badge badge-low">low</span> <span class="v1-note">OPD policy framework actively requires practitioners to engineer rainwater harvesting and on-site wastewater treatment to high standards as part of the planning approval pathway.</span></dd></div>
+        <div><dt>Drought-priority mechanism</dt><dd>public-utility-managed (Welsh Water) plus mandated on-site self-supply under TAN 6</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.gov.wales/technical-advice-note-tan-6-planning-sustainable-rural-communities" target="_blank" rel="noopener">Welsh Government TAN 6 Planning for Sustainable Rural Communities (2010); BGS Hydrogeology of Wales</a> · confidence: <strong>medium</strong></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Soil contamination</div>
+      <dl class="v1-kv">
+        <div><dt>Known signal</dt><dd><span class="badge badge-legacy_agriculture">legacy_agriculture</span> <span class="v1-note">water.md notes private supplies (~3% nationally, higher in rural Pembrokeshire) face contamination risk from agriculture and septic drainage per DWI Wales annual reports. No Milford Haven petrochemical signal in dossier.</span></dd></div>
+        <div><dt>Due-diligence burden</dt><dd><span class="badge badge-moderate">moderate</span></dd></div>
+        
+        <div><dt>Known data gaps</dt><dd><em>No UK contaminated-land regime (Part 2A EPA 1990) cited, no public register, no explicit treatment of Milford Haven petrochemical legacy.</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: DWI Wales annual reports as cited in Pembrokeshire water.md · confidence: <strong>low</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Climate buffering</h2>
+        <p class="v1-lead">Structural microclimate features that hold the place steady, paired with how fast warming is eroding them. State plus trajectory, per the framework.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Buffering features (state)</div>
+      <dl class="v1-kv">
+        <div><dt>Primary features</dt><dd><span class="badge">coastal moderation</span></dd></div>
+        
+        <div><dt>Buffering strength</dt><dd><span class="badge badge-neutral">high</span></dd></div>
+        <div><dt>Detail</dt><dd>Climate.md frames west Wales as a relatively stable maritime climate with mild winters (Jan min 3-4C) and moderate summers (July max 19-21C) thanks to Atlantic exposure.</dd></div>
+      </dl>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Trajectory under warming</div>
+      <dl class="v1-kv">
+        <div><dt>Direction</dt><dd><span class="badge badge-volatile">volatile</span> <span class="v1-note">Hourly rainfall extremes above 20 mm/h projected to become roughly 4x more frequent by 2070s under high emissions; +1.2 to 1.8C mean warming by mid-century.</span></dd></div>
+        <div><dt>Primary vulnerability</dt><dd><em>intense hourly rainfall and flash-flood risk</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.metoffice.gov.uk/research/approach/collaboration/ukcp/summaries/climate-change-projections-over-land" target="_blank" rel="noopener">Met Office UKCP18; PMC9992391 (2023); World Bank CCKP UK</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
 
   <section>
     <div class="wrap">

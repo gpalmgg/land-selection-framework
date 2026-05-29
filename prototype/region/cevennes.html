@@ -51,6 +51,28 @@
   .region-nav a:hover{background:var(--paper-2);} .region-nav span{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:2px;}
   footer{padding:40px 0 70px;} footer p{font-size:11.5px;color:var(--ink-3);max-width:70ch;line-height:1.6;}
   @media(max-width:600px){ th[scope=row]{width:auto;display:block;} td{display:block;border-top:none;padding:2px 0;} tr{display:block;border-top:1px solid var(--rule);padding:12px 0;} }
+
+  /* V1 layer sections (the r4 round's per-jurisdiction data) */
+  .v1-lead{font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--ink-3);max-width:62ch;margin:0 0 22px;}
+  .v1-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .v1-card{background:var(--paper);padding:20px 22px 18px;}
+  .v1-card-h{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .v1-kv{margin:0;padding:0;font-size:13.5px;}
+  .v1-kv > div{padding:7px 0;border-bottom:1px dotted var(--rule);display:flex;flex-direction:column;gap:3px;}
+  .v1-kv > div:last-child{border-bottom:none;}
+  .v1-kv dt{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0;}
+  .v1-kv dd{font-family:'Spectral',serif;font-size:14px;color:var(--ink);margin:0;line-height:1.45;}
+  .v1-kv dd em{color:var(--ink-2);font-style:italic;}
+  .v1-note{font-size:12px;color:var(--ink-3);font-family:'Spectral',serif;font-style:italic;}
+  .v1-src{font-size:11.5px;color:var(--ink-3);margin:14px 0 0;font-family:'Inter',sans-serif;}
+  .v1-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .badge{display:inline-block;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);margin-right:6px;}
+  /* Semantic badge tints — read at a glance, never numeric, never scoring. */
+  .badge-yes,.badge-passes,.badge-low,.badge-stable,.badge-community_commons,.badge-net_in,.badge-growing,.badge-cheapest,.badge-young,.badge-none_documented{background:#e8efe5;color:#3a5a3a;border-color:#bcd1b5;}
+  .badge-no,.badge-fails,.badge-very_high,.badge-aging_fast,.badge-net_out,.badge-declining,.badge-very_premium,.badge-tightening,.badge-rising_fast,.badge-legacy_industrial,.badge-legacy_mining,.badge-complex{background:#f3e5e2;color:#6a2a1a;border-color:#cfa89e;}
+  .badge-restricted,.badge-conditional,.badge-moderate,.badge-high,.badge-aging,.badge-mixed,.badge-premium,.badge-rising,.badge-volatile,.badge-legacy_agriculture,.badge-public_utility,.badge-state{background:#f0e8d2;color:#6a5a2a;border-color:#cdbf95;}
+  .badge-unknown,.badge-low_data{background:#ede9e0;color:#7a716a;border-color:#cdc6ba;}
+  @media(max-width:760px){.v1-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -72,6 +94,120 @@
         <p>The Cevennes ask you to make peace with SAFER. France lets anyone own farmland, but SAFER holds pre-emption rights on nearly every agricultural sale above 0.7 ha and can substitute itself to reassign land, so engaging the departemental office early with a credible installation project is the real work. Siting elevation governs everything: a parcel at 200 m and one at 1,000 m are two different climate regimes within 20 km, and the autumn cevenol storms can drop 300 to 600 mm in 24 hours, making flash-flood resilience and mid-slope siting a primary design constraint. The regen scene is deep and networked but somewhat tribal after 50 years of intentional-community life, and CAP access typically means incorporating a French association or GAEC and working in French.</p>
         <p class="asks-src">Source: <a href="https://www.safer-occitanie.com/fr/page/le-prix-des-terres.php" target="_blank" rel="noopener">SAFER Occitanie, Le prix des terres 2024</a></p>
       </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>The first gate, legal and cost</h2>
+        <p class="v1-lead">Across the slate the data shows these two as the decisive constraints, more often than soil, climate or water. They sit before everything else.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Legal &amp; ownership</div>
+      <dl class="v1-kv">
+        <div><dt>Foreign ownership</dt><dd><span class="badge badge-yes">yes</span> <span class="v1-note">France places no nationality restriction on rural-land ownership; non-EU and EU citizens purchase agricultural land on equal terms via a French notaire.</span></dd></div>
+        <div><dt>Collective ownership path</dt><dd>GFA (Groupement Foncier Agricole) for community-scale land-holding, GAEC for joint farming, Association Loi 1901 for non-commercial community, SCI for general real-estate holding, or a Fonciere on the Terre de Liens model</dd></div>
+        <div><dt>Multi-household residence as-of-right</dt><dd><span class="badge badge-conditional">conditional</span></dd></div>
+        <div><dt>Planning gate for living</dt><dd>Municipal permis de construire under the PLU, plus Parc National des Cevennes charter compliance for heart-zone or adhesion-zone parcels</dd></div>
+        <div><dt>Pre-emption / first-claim holders</dt><dd>SAFER</dd></div>
+        <div><dt>Key restriction</dt><dd><em>SAFER holds 2-month pre-emption rights on virtually every agricultural sale above ~0.7 ha and can substitute itself for the buyer to reassign land to a young farmer or installation project.</em></dd></div>
+        <div><dt>Regulatory direction</dt><dd><span class="badge badge-stable">stable</span> <span class="v1-note">Annual SAFER barème continues; no major legal changes flagged in 2024 dossier.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.legifrance.gouv.fr/codes/id/LEGITEXT000006071367/" target="_blank" rel="noopener">Code rural et de la peche maritime</a></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Land cost</div>
+      <dl class="v1-kv">
+        <div><dt>Price per ha</dt><dd class="mono"><strong>5,480–13,240 EUR</strong> <span class="v1-note">(2024)</span></dd></div>
+        <div><dt>Affordability band</dt><dd><span class="badge badge-low">low</span></dd></div>
+        <div><dt>Appreciation trajectory</dt><dd><span class="badge badge-rising_fast">rising_fast</span> <span class="v1-note">Lozere +8.1% YoY in 2024; SAFER notes very strong growth in the Cevennes and Causses.</span></dd></div>
+        <div><dt>Detail</dt><dd>Lozere 5480 EUR/ha (+8.1% YoY); Ardeche ~5500 to 7000 EUR/ha (2023); Aude 6360 EUR/ha; Herault 7900 EUR/ha; Gard 13240 EUR/ha (wine-zone weighted); Occitanie regional free-land average 7280 EUR/ha.</dd></div>
+      </dl>
+      <p class="v1-src">Source: SAFER 2024 Bareme indicatif de la valeur venale moyenne des terres agricoles; Agreste · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Practical fit</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Hospital access</div>
+      <dl class="v1-kv">
+        <div><dt>Nearest hospital</dt><dd class="mono"><strong>14 km</strong> <span class="v1-note">geodesic, see caveat</span></dd></div>
+        <div><dt>Hospitals within 50 km</dt><dd class="mono">20</dd></div>
+        <div><dt>Hospitals within 100 km</dt><dd class="mono">142</dd></div>
+        <div><dt>60-minute proxy</dt><dd><span class="badge badge-yes">passes</span></dd></div>
+      </dl>
+      <p class="v1-src"><em>Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower.</em></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Demographics</div>
+      <dl class="v1-kv">
+        <div><dt>Population trend</dt><dd><span class="badge badge-growing">growing</span> <span class="v1-note">Net positive migration into Lozere and rural Gard 2015-2024 driven by remote workers, retirees, and neo-ruraux; population growth in Lozere reversed long-term decline modestly.</span></dd></div>
+        <div><dt>Median age band</dt><dd><span class="badge badge-aging">aging</span> <span class="v1-note">Median age in Lozere 2024: ~46 years per INSEE 2024.</span></dd></div>
+        <div><dt>Migration dynamic</dt><dd><span class="badge badge-net_in">net_in</span> <span class="v1-note">Cevennes-area communes show positive net migration since 2015 per INSEE migration data 2020-2024; neo-rural wave continues.</span></dd></div>
+        <div><dt>Rural density</dt><dd><span class="badge badge-very_low">very_low</span> <span class="v1-note">Lozere ~15 inhabitants/km2 in 2024, France's lowest departement density; National Park des Cevennes ~24/km2 across 2,930 km2.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.insee.fr/" target="_blank" rel="noopener">accessibility.md, INSEE 2024</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Field reality, water and soil</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Water source control</div>
+      <dl class="v1-kv">
+        <div><dt>Rights regime</dt><dd>French Code de l'environnement public-dominion regime; water rights tied to land (bealieres and spring rights); Parc national constraints</dd></div>
+        <div><dt>Holder type</dt><dd><span class="badge badge-mixed">mixed</span></dd></div>
+        <div><dt>Single-entity control risk</dt><dd><span class="badge badge-moderate">moderate</span> <span class="v1-note">Cevennes water-politics are notoriously contested; downstream agricultural and tourist demand drives abstraction conflicts and Parc national des Cevennes biosphere reserve regulations constrain any large-scale abstraction or impoundment.</span></dd></div>
+        <div><dt>Drought-priority mechanism</dt><dd>state prefectoral arretes secheresse plus historic bealiere allocations</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.brgm.fr/en/state-groundwater-monitoring-brgm" target="_blank" rel="noopener">BRGM Groundwater monitoring; Parc national des Cevennes Charte</a> · confidence: <strong>medium</strong></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Soil contamination</div>
+      <dl class="v1-kv">
+        <div><dt>Known signal</dt><dd><span class="badge badge-none_documented">none_documented</span> <span class="v1-note"></span></dd></div>
+        <div><dt>Due-diligence burden</dt><dd><span class="badge badge-unknown">unknown</span></dd></div>
+        
+        <div><dt>Known data gaps</dt><dd><em>No French ICPE or BASOL/BASIAS register cited; no contamination signals discussed.</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: Cevennes water.md and soil.md · confidence: <strong>low</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Climate buffering</h2>
+        <p class="v1-lead">Structural microclimate features that hold the place steady, paired with how fast warming is eroding them. State plus trajectory, per the framework.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Buffering features (state)</div>
+      <dl class="v1-kv">
+        <div><dt>Primary features</dt><dd><span class="badge">altitude</span> <span class="badge">mountain shelter</span></dd></div>
+        <div><dt>Altitude range</dt><dd class="mono">200-1500 m</dd></div>
+        <div><dt>Buffering strength</dt><dd><span class="badge badge-neutral">moderate</span></dd></div>
+        <div><dt>Detail</dt><dd>Climate.md identifies Mont Lozere, Aigoual, and Mejean plateau as elevation-mediated climate refugia where mean July maxima at 1500 m remain ~22-24C even under +2C global warming.</dd></div>
+      </dl>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Trajectory under warming</div>
+      <dl class="v1-kv">
+        <div><dt>Direction</dt><dd><span class="badge badge-volatile">volatile</span> <span class="v1-note">Southern France warming above the national +1.7 to 2.7C trajectory; maximum daily autumn precipitation up ~30% since mid-20th century; summer precipitation projected down 15 to 25% by 2050.</span></dd></div>
+        <div><dt>Primary vulnerability</dt><dd><em>cevenol autumn flash-flood storms with debris-flow risk</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.drias-climat.fr/" target="_blank" rel="noopener">Meteo-France DRIAS 2024; WorldClim CMIP6 v2.1</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
 
   <section>
     <div class="wrap">

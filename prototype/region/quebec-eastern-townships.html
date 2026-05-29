@@ -51,6 +51,28 @@
   .region-nav a:hover{background:var(--paper-2);} .region-nav span{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:2px;}
   footer{padding:40px 0 70px;} footer p{font-size:11.5px;color:var(--ink-3);max-width:70ch;line-height:1.6;}
   @media(max-width:600px){ th[scope=row]{width:auto;display:block;} td{display:block;border-top:none;padding:2px 0;} tr{display:block;border-top:1px solid var(--rule);padding:12px 0;} }
+
+  /* V1 layer sections (the r4 round's per-jurisdiction data) */
+  .v1-lead{font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--ink-3);max-width:62ch;margin:0 0 22px;}
+  .v1-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .v1-card{background:var(--paper);padding:20px 22px 18px;}
+  .v1-card-h{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .v1-kv{margin:0;padding:0;font-size:13.5px;}
+  .v1-kv > div{padding:7px 0;border-bottom:1px dotted var(--rule);display:flex;flex-direction:column;gap:3px;}
+  .v1-kv > div:last-child{border-bottom:none;}
+  .v1-kv dt{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0;}
+  .v1-kv dd{font-family:'Spectral',serif;font-size:14px;color:var(--ink);margin:0;line-height:1.45;}
+  .v1-kv dd em{color:var(--ink-2);font-style:italic;}
+  .v1-note{font-size:12px;color:var(--ink-3);font-family:'Spectral',serif;font-style:italic;}
+  .v1-src{font-size:11.5px;color:var(--ink-3);margin:14px 0 0;font-family:'Inter',sans-serif;}
+  .v1-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .badge{display:inline-block;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);margin-right:6px;}
+  /* Semantic badge tints — read at a glance, never numeric, never scoring. */
+  .badge-yes,.badge-passes,.badge-low,.badge-stable,.badge-community_commons,.badge-net_in,.badge-growing,.badge-cheapest,.badge-young,.badge-none_documented{background:#e8efe5;color:#3a5a3a;border-color:#bcd1b5;}
+  .badge-no,.badge-fails,.badge-very_high,.badge-aging_fast,.badge-net_out,.badge-declining,.badge-very_premium,.badge-tightening,.badge-rising_fast,.badge-legacy_industrial,.badge-legacy_mining,.badge-complex{background:#f3e5e2;color:#6a2a1a;border-color:#cfa89e;}
+  .badge-restricted,.badge-conditional,.badge-moderate,.badge-high,.badge-aging,.badge-mixed,.badge-premium,.badge-rising,.badge-volatile,.badge-legacy_agriculture,.badge-public_utility,.badge-state{background:#f0e8d2;color:#6a5a2a;border-color:#cdbf95;}
+  .badge-unknown,.badge-low_data{background:#ede9e0;color:#7a716a;border-color:#cdc6ba;}
+  @media(max-width:760px){.v1-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -72,6 +94,120 @@
         <p>Québec's Eastern Townships ask you to lead with a real agricultural mission and to do it in French. The CPTAQ Green Zone protects farmland from speculation but constrains buyers: under Bill 86 (2025) most non-farmer purchasers now need prior CPTAQ authorization, applications are public, contested, and run 12 to 36 months, and you must demonstrate credible agricultural intent through a farm plan or MAPAQ registration, not a lifestyle or retreat framing. The land regime runs on civil law with mandatory notarial deeds, and French is the sole official language for permits, CPTAQ filings, and the francophone-dominant regen network, a genuine integration burden for anglophone founders. Water is abundant year-round, so the constraints are qualitative: agricultural-runoff lake quality, spring flood and freeze-thaw loads, and building for -25°C winters.</p>
         <p class="asks-src">Source: <a href="https://www.canlii.org/en/qc/laws/astat/sq-2025-c-5/latest/sq-2025-c-5.html" target="_blank" rel="noopener">CanLII, SQ 2025, c 5 (Bill 86, assented March 25, 2025)</a></p>
       </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>The first gate, legal and cost</h2>
+        <p class="v1-lead">Across the slate the data shows these two as the decisive constraints, more often than soil, climate or water. They sit before everything else.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Legal &amp; ownership</div>
+      <dl class="v1-kv">
+        <div><dt>Foreign ownership</dt><dd><span class="badge badge-restricted">restricted</span> <span class="v1-note">Non-residents of Quebec acquiring agricultural land over 4 hectares need CPTAQ authorization (A-4.1), and under Bill 86 (SQ 2025, c. 5) most non-farmer buyers and non-resident share acquisitions now also require CPTAQ approval.</span></dd></div>
+        <div><dt>Collective ownership path</dt><dd>Cooperative under the Loi sur les cooperatives, Association (non-profit), Fiducie or Fiducie d'utilite sociale under CCQ art. 1260 to 1298, or Emphyteose to separate ground from surface improvements</dd></div>
+        <div><dt>Multi-household residence as-of-right</dt><dd><span class="badge badge-no">no</span></dd></div>
+        <div><dt>Planning gate for living</dt><dd>CPTAQ authorization for non-agricultural use within the Green Zone, plus municipal building permit; applications are public, contested, and typically 12 to 36 months</dd></div>
+        <div><dt>Pre-emption / first-claim holders</dt><dd>CPTAQ (authorization gate over non-farmer and non-resident agricultural land acquisitions)</dd></div>
+        <div><dt>Key restriction</dt><dd><em>CPTAQ Green Zone designation restricts agricultural-land activities to agriculture by default, and Bill 86 (March 2025) now requires prior CPTAQ authorization for most non-farmer buyers and bans agricultural land purchases by investment funds and non-agricultural legal entities (retroactive to 5 December 2024).</em></dd></div>
+        <div><dt>Regulatory direction</dt><dd><span class="badge badge-tightening">tightening</span> <span class="v1-note">Bill 86 (SQ 2025, c. 5, assented 25 March 2025) is the most significant LPTAA revision since 1978: investment-fund/non-agricultural-legal-entity moratorium, expanded non-farmer authorization requirement, non-resident share-acquisition trigger, and penalties up to CAD 5,000 (natural) / CAD 10,000 (legal).</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.canlii.org/en/qc/laws/astat/sq-2025-c-5/latest/sq-2025-c-5.html" target="_blank" rel="noopener">CanLII SQ 2025, c 5 (Bill 86, assented 25 March 2025)</a></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Land cost</div>
+      <dl class="v1-kv">
+        <div><dt>Price per ha</dt><dd class="mono"><strong>20,000–35,000 CAD</strong> <span class="v1-note">(2024)</span></dd></div>
+        <div><dt>Affordability band</dt><dd><span class="badge badge-moderate">moderate</span></dd></div>
+        <div><dt>Appreciation trajectory</dt><dd><span class="badge badge-rising_fast">rising_fast</span> <span class="v1-note">Quebec farmland values rose +7.7% in 2024 and +4.8% in first half 2025 per FCC.</span></dd></div>
+        <div><dt>Detail</dt><dd>Quebec provincial average 17720 CAD/acre (~43800 CAD/ha); Estrie/Eastern Townships estimated 8000 to 14000 CAD/acre (~20000 to 35000 CAD/ha) based on regional comparables and FCC commentary on more tempered Eastern Townships pricing vs Monteregie.</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.fcc-fac.ca/en/knowledge/economics/farmland-values-report" target="_blank" rel="noopener">Farm Credit Canada Farmland Values Report 2024</a> · confidence: <strong>medium</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Practical fit</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Hospital access</div>
+      <dl class="v1-kv">
+        <div><dt>Nearest hospital</dt><dd class="mono"><strong>9.0 km</strong> <span class="v1-note">geodesic, see caveat</span></dd></div>
+        <div><dt>Hospitals within 50 km</dt><dd class="mono">5</dd></div>
+        <div><dt>Hospitals within 100 km</dt><dd class="mono">25</dd></div>
+        <div><dt>60-minute proxy</dt><dd><span class="badge badge-yes">passes</span></dd></div>
+      </dl>
+      <p class="v1-src"><em>Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower.</em></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Demographics</div>
+      <dl class="v1-kv">
+        <div><dt>Population trend</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note">Dossier covers density and accessibility but does not give an explicit recent population trend direction for Estrie.</span></dd></div>
+        <div><dt>Median age band</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note"></span></dd></div>
+        <div><dt>Migration dynamic</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note">Proximity to Montreal creates second-home demand pushing rural land prices upward through 2000s-2020s; no explicit migration data given.</span></dd></div>
+        <div><dt>Rural density</dt><dd><span class="badge badge-moderate">moderate</span> <span class="v1-note">Estrie administrative region ~33 persons/km2 per Statistics Canada 2021 Census (337,701 residents over 10,212 km2); Sherbrooke core &gt;1,000/km2 with agricultural rural areas 5-20/km2.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/details/page.cfm?Lang=E" target="_blank" rel="noopener">accessibility.md, Statistics Canada 2021 Census</a> · confidence: <strong>medium</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Field reality, water and soil</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Water source control</div>
+      <dl class="v1-kv">
+        <div><dt>Rights regime</dt><dd>Quebec public-dominion water under MELCCFP; Quebec Water Strategy 2018-2030; municipal supply from Lake Memphremagog</dd></div>
+        <div><dt>Holder type</dt><dd><span class="badge badge-public_utility">public_utility</span></dd></div>
+        <div><dt>Single-entity control risk</dt><dd><span class="badge badge-low">low</span> <span class="v1-note">Lake Memphremagog is the primary drinking-water source for Sherbrooke (population ~172,000); municipal water security is classified as high by the Quebec Ministry of Environment; rural settlements typically use private fractured-rock wells with high success rates.</span></dd></div>
+        <div><dt>Drought-priority mechanism</dt><dd>public-utility-managed reservoirs (18 managed reservoirs in Saint-Francois watershed); abundant precipitation minimises priority rationing</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.environnement.gouv.qc.ca/eau/inter_en.htm" target="_blank" rel="noopener">MELCCFP Quebec's Water resource page; Quebec Water Strategy 2018-2030</a> · confidence: <strong>medium</strong></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Soil contamination</div>
+      <dl class="v1-kv">
+        <div><dt>Known signal</dt><dd><span class="badge badge-legacy_agriculture">legacy_agriculture</span> <span class="v1-note">water.md notes cyanobacteria blooms on Lac Brome and Lac Magog in warm summers driven by agricultural runoff (phosphorus from dairy-intensive farming); practitioner reading recommends well testing and proximity assessment to agricultural drains before purchase. Asbestos-mining legacy (regional history) not addressed in dossier.</span></dd></div>
+        <div><dt>Due-diligence burden</dt><dd><span class="badge badge-moderate">moderate</span></dd></div>
+        
+        <div><dt>Known data gaps</dt><dd><em>Quebec LQE (Loi sur la qualite de l'environnement) section IV.2.1 contaminated-sites regime and GTC public register not cited.</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: Quebec Eastern Townships water.md · confidence: <strong>medium</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Climate buffering</h2>
+        <p class="v1-lead">Structural microclimate features that hold the place steady, paired with how fast warming is eroding them. State plus trajectory, per the framework.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Buffering features (state)</div>
+      <dl class="v1-kv">
+        <div><dt>Primary features</dt><dd><span class="badge">forest canopy</span></dd></div>
+        
+        <div><dt>Buffering strength</dt><dd><span class="badge badge-neutral">moderate</span></dd></div>
+        <div><dt>Detail</dt><dd>Climate.md frames Estrie as one of northeastern North America's most livable climate zones, with reliable snowpack feeding spring soil moisture across rolling Appalachian terrain, but no explicit mountain-shelter or coastal-moderation feature.</dd></div>
+      </dl>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Trajectory under warming</div>
+      <dl class="v1-kv">
+        <div><dt>Direction</dt><dd><span class="badge badge-stable">stable</span> <span class="v1-note">Ouranos projects +2 to 3C for southern Quebec under SSP3-7.0 with SSP2-4.5 at the low end (~2C); frost-free period lengthens 2 to 3 weeks; growing season net-positive for regen operations.</span></dd></div>
+        <div><dt>Primary vulnerability</dt><dd><em>rising flash-flood risk from precipitation intensity</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.ouranos.ca/en/climate-phenomena/temperatures-projected-changes" target="_blank" rel="noopener">Environment Canada 1981-2010 Normals; Ouranos CMIP6 / ESPO-G6-R2; WorldClim CMIP6 v2.1</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
 
   <section>
     <div class="wrap">

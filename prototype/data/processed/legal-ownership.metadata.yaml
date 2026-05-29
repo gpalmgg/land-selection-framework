@@ -16,7 +16,7 @@ files:
   - { path: legal-ownership.geojson, scope: "EU + NA", features: 20 }
   - { path: legal-ownership.json, kind: "structured extraction (human-verifiable intermediate)" }
 coverage: "20 of 20 in-scope regions = 100% per-jurisdiction completeness. Per-jurisdiction qualitative criteria use completeness rather than areal coverage (see coverage-report.md three-way metric)."
-processing_method: "scripts/compile_legal_ownership.py reads the legal-ownership.json intermediate + regions.js coords and emits the GeoJSON FeatureCollection. The JSON intermediate is extracted from the dossier legal.md files (LLM-assisted; the JSON is the human-verifiable artifact per Spec Step 4)."
+processing_method: "scripts/compile_per_jurisdiction.py legal-ownership reads the JSON intermediate + regions.js coords and emits the GeoJSON FeatureCollection. The JSON intermediate is extracted from the dossier legal.md files (LLM-assisted; the JSON is the human-verifiable artifact per Spec Step 4)."
 notes: "Carries red-line underlying data for collective-ownership legality (Overview decision 9). r4 Finding 1a delivered: legal/ownership now exists as a first-class V1 layer rather than buried mid-list."
 properties_schema:
   foreign_ownership: { allowed: "yes|restricted|no", notes: "string" }

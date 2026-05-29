@@ -51,6 +51,28 @@
   .region-nav a:hover{background:var(--paper-2);} .region-nav span{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:2px;}
   footer{padding:40px 0 70px;} footer p{font-size:11.5px;color:var(--ink-3);max-width:70ch;line-height:1.6;}
   @media(max-width:600px){ th[scope=row]{width:auto;display:block;} td{display:block;border-top:none;padding:2px 0;} tr{display:block;border-top:1px solid var(--rule);padding:12px 0;} }
+
+  /* V1 layer sections (the r4 round's per-jurisdiction data) */
+  .v1-lead{font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--ink-3);max-width:62ch;margin:0 0 22px;}
+  .v1-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .v1-card{background:var(--paper);padding:20px 22px 18px;}
+  .v1-card-h{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .v1-kv{margin:0;padding:0;font-size:13.5px;}
+  .v1-kv > div{padding:7px 0;border-bottom:1px dotted var(--rule);display:flex;flex-direction:column;gap:3px;}
+  .v1-kv > div:last-child{border-bottom:none;}
+  .v1-kv dt{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0;}
+  .v1-kv dd{font-family:'Spectral',serif;font-size:14px;color:var(--ink);margin:0;line-height:1.45;}
+  .v1-kv dd em{color:var(--ink-2);font-style:italic;}
+  .v1-note{font-size:12px;color:var(--ink-3);font-family:'Spectral',serif;font-style:italic;}
+  .v1-src{font-size:11.5px;color:var(--ink-3);margin:14px 0 0;font-family:'Inter',sans-serif;}
+  .v1-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .badge{display:inline-block;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);margin-right:6px;}
+  /* Semantic badge tints — read at a glance, never numeric, never scoring. */
+  .badge-yes,.badge-passes,.badge-low,.badge-stable,.badge-community_commons,.badge-net_in,.badge-growing,.badge-cheapest,.badge-young,.badge-none_documented{background:#e8efe5;color:#3a5a3a;border-color:#bcd1b5;}
+  .badge-no,.badge-fails,.badge-very_high,.badge-aging_fast,.badge-net_out,.badge-declining,.badge-very_premium,.badge-tightening,.badge-rising_fast,.badge-legacy_industrial,.badge-legacy_mining,.badge-complex{background:#f3e5e2;color:#6a2a1a;border-color:#cfa89e;}
+  .badge-restricted,.badge-conditional,.badge-moderate,.badge-high,.badge-aging,.badge-mixed,.badge-premium,.badge-rising,.badge-volatile,.badge-legacy_agriculture,.badge-public_utility,.badge-state{background:#f0e8d2;color:#6a5a2a;border-color:#cdbf95;}
+  .badge-unknown,.badge-low_data{background:#ede9e0;color:#7a716a;border-color:#cdc6ba;}
+  @media(max-width:760px){.v1-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -72,6 +94,120 @@
         <p>South Tirol asks you to fit into an existing Hof rather than start your own. The Maso Chiuso closed-farm law forbids partitioning designated farms, so small parcels rarely come to market and prices on what does transact are among Europe's highest. The pragmatic regen path is to tenant, partner, or convert within a long-established farm, since there is essentially no intentional-community scene and the generous funding stack rewards registered South Tirolean farmers, not newcomers. Water is abundant for now, but the centuries-old Waale gravity channels depend on shrinking glacier and meltwater baseflow, so verify the Wasserrechte attached to any parcel and weigh altitudinal siting, where 1,000 m trades summer heat for a 4 to 5 month heating season and snow load.</p>
         <p class="asks-src">Source: <a href="https://lexbrowser.provinz.bz.it/" target="_blank" rel="noopener">LP 17/2001, Legge provinciale sui masi chiusi / Höfegesetz</a></p>
       </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>The first gate, legal and cost</h2>
+        <p class="v1-lead">Across the slate the data shows these two as the decisive constraints, more often than soil, climate or water. They sit before everything else.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Legal &amp; ownership</div>
+      <dl class="v1-kv">
+        <div><dt>Foreign ownership</dt><dd><span class="badge badge-yes">yes</span> <span class="v1-note">Italy allows foreign freehold ownership under EU rules and reciprocity (Art. 16 Disposizioni); most OECD nationals including US and Swiss enjoy full ownership rights.</span></dd></div>
+        <div><dt>Collective ownership path</dt><dd>Standard Italian vehicles (SRL, Societa Semplice, cooperative, Associazione) for asset-pooling; native collective forms (Eigenverwaltete Burgerliche Nutzungsrechte, Interessentschaften) are not open to outsiders</dd></div>
+        <div><dt>Multi-household residence as-of-right</dt><dd><span class="badge badge-no">no</span></dd></div>
+        <div><dt>Planning gate for living</dt><dd>Municipal building permit under the Landesraumordnungsgesetz 2018 and the local Bauleitplan, with Maso Chiuso commission oversight for designated closed farms</dd></div>
+        
+        <div><dt>Key restriction</dt><dd><em>The Maso Chiuso / Hofegesetz regime forbids partition of designated closed farms and forces single-heir succession at assessed Hofschatzwert, structurally constraining inventory and inflating prices on what does transact.</em></dd></div>
+        <div><dt>Regulatory direction</dt><dd><span class="badge badge-stable">stable</span> <span class="v1-note">Provincial law LP 17/2001 continues with periodic adjustments; no major 2024 to 2025 changes flagged.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://lexbrowser.provinz.bz.it/" target="_blank" rel="noopener">LP 17/2001 Legge provinciale sui masi chiusi / Hofegesetz</a></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Land cost</div>
+      <dl class="v1-kv">
+        <div><dt>Price per ha</dt><dd class="mono"><strong>47,100–1,100,000 EUR</strong> <span class="v1-note">(2024)</span></dd></div>
+        <div><dt>Affordability band</dt><dd><span class="badge badge-very_premium">very_premium</span></dd></div>
+        <div><dt>Appreciation trajectory</dt><dd><span class="badge badge-rising">rising</span> <span class="v1-note">Italy national agricultural mean ~+1% YoY 2024 per CREA; supply constrained by maso chiuso regime keeping prices elevated.</span></dd></div>
+        <div><dt>Detail</dt><dd>North-East Italy agricultural land average 47100 EUR/ha (Eurostat 2024); South Tirol DOC vineyards Val Venosta/Isarco 300000 to 500000 EUR/ha; Lake Caldaro 600000 to 1100000 EUR/ha; Italy national mean ~22400 EUR/ha (+1% YoY).</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://ec.europa.eu/eurostat/en/web/products-eurostat-news/w/ddn-20260128-2" target="_blank" rel="noopener">Eurostat Agricultural land prices 2024 release; CREA 2024; Italian wine-press summaries / WineNews 2024</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Practical fit</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Hospital access</div>
+      <dl class="v1-kv">
+        <div><dt>Nearest hospital</dt><dd class="mono"><strong>3.0 km</strong> <span class="v1-note">geodesic, see caveat</span></dd></div>
+        <div><dt>Hospitals within 50 km</dt><dd class="mono">19</dd></div>
+        <div><dt>Hospitals within 100 km</dt><dd class="mono">108</dd></div>
+        <div><dt>60-minute proxy</dt><dd><span class="badge badge-yes">passes</span></dd></div>
+      </dl>
+      <p class="v1-src"><em>Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower.</em></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Demographics</div>
+      <dl class="v1-kv">
+        <div><dt>Population trend</dt><dd><span class="badge badge-growing">growing</span> <span class="v1-note">Population growth 2011 to 2023: +5.3% per ASTAT, positive trajectory unusual for European mountain regions.</span></dd></div>
+        <div><dt>Median age band</dt><dd><span class="badge badge-moderate">moderate</span> <span class="v1-note">Median age 2024: ~43 years, younger than Italy national ~47 and rural-Italy norm per ASTAT 2024.</span></dd></div>
+        <div><dt>Migration dynamic</dt><dd><span class="badge badge-net_in">net_in</span> <span class="v1-note">Positive net migration including from Italy, Germany, Austria, and increasingly from Eastern Europe.</span></dd></div>
+        <div><dt>Rural density</dt><dd><span class="badge badge-moderate">moderate</span> <span class="v1-note">South Tirol ~72 inhabitants/km2 in 2024 (~535,000 across ~7,400 km2) per ASTAT.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://astat.provinz.bz.it/" target="_blank" rel="noopener">accessibility.md, ASTAT 2024</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Field reality, water and soil</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Water source control</div>
+      <dl class="v1-kv">
+        <div><dt>Rights regime</dt><dd>EU WFD implementation via Provincia Autonoma di Bolzano; historic Wasserrechte attached to parcels; Waale gravity-irrigation commons</dd></div>
+        <div><dt>Holder type</dt><dd><span class="badge badge-mixed">mixed</span></dd></div>
+        <div><dt>Single-entity control risk</dt><dd><span class="badge badge-low">low</span> <span class="v1-note">Historic spring or Waale rights are valuable, legally durable, and not transferable without due process; the Waale network is a communally maintained centuries-old irrigation system.</span></dd></div>
+        <div><dt>Drought-priority mechanism</dt><dd>provincial water-rights administration plus Waale rotational allocations</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://wetter.provinz.bz.it/" target="_blank" rel="noopener">Provincia Autonoma di Bolzano Ufficio Idrografico; EURAC Alpine Environment Institute</a> · confidence: <strong>high</strong></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Soil contamination</div>
+      <dl class="v1-kv">
+        <div><dt>Known signal</dt><dd><span class="badge badge-none_documented">none_documented</span> <span class="v1-note"></span></dd></div>
+        <div><dt>Due-diligence burden</dt><dd><span class="badge badge-unknown">unknown</span></dd></div>
+        
+        <div><dt>Known data gaps</dt><dd><em>No Italian D.Lgs 152/2006 contamination regime cited; intensive apple-orchard pesticide signal not explicitly assessed in dossier.</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: South Tirol water.md and soil.md · confidence: <strong>low</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Climate buffering</h2>
+        <p class="v1-lead">Structural microclimate features that hold the place steady, paired with how fast warming is eroding them. State plus trajectory, per the framework.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Buffering features (state)</div>
+      <dl class="v1-kv">
+        <div><dt>Primary features</dt><dd><span class="badge">altitude</span> <span class="badge">mountain shelter</span> <span class="badge">valley inversion</span></dd></div>
+        <div><dt>Altitude range</dt><dd class="mono">250-1400 m</dd></div>
+        <div><dt>Buffering strength</dt><dd><span class="badge badge-neutral">very_high</span></dd></div>
+        <div><dt>Detail</dt><dd>Climate.md describes a 1000-metre altitudinal gradient as a climate-selection lever; a settlement at 1000 m today experiences a climate similar to the Bolzano valley floor of 1950.</dd></div>
+      </dl>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Trajectory under warming</div>
+      <dl class="v1-kv">
+        <div><dt>Direction</dt><dd><span class="badge badge-worsening">worsening</span> <span class="v1-note">Alpine warming roughly twice the global mean; Ortles-Cevedale and Stubai glaciers lost over 30% of 1980 ice volume by 2024; more debris flows and convective storms since 2000.</span></dd></div>
+        <div><dt>Primary vulnerability</dt><dd><em>glacier-fed irrigation baseflow loss and debris flows</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.nature.com/articles/s41597-023-02144-9" target="_blank" rel="noopener">WorldClim CMIP6 v2.1 (2024); Bucchignani et al. Scientific Data 2023; Crespi et al. Scientific Reports 2020; EURAC</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
 
   <section>
     <div class="wrap">

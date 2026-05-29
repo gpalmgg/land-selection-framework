@@ -1,0 +1,32 @@
+# V1 processed-layer metadata (Spec Step 9 requirement)
+criterion: climate_buffering
+askja_metric: 2            # Climate Resilience (Overview decision 8.1 named feature)
+tier: 1                    # per-jurisdiction structured layer
+source: "Per-region climate.md dossiers + national/regional climate-projection sources (CMIP6 SSP2-4.5, IPMA, AEMET, Meteo-France DRIAS, Met Office UKCP18, NCA5, Ouranos, WICCI, etc.)"
+source_url: "data/research-dossier/<id>/climate.md (intermediate); see per-feature source_url for primary"
+vintage: "2026-05 compilation; per-feature source vintages 2020-2025"
+license: "Research dossiers internal; underlying climate-projection sources are typically open government / publicly funded"
+native_unit: "per-jurisdiction (point at region centroid)"
+time_framing: "state + trajectory"
+state: "primary buffering features + altitude range + buffering strength per region"
+trajectory: "per-feature trajectory_under_warming enum (improving|stable|worsening|volatile|unknown)"
+sovereignty_axes: [material]
+red_line_underlying: none
+files:
+  - { path: climate-buffering.geojson, scope: "EU + NA", features: 20 }
+  - { path: climate-buffering.json, kind: "structured extraction (human-verifiable intermediate)" }
+coverage: "20 of 20 in-scope regions; data_confidence is uniformly high (climate.md was a structured dossier section in every case)"
+processing_method: "scripts/compile_per_jurisdiction.py climate-buffering reads the JSON intermediate + regions.js coords and emits the GeoJSON FeatureCollection."
+notes: "Delivers Overview decision 8.1's 'climate-buffering features (altitude, distance-to-coast, mountain-shelter exposure)' as a structured per-jurisdiction layer. Pairs the static buffering features with the dynamic trajectory_under_warming so the layer surfaces both 'how resilient is the microclimate' and 'how fast is it being eroded.'"
+properties_schema:
+  primary_buffering_features: "array of strings (altitude|coastal_moderation|mountain_shelter|lake_effect|forest_canopy|valley_inversion|peat_water_storage)"
+  altitude_range_m: "string or null"
+  buffering_strength: "very_low|low|moderate|high|very_high|unknown"
+  buffering_notes: "string"
+  primary_vulnerability_signal: "string"
+  trajectory_under_warming: "improving|stable|worsening|volatile|unknown"
+  trajectory_notes: "string"
+  data_confidence: "high|medium|low"
+  source: "string"
+  source_url: "string"
+  gaps: "string"

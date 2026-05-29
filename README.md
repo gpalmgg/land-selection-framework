@@ -19,9 +19,9 @@ A working-group project building a geospatial framework for finding land for reg
 
 ### Source documents
 The three working-group documents at `source-docs/` are the source of truth:
-- `Land Project v1 r3 Overview.md` — framing decisions and reasoning
-- `Land Project v1 r3 Specifications.md` — what V1 produces
-- `Land Project v1 r3 Implementation Strategy.md` — the 11-step plan
+- `Land Project v1 r4 Overview.md` — framing decisions and reasoning
+- `Land Project v1 r4 Specifications.md` — what V1 produces
+- `Land Project v1 r4 Implementation Strategy.md` — the 11-step plan
 
 Read them in that order for the full picture.
 

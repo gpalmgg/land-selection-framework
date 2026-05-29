@@ -51,6 +51,28 @@
   .region-nav a:hover{background:var(--paper-2);} .region-nav span{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:2px;}
   footer{padding:40px 0 70px;} footer p{font-size:11.5px;color:var(--ink-3);max-width:70ch;line-height:1.6;}
   @media(max-width:600px){ th[scope=row]{width:auto;display:block;} td{display:block;border-top:none;padding:2px 0;} tr{display:block;border-top:1px solid var(--rule);padding:12px 0;} }
+
+  /* V1 layer sections (the r4 round's per-jurisdiction data) */
+  .v1-lead{font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--ink-3);max-width:62ch;margin:0 0 22px;}
+  .v1-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+  .v1-card{background:var(--paper);padding:20px 22px 18px;}
+  .v1-card-h{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  .v1-kv{margin:0;padding:0;font-size:13.5px;}
+  .v1-kv > div{padding:7px 0;border-bottom:1px dotted var(--rule);display:flex;flex-direction:column;gap:3px;}
+  .v1-kv > div:last-child{border-bottom:none;}
+  .v1-kv dt{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0;}
+  .v1-kv dd{font-family:'Spectral',serif;font-size:14px;color:var(--ink);margin:0;line-height:1.45;}
+  .v1-kv dd em{color:var(--ink-2);font-style:italic;}
+  .v1-note{font-size:12px;color:var(--ink-3);font-family:'Spectral',serif;font-style:italic;}
+  .v1-src{font-size:11.5px;color:var(--ink-3);margin:14px 0 0;font-family:'Inter',sans-serif;}
+  .v1-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .badge{display:inline-block;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;background:var(--paper-2);color:var(--ink-2);border:1px solid var(--rule);margin-right:6px;}
+  /* Semantic badge tints — read at a glance, never numeric, never scoring. */
+  .badge-yes,.badge-passes,.badge-low,.badge-stable,.badge-community_commons,.badge-net_in,.badge-growing,.badge-cheapest,.badge-young,.badge-none_documented{background:#e8efe5;color:#3a5a3a;border-color:#bcd1b5;}
+  .badge-no,.badge-fails,.badge-very_high,.badge-aging_fast,.badge-net_out,.badge-declining,.badge-very_premium,.badge-tightening,.badge-rising_fast,.badge-legacy_industrial,.badge-legacy_mining,.badge-complex{background:#f3e5e2;color:#6a2a1a;border-color:#cfa89e;}
+  .badge-restricted,.badge-conditional,.badge-moderate,.badge-high,.badge-aging,.badge-mixed,.badge-premium,.badge-rising,.badge-volatile,.badge-legacy_agriculture,.badge-public_utility,.badge-state{background:#f0e8d2;color:#6a5a2a;border-color:#cdbf95;}
+  .badge-unknown,.badge-low_data{background:#ede9e0;color:#7a716a;border-color:#cdc6ba;}
+  @media(max-width:760px){.v1-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -72,6 +94,120 @@
         <p>Oaxaca asks you to make the legal dimension and the relational dimension the same dimension. Over half the state is held as ejido or comunidad agraria that foreigners cannot directly buy, and 418 of 570 municipalities run on usos y costumbres customary law with the legal right to admit or exclude newcomers, so entry must be negotiated with an assembly, not just a seller, and competent Mexican agrarian counsel is non-negotiable, never a prestanombre front-owner. It is not a zero-violence region: organised criminal violence tripled in the state between 2022 and 2023 and it ranks second-highest in Mexico for violence against political figures, with risk concentrated along the Isthmus and Pacific corridors while the Sierra Norte highland interior is meaningfully, though not absolutely, safer. The highland water reality is a hard dry-season storage gap from day one, gravity-fed spring systems with roughly 90-day reservoir capacity are baseline, and the deepest regenerative knowledge here is indigenous Zapotec, Mixtec, and Chatino, so the relational work with neighbours is not optional.</p>
         <p class="asks-src">Source: <a href="https://mexico.justia.com/federales/leyes/ley-agraria/titulo-tercero/capitulo-ii/seccion-sexta/" target="_blank" rel="noopener">Ley Agraria (1992, reformed), Artículos 76-82 and 98-107</a></p>
       </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>The first gate, legal and cost</h2>
+        <p class="v1-lead">Across the slate the data shows these two as the decisive constraints, more often than soil, climate or water. They sit before everything else.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Legal &amp; ownership</div>
+      <dl class="v1-kv">
+        <div><dt>Foreign ownership</dt><dd><span class="badge badge-restricted">restricted</span> <span class="v1-note">Foreigners cannot directly purchase ejido or comunidad agraria land; over half of Oaxaca's territory is held in those forms. Once a parcel is converted to dominio pleno and lies outside the 50 km coastal / 100 km border restricted zone (the Oaxaca highlands qualify), foreigners can hold freehold without fideicomiso.</span></dd></div>
+        <div><dt>Collective ownership path</dt><dd>Mexican SRL or SA (foreign shareholders may hold 100%) for joint freehold ownership of dominio-pleno parcels; for comunal land, a long-term usufruct acta de posesion negotiated with the comunal assembly is the structural ceiling. Prestanombre is illegal.</dd></div>
+        <div><dt>Multi-household residence as-of-right</dt><dd><span class="badge badge-conditional">conditional</span></dd></div>
+        <div><dt>Planning gate for living</dt><dd>Negotiated entry with the ejido or comunal assembly (and, in usos-y-costumbres municipalities, the community government) plus municipal building permit on dominio-pleno parcels</dd></div>
+        <div><dt>Pre-emption / first-claim holders</dt><dd>ejido assembly (asamblea); comunidad agraria assembly; RAN (Registro Agrario Nacional) for ejido/comunal certifications and conversions; usos y costumbres community government (in 418 of 570 Oaxaca municipalities)</dd></div>
+        <div><dt>Key restriction</dt><dd><em>Over half of Oaxaca's rural land is ejido or comunidad agraria with collective title in the RAN, and foreigners cannot directly own either; legal occupancy depends on either a 6 to 18 month dominio pleno conversion via assembly vote and RAN deregistration, or a usufruct acta de posesion which is not ownership under Mexican civil law.</em></dd></div>
+        <div><dt>Regulatory direction</dt><dd><span class="badge badge-stable">stable</span> <span class="v1-note">Ley Agraria 1992 framework remains in force; no major 2024 to 2026 federal changes flagged in dossier.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://mexico.justia.com/federales/leyes/ley-agraria/titulo-tercero/capitulo-ii/seccion-sexta/" target="_blank" rel="noopener">Ley Agraria (1992, reformed), Articulos 76 to 82 (dominio pleno) and 98 to 107 (comunidades agrarias)</a></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Land cost</div>
+      <dl class="v1-kv">
+        <div><dt>Price per ha</dt><dd class="mono"><strong>3,000–15,000 USD</strong> <span class="v1-note">(2024)</span></dd></div>
+        <div><dt>Affordability band</dt><dd><span class="badge badge-unknown">unknown</span></dd></div>
+        <div><dt>Appreciation trajectory</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note"></span></dd></div>
+        <div><dt>Detail</dt><dd>Private-title rural parcels in highland Oaxaca approximately 3000 to 15000 USD/ha depending on access, improvements, and proximity to Oaxaca City; dossier explicitly flags confidence on price range as LOW and treats as indicative only.</dd></div>
+      </dl>
+      <p class="v1-src">Source: RAN (Registro Agrario Nacional) practitioner real-estate guidance 2024; Ley Agraria 1992 / RAN statistics · confidence: <strong>low</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Practical fit</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Hospital access</div>
+      <dl class="v1-kv">
+        <div><dt>Nearest hospital</dt><dd class="mono"><strong>1.5 km</strong> <span class="v1-note">geodesic, see caveat</span></dd></div>
+        <div><dt>Hospitals within 50 km</dt><dd class="mono">75</dd></div>
+        <div><dt>Hospitals within 100 km</dt><dd class="mono">82</dd></div>
+        <div><dt>60-minute proxy</dt><dd><span class="badge badge-yes">passes</span></dd></div>
+      </dl>
+      <p class="v1-src"><em>Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower.</em></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Demographics</div>
+      <dl class="v1-kv">
+        <div><dt>Population trend</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note">Dossier provides 2020 census totals and municipal fragmentation context but does not give an explicit recent population trend direction for the highlands.</span></dd></div>
+        <div><dt>Median age band</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note"></span></dd></div>
+        <div><dt>Migration dynamic</dt><dd><span class="badge badge-unknown">unknown</span> <span class="v1-note"></span></dd></div>
+        <div><dt>Rural density</dt><dd><span class="badge badge-low">low</span> <span class="v1-note">Oaxaca state overall ~44 hab/km2 per INEGI Census 2020 (4,132,148 people over 93,758 km2); Valles Centrales jurisdiction 80.8/km2; Sierra Norte jurisdiction 22.9/km2.</span></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.inegi.org.mx/contenidos/programas/ccpv/2020/doc/cpv2020_pres_res_oax.pdf" target="_blank" rel="noopener">accessibility.md, INEGI Censo de Poblacion y Vivienda 2020</a> · confidence: <strong>medium</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Field reality, water and soil</h2>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Water source control</div>
+      <dl class="v1-kv">
+        <div><dt>Rights regime</dt><dd>Communal water under ejido and usos y costumbres; Conagua federal licensing in private-title contexts; no formal water rights in most comunal territories</dd></div>
+        <div><dt>Holder type</dt><dd><span class="badge badge-community_commons">community_commons</span></dd></div>
+        <div><dt>Single-entity control risk</dt><dd><span class="badge badge-low">low</span> <span class="v1-note">Water use is governed internally by ejido/comunal assembly rules, not by Conagua licences, which can be an advantage or a vulnerability depending on community relations; cloud-forest catchments at elevation yield year-round spring flow.</span></dd></div>
+        <div><dt>Drought-priority mechanism</dt><dd>comunal assembly allocation in usos-y-costumbres territories; Conagua licences elsewhere; gravity-fed spring systems with 90-day reservoir capacity as baseline</dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.conagua.gob.mx/CONAGUA07/Publicaciones/Publicaciones/SGP-6-10-EAM2010Ingles.pdf" target="_blank" rel="noopener">Conagua Statistics on Water in Mexico (2017 edition); SIPAZ Facts about Oaxaca</a> · confidence: <strong>medium</strong></p>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Soil contamination</div>
+      <dl class="v1-kv">
+        <div><dt>Known signal</dt><dd><span class="badge badge-legacy_agriculture">legacy_agriculture</span> <span class="v1-note">water.md notes waterborne contamination from upstream agriculture as a practical constraint in Sierra Norte and valley settlements; water use governed internally by ejido/comunal assembly rules rather than Conagua licences.</span></dd></div>
+        <div><dt>Due-diligence burden</dt><dd><span class="badge badge-moderate">moderate</span></dd></div>
+        
+        <div><dt>Known data gaps</dt><dd><em>Mexican LGEEPA contamination regime and any state-level Oaxaca register not cited; mining-district legacy (Sierra Norte historical mineral extraction) not addressed.</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: Oaxaca water.md · confidence: <strong>low</strong></p>
+    </div></div>
+      </div>
+    </section>
+
+  
+    <section class="v1-section">
+      <div class="wrap">
+        <h2>Climate buffering</h2>
+        <p class="v1-lead">Structural microclimate features that hold the place steady, paired with how fast warming is eroding them. State plus trajectory, per the framework.</p>
+        <div class="v1-grid">
+    <div class="v1-card">
+      <div class="v1-card-h">Buffering features (state)</div>
+      <dl class="v1-kv">
+        <div><dt>Primary features</dt><dd><span class="badge">altitude</span> <span class="badge">mountain shelter</span></dd></div>
+        <div><dt>Altitude range</dt><dd class="mono">1550-2500 m</dd></div>
+        <div><dt>Buffering strength</dt><dd><span class="badge badge-neutral">very_high</span></dd></div>
+        <div><dt>Detail</dt><dd>Climate.md calls altitude the primary site-selection variable; a Sierra Norte settlement at 1800-2500 m gains 2-4C of thermal buffer and remains temperate through 2050 under SSP2-4.5, arguably the most climate-resilient band in the North American regen landscape.</dd></div>
+      </dl>
+    </div>
+    <div class="v1-card">
+      <div class="v1-card-h">Trajectory under warming</div>
+      <dl class="v1-kv">
+        <div><dt>Direction</dt><dd><span class="badge badge-worsening">worsening</span> <span class="v1-note">South-southeast Mexico projected +1.5 to 2.0C by 2041-2060 with dry-season (March-May) temperatures warming fastest at +1.8C; Oaxaca named among states with most high-exposure municipalities.</span></dd></div>
+        <div><dt>Primary vulnerability</dt><dd><em>intensifying dry season requiring storage and fog-harvest</em></dd></div>
+      </dl>
+      <p class="v1-src">Source: <a href="https://www.mdpi.com/2225-1154/11/5/111" target="_blank" rel="noopener">Vazquez-Aguirre et al. MDPI Climate 11(5):111 (2023); WorldClim CMIP6 v2.1; World Bank CCKP Mexico</a> · confidence: <strong>high</strong></p>
+    </div></div>
+      </div>
+    </section>
 
   <section>
     <div class="wrap">

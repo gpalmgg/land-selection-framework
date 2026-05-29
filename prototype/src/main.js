@@ -1,5 +1,37 @@
-import { regions, values, criteria } from '../data/regions.js?v=usab3';
-import { regionDepth } from '../data/region-depth.js?v=usab3';
+import { regions, values, criteria } from '../data/regions.js?v=usab7';
+import { regionDepth } from '../data/region-depth.js?v=usab7';
+import { v1Lookup } from '../data/v1-lookup.js?v=usab7';
+
+// Qualitative (per-jurisdiction) filter definitions — the r4 V1 layers exposed
+// as enum filters. These are FILTERS, never scores, same threshold-not-weighting
+// discipline as the sliders. Each filter independent; 'any' means no filter;
+// a chosen value means the region must match exactly to pass.
+const QUAL_FILTERS = [
+  {
+    id: 'foreign_ownership',
+    label: 'Foreign ownership',
+    options: ['any', 'yes', 'restricted', 'no'],
+    pick: (rid) => v1Lookup.legal_ownership?.[rid]?.foreign_ownership?.allowed,
+  },
+  {
+    id: 'affordability_band',
+    label: 'Affordability',
+    options: ['any', 'cheapest', 'low', 'moderate', 'premium', 'very_premium', 'unknown'],
+    pick: (rid) => v1Lookup.land_cost?.[rid]?.affordability_band,
+  },
+  {
+    id: 'buffering_strength',
+    label: 'Climate buffering',
+    options: ['any', 'very_low', 'low', 'moderate', 'high', 'very_high'],
+    pick: (rid) => v1Lookup.climate_buffering?.[rid]?.buffering_strength,
+  },
+  {
+    id: 'regulatory_direction',
+    label: 'Legal direction',
+    options: ['any', 'stable', 'tightening', 'loosening', 'volatile'],
+    pick: (rid) => v1Lookup.legal_ownership?.[rid]?.regulatory_direction,
+  },
+];
 
 // ====================================================================
 // Continents, the "whole world" seam. Adding a continent is one entry
@@ -42,6 +74,9 @@ const state = {
   // Region ids the visitor has pinned. A membership Set, never ranked, never scored.
   // Persisted to the URL as ?pin=id,id so a shortlist is shareable like thresholds.
   shortlist: new Set(),
+  // Qualitative per-jurisdiction filters (r4 V1 layers). 'any' = no filter.
+  // Persisted as ?q.<field>=<value> alongside the other URL state.
+  qualFilters: Object.fromEntries(QUAL_FILTERS.map((qf) => [qf.id, 'any'])),
   mapLayers: {
     'hillshade': false,
     'topo': false,
@@ -107,6 +142,7 @@ function thresholdStep(crit) {
 }
 
 function regionPasses(regionId) {
+  // Threshold (numeric) filters.
   for (const crit of criteria) {
     const v = values[regionId][crit.id];
     if (typeof v.value !== 'number') continue;
@@ -115,11 +151,22 @@ function regionPasses(regionId) {
     const ok = dir === 'min' ? v.value >= th : v.value <= th;
     if (!ok) return false;
   }
+  // Qualitative (per-jurisdiction) filters. Same pass/fail semantics: any
+  // mismatch fails. Region with missing data for a chosen filter fails to it.
+  for (const qf of QUAL_FILTERS) {
+    const want = state.qualFilters[qf.id];
+    if (want === 'any') continue;
+    const got = qf.pick(regionId);
+    if (got !== want) return false;
+  }
   return true;
 }
 
 function anyFilterActive() {
-  return criteria.some((c) => state.thresholds[c.id] !== thresholdDefault(c));
+  return (
+    criteria.some((c) => state.thresholds[c.id] !== thresholdDefault(c)) ||
+    QUAL_FILTERS.some((qf) => state.qualFilters[qf.id] !== 'any')
+  );
 }
 
 // Regions of the currently-active continent. Render functions still emit ALL
@@ -166,6 +213,16 @@ function applyShortlistFromURL() {
   });
 }
 
+// Restore qualitative filters from ?q.<field>=<value>. Unknown fields and out-
+// of-enum values are ignored silently (backward-compatible with ?t.*+?pin= links).
+function applyQualFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  for (const qf of QUAL_FILTERS) {
+    const val = params.get(`q.${qf.id}`);
+    if (val && qf.options.includes(val)) state.qualFilters[qf.id] = val;
+  }
+}
+
 let _urlWriteTimer = null;
 // Writes the FULL shareable state, non-default thresholds (`t.<id>`) plus the
 // pinned shortlist (`pin=id,id`). Named for thresholds for history reasons, but
@@ -189,6 +246,11 @@ function writeThresholdsToURL() {
   }
   if (state.shortlist.size) {
     params.set('pin', [...state.shortlist].join(','));
+  }
+  // Qualitative filters (only non-'any' written).
+  for (const qf of QUAL_FILTERS) {
+    const v = state.qualFilters[qf.id];
+    if (v && v !== 'any') params.set(`q.${qf.id}`, v);
   }
   const qs = params.toString();
   const newURL = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
@@ -929,6 +991,9 @@ function resetThresholds() {
     const slider = document.querySelector(`#crit-${c.id} input[type="range"]`);
     if (slider) slider.value = String(state.thresholds[c.id]);
   });
+  // Reset qualitative filters too — Reset means "clear all filters", not just sliders.
+  QUAL_FILTERS.forEach((qf) => { state.qualFilters[qf.id] = 'any'; });
+  document.querySelectorAll('select[data-qual-filter]').forEach((sel) => { sel.value = 'any'; });
   refreshAll();
   // Reset flushes immediately, no debounce
   if (_urlWriteTimer) { clearTimeout(_urlWriteTimer); _urlWriteTimer = null; }
@@ -936,6 +1001,41 @@ function resetThresholds() {
 }
 
 document.getElementById('reset-btn').addEventListener('click', resetThresholds);
+
+// ====================================================================
+// Qualitative (per-jurisdiction) filter UI
+// ====================================================================
+// One <select> per QUAL_FILTERS entry, mounted in #qual-filters. Selection
+// updates state, re-runs the filter, and writes ?q.<field>=<value> to the URL.
+// 'any' (default) clears that filter.
+
+function renderQualFilters() {
+  const mount = document.getElementById('qual-filters');
+  if (!mount) return;
+  for (const qf of QUAL_FILTERS) {
+    const wrap = el('label', { className: 'qual-filter' });
+    wrap.appendChild(el('span', { className: 'qual-filter-label', text: qf.label }));
+    const sel = document.createElement('select');
+    sel.dataset.qualFilter = qf.id;
+    sel.className = 'qual-filter-select';
+    for (const opt of qf.options) {
+      const o = document.createElement('option');
+      o.value = opt;
+      o.textContent = opt === 'any' ? 'any' : opt.replace(/_/g, ' ');
+      if (opt === state.qualFilters[qf.id]) o.selected = true;
+      sel.appendChild(o);
+    }
+    sel.addEventListener('change', () => {
+      state.qualFilters[qf.id] = sel.value;
+      refreshAll();
+      if (_urlWriteTimer) { clearTimeout(_urlWriteTimer); _urlWriteTimer = null; }
+      writeThresholdsToURL();
+      trackEvent('qual_filter_change', { field: qf.id, value: sel.value });
+    });
+    wrap.appendChild(sel);
+    mount.appendChild(wrap);
+  }
+}
 
 // ====================================================================
 // Analytics, Vercel Web Analytics custom events (no-op if blocked/absent)
@@ -1736,6 +1836,7 @@ function initNextStep() {
 // at the shared state, not at defaults that snap on first paint.
 applyThresholdsFromURL();
 applyShortlistFromURL();
+applyQualFromURL();
 
 // Scope the page to the active continent before any render so the CSS
 // show/hide rule is live from the first paint.
@@ -1747,6 +1848,7 @@ renderCriteriaGrid();
 renderSummaryTable();
 renderSourcesList();
 renderPresetChips();
+renderQualFilters();
 renderGuidedEntry();
 initContinentSwitcher();
 initDrawer();

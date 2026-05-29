@@ -10,6 +10,14 @@ import { ImageResponse } from '@vercel/og';
 import { computeResult } from '../lib/result.js';
 import { regions, values, criteria } from '../data/regions.js';
 
+// V1 first-gate facts per region (r4 round): the two most decision-relevant
+// criteria for a share-card glance. Imported as static JSON so the edge runtime
+// bundles them at build time; no fetch / no fs at runtime.
+import legalData from '../data/processed/legal-ownership.json' with { type: 'json' };
+import costData from '../data/processed/land-cost.json' with { type: 'json' };
+const legalById = Object.fromEntries(legalData.map((e) => [e.region_id, e]));
+const costById = Object.fromEntries(costData.map((e) => [e.region_id, e]));
+
 // Edge runtime: the web-standard (Request -> Response) handler and ImageResponse
 // are native to edge, and prod edge has real outbound fetch (the font download).
 // NOTE: `vercel dev` cannot run this locally — its edge emulator stubs fetch and
@@ -53,7 +61,8 @@ function fmtVal(v) {
 }
 
 // Single-region card (used by /region/<id> pages via ?region=<id>): the region's
-// name + its eight criterion values. A read-out, never a score.
+// name + its eight criterion values + a first-gate strip (cost band, foreign
+// ownership, multi-household residence). A read-out, never a score.
 function buildRegionTree(r) {
   const chip = (c) => {
     const v = values[r.id] && values[r.id][c.id];
@@ -74,6 +83,66 @@ function buildRegionTree(r) {
       `${c.name}  ${fmtVal(v.value)} ${v.unit}`,
     );
   };
+
+  // First-gate strip — the two r4 layers most decision-relevant at a glance.
+  const legal = legalById[r.id];
+  const cost = costById[r.id];
+  const gateChip = (label, value) =>
+    h(
+      'div',
+      {
+        display: 'flex',
+        alignItems: 'center',
+        background: ACCENT,
+        color: PAPER,
+        padding: '6px 14px',
+        marginRight: 10,
+        fontSize: 20,
+        letterSpacing: 0.5,
+      },
+      `${label}: ${value}`,
+    );
+  const gateStripItems = [
+    cost && cost.affordability_band && cost.affordability_band !== 'unknown'
+      ? gateChip('cost', cost.affordability_band.replace(/_/g, ' '))
+      : null,
+    legal && legal.foreign_ownership && legal.foreign_ownership.allowed
+      ? gateChip('foreign ownership', legal.foreign_ownership.allowed)
+      : null,
+    legal && legal.multi_household_residence_as_of_right
+      ? gateChip('multi-household as-of-right', legal.multi_household_residence_as_of_right)
+      : null,
+  ].filter(Boolean);
+  const firstGateStrip =
+    gateStripItems.length > 0
+      ? h(
+          'div',
+          { display: 'flex', flexWrap: 'wrap', marginTop: 18, marginBottom: -6 },
+          gateStripItems,
+        )
+      : null;
+
+  const topChildren = [
+    h('div', { width: 120, height: 10, background: r.accent || ACCENT, marginBottom: 28 }),
+    h(
+      'div',
+      { display: 'flex', fontSize: 22, letterSpacing: 2, color: ACCENT, marginBottom: 16 },
+      'THE LAND SELECTION FRAMEWORK',
+    ),
+    h('div', { display: 'flex', fontSize: 58, lineHeight: 1.05 }, r.name),
+    h(
+      'div',
+      { display: 'flex', fontSize: 24, color: INK3, letterSpacing: 1, marginTop: 8 },
+      (r.country || '').toUpperCase(),
+    ),
+    firstGateStrip,
+    h(
+      'div',
+      { display: 'flex', flexWrap: 'wrap', marginTop: 24 },
+      criteria.map(chip).filter(Boolean),
+    ),
+  ].filter(Boolean);
+
   return h(
     'div',
     {
@@ -88,25 +157,7 @@ function buildRegionTree(r) {
       fontFamily: 'Spectral',
     },
     [
-      h('div', { display: 'flex', flexDirection: 'column' }, [
-        h('div', { width: 120, height: 10, background: r.accent || ACCENT, marginBottom: 28 }),
-        h(
-          'div',
-          { display: 'flex', fontSize: 22, letterSpacing: 2, color: ACCENT, marginBottom: 16 },
-          'THE LAND SELECTION FRAMEWORK',
-        ),
-        h('div', { display: 'flex', fontSize: 58, lineHeight: 1.05 }, r.name),
-        h(
-          'div',
-          { display: 'flex', fontSize: 24, color: INK3, letterSpacing: 1, marginTop: 8 },
-          (r.country || '').toUpperCase(),
-        ),
-        h(
-          'div',
-          { display: 'flex', flexWrap: 'wrap', marginTop: 28 },
-          criteria.map(chip).filter(Boolean),
-        ),
-      ]),
+      h('div', { display: 'flex', flexDirection: 'column' }, topChildren),
       h(
         'div',
         {
