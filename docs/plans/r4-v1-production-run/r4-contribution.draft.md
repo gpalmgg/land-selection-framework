@@ -1,3 +1,7 @@
+> **SUPERSEDED** — content was placed into source-docs/Land Project v1 r4 Overview.md (and Specifications, Implementation Strategy) as attributed '## r4 Commentary' sections on 2026-05-29. This file is kept as historical record of the staged draft, not as source-of-truth. To act on the round, read the placement target above instead.
+
+---
+
 # r4 Contribution — Practitioner Reality-Check (DRAFT, for Gustaf's review)
 
 **Status:** DRAFT. Not yet placed into the source-of-truth docs. Nothing here lands in Overview / Specifications / Implementation Strategy under @Gustaf's name until he reviews, corrects, and owns it.

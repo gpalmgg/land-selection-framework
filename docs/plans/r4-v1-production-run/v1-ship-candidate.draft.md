@@ -1,3 +1,7 @@
+> **SUPERSEDED** — content was placed into Docs/v1-ship-candidate.md (promoted to a proper deliverable on 2026-05-29; updated to the 12-Tier-1 reality) on 2026-05-29. This file is kept as historical record of the staged draft, not as source-of-truth. To act on the round, read the placement target above instead.
+
+---
+
 # V1 Ship Candidate — Proposal for Group Ratification (DRAFT)
 
 **Status:** DRAFT, for @Gustaf's review before going to the working group as the r4 round's V1 ship-candidate proposal. Nothing here goes into the source-of-truth docs or is sent to the group until Gustaf signs off.

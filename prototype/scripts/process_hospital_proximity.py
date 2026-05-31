@@ -82,7 +82,7 @@ def main():
                 "hospitals_within_50km": within_50,
                 "hospitals_within_100km": within_100,
                 "red_line_60min_proxy_passes": nearest_km <= 50,
-                "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower.",
+                "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones.",
             },
         })
 

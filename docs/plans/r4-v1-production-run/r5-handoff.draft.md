@@ -1,3 +1,7 @@
+> **SUPERSEDED** — content was placed into source-docs/Land Project v1 r4 Overview.md (as the Handoff Request [r4 -> r5] block, replacing the previous Handoff Request [r3 -> r4]) on 2026-05-29. This file is kept as historical record of the staged draft, not as source-of-truth. To act on the round, read the placement target above instead.
+
+---
+
 # Handoff Request [r4 → r5] (DRAFT)
 
 **Status:** DRAFT for @Gustaf's review. Replaces the existing r3→r4 Handoff Request block in `source-docs/Land Project v1 r3 Overview.md` ONLY after Gustaf approves and places it himself.

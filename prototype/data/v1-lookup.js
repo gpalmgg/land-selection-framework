@@ -695,7 +695,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 2,
       "hospitals_within_100km": 27,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "galicia": {
       "region_id": "galicia",
@@ -704,7 +704,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 10,
       "hospitals_within_100km": 36,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "transylvania": {
       "region_id": "transylvania",
@@ -713,7 +713,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 21,
       "hospitals_within_100km": 165,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "connemara": {
       "region_id": "connemara",
@@ -722,7 +722,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 9,
       "hospitals_within_100km": 32,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "pembrokeshire": {
       "region_id": "pembrokeshire",
@@ -731,7 +731,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 6,
       "hospitals_within_100km": 34,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "cevennes": {
       "region_id": "cevennes",
@@ -740,7 +740,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 20,
       "hospitals_within_100km": 142,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "south-tirol": {
       "region_id": "south-tirol",
@@ -749,7 +749,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 19,
       "hospitals_within_100km": 108,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "asturias": {
       "region_id": "asturias",
@@ -758,7 +758,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 23,
       "hospitals_within_100km": 33,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "saxony-anhalt": {
       "region_id": "saxony-anhalt",
@@ -767,7 +767,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 34,
       "hospitals_within_100km": 113,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "estonia-rural": {
       "region_id": "estonia-rural",
@@ -776,7 +776,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 7,
       "hospitals_within_100km": 34,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "cascadia": {
       "region_id": "cascadia",
@@ -785,7 +785,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 13,
       "hospitals_within_100km": 24,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "vermont": {
       "region_id": "vermont",
@@ -794,7 +794,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 7,
       "hospitals_within_100km": 24,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "southern-appalachians": {
       "region_id": "southern-appalachians",
@@ -803,7 +803,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 9,
       "hospitals_within_100km": 46,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "driftless": {
       "region_id": "driftless",
@@ -812,7 +812,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 7,
       "hospitals_within_100km": 28,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "ozarks": {
       "region_id": "ozarks",
@@ -821,7 +821,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 2,
       "hospitals_within_100km": 21,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "northern-new-mexico": {
       "region_id": "northern-new-mexico",
@@ -830,7 +830,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 2,
       "hospitals_within_100km": 15,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "nova-scotia": {
       "region_id": "nova-scotia",
@@ -839,7 +839,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 5,
       "hospitals_within_100km": 20,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "kootenays": {
       "region_id": "kootenays",
@@ -848,7 +848,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 1,
       "hospitals_within_100km": 6,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "quebec-eastern-townships": {
       "region_id": "quebec-eastern-townships",
@@ -857,7 +857,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 5,
       "hospitals_within_100km": 25,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     },
     "oaxaca": {
       "region_id": "oaxaca",
@@ -866,7 +866,7 @@ export const v1Lookup = {
       "hospitals_within_50km": 75,
       "hospitals_within_100km": 82,
       "red_line_60min_proxy_passes": true,
-      "proxy_caveat": "Geodesic distance, not road-network isochrone. ~50 km == ~60 min on rural roads as a coarse rule; mountainous regions slower."
+      "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
     }
   },
   "demographic_trajectory": {
@@ -1711,7 +1711,7 @@ export const v1Lookup = {
       ],
       "altitude_range_m": null,
       "buffering_strength": "very_high",
-      "buffering_notes": "Climate.md describes Atlantic-maritime climate that drifts rather than transforms with no projected heat-stress regime change; water.md and soil.md document blanket peat storing 240 to 3000+ t C/ha with order-of-magnitude reliable summer flow.",
+      "buffering_notes": "Climate.md describes Atlantic-maritime climate that drifts rather than transforms with no projected heat-stress regime change; water.md and soil.md document blanket peat storing ~240 t C/ha and deep raised bogs storing up to 3,000 t C/ha with order-of-magnitude reliable summer flow.",
       "primary_vulnerability_signal": "Atlantic storm intensification and AMOC-shift tail risk",
       "trajectory_under_warming": "stable",
       "trajectory_notes": "Projected +0.7 to 1.5C by mid-century, one of the slowest-warming European candidates; no projected drought, heat, or fire regime change.",
