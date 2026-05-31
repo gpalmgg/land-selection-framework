@@ -160,7 +160,7 @@
     "contamination_regulatory_regime": "unknown",
     "contamination_register_availability": "partial",
     "known_contamination_signal": "legacy_agriculture",
-    "known_contamination_notes": "water.md documents karst-aquifer vulnerability with 15-20% of private wells in Pierce and Pepin counties exceeding EPA 10 mg/L nitrate limit; Wisconsin Groundwater Coordinating Council 2024 report flags nitrates, PFAS, and pesticides as primary statewide groundwater concerns with Driftless karst counties among highest-risk.",
+    "known_contamination_notes": "water.md documents karst-aquifer vulnerability with private-well nitrate exceedance of ~15% in Pierce County and ~20% in Pepin County over the EPA 10 mg/L limit; Wisconsin Groundwater Coordinating Council 2024 report flags nitrates, PFAS, and pesticides as primary statewide groundwater concerns with Driftless karst counties among highest-risk.",
     "due_diligence_burden": "high",
     "data_confidence": "medium",
     "source": "Lake Pepin Legacy Alliance and Wisconsin Groundwater Coordinating Council as cited in Driftless water.md",
