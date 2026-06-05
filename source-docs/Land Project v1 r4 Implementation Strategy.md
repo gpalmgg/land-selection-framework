@@ -241,7 +241,7 @@ Additive commentary; does not overwrite the `[COMMITTED]` decisions above.
 
 ### On the sequence — process risk worth naming
 
-The 11-step sequence has 5 `[GROUP]` sync gates before V1 ships. For an async group already slowing (last activity in chat was ~2 weeks before r4 picked up), this is a real failure mode worth naming: **death by coordination overhead before anything visible exists.** `[opinion]`
+The 11-step sequence has 5 `[GROUP]` sync gates before V1 ships. For an async group whose cadence has slowed, this is a real failure mode worth naming: **coordination overhead piling up before anything visible exists.** `[opinion]`
 
 The demonstration build is counter-evidence — a compelling, honest, sourced artifact was produced *fast* by going demonstration-first rather than waiting through five sign-offs before any output. **Recommendation:** keep the rigor of the sequence (it produced a coherent V1), but front-load a visible artifact alongside the pipeline. The prototype already is one. Treat the public surface as an explicit V1/V2 dual track rather than something to wind down once formal V1 lands.
 

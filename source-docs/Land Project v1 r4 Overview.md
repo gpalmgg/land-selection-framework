@@ -313,7 +313,7 @@ These are explicit asks before V1 work locks in.
 
 ## r4 Commentary (@Gustaf, practitioner reality-check, 2026-05-29)
 
-**Provenance:** this commentary is grounded in evidence from a 20-region demonstration build (Europe + North America, 10+10 regions, sourced per-region dossiers, a live filtering dashboard, and 12 ingested Tier-1 V1 layers shipped this round). It is "what building the demonstration taught us about the framework," not unsupported opinion. Points that are judgment rather than evidence are marked `[opinion]`. Nothing here overwrites the `[COMMITTED]` decisions above; it is additive commentary as the protocol requires.
+**Provenance:** this commentary is grounded in evidence from a 20-region demonstration build (Europe + North America, 10+10 regions, sourced per-region dossiers, a live filtering dashboard, and 12 ingested Tier-1 V1 layers shipped this round). Points that are judgment rather than evidence are marked `[opinion]`. Nothing here overwrites the `[COMMITTED]` decisions above; it is additive commentary as the protocol requires.
 
 ### On Decision 1 (native units, no H3 grid)
 **Validated by the prototype.** Twelve Tier-1 layers shipped in native units across EU + NA with no universal grid forced. Aqueduct kept its HydroBASINS Level 6 polygons; UCDP kept its event points; OSM regen + hospital points stayed points; per-jurisdiction qualitative layers stayed per-jurisdiction. No analysis broke. The MAUP discipline holds in practice. Keep as written.
@@ -334,7 +334,7 @@ The split is defensible, but one practitioner caveat: communities die from socia
 
 **Composite scores — Adam's no-composite stance is empirically validated, but the V1/V2 framing has a flaw worth fixing.** The prototype implemented threshold-*filtering* (user sets a max acceptable water-stress; system shows pass/fail per region) and **no** composite score — and it works, is honest, legible, useful. The user combines criteria themselves. *But* threshold-filtering is **neither a composite nor pure raw data.** It is a third unit the current V1/V2 wall wrongly bundles into V2. **Proposal:** split filtering from scoring/weighting. Threshold-filtering can arrive at V1.5 / early-V2 (it is safe — no weights, no composites). Composite scoring + weighting stays deferred and contested as Adam/Askja have it.
 
-**Weighting authority — the prototype shows a working hybrid.** "Surface, don't enforce": render all criteria equally; let the user set thresholds; let copy and visual hierarchy foreground the load-bearing ones (water trajectory, legal feasibility, climate buffering). Adam's user-agency principle is honoured (user decides); Askja's concern about under-weighting boring-but-critical criteria is honoured via design hierarchy, not enforcement. V2 design can start from this evidence rather than the binary.
+**Weighting authority — the prototype shows a working hybrid.** "Surface, don't enforce": render all criteria equally; let the user set thresholds; let copy and visual hierarchy foreground the load-bearing ones (water trajectory, legal feasibility, climate buffering). V2 design can start from this evidence rather than the binary.
 
 ### Open Q3 (criteria gaps / additions to Askja's 12) — r4 answers
 
@@ -366,7 +366,7 @@ Under this metric, V1 ships at **12 Tier-1 criteria** across the three modes —
 
 ### Public demonstration artifact
 
-A consequence of choosing the demonstration-first paradigm (after large global raster fetching failed early): the prototype became a real public surface at **land-selection-framework.vercel.app** carrying twenty per-region indexable pages, dynamic share cards reflecting current filter state, a working filtering dashboard with both threshold sliders and qualitative-filter dropdowns wired to the V1 data, a region detail drawer, a star/shortlist + compare flow, and full per-cell source attribution throughout. This is `[opinion]` — but the recommendation is to keep the public artifact alongside V1 ingestion as an explicit V1/V2 dual track, not wind it down. The public surface gives the working group something concrete to rally around between [GROUP] sync gates and gives the data an audience.
+A consequence of choosing the demonstration-first paradigm (after large global raster fetching failed early): the prototype became a real public surface at **land-selection-framework.vercel.app** carrying twenty per-region indexable pages, dynamic share cards reflecting current filter state, a working filtering dashboard with both threshold sliders and qualitative-filter dropdowns wired to the V1 data, a region detail drawer, a star/shortlist + compare flow, and full per-cell source attribution throughout. This is `[opinion]` — but the recommendation is to keep the public artifact alongside V1 ingestion as an explicit V1/V2 dual track, not wind it down. The public surface gives the working group something concrete to point at between [GROUP] sync gates and gives the data an audience.
 
 ---
 
