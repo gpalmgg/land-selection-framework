@@ -4,24 +4,24 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Galicia, Spain — Land Selection Framework</title>
-<meta name="description" content="North-west Iberian coast. Cool, wet, deeply forested. Strong soil base, traditional smallholdings, post-rural depopulation opening land. Eight criteria — climate, water, soil, solar, conflict, regene…" />
+<meta name="description" content="North-west Iberian coast. Cool, wet, deeply forested. Strong soil base and a living montes-vecinais commons; in the depopulating interior, the way in is partnering with the villagers who remain, not…" />
 <link rel="canonical" href="https://land-selection-framework.vercel.app/region/galicia.html" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://land-selection-framework.vercel.app/region/galicia.html" />
 <meta property="og:title" content="Galicia, Spain — Land Selection Framework" />
-<meta property="og:description" content="North-west Iberian coast. Cool, wet, deeply forested. Strong soil base, traditional smallholdings, post-rural depopulation opening land. Eight criteria — climate, water, soil, solar, conflict, regene…" />
+<meta property="og:description" content="North-west Iberian coast. Cool, wet, deeply forested. Strong soil base and a living montes-vecinais commons; in the depopulating interior, the way in is partnering with the villagers who remain, not…" />
 <meta property="og:image" content="https://land-selection-framework.vercel.app/api/og?region=galicia" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Galicia, Spain — Land Selection Framework" />
-<meta name="twitter:description" content="North-west Iberian coast. Cool, wet, deeply forested. Strong soil base, traditional smallholdings, post-rural depopulation opening land. Eight criteria — climate, water, soil, solar, conflict, regene…" />
+<meta name="twitter:description" content="North-west Iberian coast. Cool, wet, deeply forested. Strong soil base and a living montes-vecinais commons; in the depopulating interior, the way in is partnering with the villagers who remain, not…" />
 <meta name="twitter:image" content="https://land-selection-framework.vercel.app/api/og?region=galicia" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Place","name":"Galicia","description":"North-west Iberian coast. Cool, wet, deeply forested. Strong soil base, traditional smallholdings, post-rural depopulation opening land.","address":{"@type":"PostalAddress","addressCountry":"Spain"},"url":"https://land-selection-framework.vercel.app/region/galicia.html","isPartOf":{"@type":"CreativeWork","name":"Land Selection Framework","url":"https://land-selection-framework.vercel.app"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Place","name":"Galicia","description":"North-west Iberian coast. Cool, wet, deeply forested. Strong soil base and a living montes-vecinais commons; in the depopulating interior, the way in is partnering with the villagers who remain, not buying around them.","address":{"@type":"PostalAddress","addressCountry":"Spain"},"url":"https://land-selection-framework.vercel.app/region/galicia.html","isPartOf":{"@type":"CreativeWork","name":"Land Selection Framework","url":"https://land-selection-framework.vercel.app"}}</script>
 <style>
   :root{--paper:#f6f2eb;--paper-2:#efe9df;--ink:#1a1a1a;--ink-2:#3a3a3a;--ink-3:#6b6258;--ink-4:#9a9082;--rule:#d8d0c2;--accent:#8a3a2a;}
   *{box-sizing:border-box;} html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;}
@@ -39,6 +39,14 @@
   section h2{font-family:'Spectral',Georgia,serif;font-weight:500;font-size:24px;margin:0 0 18px;}
   .asks p{font-family:'Spectral',Georgia,serif;font-size:16px;color:var(--ink-2);max-width:62ch;}
   .asks-src{font-size:12px;color:var(--ink-3);} .asks-src a,.src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .land-standing{border-left:3px solid #3a5a3a;}
+  .ls-dl{margin:0;}
+  .ls-dl > div{display:grid;grid-template-columns:210px 1fr;gap:16px;padding:11px 0;border-top:1px solid var(--rule);}
+  .ls-dl > div:first-child{border-top:none;}
+  .ls-dl dt{font-family:'Spectral',serif;font-weight:500;font-size:14px;color:var(--ink);letter-spacing:.01em;}
+  .ls-dl dd{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-2);}
+  .ls-src{font-size:12px;color:var(--ink-3);margin-top:14px;} .ls-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  @media(max-width:600px){.ls-dl > div{grid-template-columns:1fr;gap:3px;}}
   table{width:100%;border-collapse:collapse;font-size:13.5px;}
   th[scope=row]{text-align:left;font-family:'Spectral',serif;font-weight:500;font-size:15px;color:var(--ink);padding:14px 14px 14px 0;vertical-align:top;width:30%;}
   th .metric{display:block;font-family:'Inter',sans-serif;font-weight:400;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);margin-top:3px;}
@@ -81,18 +89,34 @@
   <header class="hero">
     <div class="wrap">
       <div class="accent-bar" style="background:#3a6a4a"></div>
-      <div class="eyebrow">Candidate region</div>
+      <div class="eyebrow">A place, read closely</div>
       <h1>Galicia</h1>
       <div class="country">Spain</div>
-      <p class="blurb">North-west Iberian coast. Cool, wet, deeply forested. Strong soil base, traditional smallholdings, post-rural depopulation opening land.</p>
+      <p class="blurb">North-west Iberian coast. Cool, wet, deeply forested. Strong soil base and a living montes-vecinais commons; in the depopulating interior, the way in is partnering with the villagers who remain, not buying around them.</p>
     </div>
   </header>
 
   
       <section class="asks">
-        <h2>What living here asks of you</h2>
-        <p>Galicia asks you to untangle the minifundio. Headline prices are low, but assembling a viable 10 to 20 ha parcel can mean negotiating with 30-plus scattered heirs and budgeting 12 to 24 months for clean title. It rains 1,100 to 1,800 mm a year, almost all between October and April, so your water resilience hinges on storage that bridges a 3 to 4 month dry summer, not on scarcity. The living substrate is the montes vecinales commons and a Galego-speaking neorrural revival, where the most accessible route runs through partnering with an existing comunidade de montes rather than buying freehold.</p>
-        <p class="asks-src">Source: <a href="https://www.xunta.gal/dog/Publicados/1989/19891103/Anuncio154EA_es.html" target="_blank" rel="noopener">Lei 13/1989 das Comunidades de Montes Veciñais en Man Común</a></p>
+        <div class="wrap">
+          <h2>What living here asks of you</h2>
+          <p>Galicia asks you to untangle the minifundio. Headline prices are low, but assembling a viable 10 to 20 ha parcel can mean negotiating with 30-plus scattered heirs and budgeting 12 to 24 months for clean title. It rains 1,100 to 1,800 mm a year, almost all between October and April, so your water resilience hinges on storage that bridges a 3 to 4 month dry summer, not on scarcity. The living substrate is the montes vecinales commons and a Galego-speaking neorrural revival, where the most accessible route runs through partnering with an existing comunidade de montes rather than buying freehold.</p>
+          <p class="asks-src">Source: <a href="https://www.xunta.gal/dog/Publicados/1989/19891103/Anuncio154EA_es.html" target="_blank" rel="noopener">Lei 13/1989 das Comunidades de Montes Veciñais en Man Común</a></p>
+        </div>
+      </section>
+
+  
+      <section class="land-standing">
+        <div class="wrap">
+          <h2>Land standing</h2>
+          <dl class="ls-dl">
+            <div><dt>Whose land</dt><dd>Galego rural commons — comunidades de montes veciñais en man común</dd></div>
+            <div><dt>Tenure</dt><dd>Freehold parcels amid minifundio fragmentation; the montes commons are hereditary by parish and not purchasable</dd></div>
+            <div><dt>Arriving in good faith</dt><dd>Partner with an existing comunidade de montes rather than buying freehold around the villagers who remain</dd></div>
+            <div><dt>What it asks</dt><dd>Earn standing in a depopulating Galego-speaking parish and respect a montes membership you cannot buy your way into</dd></div>
+          </dl>
+          <p class="ls-src">Source: <a href="https://www.xunta.gal/dog/Publicados/1989/19891103/Anuncio154EA_es.html" target="_blank" rel="noopener">Lei 13/1989 das Comunidades de Montes Veciñais en Man Común</a></p>
+        </div>
       </section>
 
   
@@ -279,7 +303,7 @@
 
   <section>
     <div class="wrap">
-      <h2>Other candidate regions</h2>
+      <h2>Other regions</h2>
       <ul class="region-nav"><li><a href="/region/alentejo.html">Alentejo<span>Portugal</span></a></li><li><a href="/region/transylvania.html">Transylvania<span>Romania</span></a></li><li><a href="/region/connemara.html">West Cork / Connemara<span>Ireland</span></a></li><li><a href="/region/pembrokeshire.html">Pembrokeshire / West Wales<span>UK</span></a></li><li><a href="/region/cevennes.html">Cévennes / Languedoc<span>France</span></a></li><li><a href="/region/south-tirol.html">South Tirol<span>Italy</span></a></li><li><a href="/region/asturias.html">Asturias<span>Spain</span></a></li><li><a href="/region/saxony-anhalt.html">Saxony-Anhalt rural<span>Germany</span></a></li><li><a href="/region/estonia-rural.html">Rural Estonia<span>Estonia</span></a></li><li><a href="/region/cascadia.html">Cascadia<span>USA</span></a></li><li><a href="/region/vermont.html">Vermont / Upper New England<span>USA</span></a></li><li><a href="/region/southern-appalachians.html">Southern Appalachians<span>USA</span></a></li><li><a href="/region/driftless.html">Driftless Area<span>USA</span></a></li><li><a href="/region/ozarks.html">Ozarks<span>USA</span></a></li><li><a href="/region/northern-new-mexico.html">Northern New Mexico<span>USA</span></a></li><li><a href="/region/nova-scotia.html">Nova Scotia / Cape Breton<span>Canada</span></a></li><li><a href="/region/kootenays.html">BC Interior, Kootenays<span>Canada</span></a></li><li><a href="/region/quebec-eastern-townships.html">Québec Eastern Townships<span>Canada</span></a></li><li><a href="/region/oaxaca.html">Oaxaca highlands<span>Mexico</span></a></li></ul>
     </div>
   </section>

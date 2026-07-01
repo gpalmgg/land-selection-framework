@@ -39,6 +39,14 @@
   section h2{font-family:'Spectral',Georgia,serif;font-weight:500;font-size:24px;margin:0 0 18px;}
   .asks p{font-family:'Spectral',Georgia,serif;font-size:16px;color:var(--ink-2);max-width:62ch;}
   .asks-src{font-size:12px;color:var(--ink-3);} .asks-src a,.src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .land-standing{border-left:3px solid #3a5a3a;}
+  .ls-dl{margin:0;}
+  .ls-dl > div{display:grid;grid-template-columns:210px 1fr;gap:16px;padding:11px 0;border-top:1px solid var(--rule);}
+  .ls-dl > div:first-child{border-top:none;}
+  .ls-dl dt{font-family:'Spectral',serif;font-weight:500;font-size:14px;color:var(--ink);letter-spacing:.01em;}
+  .ls-dl dd{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-2);}
+  .ls-src{font-size:12px;color:var(--ink-3);margin-top:14px;} .ls-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  @media(max-width:600px){.ls-dl > div{grid-template-columns:1fr;gap:3px;}}
   table{width:100%;border-collapse:collapse;font-size:13.5px;}
   th[scope=row]{text-align:left;font-family:'Spectral',serif;font-weight:500;font-size:15px;color:var(--ink);padding:14px 14px 14px 0;vertical-align:top;width:30%;}
   th .metric{display:block;font-family:'Inter',sans-serif;font-weight:400;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);margin-top:3px;}
@@ -81,7 +89,7 @@
   <header class="hero">
     <div class="wrap">
       <div class="accent-bar" style="background:#5a4a7a"></div>
-      <div class="eyebrow">Candidate region</div>
+      <div class="eyebrow">A place, read closely</div>
       <h1>Québec Eastern Townships</h1>
       <div class="country">Canada</div>
       <p class="blurb">Estrie, under Québec civil law and the CPTAQ farmland-protection regime, among the strongest in North America. French-language, farmland strongly protected.</p>
@@ -90,9 +98,25 @@
 
   
       <section class="asks">
-        <h2>What living here asks of you</h2>
-        <p>Québec's Eastern Townships ask you to lead with a real agricultural mission and to do it in French. The CPTAQ Green Zone protects farmland from speculation but constrains buyers: under Bill 86 (2025) most non-farmer purchasers now need prior CPTAQ authorization, applications are public, contested, and run 12 to 36 months, and you must demonstrate credible agricultural intent through a farm plan or MAPAQ registration, not a lifestyle or retreat framing. The land regime runs on civil law with mandatory notarial deeds, and French is the sole official language for permits, CPTAQ filings, and the francophone-dominant regen network, a genuine integration burden for anglophone founders. Water is abundant year-round, so the constraints are qualitative: agricultural-runoff lake quality, spring flood and freeze-thaw loads, and building for -25°C winters.</p>
-        <p class="asks-src">Source: <a href="https://www.canlii.org/en/qc/laws/astat/sq-2025-c-5/latest/sq-2025-c-5.html" target="_blank" rel="noopener">CanLII, SQ 2025, c 5 (Bill 86, assented March 25, 2025)</a></p>
+        <div class="wrap">
+          <h2>What living here asks of you</h2>
+          <p>Québec's Eastern Townships ask you to lead with a real agricultural mission and to do it in French. The CPTAQ Green Zone protects farmland from speculation but constrains buyers: under Bill 86 (2025) most non-farmer purchasers now need prior CPTAQ authorization, applications are public, contested, and run 12 to 36 months, and you must demonstrate credible agricultural intent through a farm plan or MAPAQ registration, not a lifestyle or retreat framing. The land regime runs on civil law with mandatory notarial deeds, and French is the sole official language for permits, CPTAQ filings, and the francophone-dominant regen network, a genuine integration burden for anglophone founders. Water is abundant year-round, so the constraints are qualitative: agricultural-runoff lake quality, spring flood and freeze-thaw loads, and building for -25°C winters.</p>
+          <p class="asks-src">Source: <a href="https://www.canlii.org/en/qc/laws/astat/sq-2025-c-5/latest/sq-2025-c-5.html" target="_blank" rel="noopener">CanLII, SQ 2025, c 5 (Bill 86, assented March 25, 2025)</a></p>
+        </div>
+      </section>
+
+  
+      <section class="land-standing">
+        <div class="wrap">
+          <h2>Land standing</h2>
+          <dl class="ls-dl">
+            <div><dt>Whose land</dt><dd>Unceded W8banaki (Western Abenaki) territory, Ndakina — Odanak &amp; Wôlinak first nations</dd></div>
+            <div><dt>Tenure</dt><dd>Civil-law freehold with mandatory notarial deeds; the CPTAQ Green Zone gates non-farmer purchases (Bill 86, 2025)</dd></div>
+            <div><dt>Arriving in good faith</dt><dd>Lead with a credible agricultural mission and secure CPTAQ authorization, conducted in French</dd></div>
+            <div><dt>What it asks</dt><dd>Integrate in French into a francophone-dominant regen network and recognise unceded Abenaki territory</dd></div>
+          </dl>
+          <p class="ls-src">Source: <a href="https://www.canlii.org/en/qc/laws/astat/sq-2025-c-5/latest/sq-2025-c-5.html" target="_blank" rel="noopener">CanLII, SQ 2025, c 5 (Bill 86, assented March 25, 2025)</a></p>
+        </div>
       </section>
 
   
@@ -279,7 +303,7 @@
 
   <section>
     <div class="wrap">
-      <h2>Other candidate regions</h2>
+      <h2>Other regions</h2>
       <ul class="region-nav"><li><a href="/region/alentejo.html">Alentejo<span>Portugal</span></a></li><li><a href="/region/galicia.html">Galicia<span>Spain</span></a></li><li><a href="/region/transylvania.html">Transylvania<span>Romania</span></a></li><li><a href="/region/connemara.html">West Cork / Connemara<span>Ireland</span></a></li><li><a href="/region/pembrokeshire.html">Pembrokeshire / West Wales<span>UK</span></a></li><li><a href="/region/cevennes.html">Cévennes / Languedoc<span>France</span></a></li><li><a href="/region/south-tirol.html">South Tirol<span>Italy</span></a></li><li><a href="/region/asturias.html">Asturias<span>Spain</span></a></li><li><a href="/region/saxony-anhalt.html">Saxony-Anhalt rural<span>Germany</span></a></li><li><a href="/region/estonia-rural.html">Rural Estonia<span>Estonia</span></a></li><li><a href="/region/cascadia.html">Cascadia<span>USA</span></a></li><li><a href="/region/vermont.html">Vermont / Upper New England<span>USA</span></a></li><li><a href="/region/southern-appalachians.html">Southern Appalachians<span>USA</span></a></li><li><a href="/region/driftless.html">Driftless Area<span>USA</span></a></li><li><a href="/region/ozarks.html">Ozarks<span>USA</span></a></li><li><a href="/region/northern-new-mexico.html">Northern New Mexico<span>USA</span></a></li><li><a href="/region/nova-scotia.html">Nova Scotia / Cape Breton<span>Canada</span></a></li><li><a href="/region/kootenays.html">BC Interior, Kootenays<span>Canada</span></a></li><li><a href="/region/oaxaca.html">Oaxaca highlands<span>Mexico</span></a></li></ul>
     </div>
   </section>

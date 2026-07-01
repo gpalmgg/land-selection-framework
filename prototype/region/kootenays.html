@@ -39,6 +39,14 @@
   section h2{font-family:'Spectral',Georgia,serif;font-weight:500;font-size:24px;margin:0 0 18px;}
   .asks p{font-family:'Spectral',Georgia,serif;font-size:16px;color:var(--ink-2);max-width:62ch;}
   .asks-src{font-size:12px;color:var(--ink-3);} .asks-src a,.src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .land-standing{border-left:3px solid #3a5a3a;}
+  .ls-dl{margin:0;}
+  .ls-dl > div{display:grid;grid-template-columns:210px 1fr;gap:16px;padding:11px 0;border-top:1px solid var(--rule);}
+  .ls-dl > div:first-child{border-top:none;}
+  .ls-dl dt{font-family:'Spectral',serif;font-weight:500;font-size:14px;color:var(--ink);letter-spacing:.01em;}
+  .ls-dl dd{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-2);}
+  .ls-src{font-size:12px;color:var(--ink-3);margin-top:14px;} .ls-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  @media(max-width:600px){.ls-dl > div{grid-template-columns:1fr;gap:3px;}}
   table{width:100%;border-collapse:collapse;font-size:13.5px;}
   th[scope=row]{text-align:left;font-family:'Spectral',serif;font-weight:500;font-size:15px;color:var(--ink);padding:14px 14px 14px 0;vertical-align:top;width:30%;}
   th .metric{display:block;font-family:'Inter',sans-serif;font-weight:400;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);margin-top:3px;}
@@ -81,7 +89,7 @@
   <header class="hero">
     <div class="wrap">
       <div class="accent-bar" style="background:#4a5a7a"></div>
-      <div class="eyebrow">Candidate region</div>
+      <div class="eyebrow">A place, read closely</div>
       <h1>BC Interior, Kootenays</h1>
       <div class="country">Canada</div>
       <p class="blurb">Mountainous BC interior around Nelson. A deep intentional-community legacy (Doukhobor and 1970s back-to-land), higher land cost, increasingly wildfire-exposed.</p>
@@ -90,9 +98,25 @@
 
   
       <section class="asks">
-        <h2>What living here asks of you</h2>
-        <p>The Kootenays ask you to work with the Agricultural Land Reserve and the water-licence system rather than around them. ALR land is affordable but permits only one principal residence as of right, so a multi-household community must either prove farm-worker housing need, pursue a slow 6 to 18 month Agricultural Land Commission application, or pay materially more for non-ALR land. Water is a siting and timing problem, not scarcity today: prior-appropriation licences mean late-priority holders get shut off in drought, glacial baseflow is already past peak, and summer storage matters by mid-century. Most of the region is unceded Sinixt, Ktunaxa, and Syilx territory with a Crown duty to consult, and you arrive into one of North America's densest intentional-community legacies, neighbours who are knowledgeable, skeptical, and expect engagement rather than a ready-made model.</p>
-        <p class="asks-src">Source: <a href="https://www.fcc-fac.ca/en/knowledge/economics/farmland-values-report" target="_blank" rel="noopener">Farm Credit Canada, 2024 FCC Farmland Values Report (BC and Kootenay region)</a></p>
+        <div class="wrap">
+          <h2>What living here asks of you</h2>
+          <p>The Kootenays ask you to work with the Agricultural Land Reserve and the water-licence system rather than around them. ALR land is affordable but permits only one principal residence as of right, so a multi-household community must either prove farm-worker housing need, pursue a slow 6 to 18 month Agricultural Land Commission application, or pay materially more for non-ALR land. Water is a siting and timing problem, not scarcity today: prior-appropriation licences mean late-priority holders get shut off in drought, glacial baseflow is already past peak, and summer storage matters by mid-century. Most of the region is unceded Sinixt, Ktunaxa, and Syilx territory with a Crown duty to consult, and you arrive into one of North America's densest intentional-community legacies, neighbours who are knowledgeable, skeptical, and expect engagement rather than a ready-made model.</p>
+          <p class="asks-src">Source: <a href="https://www.fcc-fac.ca/en/knowledge/economics/farmland-values-report" target="_blank" rel="noopener">Farm Credit Canada, 2024 FCC Farmland Values Report (BC and Kootenay region)</a></p>
+        </div>
+      </section>
+
+  
+      <section class="land-standing">
+        <div class="wrap">
+          <h2>Land standing</h2>
+          <dl class="ls-dl">
+            <div><dt>Whose land</dt><dd>Unceded Sinixt, Ktunaxa &amp; Syilx territory</dd></div>
+            <div><dt>Tenure</dt><dd>Fee-simple, much within the Agricultural Land Reserve (one principal residence as of right); Crown duty to consult applies</dd></div>
+            <div><dt>Arriving in good faith</dt><dd>Work with the Agricultural Land Commission and the water-licence system; expect a 6–18 month ALC process for multi-dwelling plans</dd></div>
+            <div><dt>What it asks</dt><dd>Honour the Crown duty to consult on unceded territory and engage knowledgeable, skeptical neighbours who expect real engagement</dd></div>
+          </dl>
+          <p class="ls-src">Source: <a href="https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/30_2019" target="_blank" rel="noopener">ALR Use Regulation, BC Reg 30/2019</a></p>
+        </div>
       </section>
 
   
@@ -279,7 +303,7 @@
 
   <section>
     <div class="wrap">
-      <h2>Other candidate regions</h2>
+      <h2>Other regions</h2>
       <ul class="region-nav"><li><a href="/region/alentejo.html">Alentejo<span>Portugal</span></a></li><li><a href="/region/galicia.html">Galicia<span>Spain</span></a></li><li><a href="/region/transylvania.html">Transylvania<span>Romania</span></a></li><li><a href="/region/connemara.html">West Cork / Connemara<span>Ireland</span></a></li><li><a href="/region/pembrokeshire.html">Pembrokeshire / West Wales<span>UK</span></a></li><li><a href="/region/cevennes.html">Cévennes / Languedoc<span>France</span></a></li><li><a href="/region/south-tirol.html">South Tirol<span>Italy</span></a></li><li><a href="/region/asturias.html">Asturias<span>Spain</span></a></li><li><a href="/region/saxony-anhalt.html">Saxony-Anhalt rural<span>Germany</span></a></li><li><a href="/region/estonia-rural.html">Rural Estonia<span>Estonia</span></a></li><li><a href="/region/cascadia.html">Cascadia<span>USA</span></a></li><li><a href="/region/vermont.html">Vermont / Upper New England<span>USA</span></a></li><li><a href="/region/southern-appalachians.html">Southern Appalachians<span>USA</span></a></li><li><a href="/region/driftless.html">Driftless Area<span>USA</span></a></li><li><a href="/region/ozarks.html">Ozarks<span>USA</span></a></li><li><a href="/region/northern-new-mexico.html">Northern New Mexico<span>USA</span></a></li><li><a href="/region/nova-scotia.html">Nova Scotia / Cape Breton<span>Canada</span></a></li><li><a href="/region/quebec-eastern-townships.html">Québec Eastern Townships<span>Canada</span></a></li><li><a href="/region/oaxaca.html">Oaxaca highlands<span>Mexico</span></a></li></ul>
     </div>
   </section>

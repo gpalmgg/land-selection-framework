@@ -39,6 +39,14 @@
   section h2{font-family:'Spectral',Georgia,serif;font-weight:500;font-size:24px;margin:0 0 18px;}
   .asks p{font-family:'Spectral',Georgia,serif;font-size:16px;color:var(--ink-2);max-width:62ch;}
   .asks-src{font-size:12px;color:var(--ink-3);} .asks-src a,.src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .land-standing{border-left:3px solid #3a5a3a;}
+  .ls-dl{margin:0;}
+  .ls-dl > div{display:grid;grid-template-columns:210px 1fr;gap:16px;padding:11px 0;border-top:1px solid var(--rule);}
+  .ls-dl > div:first-child{border-top:none;}
+  .ls-dl dt{font-family:'Spectral',serif;font-weight:500;font-size:14px;color:var(--ink);letter-spacing:.01em;}
+  .ls-dl dd{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-2);}
+  .ls-src{font-size:12px;color:var(--ink-3);margin-top:14px;} .ls-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  @media(max-width:600px){.ls-dl > div{grid-template-columns:1fr;gap:3px;}}
   table{width:100%;border-collapse:collapse;font-size:13.5px;}
   th[scope=row]{text-align:left;font-family:'Spectral',serif;font-weight:500;font-size:15px;color:var(--ink);padding:14px 14px 14px 0;vertical-align:top;width:30%;}
   th .metric{display:block;font-family:'Inter',sans-serif;font-weight:400;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);margin-top:3px;}
@@ -81,7 +89,7 @@
   <header class="hero">
     <div class="wrap">
       <div class="accent-bar" style="background:#5a7a4a"></div>
-      <div class="eyebrow">Candidate region</div>
+      <div class="eyebrow">A place, read closely</div>
       <h1>Southern Appalachians</h1>
       <div class="country">USA</div>
       <p class="blurb">Humid temperate highland around Asheville. A biodiversity hotspot with a fast-growing permaculture scene and mature conservation-easement infrastructure.</p>
@@ -90,9 +98,25 @@
 
   
       <section class="asks">
-        <h2>What living here asks of you</h2>
-        <p>The Southern Appalachians ask you to use the tax and easement tools well and to read the land's drainage honestly. Open ownership plus the Present-Use Value deferral can cut property tax up to 90 percent for qualifying forestry or agriculture, but you must file the AV-4 within 60 days of purchase or face three years of back taxes plus interest. Water is structurally abundant in the French Broad basin, so the real risk is siting: Tropical Storm Helene in 2024 showed these highland watersheds can flash-flood catastrophically, making below-ridge placement and serious drainage analysis non-negotiable, alongside roughly 45 extreme-heat days a year projected by 2050. You arrive into one of the densest regen networks in North America, anchored by Earthaven and Celo, but that same demand is capitalised into land prices, so expect to pay a premium over comparable rural land elsewhere.</p>
-        <p class="asks-src">Source: <a href="https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/ByChapter/Chapter_105.pdf" target="_blank" rel="noopener">NC General Statutes §§105-277.2–105-277.7, Present-Use Value Programme</a></p>
+        <div class="wrap">
+          <h2>What living here asks of you</h2>
+          <p>The Southern Appalachians ask you to use the tax and easement tools well and to read the land's drainage honestly. Open ownership plus the Present-Use Value deferral can cut property tax up to 90 percent for qualifying forestry or agriculture, but you must file the AV-4 within 60 days of purchase or face three years of back taxes plus interest. Water is structurally abundant in the French Broad basin, so the real risk is siting: Tropical Storm Helene in 2024 showed these highland watersheds can flash-flood catastrophically, making below-ridge placement and serious drainage analysis non-negotiable, alongside roughly 45 extreme-heat days a year projected by 2050. You arrive into one of the densest regen networks in North America, anchored by Earthaven and Celo, but that same demand is capitalised into land prices, so expect to pay a premium over comparable rural land elsewhere.</p>
+          <p class="asks-src">Source: <a href="https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/ByChapter/Chapter_105.pdf" target="_blank" rel="noopener">NC General Statutes §§105-277.2–105-277.7, Present-Use Value Programme</a></p>
+        </div>
+      </section>
+
+  
+      <section class="land-standing">
+        <div class="wrap">
+          <h2>Land standing</h2>
+          <dl class="ls-dl">
+            <div><dt>Whose land</dt><dd>Cherokee homeland (ᎠᏂᏴᏫᏯ Aniyvwiya) — ceded under the 1835 Treaty of New Echota and the Trail of Tears; the Eastern Band of Cherokee remains at the Qualla Boundary</dd></div>
+            <div><dt>Tenure</dt><dd>Fee-simple; the Present-Use Value deferral cuts tax sharply but requires filing the AV-4 within 60 days of purchase</dd></div>
+            <div><dt>Arriving in good faith</dt><dd>Buy freehold, file PUV promptly, and read the watershed honestly after Tropical Storm Helene's flash-flooding</dd></div>
+            <div><dt>What it asks</dt><dd>Honour Cherokee homeland and the dense Earthaven/Celo regen network whose demand is capitalised into the land</dd></div>
+          </dl>
+          <p class="ls-src">Source: <a href="https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/ByChapter/Chapter_105.pdf" target="_blank" rel="noopener">NC General Statutes §§105-277.2 to 105-277.7, Present-Use Value Programme</a></p>
+        </div>
       </section>
 
   
@@ -279,7 +303,7 @@
 
   <section>
     <div class="wrap">
-      <h2>Other candidate regions</h2>
+      <h2>Other regions</h2>
       <ul class="region-nav"><li><a href="/region/alentejo.html">Alentejo<span>Portugal</span></a></li><li><a href="/region/galicia.html">Galicia<span>Spain</span></a></li><li><a href="/region/transylvania.html">Transylvania<span>Romania</span></a></li><li><a href="/region/connemara.html">West Cork / Connemara<span>Ireland</span></a></li><li><a href="/region/pembrokeshire.html">Pembrokeshire / West Wales<span>UK</span></a></li><li><a href="/region/cevennes.html">Cévennes / Languedoc<span>France</span></a></li><li><a href="/region/south-tirol.html">South Tirol<span>Italy</span></a></li><li><a href="/region/asturias.html">Asturias<span>Spain</span></a></li><li><a href="/region/saxony-anhalt.html">Saxony-Anhalt rural<span>Germany</span></a></li><li><a href="/region/estonia-rural.html">Rural Estonia<span>Estonia</span></a></li><li><a href="/region/cascadia.html">Cascadia<span>USA</span></a></li><li><a href="/region/vermont.html">Vermont / Upper New England<span>USA</span></a></li><li><a href="/region/driftless.html">Driftless Area<span>USA</span></a></li><li><a href="/region/ozarks.html">Ozarks<span>USA</span></a></li><li><a href="/region/northern-new-mexico.html">Northern New Mexico<span>USA</span></a></li><li><a href="/region/nova-scotia.html">Nova Scotia / Cape Breton<span>Canada</span></a></li><li><a href="/region/kootenays.html">BC Interior, Kootenays<span>Canada</span></a></li><li><a href="/region/quebec-eastern-townships.html">Québec Eastern Townships<span>Canada</span></a></li><li><a href="/region/oaxaca.html">Oaxaca highlands<span>Mexico</span></a></li></ul>
     </div>
   </section>

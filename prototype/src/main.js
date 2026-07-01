@@ -1,6 +1,7 @@
-import { regions, values, criteria } from '../data/regions.js?v=usab7';
-import { regionDepth } from '../data/region-depth.js?v=usab7';
-import { v1Lookup } from '../data/v1-lookup.js?v=usab7';
+import { regions, values, criteria } from '../data/regions.js?v=usab10';
+import { regionDepth } from '../data/region-depth.js?v=usab10';
+import { v1Lookup } from '../data/v1-lookup.js?v=usab10';
+import { landStanding } from '../data/land-standing.js?v=usab10';
 
 // Qualitative (per-jurisdiction) filter definitions — the r4 V1 layers exposed
 // as enum filters. These are FILTERS, never scores, same threshold-not-weighting
@@ -78,15 +79,26 @@ const state = {
   // Persisted as ?q.<field>=<value> alongside the other URL state.
   qualFilters: Object.fromEntries(QUAL_FILTERS.map((qf) => [qf.id, 'any'])),
   mapLayers: {
-    'hillshade': false,
+    // imagery / terrain
+    'hillshade': true,    // relief texture under the data
     'topo': false,
     'satellite': false,
     'night-lights': false,
+    // existing data
     'forest-change': false,
     'water-stress': false,
     'water-depletion': false,
     'conflict': false,
-    'regen-network': true, // start with ecovillages visible, they're the framework's signature
+    'regen-network': true, // ecovillages, the framework's signature
+    // expanded data layers (verified public tile/WMS services, 2026-07)
+    'precipitation': false,
+    'soil-carbon': false,  // dynamic WMS (~3s/tile) — great on-demand, too slow as a default
+    'land-cover': false,
+    'solar-pv': false,
+    'population': false,
+    'travel-time': false,
+    'seismic': false,
+    'coastal-flood': false,
   },
 };
 
@@ -409,6 +421,47 @@ function initMap() {
       paint: { 'raster-opacity': 0.85 },
     });
 
+    // === Expanded data layers (verified public tile/WMS services, 2026-07) ===
+    // Each endpoint was curl-verified to return real EPSG:3857 tiles over both
+    // continents, CORS-clean, no auth. Raster XYZ or WMS via {bbox-epsg-3857}.
+    // These render below the vector data (fills/heatmap/points stay on top).
+    const EXTRA_RASTERS = [
+      { id: 'precipitation', maxzoom: 18, opacity: 0.7,
+        url: 'https://geoserver.openlandmap.org/geoserver/ows?service=WMS&version=1.1.1&request=GetMap&layers=olm:precipitation_sm2rain_ltm&srs=EPSG:3857&bbox={bbox-epsg-3857}&width=256&height=256&format=image/png&transparent=true',
+        attribution: 'Precipitation (long-term mean): OpenLandMap / SM2RAIN · CC-BY-SA 4.0' },
+      { id: 'soil-carbon', maxzoom: 18, opacity: 0.78,
+        url: 'https://maps.isric.org/mapserv?map=/map/ocs.map&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ocs_0-30cm_mean&CRS=EPSG:3857&BBOX={bbox-epsg-3857}&WIDTH=256&HEIGHT=256&FORMAT=image/png&STYLES=&TRANSPARENT=true',
+        attribution: 'Soil organic carbon: ISRIC SoilGrids 2.0 · CC-BY 4.0' },
+      { id: 'land-cover', maxzoom: 18, opacity: 0.8,
+        url: 'https://ic.imagery1.arcgis.com/arcgis/rest/services/Sentinel2_10m_LandCover/ImageServer/exportImage?bbox={bbox-epsg-3857}&bboxSR=3857&imageSR=3857&size=256,256&format=png&transparent=true&f=image',
+        attribution: 'Land cover (10m): Esri, Impact Observatory, Microsoft · CC-BY 4.0' },
+      { id: 'solar-pv', maxzoom: 11, opacity: 0.8,
+        url: 'https://api.resourcewatch.org/v1/layer/68fe6a1e-6481-43ff-8fc2-cf0d23a7b701/tile/gee/{z}/{x}/{y}',
+        attribution: 'Solar PV potential: Global Solar Atlas (World Bank/ESMAP, Solargis) via WRI Resource Watch · CC-BY 4.0' },
+      { id: 'population', maxzoom: 7, opacity: 0.82,
+        url: 'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/GPW_Population_Density_2020/default/2020-01-01/GoogleMapsCompatible_Level7/{z}/{y}/{x}.png',
+        attribution: 'Population density: SEDAC GPW v4.11 via NASA GIBS · CC-BY 4.0' },
+      { id: 'travel-time', maxzoom: 18, opacity: 0.72,
+        url: 'https://data.malariaatlas.org/geoserver/ows?service=WMS&version=1.1.1&request=GetMap&layers=Accessibility:201501_Global_Travel_Time_to_Cities&srs=EPSG:3857&bbox={bbox-epsg-3857}&width=256&height=256&format=image/png&transparent=true',
+        attribution: 'Travel time to cities (2015): Malaria Atlas Project / Weiss et al. 2018 · CC-BY 4.0' },
+      { id: 'seismic', maxzoom: 10, opacity: 0.68,
+        url: 'https://tiles.arcgis.com/tiles/txWDfZ2LIgzmw5Ts/arcgis/rest/services/Global_Seismic_Hazard/MapServer/tile/{z}/{y}/{x}',
+        attribution: 'Seismic hazard: GEM Global Seismic Hazard Map 2023 · CC-BY' },
+      { id: 'coastal-flood', maxzoom: 12, opacity: 0.8,
+        url: 'https://tiles.arcgis.com/tiles/7J7WB6yJX0pYke9q/arcgis/rest/services/Coastal_Flooding__rcp8_5_/MapServer/tile/{z}/{y}/{x}',
+        attribution: 'Coastal flooding (RCP8.5): WRI Aqueduct Floods · CC-BY 4.0' },
+    ];
+    EXTRA_RASTERS.forEach((def) => {
+      mapInstance.addSource(def.id, {
+        type: 'raster', tiles: [def.url], tileSize: 256, maxzoom: def.maxzoom, attribution: def.attribution,
+      });
+      mapInstance.addLayer({
+        id: def.id, source: def.id, type: 'raster',
+        layout: { visibility: state.mapLayers[def.id] ? 'visible' : 'none' },
+        paint: { 'raster-opacity': def.opacity },
+      });
+    });
+
     // === Data overlays (render on top of imagery) ===
 
     // Forest cover via Global Forest Watch (Hansen)
@@ -526,14 +579,66 @@ function initMap() {
   });
 }
 
+// Legend for the data layers currently visible — color meaning, never a score.
+// Imagery/terrain layers are self-explanatory and stay out of the legend.
+const LEGEND = {
+  'precipitation':   { label: 'Precipitation (mean)',     kind: 'ramp',  colors: ['#eef3f6', '#7aa8c8', '#1c4a78'] },
+  'water-stress':    { label: 'Water stress, 2050',       kind: 'ramp',  colors: ['#fcecc9', '#e8a64a', '#96201e'] },
+  'water-depletion': { label: 'Water depletion, 2050',    kind: 'ramp',  colors: ['#ecdab2', '#d4a266', '#6e321c'] },
+  'forest-change':   { label: 'Forest loss (Hansen)',     kind: 'solid', color: '#8a3a2a' },
+  'soil-carbon':     { label: 'Soil organic carbon',      kind: 'ramp',  colors: ['#f0e5cf', '#a87a3a', '#3a2a14'] },
+  'land-cover':      { label: 'Land cover (10m)',         kind: 'ramp',  colors: ['#3a7a3a', '#e8d8a0', '#9a9a9a'] },
+  'solar-pv':        { label: 'Solar PV potential',       kind: 'ramp',  colors: ['#e8e4d8', '#e8b34a', '#b8633a'] },
+  'coastal-flood':   { label: 'Coastal flood / SLR',      kind: 'ramp',  colors: ['#dfeef4', '#6aa8cc', '#1c4a70'] },
+  'seismic':         { label: 'Seismic hazard',           kind: 'ramp',  colors: ['#e8e0c8', '#d8a04a', '#8a2a2a'] },
+  'population':      { label: 'Population density',        kind: 'ramp',  colors: ['#eef0e8', '#9a9a72', '#3a3a2a'] },
+  'travel-time':     { label: 'Travel time to cities',    kind: 'ramp',  colors: ['#f4ead8', '#c89a5a', '#6a3a1a'] },
+  'conflict':        { label: 'Conflict density',         kind: 'ramp',  colors: ['#d8a0a0', '#b24632', '#5a1a1a'] },
+  'regen-network':   { label: 'Ecovillage sites',         kind: 'dot',   color: '#3a6a4a' },
+};
+
+function renderMapLegend() {
+  const mount = document.getElementById('map-legend');
+  if (!mount) return;
+  while (mount.firstChild) mount.removeChild(mount.firstChild);
+  const active = Object.keys(LEGEND).filter((id) => state.mapLayers[id]);
+  if (!active.length) { mount.setAttribute('aria-hidden', 'true'); return; }
+  mount.setAttribute('aria-hidden', 'false');
+  mount.appendChild(el('div', { className: 'map-legend-title', text: 'Active layers' }));
+  active.forEach((id) => {
+    const def = LEGEND[id];
+    const row = el('div', { className: 'legend-row' });
+    const sw = el('span', { className: 'legend-swatch' + (def.kind === 'dot' ? ' dot' : '') });
+    if (def.kind === 'ramp') sw.style.background = `linear-gradient(90deg, ${def.colors.join(', ')})`;
+    else sw.style.background = def.color;
+    row.appendChild(sw);
+    row.appendChild(el('span', { className: 'legend-label', text: def.label }));
+    mount.appendChild(row);
+  });
+}
+
 function renderMapToggles() {
   const togglesContainer = document.getElementById('map-toggles');
   const layerDefs = [
-    { id: 'forest-change', name: 'Forest loss', color: '#5a2a2a', group: 'data' },
-    { id: 'water-stress', name: 'Water stress 2050', color: '#b03a2e', group: 'data' },
-    { id: 'water-depletion', name: 'Water depletion 2050', color: '#aa6032', group: 'data' },
-    { id: 'conflict', name: 'Conflict density', color: '#a05050', group: 'data' },
-    { id: 'regen-network', name: 'Ecovillage sites', color: '#3a6a4a', group: 'data' },
+    // Climate & water
+    { id: 'precipitation', name: 'Precipitation', color: '#3a6a8a', group: 'climate' },
+    { id: 'water-stress', name: 'Water stress 2050', color: '#b03a2e', group: 'climate' },
+    { id: 'water-depletion', name: 'Water depletion 2050', color: '#aa6032', group: 'climate' },
+    // Land & soil
+    { id: 'forest-change', name: 'Forest loss', color: '#5a2a2a', group: 'land' },
+    { id: 'soil-carbon', name: 'Soil organic carbon', color: '#7a5a2a', group: 'land' },
+    { id: 'land-cover', name: 'Land cover (10m)', color: '#4a7a4a', group: 'land' },
+    // Energy
+    { id: 'solar-pv', name: 'Solar PV potential', color: '#b8633a', group: 'energy' },
+    // Hazards
+    { id: 'coastal-flood', name: 'Coastal flood / SLR', color: '#2a6a8a', group: 'hazards' },
+    { id: 'seismic', name: 'Seismic hazard', color: '#8a5a2a', group: 'hazards' },
+    // People & access
+    { id: 'population', name: 'Population density', color: '#6a5a4a', group: 'human' },
+    { id: 'travel-time', name: 'Travel time to cities', color: '#7a6a8a', group: 'human' },
+    { id: 'conflict', name: 'Conflict density', color: '#a05050', group: 'human' },
+    { id: 'regen-network', name: 'Ecovillage sites', color: '#3a6a4a', group: 'human' },
+    // Terrain & imagery
     { id: 'hillshade', name: 'Terrain relief', color: '#6a5a4a', group: 'imagery' },
     { id: 'topo', name: 'Topographic map', color: '#4a6a3a', group: 'imagery' },
     { id: 'satellite', name: 'Recent satellite', color: '#2a5a7a', group: 'imagery' },
@@ -541,7 +646,11 @@ function renderMapToggles() {
   ];
 
   const groups = [
-    { key: 'data', label: 'Data' },
+    { key: 'climate', label: 'Climate & water' },
+    { key: 'land', label: 'Land & soil' },
+    { key: 'energy', label: 'Energy' },
+    { key: 'hazards', label: 'Hazards' },
+    { key: 'human', label: 'People & access' },
     { key: 'imagery', label: 'Terrain & imagery' },
   ];
 
@@ -561,6 +670,7 @@ function renderMapToggles() {
           mapInstance.setLayoutProperty(def.id, 'visibility', state.mapLayers[def.id] ? 'visible' : 'none');
         }
         t.classList.toggle('on', state.mapLayers[def.id]);
+        renderMapLegend();
       });
       togglesContainer.appendChild(t);
     });
@@ -605,6 +715,20 @@ function renderRegionGrid() {
     card.appendChild(el('div', { className: 'name serif', text: r.name }));
     card.appendChild(el('div', { className: 'country', text: r.country }));
     card.appendChild(el('div', { className: 'blurb', text: r.blurb }));
+
+    // Surface "what living here asks of you" — reciprocity made first-class on the
+    // card itself, not gated behind opening the drawer. First sentence as a teaser.
+    const depth = regionDepth[r.id];
+    if (depth) {
+      const asksLine = el('div', { className: 'card-asks' });
+      asksLine.appendChild(el('span', { className: 'card-asks-label', text: 'Asks of you' }));
+      const teaser = depth.asks
+        ? depth.asks.split('. ')[0].replace(/\.$/, '') + '.'
+        : 'much — read the full case study in the deeper material.';
+      asksLine.appendChild(document.createTextNode(' ' + teaser));
+      card.appendChild(asksLine);
+    }
+
     card.appendChild(el('div', { className: 'status', text: 'Meets all thresholds' }));
 
     // The whole card opens the detail drawer (keyboard-accessible).
@@ -1082,7 +1206,7 @@ function initShareButton() {
       try {
         await navigator.share({
           title: 'Land Selection Framework',
-          text: 'Regional land-siting criteria, filtered:',
+          text: 'Bioregional criteria, filtered:',
           url,
         });
         trackEvent('share', { method: 'native', has_filters: anyFilterActive() });
@@ -1378,9 +1502,9 @@ function initSignupModal() {
 const PRESETS = [
   { id: 'offgrid', label: 'Off-grid self-sufficiency',
     sets: { solar_pv: 1500, water_stress: 0.4, population: 50 } },
-  { id: 'cool-wet', label: 'Climate refuge: cool & wet',
+  { id: 'cool-wet', label: 'Cool & water-secure',
     sets: { climate: 14, water_stress: 0.35, forest_change: 0 } },
-  { id: 'affordable', label: 'Affordable & remote',
+  { id: 'affordable', label: 'Quiet & rural',
     sets: { population: 40 } },
   { id: 'high-solar', label: 'High solar, dry-tolerant',
     sets: { solar_pv: 1600 } },
@@ -1468,7 +1592,7 @@ function renderGuidedEntry() {
 
   // Neutral entry: clear everything and reveal all candidates.
   const all = el('button', { className: 'guided-chip neutral', text: 'Show all 20 regions', attrs: { type: 'button' } });
-  all.setAttribute('aria-label', 'Clear all thresholds and show every candidate region.');
+  all.setAttribute('aria-label', 'Clear all thresholds and show every region.');
   all.addEventListener('click', () => {
     resetThresholds();
     trackEvent('guided_start', { preset: 'all' });
@@ -1680,6 +1804,39 @@ function openDrawer(regionId) {
     },
   }));
 
+  // "Land standing" — whose land this is, the tenure regime, the good-faith way
+  // in, and the obligation arriving carries. A qualitative reciprocity dimension,
+  // never scored. Nothing renders for regions without an entry yet.
+  const standing = landStanding[r.id];
+  if (standing) {
+    const ls = el('div', { className: 'drawer-land-standing' });
+    ls.appendChild(el('h4', { text: 'Land standing' }));
+    const lsRows = [
+      ['Whose land', standing.territory],
+      ['Tenure', standing.tenure],
+      ['Arriving in good faith', standing.entry],
+      ['What it asks', standing.obligation],
+    ];
+    lsRows.forEach(([label, val]) => {
+      if (!val) return;
+      const row = el('div', { className: 'ls-row' });
+      row.appendChild(el('span', { className: 'ls-label', text: label }));
+      row.appendChild(el('span', { className: 'ls-val', text: val }));
+      ls.appendChild(row);
+    });
+    if (standing.source) {
+      const src = el('div', { className: 'ls-src' });
+      src.appendChild(document.createTextNode('Source: '));
+      if (standing.sourceUrl) {
+        src.appendChild(el('a', { text: standing.source, attrs: { href: standing.sourceUrl, target: '_blank', rel: 'noopener' } }));
+      } else {
+        src.appendChild(document.createTextNode(standing.source));
+      }
+      ls.appendChild(src);
+    }
+    body.appendChild(ls);
+  }
+
   // "What living here asks of you", deep-link for case studies, prose for the
   // verified regions, nothing rendered when there is no depth entry yet.
   const depth = regionDepth[r.id];
@@ -1786,7 +1943,7 @@ function updateNextStep() {
     if (lead) lead.textContent = 'No regions meet your current criteria. Loosen a threshold to see candidates.';
   } else {
     row.classList.remove('empty');
-    if (lead) lead.textContent = `${passing.length} ${passing.length === 1 ? 'region meets' : 'regions meet'} your criteria.`;
+    if (lead) lead.textContent = `${passing.length} ${passing.length === 1 ? 'region meets' : 'regions meet'} your criteria — each asks something of you in return.`;
   }
 }
 
@@ -1844,6 +2001,7 @@ document.body.dataset.continent = state.continent;
 
 renderRegionGrid();
 renderMapToggles();
+renderMapLegend();
 renderCriteriaGrid();
 renderSummaryTable();
 renderSourcesList();

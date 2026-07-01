@@ -204,7 +204,7 @@ export default async function handler(req) {
 
     const names = matching.map((r) => r.name);
     const headline = !anyActive
-      ? 'Eight criteria. Twenty candidate regions.'
+      ? 'A bioregioning tool. Twenty regions.'
       : matching.length === 0
         ? 'No regions meet these criteria'
         : matching.length === 1
@@ -333,7 +333,7 @@ export default async function handler(req) {
             },
             [
               h('div', { display: 'flex' }, 'land-selection-framework.vercel.app'),
-              h('div', { display: 'flex' }, `${total} candidate regions · filters, never scores`),
+              h('div', { display: 'flex' }, `${total} regions · filters, never scores`),
             ],
           ),
         ]),

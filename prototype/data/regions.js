@@ -1,4 +1,4 @@
-// Twenty candidate regions (Europe + North America) for the regenerative-settlement comparison.
+// Twenty regions (Europe + North America) for the regenerative-settlement comparison.
 // Values are grounded in the per-region research dossier at
 //   data/research-dossier/<region>/<dimension>.md
 // Each cell carries `source` and `sourceUrl` pointing to the dossier's
@@ -26,7 +26,7 @@ export const regions = [
     name: 'Galicia',
     country: 'Spain',
     coords: [-8.4, 42.9],
-    blurb: 'North-west Iberian coast. Cool, wet, deeply forested. Strong soil base, traditional smallholdings, post-rural depopulation opening land.',
+    blurb: 'North-west Iberian coast. Cool, wet, deeply forested. Strong soil base and a living montes-vecinais commons; in the depopulating interior, the way in is partnering with the villagers who remain, not buying around them.',
     accent: '#3a6a4a',
   },
   {
@@ -83,7 +83,7 @@ export const regions = [
     name: 'Asturias',
     country: 'Spain',
     coords: [-5.85, 43.3],
-    blurb: 'Atlantic green Spain, six UNESCO Biosphere Reserves covering a quarter of the region. Steep depopulation has opened a wave of repoblación village-revival projects; soils are rich, summers cool.',
+    blurb: 'Atlantic green Spain, six UNESCO Biosphere Reserves covering a quarter of the region. A wave of repoblación projects is reviving emptying villages; soils are rich, summers cool, and a strongly independent local culture expects you to earn your place.',
     accent: '#3a6a6a',
   },
   {
@@ -124,7 +124,7 @@ export const regions = [
     accent: '#7a8a4a' },
   { id: 'ozarks', continent: 'north-america', name: 'Ozarks', short: 'Ozarks', country: 'USA',
     coords: [-92.8, 36.3],
-    blurb: 'The cheapest land in the slate. Off-grid homestead culture, permissive rural building rules, and sparse formal regenerative institutions.',
+    blurb: 'Among the most affordable land in the slate. Off-grid homestead culture, permissive rural building rules, and sparse formal regenerative institutions — you build relationships from scratch rather than joining a scene.',
     accent: '#8a7a3a' },
   { id: 'northern-new-mexico', continent: 'north-america', name: 'Northern New Mexico', short: 'N. New Mexico', country: 'USA',
     coords: [-105.6, 36.4],
@@ -132,7 +132,7 @@ export const regions = [
     accent: '#b8633a' },
   { id: 'nova-scotia', continent: 'north-america', name: 'Nova Scotia / Cape Breton', short: 'Nova Scotia', country: 'Canada',
     coords: [-63.0, 45.4],
-    blurb: 'Cool Atlantic-maritime Canada. Affordable and immigration-friendly via provincial nominee programs, with heavy industrial-forestry pressure on the landscape.',
+    blurb: 'Cool Atlantic-maritime Canada, on unceded Mi\'kma\'ki. Water-secure and reachable via provincial immigration pathways, under heavy industrial-forestry pressure — a thin but real regen scene to join in relationship, not to colonise.',
     accent: '#3a6a7a' },
   { id: 'kootenays', continent: 'north-america', name: 'BC Interior, Kootenays', short: 'Kootenays', country: 'Canada',
     coords: [-117.0, 49.5],

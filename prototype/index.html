@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Land Selection Framework, siting a regenerative community</title>
-  <meta name="description" content="Eight criteria for choosing where to site a regenerative settlement built to flourish on a fifty-to-hundred-year horizon, read, with sources, across twenty candidate regions across Europe and North America. The framework filters; it never scores." />
+  <title>Land Selection Framework — a bioregioning tool for regenerative community</title>
+  <meta name="description" content="A bioregioning tool for communities seeking to belong to a place and help it flourish over fifty to a hundred years. Eight criteria, with sources, across twenty regions in Europe and North America. It filters; it never scores, ranks, or tells you where to go." />
   <link rel="canonical" href="https://land-selection-framework.vercel.app/" />
 
   <script type="application/ld+json">
@@ -12,26 +12,26 @@
     "@context": "https://schema.org",
     "@type": "CreativeWork",
     "name": "Land Selection Framework",
-    "headline": "Eight criteria for siting a regenerative community on a 50–100 year horizon",
-    "description": "A data-honest sketch of eight criteria for choosing where to site a regenerative settlement, read with sources across twenty candidate regions across Europe and North America. The framework filters; it never scores.",
+    "headline": "A bioregioning tool for regenerative community on a 50–100 year horizon",
+    "description": "A bioregioning tool for communities seeking to belong to a place and help it flourish over fifty to a hundred years, read with sources across twenty regions in Europe and North America. It filters; it never scores, ranks, or tells you where to go.",
     "url": "https://land-selection-framework.vercel.app/",
     "inLanguage": "en",
     "author": { "@type": "Organization", "name": "The Collective" },
-    "dateModified": "2026-05-26"
+    "dateModified": "2026-06-30"
   }
   </script>
 
   <!-- Open Graph / Twitter Card -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://land-selection-framework.vercel.app" />
-  <meta property="og:title" content="Land Selection Framework, siting a regenerative community" />
-  <meta property="og:description" content="Eight criteria for siting a regenerative settlement, read across twenty candidate regions across Europe and North America. Sliders filter; the framework never scores." />
+  <meta property="og:title" content="Land Selection Framework — a bioregioning tool for regenerative community" />
+  <meta property="og:description" content="A bioregioning tool for communities seeking to belong to a place and help it flourish over fifty to a hundred years, read across twenty regions in Europe and North America. It filters; it never scores or ranks." />
   <meta property="og:image" content="https://land-selection-framework.vercel.app/og.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Land Selection Framework, siting a regenerative community" />
-  <meta name="twitter:description" content="Eight criteria for siting a regenerative settlement. The framework filters, never scores." />
+  <meta name="twitter:title" content="Land Selection Framework — a bioregioning tool for regenerative community" />
+  <meta name="twitter:description" content="A bioregioning tool for communities seeking to belong to a place and help it flourish over 50–100 years. It filters; it never scores or ranks." />
   <meta name="twitter:image" content="https://land-selection-framework.vercel.app/og.png" />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -538,6 +538,17 @@
       font-size: 11.5px; letter-spacing: 0.08em;
       text-transform: uppercase; color: var(--ink-3); margin-bottom: 14px;
     }
+    .arrive { padding: 40px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--paper-2); }
+    .arrive h2 { font-size: 26px; margin: 8px 0 14px; max-width: 26ch; line-height: 1.2; }
+    .arrive-lede { font-size: 16px; line-height: 1.65; color: var(--ink-2); max-width: 64ch; }
+    .arrive-lede em { font-style: italic; color: var(--accent); }
+    .arrive-fors { display: grid; gap: 12px; margin-top: 22px; max-width: 72ch; }
+    .arrive-for { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
+    .arrive-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; margin-right: 8px; vertical-align: 1.5px; }
+    .arrive-tag.for { background: #e8efe5; color: #3a5a3a; }
+    .arrive-tag.notfor { background: #f3e4df; color: #8a3a2a; }
+    .card-asks { font-size: 12.5px; line-height: 1.5; color: var(--ink-3); margin-top: 8px; font-style: italic; }
+    .card-asks-label { font-style: normal; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; font-size: 10.5px; color: var(--accent); margin-right: 6px; }
     .region-card .blurb {
       font-family: 'Spectral', Georgia, serif;
       font-size: 13.5px; line-height: 1.55; color: var(--ink-2);
@@ -1452,6 +1463,20 @@
       font-size: 15px; line-height: 1.6; color: var(--ink-2);
       margin: 0 0 22px;
     }
+    .map-wrap { position: relative; }
+    .map-legend {
+      position: absolute; right: 14px; bottom: 30px; z-index: 4;
+      background: rgba(246,242,235,0.94); border: 1px solid var(--rule);
+      border-radius: 4px; padding: 10px 12px; max-width: 230px;
+      font-size: 11.5px; color: var(--ink-2); box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .map-legend[aria-hidden="true"] { display: none; }
+    .map-legend-title { font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: 8px; }
+    .legend-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .legend-row:last-child { margin-bottom: 0; }
+    .legend-swatch { width: 24px; height: 11px; border-radius: 2px; flex: none; border: 1px solid rgba(0,0,0,0.06); }
+    .legend-swatch.dot { width: 11px; height: 11px; border-radius: 50%; }
+    .legend-label { line-height: 1.3; }
     .drawer-asks {
       background: var(--paper-2); border-left: 2px solid var(--accent);
       padding: 16px 18px; margin-bottom: 24px;
@@ -1476,6 +1501,22 @@
       font-family: 'Inter', sans-serif; letter-spacing: 0.01em;
     }
     .drawer-asks-src a { color: var(--ink-2); text-decoration: underline dotted; text-underline-offset: 2px; }
+    .drawer-land-standing {
+      background: var(--paper-2); border-left: 2px solid #3a5a3a;
+      padding: 16px 18px; margin-bottom: 24px;
+    }
+    .drawer-land-standing h4 {
+      font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #3a5a3a; font-weight: 600; margin-bottom: 12px;
+    }
+    .ls-row { display: grid; grid-template-columns: 132px 1fr; gap: 12px; margin-bottom: 9px; }
+    .ls-label {
+      font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--ink-3); font-weight: 600; padding-top: 3px;
+    }
+    .ls-val { font-family: 'Spectral', Georgia, serif; font-size: 14px; line-height: 1.55; color: var(--ink-2); }
+    .ls-src { margin-top: 8px; font-size: 11px; color: var(--ink-3); font-family: 'Inter', sans-serif; }
+    .ls-src a { color: var(--ink-2); text-decoration: underline dotted; text-underline-offset: 2px; }
     .drawer-criteria h4 {
       font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
       color: var(--ink-3); font-weight: 600; margin-bottom: 4px;
@@ -1558,28 +1599,28 @@
   <div class="prototype-banner" role="note">
     <div class="container">
       <span class="proto-tag">Prototype</span>
-      <p class="proto-msg">This is a working prototype. The full <strong>V1</strong> release lands <strong>before June 2026</strong>.</p>
+      <p class="proto-msg">A designed prototype demonstrating the framework — not the <strong>V1</strong> data build.</p>
     </div>
   </div>
 
   <section class="hero">
     <div class="container">
-      <div class="eyebrow">Prototype · A project of The Collective · May 2026</div>
+      <div class="eyebrow">Prototype · June 2026</div>
       <div class="hero-grid">
         <div class="hero-left">
           <h1>Land Selection Framework</h1>
-          <p class="subtitle">Eight criteria for siting a regenerative settlement built to flourish on a fifty-to-hundred-year horizon.</p>
+          <p class="subtitle">A bioregioning tool for communities seeking to belong to a place — and help it flourish over fifty to a hundred years.</p>
           <p class="lede">
-            Choosing where to settle is too important to leave to gut-feel and real-estate listings. This site sketches how the framework reads real candidate regions, ten in Europe and ten in North America, against criteria developed by The Collective, the working group behind it. Switch between Europe and North America, and drag the sliders to set your own thresholds. The system filters, never scores.
+            Bioregioning means living within the grain of a place — its watersheds, its soils, its seasons, and the diversity and coherence of the living whole — in good faith with the people and lifeways already rooted there. That relationship is the whole premise, not an afterthought. The tool reads eight criteria, with sources, across twenty regions in Europe and North America, as questions about how a community might arrive in reciprocity and help a place flourish over generations. You set the thresholds; it filters, and never scores, ranks, or tells you where to go.
           </p>
           <p class="lede-note">
-            This project leans into bioregioning. It is meant as a tool used in respect for the local communities and land stewards already rooted in any part of the earth, an aid to arriving in relationship with a place, not over the people and lifeways already there.
+            This is what we hope the tool can support — and we're glad to talk it through with anyone weighing where to put down roots.
           </p>
           <div class="key">
             <div><div class="num">8</div><div class="lab">Criteria</div></div>
-            <div><div class="num">20</div><div class="lab">Candidate regions</div></div>
+            <div><div class="num">20</div><div class="lab">Regions read</div></div>
             <div><div class="num">50–100<span style="font-size: 14px;">yr</span></div><div class="lab">Horizon</div></div>
-            <div><div class="num">r3</div><div class="lab">Doc round</div></div>
+            <div><div class="num">r4</div><div class="lab">Doc round</div></div>
           </div>
         </div>
 
@@ -1602,7 +1643,6 @@
               <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" />
             </form>
             <div class="form-status" id="form-status"></div>
-            <div class="footnote">Or write directly: <a href="mailto:gustaf@islands-of-coherence.com">gustaf@islands-of-coherence.com</a></div>
           </div>
 
           <a class="hero-cta" href="/deeper.html#ethics">
@@ -1617,13 +1657,25 @@
     </div>
   </section>
 
+  <section class="arrive" aria-labelledby="arrive-title">
+    <div class="container">
+      <div class="eyebrow">How to read this</div>
+      <h2 id="arrive-title" class="serif">A place is not a product. Arriving is a relationship.</h2>
+      <p class="arrive-lede">This tool helps you see where a community could put down roots and regenerate a place over generations. It never tells you to go anywhere. Every region here is already someone's home — held in living communities with their own histories, lifeways, and care for the land. Reading a place well means asking what arriving would ask of you, and listening for the answer.</p>
+      <div class="arrive-fors">
+        <div class="arrive-for"><span class="arrive-tag for">For</span> communities who want to belong to a place and help it flourish over decades, in good faith with the people and lifeways already rooted there.</div>
+        <div class="arrive-for"><span class="arrive-tag notfor">Not for</span> finding somewhere cheap and empty to escape to, or landing on top of a community already living there.</div>
+      </div>
+    </div>
+  </section>
+
   <section class="guided" aria-labelledby="guided-title">
     <div class="container">
       <div class="guided-inner">
         <div class="guided-copy">
           <div class="eyebrow">Start here</div>
-          <h2 id="guided-title" class="serif">What matters most where you'd settle?</h2>
-          <p class="guided-sub">Pick a starting point and the sliders set themselves — then adjust every threshold by hand. The framework filters to the regions that meet your criteria; it never scores, ranks, or recommends.</p>
+          <h2 id="guided-title" class="serif">What matters most for where you'd put down roots?</h2>
+          <p class="guided-sub">Pick a starting point and the sliders set themselves — then adjust every threshold by hand. The framework filters to the regions that meet your criteria; it never scores, ranks, or recommends. Wherever you land, the question of how to arrive in good faith with who's already there comes with it.</p>
         </div>
         <div class="guided-chips" id="guided-chips" role="group" aria-label="Choose a starting priority"></div>
       </div>
@@ -1632,13 +1684,14 @@
 
   <section class="regions-intro">
     <div class="container">
-      <h2 class="serif">The candidate regions, briefly named.</h2>
+      <h2 class="serif">Twenty regions, briefly named.</h2>
       <p>Illustrative, chosen because each tells a different story across the criteria. The map shows real data layers: forest cover trajectory (Hansen via Global Forest Watch), water stress sub-basins (WRI Aqueduct 2050), conflict event density (UCDP), and intentional-community sites (OSM).</p>
 
       <div id="continent-switcher" class="continent-switcher" hidden></div>
 
       <div class="map-wrap">
         <div id="map"></div>
+        <div class="map-legend" id="map-legend" aria-hidden="true"></div>
         <div class="map-controls">
           <button class="title" id="layers-toggle" type="button" aria-expanded="true" aria-controls="map-toggles">Layers<span class="caret" aria-hidden="true">▾</span></button>
           <div id="map-toggles"></div>
@@ -1679,7 +1732,6 @@
         <span class="next-step-actions">
           <button class="ns-action" id="ns-asks" type="button">What they ask of you</button>
           <button class="ns-action" id="ns-share" type="button">Share this view</button>
-          <a class="ns-action" id="ns-contact" href="mailto:gustaf@islands-of-coherence.com">Talk to The Collective</a>
         </span>
       </div>
 
@@ -1703,34 +1755,7 @@
         <div class="left">
           <h2 class="serif">Reach The Collective.</h2>
           <p class="lead">
-            <em>If you want to talk about this work</em>, the framework, the regions, the project as a whole, or how to join The Collective, reach out on any of these channels.
-          </p>
-          <div class="socials">
-            <a href="mailto:gustaf@islands-of-coherence.com" title="Email" aria-label="Email">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/>
-                <path d="M2 8l10 7 10-7"/>
-              </svg>
-            </a>
-            <a href="https://www.instagram.com/gustaf.palm/" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="5"/>
-                <circle cx="12" cy="12" r="4"/>
-                <circle cx="17.5" cy="6.5" r="0.9" fill="currentColor" stroke="none"/>
-              </svg>
-            </a>
-            <a href="https://substack.com/@gustafpalm" target="_blank" rel="noopener" title="Substack" aria-label="Substack">
-              <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                <path d="M4 4h16v2.6H4z"/>
-                <path d="M4 8.6h16v2.6H4z"/>
-                <path d="M4 13.2v8l8-4.6 8 4.6v-8H4z"/>
-              </svg>
-            </a>
-          </div>
-          <p class="direct">
-            Email: <a href="mailto:gustaf@islands-of-coherence.com">gustaf@islands-of-coherence.com</a><br/>
-            Substack: <a href="https://substack.com/@gustafpalm" target="_blank" rel="noopener">@gustafpalm</a><br/>
-            Instagram: <a href="https://www.instagram.com/gustaf.palm/" target="_blank" rel="noopener">@gustaf.palm</a>
+            <em>If you want to talk about this work</em>, the framework, the regions, the project as a whole, or how to join The Collective, subscribe to updates and we'll be in touch.
           </p>
         </div>
 
@@ -1745,7 +1770,7 @@
             <strong>Want to join The Collective?</strong><br/>
             Read
             <a href="/invitation.pdf" target="_blank" rel="noopener">The Collective's invitation (PDF)</a>
-            and reach out, I'll introduce you to the group.
+            and subscribe to get in touch — we'll introduce you to the group.
           </div>
         </div>
       </div>
@@ -1767,10 +1792,10 @@
             This prototype was built by <strong>a member of The Collective</strong>, the regions, copy, and interactions shown here are one contributor's cut of the shared work.
           </p>
           <p class="about-p">
-            The values the project is thinking with, <em>localism, bioregioning, healthy integration, land stewardship</em>, are laid out in the <a href="/deeper.html#ethics">ethics and values</a> section of the deeper page. They are open conversations The Collective keeps returning to, not stated commitments.
+            The values the project is built on, <em>localism, bioregioning, reciprocity with the people and lands already rooted in a place, healthy integration, stewardship</em>, are laid out in the <a href="/deeper.html#ethics">ethics and values</a> section of the deeper page.
           </p>
           <p class="about-p">
-            Reach out with any questions: <a href="mailto:gustaf@islands-of-coherence.com">gustaf@islands-of-coherence.com</a>
+            Subscribe on the main page to stay in touch as the work evolves.
           </p>
         </div>
         <div>
@@ -1860,7 +1885,7 @@
     </div>
   </div>
 
-  <script type="module" src="./src/main.js?v=usab7"></script>
+  <script type="module" src="./src/main.js?v=usab13"></script>
 
   <!-- Per-value source citations: appended after main.js renders. -->
   <style>
@@ -1920,7 +1945,7 @@
     }
   </style>
   <script type="module">
-    import { regions, values, criteria } from './data/regions.js?v=usab7';
+    import { regions, values, criteria } from './data/regions.js?v=usab10';
 
     const activeContinent = () => document.body.dataset.continent || 'europe';
     const regionCountFor = (c) => regions.filter((r) => r.continent === c).length;

@@ -48,10 +48,10 @@ export default async function handler(req) {
         : `${matching.length} regions meet these criteria — Land Selection Framework`;
 
   const desc = !anyActive
-    ? 'Eight criteria for siting a regenerative settlement on a 50–100 year horizon, across twenty candidate regions. The framework filters, never scores.'
+    ? 'A bioregioning tool for communities seeking to belong to a place and help it flourish over a 50–100 year horizon, across twenty regions. It filters; it never scores or ranks.'
     : matching.length === 0
-      ? 'No candidate regions meet these thresholds — adjust them and explore. The framework filters, never scores.'
-      : `Matching: ${names.join(', ')}. Eight criteria across twenty candidate regions. The framework filters, never scores.`;
+      ? 'No regions meet these thresholds — adjust them and explore. It filters; it never scores or ranks.'
+      : `Matching: ${names.join(', ')}. Eight criteria across twenty regions, held as questions of how to arrive in reciprocity. It filters; it never scores.`;
 
   const html = `<!doctype html>
 <html lang="en">

@@ -39,6 +39,14 @@
   section h2{font-family:'Spectral',Georgia,serif;font-weight:500;font-size:24px;margin:0 0 18px;}
   .asks p{font-family:'Spectral',Georgia,serif;font-size:16px;color:var(--ink-2);max-width:62ch;}
   .asks-src{font-size:12px;color:var(--ink-3);} .asks-src a,.src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .land-standing{border-left:3px solid #3a5a3a;}
+  .ls-dl{margin:0;}
+  .ls-dl > div{display:grid;grid-template-columns:210px 1fr;gap:16px;padding:11px 0;border-top:1px solid var(--rule);}
+  .ls-dl > div:first-child{border-top:none;}
+  .ls-dl dt{font-family:'Spectral',serif;font-weight:500;font-size:14px;color:var(--ink);letter-spacing:.01em;}
+  .ls-dl dd{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-2);}
+  .ls-src{font-size:12px;color:var(--ink-3);margin-top:14px;} .ls-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  @media(max-width:600px){.ls-dl > div{grid-template-columns:1fr;gap:3px;}}
   table{width:100%;border-collapse:collapse;font-size:13.5px;}
   th[scope=row]{text-align:left;font-family:'Spectral',serif;font-weight:500;font-size:15px;color:var(--ink);padding:14px 14px 14px 0;vertical-align:top;width:30%;}
   th .metric{display:block;font-family:'Inter',sans-serif;font-weight:400;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);margin-top:3px;}
@@ -81,7 +89,7 @@
   <header class="hero">
     <div class="wrap">
       <div class="accent-bar" style="background:#2d6a4a"></div>
-      <div class="eyebrow">Candidate region</div>
+      <div class="eyebrow">A place, read closely</div>
       <h1>Cascadia</h1>
       <div class="country">USA</div>
       <p class="blurb">Temperate-maritime Pacific Northwest. High rainfall, low water stress, the densest regenerative network on the continent, and the land cost to match.</p>
@@ -90,9 +98,25 @@
 
   
       <section class="asks">
-        <h2>What living here asks of you</h2>
-        <p>Cascadia asks you to accept that the hard part is not buying land but being allowed to use it. Oregon's statewide Senate Bill 100 planning zones most rural parcels as Exclusive Farm Use, so a multi-household community will likely need a Conditional Use Permit and multi-year county planning engagement, and you should hire an ORS 215 land-use attorney before purchasing, not after. Land is costly here, 3 to 5 times the Alentejo baseline even in the Cascade foothills, which is why most new projects depend on a community land trust rather than outright purchase. In return you join one of the densest and most institutionally mature regen networks in North America, with mild wet winters and abundant water, tempered by a real and worsening late-summer wildfire-smoke season.</p>
-        <p class="asks-src">Source: <a href="https://www.nass.usda.gov/Publications/Todays_Reports/reports/land0824.pdf" target="_blank" rel="noopener">USDA NASS, Land Values 2024 Summary</a></p>
+        <div class="wrap">
+          <h2>What living here asks of you</h2>
+          <p>Cascadia asks you to accept that the hard part is not buying land but being allowed to use it. Oregon's statewide Senate Bill 100 planning zones most rural parcels as Exclusive Farm Use, so a multi-household community will likely need a Conditional Use Permit and multi-year county planning engagement, and you should hire an ORS 215 land-use attorney before purchasing, not after. Land is costly here, 3 to 5 times the Alentejo baseline even in the Cascade foothills, which is why most new projects depend on a community land trust rather than outright purchase. In return you join one of the densest and most institutionally mature regen networks in North America, with mild wet winters and abundant water, tempered by a real and worsening late-summer wildfire-smoke season.</p>
+          <p class="asks-src">Source: <a href="https://www.nass.usda.gov/Publications/Todays_Reports/reports/land0824.pdf" target="_blank" rel="noopener">USDA NASS, Land Values 2024 Summary</a></p>
+        </div>
+      </section>
+
+  
+      <section class="land-standing">
+        <div class="wrap">
+          <h2>Land standing</h2>
+          <dl class="ls-dl">
+            <div><dt>Whose land</dt><dd>Kalapuya territory (Willamette Valley) — ceded under the 1855 Treaty with the Kalapuya etc. (Willamette Valley Treaty); descendant peoples now of the Confederated Tribes of Grand Ronde &amp; Siletz</dd></div>
+            <div><dt>Tenure</dt><dd>Fee-simple, but most rural land is zoned Exclusive Farm Use, limiting non-agricultural dwellings</dd></div>
+            <div><dt>Arriving in good faith</dt><dd>Hire an ORS 215 land-use attorney and plan via a community land trust and Conditional Use Permit before purchasing, not after</dd></div>
+            <div><dt>What it asks</dt><dd>Acknowledge whose land this is and engage one of the continent's most mature regen networks, which expects real participation</dd></div>
+          </dl>
+          <p class="ls-src">Source: <a href="https://www.oregonlegislature.gov/bills_laws/ors/ors215.html" target="_blank" rel="noopener">Oregon Revised Statutes Chapter 215, County Planning; Zoning; Farm Land</a></p>
+        </div>
       </section>
 
   
@@ -279,7 +303,7 @@
 
   <section>
     <div class="wrap">
-      <h2>Other candidate regions</h2>
+      <h2>Other regions</h2>
       <ul class="region-nav"><li><a href="/region/alentejo.html">Alentejo<span>Portugal</span></a></li><li><a href="/region/galicia.html">Galicia<span>Spain</span></a></li><li><a href="/region/transylvania.html">Transylvania<span>Romania</span></a></li><li><a href="/region/connemara.html">West Cork / Connemara<span>Ireland</span></a></li><li><a href="/region/pembrokeshire.html">Pembrokeshire / West Wales<span>UK</span></a></li><li><a href="/region/cevennes.html">Cévennes / Languedoc<span>France</span></a></li><li><a href="/region/south-tirol.html">South Tirol<span>Italy</span></a></li><li><a href="/region/asturias.html">Asturias<span>Spain</span></a></li><li><a href="/region/saxony-anhalt.html">Saxony-Anhalt rural<span>Germany</span></a></li><li><a href="/region/estonia-rural.html">Rural Estonia<span>Estonia</span></a></li><li><a href="/region/vermont.html">Vermont / Upper New England<span>USA</span></a></li><li><a href="/region/southern-appalachians.html">Southern Appalachians<span>USA</span></a></li><li><a href="/region/driftless.html">Driftless Area<span>USA</span></a></li><li><a href="/region/ozarks.html">Ozarks<span>USA</span></a></li><li><a href="/region/northern-new-mexico.html">Northern New Mexico<span>USA</span></a></li><li><a href="/region/nova-scotia.html">Nova Scotia / Cape Breton<span>Canada</span></a></li><li><a href="/region/kootenays.html">BC Interior, Kootenays<span>Canada</span></a></li><li><a href="/region/quebec-eastern-townships.html">Québec Eastern Townships<span>Canada</span></a></li><li><a href="/region/oaxaca.html">Oaxaca highlands<span>Mexico</span></a></li></ul>
     </div>
   </section>

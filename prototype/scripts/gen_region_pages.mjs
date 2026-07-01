@@ -17,6 +17,7 @@ import { dirname, join } from 'node:path';
 
 import { regions, values, criteria } from '../data/regions.js';
 import { regionDepth } from '../data/region-depth.js';
+import { landStanding } from '../data/land-standing.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -93,9 +94,11 @@ function asksBlock(r) {
   if (depth.caseStudy) {
     return `
       <section class="asks">
-        <h2>What living here asks of you</h2>
-        <p>This region has a full case study in the deeper material.</p>
-        <p><a href="/deeper.html${esc(depth.caseStudy)}">Read the full case study &rarr;</a></p>
+        <div class="wrap">
+          <h2>What living here asks of you</h2>
+          <p>This region has a full case study in the deeper material.</p>
+          <p><a href="/deeper.html${esc(depth.caseStudy)}">Read the full case study &rarr;</a></p>
+        </div>
       </section>`;
   }
   if (depth.asks) {
@@ -104,12 +107,38 @@ function asksBlock(r) {
       : '';
     return `
       <section class="asks">
-        <h2>What living here asks of you</h2>
-        <p>${esc(depth.asks)}</p>
-        ${src}
+        <div class="wrap">
+          <h2>What living here asks of you</h2>
+          <p>${esc(depth.asks)}</p>
+          ${src}
+        </div>
       </section>`;
   }
   return '';
+}
+
+// "Land standing" — qualitative reciprocity dimension (whose land, tenure, how to
+// enter in good faith, what it asks). Never scored. Nothing renders without an entry.
+function landStandingBlock(r) {
+  const s = landStanding[r.id];
+  if (!s) return '';
+  const row = (label, val) => (val ? `<div><dt>${esc(label)}</dt><dd>${esc(val)}</dd></div>` : '');
+  const src = s.source
+    ? `<p class="ls-src">Source: ${s.sourceUrl ? `<a href="${esc(s.sourceUrl)}" target="_blank" rel="noopener">${esc(s.source)}</a>` : esc(s.source)}</p>`
+    : '';
+  return `
+      <section class="land-standing">
+        <div class="wrap">
+          <h2>Land standing</h2>
+          <dl class="ls-dl">
+            ${row('Whose land', s.territory)}
+            ${row('Tenure', s.tenure)}
+            ${row('Arriving in good faith', s.entry)}
+            ${row('What it asks', s.obligation)}
+          </dl>
+          ${src}
+        </div>
+      </section>`;
 }
 
 // Small badge for `data_confidence`/`regulatory_direction`/etc. enum-ish fields.
@@ -305,7 +334,7 @@ function otherRegionsNav(current) {
 function page(r) {
   const title = `${r.name}, ${r.country} — Land Selection Framework`;
   const description = truncate(
-    `${r.blurb} Eight criteria — climate, water, soil, solar, conflict, regenerative networks, forest cover, population — read with sources for siting a regenerative settlement.`,
+    `${r.blurb} Eight criteria — climate, water, soil, solar, conflict, regenerative networks, forest cover, population — read with sources, for a community seeking to belong to and regenerate this place.`,
     200,
   );
   const canonical = `${SITE}/region/${r.id}.html`;
@@ -362,6 +391,14 @@ function page(r) {
   section h2{font-family:'Spectral',Georgia,serif;font-weight:500;font-size:24px;margin:0 0 18px;}
   .asks p{font-family:'Spectral',Georgia,serif;font-size:16px;color:var(--ink-2);max-width:62ch;}
   .asks-src{font-size:12px;color:var(--ink-3);} .asks-src a,.src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  .land-standing{border-left:3px solid #3a5a3a;}
+  .ls-dl{margin:0;}
+  .ls-dl > div{display:grid;grid-template-columns:210px 1fr;gap:16px;padding:11px 0;border-top:1px solid var(--rule);}
+  .ls-dl > div:first-child{border-top:none;}
+  .ls-dl dt{font-family:'Spectral',serif;font-weight:500;font-size:14px;color:var(--ink);letter-spacing:.01em;}
+  .ls-dl dd{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-2);}
+  .ls-src{font-size:12px;color:var(--ink-3);margin-top:14px;} .ls-src a{color:var(--ink-2);text-decoration:underline dotted;text-underline-offset:2px;}
+  @media(max-width:600px){.ls-dl > div{grid-template-columns:1fr;gap:3px;}}
   table{width:100%;border-collapse:collapse;font-size:13.5px;}
   th[scope=row]{text-align:left;font-family:'Spectral',serif;font-weight:500;font-size:15px;color:var(--ink);padding:14px 14px 14px 0;vertical-align:top;width:30%;}
   th .metric{display:block;font-family:'Inter',sans-serif;font-weight:400;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);margin-top:3px;}
@@ -404,7 +441,7 @@ function page(r) {
   <header class="hero">
     <div class="wrap">
       <div class="accent-bar" style="background:${esc(r.accent || '#8a3a2a')}"></div>
-      <div class="eyebrow">Candidate region</div>
+      <div class="eyebrow">A place, read closely</div>
       <h1>${esc(r.name)}</h1>
       <div class="country">${esc(r.country)}</div>
       <p class="blurb">${esc(r.blurb)}</p>
@@ -412,6 +449,8 @@ function page(r) {
   </header>
 
   ${asksBlock(r)}
+
+  ${landStandingBlock(r)}
 
   ${firstGateBlock(r)}
 
@@ -443,7 +482,7 @@ function page(r) {
 
   <section>
     <div class="wrap">
-      <h2>Other candidate regions</h2>
+      <h2>Other regions</h2>
       ${otherRegionsNav(r)}
     </div>
   </section>
