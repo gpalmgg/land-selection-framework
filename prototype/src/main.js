@@ -358,6 +358,13 @@ function initMap() {
 
   mapInstance.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
 
+  // Hardening: a single tile/source failure (a WMS momentarily down, a rotated
+  // token) must never break the map or spam the console. Swallow per-source tile
+  // errors quietly; the rest of the map and every other layer keep working.
+  mapInstance.on('error', (e) => {
+    if (e && (e.sourceId || (e.error && /tile|source/i.test(String(e.error.message))))) return;
+  });
+
   mapInstance.on('load', () => {
     // === Terrain & imagery overlays (added first so data overlays render on top) ===
 
@@ -458,7 +465,9 @@ function initMap() {
       mapInstance.addLayer({
         id: def.id, source: def.id, type: 'raster',
         layout: { visibility: state.mapLayers[def.id] ? 'visible' : 'none' },
-        paint: { 'raster-opacity': def.opacity },
+        // Cap opacity so two stacked surfaces blend (lower one shows through)
+        // rather than the top surface painting fully opaque over everything below.
+        paint: { 'raster-opacity': Math.min(def.opacity, 0.66) },
       });
     });
 
@@ -617,8 +626,15 @@ function renderMapLegend() {
   });
 }
 
+function applyLayerVisibility(id) {
+  if (mapInstance && mapInstance.getLayer(id)) {
+    mapInstance.setLayoutProperty(id, 'visibility', state.mapLayers[id] ? 'visible' : 'none');
+  }
+}
+
 function renderMapToggles() {
   const togglesContainer = document.getElementById('map-toggles');
+  const toggleEls = {};
   const layerDefs = [
     // Climate & water
     { id: 'precipitation', name: 'Precipitation', color: '#3a6a8a', group: 'climate' },
@@ -660,15 +676,17 @@ function renderMapToggles() {
 
     layerDefs.filter((d) => d.group === grp.key).forEach((def) => {
       const t = el('div', { className: 'map-toggle' + (state.mapLayers[def.id] ? ' on' : '') });
+      toggleEls[def.id] = t;
       const dot = el('span', { className: 'dot' });
       dot.style.setProperty('--toggle-color', def.color);
       t.appendChild(dot);
       t.appendChild(el('span', { className: 'name', text: def.name }));
       t.addEventListener('click', () => {
+        // Surfaces stack freely — any layer overlays any other. Opacity is capped
+        // (see raster-opacity below) so stacked surfaces blend instead of the top
+        // one going fully opaque.
         state.mapLayers[def.id] = !state.mapLayers[def.id];
-        if (mapInstance && mapInstance.getLayer(def.id)) {
-          mapInstance.setLayoutProperty(def.id, 'visibility', state.mapLayers[def.id] ? 'visible' : 'none');
-        }
+        applyLayerVisibility(def.id);
         t.classList.toggle('on', state.mapLayers[def.id]);
         renderMapLegend();
       });
