@@ -370,9 +370,8 @@ function page(r) {
 <meta name="twitter:description" content="${esc(description)}" />
 <meta name="twitter:image" content="${esc(ogImage)}" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<!-- Fonts self-hosted (Inter + Spectral, SIL OFL 1.1), keeps the site self-contained -->
+<link href="/vendor/fonts/fonts.css" rel="stylesheet" />
 <script type="application/ld+json">${jsonld}</script>
 <style>
   :root{--paper:#f6f2eb;--paper-2:#efe9df;--ink:#1a1a1a;--ink-2:#3a3a3a;--ink-3:#6b6258;--ink-4:#9a9082;--rule:#d8d0c2;--accent:#8a3a2a;}

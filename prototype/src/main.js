@@ -1,7 +1,7 @@
-import { regions, values, criteria } from '../data/regions.js?v=usab10';
-import { regionDepth } from '../data/region-depth.js?v=usab10';
-import { v1Lookup } from '../data/v1-lookup.js?v=usab10';
-import { landStanding } from '../data/land-standing.js?v=usab10';
+import { regions, values, criteria } from '../data/regions.js?v=usab16';
+import { regionDepth } from '../data/region-depth.js?v=usab16';
+import { v1Lookup } from '../data/v1-lookup.js?v=usab16';
+import { landStanding } from '../data/land-standing.js?v=usab16';
 
 // Qualitative (per-jurisdiction) filter definitions — the r4 V1 layers exposed
 // as enum filters. These are FILTERS, never scores, same threshold-not-weighting
@@ -1610,8 +1610,12 @@ function initSignupModal() {
 // announces exactly which thresholds it sets.
 
 const PRESETS = [
+  // solar_pv floor at 1400 (not 1500): with the current data, 1500 leaves ZERO
+  // matches on the default (Europe) continent — the only ≥1500 region there
+  // fails the water threshold. 1400 still means strong solar and keeps the
+  // starting point honest on both continents.
   { id: 'offgrid', label: 'Off-grid self-sufficiency',
-    sets: { solar_pv: 1500, water_stress: 0.4, population: 50 } },
+    sets: { solar_pv: 1400, water_stress: 0.4, population: 50 } },
   { id: 'cool-wet', label: 'Cool & water-secure',
     sets: { climate: 14, water_stress: 0.35, forest_change: 0 } },
   { id: 'affordable', label: 'Quiet & rural',
@@ -1701,7 +1705,7 @@ function renderGuidedEntry() {
     mount.appendChild(chip);
   });
 
-  // Neutral entry: clear everything and reveal all candidates.
+  // Neutral entry: clear everything and show every region.
   const all = el('button', { className: 'guided-chip neutral', text: 'Show all 20 regions', attrs: { type: 'button' } });
   all.setAttribute('aria-label', 'Clear all thresholds and show every region.');
   all.addEventListener('click', () => {
@@ -2076,7 +2080,7 @@ function updateNextStep() {
   row.dataset.firstPassing = passing.length ? passing[0].id : '';
   if (passing.length === 0) {
     row.classList.add('empty');
-    if (lead) lead.textContent = 'No regions meet your current criteria. Loosen a threshold to see candidates.';
+    if (lead) lead.textContent = 'No regions meet your current criteria. Loosen a threshold to bring regions back.';
   } else {
     row.classList.remove('empty');
     if (lead) lead.textContent = `${passing.length} ${passing.length === 1 ? 'region meets' : 'regions meet'} your criteria — each asks something of you in return.`;

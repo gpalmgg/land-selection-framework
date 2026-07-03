@@ -25,7 +25,7 @@
     "data_confidence": "high",
     "source": "WorldClim CMIP6 v2.1 (2024); AEMET 2023; MDPI Land 14:85 (2025)",
     "source_url": "https://www.mdpi.com/2073-445X/14/1/85",
-    "gaps": "No specific altitude range given for coastal versus interior siting."
+    "gaps": "No specific altitude range given for coastal versus interior placement."
   },
   {
     "region_id": "transylvania",
@@ -49,11 +49,11 @@
     "buffering_notes": "Climate.md describes Atlantic-maritime climate that drifts rather than transforms with no projected heat-stress regime change; water.md and soil.md document blanket peat storing ~240 t C/ha and deep raised bogs storing up to 3,000 t C/ha with order-of-magnitude reliable summer flow.",
     "primary_vulnerability_signal": "Atlantic storm intensification and AMOC-shift tail risk",
     "trajectory_under_warming": "stable",
-    "trajectory_notes": "Projected +0.7 to 1.5C by mid-century, one of the slowest-warming European candidates; no projected drought, heat, or fire regime change.",
+    "trajectory_notes": "Projected +0.7 to 1.5C by mid-century, among the slowest-warming regions in Europe; no projected drought, heat, or fire regime change.",
     "data_confidence": "high",
     "source": "EPA Research 471 (2023); Met Eireann 2024; ICHEC 2023; WorldClim CMIP6 v2.1",
     "source_url": "https://www.epa.ie/publications/research/climate-change/research-471-updated-high-resolution-climate-projections-for-ireland.php",
-    "gaps": "Altitude range for siting not specified; AMOC-shift probability not quantified."
+    "gaps": "Altitude range for building placement not specified; AMOC-shift probability not quantified."
   },
   {
     "region_id": "pembrokeshire",
