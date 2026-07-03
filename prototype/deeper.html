@@ -408,7 +408,7 @@
       <div class="eyebrow section-eyebrow">Methodology</div>
       <h2>How the framework decides what to look at, and what to leave aside.</h2>
       <p class="intro">
-        The framework is a sketch, not a product. But the choices it embeds are deliberate. Eight criteria, not twelve. Native units, not normalised scores. State paired with trajectory. Source plus vintage for every value. The points below are the operating commitments behind this prototype.
+        The framework is a sketch, not a product. But the choices it embeds are deliberate. Eight criteria, not twelve. Native units, not normalised scores. State paired with trajectory. Source, vintage, and license on every value. The points below are the operating commitments behind this prototype.
       </p>
 
       <div class="prose">
@@ -422,31 +422,102 @@
         <p>
           Other candidate criteria, cultural fit, food sovereignty, language barrier, biome-specific factors, are real but derivable downstream from the eight: cultural fit follows from regenerative network, population, and legal context; food sovereignty from water, soil, and energy; language barrier sits inside the demographic picture. The pruning principle is to keep as a <em>filter</em> only what reduces to a checkable number, and to hold everything else as honest prose.
         </p>
+        <p>
+          Each of the eight is measured in its own <strong>native unit</strong>, drawn from a named public dataset. The grid below lays out the whole quantitative spine on one page: each criterion, the unit it is actually reported in, and the source that supplies it.
+        </p>
+
+        <div class="method-list">
+          <div class="method-point">
+            <div class="num">i</div>
+            <h4>Climate trajectory</h4>
+            <p>Mid-century mean annual temperature, <strong>°C</strong> — WorldClim CMIP6 (SSP2-4.5).</p>
+          </div>
+          <div class="method-point">
+            <div class="num">ii</div>
+            <h4>Water stress</h4>
+            <p>Baseline-to-2050 stress ratio, <strong>unitless 0–1 score</strong> — WRI Aqueduct 4.0.</p>
+          </div>
+          <div class="method-point">
+            <div class="num">iii</div>
+            <h4>Soil organic carbon</h4>
+            <p>Topsoil carbon concentration, <strong>g/kg</strong> — SoilGrids 2.0.</p>
+          </div>
+          <div class="method-point">
+            <div class="num">iv</div>
+            <h4>Forest-cover trajectory</h4>
+            <p>Tree-canopy change, <strong>% per decade</strong> — Hansen Global Forest Change.</p>
+          </div>
+          <div class="method-point">
+            <div class="num">v</div>
+            <h4>Solar-energy potential</h4>
+            <p>Photovoltaic yield, <strong>kWh/kWp/yr</strong> — Global Solar Atlas.</p>
+          </div>
+          <div class="method-point">
+            <div class="num">vi</div>
+            <h4>Conflict proximity</h4>
+            <p>Recorded fatal events, <strong>event count</strong> — UCDP Georeferenced Event Dataset.</p>
+          </div>
+          <div class="method-point">
+            <div class="num">vii</div>
+            <h4>Regenerative-network density</h4>
+            <p>Active projects within range, <strong>site count</strong> — Global Ecovillage Network directory.</p>
+          </div>
+          <div class="method-point">
+            <div class="num">viii</div>
+            <h4>Population density</h4>
+            <p>Inhabitants per unit area, <strong>persons/km²</strong> — JRC GHSL (Global Human Settlement Layer).</p>
+          </div>
+        </div>
 
         <h3>State paired with trajectory.</h3>
         <p>
-          A current value tells the practitioner what the region is now. A trajectory tells them what it will be by 2070. Both matter, and the framework holds both. For climate, the current value is the 1991–2020 normal from a regional meteorological agency; the trajectory comes from the WorldClim CMIP6 downscaled ensemble under SSP2-4.5 for 2041–2060. For water, the current value is WRI Aqueduct 4.0 baseline stress; the trajectory is the 2050 projection from the same dataset. The framework presents both, never collapses them, and asks the viewer to apply their own weighting to "this is fine today" versus "this is going to keep being fine."
+          A current value tells the practitioner what a region is now; a trajectory tells them where it is heading. Both matter, and the framework holds them side by side rather than folding one into the other. The trajectory is a directional reading, stable, improving, declining, or volatile, filled by a credible projection where one exists, by an observed trend where it does not, and left null where direction is meaningless on the timescales that matter. Soil composition, for instance, does not meaningfully "trend" over a single settlement lifetime, so it carries a state and no trajectory.
+        </p>
+        <p>
+          <strong>Climate</strong> is the case where state and trajectory fold into one sourced number. The value on the dashboard is not today's weather but the mid-century projection, the 2041–2060 mean annual temperature from the WorldClim CMIP6 downscaled ensemble under SSP2-4.5. Alentejo reads <strong>19.5°C</strong> at mid-century, Connemara <strong>15.0°C</strong>, Transylvania <strong>11.0°C</strong>, each a projected state that already encodes the warming a fifty-year project is planning into. <strong>Water</strong> works the same way: WRI Aqueduct 4.0 supplies both a baseline stress score and a 2050 projection, and the framework carries both without averaging them.
+        </p>
+        <p>
+          <strong>Forest cover</strong> is the pure-trend case, where the number <em>is</em> the trajectory. Hansen Global Forest Change tracks tree-canopy change from 2001 to 2023 at 30-metre resolution, and the framework reads it as percent change per decade. Alentejo runs <strong>−2.4% per decade</strong>, canopy declining under eucalyptus plantation cycles and summer fire, while Connemara runs <strong>+1.1% per decade</strong>, slowly recovering under afforestation policy. Same criterion, opposite directions. No single "forest score" could separate those two regions the way the signed trajectory does, and the discipline throughout is to never collapse "fine today" into "will keep being fine."
         </p>
 
         <h3>No composite scoring.</h3>
         <p>
-          One of The Collective's non-negotiables is that the framework never produces a single composite score across criteria. A composite score requires coefficients, how much rainfall offsets a degree of warming, how much cheap land offsets a thin civil-society stack, and once those coefficients live inside the framework, the framework is making the decision instead of the practitioner. Composites also let regions with one fatal flaw rank highly because compensating scores average it away, which is exactly the failure mode for fifty-year decisions where no flaw is averageable. The alternative is filtering: each criterion has a threshold the viewer sets, regions that pass all thresholds remain visible, regions that fail any one threshold dim. The shape of the result is a smaller honest set, never a ranked list.
+          One of The Collective's non-negotiables is that the framework never produces a single composite score across criteria. A composite score requires coefficients, how much rainfall offsets a degree of warming, how much cheap land offsets a thin civil-society stack, and once those coefficients live inside the framework, the framework is making the decision instead of the practitioner. Composites also let regions with one fatal flaw rank highly because compensating scores average it away, which is exactly the failure mode for fifty-year decisions where no flaw is averageable. Alentejo makes the point concretely: its solar resource is top-decile in Europe, around 1,865 kWh/kWp/yr, while its mid-century water stress is extremely high. A composite would let the exceptional sun pull the water problem back toward the middle of the range, yet water is the single axis that actually decides whether a settlement there survives to 2070. Averaging buries the one number that matters. The alternative is filtering: each criterion has a threshold the viewer sets, regions that pass all thresholds remain visible, regions that fail any one threshold dim. The shape of the result is a smaller honest set, never a ranked list.
         </p>
 
         <h3>Native units throughout.</h3>
         <p>
           Water stays in mm/year. Temperature in degrees Celsius. Soil organic carbon in g/kg. Land cost in euros per hectare. The framework refuses to reshape every variable onto one normalised grid because reshaping costs information. The modifiable areal unit problem (MAUP), familiar to anyone who has worked with spatial data, has two parts: the <em>scale effect</em>, where statistics change as the unit of aggregation changes, and the <em>zoning effect</em>, where they change as the boundaries shift. Water stress on a one-kilometre grid loses the catchment that actually matters. Cost-per-hectare averaged across a NUTS-II region disguises the difference between marginal upland and irrigated valley. Keeping each variable in its native unit, at the analytical scale where it makes sense, is the discipline the framework chose over visual neatness.
         </p>
-
-        <h3>Source plus vintage for every value.</h3>
         <p>
-          Every value the framework presents points back to a public source with a date. The per-region dossier files in <code>/data/research-dossier/&lt;region&gt;/&lt;dimension&gt;.md</code> are the audit trail, open one and follow the citations. The commitment is straightforward: no value without a source, no source without a vintage, no claim that cannot be checked. Where two sources disagree the dossier notes it; where the value is uncertain the dossier says so.
+          In practice that means each criterion is read at the resolution its source actually resolves, never one invented for tidiness: climate on the roughly <strong>18 km</strong> (10 arc-minute) WorldClim CMIP6 raster, water on <strong>HydroBASINS level-6</strong> catchment boundaries, soil carbon on the <strong>250 m</strong> SoilGrids grid, forest change on the <strong>30 m</strong> Hansen grid. Reshaping all four onto one universal grid, an H3 hexagon say, would either blur the 30 m forest signal up to 18 km or invent 30 m detail for climate that the model never produced, and either way manufacture a precision the data does not hold. The zoning effect bites just as hard: the Alentejo interior that reads a single moderate stress average across a whole NUTS-II region resolves, at HydroBASINS catchment scale, into specific sub-basins already flagged "extremely high." The aggregation scale is not a cosmetic choice; it changes the number the practitioner reads.
         </p>
 
-        <h3>What this prototype cannot do yet.</h3>
+        <h3>Source, vintage, and license for every value.</h3>
         <p>
-          This is a hand-built prototype. There is no live ingestion pipeline from WorldClim, Aqueduct or SoilGrids, the values are extracted by hand from PDF reports and dataset previews, then entered into a static region file. There are no user accounts, no group collaboration features, no parcel-level granularity. The planned V1 release polishes this layer; it is not the automated build. A later <strong>V2</strong> would automate the ingestion, surface source plus vintage in the interface, and let practitioners overlay their own thresholds against live data. That V2 is months of work for a small team, not a single-person sprint. It hasn't started.
+          Every value the framework presents carries three things. A <strong>source</strong>, a named public dataset. A <strong>vintage</strong>, the year or scenario the value represents, "2041–2060 SSP2-4.5" for a climate projection, "2050 BAU" for water stress, "2001–2023" for a forest trend. And a <strong>license</strong>, the terms under which the data may be reused and redistributed. The public backbone is eight datasets: <strong>WorldClim CMIP6</strong> (SSP2-4.5) for climate, <strong>WRI Aqueduct 4.0</strong> for water, <strong>SoilGrids 2.0</strong> for soil carbon, <strong>Hansen Global Forest Change</strong> for forest trajectory, the <strong>Global Solar Atlas</strong> for solar potential, <strong>UCDP GED</strong> for conflict, <strong>JRC GHSL</strong> for population, and the Global Ecovillage Network directory for regenerative sites. Most carry open CC-BY or CC-BY-SA terms, and the license field records which, because a value nobody is allowed to reuse is not a value a community can build on.
         </p>
+        <p>
+          On a fifty-to-hundred-year decision, vintage and license are not bureaucratic footnotes, they are the point. A climate projection is a model run that will be re-run: newer ensembles, revised SSP pathways and better downscaling will move the numbers, and a value stamped "2041–2060 SSP2-4.5, WorldClim CMIP6" tells a community exactly which run to re-check it against years from now. The per-region dossier files in <code>/data/research-dossier/&lt;region&gt;/&lt;dimension&gt;.md</code> are the audit trail: no value without a source, no source without a vintage, no claim that cannot be re-checked. Where two sources disagree the dossier notes it; where the value is uncertain the dossier says so. Transparency is what lets a place that will outlive this dataset verify it for itself.
+        </p>
+
+        <h3>The seventeen map layers, and the gaps not shipped.</h3>
+        <p>
+          The interactive map carries seventeen toggleable layers, grouped into six themes. <strong>Climate &amp; water</strong>: precipitation, water stress 2050, water depletion 2050. <strong>Land &amp; soil</strong>: forest loss, soil organic carbon, land cover. <strong>Energy</strong>: solar-PV potential. <strong>Hazards</strong>: coastal flood and sea-level rise, seismic hazard. <strong>People &amp; access</strong>: population density, travel time to cities, conflict density, ecovillage sites. <strong>Terrain &amp; imagery</strong>: relief hillshade, topographic map, recent satellite, night lights. Every data endpoint is a verified public tile or WMS service read live, ISRIC SoilGrids, the Global Solar Atlas via WRI Resource Watch, WRI Aqueduct floods, GEM's global seismic-hazard map, the Malaria Atlas Project travel-time surface, Global Forest Watch, SEDAC population, Sentinel-2 cloudless imagery, NASA's Black Marble night lights, each carrying its own attribution and none behind a login.
+        </p>
+        <p>
+          What the map does <em>not</em> ship is as honest as what it does. There is no clean, openly-served public tile service for several layers the framework would want: air-temperature climatology, an aridity or Köppen-zone surface, riverine (as distinct from coastal) flood, a real SPEI drought index, or ESA WorldCover at its full 10 m. Rather than fake those with a proxy dressed up as the real thing, the map leaves them out and says so. The overlays you can toggle are the ones that resolve to an actual verified service today; the rest wait for a later build.
+        </p>
+
+        <div class="tension-pair" style="margin-top: 40px;">
+          <div class="pair-label">What this prototype is, and is not</div>
+          <p>
+            This page and the map behind it are a <strong>designed communicative artifact</strong>, a faithful demonstration of what the V1 framework will produce, built to be read and interrogated now. The eight per-region criteria values are <strong>hand-curated best-available midpoints</strong>, extracted by hand from published reports, dataset previews and the per-region dossiers, then entered into a static file. They are not the output of a live ingestion pipeline, and where a dossier reports a range, the midpoint is what appears.
+          </p>
+          <p>
+            To be precise about the seam: the map's overlays are live public services, but the four raster-derived criteria, climate temperature (WorldClim CMIP6), soil carbon (SoilGrids), solar potential (Global Solar Atlas) and population (GHSL), are <strong>hand-curated</strong> demonstration values in this build, not machine-ingested layers. The planned <strong>V1</strong> release is data-ingestion-first: it automates fetching and processing and stamps source, vintage, native unit and license on every ingested value. The threshold sliders you see are a demonstration of filtering over these static values; automated querying against a live pipeline, and any form of composite scoring or weighting, are a deliberately deferred <strong>V2</strong> layer, months of work for a small team, not a single-person sprint, and not yet started. There are no user accounts, no collaboration features, and no parcel-level granularity. Read as a rigorous sketch, this page is honest; read as the finished tool, it would overclaim.
+          </p>
+        </div>
       </div>
     </div>
   </section>
