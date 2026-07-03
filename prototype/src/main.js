@@ -136,6 +136,36 @@ function rampColor(ramp, t) {
   return pos - idx > 0.5 ? ramp[idx + 1] : ramp[idx];
 }
 
+// Ramp colors double as TEXT color in the summary/compare tables, but the
+// light ends of the ramps (#e8e4d8, even #f6f2eb) are near-invisible on the
+// paper background. This darkens a color just enough to reach WCAG AA 4.5:1
+// as text on --paper, preserving its hue so the color coding still reads.
+const _textSafeCache = {};
+function textSafeColor(hexColor) {
+  if (_textSafeCache[hexColor]) return _textSafeCache[hexColor];
+  const m = String(hexColor).replace('#', '').match(/../g);
+  if (!m || m.length < 3) return hexColor;
+  const bg = [246, 242, 235]; // --paper
+  const lum = (c) => {
+    const f = c.map((v) => {
+      v /= 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * f[0] + 0.7152 * f[1] + 0.0722 * f[2];
+  };
+  const contrast = (a, b) => {
+    const l1 = lum(a); const l2 = lum(b);
+    return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+  };
+  let c = m.map((x) => parseInt(x, 16));
+  for (let i = 0; i < 24 && contrast(c, bg) < 4.5; i++) {
+    c = c.map((v) => Math.max(0, Math.round(v * 0.9)));
+  }
+  const out = `rgb(${c[0]}, ${c[1]}, ${c[2]})`;
+  _textSafeCache[hexColor] = out;
+  return out;
+}
+
 function thresholdDirection(higherIs) {
   return higherIs === 'better' ? 'min' : 'max';
 }
@@ -577,7 +607,16 @@ function initMap() {
       wrap.textContent = r.name[0];
 
       const label = el('div', { className: 'region-label', text: r.name });
+      label.setAttribute('aria-hidden', 'true'); // the aria-label below carries the name
       wrap.appendChild(label);
+
+      // Keyboard-operable: same drawer as the region card, reachable by Tab.
+      wrap.setAttribute('role', 'button');
+      wrap.setAttribute('tabindex', '0');
+      wrap.setAttribute('aria-label', `Open details for ${r.name}`);
+      wrap.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDrawer(r.id); }
+      });
 
       // Clicking a marker opens the same region detail drawer as its card.
       wrap.addEventListener('click', (e) => { e.stopPropagation(); openDrawer(r.id); });
@@ -675,9 +714,17 @@ function renderMapToggles() {
     togglesContainer.appendChild(header);
 
     layerDefs.filter((d) => d.group === grp.key).forEach((def) => {
-      const t = el('div', { className: 'map-toggle' + (state.mapLayers[def.id] ? ' on' : '') });
+      // A real <button> so every layer toggle is focusable and keyboard-operable;
+      // aria-pressed carries the on/off state to screen readers. Button chrome is
+      // reset in a11y.css; the .map-toggle visual style is unchanged.
+      const t = el('button', { className: 'map-toggle' + (state.mapLayers[def.id] ? ' on' : ''), attrs: {
+        type: 'button',
+        'aria-pressed': String(!!state.mapLayers[def.id]),
+        'aria-label': `${def.name} map layer`,
+      } });
       toggleEls[def.id] = t;
       const dot = el('span', { className: 'dot' });
+      dot.setAttribute('aria-hidden', 'true');
       dot.style.setProperty('--toggle-color', def.color);
       t.appendChild(dot);
       t.appendChild(el('span', { className: 'name', text: def.name }));
@@ -688,6 +735,7 @@ function renderMapToggles() {
         state.mapLayers[def.id] = !state.mapLayers[def.id];
         applyLayerVisibility(def.id);
         t.classList.toggle('on', state.mapLayers[def.id]);
+        t.setAttribute('aria-pressed', String(!!state.mapLayers[def.id]));
         renderMapLegend();
       });
       togglesContainer.appendChild(t);
@@ -766,7 +814,14 @@ function renderRegionGrid() {
 // Criterion cards (with sliders)
 // ====================================================================
 
-function renderCriterionCard(crit) {
+// Spoken value for a threshold slider, e.g. "at least 15 °C" — mirrors the
+// filter semantics (a floor or a ceiling), never a score or a rank.
+function sliderValueText(crit, th) {
+  const verb = thresholdDirection(crit.higherIs) === 'min' ? 'at least' : 'at most';
+  return `${verb} ${fmtVal(th)} ${crit.rangeLabel}`;
+}
+
+function renderCriterionCard(crit, isFirst) {
   const card = el('div', { className: 'crit-card' });
   card.id = `crit-${crit.id}`;
 
@@ -786,22 +841,31 @@ function renderCriterionCard(crit) {
   const sliderBlock = el('div', { className: 'slider-block' });
 
   const sliderRow = el('div', { className: 'slider-row' });
-  sliderRow.appendChild(el('div', {
+  const sliderLabel = el('label', {
     className: 'slider-label',
     text: dir === 'min' ? `Min required ${crit.rangeLabel}` : `Max acceptable ${crit.rangeLabel}`,
-  }));
+    attrs: { for: `slider-${crit.id}` },
+  });
+  sliderRow.appendChild(sliderLabel);
   const valEl = el('div', { className: 'slider-val' });
   valEl.id = `slider-val-${crit.id}`;
   sliderRow.appendChild(valEl);
   sliderBlock.appendChild(sliderRow);
 
+  // aria-describedby: the live "Pass: …" hint, plus (on the first slider only)
+  // the filters-not-ranks note rendered below.
+  const describedBy = `slider-hint-${crit.id}` + (isFirst ? ` slider-note-${crit.id}` : '');
   const slider = el('input', {
     attrs: {
       type: 'range',
+      id: `slider-${crit.id}`,
       min: String(crit.rangeMin),
       max: String(crit.rangeMax),
       step: String(thresholdStep(crit)),
       value: String(state.thresholds[crit.id]),
+      'aria-label': `${crit.name} threshold — ${dir === 'min' ? 'minimum required' : 'maximum acceptable'} ${crit.rangeLabel}`,
+      'aria-valuetext': sliderValueText(crit, state.thresholds[crit.id]),
+      'aria-describedby': describedBy,
     },
   });
   slider.addEventListener('input', (e) => {
@@ -814,6 +878,14 @@ function renderCriterionCard(crit) {
   const hint = el('div', { className: 'slider-hint' });
   hint.id = `slider-hint-${crit.id}`;
   sliderBlock.appendChild(hint);
+
+  if (isFirst) {
+    sliderBlock.appendChild(el('div', {
+      className: 'slider-filter-note',
+      text: 'Sliders set a threshold and filter — regions that meet it stay, the rest fade. Nothing is scored or ranked.',
+      attrs: { id: `slider-note-${crit.id}` },
+    }));
+  }
 
   card.appendChild(sliderBlock);
 
@@ -862,7 +934,7 @@ function renderCriterionCard(crit) {
 
 function renderCriteriaGrid() {
   const grid = document.getElementById('crit-grid');
-  criteria.forEach((c) => grid.appendChild(renderCriterionCard(c)));
+  criteria.forEach((c, i) => grid.appendChild(renderCriterionCard(c, i === 0)));
 }
 
 // ====================================================================
@@ -898,7 +970,7 @@ function renderSummaryTable() {
       td.id = `sum-td-${r.id}-${c.id}`;
       td.dataset.continent = r.continent;
       const t = normalize(v.value, c.rangeMin, c.rangeMax);
-      const color = rampColor(c.ramp, t);
+      const color = textSafeColor(rampColor(c.ramp, t));
 
       const valLine = el('div', { className: 'v', style: { color: color } });
       valLine.textContent = `${fmtVal(v.value)} ${v.unit}`;
@@ -1011,6 +1083,20 @@ function initContinentSwitcher() {
 // Filter state refresh
 // ====================================================================
 
+// Debounced screen-reader announcement of the match count. Sliders fire
+// continuously while dragging; announcing every step would flood a screen
+// reader, so we wait for the value to settle. Silent until a filter is active.
+let _announceTimer = null;
+function announceMatches(count, total) {
+  const live = document.getElementById('match-announce');
+  if (!live) return;
+  if (_announceTimer) clearTimeout(_announceTimer);
+  if (!anyFilterActive()) { live.textContent = ''; return; }
+  _announceTimer = setTimeout(() => {
+    live.textContent = `${count} of ${total} regions match your criteria.`;
+  }, 700);
+}
+
 function refreshAll() {
   // Recompute passing (over all regions, cheap, and ids never collide)
   regions.forEach((r) => { state.passing[r.id] = regionPasses(r.id); });
@@ -1024,7 +1110,7 @@ function refreshAll() {
   if (totalEl) totalEl.textContent = inView.length;
   const detailEl = document.getElementById('match-detail');
   if (!anyFilterActive()) {
-    detailEl.textContent = 'No filters active';
+    detailEl.textContent = 'No filters yet — every region is shown. Move any slider above to begin.';
   } else {
     const passing = inView.filter((r) => state.passing[r.id]);
     detailEl.textContent = passing.length === 0
@@ -1032,6 +1118,7 @@ function refreshAll() {
       : (passing.length === 1 ? 'Your matching region' : 'Your matching regions');
   }
   renderMatchRegions();
+  announceMatches(passingCount, inView.length);
 
   // Update region cards
   regions.forEach((r) => {
@@ -1065,6 +1152,10 @@ function refreshAll() {
       const u = el('span', { className: 'u', text: c.rangeLabel });
       valEl.appendChild(u);
     }
+
+    // Keep the spoken value in step with the visual one ("at least 15 °C")
+    const sliderEl = document.getElementById(`slider-${c.id}`);
+    if (sliderEl) sliderEl.setAttribute('aria-valuetext', sliderValueText(c, th));
 
     // Slider hint
     const hint = document.getElementById(`slider-hint-${c.id}`);
@@ -1158,6 +1249,7 @@ function renderQualFilters() {
     const wrap = el('label', { className: 'qual-filter' });
     wrap.appendChild(el('span', { className: 'qual-filter-label', text: qf.label }));
     const sel = document.createElement('select');
+    sel.id = `qual-filter-${qf.id}`;
     sel.dataset.qualFilter = qf.id;
     sel.className = 'qual-filter-select';
     for (const opt of qf.options) {
@@ -1583,7 +1675,8 @@ function renderPresetChips() {
 function scrollToResultMoment() {
   const bar = document.querySelector('.match-bar');
   if (!bar) return;
-  bar.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  bar.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
   // Retrigger the pulse animation even if it ran moments ago.
   bar.classList.remove('pulse');
   void bar.offsetWidth; // force reflow
@@ -1677,6 +1770,7 @@ function updateStarVisuals() {
     const on = state.shortlist.has(dStar.dataset.region);
     dStar.textContent = on ? '★ Shortlisted' : '☆ Add to shortlist';
     dStar.classList.toggle('on', on);
+    dStar.setAttribute('aria-pressed', String(on));
   }
 }
 
@@ -1734,7 +1828,7 @@ function renderCompare() {
       const v = values[r.id][c.id];
       const td = el('td');
       const t = normalize(v.value, c.rangeMin, c.rangeMax);
-      const valLine = el('div', { className: 'v', style: { color: rampColor(c.ramp, t) } });
+      const valLine = el('div', { className: 'v', style: { color: textSafeColor(rampColor(c.ramp, t)) } });
       valLine.textContent = `${fmtVal(v.value)} ${v.unit}`;
       td.appendChild(valLine);
       td.appendChild(el('span', { className: 'lab', text: v.label }));
@@ -1777,6 +1871,7 @@ function initCompare() {
   const overlay = document.getElementById('compare-overlay');
   if (overlay) {
     overlay.addEventListener('click', (e) => { if (e.target === overlay) closeCompare(); });
+    trapTabWithin(overlay.querySelector('.compare-panel'));
   }
 }
 
@@ -1804,6 +1899,7 @@ function openDrawer(regionId) {
   const on = state.shortlist.has(r.id);
   star.textContent = on ? '★ Shortlisted' : '☆ Add to shortlist';
   star.classList.toggle('on', on);
+  star.setAttribute('aria-pressed', String(on));
   star.addEventListener('click', () => toggleStar(r.id));
   head.appendChild(star);
   body.appendChild(head);
@@ -1911,6 +2007,7 @@ function openDrawer(regionId) {
   body.appendChild(list);
 
   _lastFocusBeforeDrawer = document.activeElement;
+  panel.setAttribute('aria-label', `${r.name} — region detail`);
   panel.classList.add('open');
   panel.setAttribute('aria-hidden', 'false');
   document.body.classList.add('panel-open');
@@ -1932,12 +2029,33 @@ function closeDrawer() {
   }
 }
 
+// Loose tab trap for a dialog container — Tab/Shift+Tab cycle through the
+// focusable elements inside it. Same pattern the signup modal already uses.
+function trapTabWithin(container) {
+  if (!container) return;
+  container.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    const focusable = container.querySelectorAll(
+      'button, a[href], input, select, [tabindex]:not([tabindex="-1"])'
+    );
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  });
+}
+
 function initDrawer() {
   const closeBtn = document.getElementById('drawer-close');
   if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
   const panel = document.getElementById('region-drawer');
   if (panel) {
     panel.addEventListener('click', (e) => { if (e.target === panel) closeDrawer(); });
+    trapTabWithin(panel.querySelector('.drawer-panel'));
   }
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;

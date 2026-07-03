@@ -1,0 +1,143 @@
+/* ==========================================================================
+   a11y.css — accessibility layer (WCAG 2.1 AA)
+   Loaded after the inline styles in index.html; only overrides what
+   accessibility requires: focus visibility, skip navigation, reduced
+   motion, and measured contrast fixes. Brand look otherwise untouched.
+   ========================================================================== */
+
+/* --- Skip to main content -------------------------------------------------
+   First focusable element on the page. Off-screen until keyboard focus. */
+.skip-link {
+  position: absolute;
+  left: 12px; top: 12px;
+  z-index: 3000;
+  transform: translateY(-300%);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 12px 20px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(26, 26, 26, 0.25);
+}
+.skip-link:focus {
+  transform: none;
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* The skip-link target shouldn't paint its own ring when focused via the link. */
+main#main:focus { outline: none; }
+
+/* --- Visible focus ring for every interactive element --------------------
+   :focus-visible keeps mouse clicks clean while giving keyboard users a
+   consistent, high-contrast ring. Also restores the outline that the base
+   stylesheet removes from input[type="range"]. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+input[type="range"]:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* --- Reduced motion -------------------------------------------------------
+   Disables non-essential animation and transitions site-wide (card lifts,
+   modal/drawer slides, the match-bar pulse, hover transforms). JS smooth
+   scrolling checks this media query itself in src/main.js. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto !important; }
+}
+
+/* --- Contrast fixes (measured against WCAG 2.1 AA) ------------------------
+   --ink-4 was #9a9082: 2.81:1 on --paper, 2.60:1 on --paper-2 — fails 4.5:1
+   for the small text it colors (footnotes, placeholders, source lines).
+   #6f665a keeps the warm grey-brown tone at 5.05:1 / 4.67:1. */
+:root {
+  --ink-4: #6f665a;
+}
+
+/* Filtered-out ("fail") states faded to 0.32–0.4 opacity, compositing their
+   text to ~2.3:1. 0.65 is the minimum opacity at which var(--ink) text still
+   meets 4.5:1 on --paper (measured 5.17:1) — so the fade stays, and the text
+   inside a faded element is pinned to var(--ink). Pass/fail meaning is never
+   color-only: the ✓/✕ marks and status text carry it. */
+.region-card.fail { opacity: 0.65; }
+.region-card.fail .name,
+.region-card.fail .country,
+.region-card.fail .blurb,
+.region-card.fail .card-asks,
+.region-card.fail .card-asks-label,
+.region-card.fail .status,
+.region-card.fail .region-star { color: var(--ink); }
+
+.bar-row.fail { opacity: 0.65; }
+.bar-row.fail .reg,
+.bar-row.fail .bar-val,
+.bar-row.fail .bar-mark { color: var(--ink); }
+
+.sum-table th.region-fail,
+.sum-table td.region-fail { opacity: 0.65; }
+/* !important needed: .v carries an inline ramp color set by main.js */
+.sum-table td.region-fail .v { color: var(--ink) !important; }
+.sum-table td.region-fail .lab,
+.sum-table th.region-fail .small { color: var(--ink); }
+
+/* --- Map layer toggles rendered as real <button>s -------------------------
+   main.js builds each .map-toggle as <button type="button"> so the 17 layers
+   are focusable and keyboard-operable. This resets button chrome; the base
+   .map-toggle rules (flex, size, color) still apply. */
+button.map-toggle {
+  background: none;
+  border: none;
+  width: 100%;
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  text-align: left;
+}
+
+/* --- Map region markers are keyboard-focusable ----------------------------
+   main.js gives them tabindex/role/aria-label; the generic [tabindex] ring
+   above applies. Slightly larger offset so the ring clears the round marker. */
+.region-marker:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* --- First-slider helper note ---------------------------------------------
+   Visible hint (also wired via aria-describedby) explaining that sliders
+   filter — they never rank. */
+.slider-filter-note {
+  margin-top: 8px;
+  padding-top: 7px;
+  border-top: 1px dotted var(--rule);
+  font-family: 'Spectral', Georgia, serif;
+  font-style: italic;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+/* --- Screen-reader-only utility -------------------------------------------
+   Used for the live region announcing match counts as sliders move. */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

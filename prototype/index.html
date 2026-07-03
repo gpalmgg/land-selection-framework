@@ -223,7 +223,7 @@
       opacity: 0.25;
       pointer-events: none;
     }
-    .signup-card h3 {
+    .signup-card h2 {
       font-family: 'Spectral', Georgia, serif;
       font-weight: 500;
       font-size: 24px;
@@ -904,7 +904,7 @@
       display: grid; grid-template-columns: 1.6fr 1fr 1fr;
       gap: 40px; font-size: 12px; color: var(--ink-3);
     }
-    footer h4 {
+    footer h3 {
       font-size: 10.5px; letter-spacing: 0.08em;
       text-transform: uppercase; color: var(--ink);
       margin: 0 0 10px; font-weight: 600;
@@ -1170,7 +1170,7 @@
       .hero .lede { font-size: 15.5px; }
       .hero .key { grid-template-columns: 1fr 1fr; }
       .hero .key .num { font-size: 22px; }
-      .signup-card h3 { font-size: 20px; }
+      .signup-card h2 { font-size: 20px; }
       .signup-card .blurb { font-size: 13px; }
       /* Hero signup form: stack input + button on phones so Subscribe is reachable */
       .signup-card form { flex-direction: column; }
@@ -1593,15 +1593,20 @@
       .next-step { margin-top: -12px; }
     }
   </style>
+  <link rel="stylesheet" href="./src/a11y.css" />
 </head>
 <body>
 
-  <div class="prototype-banner" role="note">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="prototype-banner">
     <div class="container">
       <span class="proto-tag">Prototype</span>
       <p class="proto-msg">A designed prototype demonstrating the framework — not the <strong>V1</strong> data build.</p>
     </div>
-  </div>
+  </header>
+
+  <main id="main" tabindex="-1">
 
   <section class="hero">
     <div class="container">
@@ -1631,11 +1636,11 @@
               <path d="M0 30 C 16 25, 32 33, 48 28 S 74 22, 88 27" stroke="#8a3a2a" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.65"/>
               <path d="M0 36 C 18 32, 36 38, 54 34 S 78 30, 88 33" stroke="#8a3a2a" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/>
             </svg>
-            <h3 class="serif">Stay in touch</h3>
+            <h2 class="serif">Stay in touch</h2>
             <p class="blurb">Low-frequency updates from The Collective as this work evolves. Your address stays with us, never traded.</p>
             <form id="signup-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
               <input type="hidden" name="access_key" value="bc932e1b-363e-4d22-ba3c-c27ec1530615" />
-              <input type="email" name="email" id="signup-email" placeholder="your email" required autocomplete="email" />
+              <input type="email" name="email" id="signup-email" placeholder="your email" aria-label="Email address" required autocomplete="email" />
               <button type="submit">Subscribe <span class="arrow">→</span></button>
               <input type="hidden" name="subject" value="Land Selection Framework, new signup (hero)" />
               <input type="hidden" name="from_name" value="Land Selection Framework" />
@@ -1675,7 +1680,7 @@
         <div class="guided-copy">
           <div class="eyebrow">Start here</div>
           <h2 id="guided-title" class="serif">What matters most for where you'd put down roots?</h2>
-          <p class="guided-sub">Pick a starting point and the sliders set themselves — then adjust every threshold by hand. The framework filters to the regions that meet your criteria; it never scores, ranks, or recommends. Wherever you land, the question of how to arrive in good faith with who's already there comes with it.</p>
+          <p class="guided-sub">This is a bioregioning tool for communities hoping to belong to a place — and help it flourish — over fifty to a hundred years. Tap a starting point and the sliders set themselves, or move any slider to filter twenty regions by what matters to you. Every number names its source. Nothing is scored, ranked, or recommended — and wherever you land, arriving in good faith with who's already there comes with it.</p>
         </div>
         <div class="guided-chips" id="guided-chips" role="group" aria-label="Choose a starting priority"></div>
       </div>
@@ -1717,6 +1722,7 @@
         <div class="match-bar-info">
           <div class="count"><span id="match-count">10</span><em> of <span id="match-total">10</span> regions match</em></div>
           <div class="label" id="match-detail">No filters active</div>
+          <div class="sr-only" id="match-announce" role="status" aria-live="polite"></div>
           <div class="match-regions" id="match-regions"></div>
         </div>
         <div class="match-bar-actions">
@@ -1777,6 +1783,8 @@
     </div>
   </section>
 
+  </main>
+
   <footer>
     <div class="container">
       <p class="frame">
@@ -1784,7 +1792,7 @@
       </p>
       <div class="credits">
         <div>
-          <h4>About The Collective</h4>
+          <h3>About The Collective</h3>
           <p class="about-p">
             The land-selection framework is the work of <strong>The Collective</strong>, a small, cross-disciplinary working group of practitioners and researchers developing a shared, open framework for choosing land for regenerative settlements on a fifty-to-hundred-year horizon. The full documents and contributor list stay private until the group agrees on public attribution.
           </p>
@@ -1799,11 +1807,11 @@
           </p>
         </div>
         <div>
-          <h4>Sources cited</h4>
+          <h3>Sources cited</h3>
           <ul id="sources-list"></ul>
         </div>
         <div>
-          <h4>Frame</h4>
+          <h3>Frame</h3>
           <ul>
             <li>Open-source, open-data</li>
             <li>No commercial product</li>
@@ -1872,7 +1880,7 @@
 
       <form class="modal-form" id="modal-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
         <input type="hidden" name="access_key" value="bc932e1b-363e-4d22-ba3c-c27ec1530615" />
-        <input type="email" name="email" id="modal-email" placeholder="your email" required autocomplete="email" />
+        <input type="email" name="email" id="modal-email" placeholder="your email" aria-label="Email address" required autocomplete="email" />
         <button type="submit">Subscribe <span class="arrow">→</span></button>
         <input type="hidden" name="subject" value="Land Selection Framework, modal signup" />
         <input type="hidden" name="from_name" value="Land Selection Framework" />
@@ -1885,7 +1893,7 @@
     </div>
   </div>
 
-  <script type="module" src="./src/main.js?v=usab15"></script>
+  <script type="module" src="./src/main.js?v=usab16"></script>
 
   <!-- Per-value source citations: appended after main.js renders. -->
   <style>
