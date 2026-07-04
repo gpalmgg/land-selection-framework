@@ -1,6 +1,6 @@
 # DRAFT — r4 reciprocity commentary for the source-docs
 
-**Status:** draft for Gustaf's approval. NOT yet appended to the source-docs (those are the immutable source of truth — append only on your sign-off). Written to slot into `Land Project v1 r4 Overview.md` as a dated addendum after the existing 2026-05-29 r4 commentary.
+**Status:** draft for Gustaf's approval. NOT yet appended to the source-docs (those are the immutable source of truth — append only on your sign-off). Written to slot into `Land Project v1 r4 Overview.md` as a dated addendum after the existing 2026-05-29 r4 commentary. Core argument drafted 2026-06-30; **strengthened 2026-07-04 with an evidence-grounding subsection** (named scholarship + a measured displacement case + concrete precedents) drawn from the multi-track research swarm (`research/site-enrichment-2026-07/`) and the Nova Scotia cross-axis triangulation (`research/nova-scotia-land-access/`).
 
 ---
 
@@ -38,11 +38,30 @@ It must obey the same disciplines as everything else:
 - **State + trajectory, native units, source + vintage + license** — same as every criterion. State = current tenure / territory / treaty status. Trajectory = e.g. land-back movements, rematriation, depopulation-and-renewal in rural Europe.
 - It is the *objective-but-hard-to-measure* kind (Decision 6's "in" column), not the subjective kind. Treaty status, unceded/contested designation, customary-tenure regime, and land-claim activity are documentable facts with sources — closer to `legal_ownership` than to "vibes." This keeps it cleanly on the right side of Decision 6.
 
+If the group adopts it, the dimension resolves into **four documentable sub-fields** (all sourced fact, no score — the shape the deployed prototype's `land-standing.js` block already prototypes):
+
+- **whose land** — the Indigenous nation(s) plus treaty / cession / unceded status (North America), or the rooted community / commons institution (Europe);
+- **standing pathway** — how a newcomer lawfully *and* relationally earns place (join an existing *comunidade de montes*; become an acequia *parciante*; win One Planet Development planning; settle before buying);
+- **displacement trajectory** — whether in-migration is currently displacing the host community, holding steady, or reviving it (state + trajectory, sourced);
+- **existing reciprocal vehicle** — whether a structure already exists through which arrival can be made reciprocal (community land trust, land-back body, commons membership).
+
 **2. A V1-now move that needs no new scoring and breaks no committed decision: surface what's already in the dossiers as visible host-context.**
 
 We don't have to wait for V2 to stop coding Indigenous sovereignty as buyer-friction. V1 can — today, within the no-querying/no-scoring discipline — **surface land-tenure, territory/treaty status, and a plain "what arriving here asks of the place and its people" note as visible qualitative context per region.** This is pure display of sourced fact: no filter, no weight, no composite, fully inside Decision 4 and the V1 scope. It's the same per-jurisdiction Tier-1 pattern we already proved five times this round (dossier prose → human-verifiable JSON → `compile_per_jurisdiction.py` → GeoJSON), pointed at a question we'd so far only asked from the buyer's side.
 
 And the honest disclosure: **the deployed demonstration prototype already does a version of this** — the per-region "what living here asks of you" depth content (`data/region-depth.js`), and now a structured per-region "Land standing" block (`data/land-standing.js`: whose land, tenure, how to enter in good faith, what it asks), surfaced in the region drawer and on the indexable region pages. The artifact is ahead of the docs on this; the docs should catch up.
+
+### Evidence grounding (added 2026-07-04, from the research swarm + Nova Scotia triangulation)
+
+The argument above was drafted from practitioner judgment. A multi-track research pass since then puts documented evidence and named scholarship under it — this is the material the r5 handoff asks @Monty to locate, now in hand.
+
+- **The green-colonialism failure mode is not hypothetical; it has a measured case on our own slate.** In Taos (Northern New Mexico, a region the map presents as attractive), the legacy Hispano population inside town limits fell from **2,039 in 2014 to 1,306 in 2019** — roughly a third gone in five years — under exactly the amenity-migration pressure a "find the best land" tool accelerates. `[evidence]` The uncomfortable structural point: the tool's optimisation targets (water security, affordability, climate buffering) are the *same variables* that drive climate-and-amenity gentrification. The mechanism the tool runs on and the mechanism that displaces host communities are one variable, not two — which is precisely why reciprocity has to be built in as discipline rather than added as sentiment.
+- **The critique has a name in the literature.** Tuck & Yang's *"settler moves to innocence"* / "settler futurity" (2012) names exactly the blind spot in Decision 7 — a framework fluent only in the incomer's sovereignty. Liboiron's distinction between *obligation* and *responsibility* (2021) is the philosophical spine for "never a score, never optional." Pair with CARE / OCAP for Indigenous data sovereignty. `[evidence]`
+- **The European "earning standing" mechanism is concrete, not romantic.** In the Galician *montes veciñais* and Portuguese *baldíos*, commons membership **opens when you begin living in the parish and expires when you leave** — residence-based, participatory, revocable, unpurchasable. A real, documentable model of host-community standing with no treaty and no imposed Indigenous frame: the answer to "what does reciprocity look like in Europe." `[evidence]`
+- **It is already being done — including in Nova Scotia.** *Asitu'lɨsk* (formerly Windhorse Farm, Nova Scotia) is a settler-founded land project **returned to Mi'kmaq stewardship in 2021** — a live, local precedent for reciprocity as action, not sentiment. Transposable mechanism: the **Sogorea Te' Shuumi Land Tax**, which turns "I live here" into a recurring reciprocal obligation. Region-matched co-stewardship is accelerating: Mi'kmaq–Parks Canada co-governance (Dec 2025), the Sinixt *R. v. Desautel* affirmation (2021), Ho-Chunk land returns in the Driftless (2026). `[evidence]`
+- **The law is moving with the thesis, not against it.** Across 2024–26 statutory change in our jurisdictions, nearly every *closing* targets non-resident / speculative / capital-only acquisition (Nova Scotia's non-resident deed-transfer tax, Québec Bill 86, Romania's pre-emption, France's SAFER, the US foreign-ownership wave), while the *openings* reward residence + ecological commitment + collective form (Galicia's *aldeas modelo*, the Welsh One Planet route). "Arrive as residents-who-farm-in-common, not buyers-who-hold" is now the *legal* reality, not only the ethical stance — external validation the group did not have when Decision 7 was written. `[evidence]`
+
+Full sourcing: `research/site-enrichment-2026-07/` (tracks 02 land-tenure, 05 reciprocity, 06 long-horizon viability, and `synthesis.md`); the Nova Scotia treaty / tenure claims were cross-axis-verified in `research/nova-scotia-land-access/` (live-web + parametric quorum both corroborating unceded Mi'kma'ki and the tenure facts).
 
 ### The one-line version, for the chat
 
