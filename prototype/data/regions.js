@@ -83,7 +83,7 @@ export const regions = [
     name: 'Asturias',
     country: 'Spain',
     coords: [-5.85, 43.3],
-    blurb: 'Atlantic green Spain, six UNESCO Biosphere Reserves covering a quarter of the region. A wave of repoblación projects is reviving emptying villages; soils are rich, summers cool, and a strongly independent local culture expects you to earn your place.',
+    blurb: 'Atlantic green Spain, seven UNESCO Biosphere Reserves covering a quarter of the region. A wave of repoblación projects is reviving emptying villages; soils are rich, summers cool, and a strongly independent local culture expects you to earn your place.',
     accent: '#3a6a6a',
   },
   {
@@ -191,7 +191,7 @@ export const values = {
       sourceUrl: 'https://www.globalforestwatch.org',
     },
     solar_pv: {
-      value: 1865, unit: 'kWh/kWp', vintage: '1999–2018 avg', label: 'Excellent (top decile EU)',
+      value: 1650, unit: 'kWh/kWp', vintage: '1999–2018 avg', label: 'Excellent (top decile EU)', // 2026-07 audit: was 1865 (read as GHI); Global Solar Atlas PVOUT at 38.6,-7.9 = 1647
       source: 'Global Solar Atlas v2.7',
       sourceUrl: 'https://globalsolaratlas.info',
     },
@@ -328,7 +328,7 @@ export const values = {
       sourceUrl: 'https://www.globalforestwatch.org',
     },
     solar_pv: {
-      value: 975, unit: 'kWh/kWp', vintage: '1999–2018 avg', label: 'Low (Europe’s lowest band)',
+      value: 940, unit: 'kWh/kWp', vintage: '1999–2018 avg', label: 'Low (Europe’s lowest band)', // 2026-07 audit: was 975; GSA PVOUT two-place midpoint (West Cork ~974, Connemara ~902)
       source: 'Global Solar Atlas v2.7',
       sourceUrl: 'https://globalsolaratlas.info',
     },
@@ -420,7 +420,7 @@ export const values = {
       sourceUrl: 'https://www.globalforestwatch.org',
     },
     solar_pv: {
-      value: 1550, unit: 'kWh/kWp', vintage: '1999–2018 avg', label: 'Good (Mediterranean influence)',
+      value: 1420, unit: 'kWh/kWp', vintage: '1999–2018 avg', label: 'Good (Mediterranean influence)', // 2026-07 audit: was 1550; GSA PVOUT across zone 1323–1473 (no sampled point reached 1550)
       source: 'Global Solar Atlas v2.7',
       sourceUrl: 'https://globalsolaratlas.info',
     },
@@ -682,9 +682,9 @@ export const values = {
   'northern-new-mexico': {
     climate:      { value: 10.5, unit: '°C', vintage: '2041–2060 SSP2-4.5', label: 'High-desert continental', source: 'WorldClim CMIP6 v2.1', sourceUrl: 'https://www.worldclim.org/data/cmip6/cmip6climate.html' },
     water_stress: { value: 0.85, unit: 'score', vintage: '2050 BAU', label: 'Extremely high', source: 'WRI Aqueduct 4.0', sourceUrl: 'https://www.wri.org/aqueduct' },
-    soil_carbon:  { value: 7, unit: 'g/kg', vintage: '2001–2024', label: 'Very low (arid rangeland)', source: 'SoilGrids 2.0 / NM rangeland studies', sourceUrl: 'https://soilgrids.org' },
+    soil_carbon:  { value: 7, unit: 'g/kg', vintage: '2020', label: 'Very low (arid rangeland)', source: 'SoilGrids 2.0 / NM rangeland studies', sourceUrl: 'https://soilgrids.org' }, // 2026-07 audit: vintage was '2001–2024'; SoilGrids 2.0 is a 2020 product (obs 1905–2016) — value 7 g/kg stands
     forest_change:{ value: -10, unit: '%/decade', vintage: '2022', label: 'Fire-driven loss (Hermit\'s Peak)', source: 'Hansen GFC v1.11 / fire records', sourceUrl: 'https://www.globalforestwatch.org' },
-    solar_pv:     { value: 2150, unit: 'kWh/kWp', vintage: '2024', label: 'Exceptional', source: 'NREL NSRDB / Global Solar Atlas v2.7', sourceUrl: 'https://globalsolaratlas.info' },
+    solar_pv:     { value: 1840, unit: 'kWh/kWp', vintage: '2024', label: 'Excellent', source: 'NREL NSRDB / Global Solar Atlas v2.7', sourceUrl: 'https://globalsolaratlas.info' }, // 2026-07 audit: was 2150 ('Exceptional'); GSA PVOUT at 36.4,-105.6 = 1836 — 2150 implied Atacama-class yield
     conflict:     { value: 0, unit: 'events', vintage: '2019–2024', label: 'None', source: 'UCDP GED v25.1', sourceUrl: 'https://ucdp.uu.se' },
     regen_network:{ value: 20, unit: 'sites', vintage: '2025', label: 'Active (earthship, permaculture)', source: 'FIC / ic.org / Earthship Biotecture', sourceUrl: 'https://www.ic.org/directory/' },
     population:   { value: 6, unit: 'p/km²', vintage: '2020', label: 'Very low (Taos County)', source: 'US Census 2020', sourceUrl: 'https://www.census.gov/quickfacts/taoscountynewmexico' },

@@ -33,7 +33,7 @@ export const landStanding = {
     entry: "Clear the 45-day pre-emption notice and enter through the village, where co-owners, lessees, neighbours and young farmers hold first claim",
     obligation: "Respect the composesorat commons and the still-living traditional agroecology rather than displacing it",
     source: "Legea 17/2014 (sale of agricultural land outside city limits)",
-    sourceUrl: "https://legislatie.just.ro/Public/DetaliiDocument/156631",
+    sourceUrl: "https://legislatie.just.ro/Public/DetaliiDocument/156290", // 2026-07 audit: was /156631, which opens an unrelated 2014 police-promotion decree; 156290 is LEGE nr. 17/2014
   },
   connemara: {
     territory: "Gaeltacht Irish rural community — hill commonage and the meitheal cooperative-labour tradition",
@@ -143,7 +143,7 @@ export const landStanding = {
   },
   "nova-scotia": {
     territory: "Unceded Mi'kma'ki — Mi'kmaq territory held under the Peace and Friendship Treaties, never ceded by land surrender",
-    tenure: "Fee-simple over unceded land; a 10% Non-Resident Deed Transfer Tax applies unless held as vacant or agricultural land",
+    tenure: "Fee-simple over unceded land; a 10% Non-Resident Deed Transfer Tax applies to residential property including vacant residential land, unless the land is genuinely non-residential (e.g. agricultural, not intended for residential use) or the buyer moves to Nova Scotia within 6 months", // 2026-07 audit: prior wording wrongly implied all vacant/agricultural land is exempt; NS taxes vacant residential land per its own cited guidelines PDF
     entry: "Settle one or two members first via the (now-reduced) provincial nominee immigration pathway, then buy together",
     obligation: "Recognise unceded Mi'kma'ki and the Peace and Friendship Treaties, and join a thin regen scene in relationship rather than colonising it",
     source: "Nova Scotia Finance, Non-Resident Provincial Deed Transfer Tax guidelines",
