@@ -41,7 +41,7 @@ export const landStanding = {
     entry: "Win County Council planning on demonstrated local need or family connection, meeting Irish-language commitments in Gaeltacht areas",
     obligation: "Show real local need and contribute to a Gaeltacht community protective of its language and shared commonage",
     source: "Cork County Development Plan 2022 to 2028",
-    sourceUrl: "https://www.corkcoco.ie/en/resident/planning/development-plan",
+    sourceUrl: "https://www.corkcoco.ie/en/cork-county-development-plan-2022-2028", // 2026-07 audit: prior /resident/planning/development-plan URL 404s; this one verified 200 (matches v1-lookup.js)
   },
   pembrokeshire: {
     territory: "Welsh-speaking (Cymraeg) rural community — smallholding tradition and the One Planet low-impact movement",
