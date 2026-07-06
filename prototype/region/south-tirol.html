@@ -57,6 +57,9 @@
   .region-nav a{display:block;background:var(--paper);padding:12px 14px;text-decoration:none;font-family:'Spectral',serif;font-size:15px;}
   .region-nav a:hover{background:var(--paper-2);} .region-nav span{display:block;font-family:'Inter',sans-serif;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:2px;}
   footer{padding:40px 0 70px;} footer p{font-size:11.5px;color:var(--ink-3);max-width:70ch;line-height:1.6;}
+  .region-bridge{font-family:'Spectral',Georgia,serif;font-style:italic;font-size:14px;color:var(--ink-3);max-width:64ch;line-height:1.6;margin:0 0 20px;padding-bottom:20px;border-bottom:1px solid var(--rule);}
+  .region-bridge a{color:var(--accent);font-style:normal;text-decoration:underline;text-underline-offset:2px;}
+  .region-bridge a:focus-visible{outline:3px solid var(--accent);outline-offset:2px;}
   @media(max-width:600px){ th[scope=row]{width:auto;display:block;} td{display:block;border-top:none;padding:2px 0;} tr{display:block;border-top:1px solid var(--rule);padding:12px 0;} }
 
   /* V1 layer sections (the r4 round's per-jurisdiction data) */
@@ -309,6 +312,7 @@
 
   <footer>
     <div class="wrap">
+      <p class="region-bridge">People before land. Choosing a place before you have the people you'd settle with? <a href="https://find-your-community.vercel.app">Start by finding your community &rarr;</a></p>
       <p>Sources: WorldClim CMIP6, WRI Aqueduct 4.0, SoilGrids 2.0, Hansen Global Forest Change, Global Solar Atlas, UCDP GED, GEN/OSM, JRC GHSL. A project of The Collective. <a href="/deeper.html" style="color:var(--ink-2);">Methodology &amp; ethics →</a></p>
     </div>
   </footer>
