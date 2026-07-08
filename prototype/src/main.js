@@ -963,7 +963,20 @@ function renderSummaryTable() {
   const tbody = el('tbody');
   criteria.forEach((c) => {
     const tr = el('tr');
-    tr.appendChild(el('td', { text: c.name }));
+    // First column: criterion name + its source cue (source · unit · license),
+    // the same per-criterion provenance the bar-chart cards show in their footer.
+    const critTd = el('td');
+    critTd.appendChild(document.createTextNode(c.name));
+    const critSrc = el('div', { className: 'crit-src' });
+    if (c.source && c.sourceUrl) {
+      critSrc.appendChild(el('a', { text: c.source, attrs: { href: c.sourceUrl, target: '_blank', rel: 'noopener' } }));
+    } else if (c.source) {
+      critSrc.appendChild(document.createTextNode(c.source));
+    }
+    const critMeta = [c.nativeUnit, c.license].filter(Boolean).join(' · ');
+    if (critMeta) critSrc.appendChild(document.createTextNode(`${c.source ? ' · ' : ''}${critMeta}`));
+    critTd.appendChild(critSrc);
+    tr.appendChild(critTd);
     regions.forEach((r) => {
       const v = values[r.id][c.id];
       const td = el('td');

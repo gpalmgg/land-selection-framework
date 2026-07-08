@@ -784,6 +784,19 @@
       display: block; font-size: 10.5px;
       color: var(--ink-3); letter-spacing: 0.01em; margin-top: 3px;
     }
+    /* Per-criterion source cue in the first column — same "source · unit · license"
+       idiom the bar-chart cards carry in their footer, so the comparison table upholds
+       the same source+vintage ethic as every other value surface. */
+    .sum-table td:first-child .crit-src {
+      display: block; margin-top: 5px;
+      font-family: 'Inter', sans-serif; font-weight: 400;
+      font-size: 10px; line-height: 1.4; letter-spacing: 0;
+      text-transform: none; color: var(--ink-3);
+    }
+    .sum-table td:first-child .crit-src a {
+      color: var(--ink-3);
+      text-decoration: underline dotted; text-underline-offset: 2px;
+    }
     .sum-table .swatch {
       display: inline-block; width: 8px; height: 8px; border-radius: 50%;
       margin-right: 8px; vertical-align: 0;
@@ -1593,12 +1606,64 @@
       .compare-panel { padding: 26px 18px 28px; max-height: 90vh; }
       .next-step { margin-top: -12px; }
     }
+
+    /* === Mobile honesty notice ===
+       Shown only below ~768px, where the desktop-shaped comparison view is
+       narrower than the analysis wants. Dismissal persists in localStorage. */
+    .mobile-note { display: none; }
+    @media (max-width: 768px) {
+      .mobile-note {
+        display: flex; align-items: flex-start; gap: 12px;
+        padding: 12px 18px; background: var(--paper-2);
+        border-bottom: 1px solid var(--rule);
+        font-size: 12.5px; line-height: 1.5; color: var(--ink-2);
+      }
+      .mobile-note p { margin: 0; flex: 1; }
+      .mobile-note-x {
+        flex: none; background: none; border: 1px solid var(--rule);
+        border-radius: 4px; padding: 5px 11px;
+        font-family: 'Inter', system-ui, sans-serif; font-size: 11px;
+        letter-spacing: 0.02em; color: var(--ink-3); cursor: pointer;
+      }
+    }
+    .mobile-note.dismissed { display: none !important; }
+
+    /* === Suite footer === quiet cross-tool line, matches the bridge idiom. */
+    .suite-note { margin-top: 12px; font-size: 11.5px; color: var(--ink-4); }
+    .suite-note a { color: var(--ink-3); text-decoration: underline dotted; text-underline-offset: 2px; }
+
+    /* === Print: a clean, shareable summary ===
+       Print IS the export. Black on white, no interactive or navigational
+       chrome — just the framing, the comparison table, and the attribution. */
+    @media print {
+      html, body { background: #fff !important; color: #000 !important; }
+      .prototype-banner, .skip-link, .mobile-note,
+      .map-wrap, .guided, .criteria, .contact,
+      .drawer-backdrop, .drawer-panel,
+      .compare-backdrop, .compare-panel,
+      button, .map-controls, .map-legend { display: none !important; }
+      .hero, .arrive, .regions-intro, .summary {
+        background: #fff !important; border-color: #999 !important;
+      }
+      .hero { padding: 24px 0 12px !important; }
+      section { break-inside: avoid; }
+      .sum-table { font-size: 10px !important; }
+      .sum-table th, .sum-table td { background: #fff !important; border-color: #bbb !important; }
+      .sum-table th, .sum-table td:first-child { color: #000 !important; }
+      .sum-table .v, .sum-table .lab { color: #000 !important; }
+      .suite-note, .suite-note a, a { color: #000 !important; }
+    }
   </style>
   <link rel="stylesheet" href="./src/a11y.css" />
 </head>
 <body>
 
   <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div class="mobile-note" id="mobile-note" role="note">
+    <p>This analysis works best on a larger screen — everything is readable here, but the full comparison view needs width.</p>
+    <button type="button" class="mobile-note-x" id="mobile-note-x" aria-label="Dismiss this notice">Dismiss</button>
+  </div>
 
   <header class="prototype-banner">
     <div class="container">
@@ -1673,6 +1738,7 @@
         <div class="arrive-for"><span class="arrive-tag notfor">Not for</span> finding somewhere cheap and empty to escape to, or landing on top of a community already living there.</div>
       </div>
       <p class="arrive-bridge">People before land. Still choosing where before you have the people you'd do this with? <a href="https://find-your-community.vercel.app">Find your community first &rarr;</a></p>
+      <p class="suite-note">Part of <a href="https://regen-community-tools.vercel.app">Regen Community Tools</a> — honest tools for forming community.</p>
     </div>
   </section>
 
@@ -2036,6 +2102,21 @@
         sum.textContent = `Sources for ${sum.dataset.critName || ''} (${n} regions)`;
       });
     });
+  </script>
+
+  <!-- Mobile honesty notice: dismissal persists across visits. -->
+  <script>
+    (function () {
+      var KEY = 'lsf-mobile-note-dismissed';
+      var note = document.getElementById('mobile-note');
+      if (!note) return;
+      try { if (localStorage.getItem(KEY)) note.classList.add('dismissed'); } catch (e) {}
+      var btn = document.getElementById('mobile-note-x');
+      if (btn) btn.addEventListener('click', function () {
+        note.classList.add('dismissed');
+        try { localStorage.setItem(KEY, '1'); } catch (e) {}
+      });
+    })();
   </script>
 </body>
 </html>

@@ -379,9 +379,40 @@
     @media (min-width: 781px) {
       .method-list { grid-template-columns: 1fr 1fr; }
     }
+
+    /* === Mobile honesty notice === shown only below ~768px; dismissal persists. */
+    .mobile-note { display: none; }
+    @media (max-width: 768px) {
+      .mobile-note {
+        display: flex; align-items: flex-start; gap: 12px;
+        padding: 12px 18px; background: var(--paper-2);
+        border-bottom: 1px solid var(--rule);
+        font-size: 12.5px; line-height: 1.5; color: var(--ink-2);
+      }
+      .mobile-note p { margin: 0; flex: 1; }
+      .mobile-note-x {
+        flex: none; background: none; border: 1px solid var(--rule);
+        border-radius: 4px; padding: 5px 11px;
+        font-family: 'Inter', system-ui, sans-serif; font-size: 11px;
+        letter-spacing: 0.02em; color: var(--ink-3); cursor: pointer;
+      }
+    }
+    .mobile-note.dismissed { display: none !important; }
+
+    /* === Suite footer === quiet cross-tool line, matches the bridge idiom. */
+    .suite-note { margin-top: 12px; font-size: 11.5px; color: var(--ink-4); }
+    .suite-note a { color: var(--ink-3); text-decoration: underline dotted; text-underline-offset: 2px; }
   </style>
+
+  <!-- Accessibility layer (focus rings, reduced motion, measured contrast) — shared with index.html -->
+  <link rel="stylesheet" href="./src/a11y.css" />
 </head>
 <body>
+
+  <div class="mobile-note" id="mobile-note" role="note">
+    <p>This analysis works best on a larger screen — everything is readable here, but the full comparison view needs width.</p>
+    <button type="button" class="mobile-note-x" id="mobile-note-x" aria-label="Dismiss this notice">Dismiss</button>
+  </div>
 
   <div class="topbar">
     <div class="container">
@@ -716,6 +747,7 @@
       </div>
 
       <p class="ethics-bridge">People before land: if you are still gathering the people you would settle with, <a href="https://find-your-community.vercel.app">finding your community</a> comes before choosing a place &rarr;</p>
+      <p class="suite-note">Part of <a href="https://regen-community-tools.vercel.app">Regen Community Tools</a> — honest tools for forming community.</p>
     </div>
   </section>
 
@@ -972,6 +1004,21 @@
       </div>
     </div>
   </footer>
+
+  <!-- Mobile honesty notice: dismissal persists across visits. -->
+  <script>
+    (function () {
+      var KEY = 'lsf-mobile-note-dismissed';
+      var note = document.getElementById('mobile-note');
+      if (!note) return;
+      try { if (localStorage.getItem(KEY)) note.classList.add('dismissed'); } catch (e) {}
+      var btn = document.getElementById('mobile-note-x');
+      if (btn) btn.addEventListener('click', function () {
+        note.classList.add('dismissed');
+        try { localStorage.setItem(KEY, '1'); } catch (e) {}
+      });
+    })();
+  </script>
 
 </body>
 </html>
