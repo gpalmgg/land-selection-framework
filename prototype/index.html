@@ -36,8 +36,8 @@
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <!-- Fonts self-hosted (Inter + Spectral, SIL OFL 1.1), keeps the site self-contained -->
-  <link href="/vendor/fonts/fonts.css" rel="stylesheet" />
+  <!-- Bokverk fonts via Google Fonts (Literata / Archivo / IBM Plex Mono). Self-hosting the fonts is a later optimization. -->
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..700&family=Archivo:wght@400..900&family=Archivo+Narrow:wght@500..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- MapLibre self-hosted (v4.7.1), avoids a third-party CDN as a runtime single-point-of-failure -->
   <link href="/vendor/maplibre/maplibre-gl.css" rel="stylesheet" />
@@ -48,25 +48,31 @@
 
   <style>
     :root {
-      --paper: #f6f2eb;
-      --paper-2: #efe9df;
-      --paper-3: #e6dfd0;
-      --ink: #1a1a1a;
-      --ink-2: #3a3a3a;
-      --ink-3: #6b6258;
-      --ink-4: #9a9082;
-      --rule: #d8d0c2;
-      --rule-soft: #e6dfd0;
-      --accent: #8a3a2a;
-      --accent-soft: #c97a5a;
-      --pass: #3a6a4a;
-      --fail: #a05050;
+      /* Bokverk: ink on paper, grays only as tints of ink. Old token NAMES kept
+         as aliases so the 2000+ references keep resolving; only VALUES change. */
+      --paper: #FFFFFF;
+      --paper-2: #FFFFFF;
+      --paper-3: #FFFFFF;
+      --ink: #111111;
+      --ink-2: #333333;
+      --ink-3: #555555;
+      --ink-4: #6b6b6b;
+      --rule: #111111;
+      --rule-soft: #DDDDDD;
+      --accent: #111111;
+      --accent-soft: #555555;
+      --pass: #111111;
+      --fail: #111111;
+      --serif: "Literata", Georgia, serif;
+      --sans: "Archivo", system-ui, sans-serif;
+      --sans-narrow: "Archivo Narrow", "Archivo", sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
     }
 
     * { box-sizing: border-box; }
     html, body {
       margin: 0; padding: 0;
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: Archivo, system-ui, sans-serif;
       font-size: 15px; line-height: 1.55;
       color: var(--ink); background: var(--paper);
       -webkit-font-smoothing: antialiased;
@@ -74,7 +80,7 @@
     }
     body { overflow-x: hidden; }
     .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
-    .serif { font-family: 'Spectral', Georgia, serif; }
+    .serif { font-family: Literata, Georgia, serif; }
     .mono { font-feature-settings: 'tnum' 1; font-variant-numeric: tabular-nums; }
     h1, h2, h3, h4 { margin: 0; color: var(--ink); }
     .eyebrow {
@@ -97,7 +103,7 @@
     }
     .proto-tag {
       flex-shrink: 0;
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: Archivo, system-ui, sans-serif;
       font-size: 10.5px; font-weight: 700;
       letter-spacing: 0.16em; text-transform: uppercase;
       color: var(--accent);
@@ -106,7 +112,7 @@
     }
     .proto-msg {
       margin: 0;
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-size: 16px; line-height: 1.45;
       color: var(--paper);
     }
@@ -120,10 +126,7 @@
     .hero {
       padding: 100px 0 80px;
       border-bottom: 1px solid var(--rule);
-      background:
-        radial-gradient(ellipse at 80% 20%, rgba(138, 58, 42, 0.04) 0%, transparent 60%),
-        radial-gradient(ellipse at 10% 80%, rgba(44, 95, 124, 0.05) 0%, transparent 50%),
-        var(--paper);
+      background: #FFFFFF;
     }
     .hero .eyebrow { margin-bottom: 26px; }
     .hero-grid {
@@ -133,7 +136,7 @@
       align-items: start;
     }
     .hero h1 {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-weight: 400;
       font-size: clamp(48px, 8vw, 96px);
       line-height: 1.0;
@@ -141,7 +144,7 @@
       margin-bottom: 20px;
     }
     .hero .subtitle {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-style: italic;
       font-weight: 300;
       font-size: clamp(19px, 2.2vw, 26px);
@@ -151,12 +154,12 @@
       margin-bottom: 32px;
     }
     .hero .lede {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-size: 17px; line-height: 1.55;
       color: var(--ink-2); max-width: 48ch; margin-bottom: 24px;
     }
     .hero .lede-note {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-style: italic;
       font-size: 14.5px; line-height: 1.65;
       color: var(--ink-3); max-width: 50ch; margin-bottom: 32px;
@@ -175,7 +178,7 @@
     .hero .key > div:first-child { padding-left: 0; }
     .hero .key > div:last-child { border-right: none; }
     .hero .key .num {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-size: 24px; font-weight: 400; color: var(--ink);
       letter-spacing: -0.01em; line-height: 1; margin-bottom: 4px;
     }
@@ -186,19 +189,15 @@
 
     /* === Hero signup card (atelier polish) === */
     .signup-card {
-      background:
-        radial-gradient(ellipse at 100% 0%, rgba(138, 58, 42, 0.05) 0%, transparent 55%),
-        linear-gradient(180deg, var(--paper) 0%, rgba(246, 242, 235, 0.92) 100%);
+      background: #FFFFFF;
       border: 1px solid var(--rule);
       padding: 36px 34px 30px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 1px 0 var(--rule), 0 18px 44px rgba(26, 26, 26, 0.06);
-      transition: transform 0.32s ease, box-shadow 0.32s ease;
+      transition: transform 0.32s ease;
     }
     .signup-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 1px 0 var(--rule), 0 26px 58px rgba(26, 26, 26, 0.08);
     }
     .signup-card::before {
       content: '';
@@ -223,7 +222,7 @@
       pointer-events: none;
     }
     .signup-card h2 {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-weight: 500;
       font-size: 24px;
       letter-spacing: -0.008em;
@@ -231,7 +230,7 @@
       position: relative;
     }
     .signup-card .blurb {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-size: 14px;
       line-height: 1.6;
       color: var(--ink-3);
@@ -243,17 +242,16 @@
       border: 1px solid var(--rule);
       background: var(--paper);
       margin-bottom: 12px;
-      transition: border-color 0.22s ease, box-shadow 0.22s ease;
+      transition: border-color 0.22s ease;
     }
     .signup-card form:focus-within {
       border-color: var(--ink);
-      box-shadow: 0 0 0 3px rgba(138, 58, 42, 0.08);
     }
     .signup-card input[type="email"] {
       flex: 1;
       padding: 13px 16px;
       border: none; outline: none; background: transparent;
-      font-family: 'Inter', sans-serif;
+      font-family: Archivo, sans-serif;
       font-size: 14px;
       color: var(--ink);
       min-width: 0;
@@ -268,7 +266,7 @@
       border: none;
       border-left: 1px solid var(--rule);
       cursor: pointer;
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-style: italic;
       font-size: 15px; font-weight: 500;
       letter-spacing: 0.005em;
@@ -287,7 +285,7 @@
     }
     .signup-card button[type="submit"]:hover .arrow { transform: translateX(4px); }
     .signup-card .form-status {
-      font-family: 'Spectral', serif;
+      font-family: Literata, serif;
       font-style: italic;
       font-size: 13px;
       color: var(--ink-3);
@@ -308,7 +306,7 @@
       margin-top: 18px;
       padding-top: 14px;
       border-top: 1px dotted var(--rule);
-      font-family: 'Spectral', serif;
+      font-family: Literata, serif;
       font-style: italic;
       position: relative;
       z-index: 1;
@@ -326,9 +324,8 @@
       position: relative;
       text-decoration: none;
       color: var(--ink);
-      transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+      transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
       cursor: pointer;
-      box-shadow: 0 1px 0 var(--rule);
     }
     .hero-cta::before {
       content: '';
@@ -344,7 +341,6 @@
       color: var(--paper);
       border-color: var(--ink);
       transform: translateY(-2px);
-      box-shadow: 0 1px 0 var(--ink), 0 16px 32px rgba(26, 26, 26, 0.10);
     }
     .hero-cta:hover::before {
       background: var(--accent-soft);
@@ -352,7 +348,7 @@
     }
     .hero-cta-eyebrow {
       display: block;
-      font-family: 'Inter', sans-serif;
+      font-family: Archivo, sans-serif;
       font-size: 10.5px;
       font-weight: 600;
       letter-spacing: 0.14em;
@@ -369,7 +365,7 @@
       gap: 18px;
     }
     .hero-cta-text {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-style: italic;
       font-weight: 400;
       font-size: 17.5px;
@@ -378,7 +374,7 @@
       flex: 1;
     }
     .hero-cta-arrow {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-size: 19px;
       font-style: normal;
       transition: transform 0.22s ease;
@@ -390,12 +386,12 @@
     /* === Regions intro === */
     .regions-intro { padding: 70px 0 50px; border-bottom: 1px solid var(--rule); }
     .regions-intro h2 {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-size: 30px; font-weight: 400;
       letter-spacing: -0.01em; margin-bottom: 14px; max-width: 22ch;
     }
     .regions-intro p {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-size: 16px; color: var(--ink-2);
       max-width: 60ch; margin: 0 0 28px;
     }
@@ -411,7 +407,6 @@
       position: absolute; top: 14px; left: 14px;
       background: var(--paper); border: 1px solid var(--rule);
       padding: 12px 14px 10px; max-width: 240px; z-index: 2;
-      box-shadow: 0 1px 0 var(--rule), 0 6px 18px rgba(26,26,26,0.05);
       max-height: calc(100% - 28px);
       overflow-y: auto;
     }
@@ -421,7 +416,7 @@
       /* rendered as a <button> so the panel can collapse on small screens */
       display: flex; align-items: center; justify-content: space-between; gap: 10px;
       width: 100%; background: none; border: none; padding: 0;
-      font-family: 'Inter', system-ui, sans-serif; cursor: pointer;
+      font-family: Archivo, system-ui, sans-serif; cursor: pointer;
     }
     .map-controls .title .caret {
       font-size: 9px; color: var(--ink-4); transition: transform 0.2s ease;
@@ -437,7 +432,7 @@
       border-bottom: 1px solid var(--rule);
     }
     .continent-tab {
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: Archivo, system-ui, sans-serif;
       font-size: 14px; font-weight: 600; letter-spacing: 0.01em;
       color: var(--ink-3); background: none; border: none;
       padding: 9px 18px 11px; cursor: pointer;
@@ -462,12 +457,12 @@
       position: absolute; inset: 0;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; padding: 24px;
-      font-family: 'Spectral', Georgia, serif; font-size: 15px;
+      font-family: Literata, Georgia, serif; font-size: 15px;
       color: var(--ink-3); line-height: 1.6;
     }
     .map-fallback strong { color: var(--ink-2); font-weight: 500; }
     .map-toggle-group-label {
-      font-family: 'Inter', sans-serif;
+      font-family: Archivo, sans-serif;
       font-size: 9.5px; font-weight: 600;
       letter-spacing: 0.10em; text-transform: uppercase;
       color: var(--ink-4);
@@ -484,29 +479,28 @@
       cursor: pointer; user-select: none;
     }
     .map-toggle .dot {
-      width: 10px; height: 10px; border-radius: 50%;
+      width: 10px; height: 10px;
       background: var(--toggle-color, var(--ink-3));
       opacity: 0.35; transition: opacity 0.15s;
     }
     .map-toggle.on .dot { opacity: 1; }
-    .map-toggle .name { font-family: 'Spectral', serif; font-size: 13px; }
+    .map-toggle .name { font-family: Literata, serif; font-size: 13px; }
     .map-toggle:hover { color: var(--ink); }
 
     .region-marker {
-      width: 30px; height: 30px; border-radius: 50%;
+      width: 30px; height: 30px;
       background: var(--marker-color, var(--ink));
       border: 3px solid var(--paper);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.18);
       cursor: pointer; transition: transform 0.2s, opacity 0.2s;
       display: flex; align-items: center; justify-content: center;
       color: var(--paper);
-      font-family: 'Spectral', serif; font-weight: 600; font-size: 13px;
+      font-family: Literata, serif; font-weight: 600; font-size: 13px;
     }
     .region-marker.dim { opacity: 0.32; transform: scale(0.78); }
     .region-marker:hover { transform: scale(1.12); }
     .region-label {
       position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%);
-      white-space: nowrap; font-family: 'Spectral', serif;
+      white-space: nowrap; font-family: Literata, serif;
       font-size: 11.5px; font-weight: 500; color: var(--ink);
       background: var(--paper); padding: 1px 7px;
       border: 1px solid var(--rule); pointer-events: none;
@@ -529,7 +523,7 @@
     .region-card.fail { opacity: 0.32; background: var(--paper); }
     .region-card.fail::before { width: 18%; }
     .region-card .name {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-size: 22px; font-weight: 500;
       letter-spacing: -0.005em; margin-bottom: 2px; color: var(--ink);
     }
@@ -543,15 +537,16 @@
     .arrive-lede em { font-style: italic; color: var(--accent); }
     .arrive-fors { display: grid; gap: 12px; margin-top: 22px; max-width: 72ch; }
     .arrive-for { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
-    .arrive-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; margin-right: 8px; vertical-align: 1.5px; }
-    .arrive-tag.for { background: #e8efe5; color: #3a5a3a; }
-    .arrive-tag.notfor { background: #f3e4df; color: #8a3a2a; }
-    .arrive-bridge { margin-top: 22px; padding-top: 15px; border-top: 1px dotted var(--rule); font-family: 'Spectral', Georgia, serif; font-style: italic; font-size: 15px; line-height: 1.6; color: var(--ink-3); max-width: 66ch; }
+    .arrive-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; margin-right: 8px; vertical-align: 1.5px; }
+    /* B&W: filled = affirmative, outlined = negative (meaning not carried by hue) */
+    .arrive-tag.for { background: var(--ink); color: var(--paper); }
+    .arrive-tag.notfor { background: var(--paper); color: var(--ink); border: 1px solid var(--ink); }
+    .arrive-bridge { margin-top: 22px; padding-top: 15px; border-top: 1px dotted var(--rule); font-family: Literata, Georgia, serif; font-style: italic; font-size: 15px; line-height: 1.6; color: var(--ink-3); max-width: 66ch; }
     .arrive-bridge a { color: var(--accent); font-style: normal; text-decoration: underline; text-underline-offset: 2px; }
     .card-asks { font-size: 12.5px; line-height: 1.5; color: var(--ink-3); margin-top: 8px; font-style: italic; }
     .card-asks-label { font-style: normal; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; font-size: 10.5px; color: var(--accent); margin-right: 6px; }
     .region-card .blurb {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-size: 13.5px; line-height: 1.55; color: var(--ink-2);
     }
     .region-card .status {
@@ -568,7 +563,7 @@
       padding: 14px 18px; margin-bottom: 28px; font-size: 13px;
     }
     .match-bar .count {
-      font-family: 'Spectral', serif; font-size: 22px;
+      font-family: Literata, serif; font-size: 22px;
       font-weight: 500; color: var(--ink); letter-spacing: -0.005em;
     }
     .match-bar .count em { font-style: italic; color: var(--ink-3); font-weight: 400; }
@@ -578,7 +573,7 @@
     }
     .match-bar .reset,
     .match-bar .share {
-      font-family: 'Inter', sans-serif; font-size: 11px;
+      font-family: Archivo, sans-serif; font-size: 11px;
       letter-spacing: 0.06em; text-transform: uppercase;
       background: transparent; border: 1px solid var(--rule);
       padding: 8px 14px; color: var(--ink-2);
@@ -590,7 +585,7 @@
     }
     .match-bar .share:focus-visible,
     .match-bar .reset:focus-visible {
-      outline: 2px solid var(--accent, #8a3a2a); outline-offset: 2px;
+      outline: 2px solid var(--accent, #111111); outline-offset: 2px;
     }
     .match-bar-actions {
       display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
@@ -611,12 +606,12 @@
     /* === Criteria grid === */
     .criteria { padding: 60px 0 40px; }
     .criteria > h2 {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-size: 30px; font-weight: 400;
       letter-spacing: -0.01em; margin-bottom: 8px;
     }
     .criteria > .desc {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-size: 16px; color: var(--ink-2);
       max-width: 64ch; margin: 0 0 32px;
     }
@@ -634,11 +629,11 @@
       align-items: flex-start; margin-bottom: 6px;
     }
     .crit-card .num {
-      font-family: 'Spectral', serif; font-size: 16px;
+      font-family: Literata, serif; font-size: 16px;
       font-style: italic; color: var(--ink-4); font-weight: 400;
     }
     .crit-card h3 {
-      font-family: 'Spectral', serif;
+      font-family: Literata, serif;
       font-size: 22px; font-weight: 500;
       letter-spacing: -0.005em; line-height: 1.15; margin-bottom: 4px;
     }
@@ -647,7 +642,7 @@
       text-transform: uppercase; color: var(--ink-3); margin-bottom: 14px;
     }
     .crit-card .framing {
-      font-family: 'Spectral', serif;
+      font-family: Literata, serif;
       font-size: 13.5px; line-height: 1.55;
       color: var(--ink-2); margin-bottom: 18px;
     }
@@ -666,7 +661,7 @@
       text-transform: uppercase; color: var(--ink-3); font-weight: 600;
     }
     .slider-val {
-      font-family: 'Spectral', serif;
+      font-family: Literata, serif;
       font-size: 16px; font-weight: 500; color: var(--ink);
       font-feature-settings: 'tnum' 1; font-variant-numeric: tabular-nums;
     }
@@ -681,16 +676,16 @@
       -webkit-appearance: none; appearance: none;
       width: 18px; height: 18px;
       background: var(--ink); border: 2px solid var(--paper);
-      cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      cursor: pointer;
     }
     input[type="range"]::-moz-range-thumb {
       width: 18px; height: 18px;
       background: var(--ink); border: 2px solid var(--paper);
-      cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      cursor: pointer;
     }
     .slider-hint {
       font-size: 10.5px; color: var(--ink-3);
-      font-family: 'Spectral', serif; font-style: italic;
+      font-family: Literata, serif; font-style: italic;
     }
 
     /* Bars */
@@ -702,7 +697,7 @@
     }
     .bar-row.fail { opacity: 0.4; }
     .bar-row .reg {
-      font-family: 'Spectral', serif;
+      font-family: Literata, serif;
       font-size: 13px; font-weight: 500;
       color: var(--ink-2); letter-spacing: -0.005em;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -742,12 +737,12 @@
     /* === Summary table === */
     .summary { padding: 60px 0 40px; border-top: 1px solid var(--rule); }
     .summary h2 {
-      font-family: 'Spectral', serif;
+      font-family: Literata, serif;
       font-size: 30px; font-weight: 400;
       letter-spacing: -0.01em; margin-bottom: 8px;
     }
     .summary .desc {
-      font-family: 'Spectral', serif;
+      font-family: Literata, serif;
       font-size: 16px; color: var(--ink-2);
       max-width: 60ch; margin: 0 0 32px;
     }
@@ -765,14 +760,14 @@
     }
     .sum-table th {
       background: var(--paper-2);
-      font-family: 'Inter', sans-serif; font-weight: 600;
+      font-family: Archivo, sans-serif; font-weight: 600;
       font-size: 11px; letter-spacing: 0.06em;
       text-transform: uppercase; color: var(--ink-2);
     }
     .sum-table th.region-fail { opacity: 0.4; }
     .sum-table td.region-fail { opacity: 0.32; background: var(--paper); }
     .sum-table td:first-child {
-      font-family: 'Spectral', serif; font-weight: 500;
+      font-family: Literata, serif; font-weight: 500;
       font-size: 13px; color: var(--ink);
       background: var(--paper-2);
     }
@@ -789,7 +784,7 @@
        the same source+vintage ethic as every other value surface. */
     .sum-table td:first-child .crit-src {
       display: block; margin-top: 5px;
-      font-family: 'Inter', sans-serif; font-weight: 400;
+      font-family: Archivo, sans-serif; font-weight: 400;
       font-size: 10px; line-height: 1.4; letter-spacing: 0;
       text-transform: none; color: var(--ink-3);
     }
@@ -798,7 +793,7 @@
       text-decoration: underline dotted; text-underline-offset: 2px;
     }
     .sum-table .swatch {
-      display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+      display: inline-block; width: 8px; height: 8px;
       margin-right: 8px; vertical-align: 0;
     }
 
@@ -806,9 +801,7 @@
     .contact {
       padding: 70px 0 70px;
       border-top: 1px solid var(--rule);
-      background:
-        radial-gradient(ellipse at 90% 30%, rgba(138, 58, 42, 0.045) 0%, transparent 60%),
-        var(--paper);
+      background: #FFFFFF;
     }
     .contact .col {
       display: grid;
@@ -817,12 +810,12 @@
       align-items: start;
     }
     .contact h2 {
-      font-family: 'Spectral', serif;
+      font-family: Literata, serif;
       font-size: 30px; font-weight: 400;
       letter-spacing: -0.01em; margin-bottom: 10px;
     }
     .contact .lead {
-      font-family: 'Spectral', serif;
+      font-family: Literata, serif;
       font-size: 16px; line-height: 1.55;
       color: var(--ink-2); margin-bottom: 22px;
     }
@@ -834,7 +827,7 @@
     .contact input[type="email"] {
       flex: 1; padding: 14px 16px;
       border: none; outline: none; background: transparent;
-      font-family: 'Inter', sans-serif;
+      font-family: Archivo, sans-serif;
       font-size: 14px; color: var(--ink);
     }
     .contact input[type="email"]::placeholder {
@@ -844,14 +837,14 @@
       padding: 14px 22px;
       background: var(--ink); color: var(--paper);
       border: none; cursor: pointer;
-      font-family: 'Inter', sans-serif;
+      font-family: Archivo, sans-serif;
       font-size: 11px; font-weight: 600;
       letter-spacing: 0.08em; text-transform: uppercase;
       transition: background 0.15s;
     }
     .contact button[type="submit"]:hover { background: var(--accent); }
     .contact .form-status {
-      font-family: 'Spectral', serif;
+      font-family: Literata, serif;
       font-style: italic;
       font-size: 13px;
       color: var(--ink-3);
@@ -879,7 +872,7 @@
     }
     .contact .socials svg { width: 20px; height: 20px; }
     .contact .direct {
-      font-family: 'Spectral', serif;
+      font-family: Literata, serif;
       font-size: 14.5px; color: var(--ink-2); line-height: 1.7;
       margin: 0;
     }
@@ -893,7 +886,7 @@
       padding: 22px 26px;
       background: var(--paper-2);
       border-left: 3px solid var(--accent);
-      font-family: 'Spectral', serif;
+      font-family: Literata, serif;
       font-size: 14.5px; color: var(--ink-2);
       line-height: 1.65;
     }
@@ -910,7 +903,7 @@
       background: var(--paper-2);
     }
     footer .frame {
-      font-family: 'Spectral', serif; font-style: italic;
+      font-family: Literata, serif; font-style: italic;
       font-size: 14.5px; line-height: 1.6;
       color: var(--ink-2); max-width: 62ch; margin-bottom: 36px;
     }
@@ -926,7 +919,7 @@
     footer ul { list-style: none; padding: 0; margin: 0; }
     footer li { margin-bottom: 4px; line-height: 1.5; }
     footer .about-p {
-      font-family: 'Spectral', serif;
+      font-family: Literata, serif;
       font-size: 13px; line-height: 1.6;
       color: var(--ink-3); margin: 0 0 12px;
     }
@@ -946,9 +939,7 @@
 
     .modal-backdrop {
       position: fixed; inset: 0;
-      background: rgba(26, 22, 18, 0.42);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      background: rgba(17, 17, 17, 0.5);
       z-index: 1000;
       display: flex; align-items: center; justify-content: center;
       padding: 24px;
@@ -961,14 +952,11 @@
       pointer-events: auto;
     }
     .modal-card {
-      background:
-        radial-gradient(ellipse at 100% 0%, rgba(138, 58, 42, 0.06) 0%, transparent 55%),
-        var(--paper);
+      background: #FFFFFF;
       border: 1px solid var(--rule);
       padding: 44px 44px 36px;
       max-width: 520px; width: 100%;
       position: relative;
-      box-shadow: 0 30px 80px rgba(26, 22, 18, 0.25);
       transform: translateY(12px) scale(0.985);
       opacity: 0;
       transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.32s ease;
@@ -1005,7 +993,6 @@
       width: 36px; height: 36px;
       background: transparent;
       border: 1px solid var(--rule);
-      border-radius: 50%;
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       color: var(--ink-3);
@@ -1022,7 +1009,7 @@
       color: var(--accent); margin-bottom: 16px;
     }
     .modal-card h2 {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-weight: 400;
       font-size: clamp(28px, 4vw, 38px);
       line-height: 1.08;
@@ -1037,7 +1024,7 @@
       font-weight: 300;
     }
     .modal-card .modal-blurb {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-size: 15px;
       line-height: 1.6;
       color: var(--ink-2);
@@ -1049,17 +1036,16 @@
       border: 1px solid var(--rule);
       background: var(--paper);
       margin-bottom: 10px;
-      transition: border-color 0.22s ease, box-shadow 0.22s ease;
+      transition: border-color 0.22s ease;
     }
     .modal-form:focus-within {
       border-color: var(--ink);
-      box-shadow: 0 0 0 3px rgba(138, 58, 42, 0.1);
     }
     .modal-form input[type="email"] {
       flex: 1;
       padding: 14px 16px;
       border: none; outline: none; background: transparent;
-      font-family: 'Inter', sans-serif;
+      font-family: Archivo, sans-serif;
       font-size: 14.5px;
       color: var(--ink);
       min-width: 0;
@@ -1074,7 +1060,7 @@
       border: none;
       border-left: 1px solid var(--rule);
       cursor: pointer;
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-style: italic;
       font-size: 15.5px; font-weight: 500;
       display: inline-flex; align-items: center; gap: 8px;
@@ -1093,7 +1079,7 @@
       transform: translateX(4px);
     }
     .modal-status {
-      font-family: 'Spectral', serif;
+      font-family: Literata, serif;
       font-style: italic;
       font-size: 13px;
       color: var(--ink-3);
@@ -1105,7 +1091,7 @@
     .modal-divider {
       display: flex; align-items: center; gap: 14px;
       margin: 22px 0 18px;
-      font-family: 'Spectral', serif;
+      font-family: Literata, serif;
       font-style: italic;
       font-size: 12.5px;
       color: var(--ink-4);
@@ -1123,7 +1109,7 @@
       border: 1px solid var(--rule);
       padding: 12px 22px;
       cursor: pointer;
-      font-family: 'Inter', sans-serif;
+      font-family: Archivo, sans-serif;
       font-size: 12px; font-weight: 500;
       letter-spacing: 0.04em;
       color: var(--ink-2);
@@ -1140,7 +1126,7 @@
       color: var(--ink-4);
       letter-spacing: 0.02em;
       margin-top: 14px;
-      font-family: 'Spectral', serif;
+      font-family: Literata, serif;
       font-style: italic;
       text-align: center;
     }
@@ -1241,7 +1227,7 @@
     /* === Usability layer: onboarding + presets === */
     .onboarding { margin: 0 0 24px; }
     .onboarding-cue {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-style: italic;
       font-size: 14.5px; line-height: 1.5;
       color: var(--ink-3);
@@ -1257,7 +1243,7 @@
     }
     .qual-filter {
       display: flex; align-items: center; gap: 8px;
-      font-family: 'Inter', system-ui, sans-serif; font-size: 12px;
+      font-family: Archivo, system-ui, sans-serif; font-size: 12px;
       color: var(--ink-3);
     }
     .qual-filter-label {
@@ -1265,14 +1251,14 @@
       text-transform: uppercase; font-size: 10.5px;
     }
     .qual-filter-select {
-      font-family: 'Inter', system-ui, sans-serif; font-size: 12px;
+      font-family: Archivo, system-ui, sans-serif; font-size: 12px;
       color: var(--ink); background: var(--paper);
       border: 1px solid var(--rule); padding: 5px 8px;
       cursor: pointer;
     }
     .qual-filter-select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .preset-chip {
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: Archivo, system-ui, sans-serif;
       font-size: 12.5px; font-weight: 500; letter-spacing: 0.01em;
       color: var(--ink-2); background: var(--paper);
       border: 1px solid var(--rule);
@@ -1289,9 +1275,7 @@
     .guided {
       padding: 46px 0 42px;
       border-bottom: 1px solid var(--rule);
-      background:
-        radial-gradient(ellipse at 12% 25%, rgba(44, 95, 124, 0.055) 0%, transparent 55%),
-        var(--paper-2);
+      background: #FFFFFF;
     }
     .guided-inner {
       display: grid; grid-template-columns: 1fr 1.05fr;
@@ -1299,32 +1283,31 @@
     }
     .guided-copy .eyebrow { margin-bottom: 10px; }
     .guided-copy h2 {
-      font-family: 'Spectral', Georgia, serif; font-weight: 400;
+      font-family: Literata, Georgia, serif; font-weight: 400;
       font-size: clamp(24px, 3.4vw, 34px); letter-spacing: -0.012em;
       line-height: 1.1; margin-bottom: 12px; max-width: 18ch;
     }
     .guided-sub {
-      font-family: 'Spectral', Georgia, serif; font-size: 15px;
+      font-family: Literata, Georgia, serif; font-size: 15px;
       line-height: 1.55; color: var(--ink-2); max-width: 48ch; margin: 0;
     }
     .guided-chips { display: flex; flex-wrap: wrap; gap: 10px; align-content: center; }
     .guided-chip {
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: Archivo, system-ui, sans-serif;
       font-size: 13.5px; font-weight: 500; letter-spacing: 0.01em;
       color: var(--ink); background: var(--paper);
       border: 1px solid var(--ink-4);
       padding: 12px 18px; cursor: pointer;
-      box-shadow: 0 1px 0 var(--rule);
-      transition: background 0.16s, color 0.16s, border-color 0.16s, transform 0.16s, box-shadow 0.16s;
+      transition: background 0.16s, color 0.16s, border-color 0.16s, transform 0.16s;
     }
     .guided-chip:hover {
       background: var(--ink); color: var(--paper); border-color: var(--ink);
-      transform: translateY(-2px); box-shadow: 0 10px 22px rgba(26, 26, 26, 0.10);
+      transform: translateY(-2px);
     }
     .guided-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .guided-chip.neutral {
       border-style: dashed; border-color: var(--rule);
-      color: var(--ink-3); box-shadow: none;
+      color: var(--ink-3);
     }
     .guided-chip.neutral:hover { color: var(--paper); border-color: var(--ink); }
     @media (max-width: 880px) {
@@ -1337,7 +1320,7 @@
     .match-regions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
     .region-chip {
       display: inline-flex; align-items: center; gap: 7px;
-      font-family: 'Spectral', Georgia, serif; font-size: 13px;
+      font-family: Literata, Georgia, serif; font-size: 13px;
       color: var(--ink); background: var(--paper);
       border: 1px solid var(--rule); padding: 5px 11px; cursor: pointer;
       transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
@@ -1347,14 +1330,14 @@
       transform: translateY(-1px);
     }
     .region-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .region-chip-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .region-chip-dot { width: 8px; height: 8px; flex-shrink: 0; }
 
     /* Brief highlight when a guided choice lands the visitor on their result */
     .match-bar.pulse { animation: matchpulse 1.4s ease; }
     @keyframes matchpulse {
-      0%   { box-shadow: 0 0 0 0 rgba(138, 58, 42, 0.0); border-color: var(--rule); }
-      18%  { box-shadow: 0 0 0 4px rgba(138, 58, 42, 0.16); border-color: var(--accent); }
-      100% { box-shadow: 0 0 0 0 rgba(138, 58, 42, 0.0); border-color: var(--rule); }
+      0%   { border-color: var(--rule); }
+      18%  { border-color: var(--accent); }
+      100% { border-color: var(--rule); }
     }
     @media (prefers-reduced-motion: reduce) {
       .match-bar.pulse { animation: none; }
@@ -1363,7 +1346,7 @@
 
     /* Shortlist button on the match bar */
     .match-bar .shortlist-btn {
-      font-family: 'Inter', sans-serif; font-size: 11px;
+      font-family: Archivo, sans-serif; font-size: 11px;
       letter-spacing: 0.06em; text-transform: uppercase;
       background: transparent; border: 1px solid var(--rule);
       padding: 8px 14px; color: var(--ink-2);
@@ -1390,7 +1373,7 @@
     .region-star:hover { color: var(--accent); transform: scale(1.15); }
     .region-star.on { color: var(--accent); }
     .region-star:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .region-card.starred { box-shadow: inset 0 0 0 1px var(--accent-soft); }
+    .region-card.starred { }
 
     /* Actionable next-step row */
     .next-step {
@@ -1401,13 +1384,13 @@
       font-size: 13px;
     }
     .next-step-lead {
-      font-family: 'Spectral', Georgia, serif; font-style: italic;
+      font-family: Literata, Georgia, serif; font-style: italic;
       font-size: 14px; color: var(--ink-2);
     }
     .next-step.empty .next-step-lead { color: var(--ink-3); }
     .next-step-actions { display: flex; flex-wrap: wrap; gap: 8px; }
     .ns-action {
-      font-family: 'Inter', sans-serif; font-size: 11px;
+      font-family: Archivo, sans-serif; font-size: 11px;
       letter-spacing: 0.05em; text-transform: uppercase;
       background: transparent; border: 1px solid var(--rule);
       padding: 8px 13px; color: var(--ink-2);
@@ -1422,8 +1405,7 @@
     body.panel-open { overflow: hidden; }
     .drawer-backdrop {
       position: fixed; inset: 0; z-index: 1100;
-      background: rgba(26, 22, 18, 0.42);
-      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      background: rgba(17, 17, 17, 0.5);
       display: flex; justify-content: flex-end;
       opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
     }
@@ -1434,13 +1416,12 @@
       overflow-y: auto; position: relative;
       transform: translateX(28px);
       transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
-      box-shadow: -20px 0 60px rgba(26, 22, 18, 0.18);
     }
     .drawer-backdrop.open .drawer-panel { transform: translateX(0); }
     .drawer-close {
       position: absolute; top: 16px; right: 16px;
       width: 36px; height: 36px; padding: 0;
-      background: var(--paper); border: 1px solid var(--rule); border-radius: 50%;
+      background: var(--paper); border: 1px solid var(--rule);
       cursor: pointer; color: var(--ink-3);
       display: flex; align-items: center; justify-content: center;
       transition: all 0.18s ease; z-index: 2;
@@ -1464,7 +1445,7 @@
     }
     .drawer-star {
       flex-shrink: 0; white-space: nowrap;
-      font-family: 'Inter', sans-serif; font-size: 11px;
+      font-family: Archivo, sans-serif; font-size: 11px;
       letter-spacing: 0.04em;
       background: transparent; border: 1px solid var(--rule);
       padding: 8px 12px; color: var(--ink-2); cursor: pointer;
@@ -1473,23 +1454,22 @@
     .drawer-star:hover { background: var(--paper-2); border-color: var(--ink-3); }
     .drawer-star.on { background: var(--accent); color: var(--paper); border-color: var(--accent); }
     .drawer-blurb {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-size: 15px; line-height: 1.6; color: var(--ink-2);
       margin: 0 0 22px;
     }
     .map-wrap { position: relative; }
     .map-legend {
       position: absolute; right: 14px; bottom: 30px; z-index: 4;
-      background: rgba(246,242,235,0.94); border: 1px solid var(--rule);
-      border-radius: 4px; padding: 10px 12px; max-width: 230px;
-      font-size: 11.5px; color: var(--ink-2); box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.94); border: 1px solid var(--rule); padding: 10px 12px; max-width: 230px;
+      font-size: 11.5px; color: var(--ink-2);
     }
     .map-legend[aria-hidden="true"] { display: none; }
     .map-legend-title { font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: 8px; }
     .legend-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
     .legend-row:last-child { margin-bottom: 0; }
-    .legend-swatch { width: 24px; height: 11px; border-radius: 2px; flex: none; border: 1px solid rgba(0,0,0,0.06); }
-    .legend-swatch.dot { width: 11px; height: 11px; border-radius: 50%; }
+    .legend-swatch { width: 24px; height: 11px; flex: none; border: 1px solid rgba(0,0,0,0.06); }
+    .legend-swatch.dot { width: 11px; height: 11px; }
     .legend-label { line-height: 1.3; }
     .drawer-asks {
       background: var(--paper-2); border-left: 2px solid var(--accent);
@@ -1500,36 +1480,36 @@
       color: var(--accent); font-weight: 600; margin-bottom: 10px;
     }
     .drawer-asks-text {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-size: 14.5px; line-height: 1.6; color: var(--ink-2); margin: 0;
     }
     .drawer-deeplink {
       display: inline-block; margin-top: 10px;
-      font-family: 'Spectral', Georgia, serif; font-style: italic;
+      font-family: Literata, Georgia, serif; font-style: italic;
       font-size: 14px; color: var(--accent);
       text-decoration: underline dotted; text-underline-offset: 3px;
     }
     .drawer-deeplink:hover { color: var(--ink); }
     .drawer-asks-src {
       margin-top: 10px; font-size: 11px; color: var(--ink-3);
-      font-family: 'Inter', sans-serif; letter-spacing: 0.01em;
+      font-family: Archivo, sans-serif; letter-spacing: 0.01em;
     }
     .drawer-asks-src a { color: var(--ink-2); text-decoration: underline dotted; text-underline-offset: 2px; }
     .drawer-land-standing {
-      background: var(--paper-2); border-left: 2px solid #3a5a3a;
+      background: var(--paper-2); border-left: 2px solid #111111;
       padding: 16px 18px; margin-bottom: 24px;
     }
     .drawer-land-standing h4 {
       font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
-      color: #3a5a3a; font-weight: 600; margin-bottom: 12px;
+      color: #111111; font-weight: 600; margin-bottom: 12px;
     }
     .ls-row { display: grid; grid-template-columns: 132px 1fr; gap: 12px; margin-bottom: 9px; }
     .ls-label {
       font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;
       color: var(--ink-3); font-weight: 600; padding-top: 3px;
     }
-    .ls-val { font-family: 'Spectral', Georgia, serif; font-size: 14px; line-height: 1.55; color: var(--ink-2); }
-    .ls-src { margin-top: 8px; font-size: 11px; color: var(--ink-3); font-family: 'Inter', sans-serif; }
+    .ls-val { font-family: Literata, Georgia, serif; font-size: 14px; line-height: 1.55; color: var(--ink-2); }
+    .ls-src { margin-top: 8px; font-size: 11px; color: var(--ink-3); font-family: Archivo, sans-serif; }
     .ls-src a { color: var(--ink-2); text-decoration: underline dotted; text-underline-offset: 2px; }
     .drawer-criteria h4 {
       font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
@@ -1542,7 +1522,7 @@
     }
     .drawer-crit-val { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
     .drawer-crit-val .dc-num {
-      font-family: 'Spectral', serif; font-size: 17px; font-weight: 500; color: var(--ink);
+      font-family: Literata, serif; font-size: 17px; font-weight: 500; color: var(--ink);
     }
     .drawer-crit-val .dc-lab { font-size: 12.5px; color: var(--ink-2); }
     .drawer-crit-src { margin-top: 5px; font-size: 10.5px; color: var(--ink-4); }
@@ -1551,8 +1531,7 @@
     /* === Shortlist compare overlay === */
     .compare-backdrop {
       position: fixed; inset: 0; z-index: 1100;
-      background: rgba(26, 22, 18, 0.42);
-      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      background: rgba(17, 17, 17, 0.5);
       display: flex; align-items: center; justify-content: center;
       padding: 24px;
       opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
@@ -1562,7 +1541,6 @@
       background: var(--paper); border: 1px solid var(--rule);
       max-width: 960px; width: 100%; max-height: 86vh; overflow-y: auto;
       padding: 32px 32px 36px; position: relative;
-      box-shadow: 0 30px 80px rgba(26, 22, 18, 0.25);
       transform: translateY(12px) scale(0.99);
       transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -1574,7 +1552,7 @@
     .compare-head h3 { font-size: 24px; font-weight: 500; letter-spacing: -0.008em; }
     .compare-close {
       width: 36px; height: 36px; padding: 0; flex-shrink: 0;
-      background: var(--paper); border: 1px solid var(--rule); border-radius: 50%;
+      background: var(--paper); border: 1px solid var(--rule);
       cursor: pointer; color: var(--ink-3);
       display: flex; align-items: center; justify-content: center;
       transition: all 0.18s ease;
@@ -1582,11 +1560,11 @@
     .compare-close:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
     .compare-close svg { width: 14px; height: 14px; }
     .compare-note {
-      font-family: 'Spectral', Georgia, serif; font-style: italic;
+      font-family: Literata, Georgia, serif; font-style: italic;
       font-size: 13.5px; color: var(--ink-3); margin: 0 0 20px; max-width: 60ch;
     }
     .compare-empty {
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-size: 15px; line-height: 1.6; color: var(--ink-3);
       padding: 28px 0; max-width: 48ch;
     }
@@ -1596,9 +1574,7 @@
       .drawer-panel {
         max-width: 100%; height: auto; max-height: 90vh;
         border-left: none; border-top: 1px solid var(--rule);
-        border-radius: 14px 14px 0 0;
         transform: translateY(32px);
-        box-shadow: 0 -20px 60px rgba(26, 22, 18, 0.22);
       }
       .drawer-backdrop.open .drawer-panel { transform: translateY(0); }
       .drawer-body { padding: 32px 22px 36px; }
@@ -1620,9 +1596,8 @@
       }
       .mobile-note p { margin: 0; flex: 1; }
       .mobile-note-x {
-        flex: none; background: none; border: 1px solid var(--rule);
-        border-radius: 4px; padding: 5px 11px;
-        font-family: 'Inter', system-ui, sans-serif; font-size: 11px;
+        flex: none; background: none; border: 1px solid var(--rule); padding: 5px 11px;
+        font-family: Archivo, system-ui, sans-serif; font-size: 11px;
         letter-spacing: 0.02em; color: var(--ink-3); cursor: pointer;
       }
     }
@@ -1653,6 +1628,20 @@
       .sum-table .v, .sum-table .lab { color: #000 !important; }
       .suite-note, .suite-note a, a { color: #000 !important; }
     }
+
+    /* ═══ Bokverk survey-report register ═══════════════════════════════════
+       Data values wear IBM Plex Mono — the source-and-vintage honesty ethic,
+       made visible as typography. Section heads (.eyebrow) already carry the
+       small-caps Archivo register; double rules mark the major divisions. */
+    .mono { font-family: var(--mono); }
+    .hero .key .num,
+    .crit-card .num,
+    .match-bar .count,
+    .slider-val,
+    .sum-table .v,
+    .drawer-crit-val .dc-num,
+    .region-chip { font-family: var(--mono); }
+    .criteria, .summary, .contact { border-top: 3px double var(--rule); }
   </style>
   <link rel="stylesheet" href="./src/a11y.css" />
 </head>
@@ -1698,9 +1687,9 @@
         <aside class="hero-right">
           <div class="signup-card">
             <svg class="topo-ornament" viewBox="0 0 88 38" aria-hidden="true">
-              <path d="M0 24 C 14 18, 28 28, 42 22 S 70 14, 88 20" stroke="#8a3a2a" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-              <path d="M0 30 C 16 25, 32 33, 48 28 S 74 22, 88 27" stroke="#8a3a2a" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.65"/>
-              <path d="M0 36 C 18 32, 36 38, 54 34 S 78 30, 88 33" stroke="#8a3a2a" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/>
+              <path d="M0 24 C 14 18, 28 28, 42 22 S 70 14, 88 20" stroke="#111111" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              <path d="M0 30 C 16 25, 32 33, 48 28 S 74 22, 88 27" stroke="#111111" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.65"/>
+              <path d="M0 36 C 18 32, 36 38, 54 34 S 78 30, 88 33" stroke="#111111" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/>
             </svg>
             <h2 class="serif">Stay in touch</h2>
             <p class="blurb">Low-frequency updates from The Collective as this work evolves. Your address stays with us, never traded.</p>
@@ -1937,9 +1926,9 @@
       </button>
 
       <svg class="modal-topo" viewBox="0 0 100 42" aria-hidden="true">
-        <path d="M0 24 C 18 16, 35 32, 52 22 S 82 14, 100 20" stroke="#8a3a2a" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-        <path d="M0 32 C 20 26, 40 36, 60 30 S 86 24, 100 30" stroke="#8a3a2a" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.65"/>
-        <path d="M0 38 C 22 34, 46 40, 66 36 S 90 32, 100 35" stroke="#8a3a2a" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/>
+        <path d="M0 24 C 18 16, 35 32, 52 22 S 82 14, 100 20" stroke="#111111" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+        <path d="M0 32 C 20 26, 40 36, 60 30 S 86 24, 100 30" stroke="#111111" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.65"/>
+        <path d="M0 38 C 22 34, 46 40, 66 36 S 90 32, 100 35" stroke="#111111" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/>
       </svg>
 
       <div class="modal-eyebrow">While you're exploring</div>
@@ -1969,7 +1958,7 @@
       margin-top: 16px;
       border-top: 1px solid var(--rule-soft);
       padding-top: 10px;
-      font-family: 'Spectral', Georgia, serif;
+      font-family: Literata, Georgia, serif;
       font-style: italic;
       font-size: 11px;
       color: var(--ink-3);
@@ -1977,7 +1966,7 @@
     .crit-card .sources summary {
       cursor: pointer;
       font-style: normal;
-      font-family: 'Inter', sans-serif;
+      font-family: Archivo, sans-serif;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       font-size: 10.5px;

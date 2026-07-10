@@ -15,14 +15,13 @@
   background: var(--ink);
   color: var(--paper);
   padding: 12px 20px;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: Archivo, system-ui, sans-serif;
   font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
   text-decoration: none;
-  box-shadow: 0 6px 18px rgba(26, 26, 26, 0.25);
 }
 .skip-link:focus {
   transform: none;
-  outline: 3px solid var(--accent);
+  outline: 2px solid var(--ink);
   outline-offset: 2px;
 }
 
@@ -40,11 +39,11 @@ select:focus-visible,
 textarea:focus-visible,
 summary:focus-visible,
 [tabindex]:focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 2px solid var(--ink);
   outline-offset: 2px;
 }
 input[type="range"]:focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 2px solid var(--ink);
   outline-offset: 4px;
 }
 
@@ -64,9 +63,9 @@ input[type="range"]:focus-visible {
 /* --- Contrast fixes (measured against WCAG 2.1 AA) ------------------------
    --ink-4 was #9a9082: 2.81:1 on --paper, 2.60:1 on --paper-2 — fails 4.5:1
    for the small text it colors (footnotes, placeholders, source lines).
-   #6f665a keeps the warm grey-brown tone at 5.05:1 / 4.67:1. */
+   #6b6b6b is a neutral ink tint at ~4.9:1 on the white paper. */
 :root {
-  --ink-4: #6f665a;
+  --ink-4: #6b6b6b;
 }
 
 /* Filtered-out ("fail") states faded to 0.32–0.4 opacity, compositing their
@@ -104,7 +103,7 @@ button.map-toggle {
   border: none;
   width: 100%;
   margin: 0;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: Archivo, system-ui, sans-serif;
   text-align: left;
 }
 
@@ -112,7 +111,7 @@ button.map-toggle {
    main.js gives them tabindex/role/aria-label; the generic [tabindex] ring
    above applies. Slightly larger offset so the ring clears the round marker. */
 .region-marker:focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
 }
 
@@ -123,7 +122,7 @@ button.map-toggle {
   margin-top: 8px;
   padding-top: 7px;
   border-top: 1px dotted var(--rule);
-  font-family: 'Spectral', Georgia, serif;
+  font-family: Literata, Georgia, serif;
   font-style: italic;
   font-size: 12.5px;
   line-height: 1.5;
