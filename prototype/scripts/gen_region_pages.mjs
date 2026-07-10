@@ -22,7 +22,7 @@ import { landStanding } from '../data/land-standing.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const OUT_DIR = join(ROOT, 'region');
-const SITE = 'https://land-selection-framework.vercel.app';
+const SITE = 'https://land.regencommunity.tools';
 
 // V1 per-jurisdiction layers (the r4 round's data). Each is a JSON array keyed
 // by region_id. Loaded once into a single lookup so each page just looks up
@@ -493,8 +493,8 @@ function page(r) {
 
   <footer>
     <div class="wrap">
-      <p class="region-bridge">People before land. Choosing a place before you have the people you'd settle with? <a href="https://find-your-community.vercel.app">Start by finding your community &rarr;</a></p>
-      <p class="suite-note">Part of <a href="https://regen-community-tools.vercel.app">Regen Community Tools</a> — honest tools for forming community.</p>
+      <p class="region-bridge">People before land. Choosing a place before you have the people you'd settle with? <a href="https://compass.regencommunity.tools">Start by finding your community &rarr;</a></p>
+      <p class="suite-note">Part of <a href="https://regencommunity.tools">Regen Community Tools</a> — honest tools for forming community.</p>
       <p>Sources: WorldClim CMIP6, WRI Aqueduct 4.0, SoilGrids 2.0, Hansen Global Forest Change, Global Solar Atlas, UCDP GED, GEN/OSM, JRC GHSL. A project of The Collective. <a href="/deeper.html" style="color:var(--ink-2);">Methodology &amp; ethics →</a></p>
     </div>
   </footer>

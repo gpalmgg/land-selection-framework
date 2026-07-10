@@ -28,7 +28,7 @@ function header(req, name) {
 }
 
 export default async function handler(req) {
-  const host = header(req, 'host') || 'land-selection-framework.vercel.app';
+  const host = header(req, 'host') || 'land.regencommunity.tools';
   const proto = header(req, 'x-forwarded-proto') || 'https';
   const base = `${proto}://${host}`;
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://land-selection-framework.vercel.app/sitemap.xml
+Sitemap: https://land.regencommunity.tools/sitemap.xml
