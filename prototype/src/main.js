@@ -388,6 +388,25 @@ function initMap() {
 
   mapInstance.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
 
+  // Bokverk v2 — surveyor's reticle: print live lat/lon in the map margin as the
+  // pointer moves over the map. Presentation only; gated to fine pointers with
+  // motion allowed, so it never interferes with touch or reduced-motion users.
+  const coordReadout = document.getElementById('map-coords');
+  if (
+    coordReadout &&
+    matchMedia('(pointer: fine)').matches &&
+    !matchMedia('(prefers-reduced-motion: reduce)').matches
+  ) {
+    mapInstance.on('mousemove', (e) => {
+      const { lat, lng } = e.lngLat;
+      const ns = lat >= 0 ? 'N' : 'S';
+      const ew = lng >= 0 ? 'E' : 'W';
+      coordReadout.textContent = `${Math.abs(lat).toFixed(2)}°${ns} · ${Math.abs(lng).toFixed(2)}°${ew}`;
+      coordReadout.classList.add('is-live');
+    });
+    mapInstance.on('mouseout', () => coordReadout.classList.remove('is-live'));
+  }
+
   // Hardening: a single tile/source failure (a WMS momentarily down, a rotated
   // token) must never break the map or spam the console. Swallow per-source tile
   // errors quietly; the rest of the map and every other layer keep working.

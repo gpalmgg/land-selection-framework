@@ -1641,13 +1641,214 @@
     .sum-table .v,
     .drawer-crit-val .dc-num,
     .region-chip { font-family: var(--mono); }
-    .criteria, .summary, .contact { border-top: 3px double var(--rule); }
+    .criteria, .summary, .contact { position: relative; }
+
+    /* ═══════════════════════════════════════════════════════════════════════
+       Bokverk v2 — "the press comes alive": night edition · suite rail ·
+       ambient layer · ink-physics motion · surveyor's reticle. Layered on top
+       of v1; touches presentation only. Copy and functionality untouched.
+       ═══════════════════════════════════════════════════════════════════════ */
+    :root { --rail: 216px; --ink-faint: #888888; --petrol: #0E5F5F; }
+    html.night {
+      --paper: #111111; --paper-2: #111111; --paper-3: #111111;
+      --ink: #FFFFFF; --ink-2: #DDDDDD; --ink-3: #BBBBBB;
+      --rule: #FFFFFF; --rule-soft: #333333;
+      --accent: #FFFFFF; --accent-soft: #BBBBBB; --pass: #FFFFFF; --fail: #FFFFFF;
+    }
+    html.night { --ink-4: #999999; --petrol: #3FA9A0; }
+    /* Night: invert the map's tile canvas + its markers (already desaturated). */
+    html.night #map { filter: grayscale(1) invert(1); }
+    html.night img { filter: invert(1); }
+    /* Petrol — the one accent. Used sparingly: focus rings, current marker,
+       square bullets, numeric odometer values, the live-coordinate instrument. */
+    :focus-visible { outline-color: var(--petrol) !important; }
+
+    /* ── ambient: faint giant circles + faint circle geometry (dots removed per v2.1) ──────── */
+    #ambient { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+    #ambient .geo { position: absolute; border: 1px solid var(--ink); opacity: 0.05; }
+    #ambient .geo.c { border-radius: 50%; }
+
+    /* ── suite rail (roof's canonical rail, adapted; chapter 03 current) ──── */
+    #rail {
+      position: fixed; top: 0; left: 0; bottom: 0; width: var(--rail); z-index: 60;
+      border-right: 1px solid var(--rule); background: var(--paper);
+      display: flex; flex-direction: column; padding: 20px 0 16px;
+      font-family: var(--sans);
+    }
+    #rail .wordmark {
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 0 18px 16px;
+      border-bottom: 1px solid var(--rule); margin-bottom: 6px;
+    }
+    #rail nav { flex: 1; display: flex; flex-direction: column; }
+    #rail nav a {
+      display: block; text-decoration: none; color: var(--ink);
+      padding: 13px 18px; border-bottom: 1px solid var(--rule-soft);
+      position: relative; overflow: hidden;
+    }
+    #rail nav a .num { font-family: var(--mono); font-size: 11px; color: var(--ink-3); display: block; letter-spacing: 0.05em; }
+    #rail nav a .nm { font-weight: 700; font-size: 13px; letter-spacing: 0.03em; text-transform: uppercase; display: block; margin-top: 2px; }
+    #rail nav a .sq { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); width: 7px; height: 7px; background: var(--ink); opacity: 0; transition: opacity 120ms; }
+    #rail nav a::before { content: ""; position: absolute; inset: 0; background: var(--ink); transform: translateX(-101%); transition: transform 130ms ease-out; z-index: -1; }
+    #rail nav a:hover::before, #rail nav a:focus-visible::before { transform: translateX(0); }
+    #rail nav a:hover, #rail nav a:focus-visible { color: var(--paper); }
+    #rail nav a:hover .num, #rail nav a:focus-visible .num { color: var(--paper); }
+    #rail nav a:hover .sq { opacity: 1; background: var(--paper); }
+    #rail nav a.current .sq { opacity: 1; background: var(--petrol); }
+    #rail .railfoot { padding: 12px 18px 0; border-top: 1px solid var(--rule); }
+    #rail .railfoot .st { font-family: var(--mono); font-size: 10px; line-height: 1.6; letter-spacing: 0.04em; color: var(--ink-3); text-transform: uppercase; }
+
+    /* ── masthead: dated edition · status line · night toggle ─────────────── */
+    #masthead {
+      display: flex; justify-content: space-between; align-items: baseline;
+      flex-wrap: wrap; gap: 6px 24px; padding: 12px clamp(28px, 4vw, 72px);
+      border-bottom: 3px double var(--rule); background: var(--paper);
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--ink-3); position: relative; z-index: 2;
+    }
+    #masthead button {
+      background: none; border: 1px solid var(--ink); color: var(--ink);
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 4px 10px; cursor: pointer;
+    }
+    #masthead button:hover { background: var(--ink); color: var(--paper); }
+
+    /* ── running section head in the right margin (updates on scroll) ─────── */
+    #runhead { display: none; }
+    @media (min-width: 1100px) and (pointer: fine) {
+      #runhead {
+        display: block; position: fixed; right: 9px; top: 50%;
+        transform: translateY(-50%) rotate(180deg); writing-mode: vertical-rl;
+        font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+        text-transform: uppercase; color: var(--ink-faint); z-index: 2; pointer-events: none;
+      }
+    }
+
+    /* ── self-drawing major rules (replace static double rules, same look) ── */
+    .criteria::before, .summary::before, .contact::before {
+      content: ""; display: block; position: absolute; top: 0; left: 0; right: 0;
+      height: 0; border-top: 3px double var(--rule);
+      transform: scaleX(1); transform-origin: left; /* visible by default (no-JS safe) */
+    }
+    .criteria.bk-arm::before, .summary.bk-arm::before, .contact.bk-arm::before { transform: scaleX(0); }
+    .criteria.bk-entered::before, .summary.bk-entered::before, .contact.bk-entered::before {
+      transition: transform 500ms ease-out; transform: scaleX(1);
+    }
+
+    /* ── hint bar (desktop, fine pointer) ─────────────────────────────────── */
+    #hintbar { display: none; }
+    @media (min-width: 900px) and (pointer: fine) {
+      #hintbar {
+        display: flex; justify-content: space-between; position: fixed;
+        left: var(--rail); right: 0; bottom: 0; z-index: 60;
+        border-top: 1px solid var(--rule); background: var(--paper);
+        padding: 7px clamp(28px, 4vw, 72px);
+        font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em;
+        text-transform: uppercase; color: var(--ink-3);
+      }
+      #hintbar kbd { border: 1px solid var(--ink-3); padding: 0 5px; font-family: var(--mono); }
+      body { padding-bottom: 34px; }
+    }
+
+    /* ── surveyor's reticle cursor (fine pointer, motion allowed) ─────────── */
+    @media (pointer: fine) {
+      html.bk-reticle, html.bk-reticle a, html.bk-reticle button,
+      html.bk-reticle .map-toggle, html.bk-reticle summary { cursor: none; }
+      html.bk-reticle input, html.bk-reticle textarea, html.bk-reticle select { cursor: auto; }
+      #reticle { position: fixed; z-index: 9000; top: 0; left: 0; width: 20px; height: 20px; margin: -10px 0 0 -10px; pointer-events: none; }
+      #reticle::before, #reticle::after { content: ""; position: absolute; background: var(--ink); }
+      #reticle::before { left: 9px; top: 0; width: 1px; height: 20px; }
+      #reticle::after { top: 9px; left: 0; height: 1px; width: 20px; }
+      #reticle i { position: absolute; left: 7px; top: 7px; width: 6px; height: 6px; border: 1px solid var(--ink); }
+      #reticle.onlink i { left: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; }
+      #reticle.onmap { mix-blend-mode: difference; }
+    }
+
+    /* ── live lat/lon readout, printed in the map's margin ────────────────── */
+    .map-coords {
+      position: absolute; top: 14px; right: 14px; z-index: 3;
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.03em;
+      color: var(--petrol); background: var(--paper); border: 1px solid var(--rule);
+      padding: 4px 9px; opacity: 0; transition: opacity 120ms; pointer-events: none;
+    }
+    .map-coords.is-live { opacity: 1; }
+
+    /* ── NieR grammar on data surfaces: square bullets, ink-block row slide ── */
+    footer .credits ul { list-style: none; margin: 0; padding: 0; }
+    footer .credits ul li { position: relative; padding-left: 15px; }
+    footer .credits ul li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; background: var(--petrol); }
+    .hero .key .num.bk-odo { color: var(--petrol); }
+    .sum-table tbody tr { transition: none; }
+    .sum-table tbody tr:hover th[scope="row"] { position: relative; }
+    .sum-table tbody tr:hover td:first-child::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--ink); }
+
+    /* ── full-width: kill the centered 1180 column; use the whole viewport ── */
+    .container { max-width: none; margin: 0; padding-left: clamp(28px, 4vw, 72px); padding-right: clamp(28px, 4vw, 72px); }
+    /* prose stays at a readable measure inside the wide page (55–70ch) */
+    .arrive-lede, .guided-sub, .criteria .desc, .summary .desc,
+    .contact .lead, footer .frame, .about-p { max-width: 68ch; }
+    @media (min-width: 768px) {
+      body > .prototype-banner, body > #masthead, body > main, body > footer { margin-left: var(--rail); }
+    }
+
+    /* ── reduced motion nukes all v2 motion + the reticle ─────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .criteria::before, .summary::before, .contact::before { transform: scaleX(1) !important; transition: none !important; }
+      #reticle { display: none; }
+      html.bk-reticle, html.bk-reticle a, html.bk-reticle button, html.bk-reticle summary { cursor: auto; }
+    }
+
+    /* ── mobile: rail collapses to a top strip ────────────────────────────── */
+    @media (max-width: 767px) {
+      #rail { position: static; width: 100%; border-right: none; border-bottom: 1px solid var(--rule); }
+      #rail nav { flex-direction: row; flex-wrap: wrap; }
+      #rail nav a { flex: 1 1 40%; border-right: 1px solid var(--rule-soft); }
+      #rail .railfoot { display: none; }
+      #hintbar, #runhead { display: none !important; }
+      body > .prototype-banner, body > #masthead, body > main, body > footer { margin-left: 0; }
+    }
+
+    /* ── print: hide every piece of navigational/decorative chrome ────────── */
+    @media print {
+      #rail, #ambient, #masthead, #hintbar, #runhead, #reticle, .map-coords { display: none !important; }
+      body > .prototype-banner, body > main, body > footer { margin-left: 0 !important; }
+      .container { padding-left: 0; padding-right: 0; }
+      .criteria::before, .summary::before, .contact::before { transform: scaleX(1) !important; }
+    }
   </style>
   <link rel="stylesheet" href="./src/a11y.css" />
 </head>
 <body>
 
   <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div id="ambient" aria-hidden="true">
+    <div class="geo c" style="width:52vw;height:52vw;right:-16vw;top:-18vw"></div>
+    <div class="geo c" style="width:28vw;height:28vw;left:10vw;bottom:-12vw"></div>
+    <div class="geo" style="width:1px;height:100vh;left:62vw;top:0"></div>
+    <div class="geo" style="width:16vw;height:16vw;right:22vw;bottom:8vh"></div>
+  </div>
+
+  <aside id="rail" aria-label="Regen Community Tools — the suite">
+    <div class="wordmark">Regen Community<br>Tools</div>
+    <nav aria-label="The tools">
+      <a href="https://compass.regencommunity.tools"><span class="num">01 · PEOPLE</span><span class="nm">Community Compass</span><span class="sq"></span></a>
+      <a href="https://atlas.regencommunity.tools"><span class="num">02 · THE FIELD</span><span class="nm">The Living Atlas</span><span class="sq"></span></a>
+      <a href="https://land.regencommunity.tools" class="current" aria-current="page"><span class="num">03 · THE GROUND</span><span class="nm">Land Selection</span><span class="sq"></span></a>
+      <a href="https://commons.regencommunity.tools"><span class="num">00 · THE OTHER BEGINNING</span><span class="nm">Community Commons</span><span class="sq"></span></a>
+    </nav>
+    <div class="railfoot">
+      <div class="st">8 criteria · 20 regions<br>every value sourced<br>no hidden scores</div>
+    </div>
+  </aside>
+
+  <div id="masthead">
+    <span id="edition">EDITION OF —</span>
+    <span class="status">8 CRITERIA · 20 REGIONS READ · NO ERROR</span>
+    <button id="editionToggle" type="button" aria-pressed="false">NIGHT EDITION</button>
+  </div>
+
+  <div id="runhead" aria-hidden="true">03 · THE GROUND</div>
 
   <div class="mobile-note" id="mobile-note" role="note">
     <p>This analysis works best on a larger screen — everything is readable here, but the full comparison view needs width.</p>
@@ -1754,6 +1955,7 @@
       <div class="map-wrap">
         <div id="map"></div>
         <div class="map-legend" id="map-legend" aria-hidden="true"></div>
+        <div class="map-coords" id="map-coords" aria-hidden="true"></div>
         <div class="map-controls">
           <button class="title" id="layers-toggle" type="button" aria-expanded="true" aria-controls="map-toggles">Layers<span class="caret" aria-hidden="true">▾</span></button>
           <div id="map-toggles"></div>
@@ -2106,6 +2308,112 @@
         try { localStorage.setItem(KEY, '1'); } catch (e) {}
       });
     })();
+  </script>
+
+  <div id="hintbar" aria-hidden="true">
+    <span><kbd>i</kbd> INVERT EDITION · <kbd>P</kbd> PRINT SUMMARY</span>
+    <span>SET IN LITERATA · ARCHIVO · PLEX MONO</span>
+  </div>
+
+  <!-- Bokverk v2: the press comes alive. Presentation-only; all removed under
+       prefers-reduced-motion. Copy and functionality untouched. -->
+  <script>
+  (function () {
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var fine = matchMedia('(pointer: fine)').matches;
+    var root = document.documentElement;
+
+    // Dated edition line in the masthead.
+    var months = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
+    var d = new Date(), ed = document.getElementById('edition');
+    if (ed) ed.textContent = 'EDITION OF ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+
+    // Night Edition — masthead toggle + [i] key, persisted. Also inverts the map.
+    var btn = document.getElementById('editionToggle');
+    function setEdition(night) {
+      root.classList.toggle('night', night);
+      if (btn) { btn.textContent = night ? 'DAY EDITION' : 'NIGHT EDITION'; btn.setAttribute('aria-pressed', String(night)); }
+      try { localStorage.setItem('bokverk-edition', night ? 'night' : 'day'); } catch (e) {}
+    }
+    try { if (localStorage.getItem('bokverk-edition') === 'night') setEdition(true); } catch (e) {}
+    if (btn) btn.addEventListener('click', function () { setEdition(!root.classList.contains('night')); });
+    function typingInto(el) { return el && /INPUT|TEXTAREA|SELECT/.test(el.tagName); }
+    document.addEventListener('keydown', function (e) {
+      if (e.metaKey || e.ctrlKey || e.altKey || typingInto(document.activeElement)) return;
+      if (e.key === 'i' || e.key === 'I') setEdition(!root.classList.contains('night'));
+      else if (e.key === 'p' || e.key === 'P') { e.preventDefault(); window.print(); }
+    });
+
+    // Self-drawing major rules at section entry.
+    // Self-drawing rules: default visible; arm only the ones below the fold so
+    // they draw in on scroll (nothing to hide/reveal when JS or motion is off).
+    var rules = document.querySelectorAll('.criteria, .summary, .contact');
+    if (!reduce && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.remove('bk-arm'); en.target.classList.add('bk-entered'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.15 });
+      rules.forEach(function (r) {
+        if (r.getBoundingClientRect().top < window.innerHeight) return; // already in view
+        r.classList.add('bk-arm'); io.observe(r);
+      });
+    }
+
+    // Odometer — the numeric stat-row values count up on first view (8, 20).
+    if (!reduce && 'IntersectionObserver' in window) {
+      document.querySelectorAll('.hero .key .num').forEach(function (el) {
+        var raw = el.textContent.trim();
+        if (!/^\d+$/.test(raw)) return;
+        el.classList.add('bk-odo'); // petrol accent, numeric odometer values only
+        var target = parseInt(raw, 10), done = false;
+        new IntersectionObserver(function (ents, obs) {
+          ents.forEach(function (en) {
+            if (en.isIntersecting && !done) {
+              done = true; obs.disconnect();
+              var t0 = null;
+              requestAnimationFrame(function step(t) {
+                if (!t0) t0 = t;
+                var p = Math.min((t - t0) / 700, 1); p = 1 - Math.pow(1 - p, 3);
+                el.textContent = Math.round(target * p).toString();
+                if (p < 1) requestAnimationFrame(step);
+              });
+            }
+          });
+        }, { threshold: 0.6 }).observe(el);
+      });
+    }
+
+    // Running section head in the right margin, updated on scroll.
+    var runhead = document.getElementById('runhead');
+    if (runhead && 'IntersectionObserver' in window) {
+      var LABELS = { hero: 'COVER', arrive: 'HOW TO READ', guided: 'START HERE', 'regions-intro': 'THE MAP', criteria: 'CRITERIA', summary: 'MATRIX', contact: 'THE COLLECTIVE' };
+      var secObs = new IntersectionObserver(function (es) {
+        es.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          var key = Object.keys(LABELS).find(function (k) { return en.target.classList.contains(k); });
+          if (key) runhead.textContent = '03 · ' + LABELS[key];
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('main > section').forEach(function (s) { secObs.observe(s); });
+    }
+
+    // Surveyor's reticle cursor (fine pointer, motion allowed). Over the map it
+    // gains a blend state; live lat/lon is printed by main.js in the map margin.
+    if (fine && !reduce) {
+      root.classList.add('bk-reticle');
+      var ret = document.createElement('div'); ret.id = 'reticle';
+      var center = document.createElement('i'); ret.appendChild(center);
+      document.body.appendChild(ret);
+      document.addEventListener('mousemove', function (e) {
+        ret.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)';
+        ret.classList.toggle('onlink', !!(e.target.closest && e.target.closest('a,button,summary,label,input,select,textarea,.map-toggle')));
+        ret.classList.toggle('onmap', !!(e.target.closest && e.target.closest('#map')));
+      }, { passive: true });
+      document.addEventListener('mouseleave', function () { ret.style.opacity = '0'; });
+      document.addEventListener('mouseenter', function () { ret.style.opacity = '1'; });
+    }
+  })();
   </script>
 </body>
 </html>
