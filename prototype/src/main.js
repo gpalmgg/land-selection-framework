@@ -326,7 +326,7 @@ function pickOgImagePath() {
 function updateOgImageMeta() {
   const tag = document.querySelector('meta[property="og:image"]');
   if (!tag) return;
-  const base = 'https://land.regencommunity.tools/';
+  const base = 'https://land-selection-framework.regencommunity.tools/';
   const path = pickOgImagePath();
   const next = base + path;
   if (tag.getAttribute('content') !== next) {

@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Land Selection Framework — In Depth</title>
   <meta name="description" content="The methodology behind the framework, three deep regional case studies (Alentejo, Connemara, Transylvania), the design tensions deferred to V2, and the full source bibliography. The deeper material promised to subscribers." />
-  <link rel="canonical" href="https://land.regencommunity.tools/deeper.html" />
+  <link rel="canonical" href="https://land-selection-framework.regencommunity.tools/deeper.html" />
 
   <!-- Open Graph / Twitter Card -->
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://land.regencommunity.tools/deeper.html" />
+  <meta property="og:url" content="https://land-selection-framework.regencommunity.tools/deeper.html" />
   <meta property="og:title" content="Land Selection Framework — In Depth" />
   <meta property="og:description" content="Methodology, three regional case studies, the deferred V2/V3 design tensions, and the full source bibliography." />
-  <meta property="og:image" content="https://land.regencommunity.tools/og-deeper.png" />
+  <meta property="og:image" content="https://land-selection-framework.regencommunity.tools/og-deeper.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Land Selection Framework, In Depth" />
   <meta name="twitter:description" content="Methodology, three regional case studies, and the questions The Collective is still working through." />
-  <meta name="twitter:image" content="https://land.regencommunity.tools/og-deeper.png" />
+  <meta name="twitter:image" content="https://land-selection-framework.regencommunity.tools/og-deeper.png" />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
@@ -402,12 +402,57 @@
     /* === Suite footer === quiet cross-tool line, matches the bridge idiom. */
     .suite-note { margin-top: 12px; font-size: 11.5px; color: var(--ink-4); }
     .suite-note a { color: var(--ink-3); text-decoration: underline dotted; text-underline-offset: 2px; }
+  
+    /* ── suite rail — Regen Community Tools, in this site's own dialect ── */
+    #rct-rail { position: fixed; top: 0; left: 0; bottom: 0; width: 232px; z-index: 60;
+      border-right: 1px solid var(--rule); background: var(--paper);
+      display: flex; flex-direction: column; padding: 20px 0 16px; }
+    #rct-rail .rct-wordmark { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12px;
+      letter-spacing: 0.12em; padding: 0 20px 16px; border-bottom: 1px solid var(--rule); margin-bottom: 6px; }
+    #rct-rail nav { display: flex; flex-direction: column; }
+    #rct-rail nav a { display: block; text-decoration: none; padding: 14px 20px;
+      border-bottom: 1px solid var(--rule-soft); color: var(--ink); transition: background 130ms; }
+    #rct-rail nav a .rct-num { font-family: 'Inter', sans-serif; font-size: 10.5px; letter-spacing: 0.07em;
+      color: var(--ink-3); display: block; text-transform: uppercase; }
+    #rct-rail nav a .rct-nm { font-family: 'Inter', sans-serif; font-weight: 650; font-size: 13px;
+      letter-spacing: 0.02em; display: block; margin-top: 2px; }
+    #rct-rail nav a:hover { background: var(--paper-2); }
+    #rct-rail nav a.rct-current { background: var(--ink); color: var(--paper); }
+    #rct-rail nav a.rct-current .rct-num { color: var(--paper-3); }
+    #rct-rail nav a.rct-current .rct-nm::after { content: ""; display: inline-block; width: 7px; height: 7px;
+      background: var(--accent-soft); margin-left: 8px; }
+    #rct-rail .rct-foot { margin-top: auto; padding: 12px 20px 0; border-top: 1px solid var(--rule);
+      font-family: 'Inter', sans-serif; font-size: 10.5px; color: var(--ink-4); }
+    #rct-rail .rct-foot a { color: var(--ink-3); }
+    body { padding-left: 232px; }
+    @media (max-width: 900px) {
+      body { padding-left: 0; }
+      #rct-rail { position: static; width: 100%; border-right: none; border-bottom: 1px solid var(--rule);
+        flex-direction: column; padding: 14px 0 0; }
+      #rct-rail nav { flex-direction: row; flex-wrap: wrap; }
+      #rct-rail nav a { flex: 1 1 46%; min-width: 0; border-right: 1px solid var(--rule-soft); padding: 10px 14px; }
+      #rct-rail nav a .rct-num { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      #rct-rail .rct-foot { display: none; }
+    }
+    @media print { #rct-rail { display: none; } body { padding-left: 0; } }
+
   </style>
 
   <!-- Accessibility layer (focus rings, reduced motion, measured contrast) — shared with index.html -->
   <link rel="stylesheet" href="./src/a11y.css" />
 </head>
 <body>
+<aside id="rct-rail" aria-label="Regen Community Tools">
+  <div class="rct-wordmark">REGEN COMMUNITY TOOLS</div>
+  <nav>
+    <a href="https://compass.regencommunity.tools"><span class="rct-num">01 · People</span><span class="rct-nm">Community Compass</span></a>
+    <a href="https://atlas.regencommunity.tools"><span class="rct-num">02 · The Field</span><span class="rct-nm">The Living Atlas</span></a>
+    <a class="rct-current" href="https://land-selection-framework.regencommunity.tools" aria-current="page"><span class="rct-num">03 · The Ground</span><span class="rct-nm">Land Selection</span></a>
+    <a href="https://commons.regencommunity.tools"><span class="rct-num">00 · The Other Beginning</span><span class="rct-nm">Community Commons</span></a>
+  </nav>
+  <div class="rct-foot"><a href="https://regencommunity.tools">regencommunity.tools</a></div>
+</aside>
+
 
   <div class="mobile-note" id="mobile-note" role="note">
     <p>This analysis works best on a larger screen — everything is readable here, but the full comparison view needs width.</p>
@@ -998,7 +1043,7 @@
       <div class="stamp">
         prototype · deeper material
         <span class="sep">·</span>
-        <a href="https://land.regencommunity.tools" style="color: inherit; text-decoration: none;">land.regencommunity.tools</a>
+        <a href="https://land-selection-framework.regencommunity.tools" style="color: inherit; text-decoration: none;">land-selection-framework.regencommunity.tools</a>
         <span class="sep">·</span>
         last updated 2026-07-03
       </div>

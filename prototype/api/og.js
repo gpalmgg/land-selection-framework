@@ -44,7 +44,7 @@ function header(req, name) {
   return typeof hs.get === 'function' ? hs.get(name) : hs[name];
 }
 function baseOf(req) {
-  const host = header(req, 'host') || 'land.regencommunity.tools';
+  const host = header(req, 'host') || 'land-selection-framework.regencommunity.tools';
   const proto = header(req, 'x-forwarded-proto') || 'https';
   return `${proto}://${host}`;
 }
@@ -169,7 +169,7 @@ function buildRegionTree(r) {
           color: INK3,
         },
         [
-          h('div', { display: 'flex' }, 'land.regencommunity.tools'),
+          h('div', { display: 'flex' }, 'land-selection-framework.regencommunity.tools'),
           h('div', { display: 'flex' }, 'eight criteria · sources on the page'),
         ],
       ),
@@ -332,7 +332,7 @@ export default async function handler(req) {
               color: INK3,
             },
             [
-              h('div', { display: 'flex' }, 'land.regencommunity.tools'),
+              h('div', { display: 'flex' }, 'land-selection-framework.regencommunity.tools'),
               h('div', { display: 'flex' }, `${total} regions · filters, never scores`),
             ],
           ),
