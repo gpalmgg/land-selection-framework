@@ -25,11 +25,11 @@ const costById = Object.fromEntries(costData.map((e) => [e.region_id, e]));
 // mock Request (see scripts), or against the deployed prod URL.
 export const config = { runtime: 'edge' };
 
-const PAPER = '#FFFFFF';
-const INK = '#111111';
-const INK3 = '#555555';
-const ACCENT = '#111111';
-const RULE = '#DDDDDD';
+const PAPER = '#f6f2eb';
+const INK = '#1a1a1a';
+const INK3 = '#6b6258';
+const ACCENT = '#8a3a2a';
+const RULE = '#d8d0c2';
 
 // Element constructor: Satori reads .type and .props (incl. style, children).
 function h(type, style, children) {
@@ -51,8 +51,8 @@ function baseOf(req) {
 
 // Small (~18 KB) Latin woff — Satori supports woff, and the tiny size is robust
 // on flaky links. Covers the accented region names (Cévennes, Québec, Tirol…).
-const LITERATA_FONT =
-  'https://cdn.jsdelivr.net/npm/@fontsource/literata/files/literata-latin-500-normal.woff';
+const SPECTRAL_FONT =
+  'https://cdn.jsdelivr.net/npm/@fontsource/spectral/files/spectral-latin-500-normal.woff';
 
 function fmtVal(v) {
   if (typeof v !== 'number') return String(v);
@@ -73,7 +73,7 @@ function buildRegionTree(r) {
         display: 'flex',
         alignItems: 'baseline',
         border: `1px solid ${RULE}`,
-        background: '#FFFFFF',
+        background: '#fbf8f2',
         padding: '8px 16px',
         marginRight: 10,
         marginBottom: 10,
@@ -123,7 +123,7 @@ function buildRegionTree(r) {
       : null;
 
   const topChildren = [
-    h('div', { width: 120, height: 10, background: INK, marginBottom: 28 }),
+    h('div', { width: 120, height: 10, background: r.accent || ACCENT, marginBottom: 28 }),
     h(
       'div',
       { display: 'flex', fontSize: 22, letterSpacing: 2, color: ACCENT, marginBottom: 16 },
@@ -154,8 +154,7 @@ function buildRegionTree(r) {
       padding: 56,
       backgroundColor: PAPER,
       color: INK,
-      border: '1px solid #111111',
-      fontFamily: 'Literata',
+      fontFamily: 'Spectral',
     },
     [
       h('div', { display: 'flex', flexDirection: 'column' }, topChildren),
@@ -183,7 +182,7 @@ export default async function handler(req) {
   try {
     const { searchParams } = new URL(req.url, base);
 
-    const fontData = await fetch(LITERATA_FONT).then((r) => {
+    const fontData = await fetch(SPECTRAL_FONT).then((r) => {
       if (!r.ok) throw new Error(`font ${r.status}`);
       return r.arrayBuffer();
     });
@@ -196,7 +195,7 @@ export default async function handler(req) {
         return new ImageResponse(buildRegionTree(r), {
           width: 1200,
           height: 630,
-          fonts: [{ name: 'Literata', data: fontData, style: 'normal', weight: 500 }],
+          fonts: [{ name: 'Spectral', data: fontData, style: 'normal', weight: 500 }],
         });
       }
     }
@@ -224,7 +223,7 @@ export default async function handler(req) {
           display: 'flex',
           alignItems: 'center',
           border: `1px solid ${RULE}`,
-          background: '#FFFFFF',
+          background: '#fbf8f2',
           padding: '8px 18px',
           marginRight: 12,
           marginBottom: 12,
@@ -235,7 +234,8 @@ export default async function handler(req) {
           h('div', {
             width: 16,
             height: 16,
-            background: INK,
+            borderRadius: 8,
+            background: r.accent || ACCENT,
             marginRight: 11,
           }),
           r.name,
@@ -300,8 +300,7 @@ export default async function handler(req) {
         padding: 56,
         backgroundColor: PAPER,
         color: INK,
-        border: '1px solid #111111',
-        fontFamily: 'Literata',
+        fontFamily: 'Spectral',
       },
       [
         // Top block
@@ -344,7 +343,7 @@ export default async function handler(req) {
     return new ImageResponse(tree, {
       width: 1200,
       height: 630,
-      fonts: [{ name: 'Literata', data: fontData, style: 'normal', weight: 500 }],
+      fonts: [{ name: 'Spectral', data: fontData, style: 'normal', weight: 500 }],
     });
   } catch (err) {
     // Graceful degradation: fall back to the static card that already ships.

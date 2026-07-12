@@ -22,39 +22,33 @@
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <!-- Bokverk fonts via Google Fonts (Literata / Archivo / IBM Plex Mono). Self-hosting the fonts is a later optimization. -->
-  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..700&family=Archivo:wght@400..900&family=Archivo+Narrow:wght@500..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Fonts self-hosted (Inter + Spectral, SIL OFL 1.1), keeps the site self-contained -->
+  <link href="/vendor/fonts/fonts.css" rel="stylesheet" />
 
   <!-- Vercel Analytics (Hobby plan, no auth needed) -->
   <script defer src="/_vercel/insights/script.js"></script>
 
   <style>
     :root {
-      /* Bokverk: ink on paper, grays only as tints of ink. Old token NAMES kept
-         as aliases so existing references keep resolving; only VALUES change. */
-      --paper: #FFFFFF;
-      --paper-2: #FFFFFF;
-      --paper-3: #FFFFFF;
-      --ink: #111111;
-      --ink-2: #333333;
-      --ink-3: #555555;
-      --ink-4: #6b6b6b;
-      --rule: #111111;
-      --rule-soft: #DDDDDD;
-      --accent: #111111;
-      --accent-soft: #555555;
-      --pass: #111111;
-      --fail: #111111;
-      --serif: "Literata", Georgia, serif;
-      --sans: "Archivo", system-ui, sans-serif;
-      --sans-narrow: "Archivo Narrow", "Archivo", sans-serif;
-      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --paper: #f6f2eb;
+      --paper-2: #efe9df;
+      --paper-3: #e6dfd0;
+      --ink: #1a1a1a;
+      --ink-2: #3a3a3a;
+      --ink-3: #6b6258;
+      --ink-4: #9a9082;
+      --rule: #d8d0c2;
+      --rule-soft: #e6dfd0;
+      --accent: #8a3a2a;
+      --accent-soft: #c97a5a;
+      --pass: #3a6a4a;
+      --fail: #a05050;
     }
 
     * { box-sizing: border-box; }
     html, body {
       margin: 0; padding: 0;
-      font-family: Archivo, system-ui, sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
       font-size: 15px; line-height: 1.55;
       color: var(--ink); background: var(--paper);
       -webkit-font-smoothing: antialiased;
@@ -63,7 +57,7 @@
     body { overflow-x: hidden; }
     .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
     .narrow { max-width: 720px; margin: 0 auto; padding: 0 32px; }
-    .serif { font-family: Literata, Georgia, serif; }
+    .serif { font-family: 'Spectral', Georgia, serif; }
     h1, h2, h3, h4 { margin: 0; color: var(--ink); }
     .eyebrow {
       font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
@@ -85,7 +79,7 @@
       gap: 24px;
     }
     .topbar a.back {
-      font-family: Literata, serif; font-style: italic;
+      font-family: 'Spectral', serif; font-style: italic;
       font-size: 14px; color: var(--ink-2);
       text-decoration: underline dotted; text-underline-offset: 3px;
     }
@@ -99,11 +93,14 @@
     .hero {
       padding: 96px 0 80px;
       border-bottom: 1px solid var(--rule);
-      background: #FFFFFF;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(138, 58, 42, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse at 10% 80%, rgba(44, 95, 124, 0.05) 0%, transparent 50%),
+        var(--paper);
     }
     .hero .eyebrow { margin-bottom: 26px; }
     .hero h1 {
-      font-family: Literata, Georgia, serif;
+      font-family: 'Spectral', Georgia, serif;
       font-weight: 400;
       font-size: clamp(44px, 7.5vw, 88px);
       line-height: 1.02;
@@ -112,7 +109,7 @@
       max-width: 16ch;
     }
     .hero .subtitle {
-      font-family: Literata, Georgia, serif;
+      font-family: 'Spectral', Georgia, serif;
       font-style: italic;
       font-weight: 300;
       font-size: clamp(19px, 2.2vw, 26px);
@@ -122,7 +119,7 @@
       margin-bottom: 32px;
     }
     .hero .lede {
-      font-family: Literata, Georgia, serif;
+      font-family: 'Spectral', Georgia, serif;
       font-size: 17px; line-height: 1.6;
       color: var(--ink-2); max-width: 56ch; margin-bottom: 28px;
     }
@@ -135,7 +132,7 @@
       display: block; padding: 8px 14px 8px 0;
       color: var(--ink-2);
       text-decoration: underline dotted; text-underline-offset: 3px;
-      font-family: Literata, serif;
+      font-family: 'Spectral', serif;
       font-size: 13.5px;
     }
     .hero .toc a:hover { color: var(--accent); }
@@ -146,7 +143,7 @@
       border-bottom: 1px solid var(--rule);
     }
     section.block h2 {
-      font-family: Literata, serif;
+      font-family: 'Spectral', serif;
       font-size: clamp(28px, 4vw, 38px); font-weight: 400;
       letter-spacing: -0.012em; margin-bottom: 14px;
       max-width: 22ch;
@@ -155,14 +152,14 @@
       margin-bottom: 16px;
     }
     section.block .intro {
-      font-family: Literata, serif;
+      font-family: 'Spectral', serif;
       font-size: 17px; line-height: 1.6;
       color: var(--ink-2); max-width: 60ch; margin: 0 0 36px;
     }
 
     /* === Body prose === */
     .prose {
-      font-family: Literata, serif;
+      font-family: 'Spectral', serif;
       font-size: 16.5px; line-height: 1.7;
       color: var(--ink-2);
       max-width: 64ch;
@@ -177,14 +174,14 @@
     }
     .prose a:hover { color: var(--ink); }
     .prose h3 {
-      font-family: Literata, serif;
+      font-family: 'Spectral', serif;
       font-size: 22px; font-weight: 500;
       letter-spacing: -0.005em;
       margin: 36px 0 10px;
       color: var(--ink);
     }
     .prose h4 {
-      font-family: Archivo, sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 11px; font-weight: 600;
       letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--accent);
@@ -202,19 +199,19 @@
       padding: 24px 28px 22px;
     }
     .method-point .num {
-      font-family: Literata, serif;
+      font-family: 'Spectral', serif;
       font-style: italic; font-size: 14px; color: var(--ink-4);
       margin-bottom: 4px;
     }
     .method-point h4 {
-      font-family: Literata, serif;
+      font-family: 'Spectral', serif;
       font-size: 19px; font-weight: 500;
       letter-spacing: -0.005em;
       margin: 0 0 8px;
       color: var(--ink);
     }
     .method-point p {
-      font-family: Literata, serif;
+      font-family: 'Spectral', serif;
       font-size: 14.5px; line-height: 1.6;
       color: var(--ink-2); margin: 0;
     }
@@ -234,19 +231,19 @@
       margin-bottom: 10px;
     }
     .case-study h3.case-name {
-      font-family: Literata, serif;
+      font-family: 'Spectral', serif;
       font-size: clamp(34px, 5vw, 52px); font-weight: 400;
       letter-spacing: -0.018em; line-height: 1.05;
       color: var(--ink);
       margin-bottom: 10px;
     }
     .case-study .case-tag {
-      font-family: Literata, serif; font-style: italic;
+      font-family: 'Spectral', serif; font-style: italic;
       font-size: 17px; color: var(--ink-3);
       max-width: 38ch;
     }
     .case-study .closing {
-      font-family: Literata, serif;
+      font-family: 'Spectral', serif;
       font-style: italic;
       font-weight: 300;
       font-size: 18px; line-height: 1.6;
@@ -257,7 +254,7 @@
       border-top: 1px solid var(--rule);
     }
     .case-study .closing-label {
-      font-family: Archivo, sans-serif;
+      font-family: 'Inter', sans-serif;
       font-style: normal;
       font-size: 10.5px; font-weight: 600;
       letter-spacing: 0.1em; text-transform: uppercase;
@@ -273,19 +270,19 @@
       margin: 26px 0;
     }
     .tension-pair .pair-label {
-      font-family: Archivo, sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 10.5px; font-weight: 600;
       letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--accent); margin-bottom: 10px;
     }
     .tension-pair p {
-      font-family: Literata, serif;
+      font-family: 'Spectral', serif;
       font-size: 15.5px; line-height: 1.65;
       color: var(--ink-2); margin: 0 0 12px;
     }
     .tension-pair p:last-child { margin-bottom: 0; }
     .tension-resolve {
-      font-family: Literata, serif;
+      font-family: 'Spectral', serif;
       font-style: italic;
       font-size: 17px; line-height: 1.65;
       color: var(--ink-2);
@@ -310,7 +307,7 @@
       margin-top: 28px;
     }
     .source-group h3 {
-      font-family: Archivo, sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 11px; font-weight: 600;
       letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--accent);
@@ -323,7 +320,7 @@
       display: grid; gap: 10px;
     }
     .source-group li {
-      font-family: Literata, serif;
+      font-family: 'Spectral', serif;
       font-size: 14px; line-height: 1.55;
       color: var(--ink-2);
     }
@@ -338,7 +335,7 @@
     .source-group li a:hover { color: var(--ink); }
     .source-group li .used-for {
       display: block;
-      font-family: Archivo, sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 10.5px; letter-spacing: 0.04em;
       color: var(--ink-4); margin-top: 2px;
     }
@@ -350,7 +347,7 @@
       background: var(--paper-2);
     }
     footer .frame {
-      font-family: Literata, serif; font-style: italic;
+      font-family: 'Spectral', serif; font-style: italic;
       font-size: 14.5px; line-height: 1.6;
       color: var(--ink-2); max-width: 62ch; margin-bottom: 30px;
     }
@@ -394,8 +391,9 @@
       }
       .mobile-note p { margin: 0; flex: 1; }
       .mobile-note-x {
-        flex: none; background: none; border: 1px solid var(--rule); padding: 5px 11px;
-        font-family: Archivo, system-ui, sans-serif; font-size: 11px;
+        flex: none; background: none; border: 1px solid var(--rule);
+        border-radius: 4px; padding: 5px 11px;
+        font-family: 'Inter', system-ui, sans-serif; font-size: 11px;
         letter-spacing: 0.02em; color: var(--ink-3); cursor: pointer;
       }
     }
@@ -404,150 +402,12 @@
     /* === Suite footer === quiet cross-tool line, matches the bridge idiom. */
     .suite-note { margin-top: 12px; font-size: 11.5px; color: var(--ink-4); }
     .suite-note a { color: var(--ink-3); text-decoration: underline dotted; text-underline-offset: 2px; }
-
-    /* ═══════════════════════════════════════════════════════════════════════
-       Bokverk v2 — "the press comes alive" on the deeper material: night
-       edition · suite rail · ambient layer · ink-physics motion · reticle.
-       Presentation only; copy and functionality untouched.
-       ═══════════════════════════════════════════════════════════════════════ */
-    :root { --rail: 216px; --ink-faint: #888888; --petrol: #0E5F5F; }
-    html.night {
-      --paper: #111111; --paper-2: #111111; --paper-3: #111111;
-      --ink: #FFFFFF; --ink-2: #DDDDDD; --ink-3: #BBBBBB;
-      --rule: #FFFFFF; --rule-soft: #333333;
-      --accent: #FFFFFF; --accent-soft: #BBBBBB; --pass: #FFFFFF; --fail: #FFFFFF;
-    }
-    html.night { --ink-4: #999999; --petrol: #3FA9A0; }
-    html.night img { filter: invert(1); }
-    /* Petrol — the one accent, used sparingly (focus rings, current marker). */
-    :focus-visible { outline-color: var(--petrol) !important; }
-
-    #ambient { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
-    #ambient .geo { position: absolute; border: 1px solid var(--ink); opacity: 0.05; }
-    #ambient .geo.c { border-radius: 50%; }
-
-    #rail {
-      position: fixed; top: 0; left: 0; bottom: 0; width: var(--rail); z-index: 60;
-      border-right: 1px solid var(--rule); background: var(--paper);
-      display: flex; flex-direction: column; padding: 20px 0 16px; font-family: var(--sans);
-    }
-    #rail .wordmark { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; padding: 0 18px 16px; border-bottom: 1px solid var(--rule); margin-bottom: 6px; }
-    #rail nav { flex: 1; display: flex; flex-direction: column; }
-    #rail nav a { display: block; text-decoration: none; color: var(--ink); padding: 13px 18px; border-bottom: 1px solid var(--rule-soft); position: relative; overflow: hidden; }
-    #rail nav a .num { font-family: var(--mono); font-size: 11px; color: var(--ink-3); display: block; letter-spacing: 0.05em; }
-    #rail nav a .nm { font-weight: 700; font-size: 13px; letter-spacing: 0.03em; text-transform: uppercase; display: block; margin-top: 2px; }
-    #rail nav a .sq { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); width: 7px; height: 7px; background: var(--ink); opacity: 0; transition: opacity 120ms; }
-    #rail nav a::before { content: ""; position: absolute; inset: 0; background: var(--ink); transform: translateX(-101%); transition: transform 130ms ease-out; z-index: -1; }
-    #rail nav a:hover::before, #rail nav a:focus-visible::before { transform: translateX(0); }
-    #rail nav a:hover, #rail nav a:focus-visible { color: var(--paper); }
-    #rail nav a:hover .num, #rail nav a:focus-visible .num { color: var(--paper); }
-    #rail nav a:hover .sq { opacity: 1; background: var(--paper); }
-    #rail nav a.current .sq { opacity: 1; background: var(--petrol); }
-    #rail .railfoot { padding: 12px 18px 0; border-top: 1px solid var(--rule); }
-    #rail .railfoot .st { font-family: var(--mono); font-size: 10px; line-height: 1.6; letter-spacing: 0.04em; color: var(--ink-3); text-transform: uppercase; }
-
-    #masthead {
-      display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;
-      gap: 6px 24px; padding: 12px clamp(28px, 4vw, 72px); border-bottom: 3px double var(--rule);
-      background: var(--paper); font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em;
-      text-transform: uppercase; color: var(--ink-3); position: relative; z-index: 2;
-    }
-    #masthead button { background: none; border: 1px solid var(--ink); color: var(--ink); font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; cursor: pointer; }
-    #masthead button:hover { background: var(--ink); color: var(--paper); }
-
-    #runhead { display: none; }
-    @media (min-width: 1100px) and (pointer: fine) {
-      #runhead { display: block; position: fixed; right: 9px; top: 50%; transform: translateY(-50%) rotate(180deg); writing-mode: vertical-rl; font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); z-index: 2; pointer-events: none; }
-    }
-
-    /* self-drawing dividers: convert the static section rules to drawn ones */
-    .hero, section.block { position: relative; border-bottom: none; }
-    .hero::after, section.block::after {
-      content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 0;
-      border-top: 1px solid var(--rule); transform: scaleX(1); transform-origin: left; /* visible by default */
-    }
-    .hero.bk-arm::after, section.block.bk-arm::after { transform: scaleX(0); }
-    .hero.bk-entered::after, section.block.bk-entered::after { transition: transform 500ms ease-out; transform: scaleX(1); }
-
-    #hintbar { display: none; }
-    @media (min-width: 900px) and (pointer: fine) {
-      #hintbar { display: flex; justify-content: space-between; position: fixed; left: var(--rail); right: 0; bottom: 0; z-index: 60; border-top: 1px solid var(--rule); background: var(--paper); padding: 7px clamp(28px, 4vw, 72px); font-family: var(--mono); font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-3); }
-      #hintbar kbd { border: 1px solid var(--ink-3); padding: 0 5px; font-family: var(--mono); }
-      body { padding-bottom: 34px; }
-    }
-
-    @media (pointer: fine) {
-      html.bk-reticle, html.bk-reticle a, html.bk-reticle button, html.bk-reticle summary { cursor: none; }
-      html.bk-reticle input, html.bk-reticle textarea, html.bk-reticle select { cursor: auto; }
-      #reticle { position: fixed; z-index: 9000; top: 0; left: 0; width: 20px; height: 20px; margin: -10px 0 0 -10px; pointer-events: none; }
-      #reticle::before, #reticle::after { content: ""; position: absolute; background: var(--ink); }
-      #reticle::before { left: 9px; top: 0; width: 1px; height: 20px; }
-      #reticle::after { top: 9px; left: 0; height: 1px; width: 20px; }
-      #reticle i { position: absolute; left: 7px; top: 7px; width: 6px; height: 6px; border: 1px solid var(--ink); }
-      #reticle.onlink i { left: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; }
-    }
-
-    /* full-width: use the whole viewport; the reading column keeps its measure */
-    .container { max-width: none; margin: 0; padding-left: clamp(28px, 4vw, 72px); padding-right: clamp(28px, 4vw, 72px); }
-    @media (min-width: 768px) {
-      body > .topbar, body > #masthead, body > section, body > footer { margin-left: var(--rail); }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .hero::after, section.block::after { transform: scaleX(1) !important; transition: none !important; }
-      #reticle { display: none; }
-      html.bk-reticle, html.bk-reticle a, html.bk-reticle button, html.bk-reticle summary { cursor: auto; }
-    }
-
-    @media (max-width: 767px) {
-      #rail { position: static; width: 100%; border-right: none; border-bottom: 1px solid var(--rule); }
-      #rail nav { flex-direction: row; flex-wrap: wrap; }
-      #rail nav a { flex: 1 1 40%; border-right: 1px solid var(--rule-soft); }
-      #rail .railfoot { display: none; }
-      #hintbar, #runhead { display: none !important; }
-      body > .topbar, body > #masthead, body > section, body > footer { margin-left: 0; }
-    }
-
-    @media print {
-      #rail, #ambient, #masthead, #hintbar, #runhead, #reticle { display: none !important; }
-      body > .topbar, body > section, body > footer { margin-left: 0 !important; }
-      .container { padding-left: 0; padding-right: 0; }
-      .hero::after, section.block::after { transform: scaleX(1) !important; }
-    }
   </style>
 
   <!-- Accessibility layer (focus rings, reduced motion, measured contrast) — shared with index.html -->
   <link rel="stylesheet" href="./src/a11y.css" />
 </head>
 <body>
-
-  <div id="ambient" aria-hidden="true">
-    <div class="geo c" style="width:52vw;height:52vw;right:-16vw;top:-18vw"></div>
-    <div class="geo c" style="width:28vw;height:28vw;left:10vw;bottom:-12vw"></div>
-    <div class="geo" style="width:1px;height:100vh;left:62vw;top:0"></div>
-    <div class="geo" style="width:16vw;height:16vw;right:22vw;bottom:8vh"></div>
-  </div>
-
-  <aside id="rail" aria-label="Regen Community Tools — the suite">
-    <div class="wordmark">Regen Community<br>Tools</div>
-    <nav aria-label="The tools">
-      <a href="https://compass.regencommunity.tools"><span class="num">01 · PEOPLE</span><span class="nm">Community Compass</span><span class="sq"></span></a>
-      <a href="https://atlas.regencommunity.tools"><span class="num">02 · THE FIELD</span><span class="nm">The Living Atlas</span><span class="sq"></span></a>
-      <a href="https://land.regencommunity.tools" class="current" aria-current="page"><span class="num">03 · THE GROUND</span><span class="nm">Land Selection</span><span class="sq"></span></a>
-      <a href="https://commons.regencommunity.tools"><span class="num">00 · THE OTHER BEGINNING</span><span class="nm">Community Commons</span><span class="sq"></span></a>
-    </nav>
-    <div class="railfoot">
-      <div class="st">8 criteria · 20 regions<br>every value sourced<br>no hidden scores</div>
-    </div>
-  </aside>
-
-  <div id="masthead">
-    <span id="edition">EDITION OF —</span>
-    <span class="status">DEEPER MATERIAL · WITH SOURCES · NO ERROR</span>
-    <button id="editionToggle" type="button" aria-pressed="false">NIGHT EDITION</button>
-  </div>
-
-  <div id="runhead" aria-hidden="true">03 · THE GROUND</div>
 
   <div class="mobile-note" id="mobile-note" role="note">
     <p>This analysis works best on a larger screen — everything is readable here, but the full comparison view needs width.</p>
@@ -1158,79 +1018,6 @@
         try { localStorage.setItem(KEY, '1'); } catch (e) {}
       });
     })();
-  </script>
-
-  <div id="hintbar" aria-hidden="true">
-    <span><kbd>i</kbd> INVERT EDITION · <kbd>P</kbd> PRINT SUMMARY</span>
-    <span>SET IN LITERATA · ARCHIVO · PLEX MONO</span>
-  </div>
-
-  <!-- Bokverk v2: the press comes alive. Presentation-only; all removed under
-       prefers-reduced-motion. Copy and functionality untouched. -->
-  <script>
-  (function () {
-    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var fine = matchMedia('(pointer: fine)').matches;
-    var root = document.documentElement;
-
-    var months = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
-    var d = new Date(), ed = document.getElementById('edition');
-    if (ed) ed.textContent = 'EDITION OF ' + d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
-
-    var btn = document.getElementById('editionToggle');
-    function setEdition(night) {
-      root.classList.toggle('night', night);
-      if (btn) { btn.textContent = night ? 'DAY EDITION' : 'NIGHT EDITION'; btn.setAttribute('aria-pressed', String(night)); }
-      try { localStorage.setItem('bokverk-edition', night ? 'night' : 'day'); } catch (e) {}
-    }
-    try { if (localStorage.getItem('bokverk-edition') === 'night') setEdition(true); } catch (e) {}
-    if (btn) btn.addEventListener('click', function () { setEdition(!root.classList.contains('night')); });
-    function typingInto(el) { return el && /INPUT|TEXTAREA|SELECT/.test(el.tagName); }
-    document.addEventListener('keydown', function (e) {
-      if (e.metaKey || e.ctrlKey || e.altKey || typingInto(document.activeElement)) return;
-      if (e.key === 'i' || e.key === 'I') setEdition(!root.classList.contains('night'));
-      else if (e.key === 'p' || e.key === 'P') { e.preventDefault(); window.print(); }
-    });
-
-    var rules = document.querySelectorAll('.hero, section.block');
-    if (!reduce && 'IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (es) {
-        es.forEach(function (en) {
-          if (en.isIntersecting) { en.target.classList.remove('bk-arm'); en.target.classList.add('bk-entered'); io.unobserve(en.target); }
-        });
-      }, { threshold: 0.12 });
-      rules.forEach(function (r) {
-        if (r.getBoundingClientRect().top < window.innerHeight) return;
-        r.classList.add('bk-arm'); io.observe(r);
-      });
-    }
-
-    var runhead = document.getElementById('runhead');
-    if (runhead && 'IntersectionObserver' in window) {
-      var LABELS = { methodology: 'METHODOLOGY', 'case-studies': 'CASE STUDIES', tensions: 'DEFERRED TENSIONS', ethics: 'ETHICS & VALUES', 'whats-next': "WHAT'S NEXT", sources: 'SOURCES' };
-      var secObs = new IntersectionObserver(function (es) {
-        es.forEach(function (en) {
-          if (!en.isIntersecting) return;
-          var label = LABELS[en.target.id] || 'IN DEPTH';
-          runhead.textContent = '03 · ' + label;
-        });
-      }, { threshold: 0.5 });
-      document.querySelectorAll('body > section').forEach(function (s) { secObs.observe(s); });
-    }
-
-    if (fine && !reduce) {
-      root.classList.add('bk-reticle');
-      var ret = document.createElement('div'); ret.id = 'reticle';
-      ret.appendChild(document.createElement('i'));
-      document.body.appendChild(ret);
-      document.addEventListener('mousemove', function (e) {
-        ret.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)';
-        ret.classList.toggle('onlink', !!(e.target.closest && e.target.closest('a,button,summary,label,input,select,textarea')));
-      }, { passive: true });
-      document.addEventListener('mouseleave', function () { ret.style.opacity = '0'; });
-      document.addEventListener('mouseenter', function () { ret.style.opacity = '1'; });
-    }
-  })();
   </script>
 
 </body>

@@ -378,7 +378,7 @@ function initMap() {
           attribution: '© OpenStreetMap contributors · © CARTO',
         },
       },
-      layers: [{ id: 'base', type: 'raster', source: 'carto-positron', paint: { 'raster-saturation': -1 } }],
+      layers: [{ id: 'base', type: 'raster', source: 'carto-positron' }],
     },
     center: CONTINENTS[state.continent].center,
     zoom: CONTINENTS[state.continent].zoom,
@@ -387,25 +387,6 @@ function initMap() {
   });
 
   mapInstance.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
-
-  // Bokverk v2 — surveyor's reticle: print live lat/lon in the map margin as the
-  // pointer moves over the map. Presentation only; gated to fine pointers with
-  // motion allowed, so it never interferes with touch or reduced-motion users.
-  const coordReadout = document.getElementById('map-coords');
-  if (
-    coordReadout &&
-    matchMedia('(pointer: fine)').matches &&
-    !matchMedia('(prefers-reduced-motion: reduce)').matches
-  ) {
-    mapInstance.on('mousemove', (e) => {
-      const { lat, lng } = e.lngLat;
-      const ns = lat >= 0 ? 'N' : 'S';
-      const ew = lng >= 0 ? 'E' : 'W';
-      coordReadout.textContent = `${Math.abs(lat).toFixed(2)}°${ns} · ${Math.abs(lng).toFixed(2)}°${ew}`;
-      coordReadout.classList.add('is-live');
-    });
-    mapInstance.on('mouseout', () => coordReadout.classList.remove('is-live'));
-  }
 
   // Hardening: a single tile/source failure (a WMS momentarily down, a rotated
   // token) must never break the map or spam the console. Swallow per-source tile
@@ -428,7 +409,7 @@ function initMap() {
     mapInstance.addLayer({
       id: 'hillshade', source: 'hillshade', type: 'raster',
       layout: { visibility: state.mapLayers['hillshade'] ? 'visible' : 'none' },
-      paint: { 'raster-opacity': 0.7, 'raster-saturation': -1 },
+      paint: { 'raster-opacity': 0.7 },
     });
 
     // OpenTopoMap, terrain map with contour lines
@@ -446,7 +427,7 @@ function initMap() {
     mapInstance.addLayer({
       id: 'topo', source: 'topo', type: 'raster',
       layout: { visibility: state.mapLayers['topo'] ? 'visible' : 'none' },
-      paint: { 'raster-opacity': 0.78, 'raster-saturation': -1 },
+      paint: { 'raster-opacity': 0.78 },
     });
 
     // Sentinel-2 cloudless 2021, current satellite imagery
@@ -460,7 +441,7 @@ function initMap() {
     mapInstance.addLayer({
       id: 'satellite', source: 'satellite', type: 'raster',
       layout: { visibility: state.mapLayers['satellite'] ? 'visible' : 'none' },
-      paint: { 'raster-opacity': 0.92, 'raster-saturation': -1 },
+      paint: { 'raster-opacity': 0.92 },
     });
 
     // NASA GIBS VIIRS Black Marble, night-time lights (development / electrification proxy)
@@ -474,7 +455,7 @@ function initMap() {
     mapInstance.addLayer({
       id: 'night-lights', source: 'night-lights', type: 'raster',
       layout: { visibility: state.mapLayers['night-lights'] ? 'visible' : 'none' },
-      paint: { 'raster-opacity': 0.85, 'raster-saturation': -1 },
+      paint: { 'raster-opacity': 0.85 },
     });
 
     // === Expanded data layers (verified public tile/WMS services, 2026-07) ===
@@ -516,7 +497,7 @@ function initMap() {
         layout: { visibility: state.mapLayers[def.id] ? 'visible' : 'none' },
         // Cap opacity so two stacked surfaces blend (lower one shows through)
         // rather than the top surface painting fully opaque over everything below.
-        paint: { 'raster-opacity': Math.min(def.opacity, 0.66), 'raster-saturation': -1 },
+        paint: { 'raster-opacity': Math.min(def.opacity, 0.66) },
       });
     });
 
@@ -532,7 +513,7 @@ function initMap() {
     mapInstance.addLayer({
       id: 'forest-change', source: 'forest-change', type: 'raster',
       layout: { visibility: state.mapLayers['forest-change'] ? 'visible' : 'none' },
-      paint: { 'raster-opacity': 0.78, 'raster-saturation': -1 },
+      paint: { 'raster-opacity': 0.78 },
     });
 
     // Water stress polygons (WRI Aqueduct, processed)
@@ -546,13 +527,13 @@ function initMap() {
       paint: {
         'fill-color': [
           'interpolate', ['linear'], ['get', 'score'],
-          0.0, 'rgba(17, 17, 17, 0.0)',
-          0.5, 'rgba(17, 17, 17, 0.16)',
-          1.5, 'rgba(17, 17, 17, 0.34)',
-          3.0, 'rgba(17, 17, 17, 0.56)',
-          5.0, 'rgba(17, 17, 17, 0.82)',
+          0.0, 'rgba(255, 247, 230, 0.0)',
+          0.5, 'rgba(252, 224, 150, 0.55)',
+          1.5, 'rgba(244, 184, 96, 0.72)',
+          3.0, 'rgba(226, 122, 60, 0.84)',
+          5.0, 'rgba(150, 32, 30, 0.92)',
         ],
-        'fill-outline-color': 'rgba(17, 17, 17, 0.12)',
+        'fill-outline-color': 'rgba(150, 32, 30, 0.08)',
       },
     });
 
@@ -567,13 +548,13 @@ function initMap() {
       paint: {
         'fill-color': [
           'interpolate', ['linear'], ['get', 'score'],
-          0.0, 'rgba(17, 17, 17, 0.0)',
-          0.5, 'rgba(17, 17, 17, 0.16)',
-          1.5, 'rgba(17, 17, 17, 0.34)',
-          3.0, 'rgba(17, 17, 17, 0.56)',
-          5.0, 'rgba(17, 17, 17, 0.82)',
+          0.0, 'rgba(252, 246, 235, 0.0)',
+          0.5, 'rgba(232, 212, 178, 0.5)',
+          1.5, 'rgba(212, 162, 102, 0.7)',
+          3.0, 'rgba(170, 96, 50, 0.82)',
+          5.0, 'rgba(110, 50, 28, 0.92)',
         ],
-        'fill-outline-color': 'rgba(17, 17, 17, 0.12)',
+        'fill-outline-color': 'rgba(110, 50, 28, 0.08)',
       },
     });
 
@@ -591,10 +572,10 @@ function initMap() {
         'heatmap-color': [
           'interpolate', ['linear'], ['heatmap-density'],
           0, 'rgba(0,0,0,0)',
-          0.15, 'rgba(17, 17, 17, 0.22)',
-          0.4, 'rgba(17, 17, 17, 0.5)',
-          0.7, 'rgba(17, 17, 17, 0.72)',
-          1, 'rgba(17, 17, 17, 0.92)',
+          0.15, 'rgba(160, 80, 80, 0.25)',
+          0.4, 'rgba(178, 70, 50, 0.55)',
+          0.7, 'rgba(220, 100, 70, 0.75)',
+          1, 'rgba(90, 26, 26, 0.9)',
         ],
         'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 3, 12, 7, 28],
         'heatmap-opacity': 0.9,
@@ -611,8 +592,8 @@ function initMap() {
       layout: { visibility: state.mapLayers['regen-network'] ? 'visible' : 'none' },
       paint: {
         'circle-radius': ['interpolate', ['linear'], ['zoom'], 3, 3, 7, 6],
-        'circle-color': '#111111',
-        'circle-stroke-color': '#FFFFFF',
+        'circle-color': '#3a6a4a',
+        'circle-stroke-color': '#f6f2eb',
         'circle-stroke-width': 1.5,
         'circle-opacity': 0.9,
       },
@@ -622,7 +603,7 @@ function initMap() {
     regions.forEach((r) => {
       const wrap = el('div', { className: 'region-marker' });
       wrap.dataset.continent = r.continent;
-      wrap.style.setProperty('--marker-color', '#111111');
+      wrap.style.setProperty('--marker-color', r.accent);
       wrap.textContent = r.name[0];
 
       const label = el('div', { className: 'region-label', text: r.name });
@@ -649,19 +630,19 @@ function initMap() {
 // Legend for the data layers currently visible — color meaning, never a score.
 // Imagery/terrain layers are self-explanatory and stay out of the legend.
 const LEGEND = {
-  'precipitation':   { label: 'Precipitation (mean)',     kind: 'ramp',  colors: ['#DDDDDD', '#888888', '#111111'] },
-  'water-stress':    { label: 'Water stress, 2050',       kind: 'ramp',  colors: ['#DDDDDD', '#888888', '#111111'] },
-  'water-depletion': { label: 'Water depletion, 2050',    kind: 'ramp',  colors: ['#DDDDDD', '#888888', '#111111'] },
-  'forest-change':   { label: 'Forest loss (Hansen)',     kind: 'solid', color: '#111111' },
-  'soil-carbon':     { label: 'Soil organic carbon',      kind: 'ramp',  colors: ['#DDDDDD', '#888888', '#111111'] },
-  'land-cover':      { label: 'Land cover (10m)',         kind: 'ramp',  colors: ['#DDDDDD', '#888888', '#111111'] },
-  'solar-pv':        { label: 'Solar PV potential',       kind: 'ramp',  colors: ['#DDDDDD', '#888888', '#111111'] },
-  'coastal-flood':   { label: 'Coastal flood / SLR',      kind: 'ramp',  colors: ['#DDDDDD', '#888888', '#111111'] },
-  'seismic':         { label: 'Seismic hazard',           kind: 'ramp',  colors: ['#DDDDDD', '#888888', '#111111'] },
-  'population':      { label: 'Population density',        kind: 'ramp',  colors: ['#DDDDDD', '#888888', '#111111'] },
-  'travel-time':     { label: 'Travel time to cities',    kind: 'ramp',  colors: ['#DDDDDD', '#888888', '#111111'] },
-  'conflict':        { label: 'Conflict density',         kind: 'ramp',  colors: ['#DDDDDD', '#888888', '#111111'] },
-  'regen-network':   { label: 'Ecovillage sites',         kind: 'dot',   color: '#111111' },
+  'precipitation':   { label: 'Precipitation (mean)',     kind: 'ramp',  colors: ['#eef3f6', '#7aa8c8', '#1c4a78'] },
+  'water-stress':    { label: 'Water stress, 2050',       kind: 'ramp',  colors: ['#fcecc9', '#e8a64a', '#96201e'] },
+  'water-depletion': { label: 'Water depletion, 2050',    kind: 'ramp',  colors: ['#ecdab2', '#d4a266', '#6e321c'] },
+  'forest-change':   { label: 'Forest loss (Hansen)',     kind: 'solid', color: '#8a3a2a' },
+  'soil-carbon':     { label: 'Soil organic carbon',      kind: 'ramp',  colors: ['#f0e5cf', '#a87a3a', '#3a2a14'] },
+  'land-cover':      { label: 'Land cover (10m)',         kind: 'ramp',  colors: ['#3a7a3a', '#e8d8a0', '#9a9a9a'] },
+  'solar-pv':        { label: 'Solar PV potential',       kind: 'ramp',  colors: ['#e8e4d8', '#e8b34a', '#b8633a'] },
+  'coastal-flood':   { label: 'Coastal flood / SLR',      kind: 'ramp',  colors: ['#dfeef4', '#6aa8cc', '#1c4a70'] },
+  'seismic':         { label: 'Seismic hazard',           kind: 'ramp',  colors: ['#e8e0c8', '#d8a04a', '#8a2a2a'] },
+  'population':      { label: 'Population density',        kind: 'ramp',  colors: ['#eef0e8', '#9a9a72', '#3a3a2a'] },
+  'travel-time':     { label: 'Travel time to cities',    kind: 'ramp',  colors: ['#f4ead8', '#c89a5a', '#6a3a1a'] },
+  'conflict':        { label: 'Conflict density',         kind: 'ramp',  colors: ['#d8a0a0', '#b24632', '#5a1a1a'] },
+  'regen-network':   { label: 'Ecovillage sites',         kind: 'dot',   color: '#3a6a4a' },
 };
 
 function renderMapLegend() {
@@ -676,16 +657,8 @@ function renderMapLegend() {
     const def = LEGEND[id];
     const row = el('div', { className: 'legend-row' });
     const sw = el('span', { className: 'legend-swatch' + (def.kind === 'dot' ? ' dot' : '') });
-    if (def.kind === 'ramp') {
-      // ordered light->dark gray STEPS (no gradient); the label names the layer
-      sw.style.display = 'flex';
-      def.colors.forEach((col) => {
-        const seg = el('span');
-        seg.style.flex = '1';
-        seg.style.background = col;
-        sw.appendChild(seg);
-      });
-    } else sw.style.background = def.color;
+    if (def.kind === 'ramp') sw.style.background = `linear-gradient(90deg, ${def.colors.join(', ')})`;
+    else sw.style.background = def.color;
     row.appendChild(sw);
     row.appendChild(el('span', { className: 'legend-label', text: def.label }));
     mount.appendChild(row);
@@ -703,28 +676,28 @@ function renderMapToggles() {
   const toggleEls = {};
   const layerDefs = [
     // Climate & water
-    { id: 'precipitation', name: 'Precipitation', color: '#111111', group: 'climate' },
-    { id: 'water-stress', name: 'Water stress 2050', color: '#111111', group: 'climate' },
-    { id: 'water-depletion', name: 'Water depletion 2050', color: '#111111', group: 'climate' },
+    { id: 'precipitation', name: 'Precipitation', color: '#3a6a8a', group: 'climate' },
+    { id: 'water-stress', name: 'Water stress 2050', color: '#b03a2e', group: 'climate' },
+    { id: 'water-depletion', name: 'Water depletion 2050', color: '#aa6032', group: 'climate' },
     // Land & soil
-    { id: 'forest-change', name: 'Forest loss', color: '#111111', group: 'land' },
-    { id: 'soil-carbon', name: 'Soil organic carbon', color: '#111111', group: 'land' },
-    { id: 'land-cover', name: 'Land cover (10m)', color: '#111111', group: 'land' },
+    { id: 'forest-change', name: 'Forest loss', color: '#5a2a2a', group: 'land' },
+    { id: 'soil-carbon', name: 'Soil organic carbon', color: '#7a5a2a', group: 'land' },
+    { id: 'land-cover', name: 'Land cover (10m)', color: '#4a7a4a', group: 'land' },
     // Energy
-    { id: 'solar-pv', name: 'Solar PV potential', color: '#111111', group: 'energy' },
+    { id: 'solar-pv', name: 'Solar PV potential', color: '#b8633a', group: 'energy' },
     // Hazards
-    { id: 'coastal-flood', name: 'Coastal flood / SLR', color: '#111111', group: 'hazards' },
-    { id: 'seismic', name: 'Seismic hazard', color: '#111111', group: 'hazards' },
+    { id: 'coastal-flood', name: 'Coastal flood / SLR', color: '#2a6a8a', group: 'hazards' },
+    { id: 'seismic', name: 'Seismic hazard', color: '#8a5a2a', group: 'hazards' },
     // People & access
-    { id: 'population', name: 'Population density', color: '#111111', group: 'human' },
-    { id: 'travel-time', name: 'Travel time to cities', color: '#111111', group: 'human' },
-    { id: 'conflict', name: 'Conflict density', color: '#111111', group: 'human' },
-    { id: 'regen-network', name: 'Ecovillage sites', color: '#111111', group: 'human' },
+    { id: 'population', name: 'Population density', color: '#6a5a4a', group: 'human' },
+    { id: 'travel-time', name: 'Travel time to cities', color: '#7a6a8a', group: 'human' },
+    { id: 'conflict', name: 'Conflict density', color: '#a05050', group: 'human' },
+    { id: 'regen-network', name: 'Ecovillage sites', color: '#3a6a4a', group: 'human' },
     // Terrain & imagery
-    { id: 'hillshade', name: 'Terrain relief', color: '#111111', group: 'imagery' },
-    { id: 'topo', name: 'Topographic map', color: '#111111', group: 'imagery' },
-    { id: 'satellite', name: 'Recent satellite', color: '#111111', group: 'imagery' },
-    { id: 'night-lights', name: 'Night lights', color: '#111111', group: 'imagery' },
+    { id: 'hillshade', name: 'Terrain relief', color: '#6a5a4a', group: 'imagery' },
+    { id: 'topo', name: 'Topographic map', color: '#4a6a3a', group: 'imagery' },
+    { id: 'satellite', name: 'Recent satellite', color: '#2a5a7a', group: 'imagery' },
+    { id: 'night-lights', name: 'Night lights', color: '#c9a04a', group: 'imagery' },
   ];
 
   const groups = [
@@ -795,7 +768,7 @@ function renderRegionGrid() {
     const card = el('div', { className: 'region-card' });
     card.id = `region-${r.id}`;
     card.dataset.continent = r.continent;
-    card.style.setProperty('--accent-region', '#111111');
+    card.style.setProperty('--accent-region', r.accent);
 
     // Star toggles shortlist membership; stopPropagation so it never opens the drawer.
     const star = el('button', { className: 'region-star', text: '☆', attrs: {
@@ -933,7 +906,7 @@ function renderCriterionCard(crit, isFirst) {
     const track = el('div', { className: 'bar-track' });
     const fill = el('div', { className: 'bar-fill' });
     fill.style.width = `${Math.max(2, t * 100)}%`;
-    fill.style.background = '#111111';
+    fill.style.background = rampColor(crit.ramp, t);
     track.appendChild(fill);
     const threshold = el('div', { className: 'bar-threshold' });
     threshold.id = `th-${crit.id}-${r.id}`;
@@ -978,7 +951,7 @@ function renderSummaryTable() {
     th.id = `sum-th-${r.id}`;
     th.dataset.continent = r.continent;
     const swatch = el('span', { className: 'swatch' });
-    swatch.style.background = '#111111';
+    swatch.style.background = r.accent;
     th.appendChild(swatch);
     th.appendChild(document.createTextNode(`${r.name} `));
     th.appendChild(el('span', { className: 'small', text: r.country }));
@@ -1010,7 +983,7 @@ function renderSummaryTable() {
       td.id = `sum-td-${r.id}-${c.id}`;
       td.dataset.continent = r.continent;
       const t = normalize(v.value, c.rangeMin, c.rangeMax);
-      const color = '#111111';
+      const color = textSafeColor(rampColor(c.ramp, t));
 
       const valLine = el('div', { className: 'v', style: { color: color } });
       valLine.textContent = `${fmtVal(v.value)} ${v.unit}`;
@@ -1767,7 +1740,7 @@ function renderMatchRegions() {
   passing.forEach((r) => {
     const chip = el('button', { className: 'region-chip', attrs: { type: 'button' } });
     const dot = el('span', { className: 'region-chip-dot' });
-    dot.style.background = '#111111';
+    dot.style.background = r.accent;
     chip.appendChild(dot);
     chip.appendChild(document.createTextNode(r.short || r.name));
     chip.setAttribute('aria-label', `Open details for ${r.name}`);
@@ -1855,7 +1828,7 @@ function renderCompare() {
   starred.forEach((r) => {
     const th = el('th');
     const sw = el('span', { className: 'swatch' });
-    sw.style.background = '#111111';
+    sw.style.background = r.accent;
     th.appendChild(sw);
     th.appendChild(document.createTextNode(`${r.name} `));
     th.appendChild(el('span', { className: 'small', text: r.country }));
@@ -1872,7 +1845,7 @@ function renderCompare() {
       const v = values[r.id][c.id];
       const td = el('td');
       const t = normalize(v.value, c.rangeMin, c.rangeMax);
-      const valLine = el('div', { className: 'v', style: { color: '#111111' } });
+      const valLine = el('div', { className: 'v', style: { color: textSafeColor(rampColor(c.ramp, t)) } });
       valLine.textContent = `${fmtVal(v.value)} ${v.unit}`;
       td.appendChild(valLine);
       td.appendChild(el('span', { className: 'lab', text: v.label }));
@@ -1933,7 +1906,7 @@ function openDrawer(regionId) {
   while (body.firstChild) body.removeChild(body.firstChild);
 
   const head = el('div', { className: 'drawer-head' });
-  head.style.setProperty('--accent-region', '#111111');
+  head.style.setProperty('--accent-region', r.accent);
   const titleWrap = el('div', { className: 'drawer-titles' });
   titleWrap.appendChild(el('div', { className: 'drawer-name serif', text: r.name }));
   titleWrap.appendChild(el('div', { className: 'drawer-country', text: r.country }));
@@ -1957,7 +1930,7 @@ function openDrawer(regionId) {
     attrs: { href: `/region/${r.id}.html` },
     style: {
       display: 'inline-block', marginBottom: '20px',
-      fontFamily: 'Literata, Georgia, serif', fontStyle: 'italic', fontSize: '14px',
+      fontFamily: "'Spectral', Georgia, serif", fontStyle: 'italic', fontSize: '14px',
       color: 'var(--accent)', textDecoration: 'underline dotted', textUnderlineOffset: '3px',
     },
   }));
