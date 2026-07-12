@@ -1783,7 +1783,11 @@
         <div class="arrive-for"><span class="arrive-tag notfor">Not for</span> finding somewhere cheap and empty to escape to, or landing on top of a community already living there.</div>
       </div>
       <p class="arrive-bridge">People before land. Still choosing where before you have the people you'd do this with? <a href="https://compass.regencommunity.tools">Find your community first &rarr;</a></p>
-      <p class="suite-note">Part of <a href="https://regencommunity.tools">Regen Community Tools</a> · four free tools for forming community.</p>
+      <p class="suite-note">Part of <a href="https://regencommunity.tools">Regen Community Tools</a> · four free tools for forming community · <a href="#" id="passOn">pass this framework to a group weighing where to root</a>.</p>
+<script>document.getElementById('passOn').addEventListener('click',async function(ev){ev.preventDefault();
+var payload={title:'Land Selection Framework',text:'Know the land before you love it. A bioregioning tool for communities choosing where to root:',url:'https://land-selection-framework.regencommunity.tools'};
+if(navigator.share){try{await navigator.share(payload)}catch(e){}}
+else{try{await navigator.clipboard.writeText(payload.url);this.textContent='link copied'}catch(e){}}});</script>
     </div>
   </section>
 
