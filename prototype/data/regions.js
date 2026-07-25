@@ -191,7 +191,7 @@ export const values = {
       sourceUrl: 'https://www.globalforestwatch.org',
     },
     solar_pv: {
-      value: 1650, unit: 'kWh/kWp', vintage: '1999–2018 avg', label: 'Excellent (top decile EU)', // 2026-07 audit: was 1865 (read as GHI); Global Solar Atlas PVOUT at 38.6,-7.9 = 1647
+      value: 1650, unit: 'kWh/kWp', vintage: 'retrieved 2026-07-25', label: 'Excellent (top decile EU)', // 2026-07 audit: was 1865 (read as GHI); Global Solar Atlas PVOUT at 38.6,-7.9 = 1647; corroborated 1609 by PVGIS 5.3 (SARAH3 2005–2023)
       source: 'Global Solar Atlas v2.7',
       sourceUrl: 'https://globalsolaratlas.info',
     },
@@ -245,11 +245,13 @@ export const values = {
       source: 'UCDP GED v25.1',
       sourceUrl: 'https://ucdp.uu.se',
     },
-    // regen_network: dossier revised downward, Galicia has 3–5 GEN entries, not 9.
+    // regen_network: re-sourced 2026-07-25. RIE was the cited source but lists zero Galician members.
+    // Living Atlas wave-1 gold set (frozen 2026-07-24, web-verification vintage June 2026) holds 3
+    // Galician entries: SAVIA Ecoaldea Vegana (Lugo), Sende (Ourense), Amoura (Lugo).
     regen_network: {
-      value: 4, unit: 'sites', vintage: '2025', label: 'Sparse formal; *montes en man común* network',
-      source: 'Red Ibérica de Ecoaldeas',
-      sourceUrl: 'https://rie.ecovillage.org/',
+      value: 3, unit: 'sites', vintage: 'web-verified June 2026', label: 'Sparse formal; *montes en man común* network',
+      source: 'Living Atlas baseline census, wave 1',
+      sourceUrl: 'https://atlas.regencommunity.tools',
     },
     population: {
       value: 91, unit: 'p/km²', vintage: '2023', label: 'Moderate; Ourense interior −15% since 2000',
