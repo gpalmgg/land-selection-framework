@@ -1389,7 +1389,7 @@ function updateShareButtonVisibility() {
 }
 
 // ====================================================================
-// Signup form (Web3Forms endpoint, mailto fallback in the footnote)
+// Signup form (FormSubmit.co endpoint, mailto fallback in the footnote)
 // ====================================================================
 
 function setStatus(statusEl, kind, text, link) {
@@ -1439,8 +1439,8 @@ function initSignupForm() {
         headers: { 'Accept': 'application/json' },
       });
       const data = await response.json().catch(() => ({}));
-      // Web3Forms returns { success: true } on success, { success: false } on rejection
-      if (response.ok && data.success !== false) {
+      // FormSubmit's AJAX endpoint returns success as the STRING "true"/"false"
+      if (response.ok && String(data.success) === 'true') {
         trackEvent('signup', { source: 'hero' });
         setStatus(status, 'success', 'Thanks, you\'re in. I won\'t share your email.');
         emailInput.value = '';
@@ -1578,7 +1578,7 @@ function initSignupModal() {
     }
   });
 
-  // Form submit, same Web3Forms endpoint as hero, just a second form
+  // Form submit, same FormSubmit endpoint as hero, just a second form
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const email = emailInput.value.trim();
@@ -1601,7 +1601,8 @@ function initSignupModal() {
         headers: { 'Accept': 'application/json' },
       });
       const data = await response.json().catch(() => ({}));
-      if (response.ok && data.success !== false) {
+      // FormSubmit's AJAX endpoint returns success as the STRING "true"/"false"
+      if (response.ok && String(data.success) === 'true') {
         trackEvent('signup', { source: 'modal' });
         setStatus(status, 'success', 'Thanks, you\'re in. Closing this in a moment.');
         emailInput.value = '';

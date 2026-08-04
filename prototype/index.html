@@ -1751,14 +1751,13 @@
             </svg>
             <h2 class="serif">Stay in touch</h2>
             <p class="blurb">Low-frequency updates from The Collective as this work evolves. Your address stays with us, never traded.</p>
-            <form id="signup-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
-              <input type="hidden" name="access_key" value="bc932e1b-363e-4d22-ba3c-c27ec1530615" />
+            <form id="signup-form" action="https://formsubmit.co/ajax/gustaf@islands-of-coherence.com" method="POST" novalidate>
               <input type="email" name="email" id="signup-email" placeholder="your email" aria-label="Email address" required autocomplete="email" />
               <button type="submit">Subscribe <span class="arrow">→</span></button>
-              <input type="hidden" name="subject" value="Land Selection Framework, new signup (hero)" />
-              <input type="hidden" name="from_name" value="Land Selection Framework" />
+              <input type="hidden" name="_subject" value="Land Selection Framework, new signup (hero)" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
               <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
-              <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" />
             </form>
             <div class="form-status" id="form-status"></div>
           </div>
@@ -1997,14 +1996,13 @@ else{try{await navigator.clipboard.writeText(payload.url);this.textContent='link
       <h2 id="modal-title">Want to keep up with this work?</h2>
       <p class="modal-blurb">Leave your email and The Collective will send what's coming next, additional regions, deeper data layers, and material from the group's research as it becomes ready to share. Subscribers see it first.</p>
 
-      <form class="modal-form" id="modal-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
-        <input type="hidden" name="access_key" value="bc932e1b-363e-4d22-ba3c-c27ec1530615" />
+      <form class="modal-form" id="modal-form" action="https://formsubmit.co/ajax/gustaf@islands-of-coherence.com" method="POST" novalidate>
         <input type="email" name="email" id="modal-email" placeholder="your email" aria-label="Email address" required autocomplete="email" />
         <button type="submit">Subscribe <span class="arrow">→</span></button>
-        <input type="hidden" name="subject" value="Land Selection Framework, modal signup" />
-        <input type="hidden" name="from_name" value="Land Selection Framework" />
+        <input type="hidden" name="_subject" value="Land Selection Framework, modal signup" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
-        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" />
       </form>
       <div class="modal-status" id="modal-status"></div>
 
@@ -2012,7 +2010,7 @@ else{try{await navigator.clipboard.writeText(payload.url);this.textContent='link
     </div>
   </div>
 
-  <script type="module" src="./src/main.js?v=usab16"></script>
+  <script type="module" src="./src/main.js?v=usab17"></script>
 
   <!-- Per-value source citations: appended after main.js renders. -->
   <style>

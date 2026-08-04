@@ -18,7 +18,7 @@ Driven by a media request (**The Atlantic** science section, "land selection for
 - **Contacts removed.** Personal email + Substack + Instagram stripped site-wide; "A project of The Collective" removed from the hero eyebrow. Contact now routes via the newsletter signup + invitation PDF.
 - **New working docs (project root, NOT deployed):** `interview-brief-atlantic.md` (interview prep) and `r4-reciprocity-commentary-DRAFT.md` (the practitioner r4 contribution as protocol-legal additive commentary — **drafted, NOT yet appended to source-docs**, pending Gustaf's decision).
 - **Authorship guardrail:** publicly, credit **Askja as originator** + the working group. "It's mostly my project now / I hold the practitioner seat" is accurate; "I founded/originated it" is not.
-- **Cache-bust** currently `?v=usab15` (bump on any `main.js`/data edit). See the [[bioregioning-reframe-and-atlantic-interview]] memory.
+- **Cache-bust** currently `?v=usab17` (bump on any `main.js`/data edit). See the [[bioregioning-reframe-and-atlantic-interview]] memory.
 
 ## What's been built in this folder
 
