@@ -1431,6 +1431,16 @@ function initSignupForm() {
       return;
     }
 
+    // Lock the button for the duration of the request. Without this the visitor
+    // can press Subscribe repeatedly while the fetch is in flight, which is how
+    // the same address arrived twice within a minute in the relay notifications.
+    const submitBtn = form.querySelector('button[type="submit"], button:not([type])');
+    if (submitBtn) {
+      if (submitBtn.disabled) return;
+      submitBtn.disabled = true;
+      submitBtn.setAttribute('aria-busy', 'true');
+    }
+
     setStatus(status, '', 'Sending…');
     try {
       const response = await fetch(form.action, {
@@ -1444,13 +1454,29 @@ function initSignupForm() {
         trackEvent('signup', { source: 'hero' });
         setStatus(status, 'success', 'Thanks, you\'re in. I won\'t share your email.');
         emailInput.value = '';
+        markSubscribed();
+        // Button stays disabled on success: they are in, there is nothing to press again.
       } else {
         setStatus(status, 'error', 'Something went wrong. Please email me directly.');
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.removeAttribute('aria-busy'); }
       }
     } catch (err) {
       setStatus(status, 'error', 'Network error. Please email me directly.');
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.removeAttribute('aria-busy'); }
     }
   });
+}
+
+/**
+ * One signup means one signup. The hero form and the engagement-gated modal are
+ * separate forms writing to the same relay, and the modal only consulted its own
+ * localStorage key, which the hero never set. So someone who subscribed in the
+ * hero got asked again ~13-30s later by the modal and dutifully subscribed twice.
+ * Recording it in the shared key and announcing it lets the modal stand down.
+ */
+function markSubscribed() {
+  try { localStorage.setItem('lsf-modal-state', 'subscribed'); } catch {}
+  try { window.dispatchEvent(new CustomEvent('lsf:subscribed')); } catch {}
 }
 
 // ====================================================================
@@ -1485,6 +1511,12 @@ function initSignupModal() {
 
   let modalShown = false;
   let lastFocusedBeforeModal = null;
+
+  // If the hero form succeeds while the modal triggers are armed, stand down.
+  window.addEventListener('lsf:subscribed', () => {
+    teardownTriggers.splice(0).forEach((fn) => { try { fn(); } catch {} });
+    modalShown = true; // blocks any trigger that already fired this tick
+  });
 
   // Engagement-gated trigger: the sliders are NEVER locked. Show the modal once,
   // after the visitor has actually engaged, scrolled past the criteria section,
@@ -1593,6 +1625,14 @@ function initSignupModal() {
       setTimeout(() => dismissModal('subscribed'), 900);
       return;
     }
+    // Same double-submit lock as the hero form.
+    const submitBtn = form.querySelector('button[type="submit"], button:not([type])');
+    if (submitBtn) {
+      if (submitBtn.disabled) return;
+      submitBtn.disabled = true;
+      submitBtn.setAttribute('aria-busy', 'true');
+    }
+
     setStatus(status, '', 'Sending…');
     try {
       const response = await fetch(form.action, {
@@ -1609,9 +1649,11 @@ function initSignupModal() {
         setTimeout(() => dismissModal('subscribed'), 1100);
       } else {
         setStatus(status, 'error', 'Something went wrong. You can continue without subscribing.');
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.removeAttribute('aria-busy'); }
       }
     } catch {
       setStatus(status, 'error', 'Network error. You can continue without subscribing.');
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.removeAttribute('aria-busy'); }
     }
   });
 }
