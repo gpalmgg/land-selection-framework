@@ -10,7 +10,7 @@ The source documents at `source-docs/` are the **immutable source of truth** for
 
 ## 2026-10 upgrade — READ THIS FIRST (supersedes anything below where they conflict)
 
-- **LIVE since 2026-10-07** (prod `dpl_DfGPMRHio69CVhSMt8szvm74LUJP`; previous prod for rollback `dpl_FXbyo8qJejJL6Q7bcAanNGAvrz6c`). Merged to `main` locally; not pushed.
+- **LIVE since 2026-10-07** (prod `dpl_5FPHYze837NykDxuhkHsm3c7UCPP`; pre-upgrade site for rollback: `vercel rollback dpl_FXbyo8qJejJL6Q7bcAanNGAvrz6c --yes`). Merged to `main` locally; not pushed.
 - **The r4 reciprocity addendum is APPENDED to the three source-docs** (additive, attributed). Do NOT append `r4-reciprocity-commentary-DRAFT.md` again. `docs/r5-handoff-DRAFT.md` is an UNSENT draft; nobody has been contacted. `FRAMEWORK.md` = the portable layer (a proposal, not part of the source-docs).
 - **30 regions** (15 Europe, 15 North America): ten added (NW Scottish Highlands, North Karelia + Kainuu, Plateau de Millevaches, Teruel uplands, Valle Maira, Finger Lakes, Virginia Piedmont, Bas-Saint-Laurent, NE Missouri / SE Iowa, Downeast Maine) under a slate-admission rule the group has not ratified. Never type counts: read them from `prototype/data/site-facts.js`.
 - Land standing, legal pathway (`data/legal-pathway.js`), bioregions (`data/bioregions.js`) and reciprocity (`data/reciprocity.js`) cover all 30 — qualitative, never scored or filtered. Wording: "checked against opened public sources"; no nation or community has reviewed any entry.
