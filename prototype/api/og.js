@@ -27,15 +27,35 @@ function baseOf(req) {
   return `${proto}://${host}`;
 }
 
-// The fonts, fetched once per cold start. A failed fetch is forgotten so the next request tries again.
+// The fonts are bundled into the edge function (the documented @vercel/og pattern: a literal
+// new URL(..., import.meta.url) is copied into the bundle), so rendering needs no network fetch. A same-origin fetch
+// failed on Vercel (2026-10-07: every card fell back to /og.png although the font files were deployed). In plain Node
+// (scripts/og_harness.mjs) fetch() cannot read file: URLs, so each font falls back to the same-origin path there.
+const BUNDLED = {
+  '/vendor/fonts/fraunces-og-roman.woff': new URL('../vendor/fonts/fraunces-og-roman.woff', import.meta.url),
+  '/vendor/fonts/fraunces-og-italic.woff': new URL('../vendor/fonts/fraunces-og-italic.woff', import.meta.url),
+  '/vendor/fonts/spectral-og-500.woff': new URL('../vendor/fonts/spectral-og-500.woff', import.meta.url),
+};
+async function fontBytes(path, origin) {
+  const local = BUNDLED[path];
+  if (local) {
+    try {
+      const res = await fetch(local);
+      if (res.ok) return await res.arrayBuffer();
+    } catch { /* file: URL outside the edge runtime: use the origin below */ }
+  }
+  const res = await fetch(new URL(path, origin));
+  if (!res.ok) throw new Error(`font ${path} ${res.status}`);
+  return await res.arrayBuffer();
+}
+
+// Loaded once per cold start. A failure is forgotten so the next request tries again.
 let fontsPromise = null;
 function loadFonts(origin) {
   if (!fontsPromise) {
-    fontsPromise = Promise.all(FONT_FILES.map(async (f) => {
-      const res = await fetch(new URL(f.path, origin));
-      if (!res.ok) throw new Error(`font ${f.path} ${res.status}`);
-      return { name: f.name, data: await res.arrayBuffer(), style: f.style, weight: f.weight };
-    })).catch((err) => { fontsPromise = null; throw err; });
+    fontsPromise = Promise.all(FONT_FILES.map(async (f) => (
+      { name: f.name, data: await fontBytes(f.path, origin), style: f.style, weight: f.weight }
+    ))).catch((err) => { fontsPromise = null; throw err; });
   }
   return fontsPromise;
 }
@@ -58,6 +78,7 @@ export default async function handler(req) {
     const png = await image.arrayBuffer();
     return new Response(png, { status: 200, headers: image.headers });
   } catch (err) {
+    console.error('og render failed:', err && err.message ? err.message : err);
     // Graceful degradation: fall back to the static card that already ships. (Redirects are never followed by the
     // post-deploy checks, so a fallback can never pass for a rendered card.)
     return Response.redirect(new URL('/og.png', base), 302);

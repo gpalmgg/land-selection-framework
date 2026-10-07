@@ -53,6 +53,14 @@ globalThis.fetch = async (input) => {
   const raw = typeof input === 'string' ? input : input instanceof URL ? input.href : input.url;
   let u;
   try { u = new URL(raw, ORIGIN); } catch { seen.push({ url: raw, kind: 'OUTBOUND', note: 'unparseable' }); throw new TypeError(`og_harness: bad URL ${raw}`); }
+  // Bundled assets (api/og.js: new URL('../vendor/fonts/x.woff', import.meta.url)) arrive as file: URLs. On Vercel's edge
+  // runtime they are part of the function bundle, not a network request; serve them from disk the same way.
+  if (u.protocol === 'file:' && normalize(u.pathname).startsWith(join(PROTO, 'vendor', 'fonts') + '/')) {
+    if (process.env.OG_FAIL_FONTS === '1') { seen.push({ url: u.href, kind: 'bundled', note: '404 (OG_FAIL_FONTS=1)' }); return new Response('not found', { status: 404 }); }
+    const b = readFileSync(normalize(u.pathname));
+    seen.push({ url: u.href, kind: 'bundled', note: `200 ${b.length} bytes from disk` });
+    return new Response(b, { status: 200 });
+  }
   if (u.origin !== ORIGIN) {
     seen.push({ url: u.href, kind: 'OUTBOUND', note: 'refused' });
     throw new TypeError(`og_harness: outbound fetch refused: ${u.href}`);
