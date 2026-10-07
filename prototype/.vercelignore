@@ -71,3 +71,7 @@ og-connemara.png
 og-filtered.png
 og-galicia.png
 og-transylvania.png
+
+# ---- 2026-10-07 (Gustaf): stale GeoPackages and notebooks are no longer served; files stay in the repo ----
+data/v1-exports/
+notebooks/
