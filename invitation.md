@@ -2,11 +2,17 @@
 
 ## What we're building
 
-A shared data infrastructure to help people find land for regenerative community settlements built to flourish over 50–100 years. The premise: choosing where to settle is too important to leave to gut-feel and real-estate listings. Climate trajectory, soil resilience, water security, geopolitical sovereignty, the density of existing regenerative networks — these decide whether a project survives its first generation. But they sit scattered across hundreds of public datasets, in incompatible formats, and are almost impossible to combine without serious effort.
+A bioregioning tool for communities seeking to belong to a place and help it flourish over 50–100 years. The premise: where a community settles is too important to leave to gut-feel and real-estate listings. Climate trajectory, soil resilience, water security, geopolitical sovereignty, the density of existing regenerative networks: these decide whether a project survives its first generation. But they sit scattered across hundreds of public datasets, in incompatible formats, and are almost impossible to combine without serious effort.
 
-The output is a transparent, open-source, open-data tool that surfaces these dimensions in one place, with full source / vintage / method transparency, and no hidden scoring that pretends one place is better than another. The user decides what matters; the tool shows the data honestly.
+The output is a transparent, open-source, open-data framework and demonstration that surfaces these dimensions in one place, with full source / vintage / method transparency, and no hidden scoring that pretends one place is better than another. The user decides what matters; the tool shows the data honestly.
 
-**V1** is data ingestion — clean, documented public datasets exportable to Jupyter and QGIS. No search interface, no scoring. **V2** adds a query and weighting layer, and red-line filtering for hard disqualifiers. **V3** extends to on-site data (soil kits, sensors, walking observations) and cosmolocal data governance. V1 is what's being worked on now.
+**Reciprocity is the spine.** A place is not empty. Every region in the demonstration carries a *Land standing* entry: whose land this already is (the Indigenous nation and the treaty or unceded status in North America, the rooted community or commons in Europe), how land is held, how to arrive in good faith, and what arriving asks of the people already there. It is qualitative only: never scored, never ranked, never a filter. Land standing entries are assembled from public sources and checked against opened pages; no nation or community named in them has reviewed them.
+
+**What the framework refuses to be.** It filters; it never scores, ranks, or tells you where to go. It does not forecast whether a community will thrive, it does not give legal advice, and it does not stand in for the relationship that arriving in a place begins. Where arriving in a place would harm the community already there, the honest answer is not to go.
+
+**V1** is data ingestion: clean, documented public datasets exportable to Jupyter and QGIS. No search interface, no scoring. **V2** adds a query and weighting layer, and red-line filtering for hard disqualifiers. **V3** extends to on-site data (soil kits, sensors, walking observations) and cosmolocal data governance. V1 is what's being worked on now. A designed demonstration of the framework runs alongside it at https://land-selection-framework.regencommunity.tools; it shows threshold filters (filter, never score) over sourced and dated values. It is a demonstration, not a finished data product, and the group has not yet ratified the slate or the V1 proposal.
+
+**Currently r4 (delivered).** The r4 to r5 handoff is open to any member of the group; "How collaboration works" below explains what that means.
 
 ## How collaboration works
 
@@ -15,7 +21,7 @@ The project is structured as a **passed-around document package**. Three markdow
 **Two counters track state:**
 
 - **vN — implementation version.** Currently v1. Increments when the scope of what we're building changes substantially.
-- **rN — collaboration round.** Currently r3. Increments each time the documents are passed to a new contributor.
+- **rN — collaboration round.** Currently r4 (delivered); the r4 to r5 handoff is open to any member. Increments each time the documents are passed to a new contributor.
 
 **Each round works like this:**
 
@@ -31,28 +37,29 @@ The project is structured as a **passed-around document package**. Three markdow
 
 **Parallel work is welcome.** The document protocol covers formal contributions to the docs themselves. Plenty of useful work happens off the rounds — practitioner interviews, framework reading, data-source scouting, dataset access checks — and folds into a future round. Nobody needs to wait their turn to start contributing.
 
-**Sync points sit on top of the rounds.** The Implementation Strategy defines five moments where the whole group weighs in rather than a single contributor: locking the criteria list, locking the data-source priority list, locking V1 scope after the coverage report, declaring V1 shipped, and the V1 → V2 transition. These are group decisions, not individual ones.
+**Sync points run alongside the rounds.** The Implementation Strategy defines five moments where the whole group weighs in rather than a single contributor: locking the criteria list, locking the data-source priority list, locking V1 scope after the coverage report, declaring V1 shipped, and the V1 → V2 transition. These are group decisions, not individual ones.
 
-**Where we are right now.** r3 was Deca's synthesis on 28 April. r4 is open. The next contributor has not yet been chosen.
+**Where we are right now.** r3 was Deca's synthesis on 28 April. r4 was delivered on 2026-05-29 by Gustaf, who holds the practitioner seat, with an addendum on reciprocity and host-community standing on 2026-10-05. The handoff to r5 is open to any member of the group, in no prescribed order, and the next contributor has not yet been chosen.
 
 ## What's in the docs (rounds so far)
 
 - **r1 — Adam** sketched the GIS architecture and named several non-negotiables that the project keeps: no hidden composite scores, every value carries source and vintage, the interface must never imply more precision than the underlying data has.
-- **r2 — Askja** wrote the substantive land-selection framework — twelve metrics covering geopolitical resilience, climate, regenerative networks, water, ecology, energy autonomy, accessibility, biodiversity, economic and legal context. Named data sources for most of them, introduced the **state + trajectory** scoring model, and the **red lines** concept for absolute disqualifiers.
+- **r2 — Askja**, who originated the framework, wrote its substance: twelve metrics covering geopolitical resilience, climate, regenerative networks, water, ecology, energy autonomy, accessibility, biodiversity, economic and legal context. Named data sources for most of them, introduced the **state + trajectory** scoring model, and the **red lines** concept for absolute disqualifiers.
 - **r3 — Deca** synthesised both into a coherent V1 plan with framing decisions and reasoning, a clean scope (V1 = data ingestion only; no querying or scoring), and an 11-step implementation sequence. Documented the V2/V3 design questions where Adam and Askja's framings disagree, so neither is lost.
+- **r4 — Gustaf**, holding the practitioner seat, delivered a field reality-check grounded in a working demonstration build, folded into a V1 production run (twelve ingested Tier-1 layers). An addendum on 2026-10-05 raised a finding the framing had not seen: all four of the sovereignty axes describe the incoming settlers' sovereignty, and none describes the standing of those already rooted in a place. It proposes host-community standing as a fifth consideration, qualitative only. The addendum is a proposal; the group has not ratified it.
 
-The three documents that travel together are `Overview.md` (framing), `Specifications.md` (what V1 produces), and `Implementation Strategy.md` (sequencing).
+The three documents that travel together are `Overview.md` (framing), `Specifications.md` (what V1 produces), and `Implementation Strategy.md` (sequencing). The portable statement of the framework discipline, `FRAMEWORK.md`, sits beside them as a proposal and is not part of the package.
 
 ## Working group
 
 | Person | Role | Status |
 |---|---|---|
 | **Adam** | GIS architect | Contributed r1 |
-| **Askja** | Originator, regenerative land practitioner | Contributed r2 |
+| **Askja** | Framework originator, regenerative land practitioner | Contributed r2 |
 | **Deca** | Synthesiser | Contributed r3 |
-| **Gustaf** | Practitioner reality-check, embedded in eco-villages | Holding the r4 seat |
+| **Gustaf** | Practitioner reality-check, embedded in eco-villages | Contributed r4 (practitioner seat) |
 | **Monty** | Regenerative academic research | Named contributor, not yet engaged |
-| **Alaska** | Data engineering | Named contributor, status to confirm |
+| **Alaska** | Data engineering | Named contributor, not yet engaged |
 
 The "named contributor" rows reflect the Expected Contributors table in the Overview — people the package is meant to reach but who haven't yet had their round.
 
@@ -60,8 +67,8 @@ The "named contributor" rows reflect the Expected Contributors table in the Over
 
 These are categories of contribution, not formal positions. Anyone can hold more than one, and the list is descriptive — propose a role that isn't here if it fits what you'd bring.
 
-- **Practitioner.** You've done a land hunt yourself, or with others, and have field-tested knowledge of what actually mattered. Reality-checks on the framework, stories, friction points the docs don't see.
-- **Researcher.** Depth in one of the dimensions — climate projection, soil resilience, civilizational stability, geopolitical risk, ecological recovery, agroecology. You keep the framework from being naive in your area.
+- **Practitioner.** You've gone through the process of looking for a place yourself, or with others, and have field-tested knowledge of what actually mattered. Reality-checks on the framework, stories, friction points the docs don't see. The work now includes reading whose land a place is and what arriving asks of the people already there.
+- **Researcher.** Depth in one of the dimensions — climate projection, soil resilience, civilizational stability, geopolitical risk, ecological recovery, agroecology. You keep the framework from being naive in your area. The work now includes reading whose land a place is: treaty and tenure history, customary regimes, and what the people already there say about arrival.
 - **Cartographer.** GIS, spatial data, the craft of making landscapes legible. Architecture, data formats, map design.
 - **Scout.** Frameworks, datasets, sources others miss. Obscure papers, regional registries, maintained open-data portals.
 - **Interviewer.** 30-minute conversations with land-seekers, capturing patterns. High-leverage: brings the field's lived experience into the framework without requiring practitioners to read markdown.
@@ -74,7 +81,7 @@ These are categories of contribution, not formal positions. Anyone can hold more
 
 1. Read the three documents (`Overview.md`, `Specifications.md`, `Implementation Strategy.md` — ~45 min total).
 2. Name the role(s) you'd take.
-3. Coordinate with the current active contributor about taking a future round, or starting parallel work that feeds in.
+3. Coordinate with the current active contributor about taking a future round, or starting parallel work that feeds in. There is no public contact route yet; the working group will set one.
 
 The pace is async. Contributions can be single-round or sustained. Stepping back after one round is normal — the protocol is designed for asymmetric participation.
 

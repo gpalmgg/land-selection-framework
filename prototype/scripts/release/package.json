@@ -1,0 +1,7 @@
+{
+  "name": "lsf-release-checkers",
+  "private": true,
+  "type": "module",
+  "main": "all.test.mjs",
+  "description": "Release checkers (REL-TOOLS). `node --test scripts/release` runs all.test.mjs, which imports every *.test.mjs (Node 25 runs a directory argument as a module, so the folder resolves through this main field)."
+}

@@ -1,0 +1,159 @@
+/* ==========================================================================
+   map-compare.css: the layer compare extension (MC-MAP-COMPARE, src/map/compare.js).
+   Two halves in one file, because the module links this file twice:
+     1. the DOCUMENT half, over the map: the second map's host, the divider, the key card, the fade bar;
+     2. the SHADOW half, the control in the layer panel's #map-ext-slot (a shadow root, so the panel's own rules cannot reach it
+        and these cannot leak out; custom properties still flow in, so every colour comes from tokens.css).
+   Selectors are all .mc-* or #map .mc-*; nothing here styles an element the panel owns.
+   Nothing animates: no transition on the divider, the fade or the second map (reduced motion or not).
+   ========================================================================== */
+
+/* ---------- the panel slot: an element whose content lives in a shadow root counts as :empty, so say it shows ---------- */
+.map-controls #map-ext-slot[data-compare]:empty { display: block; }
+
+/* ---------- over the map (document half) ---------- */
+.map-stage.mc-on { isolation: isolate; }
+
+/* The second map: inside the first map's container, above its canvas (z 0) and below its markers and controls (z 2). */
+#map .mc-top {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: var(--paper);
+}
+#map .mc-top[data-ready="false"] { visibility: hidden; }
+
+/* The divider: a full-height line with a 44px grip. Only the grip takes the pointer, so panning and the markers stay usable. */
+.map-stage .mc-divider {
+  position: absolute; top: 0; bottom: 0; left: 50%; width: 44px; margin-left: -22px; z-index: 4;
+  pointer-events: none; touch-action: none; outline: none; transition: none;
+}
+.map-stage .mc-divider .mc-line {
+  position: absolute; left: 50%; top: 0; bottom: 0; width: 3px; margin-left: -1.5px;
+  background: var(--ink); box-shadow: 0 0 0 1px var(--sheet);
+}
+.map-stage .mc-divider .mc-grip {
+  position: absolute; left: 50%; top: 50%; width: 44px; height: 44px; margin: -22px 0 0 -22px; box-sizing: border-box;
+  border-radius: 50%; background: var(--sheet); border: 2px solid var(--ink);
+  pointer-events: auto; cursor: ew-resize; touch-action: none;
+}
+/* two small chevrons made of borders (no glyph, no font) */
+.map-stage .mc-divider .mc-grip::before,
+.map-stage .mc-divider .mc-grip::after {
+  content: ""; position: absolute; top: 50%; width: 8px; height: 8px; margin-top: -4px; box-sizing: border-box;
+  border-bottom: 2px solid var(--ink); border-left: 2px solid var(--ink);
+}
+.map-stage .mc-divider .mc-grip::before { left: 8px; transform: rotate(45deg); }
+.map-stage .mc-divider .mc-grip::after { right: 8px; transform: rotate(-135deg); }
+.map-stage .mc-divider:focus-visible .mc-grip { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* The key card: the way out and the two layers by name. */
+.map-stage .mc-stage-key {
+  position: absolute; top: 10px; left: 10px; z-index: 5; box-sizing: border-box;
+  max-width: min(340px, calc(100% - 84px)); padding: 6px;
+  display: grid; gap: 6px; justify-items: start;
+  background: var(--sheet); border: 1px solid var(--rule-strong); border-radius: var(--r-leaf-s); box-shadow: var(--lift);
+}
+.map-stage .mc-stage-exit {
+  appearance: none; cursor: pointer; min-height: 44px; min-width: 44px; padding: 0 14px; margin: 0;
+  background: var(--sheet); color: var(--ink); border: 1px solid var(--rule-strong); border-radius: var(--r-btn);
+  font: 600 12px/1 var(--f-ui); letter-spacing: .02em;
+}
+.map-stage .mc-stage-exit:hover { background: var(--paper-2); }
+.map-stage .mc-stage-exit:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.map-stage .mc-stage-names { margin: 0; padding: 0 4px 2px; display: grid; gap: 2px; font: 400 12.5px/1.35 var(--f-ui); color: var(--ink-2); overflow-wrap: anywhere; }
+.map-stage .mc-stage-names b {
+  display: inline-block; min-width: 40px; margin-right: 6px;
+  font: 600 10px/1.4 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ink);
+}
+
+/* Fade between (narrow): one slider along the foot of the map, above the library's attribution button. */
+.map-stage .mc-fade {
+  position: absolute; left: 10px; right: 10px; bottom: 40px; z-index: 4; box-sizing: border-box;
+  display: grid; gap: 2px; padding: 8px 12px 10px;
+  background: var(--sheet); border: 1px solid var(--rule-strong); border-radius: var(--r-leaf-s); box-shadow: var(--lift);
+}
+.map-stage .mc-fade-label { font: 600 10.5px/1.4 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.map-stage .mc-fade-input { display: block; width: 100%; min-height: 44px; margin: 0; padding: 0; background: transparent; accent-color: var(--accent); cursor: pointer; }
+.map-stage .mc-fade-input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.map-stage .mc-fade-ends { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; font: 400 12px/1.3 var(--f-ui); color: var(--ink-2); }
+.map-stage .mc-fade-ends span { min-width: 0; max-width: 48%; overflow-wrap: anywhere; }
+.map-stage .mc-fade-b { text-align: right; }
+/* in fade mode the names are already under the slider, so the key card is just the way out */
+.map-stage .mc-fade ~ .mc-stage-key .mc-stage-names { display: none; }
+@supports selector(:has(*)) { .map-stage:has(.mc-fade) .mc-stage-names { display: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  #map .mc-top, .map-stage .mc-divider, .map-stage .mc-divider *, .map-stage .mc-fade, .map-stage .mc-fade * { transition: none !important; animation: none !important; }
+}
+@media print {
+  #map .mc-top, .map-stage .mc-divider, .map-stage .mc-stage-key, .map-stage .mc-fade { display: none !important; }
+}
+
+/* ---------- the control (shadow half) ---------- */
+.mc, .mc * { box-sizing: border-box; }
+.mc { display: block; border-bottom: 1px solid color-mix(in srgb, var(--rule) 70%, transparent); font: 400 13px/1.4 var(--f-ui); color: var(--ink); }
+.mc-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+.mc-summary {
+  display: flex; align-items: center; gap: 8px; min-height: 44px; margin: 0; padding: 0; cursor: pointer; list-style: none;
+  font: 600 var(--t-label, 10.5px)/1 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ink);
+}
+.mc-summary::-webkit-details-marker { display: none; }
+.mc-summary-t { flex: 1; }
+.mc-summary-n { font-weight: 500; letter-spacing: .04em; text-transform: none; font-size: 11.5px; color: var(--ink-3); }
+.mc-summary::after {
+  content: ""; flex: none; width: 7px; height: 7px; margin: -3px 2px 0 2px;
+  border-right: 2px solid var(--ink-3); border-bottom: 2px solid var(--ink-3); transform: rotate(45deg);
+}
+.mc[open] > .mc-summary::after { transform: rotate(-135deg); margin-top: 3px; }
+.mc-summary:hover { color: var(--accent); }
+.mc-summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.mc-body { padding: 0 0 10px; display: grid; gap: 12px; }
+.mc-lede, .mc-help { margin: 0; font: italic 400 12.5px/1.45 var(--f-text); color: var(--ink-3); }
+.mc-sub { margin: 0 0 4px; font: 600 10px/1.3 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+
+.mc-set + .mc-set { margin-top: 8px; }
+.mc-set-name { margin: 0 0 4px; font: 500 12.5px/1.3 var(--f-ui); color: var(--ink); }
+.mc-pair {
+  appearance: none; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 6px; width: 100%; min-height: 44px; margin: 0 0 6px; padding: 8px 12px;
+  background: transparent; color: var(--ink); text-align: left; cursor: pointer;
+  border: 1px solid var(--rule-strong); border-radius: var(--r-btn); font: 600 12px/1.3 var(--f-ui);
+}
+.mc-pair:hover { background: var(--paper-2); }
+.mc-pair[aria-current="true"] { background: var(--paper-2); border-color: var(--ink); box-shadow: inset 3px 0 0 var(--accent); }
+.mc-pair-and { font: italic 400 12px/1.3 var(--f-text); color: var(--ink-3); }
+.mc-pair:focus-visible, .mc-btn:focus-visible, .mc-select:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.mc-field { display: grid; gap: 3px; margin: 0 0 8px; }
+.mc-field-label { font: 600 10.5px/1.3 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.mc-select {
+  display: block; width: 100%; min-height: 44px; margin: 0; padding: 0 10px; background: var(--sheet); color: var(--ink);
+  border: 1px solid var(--rule-strong); border-radius: 2px; font: 400 13px/1.3 var(--f-ui);
+}
+.mc-btn {
+  appearance: none; cursor: pointer; min-height: 44px; min-width: 44px; margin: 0; padding: 0 14px;
+  background: transparent; color: var(--ink); border: 1px solid var(--rule-strong); border-radius: var(--r-btn);
+  font: 600 12px/1 var(--f-ui); letter-spacing: .02em;
+}
+.mc-btn:hover { background: var(--paper-2); }
+.mc-go { background: var(--btn-bg); color: var(--btn-ink); border-color: var(--btn-bg); }
+.mc-go:hover { background: var(--btn-hover); border-color: var(--btn-hover); }
+.mc-go:disabled { cursor: not-allowed; background: transparent; color: var(--ink-3); border-color: var(--rule-strong); border-style: dashed; }
+.mc-msg { margin: 6px 0 0; min-height: 1px; font: 400 12px/1.4 var(--f-ui); color: var(--ink-2); }
+.mc-exit-panel { justify-self: start; }
+
+.mc-active { display: grid; gap: 10px; }
+.mc-side { margin: 0; padding: 8px 0 0; border-top: 1px dotted var(--rule-strong); }
+.mc-side-h { margin: 0; font: 600 12px/1.3 var(--f-ui); color: var(--ink); }
+.mc-src { margin: 3px 0 0; font: 400 11.5px/1.4 var(--f-ui); color: var(--ink-3); }
+.mc-src .gap { font-style: italic; color: var(--gap); }
+.mc-note { margin: 4px 0 0; font: italic 400 12px/1.4 var(--f-text); color: var(--ink-3); }
+.mc-key { margin-top: 6px; }
+.mc-ramp-row { display: flex; align-items: center; gap: 8px; }
+.mc-end { font: 500 11px/1 var(--f-ui); color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.mc-ramp { display: inline-block; flex: none; width: 64px; height: 8px; border: 1px solid var(--rule-strong); border-radius: 2px; background: var(--ramp, var(--ink-3)); }
+.mc-sw { display: inline-block; flex: none; width: 14px; height: 10px; border-radius: 2px; border: 1px solid color-mix(in srgb, var(--ink) 30%, transparent); background: var(--c, var(--ink-3)); }
+.mc-sw.dot { width: 11px; height: 11px; border-radius: 50%; }
+.mc-classes { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 3px; font: 400 12px/1.35 var(--f-ui); color: var(--ink-2); }
+.mc-classes li { display: flex; align-items: center; gap: 8px; min-width: 0; overflow-wrap: anywhere; }
+.mc-group { margin: 8px 0 0; font: 600 10px/1.3 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }

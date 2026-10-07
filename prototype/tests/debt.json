@@ -1,0 +1,102 @@
+[
+  {
+    "test": "banned framing and superlative words absent from copy fields",
+    "owner": "EV-INT-REGIONS",
+    "why": "baseline: regions[5].blurb 'densest', regions[8].blurb 'strongest', other blurbs and cell labels carry ranking gloss; EV-INT-REGIONS rewrites them neutrally"
+  },
+  {
+    "test": "no shipped source URL is on the dead-link list (recon/link-health.json) when that file is present",
+    "owner": "EV-INT-REGIONS",
+    "why": "baseline: dead URLs still shipped (ine.pt census, terre-humaniste.org, ic.org directory, ...); EV-LINKS output is applied by EV-INT-REGIONS, EV-INT-STANDING, EV-INT-DEPTH and EV-INT-LAYERS, whichever fixes the last one"
+  },
+  {
+    "test": "known-wrong URLs from the audits never come back",
+    "owner": "EV-INT-DEPTH",
+    "why": "baseline: Transylvania 156631 in region-depth.js and the processed JSON, dead regen-network directories in cells; cleared by EV-INT-REGIONS, EV-INT-DEPTH and EV-INT-LAYERS"
+  },
+  {
+    "test": "land-cost.json: enums valid, source + source_url present, gaps is a string",
+    "owner": "EV-INT-LAYERS",
+    "why": "baseline: pembrokeshire source / source_url missing"
+  },
+  {
+    "test": "demographic-trajectory.json: enums valid, source + source_url present, gaps is a string",
+    "owner": "EV-INT-LAYERS",
+    "why": "baseline: connemara.population_trend = 'mixed' is outside the enum"
+  },
+  {
+    "test": "soil-contamination.json: enums valid, source + source_url present, gaps is a string",
+    "owner": "EV-INT-LAYERS",
+    "why": "baseline: galicia source / source_url missing"
+  },
+  {
+    "test": "no layer claims uniform \"high\" confidence on a thin evidence base (>80% high is not credible)",
+    "owner": "EV-INT-LAYERS",
+    "why": "baseline: climate-buffering is 100 percent high"
+  },
+  {
+    "test": "criteria: schema",
+    "owner": "EV-INT-REGIONS",
+    "why": "baseline: water_stress rangeLabel is 'score' (reads as our own score); EV-INT-REGIONS also adds criteria[].window, required under REQUIRE_V2. NOTE criteria-compat: a unit change under the id water_stress fails, so the fix is a new id listed in verify/criteria-changes.md"
+  },
+  {
+    "test": "values: one unit per criterion; no leaked QA/markdown/placeholder text",
+    "owner": "EV-INT-REGIONS",
+    "why": "baseline: ozarks.forest_change.label leaks 'dossier internally inconsistent'"
+  },
+  {
+    "test": "region accents equal design/final-assets/region-accents.json (30 distinct hex values; applied by EV-INT-REGIONS)",
+    "owner": "EV-INT-REGIONS",
+    "why": "plan override 4: vermont, northern-new-mexico and oaxaca differ from the design accents; 10 new regions arrive with theirs"
+  },
+  {
+    "test": "regions.js carries exactly the planned slate (PLANNED_IDS minus dropped-regions.json)",
+    "owner": "EV-INT-REGIONS",
+    "why": "the 10 new regions are added in wave 2; a dropped region is listed in verify/dropped-regions.json (P-DROP)"
+  },
+  {
+    "test": "every region has a land standing entry with all four qualitative fields and a tenure source",
+    "owner": "EV-INT-STANDING",
+    "why": "land-standing.js gains the 10 new regions"
+  },
+  {
+    "test": "every region has a region-depth entry (asks 90-175 words, first sentence stands alone) with a source",
+    "owner": "EV-INT-DEPTH",
+    "why": "region-depth.js gains the 10 new regions"
+  },
+  {
+    "test": "six per-jurisdiction JSON layers + hospital proximity cover every region exactly once",
+    "owner": "EV-INT-LAYERS",
+    "why": "the six processed layers and hospital-proximity.geojson gain the 10 new regions"
+  },
+  {
+    "test": "v1-lookup carries every region and agrees with data/processed/*.json on the four client fields (it is generated: never hand-edit)",
+    "owner": "EV-INT-LAYERS",
+    "why": "data/v1-lookup.js is regenerated (slimmed to the four client fields) from the processed layers"
+  },
+  {
+    "test": "legal-ownership layer and legal pathway agree (no contradiction between the two legal views)",
+    "owner": "EV-INT-LEGAL",
+    "why": "legal-pathway.js is assembled by EV-INT-LEGAL and must agree with the (EV-INT-LAYERS) legal-ownership layer; skipped while the file is absent"
+  },
+  {
+    "test": "disposition: every unverifiable item, newer-vintage note and correction has exactly one disposition row (disposition.mjs --check)",
+    "owner": "EV-GATE",
+    "why": "disposition-<WP>.json rows are written by the INT WPs; the union is complete only at the gate; skipped while disposition.mjs (EV-MERGE-TOOLS, wave 1) is absent"
+  },
+  {
+    "test": "disposition: every region above the null cap has a NULL-DECISION line (disposition.mjs --check-null-decisions)",
+    "owner": "EV-INT-REGIONS",
+    "why": "the integration report carries NULL-DECISION lines only after EV-INT-REGIONS; skipped while disposition.mjs is absent"
+  },
+  {
+    "test": "context: every region present; Koppen codes in the 30-class legend, shares sum to 1 (+-0.02), four periods present, Aqueduct classes in the WRI vocabulary",
+    "owner": "EV-INT-CONTEXT",
+    "why": "MC-JS-1 (wave 1) ships data/context.js as an empty shell (export const context = {}) so src/data.js resolves; the test sees the file as present; EV-INT-CONTEXT (wave 3) fills every region"
+  },
+  {
+    "test": "legal pathway: covers every region of the planned slate and agrees with legal-ownership.json",
+    "owner": "EV-INT-LEGAL",
+    "why": "MC-JS-1 (wave 1) ships data/legal-pathway.js as an empty shell (export const legalPathway = {}) so src/data.js resolves; the test sees the file as present; EV-INT-LEGAL (wave 4) fills every region"
+  }
+]

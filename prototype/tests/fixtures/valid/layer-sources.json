@@ -1,0 +1,4 @@
+[
+  { "id": "gpw-population", "label": "Population density", "group": "People", "kind": "xyz", "url": "https://sedac.example.org/tiles/gpw/{z}/{x}/{y}.png", "tileSize": 256, "minzoom": 0, "maxzoom": 8, "attribution": "CIESIN, Columbia University", "sourceId": "gpw-v4", "verified": "2026-10-04", "status": "active", "fragile": false },
+  { "id": "seismic-hazard", "label": "Seismic hazard", "group": "Hazards", "kind": "xyz", "url": "https://tiles.example.org/seismic/{z}/{x}/{y}.png", "tileSize": 256, "minzoom": 0, "maxzoom": 6, "attribution": "GEM Foundation", "sourceId": "gem-seismic-2023", "verified": "2026-10-04", "status": "active", "fragile": false }
+]

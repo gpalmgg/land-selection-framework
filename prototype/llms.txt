@@ -1,0 +1,81 @@
+# Land Selection Framework
+
+> A bioregioning tool for communities seeking to belong to a place and help it flourish over fifty to a hundred years. It filters; it never scores, ranks, or tells you where to go.
+
+Where arriving in a place would harm the community already there, the honest answer is not to go. The framework was originated by Askja and is developed by a small working group of practitioners and researchers. A designed demonstration of the framework, not a finished data product. Values are sourced and dated; the group has not yet ratified the slate or the V1 proposal.
+
+## Key pages
+
+- [Home: thresholds and map](https://land-selection-framework.regencommunity.tools/): set your own thresholds on eight sourced criteria and read the matching regions on a map. Thresholds filter; nothing is summed.
+- [The framework in depth](https://land-selection-framework.regencommunity.tools/deeper.html): method, case studies, ethics and sources.
+- [Methodology](https://land-selection-framework.regencommunity.tools/deeper.html#methodology): how each criterion is read, with its window and its limits.
+- [How to arrive](https://land-selection-framework.regencommunity.tools/arrive.html): the questions to ask the people already there, before anything else.
+- [For people already here](https://land-selection-framework.regencommunity.tools/host.html): what this tool says about your place and what it leaves to you.
+- [Terms of arrival](https://land-selection-framework.regencommunity.tools/terms-of-arrival.html): a printable statement of good-faith arrival.
+- [Sitemap](https://land-selection-framework.regencommunity.tools/sitemap.xml)
+
+## Regions
+
+Thirty regions, listed in the order the data declares them. The order is not a ranking. Each page opens with whose land it is, then what living there asks, the place, the way in, and the criteria with their sources.
+
+### Europe
+
+- [Alentejo, Portugal](https://land-selection-framework.regencommunity.tools/region/alentejo.html): Whose land: Alentejo montado villages. Alentejo plains and montado oak woodland.
+- [Galicia, Spain](https://land-selection-framework.regencommunity.tools/region/galicia.html): Whose land: Galego parish commons. Atlantic Galicia: coastal rias and the interior Miño–Sil valleys.
+- [Transylvania, Romania](https://land-selection-framework.regencommunity.tools/region/transylvania.html): Whose land: Transylvanian Saxon and Székely villages. Transylvanian Basin and the Carpathian arc.
+- [West Cork / Connemara, Ireland](https://land-selection-framework.regencommunity.tools/region/connemara.html): Whose land: Gaeltacht communities of Connemara. Connemara: Atlantic blanket bog, loughs and hill commonage.
+- [Pembrokeshire / West Wales, UK](https://land-selection-framework.regencommunity.tools/region/pembrokeshire.html): Whose land: Pembrokeshire smallholding communities. South-west Wales coast and the Preseli hills.
+- [Cévennes / Languedoc, France](https://land-selection-framework.regencommunity.tools/region/cevennes.html): Whose land: Cévenol upland farming communities. Cévennes: the southern edge of the Massif Central.
+- [South Tirol, Italy](https://land-selection-framework.regencommunity.tools/region/south-tirol.html): Whose land: South Tirolean farm families. South Tyrol: the Adige (Etsch) valley and the Dolomite flanks.
+- [Asturias, Spain](https://land-selection-framework.regencommunity.tools/region/asturias.html): Whose land: Asturian aldeas and montes comunales. Asturias: the Cantabrian mountains and coast.
+- [Saxony-Anhalt rural, Germany](https://land-selection-framework.regencommunity.tools/region/saxony-anhalt.html): Whose land: East German villages and cooperatives. Elbe–Saale lowlands and the Harz foreland.
+- [Rural Estonia, Estonia](https://land-selection-framework.regencommunity.tools/region/estonia-rural.html): Whose land: Estonian farmsteads and the Seto of Setomaa. Central Estonian plain: hemiboreal forest, bog and farmland.
+- [Highlands (north-west Scotland), UK](https://land-selection-framework.regencommunity.tools/region/scottish-highlands.html): Whose land: Highland crofting townships and community estates. North-west Highlands: sea-loch glens from Lochaber to Sutherland.
+- [North Karelia and Kainuu, Finland](https://land-selection-framework.regencommunity.tools/region/north-karelia-kainuu.html): Whose land: Finnish village communities. Eastern Finnish lakeland and taiga: Karelian and Kainuu uplands.
+- [Plateau de Millevaches (Limousin), France](https://land-selection-framework.regencommunity.tools/region/millevaches.html): Whose land: Montagne limousine villages and hamlets. Montagne limousine: the granite plateau of the western Massif Central.
+- [Teruel uplands and the Maestrazgo (Iberian System), Spain](https://land-selection-framework.regencommunity.tools/region/teruel-uplands.html): Whose land: Aragonese upland villages and their commons. Iberian System uplands: Albarracín, Gúdar–Javalambre and the Maestrazgo.
+- [Valle Maira (Occitan valleys, Cuneo Alps), Italy](https://land-selection-framework.regencommunity.tools/region/valle-maira.html): Whose land: Occitan-minority mountain communes. Cottian Alps: the Occitan valleys of Cuneo.
+
+### North America
+
+- [Cascadia, USA](https://land-selection-framework.regencommunity.tools/region/cascadia.html): Whose land: Kalapuya homeland; Grand Ronde and Siletz peoples. Willamette Valley and the Cascade foothills.
+- [Vermont / Upper New England, USA](https://land-selection-framework.regencommunity.tools/region/vermont.html): Whose land: Ndakina, Wabanaki homeland. Green Mountains with the Champlain and Connecticut valleys.
+- [Southern Appalachians, USA](https://land-selection-framework.regencommunity.tools/region/southern-appalachians.html): Whose land: Cherokee homeland. Southern Blue Ridge and the French Broad valley.
+- [Driftless Area, USA](https://land-selection-framework.regencommunity.tools/region/driftless.html): Whose land: Ho-Chunk homeland. Driftless Area: the unglaciated upper Mississippi hills and coulees.
+- [Ozarks, USA](https://land-selection-framework.regencommunity.tools/region/ozarks.html): Whose land: Osage homeland. Ozark Plateau: karst hills of the White River country.
+- [Northern New Mexico, USA](https://land-selection-framework.regencommunity.tools/region/northern-new-mexico.html): Whose land: Taos Pueblo and Hispano acequia communities. Southern Rocky Mountains meeting the Rio Grande rift and the Taos Plateau.
+- [Nova Scotia / Cape Breton, Canada](https://land-selection-framework.regencommunity.tools/region/nova-scotia.html): Whose land: Mi'kma'ki. Acadian forest and the Fundy and Northumberland shores of mainland Nova Scotia.
+- [BC Interior, Kootenays, Canada](https://land-selection-framework.regencommunity.tools/region/kootenays.html): Whose land: Sinixt, Ktunaxa and Syilx land. Columbia Mountains: the Selkirk and Purcell ranges and the Kootenay lakes.
+- [Québec Eastern Townships, Canada](https://land-selection-framework.regencommunity.tools/region/quebec-eastern-townships.html): Whose land: Ndakina: W8banaki (Abenaki) territory. Appalachian foothills south-east of the St Lawrence lowlands.
+- [Oaxaca highlands, Mexico](https://land-selection-framework.regencommunity.tools/region/oaxaca.html): Whose land: Zapotec, Mixtec and Chatino comunal lands. Oaxaca: central valleys between the Sierra Madre del Sur and the Sierra Norte.
+- [Finger Lakes (Cayuga and Seneca lake country), USA](https://land-selection-framework.regencommunity.tools/region/finger-lakes.html): Whose land: Cayuga homeland within Haudenosaunee territory. Finger Lakes: the Cayuga and Seneca lake basins at the edge of the Appalachian Plateau.
+- [Virginia Piedmont (Louisa, Fluvanna and Orange), USA](https://land-selection-framework.regencommunity.tools/region/virginia-piedmont.html): Whose land: Monacan and Mannahoac homeland. Virginia Piedmont: rolling uplands below the Blue Ridge.
+- [Bas-Saint-Laurent (St. Lawrence south shore), Canada](https://land-selection-framework.regencommunity.tools/region/bas-saint-laurent.html): Whose land: Wolastoqiyik and Mi'gmaq territories. Lower St Lawrence south shore and the Notre-Dame Mountains.
+- [Northeast Missouri / Southeast Iowa, USA](https://land-selection-framework.regencommunity.tools/region/ne-missouri-se-iowa.html): Whose land: Sauk, Meskwaki, Ioway and Missouria lands. Dissected till plains and tallgrass prairie on the Mississippi border.
+- [Downeast Maine (Washington County, Dawnland), USA](https://land-selection-framework.regencommunity.tools/region/downeast-maine.html): Whose land: Dawnland: Wabanaki homeland. Downeast Maine: the Gulf of Maine coast and Acadian forest.
+
+## How the data is dated and licensed
+
+Every value on a region page prints its source, its vintage (the period the number describes) and its licence. Values were revised against their cited sources in 2026-10 (site built 2026-10-06). A licence the provider's own page did not state reads "licence not confirmed"; none is inferred. Native units are kept; nothing is resampled to a common grid.
+
+- Climate trajectory, window 2041–2060: [WorldClim 2.1, CMIP6 downscaled future climate](https://www.worldclim.org/data/cmip6/cmip6climate.html). Licence: WorldClim terms: free for academic and other non-commercial use; redistribution or commercial use needs prior permission.
+- Water stress, window 2050 (30-year period centred on 2050): [WRI Aqueduct 4.0 Water Risk](https://www.wri.org/data/aqueduct-global-maps-40-data). Licence: CC BY 4.0.
+- Soil organic carbon, window 1960–2020 (62% of the profiles behind the map; 34% undated): [ISRIC SoilGrids 2.0](https://www.isric.org/explore/soilgrids). Licence: CC BY 4.0.
+- Forest cover trajectory, window 2001–2023: [Hansen/UMD/Google/USGS/NASA Global Forest Change](https://storage.googleapis.com/earthenginepartners-hansen/GFC-2023-v1.11/download.html). Licence: CC BY 4.0.
+- Solar PV potential, window long-term average; record start 1994, 1999 or 2007 by satellite region, to 2025: [Global Solar Atlas (World Bank Group / ESMAP / Solargis), PV power potential](https://globalsolaratlas.info). Licence: CC BY 4.0, with a mandatory addition: any conflict under the licence goes to WIPO mediation and then UNCITRAL arbitration.
+- Conflict proximity, window 2019–2024: [UCDP Georeferenced Event Dataset (GED)](https://ucdp.uu.se/downloads/). Licence: CC BY 4.0.
+- Regenerative network density, window wave 1, frozen 2026-07-24: [Living Atlas Baseline Census, wave 1](https://atlas.regencommunity.tools). Licence: licence not confirmed.
+- Population density, window epoch 2020 (GHSL modelled estimate): [JRC Global Human Settlement Layer, GHS-POP R2023A](https://human-settlement.emergency.copernicus.eu/ghs_pop2023.php). Licence: CC BY 4.0.
+
+Land standing, region depth and the way in are written text, each with its own source line, checked against opened public sources on the date it shows. No nation or community named has reviewed its entry.
+
+## What this is not
+
+- Not a score, a ranking or a recommendation. No criteria are summed or weighted, and no region is called best, top or first. The tool filters by thresholds you set; the order of regions is the data's declared order.
+- Not a listing of land and not a guide to where to go. Land standing is qualitative and is never a filter. Where arriving would harm the community already there, the honest answer is not there.
+- Not a finished data product. A cell the pipeline could not reproduce is shown as not yet verified; it is never filled with a guessed number.
+
+## How to cite
+
+Land Selection Framework working group (framework originated by Askja). Land Selection Framework, data revision 2026-10, built 2026-10-06. https://land-selection-framework.regencommunity.tools/
+For one region, cite its page, for example https://land-selection-framework.regencommunity.tools/region/alentejo.html, and name the criterion and its source and vintage as printed there.

@@ -1,0 +1,22 @@
+{
+  "stage": "climate",
+  "region": "gamma",
+  "status": "ok",
+  "retrieved": "2026-10-05",
+  "footprint": {
+    "id": "gamma",
+    "kind": "bbox",
+    "areaKm2": 31600
+  },
+  "method": "footprint-zonal",
+  "unit": "°C",
+  "vintage": "2041–2060, SSP2-4.5",
+  "scenario": "SSP2-4.5",
+  "source": "WorldClim 2.1 CMIP6 downscaled ensemble",
+  "sourceUrl": "https://www.worldclim.org/data/cmip6/cmip6climate.html",
+  "sourceId": "worldclim-cmip6",
+  "value": 9.14,
+  "models_ok": [
+    "ACCESS-CM2"
+  ]
+}

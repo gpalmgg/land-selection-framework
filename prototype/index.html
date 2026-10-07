@@ -3,1694 +3,451 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Land Selection Framework — a bioregioning tool for regenerative community</title>
-  <meta name="description" content="A bioregioning tool for communities seeking to belong to a place and help it flourish over fifty to a hundred years. Eight criteria, with sources, across twenty regions in Europe and North America. It filters; it never scores, ranks, or tells you where to go." />
+
+  <meta name="theme-color" content="#f6f2eb" />
+  <meta name="theme-color" content="#17140f" media="(prefers-color-scheme: dark)" />
+
+  <!-- Fonts self-hosted (Fraunces, Spectral, Inter; SIL OFL 1.1), no third-party host. Preload only the faces used above the fold:
+       the Fraunces roman variable file (the hero h1, the LCP), Spectral 400 and the Inter variable file.
+       Every font URL carries the font-set version (?v=fv1) so immutable caching can never pin a later font fix: it must equal the
+       @font-face URL in src/styles/fonts.css, and is bumped with it. -->
+  <link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/fraunces-var-latin.woff2?v=fv1" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/spectral-400-latin.woff2?v=fv1" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/inter-var-latin.woff2?v=fv1" crossorigin />
+  <!--s:head-->
+  <title>Land Selection Framework - a bioregioning tool for regenerative community</title>
+  <meta name="description" content="A bioregioning tool for communities seeking to belong to a place and help it flourish over fifty to a hundred years. It filters; it never scores or ranks." />
   <link rel="canonical" href="https://land-selection-framework.regencommunity.tools/" />
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "Land Selection Framework",
-    "headline": "A bioregioning tool for regenerative community on a 50–100 year horizon",
-    "description": "A bioregioning tool for communities seeking to belong to a place and help it flourish over fifty to a hundred years, read with sources across twenty regions in Europe and North America. It filters; it never scores, ranks, or tells you where to go.",
-    "url": "https://land-selection-framework.regencommunity.tools/",
-    "inLanguage": "en",
-    "author": { "@type": "Organization", "name": "The Collective" },
-    "dateModified": "2026-07-03"
-  }
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://land-selection-framework.regencommunity.tools/#website",
+          "name": "Land Selection Framework",
+          "headline": "A bioregioning tool for regenerative community on a 50–100 year horizon",
+          "description": "A bioregioning tool for communities seeking to belong to a place and help it flourish over fifty to a hundred years, read with sources across thirty regions in Europe and North America. Thresholds filter; nothing is summed.",
+          "url": "https://land-selection-framework.regencommunity.tools/",
+          "inLanguage": "en",
+          "author": {
+            "@type": "Organization",
+            "name": "Land Selection Framework working group",
+            "description": "The framework was originated by Askja and is developed by a small working group of practitioners and researchers.",
+            "founder": {
+              "@type": "Person",
+              "name": "Askja",
+              "description": "Originator of the framework"
+            }
+          },
+          "dateModified": "2026-10-06"
+        },
+        {
+          "@type": "Dataset",
+          "@id": "https://land-selection-framework.regencommunity.tools/#dataset",
+          "name": "Land Selection Framework: regional readings",
+          "description": "Eight criteria read for each of thirty regions in Europe and North America, each value with its unit, source and window. Nothing is summed.",
+          "url": "https://land-selection-framework.regencommunity.tools/",
+          "inLanguage": "en",
+          "isAccessibleForFree": true,
+          "creator": {
+            "@type": "Organization",
+            "name": "Land Selection Framework working group",
+            "description": "The framework was originated by Askja and is developed by a small working group of practitioners and researchers.",
+            "founder": {
+              "@type": "Person",
+              "name": "Askja",
+              "description": "Originator of the framework"
+            }
+          },
+          "dateModified": "2026-10-06",
+          "version": "data revision 2026-10",
+          "spatialCoverage": [
+            {
+              "@type": "Place",
+              "name": "Europe"
+            },
+            {
+              "@type": "Place",
+              "name": "North America"
+            }
+          ],
+          "variableMeasured": [
+            {
+              "@type": "PropertyValue",
+              "propertyID": "climate",
+              "name": "Climate trajectory",
+              "unitText": "°C",
+              "measurementTechnique": "WorldClim 2.1 CMIP6 downscaled (17-model ensemble, SSP2-4.5)",
+              "temporalCoverage": "2041–2060",
+              "url": "https://www.worldclim.org/data/cmip6/cmip6climate.html"
+            },
+            {
+              "@type": "PropertyValue",
+              "propertyID": "water_stress",
+              "name": "Water stress",
+              "unitText": "ratio",
+              "measurementTechnique": "WRI Aqueduct 4.0",
+              "temporalCoverage": "2050 (30-year period centred on 2050)",
+              "url": "https://www.wri.org/data/aqueduct-global-maps-40-data"
+            },
+            {
+              "@type": "PropertyValue",
+              "propertyID": "soil_carbon",
+              "name": "Soil organic carbon",
+              "unitText": "g/kg",
+              "measurementTechnique": "SoilGrids 2.0 (ISRIC)",
+              "temporalCoverage": "1960–2020 (62% of the profiles behind the map; 34% undated)",
+              "url": "https://www.isric.org/explore/soilgrids"
+            },
+            {
+              "@type": "PropertyValue",
+              "propertyID": "forest_change",
+              "name": "Forest cover trajectory",
+              "unitText": "%/decade",
+              "measurementTechnique": "Hansen Global Forest Change v1.11",
+              "temporalCoverage": "2001–2023",
+              "url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2023-v1.11/download.html"
+            },
+            {
+              "@type": "PropertyValue",
+              "propertyID": "solar_pv",
+              "name": "Solar PV potential",
+              "unitText": "kWh/kWp/yr",
+              "measurementTechnique": "Global Solar Atlas 2.0 (World Bank Group / ESMAP / Solargis)",
+              "temporalCoverage": "long-term average; record start 1994, 1999 or 2007 by satellite region, to 2025",
+              "url": "https://globalsolaratlas.info"
+            },
+            {
+              "@type": "PropertyValue",
+              "propertyID": "conflict",
+              "name": "Conflict proximity",
+              "unitText": "events",
+              "measurementTechnique": "UCDP GED v25.1",
+              "temporalCoverage": "2019–2024",
+              "url": "https://ucdp.uu.se/downloads/"
+            },
+            {
+              "@type": "PropertyValue",
+              "propertyID": "regen_network",
+              "name": "Regenerative network density",
+              "unitText": "sites",
+              "measurementTechnique": "Living Atlas Baseline Census, wave 1 (Regen Community Tools)",
+              "temporalCoverage": "wave 1, frozen 2026-07-24",
+              "url": "https://atlas.regencommunity.tools"
+            },
+            {
+              "@type": "PropertyValue",
+              "propertyID": "population",
+              "name": "Population density",
+              "unitText": "p/km²",
+              "measurementTechnique": "JRC GHSL GHS-POP R2023A",
+              "temporalCoverage": "epoch 2020 (GHSL modelled estimate)",
+              "url": "https://human-settlement.emergency.copernicus.eu/ghs_pop2023.php"
+            }
+          ],
+          "isBasedOn": [
+            {
+              "@type": "CreativeWork",
+              "name": "WorldClim 2.1 CMIP6 downscaled (17-model ensemble, SSP2-4.5)",
+              "url": "https://www.worldclim.org/data/cmip6/cmip6climate.html"
+            },
+            {
+              "@type": "CreativeWork",
+              "name": "WRI Aqueduct 4.0",
+              "url": "https://www.wri.org/data/aqueduct-global-maps-40-data"
+            },
+            {
+              "@type": "CreativeWork",
+              "name": "SoilGrids 2.0 (ISRIC)",
+              "url": "https://www.isric.org/explore/soilgrids"
+            },
+            {
+              "@type": "CreativeWork",
+              "name": "Hansen Global Forest Change v1.11",
+              "url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2023-v1.11/download.html"
+            },
+            {
+              "@type": "CreativeWork",
+              "name": "Global Solar Atlas 2.0 (World Bank Group / ESMAP / Solargis)",
+              "url": "https://globalsolaratlas.info"
+            },
+            {
+              "@type": "CreativeWork",
+              "name": "UCDP GED v25.1",
+              "url": "https://ucdp.uu.se/downloads/"
+            },
+            {
+              "@type": "CreativeWork",
+              "name": "Living Atlas Baseline Census, wave 1 (Regen Community Tools)",
+              "url": "https://atlas.regencommunity.tools"
+            },
+            {
+              "@type": "CreativeWork",
+              "name": "JRC GHSL GHS-POP R2023A",
+              "url": "https://human-settlement.emergency.copernicus.eu/ghs_pop2023.php"
+            }
+          ]
+        },
+        {
+          "@type": "ItemList",
+          "@id": "https://land-selection-framework.regencommunity.tools/#regions",
+          "name": "Regions, in the order the data declares them",
+          "itemListOrder": "https://schema.org/ItemListUnordered",
+          "numberOfItems": 30,
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "name": "Alentejo, Portugal",
+              "url": "https://land-selection-framework.regencommunity.tools/region/alentejo.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Galicia, Spain",
+              "url": "https://land-selection-framework.regencommunity.tools/region/galicia.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Transylvania, Romania",
+              "url": "https://land-selection-framework.regencommunity.tools/region/transylvania.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "West Cork / Connemara, Ireland",
+              "url": "https://land-selection-framework.regencommunity.tools/region/connemara.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Pembrokeshire / West Wales, UK",
+              "url": "https://land-selection-framework.regencommunity.tools/region/pembrokeshire.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Cévennes / Languedoc, France",
+              "url": "https://land-selection-framework.regencommunity.tools/region/cevennes.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "South Tirol, Italy",
+              "url": "https://land-selection-framework.regencommunity.tools/region/south-tirol.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Asturias, Spain",
+              "url": "https://land-selection-framework.regencommunity.tools/region/asturias.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Saxony-Anhalt rural, Germany",
+              "url": "https://land-selection-framework.regencommunity.tools/region/saxony-anhalt.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Rural Estonia, Estonia",
+              "url": "https://land-selection-framework.regencommunity.tools/region/estonia-rural.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Highlands (north-west Scotland), UK",
+              "url": "https://land-selection-framework.regencommunity.tools/region/scottish-highlands.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "North Karelia and Kainuu, Finland",
+              "url": "https://land-selection-framework.regencommunity.tools/region/north-karelia-kainuu.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Plateau de Millevaches (Limousin), France",
+              "url": "https://land-selection-framework.regencommunity.tools/region/millevaches.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Teruel uplands and the Maestrazgo (Iberian System), Spain",
+              "url": "https://land-selection-framework.regencommunity.tools/region/teruel-uplands.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Valle Maira (Occitan valleys, Cuneo Alps), Italy",
+              "url": "https://land-selection-framework.regencommunity.tools/region/valle-maira.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Cascadia, USA",
+              "url": "https://land-selection-framework.regencommunity.tools/region/cascadia.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Vermont / Upper New England, USA",
+              "url": "https://land-selection-framework.regencommunity.tools/region/vermont.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Southern Appalachians, USA",
+              "url": "https://land-selection-framework.regencommunity.tools/region/southern-appalachians.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Driftless Area, USA",
+              "url": "https://land-selection-framework.regencommunity.tools/region/driftless.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Ozarks, USA",
+              "url": "https://land-selection-framework.regencommunity.tools/region/ozarks.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Northern New Mexico, USA",
+              "url": "https://land-selection-framework.regencommunity.tools/region/northern-new-mexico.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Nova Scotia / Cape Breton, Canada",
+              "url": "https://land-selection-framework.regencommunity.tools/region/nova-scotia.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "BC Interior, Kootenays, Canada",
+              "url": "https://land-selection-framework.regencommunity.tools/region/kootenays.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Québec Eastern Townships, Canada",
+              "url": "https://land-selection-framework.regencommunity.tools/region/quebec-eastern-townships.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Oaxaca highlands, Mexico",
+              "url": "https://land-selection-framework.regencommunity.tools/region/oaxaca.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Finger Lakes (Cayuga and Seneca lake country), USA",
+              "url": "https://land-selection-framework.regencommunity.tools/region/finger-lakes.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Virginia Piedmont (Louisa, Fluvanna and Orange), USA",
+              "url": "https://land-selection-framework.regencommunity.tools/region/virginia-piedmont.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Bas-Saint-Laurent (St. Lawrence south shore), Canada",
+              "url": "https://land-selection-framework.regencommunity.tools/region/bas-saint-laurent.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Northeast Missouri / Southeast Iowa, USA",
+              "url": "https://land-selection-framework.regencommunity.tools/region/ne-missouri-se-iowa.html"
+            },
+            {
+              "@type": "ListItem",
+              "name": "Downeast Maine (Washington County, Dawnland), USA",
+              "url": "https://land-selection-framework.regencommunity.tools/region/downeast-maine.html"
+            }
+          ]
+        }
+      ]
+    }
   </script>
 
   <!-- Open Graph / Twitter Card -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://land-selection-framework.regencommunity.tools" />
-  <meta property="og:title" content="Land Selection Framework — a bioregioning tool for regenerative community" />
-  <meta property="og:description" content="A bioregioning tool for communities seeking to belong to a place and help it flourish over fifty to a hundred years, read across twenty regions in Europe and North America. It filters; it never scores or ranks." />
-  <meta property="og:image" content="https://land-selection-framework.regencommunity.tools/api/og" />
+  <meta property="og:url" content="https://land-selection-framework.regencommunity.tools/" />
+  <meta property="og:title" content="Land Selection Framework - a bioregioning tool for regenerative community" />
+  <meta property="og:description" content="A bioregioning tool for communities seeking to belong to a place and help it flourish over fifty to a hundred years. Eight criteria, with sources, across thirty regions in Europe and North America. It filters; it never scores, ranks, or tells you where to go." />
+  <meta property="og:image" content="https://land-selection-framework.regencommunity.tools/api/og?v=b20261006100127" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Land Selection Framework — a bioregioning tool for regenerative community" />
+  <meta name="twitter:title" content="Land Selection Framework - a bioregioning tool for regenerative community" />
   <meta name="twitter:description" content="A bioregioning tool for communities seeking to belong to a place and help it flourish over 50–100 years. It filters; it never scores or ranks." />
-  <meta name="twitter:image" content="https://land-selection-framework.regencommunity.tools/api/og" />
+  <meta name="twitter:image" content="https://land-selection-framework.regencommunity.tools/api/og?v=b20261006100127" />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-  <!-- Fonts self-hosted (Inter + Spectral, SIL OFL 1.1), keeps the site self-contained -->
-  <link href="/vendor/fonts/fonts.css" rel="stylesheet" />
-
-  <!-- MapLibre self-hosted (v4.7.1), avoids a third-party CDN as a runtime single-point-of-failure -->
-  <link href="/vendor/maplibre/maplibre-gl.css" rel="stylesheet" />
-  <script src="/vendor/maplibre/maplibre-gl.js"></script>
-
   <!-- Vercel Analytics (Hobby plan, no auth needed) -->
   <script defer src="/_vercel/insights/script.js"></script>
+  <!--/s-->
+  <!--s:modulepreload-->
+  <link rel="modulepreload" href="/src/state.js" />
+  <link rel="modulepreload" href="/src/refresh.js" />
+  <link rel="modulepreload" href="/src/ui/url-sync.js" />
+  <link rel="modulepreload" href="/src/ui/region-grid.js" />
+  <link rel="modulepreload" href="/src/ui/criteria.js" />
+  <link rel="modulepreload" href="/src/ui/criteria-sources.js" />
+  <link rel="modulepreload" href="/src/ui/summary-table.js" />
+  <link rel="modulepreload" href="/src/ui/sources-list.js" />
+  <link rel="modulepreload" href="/src/ui/presets.js" />
+  <link rel="modulepreload" href="/src/ui/qual-filters.js" />
+  <link rel="modulepreload" href="/src/ui/guided.js" />
+  <link rel="modulepreload" href="/src/ui/continent-switcher.js" />
+  <link rel="modulepreload" href="/src/ui/drawer/index.js" />
+  <link rel="modulepreload" href="/src/ui/compare.js" />
+  <link rel="modulepreload" href="/src/ui/next-step.js" />
+  <link rel="modulepreload" href="/src/ui/shortlist.js" />
+  <link rel="modulepreload" href="/src/ui/reset.js" />
+  <link rel="modulepreload" href="/src/ui/share.js" />
+  <link rel="modulepreload" href="/src/ui/signup.js" />
+  <link rel="modulepreload" href="/src/ui/passon.js" />
+  <link rel="modulepreload" href="/src/ui/mobile-note.js" />
+  <link rel="modulepreload" href="/src/map/extensions.js" />
+  <link rel="modulepreload" href="/src/map/layers.js" />
+  <link rel="modulepreload" href="/src/map/map.js" />
+  <link rel="modulepreload" href="/src/map/markers.js" />
+  <link rel="modulepreload" href="/src/map/continent.js" />
+  <link rel="modulepreload" href="/src/map/toggles.js" />
+  <link rel="modulepreload" href="/src/map/legend.js" />
+  <link rel="modulepreload" href="/src/map/fallback.js" />
+  <link rel="modulepreload" href="/src/data.js" />
+  <link rel="modulepreload" href="/src/config/qual-filters.js" />
+  <link rel="modulepreload" href="/src/config/continents.js" />
+  <link rel="modulepreload" href="/src/config/map-layers.js" />
+  <link rel="modulepreload" href="/lib/filters.js" />
+  <link rel="modulepreload" href="/src/bus.js" />
+  <link rel="modulepreload" href="/src/ui/match-bar.js" />
+  <link rel="modulepreload" href="/lib/url-state.js" />
+  <link rel="modulepreload" href="/src/ui/dom.js" />
+  <link rel="modulepreload" href="/lib/salutation.js" />
+  <link rel="modulepreload" href="/lib/qual-labels.js" />
+  <link rel="modulepreload" href="/lib/format.js" />
+  <link rel="modulepreload" href="/lib/evidence-render.js" />
+  <link rel="modulepreload" href="/src/ui/analytics.js" />
+  <link rel="modulepreload" href="/src/ui/overlays.js" />
+  <link rel="modulepreload" href="/src/map/bioregions.js" />
+  <link rel="modulepreload" href="/src/map/compare.js" />
+  <link rel="modulepreload" href="/src/config/flags.js" />
+  <link rel="modulepreload" href="/src/map/basemap.js" />
+  <link rel="modulepreload" href="/src/map/loader.js" />
+  <link rel="modulepreload" href="/lib/marks.js" />
+  <link rel="modulepreload" href="/src/map/labels.js" />
+  <link rel="modulepreload" href="/data/regions.js" />
+  <link rel="modulepreload" href="/data/load-slim.js" />
+  <link rel="modulepreload" href="/data/v1-lookup.js" />
+  <link rel="modulepreload" href="/data/sources.js" />
+  <link rel="modulepreload" href="/data/layer-sources.js" />
+  <link rel="modulepreload" href="/data/bioregions.js" />
+  <link rel="modulepreload" href="/data/presets.js" />
+  <!--/s-->
 
-  <style>
-    :root {
-      --paper: #f6f2eb;
-      --paper-2: #efe9df;
-      --paper-3: #e6dfd0;
-      --ink: #1a1a1a;
-      --ink-2: #3a3a3a;
-      --ink-3: #6b6258;
-      --ink-4: #9a9082;
-      --rule: #d8d0c2;
-      --rule-soft: #e6dfd0;
-      --accent: #8a3a2a;
-      --accent-soft: #c97a5a;
-      --pass: #3a6a4a;
-      --fail: #a05050;
-    }
+  <!-- MapLibre self-hosted (v4.7.1; the folder name carries the version, which is what makes its immutable caching safe), avoids a third-party CDN as a runtime single-point-of-failure -->
+  <!-- maplibre:begin -->
+  <!-- LAZY_MAP: the library and its stylesheet are requested by src/map/loader.js when the map starts (src/config/flags.js), not by this page. -->
+  <!-- maplibre:end -->
 
-    * { box-sizing: border-box; }
-    html, body {
-      margin: 0; padding: 0;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 15px; line-height: 1.55;
-      color: var(--ink); background: var(--paper);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    body { overflow-x: hidden; }
-    .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
-    .serif { font-family: 'Spectral', Georgia, serif; }
-    .mono { font-feature-settings: 'tnum' 1; font-variant-numeric: tabular-nums; }
-    h1, h2, h3, h4 { margin: 0; color: var(--ink); }
-    .eyebrow {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--accent);
-    }
-    .small { font-size: 11.5px; color: var(--ink-3); }
-    a { color: inherit; }
-
-    /* === Prototype announcement banner === */
-    .prototype-banner {
-      background: var(--accent);
-      color: var(--paper);
-      border-bottom: 1px solid rgba(26, 26, 26, 0.14);
-    }
-    .prototype-banner .container {
-      display: flex; align-items: center; gap: 16px;
-      padding-top: 14px; padding-bottom: 14px;
-      flex-wrap: wrap;
-    }
-    .proto-tag {
-      flex-shrink: 0;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 10.5px; font-weight: 700;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--accent);
-      background: var(--paper);
-      padding: 5px 11px;
-    }
-    .proto-msg {
-      margin: 0;
-      font-family: 'Spectral', Georgia, serif;
-      font-size: 16px; line-height: 1.45;
-      color: var(--paper);
-    }
-    .proto-msg strong { font-weight: 600; color: #ffffff; }
-    @media (max-width: 480px) {
-      .prototype-banner .container { gap: 10px; padding-top: 12px; padding-bottom: 12px; }
-      .proto-msg { font-size: 14.5px; }
-    }
-
-    /* === Hero === */
-    .hero {
-      padding: 100px 0 80px;
-      border-bottom: 1px solid var(--rule);
-      background:
-        radial-gradient(ellipse at 80% 20%, rgba(138, 58, 42, 0.04) 0%, transparent 60%),
-        radial-gradient(ellipse at 10% 80%, rgba(44, 95, 124, 0.05) 0%, transparent 50%),
-        var(--paper);
-    }
-    .hero .eyebrow { margin-bottom: 26px; }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.45fr 1fr;
-      gap: 56px;
-      align-items: start;
-    }
-    .hero h1 {
-      font-family: 'Spectral', Georgia, serif;
-      font-weight: 400;
-      font-size: clamp(48px, 8vw, 96px);
-      line-height: 1.0;
-      letter-spacing: -0.024em;
-      margin-bottom: 20px;
-    }
-    .hero .subtitle {
-      font-family: 'Spectral', Georgia, serif;
-      font-style: italic;
-      font-weight: 300;
-      font-size: clamp(19px, 2.2vw, 26px);
-      line-height: 1.35;
-      color: var(--ink-2);
-      max-width: 26ch;
-      margin-bottom: 32px;
-    }
-    .hero .lede {
-      font-family: 'Spectral', Georgia, serif;
-      font-size: 17px; line-height: 1.55;
-      color: var(--ink-2); max-width: 48ch; margin-bottom: 24px;
-    }
-    .hero .lede-note {
-      font-family: 'Spectral', Georgia, serif;
-      font-style: italic;
-      font-size: 14.5px; line-height: 1.65;
-      color: var(--ink-3); max-width: 50ch; margin-bottom: 32px;
-      padding-left: 16px; border-left: 2px solid var(--accent-soft);
-    }
-    .hero .key {
-      font-size: 13px; color: var(--ink-3);
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
-      border-top: 1px solid var(--rule); padding-top: 18px;
-      max-width: 560px;
-    }
-    .hero .key > div {
-      padding-right: 14px; padding-left: 12px;
-      border-right: 1px solid var(--rule);
-    }
-    .hero .key > div:first-child { padding-left: 0; }
-    .hero .key > div:last-child { border-right: none; }
-    .hero .key .num {
-      font-family: 'Spectral', Georgia, serif;
-      font-size: 24px; font-weight: 400; color: var(--ink);
-      letter-spacing: -0.01em; line-height: 1; margin-bottom: 4px;
-    }
-    .hero .key .lab {
-      font-size: 10.5px; color: var(--ink-3);
-      letter-spacing: 0.04em; text-transform: uppercase;
-    }
-
-    /* === Hero signup card (atelier polish) === */
-    .signup-card {
-      background:
-        radial-gradient(ellipse at 100% 0%, rgba(138, 58, 42, 0.05) 0%, transparent 55%),
-        linear-gradient(180deg, var(--paper) 0%, rgba(246, 242, 235, 0.92) 100%);
-      border: 1px solid var(--rule);
-      padding: 36px 34px 30px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 1px 0 var(--rule), 0 18px 44px rgba(26, 26, 26, 0.06);
-      transition: transform 0.32s ease, box-shadow 0.32s ease;
-    }
-    .signup-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 1px 0 var(--rule), 0 26px 58px rgba(26, 26, 26, 0.08);
-    }
-    .signup-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 84px; height: 2px;
-      background: var(--accent);
-    }
-    .signup-card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 84px;
-      width: 28px; height: 2px;
-      background: var(--accent);
-      opacity: 0.45;
-    }
-    .signup-card .topo-ornament {
-      position: absolute;
-      bottom: 12px; right: 14px;
-      width: 88px; height: 38px;
-      opacity: 0.25;
-      pointer-events: none;
-    }
-    .signup-card h2 {
-      font-family: 'Spectral', Georgia, serif;
-      font-weight: 500;
-      font-size: 24px;
-      letter-spacing: -0.008em;
-      margin-bottom: 10px;
-      position: relative;
-    }
-    .signup-card .blurb {
-      font-family: 'Spectral', Georgia, serif;
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--ink-3);
-      margin-bottom: 24px;
-      max-width: 32ch;
-    }
-    .signup-card form {
-      display: flex; gap: 0;
-      border: 1px solid var(--rule);
-      background: var(--paper);
-      margin-bottom: 12px;
-      transition: border-color 0.22s ease, box-shadow 0.22s ease;
-    }
-    .signup-card form:focus-within {
-      border-color: var(--ink);
-      box-shadow: 0 0 0 3px rgba(138, 58, 42, 0.08);
-    }
-    .signup-card input[type="email"] {
-      flex: 1;
-      padding: 13px 16px;
-      border: none; outline: none; background: transparent;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      color: var(--ink);
-      min-width: 0;
-    }
-    .signup-card input[type="email"]::placeholder {
-      color: var(--ink-4); font-style: italic;
-    }
-    .signup-card button[type="submit"] {
-      padding: 13px 20px;
-      background: transparent;
-      color: var(--ink);
-      border: none;
-      border-left: 1px solid var(--rule);
-      cursor: pointer;
-      font-family: 'Spectral', Georgia, serif;
-      font-style: italic;
-      font-size: 15px; font-weight: 500;
-      letter-spacing: 0.005em;
-      display: inline-flex; align-items: center; gap: 8px;
-      transition: all 0.22s ease;
-      white-space: nowrap;
-    }
-    .signup-card button[type="submit"]:hover {
-      background: var(--ink);
-      color: var(--paper);
-    }
-    .signup-card button[type="submit"] .arrow {
-      display: inline-block;
-      transition: transform 0.22s ease;
-      font-style: normal;
-    }
-    .signup-card button[type="submit"]:hover .arrow { transform: translateX(4px); }
-    .signup-card .form-status {
-      font-family: 'Spectral', serif;
-      font-style: italic;
-      font-size: 13px;
-      color: var(--ink-3);
-      min-height: 1.3em;
-      margin-top: 8px;
-    }
-    .signup-card .form-status.error { color: var(--fail); }
-    .signup-card .form-status.success { color: var(--pass); }
-    .signup-card .form-status a {
-      color: var(--accent);
-      text-decoration: underline dotted;
-      text-underline-offset: 2px;
-    }
-    .signup-card .footnote {
-      font-size: 11px;
-      color: var(--ink-4);
-      letter-spacing: 0.02em;
-      margin-top: 18px;
-      padding-top: 14px;
-      border-top: 1px dotted var(--rule);
-      font-family: 'Spectral', serif;
-      font-style: italic;
-      position: relative;
-      z-index: 1;
-    }
-    .signup-card .footnote a { color: var(--ink-3); text-decoration: underline dotted; text-underline-offset: 3px; }
-    .signup-card .footnote a:hover { color: var(--accent); }
-
-    /* === Hero secondary CTA (Deeper / Ethics) === */
-    .hero-cta {
-      display: block;
-      margin-top: 16px;
-      padding: 22px 26px 24px;
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      position: relative;
-      text-decoration: none;
-      color: var(--ink);
-      transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
-      cursor: pointer;
-      box-shadow: 0 1px 0 var(--rule);
-    }
-    .hero-cta::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 56px; height: 2px;
-      background: var(--accent);
-      opacity: 0.7;
-      transition: opacity 0.22s ease, background 0.22s ease;
-    }
-    .hero-cta:hover {
-      background: var(--ink);
-      color: var(--paper);
-      border-color: var(--ink);
-      transform: translateY(-2px);
-      box-shadow: 0 1px 0 var(--ink), 0 16px 32px rgba(26, 26, 26, 0.10);
-    }
-    .hero-cta:hover::before {
-      background: var(--accent-soft);
-      opacity: 1;
-    }
-    .hero-cta-eyebrow {
-      display: block;
-      font-family: 'Inter', sans-serif;
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 10px;
-      transition: color 0.22s ease;
-    }
-    .hero-cta:hover .hero-cta-eyebrow { color: var(--accent-soft); }
-    .hero-cta-body {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 18px;
-    }
-    .hero-cta-text {
-      font-family: 'Spectral', Georgia, serif;
-      font-style: italic;
-      font-weight: 400;
-      font-size: 17.5px;
-      line-height: 1.35;
-      letter-spacing: -0.005em;
-      flex: 1;
-    }
-    .hero-cta-arrow {
-      font-family: 'Spectral', Georgia, serif;
-      font-size: 19px;
-      font-style: normal;
-      transition: transform 0.22s ease;
-      display: inline-block;
-      flex-shrink: 0;
-    }
-    .hero-cta:hover .hero-cta-arrow { transform: translateX(5px); }
-
-    /* === Regions intro === */
-    .regions-intro { padding: 70px 0 50px; border-bottom: 1px solid var(--rule); }
-    .regions-intro h2 {
-      font-family: 'Spectral', Georgia, serif;
-      font-size: 30px; font-weight: 400;
-      letter-spacing: -0.01em; margin-bottom: 14px; max-width: 22ch;
-    }
-    .regions-intro p {
-      font-family: 'Spectral', Georgia, serif;
-      font-size: 16px; color: var(--ink-2);
-      max-width: 60ch; margin: 0 0 28px;
-    }
-
-    .map-wrap {
-      position: relative; width: 100%; height: 460px;
-      background: var(--paper-3); margin-bottom: 32px;
-      border: 1px solid var(--rule);
-    }
-    #map { position: absolute; inset: 0; }
-
-    .map-controls {
-      position: absolute; top: 14px; left: 14px;
-      background: var(--paper); border: 1px solid var(--rule);
-      padding: 12px 14px 10px; max-width: 240px; z-index: 2;
-      box-shadow: 0 1px 0 var(--rule), 0 6px 18px rgba(26,26,26,0.05);
-      max-height: calc(100% - 28px);
-      overflow-y: auto;
-    }
-    .map-controls .title {
-      font-size: 10px; font-weight: 600; letter-spacing: 0.09em;
-      text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px;
-      /* rendered as a <button> so the panel can collapse on small screens */
-      display: flex; align-items: center; justify-content: space-between; gap: 10px;
-      width: 100%; background: none; border: none; padding: 0;
-      font-family: 'Inter', system-ui, sans-serif; cursor: pointer;
-    }
-    .map-controls .title .caret {
-      font-size: 9px; color: var(--ink-4); transition: transform 0.2s ease;
-    }
-    .map-controls.collapsed .title { margin-bottom: 0; }
-    .map-controls.collapsed .title .caret { transform: rotate(-90deg); }
-    .map-controls.collapsed #map-toggles { display: none; }
-    .map-controls .title:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-    /* Continent switcher, only rendered (unhidden) when >1 continent has data */
-    .continent-switcher {
-      display: flex; gap: 2px; margin: 0 0 18px;
-      border-bottom: 1px solid var(--rule);
-    }
-    .continent-tab {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 14px; font-weight: 600; letter-spacing: 0.01em;
-      color: var(--ink-3); background: none; border: none;
-      padding: 9px 18px 11px; cursor: pointer;
-      border-bottom: 2px solid transparent; margin-bottom: -1px;
-      transition: color 0.15s ease, border-color 0.15s ease;
-    }
-    .continent-tab:hover { color: var(--ink); }
-    .continent-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
-    .continent-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-    /* Render-both-and-toggle: hide the inactive continent's nodes everywhere ,
-       region cards, criterion bars, summary columns, map markers, source items.
-       The :not(.continent-tab) exclusion keeps the SWITCHER tabs visible, they
-       also carry data-continent, but they're controls, not continent content. */
-    body[data-continent="europe"] [data-continent="north-america"]:not(.continent-tab),
-    body[data-continent="north-america"] [data-continent="europe"]:not(.continent-tab) {
-      display: none !important;
-    }
-
-    /* Graceful fallback if the map library or tiles fail to load */
-    .map-fallback {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 24px;
-      font-family: 'Spectral', Georgia, serif; font-size: 15px;
-      color: var(--ink-3); line-height: 1.6;
-    }
-    .map-fallback strong { color: var(--ink-2); font-weight: 500; }
-    .map-toggle-group-label {
-      font-family: 'Inter', sans-serif;
-      font-size: 9.5px; font-weight: 600;
-      letter-spacing: 0.10em; text-transform: uppercase;
-      color: var(--ink-4);
-      margin-top: 10px;
-      padding-top: 8px;
-      border-top: 1px dotted var(--rule);
-    }
-    .map-toggle-group-label:first-of-type {
-      margin-top: 6px; padding-top: 0; border-top: none;
-    }
-    .map-toggle {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 12px; color: var(--ink-2); padding: 4px 0;
-      cursor: pointer; user-select: none;
-    }
-    .map-toggle .dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: var(--toggle-color, var(--ink-3));
-      opacity: 0.35; transition: opacity 0.15s;
-    }
-    .map-toggle.on .dot { opacity: 1; }
-    .map-toggle .name { font-family: 'Spectral', serif; font-size: 13px; }
-    .map-toggle:hover { color: var(--ink); }
-
-    .region-marker {
-      width: 30px; height: 30px; border-radius: 50%;
-      background: var(--marker-color, var(--ink));
-      border: 3px solid var(--paper);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.18);
-      cursor: pointer; transition: transform 0.2s, opacity 0.2s;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--paper);
-      font-family: 'Spectral', serif; font-weight: 600; font-size: 13px;
-    }
-    .region-marker.dim { opacity: 0.32; transform: scale(0.78); }
-    .region-marker:hover { transform: scale(1.12); }
-    .region-label {
-      position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%);
-      white-space: nowrap; font-family: 'Spectral', serif;
-      font-size: 11.5px; font-weight: 500; color: var(--ink);
-      background: var(--paper); padding: 1px 7px;
-      border: 1px solid var(--rule); pointer-events: none;
-    }
-
-    .region-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1px; background: var(--rule); border: 1px solid var(--rule);
-    }
-    .region-card {
-      background: var(--paper); padding: 22px 22px 26px;
-      position: relative; transition: opacity 0.3s, background 0.2s;
-    }
-    .region-card::before {
-      content: ''; position: absolute;
-      top: 0; left: 0; height: 3px; width: 36%;
-      background: var(--accent-region, var(--accent));
-    }
-    .region-card.fail { opacity: 0.32; background: var(--paper); }
-    .region-card.fail::before { width: 18%; }
-    .region-card .name {
-      font-family: 'Spectral', Georgia, serif;
-      font-size: 22px; font-weight: 500;
-      letter-spacing: -0.005em; margin-bottom: 2px; color: var(--ink);
-    }
-    .region-card .country {
-      font-size: 11.5px; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--ink-3); margin-bottom: 14px;
-    }
-    .arrive { padding: 40px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--paper-2); }
-    .arrive h2 { font-size: 26px; margin: 8px 0 14px; max-width: 26ch; line-height: 1.2; }
-    .arrive-lede { font-size: 16px; line-height: 1.65; color: var(--ink-2); max-width: 64ch; }
-    .arrive-lede em { font-style: italic; color: var(--accent); }
-    .arrive-fors { display: grid; gap: 12px; margin-top: 22px; max-width: 72ch; }
-    .arrive-for { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
-    .arrive-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; margin-right: 8px; vertical-align: 1.5px; }
-    .arrive-tag.for { background: #e8efe5; color: #3a5a3a; }
-    .arrive-tag.notfor { background: #f3e4df; color: #8a3a2a; }
-    .arrive-bridge { margin-top: 22px; padding-top: 15px; border-top: 1px dotted var(--rule); font-family: 'Spectral', Georgia, serif; font-style: italic; font-size: 15px; line-height: 1.6; color: var(--ink-3); max-width: 66ch; }
-    .arrive-bridge a { color: var(--accent); font-style: normal; text-decoration: underline; text-underline-offset: 2px; }
-    .card-asks { font-size: 12.5px; line-height: 1.5; color: var(--ink-3); margin-top: 8px; font-style: italic; }
-    .card-asks-label { font-style: normal; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; font-size: 10.5px; color: var(--accent); margin-right: 6px; }
-    .region-card .blurb {
-      font-family: 'Spectral', Georgia, serif;
-      font-size: 13.5px; line-height: 1.55; color: var(--ink-2);
-    }
-    .region-card .status {
-      margin-top: 14px; font-size: 10.5px;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--pass); font-weight: 600;
-    }
-    .region-card.fail .status { color: var(--fail); }
-
-    /* === Match summary === */
-    .match-bar {
-      display: flex; align-items: center; justify-content: space-between;
-      background: var(--paper-2); border: 1px solid var(--rule);
-      padding: 14px 18px; margin-bottom: 28px; font-size: 13px;
-    }
-    .match-bar .count {
-      font-family: 'Spectral', serif; font-size: 22px;
-      font-weight: 500; color: var(--ink); letter-spacing: -0.005em;
-    }
-    .match-bar .count em { font-style: italic; color: var(--ink-3); font-weight: 400; }
-    .match-bar .label {
-      font-size: 11px; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--ink-3);
-    }
-    .match-bar .reset,
-    .match-bar .share {
-      font-family: 'Inter', sans-serif; font-size: 11px;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      background: transparent; border: 1px solid var(--rule);
-      padding: 8px 14px; color: var(--ink-2);
-      cursor: pointer; transition: all 0.15s;
-    }
-    .match-bar .reset:hover,
-    .match-bar .share:hover {
-      background: var(--ink); color: var(--paper); border-color: var(--ink);
-    }
-    .match-bar .share:focus-visible,
-    .match-bar .reset:focus-visible {
-      outline: 2px solid var(--accent, #8a3a2a); outline-offset: 2px;
-    }
-    .match-bar-actions {
-      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-    }
-    .match-bar .share { display: none; }
-    .match-bar.has-filters .share { display: inline-block; }
-    .match-bar .share.copied {
-      background: var(--ink); color: var(--paper); border-color: var(--ink);
-    }
-    .match-bar .share-note {
-      font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--ink-3);
-      opacity: 0; transition: opacity 0.25s ease;
-      pointer-events: none;
-    }
-    .match-bar .share-note.visible { opacity: 1; }
-
-    /* === Criteria grid === */
-    .criteria { padding: 60px 0 40px; }
-    .criteria > h2 {
-      font-family: 'Spectral', Georgia, serif;
-      font-size: 30px; font-weight: 400;
-      letter-spacing: -0.01em; margin-bottom: 8px;
-    }
-    .criteria > .desc {
-      font-family: 'Spectral', Georgia, serif;
-      font-size: 16px; color: var(--ink-2);
-      max-width: 64ch; margin: 0 0 32px;
-    }
-
-    .crit-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1px; background: var(--rule); border: 1px solid var(--rule);
-    }
-    .crit-card {
-      background: var(--paper); padding: 26px 26px 22px;
-      display: flex; flex-direction: column;
-    }
-    .crit-card .head {
-      display: flex; justify-content: space-between;
-      align-items: flex-start; margin-bottom: 6px;
-    }
-    .crit-card .num {
-      font-family: 'Spectral', serif; font-size: 16px;
-      font-style: italic; color: var(--ink-4); font-weight: 400;
-    }
-    .crit-card h3 {
-      font-family: 'Spectral', serif;
-      font-size: 22px; font-weight: 500;
-      letter-spacing: -0.005em; line-height: 1.15; margin-bottom: 4px;
-    }
-    .crit-card .metric {
-      font-size: 11.5px; letter-spacing: 0.06em;
-      text-transform: uppercase; color: var(--ink-3); margin-bottom: 14px;
-    }
-    .crit-card .framing {
-      font-family: 'Spectral', serif;
-      font-size: 13.5px; line-height: 1.55;
-      color: var(--ink-2); margin-bottom: 18px;
-    }
-
-    /* Threshold slider */
-    .slider-block {
-      background: var(--paper-2); padding: 12px 14px 14px;
-      margin-bottom: 18px; border-left: 2px solid var(--rule);
-    }
-    .slider-row {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 6px;
-    }
-    .slider-label {
-      font-size: 10.5px; letter-spacing: 0.06em;
-      text-transform: uppercase; color: var(--ink-3); font-weight: 600;
-    }
-    .slider-val {
-      font-family: 'Spectral', serif;
-      font-size: 16px; font-weight: 500; color: var(--ink);
-      font-feature-settings: 'tnum' 1; font-variant-numeric: tabular-nums;
-    }
-    .slider-val .u { font-size: 11px; color: var(--ink-3); margin-left: 2px; }
-
-    input[type="range"] {
-      -webkit-appearance: none; appearance: none;
-      width: 100%; height: 4px;
-      background: var(--rule); outline: none; margin: 8px 0 4px;
-    }
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none; appearance: none;
-      width: 18px; height: 18px;
-      background: var(--ink); border: 2px solid var(--paper);
-      cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    }
-    input[type="range"]::-moz-range-thumb {
-      width: 18px; height: 18px;
-      background: var(--ink); border: 2px solid var(--paper);
-      cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    }
-    .slider-hint {
-      font-size: 10.5px; color: var(--ink-3);
-      font-family: 'Spectral', serif; font-style: italic;
-    }
-
-    /* Bars */
-    .bar-rows { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-    .bar-row {
-      display: grid; grid-template-columns: 90px 1fr 88px 16px;
-      align-items: center; gap: 12px;
-      font-size: 12px; transition: opacity 0.25s;
-    }
-    .bar-row.fail { opacity: 0.4; }
-    .bar-row .reg {
-      font-family: 'Spectral', serif;
-      font-size: 13px; font-weight: 500;
-      color: var(--ink-2); letter-spacing: -0.005em;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .bar-track { position: relative; height: 8px; background: var(--paper-3); }
-    .bar-fill {
-      position: absolute; left: 0; top: 0; height: 100%;
-      background: var(--bar-color, var(--accent));
-      transition: width 0.4s ease;
-    }
-    .bar-threshold {
-      position: absolute; top: -3px; bottom: -3px;
-      width: 2px; background: var(--ink);
-      transition: left 0.15s; pointer-events: none;
-    }
-    .bar-val {
-      font-feature-settings: 'tnum' 1; font-variant-numeric: tabular-nums;
-      font-size: 13px; font-weight: 500; color: var(--ink);
-      text-align: right;
-    }
-    .bar-mark {
-      font-size: 13px; color: var(--pass);
-      text-align: center; font-weight: 600;
-    }
-    .bar-row.fail .bar-mark { color: var(--fail); }
-
-    .crit-card .footer {
-      margin-top: auto; padding-top: 14px;
-      border-top: 1px dotted var(--rule);
-      font-size: 10.5px; color: var(--ink-3); line-height: 1.45;
-    }
-    .crit-card .footer a {
-      color: var(--ink-2);
-      text-decoration: underline dotted; text-underline-offset: 2px;
-    }
-
-    /* === Summary table === */
-    .summary { padding: 60px 0 40px; border-top: 1px solid var(--rule); }
-    .summary h2 {
-      font-family: 'Spectral', serif;
-      font-size: 30px; font-weight: 400;
-      letter-spacing: -0.01em; margin-bottom: 8px;
-    }
-    .summary .desc {
-      font-family: 'Spectral', serif;
-      font-size: 16px; color: var(--ink-2);
-      max-width: 60ch; margin: 0 0 32px;
-    }
-    .sum-table {
-      width: 100%; border: 1px solid var(--rule);
-      border-collapse: collapse; background: var(--paper);
-      font-size: 12.5px;
-    }
-    .sum-table th, .sum-table td {
-      padding: 10px 12px; text-align: left;
-      border-bottom: 1px solid var(--rule-soft);
-      border-right: 1px solid var(--rule-soft);
-      vertical-align: top;
-      transition: opacity 0.25s, background 0.2s;
-    }
-    .sum-table th {
-      background: var(--paper-2);
-      font-family: 'Inter', sans-serif; font-weight: 600;
-      font-size: 11px; letter-spacing: 0.06em;
-      text-transform: uppercase; color: var(--ink-2);
-    }
-    .sum-table th.region-fail { opacity: 0.4; }
-    .sum-table td.region-fail { opacity: 0.32; background: var(--paper); }
-    .sum-table td:first-child {
-      font-family: 'Spectral', serif; font-weight: 500;
-      font-size: 13px; color: var(--ink);
-      background: var(--paper-2);
-    }
-    .sum-table .v {
-      font-feature-settings: 'tnum' 1; font-variant-numeric: tabular-nums;
-      font-weight: 500;
-    }
-    .sum-table .lab {
-      display: block; font-size: 10.5px;
-      color: var(--ink-3); letter-spacing: 0.01em; margin-top: 3px;
-    }
-    /* Per-criterion source cue in the first column — same "source · unit · license"
-       idiom the bar-chart cards carry in their footer, so the comparison table upholds
-       the same source+vintage ethic as every other value surface. */
-    .sum-table td:first-child .crit-src {
-      display: block; margin-top: 5px;
-      font-family: 'Inter', sans-serif; font-weight: 400;
-      font-size: 10px; line-height: 1.4; letter-spacing: 0;
-      text-transform: none; color: var(--ink-3);
-    }
-    .sum-table td:first-child .crit-src a {
-      color: var(--ink-3);
-      text-decoration: underline dotted; text-underline-offset: 2px;
-    }
-    .sum-table .swatch {
-      display: inline-block; width: 8px; height: 8px; border-radius: 50%;
-      margin-right: 8px; vertical-align: 0;
-    }
-
-    /* === Contact / Stay in touch === */
-    .contact {
-      padding: 70px 0 70px;
-      border-top: 1px solid var(--rule);
-      background:
-        radial-gradient(ellipse at 90% 30%, rgba(138, 58, 42, 0.045) 0%, transparent 60%),
-        var(--paper);
-    }
-    .contact .col {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 56px;
-      align-items: start;
-    }
-    .contact h2 {
-      font-family: 'Spectral', serif;
-      font-size: 30px; font-weight: 400;
-      letter-spacing: -0.01em; margin-bottom: 10px;
-    }
-    .contact .lead {
-      font-family: 'Spectral', serif;
-      font-size: 16px; line-height: 1.55;
-      color: var(--ink-2); margin-bottom: 22px;
-    }
-    .contact .lead em { font-style: italic; color: var(--ink-3); }
-    .contact form {
-      display: flex; gap: 0; max-width: 460px; margin-bottom: 14px;
-      border: 1px solid var(--ink); background: var(--paper);
-    }
-    .contact input[type="email"] {
-      flex: 1; padding: 14px 16px;
-      border: none; outline: none; background: transparent;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px; color: var(--ink);
-    }
-    .contact input[type="email"]::placeholder {
-      color: var(--ink-4); font-style: italic;
-    }
-    .contact button[type="submit"] {
-      padding: 14px 22px;
-      background: var(--ink); color: var(--paper);
-      border: none; cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      transition: background 0.15s;
-    }
-    .contact button[type="submit"]:hover { background: var(--accent); }
-    .contact .form-status {
-      font-family: 'Spectral', serif;
-      font-style: italic;
-      font-size: 13px;
-      color: var(--ink-3);
-      margin-bottom: 18px;
-      min-height: 1.2em;
-    }
-    .contact .form-status.error { color: var(--fail); }
-    .contact .form-status.success { color: var(--pass); }
-
-    .contact .socials {
-      display: flex; gap: 14px; align-items: center;
-      margin-bottom: 22px;
-    }
-    .contact .socials a {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 46px; height: 46px;
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      color: var(--ink-2);
-      transition: all 0.15s;
-      text-decoration: none;
-    }
-    .contact .socials a:hover {
-      background: var(--ink); color: var(--paper); border-color: var(--ink);
-    }
-    .contact .socials svg { width: 20px; height: 20px; }
-    .contact .direct {
-      font-family: 'Spectral', serif;
-      font-size: 14.5px; color: var(--ink-2); line-height: 1.7;
-      margin: 0;
-    }
-    .contact .direct a {
-      color: var(--accent); text-decoration: underline dotted;
-      text-underline-offset: 3px;
-    }
-    .contact .direct a:hover { color: var(--ink); }
-
-    .invitation-cta {
-      padding: 22px 26px;
-      background: var(--paper-2);
-      border-left: 3px solid var(--accent);
-      font-family: 'Spectral', serif;
-      font-size: 14.5px; color: var(--ink-2);
-      line-height: 1.65;
-    }
-    .invitation-cta strong { color: var(--ink); font-weight: 500; }
-    .invitation-cta a {
-      color: var(--accent); text-decoration: underline dotted;
-      text-underline-offset: 3px; font-weight: 500;
-    }
-
-    /* === Footer === */
-    footer {
-      padding: 60px 0 80px;
-      border-top: 1px solid var(--rule);
-      background: var(--paper-2);
-    }
-    footer .frame {
-      font-family: 'Spectral', serif; font-style: italic;
-      font-size: 14.5px; line-height: 1.6;
-      color: var(--ink-2); max-width: 62ch; margin-bottom: 36px;
-    }
-    footer .credits {
-      display: grid; grid-template-columns: 1.6fr 1fr 1fr;
-      gap: 40px; font-size: 12px; color: var(--ink-3);
-    }
-    footer h3 {
-      font-size: 10.5px; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--ink);
-      margin: 0 0 10px; font-weight: 600;
-    }
-    footer ul { list-style: none; padding: 0; margin: 0; }
-    footer li { margin-bottom: 4px; line-height: 1.5; }
-    footer .about-p {
-      font-family: 'Spectral', serif;
-      font-size: 13px; line-height: 1.6;
-      color: var(--ink-3); margin: 0 0 12px;
-    }
-    footer .about-p a {
-      color: var(--ink-2);
-      text-decoration: underline dotted; text-underline-offset: 2px;
-    }
-    footer .stamp {
-      margin-top: 36px; padding-top: 24px;
-      border-top: 1px dotted var(--rule);
-      font-size: 10.5px; letter-spacing: 0.05em; color: var(--ink-4);
-    }
-    footer .stamp .sep { color: var(--rule); margin: 0 8px; }
-
-    /* === Signup modal === */
-    body.modal-open { overflow: hidden; }
-
-    .modal-backdrop {
-      position: fixed; inset: 0;
-      background: rgba(26, 22, 18, 0.42);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      z-index: 1000;
-      display: flex; align-items: center; justify-content: center;
-      padding: 24px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.32s ease;
-    }
-    .modal-backdrop.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .modal-card {
-      background:
-        radial-gradient(ellipse at 100% 0%, rgba(138, 58, 42, 0.06) 0%, transparent 55%),
-        var(--paper);
-      border: 1px solid var(--rule);
-      padding: 44px 44px 36px;
-      max-width: 520px; width: 100%;
-      position: relative;
-      box-shadow: 0 30px 80px rgba(26, 22, 18, 0.25);
-      transform: translateY(12px) scale(0.985);
-      opacity: 0;
-      transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.32s ease;
-    }
-    .modal-backdrop.visible .modal-card {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-    }
-    .modal-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 92px; height: 2px;
-      background: var(--accent);
-    }
-    .modal-card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 92px;
-      width: 32px; height: 2px;
-      background: var(--accent);
-      opacity: 0.45;
-    }
-    .modal-topo {
-      position: absolute;
-      bottom: 18px; right: 22px;
-      width: 100px; height: 42px;
-      opacity: 0.22;
-      pointer-events: none;
-    }
-    .modal-close {
-      position: absolute;
-      top: 18px; right: 18px;
-      width: 36px; height: 36px;
-      background: transparent;
-      border: 1px solid var(--rule);
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--ink-3);
-      transition: all 0.18s ease;
-      padding: 0;
-    }
-    .modal-close:hover {
-      background: var(--ink); color: var(--paper); border-color: var(--ink);
-    }
-    .modal-close svg { width: 14px; height: 14px; }
-    .modal-eyebrow {
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 16px;
-    }
-    .modal-card h2 {
-      font-family: 'Spectral', Georgia, serif;
-      font-weight: 400;
-      font-size: clamp(28px, 4vw, 38px);
-      line-height: 1.08;
-      letter-spacing: -0.014em;
-      margin-bottom: 16px;
-      color: var(--ink);
-      max-width: 18ch;
-    }
-    .modal-card h2 em {
-      font-style: italic;
-      color: var(--ink-3);
-      font-weight: 300;
-    }
-    .modal-card .modal-blurb {
-      font-family: 'Spectral', Georgia, serif;
-      font-size: 15px;
-      line-height: 1.6;
-      color: var(--ink-2);
-      margin-bottom: 24px;
-      max-width: 36ch;
-    }
-    .modal-form {
-      display: flex; gap: 0;
-      border: 1px solid var(--rule);
-      background: var(--paper);
-      margin-bottom: 10px;
-      transition: border-color 0.22s ease, box-shadow 0.22s ease;
-    }
-    .modal-form:focus-within {
-      border-color: var(--ink);
-      box-shadow: 0 0 0 3px rgba(138, 58, 42, 0.1);
-    }
-    .modal-form input[type="email"] {
-      flex: 1;
-      padding: 14px 16px;
-      border: none; outline: none; background: transparent;
-      font-family: 'Inter', sans-serif;
-      font-size: 14.5px;
-      color: var(--ink);
-      min-width: 0;
-    }
-    .modal-form input[type="email"]::placeholder {
-      color: var(--ink-4); font-style: italic;
-    }
-    .modal-form button[type="submit"] {
-      padding: 14px 22px;
-      background: transparent;
-      color: var(--ink);
-      border: none;
-      border-left: 1px solid var(--rule);
-      cursor: pointer;
-      font-family: 'Spectral', Georgia, serif;
-      font-style: italic;
-      font-size: 15.5px; font-weight: 500;
-      display: inline-flex; align-items: center; gap: 8px;
-      transition: all 0.22s ease;
-      white-space: nowrap;
-    }
-    .modal-form button[type="submit"]:hover {
-      background: var(--ink); color: var(--paper);
-    }
-    .modal-form button[type="submit"] .arrow {
-      display: inline-block;
-      transition: transform 0.22s ease;
-      font-style: normal;
-    }
-    .modal-form button[type="submit"]:hover .arrow {
-      transform: translateX(4px);
-    }
-    .modal-status {
-      font-family: 'Spectral', serif;
-      font-style: italic;
-      font-size: 13px;
-      color: var(--ink-3);
-      min-height: 1.3em;
-      margin-bottom: 8px;
-    }
-    .modal-status.error { color: var(--fail); }
-    .modal-status.success { color: var(--pass); }
-    .modal-divider {
-      display: flex; align-items: center; gap: 14px;
-      margin: 22px 0 18px;
-      font-family: 'Spectral', serif;
-      font-style: italic;
-      font-size: 12.5px;
-      color: var(--ink-4);
-      letter-spacing: 0.05em;
-    }
-    .modal-divider::before,
-    .modal-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--rule);
-    }
-    .modal-decline {
-      background: transparent;
-      border: 1px solid var(--rule);
-      padding: 12px 22px;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      font-size: 12px; font-weight: 500;
-      letter-spacing: 0.04em;
-      color: var(--ink-2);
-      transition: all 0.18s ease;
-      width: 100%;
-    }
-    .modal-decline:hover {
-      background: var(--paper-2);
-      border-color: var(--ink-3);
-      color: var(--ink);
-    }
-    .modal-footnote {
-      font-size: 11px;
-      color: var(--ink-4);
-      letter-spacing: 0.02em;
-      margin-top: 14px;
-      font-family: 'Spectral', serif;
-      font-style: italic;
-      text-align: center;
-    }
-
-    /* === Mobile polish === */
-    @media (max-width: 880px) {
-      .container { padding: 0 22px; }
-      .hero { padding: 64px 0 52px; }
-      .hero-grid { grid-template-columns: 1fr; gap: 36px; }
-      .hero h1 { font-size: clamp(40px, 9vw, 60px); }
-      .hero .subtitle { font-size: clamp(17px, 3vw, 22px); max-width: 100%; }
-      .hero .lede { font-size: 16px; margin-bottom: 28px; }
-      .hero .key { grid-template-columns: repeat(2, 1fr); gap: 18px 0; max-width: 100%; }
-      .hero .key > div { border-right: none; padding-left: 0; }
-      .hero .key > div:nth-child(2n) { padding-left: 14px; border-left: 1px solid var(--rule); }
-      .signup-card { padding: 22px 22px 20px; }
-      .map-wrap { height: 360px; }
-      .map-controls { top: 8px; left: 8px; max-width: 200px; padding: 8px 10px; }
-      .region-grid { grid-template-columns: 1fr 1fr; }
-      .crit-grid { grid-template-columns: 1fr; }
-      .bar-row { grid-template-columns: 76px 1fr 70px 14px; }
-      .contact .col { grid-template-columns: 1fr; gap: 32px; }
-      footer .credits { grid-template-columns: 1fr; gap: 28px; }
-    }
-
-    @media (max-width: 600px) {
-      .modal-card { padding: 36px 28px 28px; }
-      .modal-card h2 { font-size: clamp(24px, 6vw, 32px); }
-      .modal-card .modal-blurb { font-size: 14px; }
-      .modal-topo { width: 70px; height: 30px; bottom: 12px; right: 14px; }
-      .modal-form { flex-direction: column; }
-      .modal-form input[type="email"] { border-bottom: 1px solid var(--rule); }
-      .modal-form button[type="submit"] { border-left: none; }
-    }
-
-    @media (max-width: 480px) {
-      .container { padding: 0 18px; }
-      .hero { padding: 48px 0 40px; }
-      .hero h1 { font-size: 38px; line-height: 1.02; letter-spacing: -0.02em; }
-      .hero .subtitle { font-size: 17px; line-height: 1.4; }
-      .hero .lede { font-size: 15.5px; }
-      .hero .key { grid-template-columns: 1fr 1fr; }
-      .hero .key .num { font-size: 22px; }
-      .signup-card h2 { font-size: 20px; }
-      .signup-card .blurb { font-size: 13px; }
-      /* Hero signup form: stack input + button on phones so Subscribe is reachable */
-      .signup-card form { flex-direction: column; }
-      .signup-card input[type="email"] { border-bottom: 1px solid var(--rule); }
-      .signup-card button[type="submit"] {
-        border-left: none; border-top: 1px solid var(--rule);
-        justify-content: center; padding: 14px 20px;
-      }
-      .map-wrap { height: 280px; }
-      .region-grid { grid-template-columns: 1fr; }
-      .crit-card { padding: 22px 18px 18px; min-height: 0; }
-      .crit-card h3 { font-size: 19px; }
-      .crit-card .framing { font-size: 13px; }
-      /* Widen value column so "1760 kWh/kWp" isn't clipped at 375 */
-      .bar-row { grid-template-columns: 60px 1fr 78px 12px; gap: 8px; }
-      .bar-row .reg { font-size: 12px; }
-      .bar-val { font-size: 11.5px; }
-      input[type="range"]::-webkit-slider-thumb { width: 22px; height: 22px; }
-      input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; }
-      .sum-table th, .sum-table td { padding: 9px 8px; font-size: 11px; }
-      .contact form { flex-direction: column; }
-      .contact input[type="email"] { border-bottom: 1px solid var(--rule); }
-      .match-bar { flex-direction: column; align-items: stretch; gap: 12px; }
-      .match-bar-actions { width: 100%; justify-content: space-between; }
-      .match-bar .share, .match-bar .reset { flex: 1; text-align: center; }
-    }
-
-    /* === Touch-device tuning (iOS HIG / Material 44px target) === */
-    @media (pointer: coarse) {
-      input[type="range"] { height: 6px; }
-      input[type="range"]::-webkit-slider-thumb {
-        width: 28px; height: 28px;
-      }
-      input[type="range"]::-moz-range-thumb {
-        width: 28px; height: 28px;
-      }
-      .match-bar .share,
-      .match-bar .reset {
-        padding: 12px 16px;
-        min-height: 44px;
-      }
-      .modal-close {
-        width: 44px; height: 44px; top: 14px; right: 14px;
-      }
-      .map-toggle {
-        padding: 8px 4px;
-        min-height: 36px;
-      }
-      .map-controls {
-        padding: 10px 12px;
-      }
-    }
-
-    /* === Usability layer: onboarding + presets === */
-    .onboarding { margin: 0 0 24px; }
-    .onboarding-cue {
-      font-family: 'Spectral', Georgia, serif;
-      font-style: italic;
-      font-size: 14.5px; line-height: 1.5;
-      color: var(--ink-3);
-      margin: 0 0 14px;
-      max-width: 60ch;
-    }
-    .preset-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-    /* Qualitative (per-jurisdiction) enum filters from the r4 V1 layers — filters, never scores. */
-    .qual-filters {
-      display: flex; flex-wrap: wrap; gap: 12px 18px;
-      margin-top: 14px; padding-top: 12px;
-      border-top: 1px dotted var(--rule);
-    }
-    .qual-filter {
-      display: flex; align-items: center; gap: 8px;
-      font-family: 'Inter', system-ui, sans-serif; font-size: 12px;
-      color: var(--ink-3);
-    }
-    .qual-filter-label {
-      font-weight: 600; letter-spacing: 0.04em;
-      text-transform: uppercase; font-size: 10.5px;
-    }
-    .qual-filter-select {
-      font-family: 'Inter', system-ui, sans-serif; font-size: 12px;
-      color: var(--ink); background: var(--paper);
-      border: 1px solid var(--rule); padding: 5px 8px;
-      cursor: pointer;
-    }
-    .qual-filter-select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .preset-chip {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 12.5px; font-weight: 500; letter-spacing: 0.01em;
-      color: var(--ink-2); background: var(--paper);
-      border: 1px solid var(--rule);
-      padding: 8px 14px; cursor: pointer;
-      transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
-    }
-    .preset-chip:hover {
-      background: var(--ink); color: var(--paper); border-color: var(--ink);
-      transform: translateY(-1px);
-    }
-    .preset-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-    /* === Guided entry band (Phase A on-ramp) === */
-    .guided {
-      padding: 46px 0 42px;
-      border-bottom: 1px solid var(--rule);
-      background:
-        radial-gradient(ellipse at 12% 25%, rgba(44, 95, 124, 0.055) 0%, transparent 55%),
-        var(--paper-2);
-    }
-    .guided-inner {
-      display: grid; grid-template-columns: 1fr 1.05fr;
-      gap: 44px; align-items: center;
-    }
-    .guided-copy .eyebrow { margin-bottom: 10px; }
-    .guided-copy h2 {
-      font-family: 'Spectral', Georgia, serif; font-weight: 400;
-      font-size: clamp(24px, 3.4vw, 34px); letter-spacing: -0.012em;
-      line-height: 1.1; margin-bottom: 12px; max-width: 18ch;
-    }
-    .guided-sub {
-      font-family: 'Spectral', Georgia, serif; font-size: 15px;
-      line-height: 1.55; color: var(--ink-2); max-width: 48ch; margin: 0;
-    }
-    .guided-chips { display: flex; flex-wrap: wrap; gap: 10px; align-content: center; }
-    .guided-chip {
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 13.5px; font-weight: 500; letter-spacing: 0.01em;
-      color: var(--ink); background: var(--paper);
-      border: 1px solid var(--ink-4);
-      padding: 12px 18px; cursor: pointer;
-      box-shadow: 0 1px 0 var(--rule);
-      transition: background 0.16s, color 0.16s, border-color 0.16s, transform 0.16s, box-shadow 0.16s;
-    }
-    .guided-chip:hover {
-      background: var(--ink); color: var(--paper); border-color: var(--ink);
-      transform: translateY(-2px); box-shadow: 0 10px 22px rgba(26, 26, 26, 0.10);
-    }
-    .guided-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .guided-chip.neutral {
-      border-style: dashed; border-color: var(--rule);
-      color: var(--ink-3); box-shadow: none;
-    }
-    .guided-chip.neutral:hover { color: var(--paper); border-color: var(--ink); }
-    @media (max-width: 880px) {
-      .guided { padding: 34px 0 32px; }
-      .guided-inner { grid-template-columns: 1fr; gap: 22px; }
-    }
-
-    /* === Result moment: matching-region chips on the match bar === */
-    .match-bar-info { min-width: 0; }
-    .match-regions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-    .region-chip {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-family: 'Spectral', Georgia, serif; font-size: 13px;
-      color: var(--ink); background: var(--paper);
-      border: 1px solid var(--rule); padding: 5px 11px; cursor: pointer;
-      transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
-    }
-    .region-chip:hover {
-      background: var(--ink); color: var(--paper); border-color: var(--ink);
-      transform: translateY(-1px);
-    }
-    .region-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .region-chip-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-
-    /* Brief highlight when a guided choice lands the visitor on their result */
-    .match-bar.pulse { animation: matchpulse 1.4s ease; }
-    @keyframes matchpulse {
-      0%   { box-shadow: 0 0 0 0 rgba(138, 58, 42, 0.0); border-color: var(--rule); }
-      18%  { box-shadow: 0 0 0 4px rgba(138, 58, 42, 0.16); border-color: var(--accent); }
-      100% { box-shadow: 0 0 0 0 rgba(138, 58, 42, 0.0); border-color: var(--rule); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .match-bar.pulse { animation: none; }
-      html { scroll-behavior: auto; }
-    }
-
-    /* Shortlist button on the match bar */
-    .match-bar .shortlist-btn {
-      font-family: 'Inter', sans-serif; font-size: 11px;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      background: transparent; border: 1px solid var(--rule);
-      padding: 8px 14px; color: var(--ink-2);
-      cursor: pointer; transition: all 0.15s;
-    }
-    .match-bar .shortlist-btn:hover {
-      background: var(--ink); color: var(--paper); border-color: var(--ink);
-    }
-    .match-bar .shortlist-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-    /* Star control on region cards */
-    .region-card { cursor: pointer; }
-    .region-card:hover { background: var(--paper-2); }
-    .region-card:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-    .region-star {
-      position: absolute; top: 12px; right: 12px;
-      width: 30px; height: 30px;
-      background: transparent; border: none; cursor: pointer;
-      font-size: 19px; line-height: 1; color: var(--ink-4);
-      display: flex; align-items: center; justify-content: center;
-      transition: color 0.15s, transform 0.15s;
-      z-index: 1;
-    }
-    .region-star:hover { color: var(--accent); transform: scale(1.15); }
-    .region-star.on { color: var(--accent); }
-    .region-star:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .region-card.starred { box-shadow: inset 0 0 0 1px var(--accent-soft); }
-
-    /* Actionable next-step row */
-    .next-step {
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 12px;
-      margin: -16px 0 28px; padding: 12px 18px;
-      background: var(--paper); border: 1px solid var(--rule); border-top: none;
-      font-size: 13px;
-    }
-    .next-step-lead {
-      font-family: 'Spectral', Georgia, serif; font-style: italic;
-      font-size: 14px; color: var(--ink-2);
-    }
-    .next-step.empty .next-step-lead { color: var(--ink-3); }
-    .next-step-actions { display: flex; flex-wrap: wrap; gap: 8px; }
-    .ns-action {
-      font-family: 'Inter', sans-serif; font-size: 11px;
-      letter-spacing: 0.05em; text-transform: uppercase;
-      background: transparent; border: 1px solid var(--rule);
-      padding: 8px 13px; color: var(--ink-2);
-      cursor: pointer; text-decoration: none; display: inline-block;
-      transition: all 0.15s;
-    }
-    .ns-action:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-    .ns-action:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .next-step.empty #ns-asks { opacity: 0.4; pointer-events: none; }
-
-    /* === Region detail drawer === */
-    body.panel-open { overflow: hidden; }
-    .drawer-backdrop {
-      position: fixed; inset: 0; z-index: 1100;
-      background: rgba(26, 22, 18, 0.42);
-      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-      display: flex; justify-content: flex-end;
-      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-    }
-    .drawer-backdrop.open { opacity: 1; pointer-events: auto; }
-    .drawer-panel {
-      background: var(--paper); border-left: 1px solid var(--rule);
-      width: 100%; max-width: 540px; height: 100%;
-      overflow-y: auto; position: relative;
-      transform: translateX(28px);
-      transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1);
-      box-shadow: -20px 0 60px rgba(26, 22, 18, 0.18);
-    }
-    .drawer-backdrop.open .drawer-panel { transform: translateX(0); }
-    .drawer-close {
-      position: absolute; top: 16px; right: 16px;
-      width: 36px; height: 36px; padding: 0;
-      background: var(--paper); border: 1px solid var(--rule); border-radius: 50%;
-      cursor: pointer; color: var(--ink-3);
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.18s ease; z-index: 2;
-    }
-    .drawer-close:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-    .drawer-close svg { width: 14px; height: 14px; }
-    .drawer-body { padding: 40px 36px 44px; }
-    .drawer-head {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      gap: 16px; padding-top: 8px; margin-bottom: 14px; padding-right: 28px;
-      position: relative;
-    }
-    .drawer-head::before {
-      content: ''; position: absolute; top: -8px; left: 0;
-      width: 56px; height: 3px; background: var(--accent-region, var(--accent));
-    }
-    .drawer-name { font-size: 30px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.1; }
-    .drawer-country {
-      font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--ink-3); margin-top: 6px;
-    }
-    .drawer-star {
-      flex-shrink: 0; white-space: nowrap;
-      font-family: 'Inter', sans-serif; font-size: 11px;
-      letter-spacing: 0.04em;
-      background: transparent; border: 1px solid var(--rule);
-      padding: 8px 12px; color: var(--ink-2); cursor: pointer;
-      transition: all 0.15s;
-    }
-    .drawer-star:hover { background: var(--paper-2); border-color: var(--ink-3); }
-    .drawer-star.on { background: var(--accent); color: var(--paper); border-color: var(--accent); }
-    .drawer-blurb {
-      font-family: 'Spectral', Georgia, serif;
-      font-size: 15px; line-height: 1.6; color: var(--ink-2);
-      margin: 0 0 22px;
-    }
-    .map-wrap { position: relative; }
-    .map-legend {
-      position: absolute; right: 14px; bottom: 30px; z-index: 4;
-      background: rgba(246,242,235,0.94); border: 1px solid var(--rule);
-      border-radius: 4px; padding: 10px 12px; max-width: 230px;
-      font-size: 11.5px; color: var(--ink-2); box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    }
-    .map-legend[aria-hidden="true"] { display: none; }
-    .map-legend-title { font-size: 9.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; margin-bottom: 8px; }
-    .legend-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
-    .legend-row:last-child { margin-bottom: 0; }
-    .legend-swatch { width: 24px; height: 11px; border-radius: 2px; flex: none; border: 1px solid rgba(0,0,0,0.06); }
-    .legend-swatch.dot { width: 11px; height: 11px; border-radius: 50%; }
-    .legend-label { line-height: 1.3; }
-    .drawer-asks {
-      background: var(--paper-2); border-left: 2px solid var(--accent);
-      padding: 16px 18px; margin-bottom: 24px;
-    }
-    .drawer-asks h4 {
-      font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--accent); font-weight: 600; margin-bottom: 10px;
-    }
-    .drawer-asks-text {
-      font-family: 'Spectral', Georgia, serif;
-      font-size: 14.5px; line-height: 1.6; color: var(--ink-2); margin: 0;
-    }
-    .drawer-deeplink {
-      display: inline-block; margin-top: 10px;
-      font-family: 'Spectral', Georgia, serif; font-style: italic;
-      font-size: 14px; color: var(--accent);
-      text-decoration: underline dotted; text-underline-offset: 3px;
-    }
-    .drawer-deeplink:hover { color: var(--ink); }
-    .drawer-asks-src {
-      margin-top: 10px; font-size: 11px; color: var(--ink-3);
-      font-family: 'Inter', sans-serif; letter-spacing: 0.01em;
-    }
-    .drawer-asks-src a { color: var(--ink-2); text-decoration: underline dotted; text-underline-offset: 2px; }
-    .drawer-land-standing {
-      background: var(--paper-2); border-left: 2px solid #3a5a3a;
-      padding: 16px 18px; margin-bottom: 24px;
-    }
-    .drawer-land-standing h4 {
-      font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
-      color: #3a5a3a; font-weight: 600; margin-bottom: 12px;
-    }
-    .ls-row { display: grid; grid-template-columns: 132px 1fr; gap: 12px; margin-bottom: 9px; }
-    .ls-label {
-      font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--ink-3); font-weight: 600; padding-top: 3px;
-    }
-    .ls-val { font-family: 'Spectral', Georgia, serif; font-size: 14px; line-height: 1.55; color: var(--ink-2); }
-    .ls-src { margin-top: 8px; font-size: 11px; color: var(--ink-3); font-family: 'Inter', sans-serif; }
-    .ls-src a { color: var(--ink-2); text-decoration: underline dotted; text-underline-offset: 2px; }
-    .drawer-criteria h4 {
-      font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--ink-3); font-weight: 600; margin-bottom: 4px;
-    }
-    .drawer-crit-row { padding: 12px 0; border-bottom: 1px dotted var(--rule); }
-    .drawer-crit-name {
-      font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--ink-3); margin-bottom: 4px;
-    }
-    .drawer-crit-val { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-    .drawer-crit-val .dc-num {
-      font-family: 'Spectral', serif; font-size: 17px; font-weight: 500; color: var(--ink);
-    }
-    .drawer-crit-val .dc-lab { font-size: 12.5px; color: var(--ink-2); }
-    .drawer-crit-src { margin-top: 5px; font-size: 10.5px; color: var(--ink-4); }
-    .drawer-crit-src a { color: var(--ink-3); text-decoration: underline dotted; text-underline-offset: 2px; }
-
-    /* === Shortlist compare overlay === */
-    .compare-backdrop {
-      position: fixed; inset: 0; z-index: 1100;
-      background: rgba(26, 22, 18, 0.42);
-      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-      display: flex; align-items: center; justify-content: center;
-      padding: 24px;
-      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-    }
-    .compare-backdrop.open { opacity: 1; pointer-events: auto; }
-    .compare-panel {
-      background: var(--paper); border: 1px solid var(--rule);
-      max-width: 960px; width: 100%; max-height: 86vh; overflow-y: auto;
-      padding: 32px 32px 36px; position: relative;
-      box-shadow: 0 30px 80px rgba(26, 22, 18, 0.25);
-      transform: translateY(12px) scale(0.99);
-      transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .compare-backdrop.open .compare-panel { transform: translateY(0) scale(1); }
-    .compare-head {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 16px; margin-bottom: 8px;
-    }
-    .compare-head h3 { font-size: 24px; font-weight: 500; letter-spacing: -0.008em; }
-    .compare-close {
-      width: 36px; height: 36px; padding: 0; flex-shrink: 0;
-      background: var(--paper); border: 1px solid var(--rule); border-radius: 50%;
-      cursor: pointer; color: var(--ink-3);
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.18s ease;
-    }
-    .compare-close:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-    .compare-close svg { width: 14px; height: 14px; }
-    .compare-note {
-      font-family: 'Spectral', Georgia, serif; font-style: italic;
-      font-size: 13.5px; color: var(--ink-3); margin: 0 0 20px; max-width: 60ch;
-    }
-    .compare-empty {
-      font-family: 'Spectral', Georgia, serif;
-      font-size: 15px; line-height: 1.6; color: var(--ink-3);
-      padding: 28px 0; max-width: 48ch;
-    }
-
-    @media (max-width: 600px) {
-      .drawer-backdrop { justify-content: center; align-items: flex-end; }
-      .drawer-panel {
-        max-width: 100%; height: auto; max-height: 90vh;
-        border-left: none; border-top: 1px solid var(--rule);
-        border-radius: 14px 14px 0 0;
-        transform: translateY(32px);
-        box-shadow: 0 -20px 60px rgba(26, 22, 18, 0.22);
-      }
-      .drawer-backdrop.open .drawer-panel { transform: translateY(0); }
-      .drawer-body { padding: 32px 22px 36px; }
-      .drawer-name { font-size: 25px; }
-      .compare-panel { padding: 26px 18px 28px; max-height: 90vh; }
-      .next-step { margin-top: -12px; }
-    }
-
-    /* === Mobile honesty notice ===
-       Shown only below ~768px, where the desktop-shaped comparison view is
-       narrower than the analysis wants. Dismissal persists in localStorage. */
-    .mobile-note { display: none; }
-    @media (max-width: 768px) {
-      .mobile-note {
-        display: flex; align-items: flex-start; gap: 12px;
-        padding: 12px 18px; background: var(--paper-2);
-        border-bottom: 1px solid var(--rule);
-        font-size: 12.5px; line-height: 1.5; color: var(--ink-2);
-      }
-      .mobile-note p { margin: 0; flex: 1; }
-      .mobile-note-x {
-        flex: none; background: none; border: 1px solid var(--rule);
-        border-radius: 4px; padding: 5px 11px;
-        font-family: 'Inter', system-ui, sans-serif; font-size: 11px;
-        letter-spacing: 0.02em; color: var(--ink-3); cursor: pointer;
-      }
-    }
-    .mobile-note.dismissed { display: none !important; }
-
-    /* === Suite footer === quiet cross-tool line, matches the bridge idiom. */
-    .suite-note { margin-top: 12px; font-size: 11.5px; color: var(--ink-4); }
-    .suite-note a { color: var(--ink-3); text-decoration: underline dotted; text-underline-offset: 2px; }
-
-    /* === Print: a clean, shareable summary ===
-       Print IS the export. Black on white, no interactive or navigational
-       chrome — just the framing, the comparison table, and the attribution. */
-    @media print {
-      html, body { background: #fff !important; color: #000 !important; }
-      .prototype-banner, .skip-link, .mobile-note,
-      .map-wrap, .guided, .criteria, .contact,
-      .drawer-backdrop, .drawer-panel,
-      .compare-backdrop, .compare-panel,
-      button, .map-controls, .map-legend { display: none !important; }
-      .hero, .arrive, .regions-intro, .summary {
-        background: #fff !important; border-color: #999 !important;
-      }
-      .hero { padding: 24px 0 12px !important; }
-      section { break-inside: avoid; }
-      .sum-table { font-size: 10px !important; }
-      .sum-table th, .sum-table td { background: #fff !important; border-color: #bbb !important; }
-      .sum-table th, .sum-table td:first-child { color: #000 !important; }
-      .sum-table .v, .sum-table .lab { color: #000 !important; }
-      .suite-note, .suite-note a, a { color: #000 !important; }
-    }
-  
-    /* ── suite rail — Regen Community Tools, in this site's own dialect ── */
-    #rct-rail { position: fixed; top: 0; left: 0; bottom: 0; width: 232px; z-index: 60;
-      border-right: 1px solid var(--rule); background: var(--paper);
-      display: flex; flex-direction: column; padding: 20px 0 16px; }
-    #rct-rail .rct-wordmark { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12px;
-      letter-spacing: 0.12em; padding: 0 20px 16px; border-bottom: 1px solid var(--rule); margin-bottom: 6px; }
-    #rct-rail nav { display: flex; flex-direction: column; }
-    #rct-rail nav a { display: block; text-decoration: none; padding: 14px 20px;
-      border-bottom: 1px solid var(--rule-soft); color: var(--ink); transition: background 130ms; }
-    #rct-rail nav a .rct-num { font-family: 'Inter', sans-serif; font-size: 10.5px; letter-spacing: 0.07em;
-      color: var(--ink-3); display: block; text-transform: uppercase; }
-    #rct-rail nav a .rct-nm { font-family: 'Inter', sans-serif; font-weight: 650; font-size: 13px;
-      letter-spacing: 0.02em; display: block; margin-top: 2px; }
-    #rct-rail nav a:hover { background: var(--paper-2); }
-    #rct-rail nav a.rct-current { background: var(--ink); color: var(--paper); }
-    #rct-rail nav a.rct-current .rct-num { color: var(--paper-3); }
-    #rct-rail nav a.rct-current .rct-nm::after { content: ""; display: inline-block; width: 7px; height: 7px;
-      background: var(--accent-soft); margin-left: 8px; }
-    #rct-rail .rct-foot { margin-top: auto; padding: 12px 20px 0; border-top: 1px solid var(--rule);
-      font-family: 'Inter', sans-serif; font-size: 10.5px; color: var(--ink-4); }
-    #rct-rail .rct-foot a { color: var(--ink-3); }
-    body { padding-left: 232px; }
-    @media (max-width: 900px) {
-      body { padding-left: 0; }
-      #rct-rail { position: static; width: 100%; border-right: none; border-bottom: 1px solid var(--rule);
-        flex-direction: column; padding: 14px 0 0; }
-      #rct-rail nav { flex-direction: row; flex-wrap: wrap; }
-      #rct-rail nav a { flex: 1 1 46%; min-width: 0; border-right: 1px solid var(--rule-soft); padding: 10px 14px; }
-      #rct-rail nav a .rct-num { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      #rct-rail .rct-foot { display: none; }
-    }
-    @media print { #rct-rail { display: none; } body { padding-left: 0; } }
-
-  </style>
-  <link rel="stylesheet" href="./src/a11y.css" />
+  <!-- ONE render-blocking stylesheet: src/styles/bundle.css is GENERATED by scripts/bundle_css.mjs from the chunks in src/styles/ (tokens, fonts,
+       theme-gate (the light-only gate lifted by MC-A11Y: an empty tombstone, the page follows the OS colour scheme), then the legacy cascade in its
+       original order, century.css and guided.css after arrive.css), concatenated in that order, so the cascade is unchanged. Measured on a throttled
+       link (150 ms RTT, 1.6 Mbit/s) this saves about 400 ms of LCP over thirty links (the 2026-10 upgrade's perf run). The chunks stay the editing
+       surface: after any edit run `node scripts/bundle_css.mjs --write` (the final gate runs `--check`). To change which chunks are bundled, run
+       `--unbundle`, edit the links (their order is the cascade; do not reorder), then `--bundle`. -->
+  <link rel="stylesheet" href="./src/styles/bundle.css?v=b20261006100127" data-bust />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
 <aside id="rct-rail" aria-label="Regen Community Tools">
   <div class="rct-wordmark">REGEN COMMUNITY TOOLS</div>
   <nav>
@@ -1705,8 +462,6 @@
 </aside>
 
 
-  <a class="skip-link" href="#main">Skip to main content</a>
-
   <div class="mobile-note" id="mobile-note" role="note">
     <p>This analysis works best on a larger screen — everything is readable here, but the full comparison view needs width.</p>
     <button type="button" class="mobile-note-x" id="mobile-note-x" aria-label="Dismiss this notice">Dismiss</button>
@@ -1714,62 +469,38 @@
 
   <header class="prototype-banner">
     <div class="container">
-      <span class="proto-tag">Prototype</span>
-      <p class="proto-msg">A designed prototype demonstrating the framework — not the <strong>V1</strong> data build.</p>
+      <p class="proto-msg"><b class="proto-tag">Prototype</b> 2026 · a designed demonstration, not the V1 data build</p>
     </div>
   </header>
 
   <main id="main" tabindex="-1">
 
-  <section class="hero">
+  <section class="hero" aria-labelledby="h1">
+    <div class="hero-art draw" aria-hidden="true"><!--s:art:catchment--><svg viewBox="0 0 600 640" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true" focusable="false"><g class="lw-rings"><path pathLength="1" style="--i:0" d="M389.6 330L390.2 334.6L389.9 339.3L389 343.9L387.5 348.4L385.6 352.8L383.5 357.2L381.1 361.5L378.4 365.7L375.3 369.8L371.7 373.7L367.5 377.1L362.7 379.8L357.4 381.7L351.8 382.6L346 382.6L340.4 381.9L335 380.6L330 379.1L325.3 377.6L320.7 376.3L316.2 375.5L311.4 375L306.3 374.7L301 374.3L295.4 373.5L289.8 372.2L284.5 370L279.9 367L276.2 363.2L273.4 358.7L271.8 353.9L271.1 348.9L271.1 343.9L271.5 339.1L272.2 334.5L272.9 330L273.6 325.7L274.2 321.3L275 317L276.1 312.8L277.7 308.5L279.8 304.5L282.5 300.7L285.7 297.3L289.3 294.2L293.2 291.4L297.2 288.7L301.2 286.1L305.3 283.3L309.5 280.5L314 277.6L318.9 274.8L324.3 272.3L330 270.6L336 269.8L342 270.1L347.7 271.7L353 274.5L357.4 278.2L361.1 282.6L364 287.3L366.3 291.9L368.3 296.3L370.2 300.3L372.4 303.9L374.8 307.2L377.6 310.5L380.6 313.8L383.5 317.4L386.2 321.3L388.3 325.5L389.6 330Z" stroke-width="0.9" opacity="0.26"/><path pathLength="1" style="--i:1" d="M422.3 330L423.5 337.2L423.1 344.4L421.4 351.5L418.5 358.4L414.9 364.8L410.7 371L406.2 377L401.4 382.7L396.2 388.3L390.6 393.5L384.3 398.2L377.4 402.2L369.8 405.1L361.8 406.9L353.6 407.5L345.4 407L337.5 405.8L330 404L322.8 402.3L315.8 400.7L308.8 399.6L301.5 398.9L293.8 398.4L285.6 397.7L277 396.5L268.6 394.4L260.6 391L253.7 386.4L248.1 380.4L244.3 373.5L242.2 366L241.7 358.3L242.4 350.7L243.8 343.4L245.6 336.5L247.2 330L248.6 323.7L249.6 317.5L250.5 311.2L251.5 304.9L253 298.4L255.2 292L258.4 285.9L262.4 280.1L267.3 274.8L272.9 270.1L278.8 265.7L285.1 261.6L291.7 257.7L298.5 253.8L305.6 249.9L313.2 246.4L321.4 243.4L330 241.3L338.9 240.6L347.7 241.4L356.2 244L363.8 248.2L370.4 253.7L375.8 260.2L380 267.1L383.4 274L386.3 280.5L389.2 286.3L392.5 291.5L396.4 296.3L400.9 300.9L405.9 305.7L411.1 310.9L415.8 316.7L419.7 323.1L422.3 330Z" stroke-width="0.9" opacity="0.26"/><path pathLength="1" style="--i:2" d="M456.6 330L458.3 339.9L457.7 349.8L454.8 359.4L450.1 368.5L444.2 376.9L437.5 384.6L430.3 391.8L423 398.7L415.6 405.3L407.8 411.6L399.7 417.6L390.9 422.8L381.5 427.1L371.5 430.3L361.1 432L350.5 432.5L340.1 431.8L330 430.4L320.2 428.7L310.6 427L300.9 425.6L290.9 424.4L280.5 423.4L269.5 422.2L258.3 420.1L247.1 416.9L236.7 412.1L227.7 405.6L220.6 397.4L215.8 388L213.5 377.8L213.4 367.3L215 357.1L217.6 347.4L220.5 338.4L223.1 330L225.1 321.9L226.3 313.9L227 305.7L227.5 297.2L228.4 288.3L230.1 279.3L233.2 270.4L237.7 261.9L243.7 254L250.9 247L259.1 240.9L267.9 235.4L277.3 230.5L287 226L297.1 221.9L307.6 218.3L318.6 215.3L330 213.5L341.6 213.1L353.1 214.6L364.1 218.1L374.1 223.5L382.7 230.6L389.8 238.8L395.6 247.6L400.2 256.4L404.3 264.6L408.4 272.1L413 278.9L418.6 285L425.1 291L432.4 297.2L439.9 304.1L446.9 311.9L452.7 320.6L456.6 330Z" stroke-width="0.9" opacity="0.26"/><path pathLength="1" style="--i:3" d="M491.8 330L493.8 342.6L492.6 355.2L488.3 367.3L481.4 378.5L472.8 388.6L463.1 397.6L453 405.8L443 413.5L433.3 420.9L423.6 428.2L413.8 435.3L403.6 442.1L392.6 448.2L381 453.2L368.6 456.9L355.8 458.9L342.9 459.6L330 458.9L317.3 457.5L304.8 455.6L292.3 453.7L279.7 451.7L266.6 449.6L253.1 447.2L239.5 443.8L226 439L213.6 432.5L202.8 423.9L194.4 413.5L188.9 401.7L186.4 388.9L186.6 375.9L189 363.3L192.6 351.3L196.5 340.3L199.9 330L202.3 320.2L203.4 310.4L203.5 300.2L203.1 289.3L203 277.9L203.9 265.9L206.6 254L211.4 242.4L218.4 231.8L227.4 222.4L238.1 214.5L249.9 207.9L262.4 202.4L275.4 198L288.7 194.2L302.2 191.2L316 188.9L330 187.8L344.1 188L358 190.1L371.3 194.3L383.6 200.5L394.4 208.5L403.5 218L411.1 228.1L417.4 238.4L423 248.2L428.6 257.2L434.9 265.3L442.3 272.9L450.9 280.4L460.4 288.3L470.1 297L479.2 306.8L486.7 317.9L491.8 330Z" stroke-width="0.9" opacity="0.26"/><path pathLength="1" style="--i:4" d="M526.8 330L528.8 345.3L526.7 360.5L520.7 375L511.4 388.1L499.9 399.7L487.2 409.9L474.2 418.9L461.6 427.2L449.6 435.3L438.3 443.5L427.1 452.1L415.8 460.7L403.7 469.1L390.6 476.6L376.5 482.7L361.5 487L345.8 489.4L330 489.9L314.2 488.9L298.6 486.7L283.2 483.8L267.8 480.4L252.3 476.6L236.7 472.2L221.1 466.9L206 460.1L191.9 451.5L179.8 440.9L170.3 428.4L164.1 414.3L161.2 399.3L161.4 384L164.1 369.1L168.3 355.1L172.8 342.1L176.6 330L178.9 318.4L179.6 306.7L178.9 294.4L177.4 281.1L176.2 266.9L176.2 251.9L178.5 236.7L183.7 221.9L191.8 208.4L202.9 196.7L216.3 187L231.3 179.6L247.4 174.1L263.9 170.2L280.5 167.5L297.1 165.7L313.6 164.7L330 164.5L346.4 165.5L362.4 168.1L378 172.5L392.5 178.9L405.6 187.2L417.2 197.1L427 208L435.6 219.3L443.2 230.3L450.8 240.8L459 250.5L468.2 259.8L478.6 269L489.9 278.8L501.5 289.6L512.2 301.7L521 315.3L526.8 330Z" stroke-width="0.9" opacity="0.26"/><path pathLength="1" style="--i:5" d="M560.4 330L561.9 347.9L558.8 365.5L551.1 382.1L539.6 397.1L525.4 410.2L509.9 421.4L494.2 431.2L479.2 440.2L465.3 449.1L452.5 458.5L440.3 468.7L428.1 479.5L415 490.5L400.7 501L384.8 510.1L367.5 517.1L349 521.6L330 523.4L310.8 522.6L292 519.8L273.6 515.4L255.6 509.8L238 503.6L220.7 496.6L203.8 488.6L187.5 479.5L172.4 468.7L159.2 456.1L148.8 441.7L141.6 425.7L137.9 408.8L137.6 391.6L139.9 374.8L143.8 358.9L148.2 344L151.8 330L153.8 316.4L153.9 302.7L152.3 288.1L149.9 272.3L147.7 255.2L147.1 237.1L149.2 218.6L154.9 200.7L164.6 184.4L177.9 170.5L194.3 159.5L212.9 151.5L232.7 146.4L252.9 143.6L272.9 142.4L292.4 142.3L311.4 142.7L330 143.7L348.4 145.4L366.5 148.1L384.1 152.2L401.1 158.2L416.9 166L431.3 175.7L444 186.7L455.3 198.6L465.6 210.7L475.4 222.6L485.5 234.2L496.4 245.5L508.2 256.9L520.8 268.9L533.5 282L545.1 296.6L554.4 312.7L560.4 330Z" stroke-width="0.9" opacity="0.26"/><path pathLength="1" style="--i:6" d="M591.3 330L592.2 350.2L587.9 370L578.8 388.7L565.5 405.4L549.2 419.9L531.4 432.3L513.6 443.1L496.6 453.1L481.2 463.1L467.2 473.9L454.1 486L441.1 499.3L427.1 513.3L411.5 527L393.7 539.3L373.9 549.2L352.5 555.8L330 558.8L307.3 558.1L285.1 554.1L263.7 547.6L243.4 539.3L224.1 529.8L205.6 519.6L187.9 508.6L171 496.8L155.3 483.7L141.3 469.3L129.8 453.4L121.3 436L116.2 417.7L114.4 399.1L115.3 380.6L118.1 362.9L121.5 346.1L124.3 330L125.7 314.3L125.2 298.2L123.1 281.2L120.1 262.8L117.5 242.8L116.8 221.7L119.3 200.2L126.1 179.4L137.5 160.6L153.4 144.8L173 132.6L195.2 124.5L218.7 120L242.5 118.5L265.8 119.1L288.1 120.8L309.4 122.9L330 124.9L350.2 127L370.2 129.3L390.1 132.6L409.7 137.4L428.5 144.1L446.2 152.8L462.5 163.5L477.1 175.7L490.4 188.9L502.7 202.5L514.6 216.2L526.8 230L539.4 244.1L552.3 258.8L565.1 274.6L576.7 291.7L585.8 310.3L591.3 330Z" stroke-width="0.9" opacity="0.26"/><path pathLength="1" style="--i:7" d="M618.7 330L618.8 352.2L613.7 374L603.7 394.5L589.3 413L571.7 429.2L552.5 443.1L533.2 455.2L514.9 466.6L498.3 478.1L483.3 490.7L469.3 505L455.3 520.9L440.2 537.9L423 554.8L403.2 570.3L380.7 582.9L356 591.5L330 595.3L303.7 594.2L278.2 588.7L254 579.6L231.6 567.9L210.9 554.7L191.7 540.7L173.7 526.4L156.6 511.8L140.5 496.7L125.8 480.8L112.9 463.8L102.6 445.6L95.1 426.4L90.9 406.6L89.4 386.7L90 367.2L91.7 348.3L93.4 330L94 311.8L93.2 293.3L91 273.6L88.2 252.6L86.1 229.9L86.1 206.1L89.7 181.9L98 158.7L111.6 137.8L130.2 120.4L152.9 107.5L178.6 99.3L205.7 95.5L232.9 95.3L259.2 97.6L284.1 100.9L307.6 104.4L330 107.2L352 109.2L373.9 110.8L396.2 112.7L418.6 115.7L440.9 120.7L462.4 128.1L482.6 138.2L501 150.6L517.5 165L532.3 180.6L545.9 197L558.7 213.8L571.2 231L583.6 248.8L595.4 267.4L605.9 287.2L614.1 308.1L618.7 330Z" stroke-width="0.9" opacity="0.26"/></g><g class="lw-divide" style="color:var(--ink-3)"><path pathLength="1" style="--i:8" d="M615.4 330L618.6 355.8L619.2 382.1L616.5 408.4L610.3 434.2L600.7 458.8L588.3 482.1L573.9 504L558.3 524.8L541.9 545.2L524.9 565.4L507.1 585.6L487.9 605.4L466.8 623.9L443.5 639.9L418 652L390.7 658.8L362.7 659.4L335 653.6L308.7 642L284.8 626L263.6 607.2L244.8 587.7L227.7 569.2L211.2 552.9L194.1 539.3L175.4 527.9L154.6 517.7L131.9 507.3L108.2 495.2L84.8 480.2L63.2 461.8L45 439.8L31.2 414.7L22.3 387.3L18.3 358.8L18.5 330L22.1 301.5L28.2 273.7L35.9 246.7L45 220.2L55.6 194.5L68 169.7L82.7 146.3L100.2 125.1L120.5 106.9L143.4 92.5L168.2 82.2L193.9 75.8L219.6 72.6L244.5 71.3L268.2 70.5L290.7 68.9L312.7 65.3L335 59.6L358.4 52.2L383.4 44.4L410.3 37.7L438.6 34.1L467.2 35.1L494.9 42L520.1 55L541.8 73.7L559.1 97L572 123.2L581 150.9L587.1 178.6L591.7 205.5L595.8 231.3L600.3 256.1L605.3 280.4L610.6 304.9L615.4 330Z" stroke-width="1.3" opacity="0.7" stroke-dasharray="2 7"/></g><g class="lw-net"><path pathLength="1" style="--i:9" d="M344.1 19.2C512.1 192 197.4 435.2 364.7 627.2" stroke-width="3.4"/><path pathLength="1" style="--i:10" d="M647.8 25.4C637.6 108.9 428.7 131.7 393 177.3" stroke-width="2.2"/><path pathLength="1" style="--i:11" d="M539.1 112.1Q482.7 104.5 476.4 36.1" stroke-width="1.3"/><path pathLength="1" style="--i:12" d="M642.7 51.2C632.5 137.5 423.3 161 387.6 208.1" stroke-width="2.2"/><path pathLength="1" style="--i:13" d="M506.6 151.2Q599.3 143.3 609.6 72.7" stroke-width="1.3"/><path pathLength="1" style="--i:14" d="M540.6 143.9C533.8 212.1 394.7 230.8 370.9 268" stroke-width="2.2"/><path pathLength="1" style="--i:15" d="M454 221.3Q510.5 215.1 516.7 159.2" stroke-width="1.3"/><path pathLength="1" style="--i:16" d="M205.4 141.7C211.2 241.9 331.5 269.2 352 323.8" stroke-width="2.2"/><path pathLength="1" style="--i:17" d="M296.2 267.2Q351.1 258.1 357.2 176.1" stroke-width="1.3"/><path pathLength="1" style="--i:18" d="M107.4 150.3C116.7 261.7 309.3 292.1 342.1 352.9" stroke-width="2.2"/><path pathLength="1" style="--i:19" d="M227.6 276.8Q315.6 266.7 325.4 175.5" stroke-width="1.3"/><path pathLength="1" style="--i:20" d="M546.6 293.8C537.7 363.8 354 382.9 322.7 421" stroke-width="2.2"/><path pathLength="1" style="--i:21" d="M423.8 376.1Q346.7 369.7 338.2 312.4" stroke-width="1.3"/><path pathLength="1" style="--i:22" d="M63.3 284C73.4 387.1 279.6 415.2 314.8 471.4" stroke-width="2.2"/><path pathLength="1" style="--i:23" d="M184.4 397.5Q241.2 388.1 247.5 303.8" stroke-width="1.3"/><path pathLength="1" style="--i:24" d="M449.9 379.7C444.5 450.4 333.5 469.7 314.5 508.2" stroke-width="2.2"/><path pathLength="1" style="--i:25" d="M380 460.3Q285.1 453.9 274.6 396" stroke-width="1.3"/></g></svg><!--/s--></div>
     <div class="container">
-      <div class="eyebrow">Prototype · 2026</div>
       <div class="hero-grid">
-        <div class="hero-left">
-          <h1>Land Selection Framework</h1>
-          <p class="subtitle">A bioregioning tool for communities seeking to belong to a place — and help it flourish over fifty to a hundred years.</p>
-          <p class="lede">
-            Bioregioning means living within the grain of a place — its watersheds, its soils, its seasons, and the diversity and coherence of the living whole — in good faith with the people and lifeways already rooted there. That relationship is the whole premise, not an afterthought. The tool reads eight criteria, with sources, across twenty regions in Europe and North America, as questions about how a community might arrive in reciprocity and help a place flourish over generations. You set the thresholds; it filters, and never scores, ranks, or tells you where to go.
-          </p>
-          <p class="lede-note">
-            This is what we hope the tool can support — and we're glad to talk it through with anyone weighing where to put down roots.
-          </p>
-          <div class="key">
-            <div><div class="num">8</div><div class="lab">Criteria</div></div>
-            <div><div class="num">20</div><div class="lab">Regions read</div></div>
-            <div><div class="num">50–100<span style="font-size: 14px;">yr</span></div><div class="lab">Horizon</div></div>
-            <div><div class="num">r4</div><div class="lab">Doc round</div></div>
-          </div>
+        <div class="eyebrow">A bioregioning tool · prototype 2026</div>
+        <h1 id="h1">Land Selection <em>Framework</em></h1>
+        <svg class="river-rule draw" viewBox="0 0 480 22" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true" focusable="false"><path pathLength="1" d="M2 11C40 1 80 21 120 11S200 1 240 11 320 21 360 11 440 3 478 10" stroke-width="2.2"/></svg>
+        <p class="subtitle">A bioregioning tool for communities seeking to belong to a place — and help it flourish over fifty to a hundred years.</p>
+        <p class="lede">Bioregioning means living within the grain of a place — its watersheds, its soils, its seasons, and the diversity and coherence of the living whole — in good faith with the people and lifeways already rooted there. <strong>That relationship is the whole premise, not an afterthought.</strong> The tool reads <!--f:criteriaWord-->eight<!--/f--> criteria, with sources, across <!--f:regionsWord-->thirty<!--/f--> regions in Europe and North America, as questions about how a community might arrive in reciprocity and help a place flourish over generations. You set the thresholds; it filters, and never scores, ranks, or tells you where to go.</p>
+        <p class="lede-note">This is what we hope the tool can support — and we're glad to talk it through with anyone weighing where to put down roots.</p>
+
+        <div class="signup-card">
+          <h2>Stay in touch</h2>
+          <p class="blurb">Low-frequency updates from the working group as this work evolves. Your address stays with the group, never traded.</p>
+          <form id="signup-form" action="https://formsubmit.co/ajax/bb837bec6f642bd8c479e52f93d9ffb1" method="POST" novalidate>
+            <input type="email" name="email" id="signup-email" placeholder="your email" aria-label="Email address" required autocomplete="email" />
+            <button type="submit">Subscribe <svg class="arrow" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 8h11"/><path d="M9 4l4 4-4 4"/></svg></button>
+            <input type="hidden" name="_subject" value="Land Selection Framework, new signup (hero)" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+          </form>
+          <div class="form-status" id="form-status" aria-live="polite"></div>
         </div>
 
-        <aside class="hero-right">
-          <div class="signup-card">
-            <svg class="topo-ornament" viewBox="0 0 88 38" aria-hidden="true">
-              <path d="M0 24 C 14 18, 28 28, 42 22 S 70 14, 88 20" stroke="#8a3a2a" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-              <path d="M0 30 C 16 25, 32 33, 48 28 S 74 22, 88 27" stroke="#8a3a2a" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.65"/>
-              <path d="M0 36 C 18 32, 36 38, 54 34 S 78 30, 88 33" stroke="#8a3a2a" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/>
-            </svg>
-            <h2 class="serif">Stay in touch</h2>
-            <p class="blurb">Low-frequency updates from The Collective as this work evolves. Your address stays with us, never traded.</p>
-            <form id="signup-form" action="https://formsubmit.co/ajax/bb837bec6f642bd8c479e52f93d9ffb1" method="POST" novalidate>
-              <input type="email" name="email" id="signup-email" placeholder="your email" aria-label="Email address" required autocomplete="email" />
-              <button type="submit">Subscribe <span class="arrow">→</span></button>
-              <input type="hidden" name="_subject" value="Land Selection Framework, new signup (hero)" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_template" value="table" />
-              <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
-            </form>
-            <div class="form-status" id="form-status"></div>
-          </div>
-
-          <a class="hero-cta" href="/deeper.html#ethics">
-            <span class="hero-cta-eyebrow">Deeper</span>
-            <span class="hero-cta-body">
-              <span class="hero-cta-text">On the ethics of a framework like this</span>
-              <span class="hero-cta-arrow">→</span>
-            </span>
-          </a>
-        </aside>
+        <a class="hero-cta" href="/deeper.html#ethics"><span>On the ethics of a framework like this</span><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3 10h13M11 5l5 5-5 5"/></svg></a>
       </div>
     </div>
   </section>
@@ -1777,49 +508,74 @@
   <section class="arrive" aria-labelledby="arrive-title">
     <div class="container">
       <div class="eyebrow">How to read this</div>
-      <h2 id="arrive-title" class="serif">A place is not a product. Arriving is a relationship.</h2>
-      <p class="arrive-lede">This tool helps you see where a community could put down roots and regenerate a place over generations. It never tells you to go anywhere. Every region here is already someone's home — held in living communities with their own histories, lifeways, and care for the land. Reading a place well means asking what arriving would ask of you, and listening for the answer.</p>
-      <div class="arrive-fors">
-        <div class="arrive-for"><span class="arrive-tag for">For</span> communities who want to belong to a place and help it flourish over decades, in good faith with the people and lifeways already rooted there.</div>
-        <div class="arrive-for"><span class="arrive-tag notfor">Not for</span> finding somewhere cheap and empty to escape to, or landing on top of a community already living there.</div>
+      <div class="arrive-grid">
+        <div>
+          <h2 id="arrive-title">A place is not a product. <em>Arriving is a relationship.</em></h2>
+          <p class="arrive-lede">This tool helps you see where a community could put down roots and regenerate a place over generations. It never tells you to go anywhere. Every region here is already someone's home — held in living communities with their own histories, lifeways, and care for the land. Reading a place well means asking what arriving would ask of you, and listening for the answer.</p>
+        </div>
+        <div class="arrive-fors">
+          <div class="arrive-for"><span class="arrive-tag for">For</span> communities who want to belong to a place and help it flourish over decades, in good faith with the people and lifeways already rooted there.</div>
+          <div class="arrive-for"><span class="arrive-tag notfor">Not for</span> finding somewhere cheap and empty to escape to, or landing on top of a community already living there.</div>
+        </div>
       </div>
-      <p class="arrive-bridge">People before land. Still choosing where before you have the people you'd do this with? <a href="https://compass.regencommunity.tools">Find your community first &rarr;</a></p>
-      <p class="suite-note">Part of <a href="https://regencommunity.tools">Regen Community Tools</a> · five free tools for forming community · <a href="#" id="passOn">pass this framework to a group weighing where to root</a> · <a href="https://t.me/share/url?url=https%3A%2F%2Fland-selection-framework.regencommunity.tools&text=Know%20the%20land%20before%20you%20love%20it." target="_blank" rel="noopener">telegram</a> · <a href="https://wa.me/?text=Know%20the%20land%20before%20you%20love%20it.%20https%3A%2F%2Fland-selection-framework.regencommunity.tools" target="_blank" rel="noopener">whatsapp</a>.</p>
-<script>document.getElementById('passOn').addEventListener('click',async function(ev){ev.preventDefault();
-var payload={title:'Land Selection Framework',text:'Know the land before you love it. A bioregioning tool for communities choosing where to root:',url:'https://land-selection-framework.regencommunity.tools'};
-if(navigator.share){try{await navigator.share(payload)}catch(e){}}
-else{try{await navigator.clipboard.writeText(payload.url);this.textContent='link copied'}catch(e){}}});</script>
+      <p class="arrive-bridge">People before land. Still choosing where before you have the people you'd do this with? <a href="https://compass.regencommunity.tools">Find your community first <svg class="ico-arrow" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3 10h13M11 5l5 5-5 5"/></svg></a></p>
+      <p class="arrive-pages"><a href="/arrive.html">How to arrive</a><a href="/host.html">For people already here</a></p>
+      <p class="suite-note">Part of <a href="https://regencommunity.tools">Regen Community Tools</a> · free tools for forming community · <a href="#" id="passOn">pass this framework to a group weighing where to root</a> · <a href="https://t.me/share/url?url=https%3A%2F%2Fland-selection-framework.regencommunity.tools&text=Know%20the%20land%20before%20you%20love%20it." target="_blank" rel="noopener">telegram</a> · <a href="https://wa.me/?text=Know%20the%20land%20before%20you%20love%20it.%20https%3A%2F%2Fland-selection-framework.regencommunity.tools" target="_blank" rel="noopener">whatsapp</a>.</p>
+    </div>
+  </section>
+
+  <section class="century-sec" aria-labelledby="cl-h">
+    <div class="container">
+      <div class="eyebrow">Every value is dated</div>
+      <h2 id="cl-h">A hundred years is longer than any dataset here.</h2>
+      <p class="lead">The horizon this tool cares about is fifty to a hundred years. Every criterion below is read from a window of past or projected data, drawn against that horizon, and the tool dates every number it shows. It leaves the long view to you, and to the people who already live there.</p>
+      <!--s:century--><div class="century" role="img" aria-label="Data windows against a fifty to one hundred year horizon, from 1950 to 2135. Now is 2026; the horizon runs to 2126. Climate trajectory 2041 to 2060, projection; Water stress 2050, projection; Soil organic carbon 1960 to 2020, observed; Forest cover trajectory 2001 to 2023, observed; Solar PV potential 1994 to 2025, observed; Conflict proximity 2019 to 2024, observed; Regenerative network density 2026, observed; Population density 2020, observed. Six of eight criteria describe the past or the present. The furthest any of them looks is 2060, a projection. The tool reads what it can, and says plainly where it cannot see." style="--now:41.08%;--hz:54.06%">
+<div class="cl-head"><div></div><div class="cl-axis" aria-hidden="true"><span style="left:13.51%">1975</span><span style="left:27.03%">2000</span><span style="left:40.54%">2025</span><span style="left:54.05%">2050</span><span style="left:67.57%">2075</span><span style="left:81.08%">2100</span><span style="left:94.59%">2125</span></div></div>
+<div class="cl-rows"><div class="cl-row"><div class="cl-name">Climate trajectory<small>2041–2060 · projection</small></div><div class="cl-track"><span class="cl-seg proj" style="--c:#c97a3a;left:49.19%;width:10.81%"></span></div></div><div class="cl-row"><div class="cl-name">Water stress<small>2050 (30-year period centred on 2050) · projection</small></div><div class="cl-track"><span class="cl-seg proj pt" style="--c:#5a8aa8;left:54.32%"></span></div></div><div class="cl-row"><div class="cl-name">Soil organic carbon<small>1960–2020 (62% of the profiles behind the map; 34% undated)</small></div><div class="cl-track"><span class="cl-seg" style="--c:#7a5a2a;left:5.41%;width:32.97%"></span></div></div><div class="cl-row"><div class="cl-name">Forest cover trajectory<small>2001–2023</small></div><div class="cl-track"><span class="cl-seg" style="--c:#a5c0a5;left:27.57%;width:12.43%"></span></div></div><div class="cl-row"><div class="cl-name">Solar PV potential<small>long-term average; record start 1994, 1999 or 2007 by satellite region, to 2025</small></div><div class="cl-track"><span class="cl-seg" style="--c:#e89a4a;left:23.78%;width:17.3%"></span></div></div><div class="cl-row"><div class="cl-name">Conflict proximity<small>2019–2024</small></div><div class="cl-track"><span class="cl-seg" style="--c:#8a3a2a;left:37.3%;width:3.24%"></span></div></div><div class="cl-row"><div class="cl-name">Regenerative network density<small>wave 1, frozen 2026-07-24</small></div><div class="cl-track"><span class="cl-seg pt" style="--c:#5a8a5a;left:41.35%"></span></div></div><div class="cl-row"><div class="cl-name">Population density<small>epoch 2020 (GHSL modelled estimate)</small></div><div class="cl-track"><span class="cl-seg pt" style="--c:#8a7560;left:38.11%"></span></div></div>
+<div class="cl-row cl-foot"><div class="cl-name"></div><div class="cl-track"><b class="cl-now-l">Now · 2026</b><b class="cl-hz-l">The horizon · 50 to 100 years</b></div></div></div>
+<div class="cl-key"><span><i></i>Observed or measured</span><span><i class="p"></i>Projection</span><span><i class="h"></i>The 50 to 100 year horizon</span><span>Windows are the vintage of each criterion’s metric; individual cells vary and are dated where they differ.</span></div>
+<p class="cl-note">Six of eight criteria describe the past or the present. The furthest any of them looks is 2060, a projection. The tool reads what it can, and says plainly where it cannot see.</p>
+</div><!--/s-->
     </div>
   </section>
 
   <section class="guided" aria-labelledby="guided-title">
     <div class="container">
-      <div class="guided-inner">
+      <div class="guided-grid">
         <div class="guided-copy">
           <div class="eyebrow">Start here</div>
-          <h2 id="guided-title" class="serif">What matters most for where you'd put down roots?</h2>
-          <p class="guided-sub">This is a bioregioning tool for communities hoping to belong to a place — and help it flourish — over fifty to a hundred years. Tap a starting point and the sliders set themselves, or move any slider to filter twenty regions by what matters to you. Every number names its source. Nothing is scored, ranked, or recommended — and wherever you land, arriving in good faith with who's already there comes with it.</p>
+          <h2 id="guided-title">What matters most for where you'd put down roots?</h2>
         </div>
-        <div class="guided-chips" id="guided-chips" role="group" aria-label="Choose a starting priority"></div>
+        <p class="guided-sub">This is a bioregioning tool for communities hoping to belong to a place — and help it flourish — over fifty to a hundred years. Tap a starting point and the sliders set themselves, or move any slider to filter <!--f:regionsWord-->thirty<!--/f--> regions by what matters to you. Every number names its source. Nothing is scored, ranked, or recommended — and wherever you land, arriving in good faith with who's already there comes with it.</p>
       </div>
+      <div class="guided-chips" id="guided-chips" role="group" aria-label="Choose a starting point"></div>
+      <p class="guided-note">Starting points, not recommendations. They move sliders; they compose nothing.</p>
     </div>
   </section>
 
   <section class="regions-intro">
     <div class="container">
-      <h2 class="serif">Twenty regions, briefly named.</h2>
-      <p>Illustrative, chosen because each tells a different story across the criteria. The map carries seventeen data layers across six themes — climate &amp; water, land &amp; soil, energy, hazards, people &amp; access, and terrain — drawn from public services (WorldClim, WRI Aqueduct, SoilGrids, Global Solar Atlas, NASA, GEM, Global Forest Watch, and more). Toggle any layer on; stack a couple to compare.</p>
+      <h2 class="serif"><!--f:RegionsWord-->Thirty<!--/f--> regions, briefly&nbsp;named.</h2>
+      <p>Illustrative, chosen because each tells a different story across the criteria. The map carries <!--f:layersWord-->twenty-three<!--/f--> data layers across <!--f:themesWord-->six<!--/f--> themes, each drawn from a public service (WorldClim, WRI Aqueduct, SoilGrids, Global Solar Atlas, NASA, GEM, Global Forest Watch, and more). Toggle any layer on; stack a couple to compare. Two context layers, the bioregion outlines and major rivers, sit beside them in the same panel.</p>
 
       <div id="continent-switcher" class="continent-switcher" hidden></div>
 
-      <div class="map-wrap">
-        <div id="map"></div>
-        <div class="map-legend" id="map-legend" aria-hidden="true"></div>
-        <div class="map-controls">
-          <button class="title" id="layers-toggle" type="button" aria-expanded="true" aria-controls="map-toggles">Layers<span class="caret" aria-hidden="true">▾</span></button>
-          <div id="map-toggles"></div>
+      <figure class="map-wrap map-plate" id="map-plate">
+        <div class="map-stage" id="map-stage">
+          <div id="map" role="region" aria-label="Map of the regions. Every region is also listed as a card below the map."></div>
         </div>
-      </div>
+        <div class="map-controls" id="map-controls" role="group" aria-label="Map layers">
+          <button class="title" id="layers-toggle" type="button" aria-expanded="true" aria-controls="map-panel-body"><span class="t">Layers</span><span class="n" id="layers-count"></span><span class="caret" aria-hidden="true"></span></button>
+          <div class="map-panel-body" id="map-panel-body">
+            <div class="map-scroll">
+              <div class="map-panel-actions" id="map-panel-actions"></div>
+              <div id="map-toggles"></div>
+            </div>
+          </div>
+          <div class="map-legend" id="map-legend" aria-hidden="true" hidden></div>
+        </div>
+        <figcaption class="map-caption"><span><b>Basemap</b>Esri Light Gray, with OpenFreeMap as the fallback. The data layers are drawn over it.</span><span>Markers show where a region&rsquo;s reference point is, not its extent. Labels yield to each other; the cards below name every place.</span></figcaption>
+      </figure>
 
       <div class="region-grid" id="region-grid"></div>
     </div>
@@ -1827,74 +583,66 @@ else{try{await navigator.clipboard.writeText(payload.url);this.textContent='link
 
   <section class="criteria">
     <div class="container">
-      <h2 class="serif">The eight criteria, region by region.</h2>
+      <h2 class="serif">The <!--f:criteriaWord-->eight<!--/f--> criteria, region by&nbsp;region.</h2>
       <p class="desc">Each card is one criterion from the framework. Drag the threshold to filter, regions that meet your criterion stay highlighted; others fade. The framework filters, it never scores.</p>
 
       <div class="onboarding">
         <p class="onboarding-cue">New here? Start with a scenario, then adjust the sliders to taste. These are starting points, not recommendations.</p>
         <div class="preset-chips" id="preset-chips" role="group" aria-label="Scenario starting points"></div>
-        <div class="qual-filters" id="qual-filters" role="group" aria-label="Field filters from the r4 V1 layers, all filters never scores"></div>
+        <div class="qual-filters" id="qual-filters" role="group" aria-label="Field filters. They narrow the list; they never score or rank."></div>
       </div>
 
-      <div class="match-bar">
+      <div class="match-bar" role="group" aria-label="Threshold results">
         <div class="match-bar-info">
-          <div class="count"><span id="match-count">10</span><em> of <span id="match-total">10</span> regions match</em></div>
-          <div class="label" id="match-detail">No filters active</div>
+          <div class="count">
+            <span id="match-count" class="num">0</span>
+            <p class="txt" id="match-detail">of <span id="match-total">0</span> regions within your thresholds.<small id="match-gap-note"></small></p>
+          </div>
           <div class="sr-only" id="match-announce" role="status" aria-live="polite"></div>
-          <div class="match-regions" id="match-regions"></div>
         </div>
-        <div class="match-bar-actions">
+        <div class="match-actions">
           <span class="share-note" id="share-note" role="status" aria-live="polite"></span>
-          <button class="shortlist-btn" id="shortlist-btn" type="button" aria-label="Open your shortlist, 0 regions pinned">Your shortlist (0)</button>
-          <button class="share" id="share-btn" type="button" aria-label="Copy the current filter URL to clipboard">Share these criteria</button>
-          <button class="reset" id="reset-btn" type="button" aria-label="Reset all thresholds to defaults">Reset thresholds</button>
+          <button class="btn" id="reset-btn" type="button">Reset thresholds</button>
+          <button class="btn" id="share-btn" type="button">Share this view</button>
+          <button class="btn shortlist-btn" id="shortlist-btn" type="button" aria-label="Your pins (0): open them side by side, 0 regions pinned"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 2.5h6M6.2 2.5l-.4 4.2L4 8.5h8l-1.8-1.8-.4-4.2M8 8.5v5.2"/></svg><span id="pin-count-label">Your pins (0)</span></button>
         </div>
       </div>
+      <div class="match-regions" id="match-regions" role="group" aria-label="Regions within your thresholds, in the order of the slate"></div>
 
       <div class="next-step" id="next-step">
         <span class="next-step-lead" id="next-step-lead"></span>
-        <span class="next-step-actions">
-          <button class="ns-action" id="ns-asks" type="button">What they ask of you</button>
-          <button class="ns-action" id="ns-share" type="button">Share this view</button>
-        </span>
       </div>
 
       <div class="crit-grid" id="crit-grid"></div>
     </div>
   </section>
 
-  <section class="summary">
+  <section class="summary" aria-labelledby="summary-title">
     <div class="container">
-      <h2 class="serif">Everything together.</h2>
-      <p class="desc">The same data in one matrix. Read columns to see how a single region reads across criteria; read rows to see how regions compare on a single criterion. Filter results from above propagate here.</p>
-      <div style="overflow-x: auto;">
+      <h2 class="serif" id="summary-title">Everything together.</h2>
+      <p class="desc">Every criterion for every region on this continent, in one table and in the order of the slate. Read down a column to see one place; read across a row to see one criterion. A region outside your thresholds is shaded as a whole column. Nothing is added up.</p>
+      <p class="scroll-hint">Scroll sideways to read every column.</p>
+      <div class="sum-wrap" id="sum-wrap" tabindex="0" role="region" aria-label="Every criterion for every region (scrolls sideways)">
         <table class="sum-table" id="sum-table"></table>
       </div>
     </div>
   </section>
 
-  <section class="contact">
+  <section class="contact" aria-labelledby="further-title">
     <div class="container">
       <div class="col">
         <div class="left">
-          <h2 class="serif">Reach The Collective.</h2>
+          <h2 id="further-title" class="serif">Read further.</h2>
           <p class="lead">
-            <em>If you want to talk about this work</em>, the framework, the regions, the project as a whole, or how to join The Collective, subscribe to updates and we'll be in touch.
+            <em>If you want to understand how the framework thinks</em>, why it filters and never scores, how land standing is read, and what the group has deliberately left open, the deeper page sets it out.
           </p>
         </div>
 
         <div class="right">
           <div class="invitation-cta">
-            <strong>Want the methodology, case studies, and the questions still being worked through?</strong><br/>
+            <strong>Want the methodology, the case studies, and the questions still being worked through?</strong><br/>
             Read the
-            <a href="/deeper.html">deeper material</a>
-          , methodology, three regional case studies (Alentejo, Connemara, Transylvania), and the design tensions deferred to V2.
-          </div>
-          <div class="invitation-cta" style="margin-top: 18px;">
-            <strong>Want to join The Collective?</strong><br/>
-            Read
-            <a href="/invitation.pdf" target="_blank" rel="noopener">The Collective's invitation (PDF)</a>
-            and subscribe to get in touch — we'll introduce you to the group.
+            <a href="/deeper.html">deeper material</a>: the methodology, the regional case studies, the ethics and values, and the design tensions deferred to V2.
           </div>
         </div>
       </div>
@@ -1903,49 +651,37 @@ else{try{await navigator.clipboard.writeText(payload.url);this.textContent='link
 
   </main>
 
-  <footer>
+  <footer class="colophon">
+    <div class="art" aria-hidden="true"><!--s:art:colophon--><svg viewBox="0 0 420 300" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true" focusable="false"><g class="lw-net"><path d="M248.7 9C329 90 275 204 251.3 294" stroke-width="2.4"/><path d="M151.9 22.2C157.3 55.3 268.9 64.3 288 82.3" stroke-width="1.7"/><path d="M207.2 55.7Q159.7 52.7 154.4 25.6" stroke-width="1"/><path d="M397.9 69.1C393.6 97 306.1 104.6 291.1 119.8" stroke-width="1.7"/><path d="M350 98.8Q277.1 96.3 269 73.4" stroke-width="1"/><path d="M120.2 77.3C127 113 266 122.7 289.7 142.2" stroke-width="1.7"/><path d="M201 116.4Q161 113.2 156.6 83.9" stroke-width="1"/><path d="M177.5 75.6C181.8 125.3 271 138.9 286.2 166" stroke-width="1.7"/><path d="M224.8 127.7Q173.7 123.2 168 82.5" stroke-width="1"/><path d="M140.9 147.1C146.3 181.4 257.1 190.7 276 209.5" stroke-width="1.7"/><path d="M208.7 185.6Q280 182.5 287.9 154.4" stroke-width="1"/><path d="M139.5 163C144.8 197.6 252.9 207 271.3 225.8" stroke-width="1.7"/><path d="M224.7 207.3Q282.7 204.2 289.1 175.9" stroke-width="1"/></g></svg><!--/s--></div>
     <div class="container">
-      <p class="frame">
-        Values are best-available midpoints from the cited public sources, WorldClim CMIP6, WRI Aqueduct, SoilGrids, Hansen GFC, Global Solar Atlas, UCDP, GEN/OSM, JRC GHSL. Nothing here is composite, weighted, or scored across criteria. Thresholds let the viewer apply their own preferences, the framework never collapses a place into a single number.
-      </p>
-      <div class="credits">
+      <p class="frame">Opinionated about method, quiet about preference. Read the data, set your own thresholds, decide for yourself.</p>
+      <div class="cols">
         <div>
-          <h3>About The Collective</h3>
-          <p class="about-p">
-            The land-selection framework is the work of <strong>The Collective</strong>, a small, cross-disciplinary working group of practitioners and researchers developing a shared, open framework for choosing land for regenerative settlements on a fifty-to-hundred-year horizon. The full documents and contributor list stay private until the group agrees on public attribution.
-          </p>
-          <p class="about-p">
-            This prototype was built by <strong>a member of The Collective</strong>, the regions, copy, and interactions shown here are one contributor's cut of the shared work.
-          </p>
-          <p class="about-p">
-            The values the project is built on, <em>localism, bioregioning, reciprocity with the people and lands already rooted in a place, healthy integration, stewardship</em>, are laid out in the <a href="/deeper.html#ethics">ethics and values</a> section of the deeper page.
-          </p>
-          <p class="about-p">
-            Subscribe on the main page to stay in touch as the work evolves.
-          </p>
+          <h3>Who made this</h3>
+          <p>The framework was originated by Askja and is developed by a small working group of practitioners and researchers. The demonstration site was built by one member of that group, who holds the practitioner seat.</p>
+          <p>Members are named by first name and role only, as in the working documents; no surnames, handles or contact details appear anywhere on the site.</p>
+          <p>There is no public contact route yet; the working group will set one.</p>
+        </div>
+        <div>
+          <h3>How to read it</h3>
+          <ul>
+            <li>Thresholds filter; they never score or rank.</li>
+            <li>Land standing is qualitative and never a filter.</li>
+            <li>Every value carries its source and vintage.</li>
+            <li>The rivers and contours drawn on this page are ornament, not surveyed. For geography, use the map and ask the people who live there.</li>
+          </ul>
         </div>
         <div>
           <h3>Sources cited</h3>
           <ul id="sources-list"></ul>
         </div>
-        <div>
-          <h3>Frame</h3>
-          <ul>
-            <li>Open-source, open-data</li>
-            <li>No commercial product</li>
-            <li>State + trajectory framing</li>
-            <li>Native units throughout</li>
-            <li>Source + vintage per value</li>
-          </ul>
-        </div>
       </div>
-      <div class="stamp">
-        prototype
-        <span class="sep">·</span>
-        <a href="https://land-selection-framework.regencommunity.tools" style="color: inherit; text-decoration: none;">land-selection-framework.regencommunity.tools</a>
-        <span class="sep">·</span>
-        last updated <span id="updated-stamp">2026-07-03</span>
+      <p class="colophon-pages"><a href="/arrive.html">How to arrive</a><a href="/host.html">For people already here</a></p>
+      <div class="notes">
+        <p>A designed demonstration of the framework, not a finished data product. Values are sourced and dated; the group has not yet ratified the slate or the V1 proposal.</p>
+        <p>Values revised <!--f:dataRevision-->2026-10<!--/f--> against their cited sources; earlier shared links may match different regions.</p>
       </div>
+      <p class="stamp">prototype · open data sources, no commercial product · last updated <span id="updated-stamp"><!--f:buildDate-->2026-10-06<!--/f--></span></p>
     </div>
   </footer>
 
@@ -1961,18 +697,18 @@ else{try{await navigator.clipboard.writeText(payload.url);this.textContent='link
     </div>
   </div>
 
-  <!-- Shortlist compare overlay -->
-  <div class="compare-backdrop" id="compare-overlay" role="dialog" aria-modal="true" aria-label="Compare your shortlist" aria-hidden="true">
-    <div class="compare-panel">
+  <!-- Compare overlay: the pinned regions side by side, in the order they were pinned -->
+  <div class="compare-backdrop" id="compare-overlay" role="dialog" aria-modal="true" aria-labelledby="compare-title" aria-hidden="true">
+    <div class="compare-panel compare">
       <div class="compare-head">
-        <h3 class="serif">Your shortlist, side by side</h3>
-        <button class="compare-close" id="compare-close" type="button" aria-label="Close shortlist comparison">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <h3 class="serif" id="compare-title">Your pins, side by side</h3>
+        <button class="compare-close" id="compare-close" type="button" aria-label="Close the side-by-side view">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
             <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
           </svg>
         </button>
       </div>
-      <p class="compare-note">The same values as the main table, narrowed to the regions you pinned. Shown in the order you added them, never ranked.</p>
+      <p class="compare-note">Shown in the order you pinned them, never ranked. Nothing is added up.</p>
       <div class="compare-body" id="compare-body"></div>
     </div>
   </div>
@@ -1986,186 +722,27 @@ else{try{await navigator.clipboard.writeText(payload.url);this.textContent='link
         </svg>
       </button>
 
-      <svg class="modal-topo" viewBox="0 0 100 42" aria-hidden="true">
-        <path d="M0 24 C 18 16, 35 32, 52 22 S 82 14, 100 20" stroke="#8a3a2a" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-        <path d="M0 32 C 20 26, 40 36, 60 30 S 86 24, 100 30" stroke="#8a3a2a" stroke-width="1.1" fill="none" stroke-linecap="round" opacity="0.65"/>
-        <path d="M0 38 C 22 34, 46 40, 66 36 S 90 32, 100 35" stroke="#8a3a2a" stroke-width="0.9" fill="none" stroke-linecap="round" opacity="0.4"/>
-      </svg>
+      <span class="modal-wave" aria-hidden="true"></span>
 
       <div class="modal-eyebrow">While you're exploring</div>
       <h2 id="modal-title">Want to keep up with this work?</h2>
-      <p class="modal-blurb">Leave your email and The Collective will send what's coming next, additional regions, deeper data layers, and material from the group's research as it becomes ready to share. Subscribers see it first.</p>
+      <p class="modal-blurb">Leave your email and the working group will send what's coming next: additional regions, deeper data layers, and material from the group's research as it becomes ready to share.</p>
 
       <form class="modal-form" id="modal-form" action="https://formsubmit.co/ajax/bb837bec6f642bd8c479e52f93d9ffb1" method="POST" novalidate>
         <input type="email" name="email" id="modal-email" placeholder="your email" aria-label="Email address" required autocomplete="email" />
-        <button type="submit">Subscribe <span class="arrow">→</span></button>
+        <button type="submit">Subscribe <svg class="arrow" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 8h11"/><path d="M9 4l4 4-4 4"/></svg></button>
         <input type="hidden" name="_subject" value="Land Selection Framework, modal signup" />
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_template" value="table" />
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
       </form>
-      <div class="modal-status" id="modal-status"></div>
+      <div class="modal-status" id="modal-status" aria-live="polite"></div>
 
-      <p class="modal-footnote">The rest of the page stays open either way. Your address stays with The Collective, never traded.</p>
+      <p class="modal-footnote">The rest of the page stays open either way. Your address stays with the working group, never traded.</p>
     </div>
   </div>
 
-  <script type="module" src="./src/main.js?v=usab17"></script>
-
-  <!-- Per-value source citations: appended after main.js renders. -->
-  <style>
-    .crit-card .sources {
-      margin-top: 16px;
-      border-top: 1px solid var(--rule-soft);
-      padding-top: 10px;
-      font-family: 'Spectral', Georgia, serif;
-      font-style: italic;
-      font-size: 11px;
-      color: var(--ink-3);
-    }
-    .crit-card .sources summary {
-      cursor: pointer;
-      font-style: normal;
-      font-family: 'Inter', sans-serif;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-size: 10.5px;
-      color: var(--ink-2);
-      list-style: none;
-      padding: 2px 0;
-    }
-    .crit-card .sources summary::-webkit-details-marker { display: none; }
-    .crit-card .sources summary::before {
-      content: '▸';
-      display: inline-block;
-      width: 14px;
-      transition: transform 0.15s;
-      color: var(--ink-3);
-    }
-    .crit-card .sources[open] summary::before { transform: rotate(90deg); }
-    .crit-card .sources ul {
-      list-style: none;
-      margin: 8px 0 0 14px;
-      padding: 0;
-    }
-    .crit-card .sources li {
-      padding: 3px 0;
-      line-height: 1.45;
-    }
-    .crit-card .sources li .reg-name {
-      font-style: normal;
-      font-weight: 500;
-      color: var(--ink-2);
-      margin-right: 6px;
-    }
-    .crit-card .sources li a {
-      color: var(--ink-2);
-      text-decoration: underline;
-      text-decoration-color: var(--rule);
-      text-underline-offset: 2px;
-    }
-    .crit-card .sources li a:hover {
-      color: var(--ink);
-      text-decoration-color: var(--ink);
-    }
-  </style>
-  <script type="module">
-    import { regions, values, criteria } from './data/regions.js?v=usab16';
-
-    const activeContinent = () => document.body.dataset.continent || 'europe';
-    const regionCountFor = (c) => regions.filter((r) => r.continent === c).length;
-
-    function buildSourcesBlock(crit) {
-      const det = document.createElement('details');
-      det.className = 'sources';
-
-      const sum = document.createElement('summary');
-      sum.dataset.critName = crit.name.toLowerCase();
-      sum.textContent = `Sources for ${crit.name.toLowerCase()} (${regionCountFor(activeContinent())} regions)`;
-      det.appendChild(sum);
-
-      const ul = document.createElement('ul');
-      regions.forEach((r) => {
-        const v = values[r.id] && values[r.id][crit.id];
-        if (!v) return;
-        const li = document.createElement('li');
-        li.dataset.continent = r.continent; // CSS hides the inactive continent's items
-
-        const nameSpan = document.createElement('span');
-        nameSpan.className = 'reg-name';
-        nameSpan.textContent = `${r.name}:`;
-        li.appendChild(nameSpan);
-
-        if (v.source && v.sourceUrl) {
-          const a = document.createElement('a');
-          a.href = v.sourceUrl;
-          a.target = '_blank';
-          a.rel = 'noopener';
-          a.textContent = v.source;
-          li.appendChild(a);
-        } else if (v.source) {
-          li.appendChild(document.createTextNode(v.source));
-        } else {
-          li.appendChild(document.createTextNode('(no source)'));
-        }
-
-        if (v.vintage) {
-          li.appendChild(document.createTextNode(` · ${v.vintage}`));
-        }
-
-        ul.appendChild(li);
-      });
-      det.appendChild(ul);
-      return det;
-    }
-
-    function augmentCriterionCards() {
-      criteria.forEach((c) => {
-        const card = document.getElementById(`crit-${c.id}`);
-        if (!card) return;
-        if (card.querySelector(':scope > .sources')) return; // already augmented
-        const footer = card.querySelector(':scope > .footer');
-        const block = buildSourcesBlock(c);
-        if (footer) {
-          card.insertBefore(block, footer);
-        } else {
-          card.appendChild(block);
-        }
-      });
-    }
-
-    // main.js renders synchronously on module load. By the time this script
-    // runs (also a module, loaded after the main.js script element), the
-    // crit-cards exist. requestAnimationFrame defers to the next paint as a
-    // safety net for any async work.
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => requestAnimationFrame(augmentCriterionCards));
-    } else {
-      requestAnimationFrame(augmentCriterionCards);
-    }
-
-    // Keep the per-criterion source counts in step with the active continent.
-    document.addEventListener('lsf:continentchange', () => {
-      const n = regionCountFor(activeContinent());
-      document.querySelectorAll('.crit-card > .sources > summary').forEach((sum) => {
-        sum.textContent = `Sources for ${sum.dataset.critName || ''} (${n} regions)`;
-      });
-    });
-  </script>
-
-  <!-- Mobile honesty notice: dismissal persists across visits. -->
-  <script>
-    (function () {
-      var KEY = 'lsf-mobile-note-dismissed';
-      var note = document.getElementById('mobile-note');
-      if (!note) return;
-      try { if (localStorage.getItem(KEY)) note.classList.add('dismissed'); } catch (e) {}
-      var btn = document.getElementById('mobile-note-x');
-      if (btn) btn.addEventListener('click', function () {
-        note.classList.add('dismissed');
-        try { localStorage.setItem(KEY, '1'); } catch (e) {}
-      });
-    })();
-  </script>
+  <script type="module" src="./src/main.js?v=b20261006100127" data-bust></script>
+  <script type="module" src="./src/ui/hero-art.js?v=b20261006100127" data-bust></script>
 </body>
 </html>

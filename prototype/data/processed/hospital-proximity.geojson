@@ -204,6 +204,101 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -5.1,
+          57.8
+        ]
+      },
+      "properties": {
+        "region_id": "scottish-highlands",
+        "nearest_hospital_km": 45.94,
+        "nearest_hospital_name": "Migdale Hospital",
+        "hospitals_within_50km": 2,
+        "hospitals_within_100km": 14,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.7,
+          63.3
+        ]
+      },
+      "properties": {
+        "region_id": "north-karelia-kainuu",
+        "nearest_hospital_km": 23.04,
+        "nearest_hospital_name": "Terveyskeskus",
+        "hospitals_within_50km": 2,
+        "hospitals_within_100km": 17,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.0,
+          45.65
+        ]
+      },
+      "properties": {
+        "region_id": "millevaches",
+        "nearest_hospital_km": 27.04,
+        "nearest_hospital_name": "Centre hospitalier de Haute-Corr\u00e8ze",
+        "hospitals_within_50km": 14,
+        "hospitals_within_100km": 81,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.2,
+          40.5
+        ]
+      },
+      "properties": {
+        "region_id": "teruel-uplands",
+        "nearest_hospital_km": 18.39,
+        "nearest_hospital_name": "Hospital San Jose",
+        "hospitals_within_50km": 4,
+        "hospitals_within_100km": 15,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.1,
+          44.45
+        ]
+      },
+      "properties": {
+        "region_id": "valle-maira",
+        "nearest_hospital_km": 25.69,
+        "nearest_hospital_name": "H\u00f4pital Saint-Maur",
+        "hospitals_within_50km": 29,
+        "hospitals_within_100km": 177,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -123.0,
           44.5
         ]
@@ -385,6 +480,101 @@
         "nearest_hospital_name": "Centro de Salud \"San Felipe del Agua\"",
         "hospitals_within_50km": 75,
         "hospitals_within_100km": 82,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.75,
+          42.55
+        ]
+      },
+      "properties": {
+        "region_id": "finger-lakes",
+        "nearest_hospital_km": 19.59,
+        "nearest_hospital_name": "Cayuga Medical Center at Ithaca",
+        "hospitals_within_50km": 8,
+        "hospitals_within_100km": 35,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.2,
+          38.0
+        ]
+      },
+      "properties": {
+        "region_id": "virginia-piedmont",
+        "nearest_hospital_km": 21.58,
+        "nearest_hospital_name": "Sentara Martha Jefferson Hospital",
+        "hospitals_within_50km": 3,
+        "hospitals_within_100km": 34,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.9,
+          47.9
+        ]
+      },
+      "properties": {
+        "region_id": "bas-saint-laurent",
+        "nearest_hospital_km": 24.53,
+        "nearest_hospital_name": "CLSC du Cabano",
+        "hospitals_within_50km": 4,
+        "hospitals_within_100km": 12,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.0,
+          40.5
+        ]
+      },
+      "properties": {
+        "region_id": "ne-missouri-se-iowa",
+        "nearest_hospital_km": 14.5,
+        "nearest_hospital_name": "Scotland County Hospital",
+        "hospitals_within_50km": 3,
+        "hospitals_within_100km": 20,
+        "red_line_60min_proxy_passes": true,
+        "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.6,
+          44.9
+        ]
+      },
+      "properties": {
+        "region_id": "downeast-maine",
+        "nearest_hospital_km": 22.85,
+        "nearest_hospital_name": "Down East Community Hospital",
+        "hospitals_within_50km": 3,
+        "hospitals_within_100km": 16,
         "red_line_60min_proxy_passes": true,
         "proxy_caveat": "Geodesic km from region centroid to nearest OSM hospital, not a 60-minute road-network isochrone. The centroid may fall on a regional hub city (Oaxaca City, Santiago, Bolzano, Taos, Evora) rather than a target rural settlement site, so a low number can reflect centroid placement more than real rural-settlement access. V2 to refine via road-time isochrones."
       }

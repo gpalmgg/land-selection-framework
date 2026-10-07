@@ -1,0 +1,25 @@
+{
+  "value": 18.0,
+  "unit": "°C",
+  "vintage": "2041–2060, SSP2-4.5",
+  "label": "Warm temperate, dry summers",
+  "source": "WorldClim 2.1 CMIP6 ensemble (17 models)",
+  "sourceUrl": "https://www.worldclim.org/data/cmip6/cmip6climate.html",
+  "sourceId": "worldclim-cmip6",
+  "method": "footprint-zonal",
+  "footprint": "alentejo",
+  "retrieved": "2026-10-04",
+  "scenario": "SSP2-4.5",
+  "trajectory": {
+    "status": "projected",
+    "direction": "rising",
+    "delta": 2.1,
+    "unit": "°C",
+    "basis": "2041–2060 SSP2-4.5 ensemble mean minus WorldClim 1970–2000 over the same footprint cells",
+    "source": "WorldClim 2.1 (historical + CMIP6)",
+    "sourceUrl": "https://www.worldclim.org/data/worldclim21.html",
+    "sourceId": "worldclim-hist",
+    "vintage": "2041–2060 vs 1970–2000"
+  },
+  "audit": "fixture only"
+}

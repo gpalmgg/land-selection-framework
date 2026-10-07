@@ -36,3 +36,42 @@ ogtest.mjs
 .audit-*.md
 *.md
 .DS_Store
+
+# ---- upgrade 2026-10 (MC-BASE): test harness and tooling are never served (append-only) ----
+# Playwright harness, node tests, fixtures (prototype/tests/**), and any other test/tool folder
+tests/
+test/
+e2e/
+tools/
+# test runner output
+playwright-report/
+test-results/
+coverage/
+# unit-test files wherever they live
+*.test.js
+*.test.mjs
+*.spec.js
+# evidence-pipeline working data: fetch caches, staged data awaiting verification, research dossiers, full footprints
+.fetch-cache/
+data/*.staging.js
+data/regions-*.staging.*
+data/research-dossier/
+data/footprints-full/
+# Python helpers are never served (scripts/ is already excluded above; this covers any other folder)
+*.py
+# NOTE: llms.txt and llms-full.txt are NOT ignored (they are public); data/v1-exports/ and notebooks/ are public today and are
+# deliberately left alone here (flagged for Gustaf, not changed).
+
+# ---- upgrade 2026-10 (INT-FINAL): orphan static OG cards, append-only ----
+# Five root PNGs that nothing references any more (no page, stylesheet, script or edge function; the share cards come from
+# /api/og). They carry stale "v1 SKETCH", "siting" and dead vercel.app text, so they are not served. The files stay in the
+# repository; nothing is deleted.
+og-alentejo.png
+og-connemara.png
+og-filtered.png
+og-galicia.png
+og-transylvania.png
+
+# ---- 2026-10-07 (Gustaf): stale GeoPackages and notebooks are no longer served; files stay in the repo ----
+data/v1-exports/
+notebooks/

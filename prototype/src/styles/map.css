@@ -1,0 +1,211 @@
+/* map.css: the map plate (continent tabs, stage, caption), the layer panel, the legend and the region markers (design 8.6). Colour from
+   tokens.css only; MapLibre is unchanged. Rules that must win are scoped under .map-wrap, not left to load order. */
+
+/* ---------- continent tabs: folder tabs on the plate's top edge ---------- */
+.continent-switcher { display: flex; gap: 4px; margin: var(--s5) 0 0; flex-wrap: wrap; }
+.continent-switcher[hidden] { display: none; }
+.continent-tab {
+  appearance: none; cursor: pointer; min-height: 44px; padding: 11px 18px;
+  background: transparent; color: var(--ink-2);
+  border: 1px solid var(--rule-strong); border-bottom: 0;
+  border-radius: var(--r-leaf-s) var(--r-leaf-s) 0 0;
+  font: 600 var(--t-label, 10.5px)/1 var(--f-ui); letter-spacing: .14em; text-transform: uppercase;
+}
+.continent-tab:hover { background: var(--paper-2); color: var(--ink); }
+.continent-tab.active, .continent-tab[aria-selected="true"] {
+  background: var(--sheet); color: var(--ink); position: relative; z-index: 1; margin-bottom: -1px; padding-bottom: 12px;
+}
+.continent-tab:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- the plate: a framed sheet, not a card ---------- */
+.regions-intro .map-wrap {
+  position: relative; height: auto; width: auto; margin: 0 0 var(--s7);
+  background: var(--sheet); border: 1px solid var(--rule-strong); border-radius: 0 var(--r-leaf) 3px 3px;
+  padding: 10px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px;
+}
+.map-wrap .map-stage {
+  position: relative; background: var(--river-wash); border: 1px solid var(--rule); min-width: 0;
+  height: clamp(420px, 62vh, 640px);
+}
+.map-wrap #map { position: absolute; inset: 0; }
+.map-wrap .map-caption {
+  grid-column: 1 / -1; display: flex; justify-content: space-between; gap: var(--s4); flex-wrap: wrap;
+  padding: 6px 4px 2px; font: 400 12.5px/1.5 var(--f-ui); color: var(--ink-3); margin: 0;
+}
+.map-wrap .map-caption b {
+  font: 600 var(--t-label, 10.5px)/1.5 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ink); margin-right: 8px;
+}
+.map-wrap .map-caption span { max-width: 62ch; }
+
+/* ---------- the layer panel ---------- */
+.map-plate .map-controls {
+  position: static; display: flex; flex-direction: column; min-height: 0; max-width: none; max-height: none; padding: 0;
+  background: var(--paper); border: 1px solid var(--rule); border-radius: var(--r-leaf-s); box-shadow: none; overflow: hidden;
+  z-index: auto;
+}
+.map-plate .map-controls .title {
+  flex: none; display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; min-height: 44px; margin: 0;
+  padding: 0 14px; background: none; border: 0; border-bottom: 1px solid var(--rule); cursor: default; text-align: left;
+  font: 600 11px/1 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ink);
+}
+.map-controls .title .n { margin-left: auto; font-weight: 500; letter-spacing: .04em; text-transform: none; color: var(--ink-3); font-size: 12px; }
+.map-controls .title .caret { display: none; width: 8px; height: 8px; border-right: 2px solid var(--ink-3); border-bottom: 2px solid var(--ink-3); transform: rotate(45deg); margin: -3px 2px 0 6px; transition: transform .15s var(--ease); }
+.map-controls.collapsed .title .caret { transform: rotate(-45deg); margin-top: 0; }
+.map-controls .title:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+.map-controls .map-panel-body { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.map-controls .map-scroll { flex: 1; min-height: 0; overflow: auto; padding: 4px 14px 10px; }
+.map-controls .map-panel-actions { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 0 6px; }
+.map-controls .map-action {
+  appearance: none; cursor: pointer; min-height: 44px; min-width: 44px; padding: 0 14px; background: transparent; color: var(--ink);
+  border: 1px solid var(--rule-strong); border-radius: var(--r-btn); font: 600 12px/1 var(--f-ui); letter-spacing: .02em;
+}
+.map-controls .map-action:hover { background: var(--paper-2); }
+.map-controls #map-ext-slot:empty { display: none; }
+.map-controls #map-ext-slot { padding: 6px 0 4px; }
+
+/* groups */
+.map-controls .map-group + .map-group { border-top: 1px solid color-mix(in srgb, var(--rule) 70%, transparent); margin-top: 6px; }
+.map-controls .map-toggle-group-label {
+  appearance: none; display: flex; align-items: center; gap: 8px; width: 100%; min-height: 44px; margin: 0; padding: 0; background: none; border: 0;
+  cursor: pointer; text-align: left; color: var(--ink-3); border-top: 0;
+  font: 600 var(--t-label, 10.5px)/1 var(--f-ui); letter-spacing: .14em; text-transform: uppercase;
+}
+.map-controls .map-toggle-group-label:hover { color: var(--ink); }
+.map-controls .map-toggle-group-label .gn { margin-left: auto; font-weight: 500; letter-spacing: .04em; text-transform: none; font-size: 11.5px; color: var(--ink-3); }
+.map-controls .map-toggle-group-label .caret { flex: none; width: 7px; height: 7px; border-right: 2px solid var(--ink-3); border-bottom: 2px solid var(--ink-3); transform: rotate(45deg); margin: -3px 2px 0 2px; transition: transform .15s var(--ease); }
+.map-controls .map-group:not(.open) .map-toggle-group-label .caret { transform: rotate(-45deg); margin-top: 0; }
+.map-controls .map-group-body[hidden] { display: none; }
+
+/* a layer row: leaf checkbox, swatch + name, then the mandatory source line */
+.map-plate .map-toggle {
+  appearance: none; display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 10px; row-gap: 1px; align-items: start;
+  width: 100%; min-height: 44px; margin: 0; padding: 8px 0; background: none; border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--rule) 70%, transparent); text-align: left; color: var(--ink); cursor: pointer;
+  font: 500 13px/1.25 var(--f-ui);
+}
+.map-plate .map-group-body > .map-toggle:first-child { border-top: 0; }
+.map-plate .map-toggle:hover { color: var(--ink); background: color-mix(in srgb, var(--paper-2) 60%, transparent); }
+.map-toggle .dot {
+  grid-row: 1 / span 2; width: 20px; height: 20px; margin-top: 1px; border: 1.5px solid var(--rule-strong); border-radius: 5px 50% 5px 50%;
+  background: var(--sheet); opacity: 1;   /* a leaf-shaped checkbox (layers stack, so not radios); the state is aria-pressed */
+}
+.map-toggle[aria-pressed="true"] .dot { border-color: var(--ink); background: radial-gradient(circle, var(--paper) 0 3.5px, transparent 4px), var(--ink); }
+.map-toggle .name { grid-column: 2; font: 500 13px/1.25 var(--f-ui); color: var(--ink); }
+.map-toggle .name .sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; background: var(--c, var(--ink-3)); border: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); }
+.map-toggle .src { grid-column: 2; font: 400 11.5px/1.4 var(--f-ui); color: var(--ink-3); }   /* source, vintage, licence: required on every layer */
+.map-toggle .src .gap, .map-legend .gap { font-style: italic; color: var(--gap); }
+.map-controls .map-layer-note { margin: 0 0 6px 32px !important; font: italic 400 12px/1.4 var(--f-text) !important; color: var(--ink-3) !important; }
+
+/* ---------- the legend: docked at the foot of the panel; it can never cover a marker or a label ---------- */
+.map-legend {
+  flex: none; max-height: 44%; overflow: auto; background: var(--sheet); border-top: 1px solid var(--rule-strong);
+  padding: 10px 14px 12px; font: 400 12px/1.4 var(--f-ui); color: var(--ink-2);
+}
+.map-legend[hidden], .map-legend[aria-hidden="true"] { display: none; }
+.map-legend:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+.map-legend .lg-title { margin: 0 0 4px; font: 600 10px/1 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.map-legend .lg-layer { margin: 0; }
+.map-legend .lg-layer + .lg-layer { margin-top: 10px; padding-top: 8px; border-top: 1px dotted var(--rule-strong); }
+.map-legend .lg-name { margin: 0; font: 600 12px/1.3 var(--f-ui); color: var(--ink); }
+.map-legend .lg-sub { margin: 1px 0 0; font: italic 400 12px/1.35 var(--f-text); color: var(--ink-3); }
+.map-legend .lg-row { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
+.map-legend .lg-end { font: 500 11px/1 var(--f-ui); color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.map-legend .lg-ramp { display: inline-block; flex: none; width: 64px; height: 8px; border: 1px solid var(--rule-strong); border-radius: 2px; background: var(--ramp, var(--ink-3)); }
+.map-legend .lg-sw { display: inline-block; flex: none; width: 14px; height: 10px; border-radius: 2px; border: 1px solid color-mix(in srgb, var(--ink) 30%, transparent); background: var(--c, var(--ink-3)); }
+.map-legend .lg-sw.dot { width: 11px; height: 11px; border-radius: 50%; }
+.map-legend .lg-classes { list-style: none; margin: 6px 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 3px; }
+.map-legend .lg-classes li { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.map-legend .lg-cl { min-width: 0; overflow-wrap: anywhere; }
+.map-legend .lg-group { margin: 8px 0 0; font: 600 10px/1.3 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.map-legend .lg-note { margin: 6px 0 0; font: italic 400 12px/1.4 var(--f-text); color: var(--ink-3); }
+.map-legend .lg-src { margin: 8px 0 0; padding-top: 6px; border-top: 1px dotted var(--rule-strong); font: 400 11px/1.4 var(--f-ui); color: var(--ink-3); }
+.map-legend.many .lg-name { font-size: 12.5px; }
+
+/* ---------- region markers ---------- a 0x0 anchor; the chip is a paper centre in a 4px region-coloured ring, a 44px .hit area is the tap
+   target. The label pill takes the first free side (labels.js) or is dropped. Outside the thresholds = a dashed ring, never hidden. */
+.map-wrap .region-marker { z-index: 2; width: 0; height: 0; cursor: pointer; font-weight: 400; background: none; border: 0; box-shadow: none; transition: none; }
+.map-wrap .region-marker .hit { position: absolute; left: -22px; top: -22px; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; }
+.map-wrap .region-marker .chip {
+  position: relative; box-sizing: border-box; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--sheet); color: var(--ink); font: 700 13px/1 var(--f-ui); letter-spacing: 0;
+  border: 4px solid var(--region-ui, var(--accent)); box-shadow: 0 0 0 2px var(--sheet), 0 2px 0 2px rgb(0 0 0 / .12);
+}
+.map-wrap .region-marker .chip.two { font-size: 11px; letter-spacing: -.02em; }
+.map-wrap .region-marker.dim .chip { background: var(--ground-out); border-style: dashed; border-width: 3px; }
+.map-wrap .region-label {
+  position: absolute; left: 21px; top: -11px; z-index: 1; display: block; width: max-content; max-width: 220px;
+  font: 600 11px/1 var(--f-ui); color: var(--ink); white-space: nowrap; pointer-events: none;
+  background: color-mix(in srgb, var(--sheet) 94%, transparent); border: 1px solid var(--rule-strong); padding: 4px 8px; border-radius: 12px;
+}
+.map-wrap .region-label .nm { display: block; max-width: 200px; overflow: hidden; text-overflow: ellipsis; }
+.map-wrap .region-label small {
+  display: none; width: max-content; max-width: 190px; margin-top: 3px; white-space: normal;
+  font: italic 400 11.5px/1.3 var(--f-text); color: var(--host);   /* the Salutation: shown when the marker is touched or focused */
+}
+.map-wrap .region-marker.flip .region-label { left: auto; right: 21px; }
+.map-wrap .region-marker.above .region-label { left: 0; top: auto; bottom: 21px; transform: translateX(-50%); }
+.map-wrap .region-marker.below .region-label { left: 0; top: 21px; transform: translateX(-50%); }
+.map-wrap .region-marker.nolabel .region-label { display: none; }
+.map-wrap .region-marker:hover, .map-wrap .region-marker:focus-visible { z-index: 6; }
+.map-wrap .region-marker:hover .region-label, .map-wrap .region-marker:focus-visible .region-label { display: block; }
+.map-wrap .region-marker:hover .region-label small, .map-wrap .region-marker:focus-visible .region-label small { display: block; }
+.map-wrap .region-marker.hover-measure .region-label { display: block; }
+.map-wrap .region-marker.hover-measure .region-label small { display: block; }
+.map-wrap .region-marker:focus-visible { outline: none; }
+.map-wrap .region-marker:focus-visible .chip { outline: 3px solid var(--accent); outline-offset: 4px; }
+
+/* ---------- MapLibre's own chrome ---------- */
+.map-wrap .maplibregl-ctrl-group { border-radius: var(--r-leaf-s); }
+.map-wrap .maplibregl-ctrl button:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+
+/* Graceful fallback if the map library or tiles fail to load */
+.map-fallback {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 24px; font: 400 15px/1.6 var(--f-text); color: var(--ink-3);
+}
+.map-fallback strong { color: var(--ink-2); font-weight: 500; }
+
+/* ---------- from 1280px: the panel is a 300px column the height of the stage ---------- */
+@media (min-width: 1280px) {
+  .regions-intro .map-wrap { grid-template-columns: minmax(0, 1fr) 300px; }
+  .map-plate .map-controls { contain: size; }
+}
+
+/* ---------- 900 to 1279px: the panel sits under the map, full width, no height cap ---------- */
+@media (max-width: 1279px) {
+  .map-plate .map-controls { contain: none; }
+  .map-controls .map-scroll { overflow: visible; }
+  .map-controls #map-toggles { columns: 2; column-gap: 24px; }
+  .map-controls .map-group { break-inside: avoid; }
+  .map-legend { max-height: 320px; }
+  .map-legend .lg-classes { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); column-gap: 14px; }
+}
+
+/* ---------- below 900px: the panel is a disclosure under the map; the plate bleeds toward the screen edge ---------- */
+@media (max-width: 899px) {
+  .regions-intro .map-wrap { margin-inline: -12px; padding: 4px; border-inline: 0; border-radius: 0; margin-bottom: var(--s6); }
+  .map-wrap .map-stage { height: clamp(360px, 60vh, 520px); height: clamp(360px, 60dvh, 520px); }
+  .map-controls .title { cursor: pointer; }
+  .map-controls .title[aria-disabled="true"] { cursor: default; }
+  .map-controls .title .caret { display: block; }
+  .map-controls.collapsed .map-panel-body { display: none; }
+  .map-controls #map-toggles { columns: 1; }
+  .map-controls .map-scroll { padding-inline: 12px; }
+  .map-legend { max-height: 260px; }
+  .map-wrap .map-caption { padding-inline: 10px; }
+}
+@media (max-width: 899px), (pointer: coarse) {
+  /* every tap target inside the plate is at least 44px */
+  .map-wrap .maplibregl-ctrl-group button { width: 44px; height: 44px; }
+  .map-wrap .maplibregl-ctrl-attrib.maplibregl-compact { min-height: 44px; padding-right: 44px; margin: 6px; border-radius: 22px; }
+  .map-wrap .maplibregl-ctrl-attrib-button { width: 44px; height: 44px; border-radius: 22px; background-repeat: no-repeat; background-position: center; background-size: 24px; }
+  .map-wrap .maplibregl-ctrl-group button .maplibregl-ctrl-icon { background-position: center; background-repeat: no-repeat; }
+  .map-wrap .maplibregl-ctrl-attrib.maplibregl-compact-show { padding: 6px 44px 6px 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-controls .title .caret, .map-controls .map-toggle-group-label .caret { transition: none; }
+}
+
+/* the library draws attribution links with no underline and a faint colour: underline them so the links read as links (WCAG 1.4.1) */
+.maplibregl-ctrl-attrib a, .maplibregl-map .maplibregl-ctrl-attrib a, .map-wrap .maplibregl-ctrl-attrib a { text-decoration: underline; }

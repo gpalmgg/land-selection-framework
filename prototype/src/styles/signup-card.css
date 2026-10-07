@@ -1,0 +1,73 @@
+/* === Hero signup slip (design 8.2 / 8.20): a dashed slip, a Fraunces italic title, an ink Subscribe button. VISUAL ONLY: the form, FormSubmit
+   action and String(data.success) === 'true' check are untouched. Scoped to .hero. === */
+.hero .signup-card {
+  position: relative;
+  margin-top: var(--s6);
+  max-width: 480px;
+  background: color-mix(in srgb, var(--sheet) 88%, transparent);
+  border: 1px dashed var(--rule-strong);
+  border-radius: var(--r-leaf-s);
+  padding: var(--s4) var(--s4) var(--s3);
+  overflow: visible;
+  box-shadow: none;
+  transform: none;
+  transition: none;
+}
+.hero .signup-card::before, .hero .signup-card::after { content: none; }
+.hero .signup-card h2 { font: italic 340 24px / 1.15 var(--f-display); letter-spacing: -.01em; margin: 0; }
+.hero .signup-card .blurb { font: 400 14.5px / 1.5 var(--f-text); color: var(--ink-2); margin: 6px 0 0; max-width: none; }
+.hero .signup-card form {
+  display: flex;
+  gap: 0;
+  margin: var(--s3) 0 0;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-btn);
+  overflow: hidden;
+  background: var(--sheet);
+  transition: none;
+}
+.hero .signup-card form:focus-within { border-color: var(--rule-strong); box-shadow: none; }
+.hero .signup-card input[type="email"] {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: 13px 14px;
+  font: 400 15px var(--f-ui);
+  color: var(--ink);
+}
+.hero .signup-card input[type="email"]::placeholder { color: var(--ink-4); font-style: normal; }
+.hero .signup-card input[type="email"]:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; box-shadow: none; }
+.hero .signup-card button[type="submit"] {
+  border: 0;
+  background: var(--btn-bg);
+  color: var(--btn-ink);
+  padding: 0 20px;
+  min-height: 44px;
+  font: italic 400 16px var(--f-text);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition: background-color .2s;
+}
+.hero .signup-card button[type="submit"]:hover { background: var(--btn-hover); color: var(--btn-ink); }
+.hero .signup-card button[type="submit"]:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+.hero .signup-card .form-status {
+  min-height: 1.2em;
+  font: 400 12.5px / 1.45 var(--f-ui);
+  font-style: normal;
+  color: var(--ink-3);
+  margin: 8px 0 0;
+}
+.hero .signup-card .form-status.error { color: var(--accent); }
+.hero .signup-card .form-status.success { color: var(--host); }
+.hero .signup-card .form-status a { color: var(--accent); text-decoration: underline dotted; text-underline-offset: 2px; }
+@media (max-width: 767px) {
+  .hero .signup-card { padding: var(--s4) var(--s4) var(--s3); }
+  .hero .signup-card form { flex-direction: column; }
+  .hero .signup-card input[type="email"] { border-bottom: 1px solid var(--rule); }
+  .hero .signup-card button[type="submit"] { justify-content: center; padding: 12px 20px; border-top: 0; border-left: 0; }
+}
+@media print { .hero .signup-card, .hero .hero-cta { display: none !important; } }

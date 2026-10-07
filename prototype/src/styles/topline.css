@@ -1,0 +1,22 @@
+/* topline.css: the prototype top line (design FS 8.1): one quiet line, "Prototype 2026 . a designed demonstration, not the V1 data build".
+   No dials, toggle or season control. header.prototype-banner > .container > p.proto-msg > b.proto-tag. */
+.prototype-banner { padding: 20px 0 0; background: transparent; border: 0; }
+.prototype-banner .container { display: block; padding-top: 0; padding-bottom: 0; }
+.prototype-banner p,
+.prototype-banner .proto-msg {
+  margin: 0;
+  font: 500 12px/1.4 var(--f-ui, 'Inter', system-ui, sans-serif);
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+}
+.prototype-banner b,
+.prototype-banner .proto-tag {
+  margin-right: 6px;
+  font-weight: 600;
+  font-size: var(--t-label, 10.5px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: transparent; padding: 0;
+}
+@media print { .prototype-banner { display: none; } }

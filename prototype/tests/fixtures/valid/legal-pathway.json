@@ -1,0 +1,21 @@
+{
+  "asOf": "2026-10-04",
+  "nonResidentOwnership": { "status": "open", "summary": "No nationality restriction on buying rural land; a tax number is needed.", "source": "Decreto-Lei 555/99 (consolidated)", "sourceUrl": "https://dre.pt/web/guest/legislacao-consolidada/-/lc/34465475/view" },
+  "residency": { "link": "separate_route", "summary": "Land purchase does not grant residency; separate visa routes exist and permit ownership.", "source": "Lei 56/2023 (Mais Habitação)", "sourceUrl": "https://dre.pt/dre/detalhe/lei/56-2023-224779655" },
+  "zoning": { "route": "case_by_case", "summary": "Building on rural land runs through the municipal chamber; protected zones can rule out residential construction on land that can still be bought.", "source": "Decreto-Lei 555/99 (consolidated)", "sourceUrl": "https://dre.pt/web/guest/legislacao-consolidada/-/lc/34465475/view" },
+  "collectiveForms": [
+    { "kind": "cooperative", "name": "Cooperativa Agrícola", "summary": "Recognised agricultural co-operative form.", "source": "Decreto-Lei 335/99", "sourceUrl": "https://dre.pt/dre/detalhe/decreto-lei/335-1999-343862" },
+    { "kind": "association", "name": "Associação", "summary": "Civil-code association (arts. 157 ff.).", "source": "Código Civil", "sourceUrl": "https://dre.pt/dre/legislacao-consolidada/decreto-lei/1966-34509075" }
+  ],
+  "firstClaim": ["No statutory pre-emption holder identified for rural land in the sources opened."],
+  "steps": [
+    { "n": 1, "what": "Check the parcel against the protected-zone maps before any offer.", "who": "Municipal chamber / regional planning office", "source": "Decreto-Lei 555/99 (consolidated)", "sourceUrl": "https://dre.pt/web/guest/legislacao-consolidada/-/lc/34465475/view" },
+    { "n": 2, "what": "Ask the chamber in writing whether a dwelling is permissible on the parcel.", "who": "Municipal chamber", "source": "Decreto-Lei 555/99 (consolidated)", "sourceUrl": "https://dre.pt/web/guest/legislacao-consolidada/-/lc/34465475/view", "duration": { "text": "residency processing 12-18 months as of 2024", "source": "AIMA", "sourceUrl": "https://aima.gov.pt/en" } }
+  ],
+  "ruledOut": ["Buying land does not by itself carry water rights or a right to build."],
+  "direction": "tightening",
+  "directionNote": "Residency-by-investment route for real estate removed in October 2023.",
+  "gaps": ["Whether scheme water allocations transfer with the parcel was not covered by a primary source."],
+  "confidence": "medium",
+  "verifiedOn": "2026-10-04"
+}

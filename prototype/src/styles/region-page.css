@@ -1,0 +1,164 @@
+/* ==========================================================================
+   region-page.css  -  the per-region page: an accent world (design FS 8.18, MC-REGION-PAGE 2026-10).
+   Loaded ONLY by region/<id>.html (built by scripts/gen_region_pages.mjs, no JS), after tokens, fonts, theme-gate, base, rail,
+   colophon, reciprocity, ledger and way, and before v1-grid.css. Everything the page needs that those files do not carry lives
+   here: the skip link, the wave, the Salutation, the page frame, the header, the two-column body, the refusal band, the asks block,
+   the headings of the retagged way-in and context blocks, the "What it offers" column and the all-regions list.
+
+   Markup contract (generator):
+     body > a.skip-link + #rct-rail + main#main > .rp-wrap > article.rp[style="--region:#rrggbb"]
+        .wave + .rp-art + .rp-in > nav.crumbs + p.salutation.lg + h1 + .meta + p.rp-lede + .rp-grid
+        .rp-grid > .rp-main (land standing, .refusal, .rp-asks, .place-strip, .way, .ctx, .v1-section) + aside.offers
+     main > .rp-wrap > nav.rp-regions  (the list of every region, in the data's declared order)
+     footer.colophon (colophon.css)
+
+   Rules this file keeps: colour from tokens only; no opacity on any text (only the drawn art is faded); no colour that carries a
+   value; no animation (the wave is static here); the region colour is a non-text mark (--region-ui).
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- the large Salutation (the wave and .salutation live in base.css) */
+.salutation.lg .sal-v { font: italic 340 clamp(24px, 2.6vw, 30px)/1.2 var(--f-display); letter-spacing: -.01em; text-wrap: balance; }
+
+/* ---------------------------------------------------------------- the frame */
+.rp-wrap { max-width: var(--wrap, 1240px); margin: 0 auto; padding: var(--s6) var(--gutter) 0; }
+.rp {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--rule); border-radius: var(--r-leaf);
+  overflow: hidden; overflow: clip;           /* clip, not hidden, so the offers column can stay sticky (clip makes no scroll container) */
+}
+.rp .wave { height: 14px; }
+/* the fixed-seed Catchment: the same ornament on every page, never a per-region emblem, never surveyed */
+.rp-art {
+  position: absolute; right: -40px; top: 20px; width: 340px;
+  color: var(--region-ui, var(--accent)); opacity: .16;
+  pointer-events: none;
+}
+.rp-art svg { display: block; width: 100%; height: auto; }
+.rp-in { position: relative; padding: var(--s6) var(--s7) var(--s7); }
+
+/* ---------------------------------------------------------------- header */
+.crumbs ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; }
+.crumbs li { display: inline-flex; align-items: center; font: 500 12px/1.4 var(--f-ui); color: var(--ink-3); }
+.crumbs li + li::before {
+  content: ""; flex: none; width: 5px; height: 5px; margin: 0 11px 0 7px;
+  border-top: 1.5px solid currentColor; border-right: 1.5px solid currentColor; transform: rotate(45deg);
+}
+.crumbs a { color: var(--ink-2); text-underline-offset: 3px; }
+.crumbs a:hover { color: var(--accent); }
+.rp .salutation.lg { margin-top: var(--s4); }
+.rp h1 {
+  margin: var(--s3) 0 0; max-width: 8.6em;
+  font: 330 clamp(44px, 6vw, 76px)/.98 var(--f-display-xl); font-variation-settings: "opsz" 96;
+  letter-spacing: -.025em; text-wrap: balance;
+}
+.rp-in > .meta {
+  display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: var(--s4);
+  font: 600 var(--t-label, 10.5px)/1.4 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3);
+}
+.rp-in > .meta .place { font: italic 400 17px/1.3 var(--f-text); letter-spacing: 0; text-transform: none; color: var(--river); }
+.rp-lede { margin: var(--s4) 0 0; max-width: 60ch; font: 400 18px/1.62 var(--f-text); color: var(--ink-2); }
+
+/* ---------------------------------------------------------------- the body: land standing, asks and the way in on the left; the dated numbers on the right */
+.rp-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s7); margin-top: var(--s6); align-items: start; }
+.rp-main { min-width: 0; }
+.rp-main > * + * { margin-top: var(--s6); }
+.rp-main > :first-child { margin-top: 0; }
+
+/* the refusal band is shared with the drawer (base.css) */
+
+/* what living here asks of you: a 3px accent rule on the accent wash, Spectral italic, a source line, the case-study deep link */
+.rp-asks { padding: var(--s4) var(--s4) var(--s4) var(--s5); border-left: 3px solid var(--accent); background: var(--accent-wash); }
+.rp-asks h2 { margin: 0 0 var(--s2); font: 600 var(--t-label, 10.5px)/1 var(--f-ui); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+.rp-asks-text { margin: 0; font: italic 400 18px/1.55 var(--f-text); color: var(--ink); max-width: 62ch; }
+.rp-asks-src { margin: var(--s2) 0 0; font: 400 12.5px/1.5 var(--f-ui); color: var(--ink-3); }
+.rp-asks-src a { color: var(--ink-2); text-decoration: underline dotted; text-underline-offset: 3px; }
+.rp-deeplink { display: inline-block; margin-top: var(--s3); font: italic 400 16px var(--f-text); color: var(--accent); text-decoration: underline dotted; text-underline-offset: 4px; }
+.rp-deeplink:hover { color: var(--ink); }
+.rp-deeplink .arrow, .cta .arrow { margin-left: 8px; vertical-align: 0; }
+
+/* the land-standing block sits flush at the top of the left column on the page; a block-level "further sources" list has no value
+   column to align with, so it sits flush left (the drawer's 128px indent is for per-row sources) */
+.rp-main > .drawer-land-standing { margin-top: 0; }
+.rp-main > .drawer-land-standing .ls-fc ~ .ls-claims { margin-left: 0; }
+
+/* the way in and the climate and water context come out of the shared renderers with drawer heading levels; the generator retags
+   them to h2 / h3 for the page outline and these rules give them back their look */
+.rp .way h2 { font: 340 26px/1.15 var(--f-display); letter-spacing: -.012em; margin: var(--s2) 0 0; color: var(--ink); }
+.rp .ctx > h2, .rp .leaf-h {
+  display: flex; align-items: center; gap: var(--s3);
+  margin: 0 0 var(--s3);
+  font: 600 11px/1 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3);
+}
+.rp .ctx > h2::after, .rp .leaf-h::after { content: ""; flex: 1; border-top: 1px dotted var(--rule-strong); }
+.rp .ctx-block { margin-top: var(--s4); }
+.rp .ctx-block h3 { margin: 0 0 var(--s2); font: 500 17px/1.3 var(--f-text); color: var(--ink); }
+
+/* ---------------------------------------------------------------- "What it offers": the ledger, then the primary button */
+.offers { min-width: 0; }
+.offers-sub { margin: 0 0 var(--s2); font: italic 400 14.5px/1.5 var(--f-text); color: var(--ink-3); }
+.offers .ledger { margin-top: var(--s2); }
+.cta {
+  display: inline-flex; align-items: center; min-height: 44px; margin-top: var(--s5);
+  padding: 12px 20px;
+  background: var(--btn-bg); color: var(--btn-ink);
+  border-radius: var(--r-btn);
+  font: italic 400 16px/1.3 var(--f-text); text-decoration: none;
+}
+.cta:hover { background: var(--btn-hover); }
+.cta:focus-visible { outline-offset: 3px; }
+.offers-stance { margin: var(--s3) 0 0; font: italic 400 14px/1.5 var(--f-text); color: var(--ink-3); }
+
+@media (min-width: 1280px) {
+  .rp-in { padding: var(--s6) var(--s6) var(--s7); }
+  .rp-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s6); }
+  /* sticky, so the dated numbers stay beside the long left column. The ledger is taller than most windows, so the column keeps its
+     own height to the window and scrolls inside itself: no row, and not the button, is ever cut off by the sticky position. */
+  .offers {
+    position: sticky; top: 20px;
+    max-height: calc(100vh - 40px); overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain;
+    scrollbar-width: thin;
+    padding: 2px 6px 2px 2px; margin: -2px -6px -2px -2px;     /* room for the focus rings inside the scroller */
+  }
+}
+
+/* ---------------------------------------------------------------- every region, in the declared order (no thumbnails, no ordinals) */
+.rp-regions { margin-top: var(--s7); }
+.rp-regions h2 { margin: 0; font: 340 clamp(26px, 2.6vw, 34px)/1.1 var(--f-display); letter-spacing: -.015em; color: var(--ink); }
+.rp-regions-note { margin: var(--s2) 0 0; font: italic 400 14.5px/1.5 var(--f-text); color: var(--ink-3); }
+.region-nav {
+  list-style: none; margin: var(--s4) 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  border-top: 1px solid var(--rule);
+}
+.region-nav li { border-bottom: 1px solid var(--rule); min-width: 0; }
+.region-nav a, .region-nav li > span { display: block; padding: 11px 14px 11px 0; text-decoration: none; color: var(--ink); }
+.region-nav a:hover { color: var(--accent); }
+.rn-name { display: block; font: 400 16px/1.3 var(--f-text); }
+.rn-country { display: block; margin-top: 2px; font: 600 var(--t-label, 10.5px)/1.3 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.region-nav li.current > span { border-left: 3px solid var(--accent); padding-left: 11px; }
+.region-nav li.current .rn-name { font-weight: 500; }
+
+/* ---------------------------------------------------------------- tablet and phone */
+@media (max-width: 899px) {
+  .rp-art { width: 260px; right: -70px; }
+}
+@media (max-width: 767px) {
+  .rp-wrap { padding-top: var(--s4); }
+  .rp-in { padding: var(--s5) var(--s4) var(--s6); }
+  .rp-art { width: 220px; right: -60px; top: 28px; }
+  .rp-lede { font-size: 17px; }
+  .rp-grid { gap: var(--s6); }
+  .rp-asks { padding: var(--s4); }
+  .rp-in > .meta .place { font-size: 16px; }
+  .region-nav { grid-template-columns: repeat(auto-fill, minmax(min(100%, 168px), 1fr)); }
+  .region-nav a, .region-nav li > span { padding-right: 10px; }
+}
+
+/* ---------------------------------------------------------------- print: the numbers follow the text, the art and the nav stay home */
+@media print {
+  .rp { border: 0; border-radius: 0; }
+  .rp-art, .wave, .cta, .rp-regions { display: none !important; }
+  .rp-grid { display: block; }
+  .offers { position: static; margin-top: 24px; }
+}

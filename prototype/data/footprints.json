@@ -1,0 +1,533 @@
+{
+ "alentejo": {
+  "kind": "bbox",
+  "bounds": [
+   -9.0,
+   37.0,
+   -6.9,
+   39.7
+  ],
+  "description": "Alentejo NUTS II region (box)",
+  "basis": "box -9.0..-6.9E, 37.0..39.7N approximating the Alentejo NUTS II region (PT18, named in the region title), the area the 2026-10 reverify used for the Aqueduct 4.0 area-weighted water stress and the Atlas count; the box is larger than the unit (NUTS II area 31,604 km2: it also takes in coast, sea and a strip of Spain), and areaKm2 is the box; the 2026-10 reverify note for alentejo",
+  "areaKm2": 55011.7,
+  "marker": [
+   -7.9,
+   38.6
+  ],
+  "polygonFile": null
+ },
+ "galicia": {
+  "kind": "bbox",
+  "bounds": [
+   -9.3,
+   41.8,
+   -6.8,
+   43.8
+  ],
+  "description": "Galicia autonomous community (box)",
+  "basis": "box -9.3..-6.8E, 41.8..43.8N approximating the Galicia autonomous community named in the region title, the area the 2026-10 reverify used for the Aqueduct 4.0 area-weighted water stress (0.22); the box is larger than the unit and areaKm2 is the box; the 2026-10 reverify note for galicia",
+  "areaKm2": 45435.7,
+  "marker": [
+   -8.4,
+   42.9
+  ],
+  "polygonFile": null
+ },
+ "transylvania": {
+  "kind": "bbox",
+  "bounds": [
+   24.25,
+   45.25,
+   25.75,
+   46.75
+  ],
+  "description": "Transylvania: 1.5 degree box around the marker (no single administrative unit)",
+  "basis": "Transylvania is a historical region with no single administrative unit; the footprint is the +-0.75 degree box around the marker that the 2026-10 reverify used for the SoilGrids window, with the Eurostat NUTS 2 Centru and Nord-Vest densities as the population cross-check; the 2026-10 reverify note for transylvania",
+  "areaKm2": 19372.3,
+  "marker": [
+   25,
+   46
+  ],
+  "polygonFile": null
+ },
+ "connemara": {
+  "kind": "polygon",
+  "bounds": [
+   -10.2032,
+   51.4457,
+   -8.7,
+   53.6181
+  ],
+  "description": "West Cork (Cork county west of 8.7W) and Connemara (Galway county west of 9.0W), two parts",
+  "basis": "two-part region; values are over the union; marker unchanged. Union of the County Cork part west of 8.7W and the County Galway part west of 9.0W (Natural Earth 10m admin-1 county polygons, public domain), the West Cork and Connemara areas whose basins the 2026-10 reverify used (Cork and Galway County Development Plans); the 2026-10 reverify note for connemara. Splitting into two regions is recommended for a later round",
+  "areaKm2": 6597.7,
+  "marker": [
+   -9.4,
+   53
+  ],
+  "polygonFile": "footprints/connemara.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "pembrokeshire": {
+  "kind": "bbox",
+  "bounds": [
+   -5.6,
+   51.65,
+   -4.7,
+   52.05
+  ],
+  "description": "Pembrokeshire county (box)",
+  "basis": "county box -5.6..-4.7E, 51.65..52.05N used by the 2026-10 reverify for the SoilGrids window; Pembrokeshire is the single Aqueduct basin covering the county; the 2026-10 reverify note for pembrokeshire",
+  "areaKm2": 2760.1,
+  "marker": [
+   -4.9,
+   51.85
+  ],
+  "polygonFile": null
+ },
+ "cevennes": {
+  "kind": "bbox",
+  "bounds": [
+   3.3,
+   44.0,
+   4.3,
+   44.7
+  ],
+  "description": "Cevennes park area (box)",
+  "basis": "box 3.3..4.3E, 44.0..44.7N around the Parc national des Cevennes area (938 km2 core plus 2,035 km2 adhesion area per fr.wikipedia), the park-area box used by the 2026-10 reverify for Aqueduct 4.0 and SoilGrids; the 2026-10 reverify note for cevennes",
+  "areaKm2": 6201.9,
+  "marker": [
+   3.85,
+   44.2
+  ],
+  "polygonFile": null
+ },
+ "south-tirol": {
+  "kind": "polygon",
+  "bounds": [
+   10.3692,
+   46.2239,
+   12.4696,
+   47.0852
+  ],
+  "description": "South Tirol (province of Bolzano / Bozen)",
+  "basis": "province of Bolzano / Bozen, Natural Earth 10m admin-1 (public domain); the province is the unit the 2026-10 reverify used for the Aqueduct area-weighting (0.148 over five basins) and the ASTAT language census; the 2026-10 reverify note for south-tirol",
+  "areaKm2": 7392.4,
+  "marker": [
+   11.35,
+   46.5
+  ],
+  "polygonFile": "footprints/south-tirol.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "asturias": {
+  "kind": "polygon",
+  "bounds": [
+   -7.1701,
+   42.8928,
+   -4.5133,
+   43.6629
+  ],
+  "description": "Principality of Asturias",
+  "basis": "Asturias province / principality, Natural Earth 10m admin-1 (public domain); the unit the 2026-10 reverify used for the Aqueduct area-weighting over seven basins; the 2026-10 reverify note for asturias",
+  "areaKm2": 10677.5,
+  "marker": [
+   -5.85,
+   43.3
+  ],
+  "polygonFile": "footprints/asturias.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "saxony-anhalt": {
+  "kind": "polygon",
+  "bounds": [
+   10.5701,
+   50.9279,
+   13.2368,
+   53.0503
+  ],
+  "description": "Saxony-Anhalt (federal state)",
+  "basis": "Land Sachsen-Anhalt, Natural Earth 10m admin-1 (public domain); the state is the unit the 2026-10 reverify used for Hansen forest change (geoBoundaries polygon) and the state density; the 2026-10 reverify note for saxony-anhalt",
+  "areaKm2": 20665.2,
+  "marker": [
+   11.6,
+   51.95
+  ],
+  "polygonFile": "footprints/saxony-anhalt.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "estonia-rural": {
+  "kind": "polygon",
+  "bounds": [
+   21.8324,
+   57.5158,
+   28.1865,
+   59.6709
+  ],
+  "description": "Estonia (all fifteen counties)",
+  "basis": "union of the 15 Estonian counties, Natural Earth 10m admin-1 (public domain); the region is the whole country (KAOKS rules and Statistics Estonia density are national); the 2026-10 reverify note for estonia-rural",
+  "areaKm2": 45819.0,
+  "marker": [
+   25,
+   58.6
+  ],
+  "polygonFile": "footprints/estonia-rural.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "cascadia": {
+  "kind": "polygon",
+  "bounds": [
+   -124.1587,
+   43.4374,
+   -121.7342,
+   45.4335
+  ],
+  "description": "Six core Willamette Valley counties (Marion, Polk, Yamhill, Linn, Benton, Lane)",
+  "basis": "union of the six core Willamette Valley county polygons, US Census Bureau cartographic boundary 2023 (500k, total area incl. water); the six-county definition the 2026-10 reverify used for the population cell (45 /km2) and the Aqueduct check over Census TIGER counties; the 2026-10 reverify note for cascadia",
+  "areaKm2": 26574.2,
+  "marker": [
+   -123,
+   44.5
+  ],
+  "polygonFile": "footprints/cascadia.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "vermont": {
+  "kind": "polygon",
+  "bounds": [
+   -73.4377,
+   42.7269,
+   -71.4646,
+   45.0167
+  ],
+  "description": "Vermont (state)",
+  "basis": "union of the 14 Vermont county polygons, US Census Bureau cartographic boundary 2023 (500k, total area incl. water); the state is the unit the 2026-10 reverify used for the WorldClim, Aqueduct and population cells; the 2026-10 reverify note for vermont",
+  "areaKm2": 24902.9,
+  "marker": [
+   -72.7,
+   44
+  ],
+  "polygonFile": "footprints/vermont.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "southern-appalachians": {
+  "kind": "polygon",
+  "bounds": [
+   -84.3219,
+   34.9866,
+   -81.692,
+   36.2871
+  ],
+  "description": "Seventeen western North Carolina mountain counties",
+  "basis": "union of the 17 standard WNC mountain county polygons (Avery, Buncombe, Cherokee, Clay, Graham, Haywood, Henderson, Jackson, Macon, Madison, McDowell, Mitchell, Polk, Rutherford, Swain, Transylvania, Yancey), US Census Bureau cartographic boundary 2023 (total area incl. water); the set the 2026-10 reverify used for population (45.9 /km2); the 2026-10 reverify note for southern-appalachians",
+  "areaKm2": 18125.8,
+  "marker": [
+   -82.6,
+   35.6
+  ],
+  "polygonFile": "footprints/southern-appalachians.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "driftless": {
+  "kind": "bbox",
+  "bounds": [
+   -91.3,
+   43.0,
+   -90.3,
+   44.0
+  ],
+  "description": "Driftless Area: 1 degree box around the marker (no single administrative unit)",
+  "basis": "the Driftless Area crosses four states and has no administrative unit; the footprint is the +-0.5 degree box around the marker that the 2026-10 reverify used for the area-weighted Aqueduct 4.0 value (0.50), with Vernon and Crawford counties (WI, Census 2020) as the population cross-check; the 2026-10 reverify note for driftless",
+  "areaKm2": 8985.5,
+  "marker": [
+   -90.8,
+   43.5
+  ],
+  "polygonFile": null
+ },
+ "ozarks": {
+  "kind": "bbox",
+  "bounds": [
+   -93.3,
+   35.8,
+   -92.3,
+   36.8
+  ],
+  "description": "Ozarks: 1 degree box around the marker (no single administrative unit)",
+  "basis": "the Ozarks span parts of Missouri, Arkansas and Oklahoma and have no administrative unit; the footprint is the 1 degree box (+-0.5) around the marker that the 2026-10 reverify used for the deduplicated area-weighted Aqueduct 4.0 value (0.72); the 2026-10 reverify note for ozarks",
+  "areaKm2": 9966.8,
+  "marker": [
+   -92.8,
+   36.3
+  ],
+  "polygonFile": null
+ },
+ "northern-new-mexico": {
+  "kind": "bbox",
+  "bounds": [
+   -106.1,
+   35.9,
+   -105.1,
+   36.9
+  ],
+  "description": "Northern New Mexico: 1 degree box around Taos (no single administrative unit)",
+  "basis": "northern New Mexico is not an administrative unit; the footprint is the 1 degree box (+-0.5) around the marker that the 2026-10 reverify used for the deduplicated area-weighted Aqueduct 4.0 value (0.42), with +-30 km Hansen windows around Taos; the 2026-10 reverify note for northern-new-mexico",
+  "areaKm2": 9954.2,
+  "marker": [
+   -105.6,
+   36.4
+  ],
+  "polygonFile": null
+ },
+ "nova-scotia": {
+  "kind": "polygon",
+  "bounds": [
+   -66.3277,
+   43.4221,
+   -59.6886,
+   47.0348
+  ],
+  "description": "Nova Scotia province including Cape Breton",
+  "basis": "province of Nova Scotia, Natural Earth 10m admin-1 (public domain); the unit the 2026-10 reverify used for the WorldClim ensemble (8.5 C province-wide); the 2026-10 reverify note for nova-scotia",
+  "areaKm2": 55107.8,
+  "marker": [
+   -63,
+   45.4
+  ],
+  "polygonFile": "footprints/nova-scotia.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "kootenays": {
+  "kind": "polygon",
+  "bounds": [
+   -118.5,
+   49.0005,
+   -116.0269,
+   51.0645
+  ],
+  "description": "Regional District of Central Kootenay (RDCK)",
+  "basis": "Regional District of Central Kootenay boundary, OpenStreetMap relation 2218360 (ODbL) via Nominatim, 2026-10-05, includes lake area (StatCan 2021 land area 22,078 km2); the unit the 2026-10 reverify used for population, Aqueduct and Hansen; the 2026-10 reverify note for kootenays",
+  "areaKm2": 23140.5,
+  "marker": [
+   -117,
+   49.5
+  ],
+  "polygonFile": "footprints/kootenays.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "quebec-eastern-townships": {
+  "kind": "bbox",
+  "bounds": [
+   -72.75,
+   44.65,
+   -71.25,
+   46.15
+  ],
+  "description": "Eastern Townships: 1.5 degree box around Sherbrooke (no single administrative unit)",
+  "basis": "the Eastern Townships are a historical region and not an administrative unit; the footprint is the +-0.75 degree box around the marker that the 2026-10 reverify used for the SoilGrids window; the 2026-10 reverify note for quebec-eastern-townships",
+  "areaKm2": 19578.5,
+  "marker": [
+   -72,
+   45.4
+  ],
+  "polygonFile": null
+ },
+ "oaxaca": {
+  "kind": "disc",
+  "bounds": [
+   -97.1698,
+   16.6482,
+   -96.2302,
+   17.5518
+  ],
+  "description": "Oaxaca highlands: 50 km disc around the marker",
+  "basis": "no administrative unit is named in the region title (Oaxaca highlands); 50 km disc around the marker, the default where none is stated; the 2026-10 reverify used marker-centred +-0.25 degree windows and the 100 km conflict rim; the 2026-10 reverify note for oaxaca",
+  "areaKm2": 7850.8,
+  "marker": [
+   -96.7,
+   17.1
+  ],
+  "polygonFile": null,
+  "radiusKm": 50.0
+ },
+ "bas-saint-laurent": {
+  "kind": "polygon",
+  "bounds": [
+   -70.0969,
+   47.0668,
+   -65.9491,
+   49.0339
+  ],
+  "description": "Bas-Saint-Laurent: the eight MRCs of Quebec administrative region 01 (Gaspesie excluded)",
+  "basis": "union of the eight 2021 Statistics Canada census divisions 2407-2414 (Kamouraska, Riviere-du-Loup, Temiscouata, Les Basques, Rimouski-Neigette, La Mitis, La Matanie, La Matapedia), Cartographic Boundary Files 2021 (coastline-clipped); regions/bas-saint-laurent/raw/footprint_union.geojson; area in EPSG:6933",
+  "areaKm2": 22667.3,
+  "marker": [
+   -68.9,
+   47.9
+  ],
+  "polygonFile": "footprints/bas-saint-laurent.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "downeast-maine": {
+  "kind": "polygon",
+  "bounds": [
+   -68.105,
+   44.3169,
+   -66.8854,
+   45.6892
+  ],
+  "description": "Washington County, Maine (FIPS 23029) in full",
+  "basis": "US Census Bureau TIGERweb State_County polygon for Washington County, Maine (FIPS 23029; total area incl. water); regions/downeast-maine/raw/footprint_union.geojson; area in EPSG:6933",
+  "areaKm2": 8437.1,
+  "marker": [
+   -67.6,
+   44.9
+  ],
+  "polygonFile": "footprints/downeast-maine.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "finger-lakes": {
+  "kind": "polygon",
+  "bounds": [
+   -77.3671,
+   42.2337,
+   -76.2377,
+   43.7081
+  ],
+  "description": "Five New York counties around Cayuga and Seneca lakes (Tompkins, Schuyler, Seneca, Yates, Cayuga)",
+  "basis": "union of US Census TIGERweb Census2020 county polygons for Tompkins, Schuyler, Seneca, Yates and Cayuga counties, NY (total area incl. water); regions/finger-lakes/raw/footprint_union.geojson; area in EPSG:6933",
+  "areaKm2": 6381.2,
+  "marker": [
+   -76.75,
+   42.55
+  ],
+  "polygonFile": "footprints/finger-lakes.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "millevaches": {
+  "kind": "polygon",
+  "bounds": [
+   1.5523,
+   45.3257,
+   2.5287,
+   46.0334
+  ],
+  "description": "The 124 communes of the Parc naturel regional de Millevaches en Limousin (2019 charter perimeter)",
+  "basis": "union of the 124 commune contours (65 Correze, 43 Creuse, 16 Haute-Vienne) from geo.api.gouv.fr (Etalab open licence), matched to the park's 2019 commune list; regions/millevaches/raw/footprint_union.geojson; area in EPSG:6933",
+  "areaKm2": 3351.7,
+  "marker": [
+   2,
+   45.65
+  ],
+  "polygonFile": "footprints/millevaches.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "ne-missouri-se-iowa": {
+  "kind": "polygon",
+  "bounds": [
+   -93.0976,
+   40.2488,
+   -91.1124,
+   40.9011
+  ],
+  "description": "Seven counties on the Missouri-Iowa line (Schuyler, Scotland, Clark MO; Appanoose, Davis, Van Buren, Lee IA)",
+  "basis": "union of US Census Bureau cartographic boundary 2023 county polygons for Schuyler, Scotland and Clark counties (MO) and Appanoose, Davis, Van Buren and Lee counties (IA), total area incl. water; regions/ne-missouri-se-iowa/raw/footprint_union.geojson (NAD83, treated as WGS84); area in EPSG:6933",
+  "areaKm2": 8572.6,
+  "marker": [
+   -92,
+   40.5
+  ],
+  "polygonFile": "footprints/ne-missouri-se-iowa.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "north-karelia-kainuu": {
+  "kind": "polygon",
+  "bounds": [
+   26.7484,
+   61.7221,
+   31.5867,
+   64.656
+  ],
+  "description": "North Karelia (13 municipalities) and the southern five Kainuu municipalities (Kajaani, Sotkamo, Kuhmo, Paltamo, Ristijarvi)",
+  "basis": "union of 18 municipal polygons from Statistics Finland 2026 municipal boundaries (inland water included); Hyrynsalmi, Suomussalmi and Puolanka excluded (statutory reindeer herding area, Reindeer Husbandry Act 848/1990 s.2); regions/north-karelia-kainuu/work/footprint.geojson; area in EPSG:6933",
+  "areaKm2": 35615.6,
+  "marker": [
+   29.7,
+   63.3
+  ],
+  "polygonFile": "footprints/north-karelia-kainuu.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "scottish-highlands": {
+  "kind": "polygon",
+  "bounds": [
+   -5.9217,
+   56.8266,
+   -3.7808,
+   58.6258
+  ],
+  "description": "Highland Council wards 1 (North, West and Central Sutherland), 5 (Wester Ross, Strathpeffer and Lochalsh) and 11 (Caol and Mallaig)",
+  "basis": "union of three Highland Council 2022 electoral wards (S13002990, S13002994, S13003000) from the ONS Open Geography Portal Wards (December 2024) Boundaries UK BFC; regions/scottish-highlands/raw/footprint_union.geojson; shipped copy simplified at tolerance 0.02 with islands under 1 km2 dropped; area in EPSG:6933 on the full-resolution geometry",
+  "areaKm2": 11606.6,
+  "marker": [
+   -5.1,
+   57.8
+  ],
+  "polygonFile": "footprints/scottish-highlands.geojson",
+  "simplifyTolerance": 0.02
+ },
+ "teruel-uplands": {
+  "kind": "polygon",
+  "bounds": [
+   -1.8063,
+   39.8468,
+   -0.2359,
+   41.1697
+  ],
+  "description": "180 municipalities of six comarcas of Teruel province (Comunidad de Teruel, Jiloca, Cuencas Mineras, Sierra de Albarracin, Gudar-Javalambre, Maestrazgo)",
+  "basis": "union of GADM 4.1 level-4 municipal polygons (geodata.ucdavis.edu gadm41_ESP_4, 2022) matched one-to-one to the 180 INE municipality codes listed in the IAEST fichas; regions/teruel-uplands/raw/footprint_union.geojson; area in EPSG:6933",
+  "areaKm2": 11086.9,
+  "marker": [
+   -1.2,
+   40.5
+  ],
+  "polygonFile": "footprints/teruel-uplands.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "valle-maira": {
+  "kind": "polygon",
+  "bounds": [
+   6.8561,
+   44.3748,
+   7.4453,
+   44.5685
+  ],
+  "description": "The 13 member comuni of the Unione Montana Valle Maira, province of Cuneo",
+  "basis": "union of 13 OpenStreetMap admin_level 8 relations (ODbL) matched by ref:ISTAT code to the Unione Montana Valle Maira members; regions/valle-maira/raw/footprint_union.geojson; area in EPSG:6933",
+  "areaKm2": 568.8,
+  "marker": [
+   7.1,
+   44.45
+  ],
+  "polygonFile": "footprints/valle-maira.geojson",
+  "simplifyTolerance": 0.005
+ },
+ "virginia-piedmont": {
+  "kind": "polygon",
+  "bounds": [
+   -78.4915,
+   37.6911,
+   -77.6873,
+   38.393
+  ],
+  "description": "Three Virginia counties (Louisa, Fluvanna, Orange)",
+  "basis": "union of US Census TIGERweb Census2020 county polygons for Louisa (51109), Fluvanna (51065) and Orange (51137) counties, VA (total area incl. water); regions/virginia-piedmont/raw/footprint_union.geojson; area in EPSG:6933",
+  "areaKm2": 2964.3,
+  "marker": [
+   -78.2,
+   38
+  ],
+  "polygonFile": "footprints/virginia-piedmont.geojson",
+  "simplifyTolerance": 0.005
+ }
+}

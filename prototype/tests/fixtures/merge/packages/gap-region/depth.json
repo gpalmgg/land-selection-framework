@@ -1,0 +1,13 @@
+{
+  "gap-region": {
+    "asks": "It asks you to arrive slowly.",
+    "source": "Fixture statute",
+    "sourceUrl": "https://example.org/statute"
+  },
+  "_caseStudyLinks": [
+    {
+      "title": "Case",
+      "url": "https://example.org/case"
+    }
+  ]
+}

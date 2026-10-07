@@ -1,0 +1,119 @@
+/* tokens.css: design system 2026-10 ("Catchment"): the single source for colour, type scale, space, shape and motion, for every page.
+   scripts/check_contrast.py parses it: keep every colour token as `--name: light-dark(#rrggbb, #rrggbb);` or `--name: #rrggbb;`. */
+:root{
+  color-scheme: light dark;            /* follows the OS. There is NO on-page theme toggle (the Bokverk night edition stays reverted). */
+
+  /* ---- surfaces ------------------------------------------------------- */
+  --paper:      light-dark(#f6f2eb, #17140f);   /* page */
+  --paper-2:    light-dark(#efe9df, #1f1b15);   /* bands, footer, table heads */
+  --paper-3:    light-dark(#e6dfd0, #2a251d);   /* tracks, recessed grounds */
+  --sheet:      light-dark(#fbf9f4, #1d1913);   /* raised leaf: cards, drawer, panels, forms */
+  --ground-out: light-dark(#efe9df, #13100c);   /* a region outside the thresholds: recessed, never faded */
+
+  /* ---- ink ------------------------------------------------------------ */
+  --ink:        light-dark(#1a1a1a, #f1ebdd);
+  --ink-2:      light-dark(#3a3a3a, #d6cdbb);
+  --ink-3:      light-dark(#5f574c, #a99f8d);
+  --ink-4:      light-dark(#675e52, #9a9082);   /* smallest meta text; AA on every paper including paper-3 */
+
+  /* ---- lines ---------------------------------------------------------- */
+  --rule:        light-dark(#d8d0c2, #3a342a);  /* decorative hairlines: no information may depend on them */
+  --rule-soft:   light-dark(#e6dfd0, #2b261e);
+  --rule-strong: light-dark(#857b6a, #7a7060);  /* control borders, plot axes: >= 3:1 */
+  --hatch:       light-dark(#8f8372, #7d7263);  /* "outside" and "unknown" texture */
+
+  /* ---- meaning inks: each has exactly one job -------------------------- */
+  --accent:      light-dark(#8a3a2a, #e59673);  /* terracotta: identity, links, "asks of you", focus ring */
+  --accent-soft: #c97a5a;                        /* non-text marks only */
+  --accent-wash: light-dark(#f3ece6, #2f231c);
+  --host:        light-dark(#3a5a3a, #9dc08c);  /* WHOSE LAND. Land standing only; never a pass colour */
+  --host-wash:   light-dark(#e6e8dd, #232a1f);
+  --river:       light-dark(#2c5f7c, #7fb4cf);  /* water, bioregion labels, the threshold line */
+  --river-wash:  light-dark(#e4ebeb, #1b2a31);
+  --gap:         light-dark(#7a5413, #dcb461);  /* "not yet verified": neither within nor outside */
+  --gap-line:    light-dark(#a97c2a, #a07c2e);
+  --gap-wash:    light-dark(#f4ecd9, #2b2412);
+
+  /* ---- linework: the drawn streams, rings and divide. Decorative, aria-hidden, never carries data. ---- */
+  --art:         light-dark(#a4502e, #e59673);
+
+  /* ---- buttons -------------------------------------------------------- */
+  --btn-bg:      light-dark(#1a1a1a, #f1ebdd);
+  --btn-ink:     light-dark(#f6f2eb, #17140f);
+  --btn-hover:   light-dark(#8a3a2a, #e59673);
+
+  /* ---- region identity (set inline per region from regions.js `accent`) ---- */
+  --region:      #8a3a2a;                         /* set inline per region: style="--region:#b07a3a" */
+
+  /* ---- space, shape, elevation, motion ---------------------------------- */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:72px; --s9:112px;
+  --r-leaf:   3px 28px 3px 3px;                  /* cards, panels, drawer, plate, criterion block */
+  --r-leaf-s: 2px 18px 2px 2px;                  /* small panels, inputs group, chips */
+  --r-btn:    2px 12px 2px 2px;
+  --lift:     0 1px 0 rgb(40 25 10 / .05), 0 18px 36px -24px rgb(60 40 20 / .45);
+  --ease:     cubic-bezier(.3,.7,.3,1);
+  --rail-w:   232px;
+  --wrap:     1240px;
+  --gutter:   clamp(16px, 4vw, 40px);
+
+  /* ---- type families (faces declared in fonts.css) ---------------------- */
+  --f-display: 'Fraunces', 'Fraunces Fallback', Georgia, 'Times New Roman', serif;
+  --f-text:    'Spectral', Georgia, 'Times New Roman', serif;
+  --f-ui:      'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --f-display-xl: 'Fraunces', 'Fraunces Fallback Display', Georgia, 'Times New Roman', serif;   /* the h1 only */
+
+  /* ---- type scale (fluid; sizes are the CSS px the browser uses, so Fraunces opsz follows font-size automatically) ---- */
+  --t-hero:    clamp(52px, 8vw, 116px);     /* Fraunces 330, line .95, tracking -.028em; last word italic 300 in --accent; opsz pinned 96 */
+  --t-h2:      clamp(30px, 3.6vw, 48px);    /* Fraunces 340, line 1.08, -.018em, text-wrap: balance */
+  --t-h3:      clamp(26px, 2.6vw, 38px);    /* Fraunces 340, line 1.05, -.015em: criterion names */
+  --t-place:   30px;                         /* Fraunces 340, line 1.05: card names (drawer clamp(36px,4vw,50px); region page clamp(44px,6vw,76px)) */
+  --t-num:     clamp(34px, 4vw, 56px);      /* Fraunces 340 tabular lining: the match count */
+  --t-readout: 30px;                         /* Fraunces 340 tabular lining: slider readout */
+  --t-subtitle:clamp(21px, 2.3vw, 28px);    /* Spectral italic 300, line 1.3 */
+  --t-lede:    18px;                         /* Spectral 400, line 1.62, 56-62ch */
+  --t-body:    16px;                         /* Spectral 400, line 1.58 (cards 15.5px) */
+  --t-read:    18.5px;                       /* Spectral 400, line 1.7, 64ch (long-read) */
+  --t-ui:      14px;                         /* Inter 400-600 */
+  --t-meta:    12px;                         /* Inter 400, line 1.5: source / vintage / licence lines. Never below 11px. */
+  --t-label:   10.5px;                       /* Inter 600 caps, .14em. Never below 10px. */
+
+  /* ---- the ripple: the mask that draws .wave (the region's colour as a drawn stream) ---- */
+  --ripple: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='12' viewBox='0 0 88 12'%3E%3Cpath d='M0 6C11 0 33 12 44 6S77 0 88 6' fill='none' stroke='black' stroke-width='3'/%3E%3C/svg%3E");
+}
+
+/* --region-ui = the region accent as a NON-TEXT mark (wave, dot, marker, ring), re-resolved on every element that sets --region inline.
+   In dark it is lifted 45% toward warm ink to stay >= 3:1 (colour-mix); the @supports also needs light-dark() or the mark would be lost. */
+[style*="--region"] { --region-ui: var(--region); }
+@supports (color: color-mix(in srgb, red, blue)) and (color: light-dark(#000, #fff)) {
+  [style*="--region"] { --region-ui: light-dark(var(--region), color-mix(in srgb, var(--region) 55%, #efe6d6)); }
+}
+
+/* QA / screenshot hook ONLY (no UI toggle ships): ?theme=light|dark sets data-theme from a 1-line script in the mockup. */
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"]  { color-scheme: dark; }
+
+/* BEGIN GENERATED FALLBACK (tools/gen_fallback.py) */
+/* light-dark() fallback: custom properties do not fall back, so older browsers get plain values (light always, dark when the OS prefers it). */
+@supports not (color: light-dark(#000, #fff)) {
+  :root {
+    --paper:#f6f2eb; --paper-2:#efe9df; --paper-3:#e6dfd0; --sheet:#fbf9f4; --ground-out:#efe9df; --ink:#1a1a1a;
+    --ink-2:#3a3a3a; --ink-3:#5f574c; --ink-4:#675e52; --rule:#d8d0c2; --rule-soft:#e6dfd0; --rule-strong:#857b6a;
+    --hatch:#8f8372; --accent:#8a3a2a; --accent-wash:#f3ece6; --host:#3a5a3a; --host-wash:#e6e8dd; --river:#2c5f7c;
+    --river-wash:#e4ebeb; --gap:#7a5413; --gap-line:#a97c2a; --gap-wash:#f4ecd9; --art:#a4502e; --btn-bg:#1a1a1a;
+    --btn-ink:#f6f2eb; --btn-hover:#8a3a2a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:#17140f; --paper-2:#1f1b15; --paper-3:#2a251d; --sheet:#1d1913; --ground-out:#13100c; --ink:#f1ebdd;
+      --ink-2:#d6cdbb; --ink-3:#a99f8d; --ink-4:#9a9082; --rule:#3a342a; --rule-soft:#2b261e; --rule-strong:#7a7060;
+      --hatch:#7d7263; --accent:#e59673; --accent-wash:#2f231c; --host:#9dc08c; --host-wash:#232a1f; --river:#7fb4cf;
+      --river-wash:#1b2a31; --gap:#dcb461; --gap-line:#a07c2e; --gap-wash:#2b2412; --art:#e59673; --btn-bg:#f1ebdd;
+      --btn-ink:#17140f; --btn-hover:#e59673;
+    }
+  }
+}
+/* END GENERATED FALLBACK */
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

@@ -1,0 +1,11 @@
+{
+  "stage": "soil",
+  "region": "alpha",
+  "status": "failed",
+  "error": "input soc_0-5cm_mean.vrt could not be opened after 3 retries",
+  "footprint": {
+    "id": "alpha",
+    "kind": "bbox",
+    "areaKm2": 31600
+  }
+}

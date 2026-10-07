@@ -1,0 +1,47 @@
+/* contact.css: the "Read further" band: a pointer to the methodology and case studies. No contact surface: the colophon states the one
+   CONTACT sentence. */
+.contact {
+  padding: var(--s8, 72px) 0;
+  background: var(--paper);
+  border-top: 1px solid var(--rule);
+}
+.contact .col {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--s7, 48px);
+  align-items: start;
+}
+.contact h2 {
+  margin: 0 0 var(--s3, 12px);
+  font: 500 30px/1.15 var(--f-text, 'Spectral', Georgia, serif);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.contact .lead {
+  margin: 0;
+  max-width: 52ch;
+  font: 400 16px/1.55 var(--f-text, 'Spectral', Georgia, serif);
+  color: var(--ink-2);
+}
+.contact .lead em { font-style: italic; color: var(--ink-3); }
+
+.invitation-cta {
+  padding: var(--s5, 24px) var(--s5, 24px) var(--s5, 24px) var(--s5, 24px);
+  background: var(--paper-2);
+  border-left: 3px solid var(--accent);
+  font: 400 15px/1.65 var(--f-text, 'Spectral', Georgia, serif);
+  color: var(--ink-2);
+}
+.invitation-cta strong { font-weight: 500; color: var(--ink); }
+.invitation-cta a {
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
+.invitation-cta a:hover { color: var(--ink); }
+
+@media (max-width: 899px) {
+  .contact { padding: var(--s7, 48px) 0; }
+  .contact .col { grid-template-columns: 1fr; gap: var(--s6, 32px); }
+}

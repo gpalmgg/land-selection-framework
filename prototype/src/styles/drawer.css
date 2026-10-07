@@ -1,0 +1,144 @@
+/* drawer.css: the region drawer (final-spec 8.10, 8.12): frame, head, blurb, refusal band, asks. Land standing: reciprocity.css; way in:
+   way.css; criteria: ledger.css. Reading order: src/ui/drawer/blocks/manifest.js. Layers: drawer 1100, modal 1200. */
+body.panel-open, body.overlay-open { overflow: hidden; }
+
+/* ---- the scrim, and the panel: a right-hand leaf from 768px, a bottom sheet below ---- */
+.drawer-backdrop {
+  position: fixed; inset: 0; z-index: 1100;
+  background: rgba(26, 22, 18, 0.42);                              /* fallback for browsers without color-mix() */
+  background: color-mix(in srgb, var(--ink) 42%, transparent);
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: flex-end;
+  opacity: 0; pointer-events: none;
+  visibility: hidden;                                              /* a closed drawer is not in the tab order or the a11y tree */
+  transition: opacity 0.32s ease, visibility 0s linear 0.32s;
+}
+.drawer-backdrop.open { opacity: 1; pointer-events: auto; visibility: visible; transition: opacity 0.32s ease, visibility 0s; }
+
+#region-drawer .drawer-panel {
+  position: fixed; top: 0; right: 0; bottom: 0;
+  display: flex; flex-direction: column;
+  width: min(100%, 780px); max-width: 780px; height: auto; max-height: none;
+  overflow: hidden;
+  background: var(--sheet);
+  border-left: 1px solid var(--ink-3); border-top: 0; border-radius: 0;
+  box-shadow: -30px 0 60px -30px rgba(0, 0, 0, 0.4);
+  transform: translateX(24px);
+  transition: transform 0.32s var(--ease, cubic-bezier(.3, .7, .3, 1));
+}
+#region-drawer.open .drawer-panel { transform: none; }
+/* the 12px region-coloured wave across the top (a span added by ui/drawer/index.js; --region is set on the panel per region) */
+#region-drawer .drawer-panel > .wave { flex: none; height: 12px; }
+
+#region-drawer .drawer-close {
+  position: absolute; top: 20px; right: 16px; z-index: 3;
+  width: 44px; height: 44px; padding: 0;
+  display: grid; place-items: center;
+  background: var(--sheet); color: var(--ink);
+  border: 1px solid var(--rule-strong); border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.18s;
+}
+#region-drawer .drawer-close:hover { background: var(--paper-2); color: var(--ink); border-color: var(--rule-strong); }
+#region-drawer .drawer-close svg { width: 16px; height: 16px; }
+
+#region-drawer .drawer-body {
+  flex: 1 1 auto; min-height: 0;
+  overflow-y: auto; overscroll-behavior: contain;
+  padding: var(--s6, 32px) var(--s6, 32px) var(--s7, 48px);
+}
+#region-drawer .drawer-body > section,
+#region-drawer .drawer-body > div { margin-bottom: 0; }
+
+/* under 768px the leaf becomes a bottom sheet: full width, at most 92dvh, scrolling inside */
+@media (max-width: 767px) {
+  .drawer-backdrop { justify-content: center; align-items: flex-end; }
+  #region-drawer .drawer-panel {
+    top: auto; left: 0; right: 0; bottom: 0;
+    width: 100%; max-width: 100%;
+    height: auto; max-height: 92vh; max-height: 92dvh;
+    border-left: 0; border-top: 1px solid var(--ink-3);
+    border-radius: 14px 14px 0 0;
+    box-shadow: 0 -24px 60px -30px rgba(0, 0, 0, 0.4);
+    transform: translateY(24px);
+  }
+  #region-drawer.open .drawer-panel { transform: none; }
+  #region-drawer .drawer-panel > .wave { border-radius: 14px 14px 0 0; }
+  #region-drawer .drawer-body { padding: var(--s5, 24px) var(--s4, 16px) var(--s6, 32px); }
+}
+
+/* reduced motion: the leaf fades in (the scrim's opacity) and does not slide; nothing in the panel moves */
+@media (prefers-reduced-motion: reduce) {
+  #region-drawer .drawer-panel, #region-drawer.open .drawer-panel { transition: none !important; transform: none !important; }
+}
+
+/* ---- the head: the Salutation (whose land), the name, the country, and the Pin ---- */
+#region-drawer .drawer-head {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--s4, 16px); align-items: start;
+  margin: 0; padding: 0;
+}
+#region-drawer .drawer-head::before { content: none; }              /* the old 56px accent bar: the wave replaces it */
+#region-drawer .drawer-titles { min-width: 0; }
+.drawer-sal { display: flex; flex-direction: column; gap: 4px; margin: 0; }
+.drawer-sal-v {
+  font: italic 340 clamp(24px, 2.6vw, 30px)/1.2 var(--f-display); letter-spacing: -.01em;
+  color: var(--host); text-wrap: balance;
+}
+#region-drawer .drawer-name {
+  font: 330 clamp(36px, 4vw, 50px)/1 var(--f-display); letter-spacing: -.02em;
+  color: var(--ink); margin: var(--s3, 12px) 0 0; text-wrap: balance;
+}
+#region-drawer .drawer-country {
+  font: 600 var(--t-label, 10.5px)/1 var(--f-ui); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-3); margin-top: var(--s3, 12px);
+}
+.drawer-tools { display: flex; gap: 8px; align-items: center; margin-right: 56px; }   /* clears the close button */
+#region-drawer .drawer-star {
+  display: inline-flex; align-items: center; gap: 7px;
+  min-height: 40px; padding: 8px 14px; cursor: pointer;
+  background: transparent; color: var(--ink-2);
+  border: 1px solid var(--rule-strong); border-radius: var(--r-btn, 2px 12px 2px 2px);
+  font: 500 12.5px/1 var(--f-ui); letter-spacing: .02em; white-space: nowrap;
+  transition: background-color 0.18s, border-color 0.18s;
+}
+#region-drawer .drawer-star svg { width: 14px; height: 14px; flex: none; }
+#region-drawer .drawer-star:hover { background: var(--paper-2); border-color: var(--ink); color: var(--ink); }
+#region-drawer .drawer-star[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+@media (max-width: 767px) {
+  #region-drawer .drawer-head { grid-template-columns: minmax(0, 1fr); }
+  .drawer-tools { order: -1; justify-content: flex-start; margin: 0 56px 0 0; }
+}
+@media (pointer: coarse) { #region-drawer .drawer-star { min-height: 44px; } }
+
+/* ---- the blurb and the link to the region's own page ---- */
+.drawer-intro { margin: 0; }
+.drawer-blurb { font: 400 17px/1.6 var(--f-text); color: var(--ink-2); margin: var(--s4, 16px) 0 0; max-width: 62ch; }
+.drawer-fulllink {
+  display: inline-block; margin-top: var(--s3, 12px);
+  font: italic 400 16px var(--f-text); color: var(--accent);
+  text-decoration: underline dotted; text-underline-offset: 4px;
+}
+.drawer-fulllink:hover, .drawer-deeplink:hover { color: var(--ink); }
+.drawer-fulllink .arrow, .drawer-deeplink .arrow { margin-left: 8px; vertical-align: 0; }
+
+/* ---- the refusal band (base.css) sits one step lower in the drawer ---- */
+.drawer-body .refusal { margin-top: var(--s5, 24px); }
+
+/* ---- what living here asks of you: a 3px accent rule on the accent wash, Spectral italic ---- */
+.drawer-asks {
+  margin-top: var(--s6, 32px);
+  padding: var(--s4, 16px) var(--s4, 16px) var(--s4, 16px) var(--s5, 24px);
+  border-left: 3px solid var(--accent); background: var(--accent-wash);
+}
+.drawer-asks h4 {
+  margin: 0 0 var(--s2, 8px);
+  font: 600 var(--t-label, 10.5px)/1 var(--f-ui); letter-spacing: .16em; text-transform: uppercase; color: var(--accent);
+}
+.drawer-asks-text { font: italic 400 18px/1.55 var(--f-text); color: var(--ink); margin: 0; }
+.drawer-asks-src { font: 400 12.5px/1.5 var(--f-ui); color: var(--ink-3); margin-top: var(--s2, 8px); }
+.drawer-asks-src a { color: var(--ink-2); text-decoration: underline dotted; text-underline-offset: 3px; }
+.drawer-deeplink {
+  display: inline-block; margin-top: var(--s3, 12px);
+  font: italic 400 16px var(--f-text); color: var(--accent);
+  text-decoration: underline dotted; text-underline-offset: 4px;
+}

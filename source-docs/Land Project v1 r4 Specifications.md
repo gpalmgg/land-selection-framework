@@ -315,3 +315,17 @@ The prototype carried two data tiers — real processed layers + curated compari
 | soil_contamination | #5 | per-jurisdiction | 20/20 thin | dossier compile |
 | water_source_control | #4 | per-jurisdiction | 20/20 | dossier compile |
 | climate_buffering | #2 (Decision 8.1 gap) | per-jurisdiction | 20/20 all-high confidence | dossier compile |
+
+---
+
+## r4 Commentary — Addendum: host-community standing as a candidate criterion (@Gustaf, practitioner reality-check, 2026-10-05)
+
+Additive commentary; it does not overwrite any `[COMMITTED]` decision. The argument is in the Overview, "r4 Commentary — Addendum: Reciprocity & host-community standing".
+
+- **Proposed, not committed:** a fifth consideration, *host-community standing*, for Step 3 reconciliation under the Closure rule (SP:70-74). It sits beside the four sovereignty axes and does not alter the cross-cutting tagging scheme (SP:78-89).
+- **Qualitative, per jurisdiction only:** never scored, weighted, composited, or used as a numeric filter. State and trajectory, native units, and source, vintage and licence apply as for every criterion.
+- **Four proposed sub-fields:** whose land (the demonstration's `territory` field); standing pathway (`entry`); displacement trajectory and existing reciprocal vehicle (proposed names; neither is a field of the demonstration's `land-standing.js`).
+- **Tier statement:** if ingested, it would be a per-jurisdiction qualitative Tier-1-style layer (the third completeness mode, SP:275-283) with `data_confidence` per feature and `gaps`. The demonstration's Land standing block (`territory`, `tenure`, `entry`, `obligation`, `source`) is a demonstration display of it, not an ingested V1 layer.
+- No row is added to Askja's 12-metric table.
+
+Drafted by Claude for @Gustaf; the 2026-10 revisions were appended on his standing go-ahead and he had not read them at the time of appending.

@@ -1,0 +1,5 @@
+[
+  {"region_id": "alpha", "price_per_ha_low": 8000, "price_per_ha_high": 20000, "price_notes": "Dry parcels 8000 to 20000 EUR/ha."},
+  {"region_id": "beta-land", "price_per_ha_low": 9000, "price_per_ha_high": 25000, "price_notes": "Hill land."},
+  {"region_id": "gamma", "price_per_ha_low": 4000, "price_per_ha_high": 9000, "price_notes": "Valley land."}
+]

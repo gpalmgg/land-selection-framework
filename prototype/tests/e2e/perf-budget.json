@@ -1,0 +1,57 @@
+{
+  "_about": "Performance budget (MC-PERF, 2026-10-06). Source: upgrade-2026-10/tracks/map-craft.md section 6.1 with the plan overrides: the JS ceiling is re-based to 440,000 B brotli (the final site has 30 regions, nine more data modules and about 50 UI modules; baseline 312,804 + 40 percent) and 230,000 B at load when LAZY_MAP is adopted; the throttled gates were added by the 2026-10-05 review revision (issue F8). Read by tests/e2e/suites/perf.py. Every key under `hard` fails the gate (auto-deploy gate G8); `target` values are reported only. Bytes are brotli-transferred bytes (the harness server compresses at quality 3, calibrated to the live Vercel response sizes of the baseline).",
+  "rounds": 5,
+  "viewports": { "desktop": 1440, "mobile": 390 },
+  "throttle": {
+    "_about": "CDP Network.emulateNetworkConditions + Emulation.setCPUThrottlingRate. latency is the round-trip time in ms; throughputs are in bytes per second (1.6 Mbit/s down, 750 kbit/s up).",
+    "latency_ms": 150,
+    "down_bytes_per_s": 200000,
+    "up_bytes_per_s": 93750,
+    "cpu_rate": 4
+  },
+  "server": { "brotli_quality": 3, "calibration_note": "baseline /: maplibre 217,488 B at quality 3 vs about 218 KB measured live; the baseline JS total is re-measured on every run and written to perf.json (calibration.baseline_js_bytes vs 312,804)." },
+  "baseline_live": {
+    "home_desktop": { "lcp_ms": 2224, "bytes": 1862964, "js_bytes": 312804, "requests": 55, "cls": 0.013 },
+    "home_mobile": { "lcp_ms": 1972, "bytes": 1746360, "js_bytes": 312648, "requests": 33, "cls": 0 },
+    "deeper": { "lcp_ms": 1628, "bytes": 269757 },
+    "region": { "lcp_ms": 1568, "bytes": 219261 }
+  },
+  "hard": {
+    "home_lcp_desktop_ms": 2724,
+    "home_lcp_mobile_ms": 2472,
+    "home_bytes_at_load": 700000,
+    "home_bytes_after_quiet_desktop": 1400000,
+    "home_bytes_after_quiet_mobile": 1300000,
+    "home_js_bytes_brotli": 440000,
+    "home_js_bytes_at_load_if_lazy": 230000,
+    "home_cls": 0.05,
+    "home_requests_at_load": 110,
+    "import_chain_hops": 4,
+    "region_page_lcp_ms": 1750,
+    "region_page_bytes": 300000,
+    "deeper_lcp_ms": 1900,
+    "deeper_bytes": 330000,
+    "fonts_bytes_all": 240000,
+    "fonts_bytes_preloaded": 125000,
+    "basemap_bytes": 300000,
+    "inp_p95_ms_desktop": 100,
+    "inp_p95_ms_cpu4x": 200,
+    "throttled_lcp_factor": 1.25,
+    "throttled_lcp_slack_ms": 300,
+    "console_warnings": 0
+  },
+  "target": {
+    "home_lcp_desktop_ms": 2000,
+    "home_lcp_mobile_ms": 1800,
+    "home_bytes_at_load": 550000,
+    "home_bytes_after_quiet_desktop": 1200000,
+    "home_bytes_after_quiet_mobile": 1100000
+  },
+  "ab": {
+    "_about": "Adoption rules, judged on the THROTTLED medians of `/` (both viewports; the decision uses the better of desktop and mobile). lazy_map: adopt when the median LCP improves by at least lcp_ms or the long-task total by at least long_task_ms AND the map exists no later than map_after_load_ms after the load event. css_bundle: adopt when the median LCP improves by at least lcp_ms. Hysteresis: a shipped decision is kept while the evidence stays on its side of half the threshold (an adopted option holds at half the gain, an unadopted one holds below 1.5 times the gain), so run-to-run noise cannot flip the shipped state. A third route (2026-10-06): lazy_map is also adopted when the eager page breaks the bytes-at-load hard limit in both viewports and the lazy page does not (budget-forced; perf.json decisions.lazy_map.forced_by_bytes_at_load_budget), because that limit is the auto-deploy gate G8 and no LCP rule outranks it.",
+    "lazy_map": { "lcp_ms": 150, "long_task_ms": 100, "map_after_load_ms": 2500 },
+    "css_bundle": { "lcp_ms": 100 }
+  },
+  "inp": { "events": 30, "stress_regions": 45 },
+  "load_gate": { "max_wait_s": 600, "poll_s": 20 }
+}

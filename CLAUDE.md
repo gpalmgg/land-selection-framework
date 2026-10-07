@@ -4,9 +4,23 @@
 
 A shared working-group project building a geospatial database to help people find land for regenerative community settlements meant to flourish over 50–100 years. **Gustaf is not the originator — this is async collaboration** with Adam McKent (GIS architect), Askja (regenerative practitioner / originator), Deca (synthesizer), Monty (academic researcher), and a named "Alaska" contributor.
 
-The project structure is a **versioned document package** with a strict collaboration protocol — three markdown files (Overview, Specifications, Implementation Strategy) travel together. Each contributor reads, adds their perspective, updates the Collaboration Log, hands off. State counters: `vN` = implementation version, `rN` = collaboration round. **Currently v1 r4 (Gustaf delivered).** Gustaf holds the r4 seat as practitioner reality-check.
+The project structure is a **versioned document package** with a strict collaboration protocol — three markdown files (Overview, Specifications, Implementation Strategy) travel together. Each contributor reads, adds their perspective, updates the Collaboration Log, hands off. State counters: `vN` = implementation version, `rN` = collaboration round. **Currently v1 r4 (delivered 2026-05-29; reciprocity addendum APPENDED to the source-docs 2026-10).** Gustaf holds the practitioner seat. Do not append the r4 commentary again.
 
 The source documents at `source-docs/` are the **immutable source of truth** for the project state. Do not propose to overwrite `[COMMITTED]` decisions in them — only add commentary under those decisions, clearly attributed. Read `source-docs/Land Project v1 r4 Overview.md` first for framing.
+
+## 2026-10 upgrade — READ THIS FIRST (supersedes anything below where they conflict)
+
+- **LIVE since 2026-10-07** (prod `dpl_5FPHYze837NykDxuhkHsm3c7UCPP`; pre-upgrade site for rollback: `vercel rollback dpl_FXbyo8qJejJL6Q7bcAanNGAvrz6c --yes`). Merged to `main` locally; not pushed.
+- **The r4 reciprocity addendum is APPENDED to the three source-docs** (additive, attributed). Do NOT append `r4-reciprocity-commentary-DRAFT.md` again. `docs/r5-handoff-DRAFT.md` is an UNSENT draft; nobody has been contacted. `FRAMEWORK.md` = the portable layer (a proposal, not part of the source-docs).
+- **30 regions** (15 Europe, 15 North America): ten added (NW Scottish Highlands, North Karelia + Kainuu, Plateau de Millevaches, Teruel uplands, Valle Maira, Finger Lakes, Virginia Piedmont, Bas-Saint-Laurent, NE Missouri / SE Iowa, Downeast Maine) under a slate-admission rule the group has not ratified. Never type counts: read them from `prototype/data/site-facts.js`.
+- Land standing, legal pathway (`data/legal-pathway.js`), bioregions (`data/bioregions.js`) and reciprocity (`data/reciprocity.js`) cover all 30 — qualitative, never scored or filtered. Wording: "checked against opened public sources"; no nation or community has reviewed any entry.
+- Original slate re-checked against its sources; cells that could not be reproduced show a "not yet verified" gap, never an unreproduced number.
+- Design system "Catchment": `upgrade-2026-10/design/final-spec.md`. New pages: `arrive.html`, `host.html`, `terms-of-arrival.html`. `src/` is modular (`config/ map/ ui/ pages/ styles/`, CSS bundled by `scripts/bundle_css.mjs`); shared logic in `lib/` (`result.js`, `filters.js`, `og-card.js`).
+- **No hand-bumped `?v=usabN` any more:** `node scripts/stamp_build.mjs --bump --write` stamps buildId, counts and dates into the pages.
+- **Commands (from `prototype/`):** `node scripts/gen_region_pages.mjs` (region pages + sitemap + llms.txt; `--check`), `node scripts/gen_v1_lookup.mjs --write`, `node tests/run.mjs --strict` (data gate), `node --test tests/core`, `/usr/bin/python3 tests/e2e/run_all.py --port N --site DIR --suite ...` (browser tests; never submit the signup forms), `node scripts/og_harness.mjs` (share cards in plain Node). Full deploy gate: `bash upgrade-2026-10/verify/run_all_gates.sh --final`.
+- **Share-card fonts are bundled into the edge function** (`new URL(..., import.meta.url)` in `api/og.js`); a same-origin font fetch failed on Vercel. Staged (unaliased) deploys sit behind Vercel SSO, so self-fetches fail there too.
+- Contacts: no public contact route yet (the "Contact now routes via the newsletter signup" line below is superseded). `data/v1-exports/` and `notebooks/` are no longer served.
+- Working state + full log: `upgrade-2026-10/` (local, excluded from git via `.git/info/exclude`; `STATUS.md`, `verify/human-review-digest.md` = what to read first). Open follow-ups: region-page LCP (~1.7 s), legend overlap at 1440, compare-overlay scroll hint at 768.
 
 ## 2026-07 update — bioregioning reframe, Land standing, 17-layer map (READ THIS)
 
@@ -18,7 +32,7 @@ Driven by a media request (**The Atlantic** science section, "land selection for
 - **Contacts removed.** Personal email + Substack + Instagram stripped site-wide; "A project of The Collective" removed from the hero eyebrow. Contact now routes via the newsletter signup + invitation PDF.
 - **New working docs (project root, NOT deployed):** `interview-brief-atlantic.md` (interview prep) and `r4-reciprocity-commentary-DRAFT.md` (the practitioner r4 contribution as protocol-legal additive commentary — **drafted, NOT yet appended to source-docs**, pending Gustaf's decision).
 - **Authorship guardrail:** publicly, credit **Askja as originator** + the working group. "It's mostly my project now / I hold the practitioner seat" is accurate; "I founded/originated it" is not.
-- **Cache-bust** currently `?v=usab17` (bump on any `main.js`/data edit). See the [[bioregioning-reframe-and-atlantic-interview]] memory.
+- **Cache-bust:** superseded — see the 2026-10 block (`stamp_build.mjs`). See the [[bioregioning-reframe-and-atlantic-interview]] memory.
 
 ## What's been built in this folder
 
@@ -118,5 +132,5 @@ Per the r3 Handoff Request, Gustaf is expected to contribute a **practitioner re
 ## Don't
 
 - Don't propose Gemini for this codebase (Vercel deployment, vanilla JS, no Anthropic SDK).
-- Don't auto-add to git or push to a remote. The project folder isn't a git repo; that's deliberate for now.
+- The folder is a git repo with a public GitHub remote: work on branches, commit when asked, and never push without Gustaf's explicit go.
 - Don't propose `omni_chain_queue` integration or any Mythic Ops wiring — this project is async with external collaborators, not an Omni pipeline.

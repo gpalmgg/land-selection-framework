@@ -233,6 +233,16 @@ This is V1 of the implementation strategy and it will be wrong in places we don'
 - **Step 10 deliverables shipped:** Jupyter loader (`scripts/v1_loader.py` — 11 loadable criteria, 12th tile-served), GeoPackage exports, demo notebook, verification notes. PLUS reach-layer additions (not in the original sequence): per-region indexable HTML pages (`scripts/gen_region_pages.mjs` — 20 pages + sitemap), dynamic OG share cards (`api/og.js`, `api/share.js` as edge functions), and dashboard qualitative-filter dropdowns wired to a shared `data/v1-lookup.js` (generated alongside the region pages).
 - **Step 11 V1 sign-off:** Gustaf as r4 cannot solo-declare V1 shipped. A V1 ship-candidate proposal is at `Docs/v1-ship-candidate.md` under propose-and-proceed (5-working-day default response window). The group ratifies at r5.
 
+**r4 addendum deviations (@Gustaf, 2026-06 to 2026-10, appended 2026-10-05):**
+
+- **Reframe and Land standing shipped ahead of group discussion.** The public demonstration was reframed as a bioregioning tool with reciprocity as its spine (2026-07), and a qualitative per-region `land-standing.js` dimension was added; both are display-only (no filter, weight, or score) and sit outside the planned sequence.
+- **Map layers.** The demonstration's map gained further display layers from public tile and WMS services; they are display, not new ingested Tier-1 criteria, and the Tier-2 honesty line applies.
+- **Slate.** The demonstration grew from 20 to 30 regions (15 Europe, 15 North America), each admitted only with complete sourced data or an honest gap and a Land standing entry checked against opened public sources; the working group has not reviewed the growth.
+- **Contacts removed.** Personal contact details were removed from the public site; no public contact route exists yet.
+- **Qualitative context layers.** A per-region legal pathway block (30 of 30) and a bioregion membership layer (30 of 30) were added as qualitative context only; neither is an ingested Tier-1 layer, and neither is scored or filtered.
+
+Drafted by Claude for @Gustaf; the 2026-10 revisions were appended on his standing go-ahead and he had not read them at the time of appending.
+
 ---
 
 ## r4 Commentary (@Gustaf, practitioner reality-check, 2026-05-29)
@@ -254,3 +264,13 @@ The principle held in practice. After Step 7 / 9 work, the answer for V1 was: **
 ### On group coordination — 5-day default proposal
 
 Adopt the 5-working-day response-window default the protocol suggests, **as adopted**. Propose-and-proceed-reversible is doing real work in r4: the V1 ship-candidate is staged as a proposal under that rule rather than as a fait accompli. Whoever picks up r5 inherits the same option.
+
+---
+
+## r4 Commentary — Addendum: where host-community standing enters the sequence (@Gustaf, practitioner reality-check, 2026-10-05)
+
+- **Step 3 (reconciliation and closure).** `[opinion]` Whether host-community standing becomes a criterion is a Step 3 decision for the group; the Overview addendum proposes it, and does not land it.
+- **Step 4 (source identification).** `[opinion]` If it enters, sourcing should respect CARE and OCAP: link to nations' own bodies where reachable, and do not scrape territory maps and treat them as authoritative.
+- **Step 11 (V1 sign-off).** `[opinion]` The group should not declare V1 shipped without its explicit answer to item 6 among the Handoff Request's decisions waiting on group sync.
+
+Drafted by Claude for @Gustaf; the 2026-10 revisions were appended on his standing go-ahead and he had not read them at the time of appending.

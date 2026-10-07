@@ -1,0 +1,32 @@
+{
+  "stage": "koppen",
+  "id": "alpha",
+  "status": "ok",
+  "source": {
+    "id": "beck-koppen-2023",
+    "url": "https://example.org/koppen",
+    "licence": "CC BY 4.0"
+  },
+  "footprint": {
+    "id": "alpha"
+  },
+  "periods": {
+    "1961_1990": {
+      "shares": {
+        "Csa": 0.9,
+        "Csb": 0.1
+      },
+      "dominant": {
+        "code": "Csa"
+      }
+    },
+    "2041_2070_ssp245": {
+      "shares": {
+        "Csa": 1
+      },
+      "dominant": {
+        "code": "Csa"
+      }
+    }
+  }
+}

@@ -1,12 +1,12 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "source": "Per-region dossiers (water.md / legal.md); each entry carries its primary water-rights citation where available",
-    "source_url": "data/research-dossier/<id>/{water,legal}.md",
-    "vintage": "2026-05 compilation",
+    "source": "Water-rights statutes and regulator pages opened (named per entry); dossier readings are marked as such",
+    "source_url": "see per-feature `source_url` for the primary source",
+    "vintage": "2026-05 compilation; re-verified and extended to 30 regions 2026-10",
     "native_unit": "per-jurisdiction (point at region centroid)",
     "license": "Research dossiers internal; underlying primary sources (water-rights statutes, regulator docs) carry their own licenses",
-    "note": "Carries red-line underlying data for single-entity water-source control (Overview decision 9). Community-commons regimes (acequia in N New Mexico, comunidade de montes in Galicia, ALR in BC) generally score low risk; prior-appropriation regimes can shut off late-priority holders in drought (Cascadia, Kootenays) which is a different risk profile than single-entity control."
+    "note": "Carries red-line underlying data for single-entity water-source control (Overview decision 9). Community-commons regimes (acequia in N New Mexico, comunidade de montes in Galicia, ALR in BC) generally show low single-entity risk; prior-appropriation regimes can shut off late-priority holders in drought (Cascadia, Kootenays) which is a different risk profile than single-entity control."
   },
   "features": [
     {
@@ -26,7 +26,7 @@
         "drought_priority_mechanism": "public-utility/state-managed allocation (Alqueva contracts; ARH authorisations)",
         "data_confidence": "medium",
         "source": "APA Plano de Gestao de Regiao Hidrografica Alentejo (2022-2027); Alentejo legal dossier",
-        "source_url": "https://apambiente.pt/agua/pgrh-alentejo",
+        "source_url": "https://apambiente.pt/agua/3o-ciclo-de-planeamento-2022-2027",
         "gaps": "Dossier does not name a single private/corporate operator controlling supply; precise allocation rules of Alqueva concession not detailed.",
         "region_id": "alentejo"
       }
@@ -136,7 +136,7 @@
         "drought_priority_mechanism": "state prefectoral arretes secheresse plus historic bealiere allocations",
         "data_confidence": "medium",
         "source": "BRGM Groundwater monitoring; Parc national des Cevennes Charte",
-        "source_url": "https://www.brgm.fr/en/state-groundwater-monitoring-brgm",
+        "source_url": "https://www.brgm.fr/en/groundwater-monitoring",
         "gaps": "Dossier does not quantify the share of contested abstraction held by single agricultural or tourist operators.",
         "region_id": "cevennes"
       }
@@ -158,7 +158,7 @@
         "drought_priority_mechanism": "provincial water-rights administration plus Waale rotational allocations",
         "data_confidence": "high",
         "source": "Provincia Autonoma di Bolzano Ufficio Idrografico; EURAC Alpine Environment Institute",
-        "source_url": "https://wetter.provinz.bz.it/",
+        "source_url": "https://wetter.provinz.bz.it/de/home",
         "gaps": "Dossier does not enumerate concentration risk in provincial hydropower concessions.",
         "region_id": "south-tirol"
       }
@@ -224,9 +224,119 @@
         "drought_priority_mechanism": "state-administered abstraction permits; Saaremaa limestone karst yields locally variable",
         "data_confidence": "medium",
         "source": "Estonian Environment Agency Keskkonnaagentuur water resources data",
-        "source_url": "https://kaur.ee/en",
+        "source_url": "https://keskkonnaagentuur.ee/en",
         "gaps": "Dossier does not detail formal abstraction-licensing priority or any private concession holders.",
         "region_id": "estonia-rural"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.1,
+          57.8
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "Scottish Water public mains in settlements; private water supplies for most of the remote rural footprint (about 3 percent of Scotland's population nationally), regulated by the local authority under the Private Water Supplies (Scotland) Regulations 2006; abstraction authorised by SEPA, with the Water Environment (Controlled Activities) (Scotland) Regulations 2011 revoked on 1 November 2025 by SSI 2025/165 and transitional provisions moving existing water licences and registrations into the Environmental Authorisations (Scotland) Regulations 2018 as amended",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "Aqueduct 2050 business-as-usual ratio 0.005 (Low); no single owner of the resource, but a private supply is a source plus a landowner's consent and a maintenance burden. Community hydro (Knoydart Renewables) supplies electricity, not water.",
+        "drought_priority_mechanism": "no rationing mechanism evidenced for private supplies; Adaptation Scotland (UKCP18) projects summer rainfall down about 8 percent by 2050 on a high pathway and extreme drought events moving from about one in 20 years to one in three",
+        "data_confidence": "medium",
+        "source": "WRI Aqueduct 4.0; Scottish Government private water supplies; DWQR; legislation.gov.uk (CAR 2011 revocation, SSI 2025/165)",
+        "source_url": "https://www.gov.scot/policies/water/private-water-supplies/",
+        "gaps": "Scottish Water pages 403; current abstraction thresholds under the 2018 regulations, Highland share of private supplies, and community hydro water-rights position not opened.",
+        "region_id": "scottish-highlands"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.7,
+          63.3
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "Water Act 587/2011: water in wells and tanks belongs to the owner of the well; other open water and groundwater are controlled by the owner of the water or land area within the Act's limits (ch.2 s.1); groundwater abstraction of more than 250 m3 per day, and water-economy projects generally, need a permit (ch.3-4). Shared water areas are managed by joint-area associations (osakaskunta, Act 758/1989).",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "Water stress is very low in every basin (Aqueduct bau50_ws_x_r 0.0001 to 0.033). Lake and shore water is held by many private owners and joint-area associations. One large industrial operation in the footprint is the Sotkamo mine (Oulujoki basin); its environmental record was not checked here and is a due-diligence item, not a finding about village water.",
+        "drought_priority_mechanism": "No prior-appropriation system found: abstraction is governed by the owner's right of use plus a permit above the 250 m3/day threshold; allocation rules for drought were not found.",
+        "data_confidence": "medium",
+        "source": "Water Act 587/2011 (Finlex); Joint Areas Act 758/1989 (Finlex); WRI Aqueduct 4.0",
+        "source_url": "https://www.finlex.fi/fi/lainsaadanto/2011/587",
+        "gaps": "Municipal water-supply utilities, water co-operatives and well-water quality were not researched; the 250 m3/day threshold was read from the project list in the Act, not from the specific section on groundwater.",
+        "region_id": "north-karelia-kainuu"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.0,
+          45.65
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "Owner of land where a spring rises may use it, subject to downstream rights (Code civil 641); withdrawals up to 1,000 m3 a year count as domestic use (Code de l'environnement R214-5); communes are competent for drinking-water distribution (CGCT L2224-7-1); the prefect can limit or suspend uses in drought (Code de l'environnement L211-3). The Parc straddles two SDAGE basins, Loire-Bretagne and Adour-Garonne.",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "unknown",
+        "control_risk_notes": "The Parc describes a headwater territory: 80% of Limousin rivers start there, 2.15 km of stream per km2, wetlands about 20% of the area, 800 to 1,600 mm of rain a year, and a duty to the downstream. No abstraction by a single large operator was identified, but reservoir operators and abstraction zones were not opened.",
+        "drought_priority_mechanism": "Prefectoral drought orders under Code de l'environnement L211-3; basin rules of the SDAGE Loire-Bretagne and Adour-Garonne.",
+        "data_confidence": "medium",
+        "source": "Parc naturel régional de Millevaches, Un territoire de sources et de zones humides; Code civil 641; Code de l'environnement R214-5, L211-3; CGCT L2224-7-1",
+        "source_url": "https://www.pnr-millevaches.fr/territoire/milieux-aquatiques/",
+        "gaps": "Local supply structure (commune, syndicat or private spring by commune) not enumerated; SDAGE texts and abstraction zones not opened.",
+        "region_id": "millevaches"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.2,
+          40.5
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "Spanish state public hydraulic domain (Ley de Aguas, RDL 1/2001): concessions and aquifer controls by the confederations of the Ebro, the Jucar and the Tajo; users of one intake must form a comunidad de usuarios (art. 81)",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "moderate",
+        "control_risk_notes": "Control sits with three basin authorities, not a private owner; the risk is scarcity, not concentration: Aqueduct puts 99% of the footprint in the extremely high class for 2050. Under the Ley de Aguas the basin plan sets the order of use and a concession can be expropriated for a preferred use (art. 60), groundwater bodies at risk of not reaching good status can be declared, with a recovery programme and a users' community (art. 56), and the Government can impose measures in extraordinary drought (art. 58). The 2022-2027 plans for the Jucar, Tajo and Ebro were approved by RD 35/2023.",
+        "drought_priority_mechanism": "Basin-plan order of preference (supply to population first, absent a plan: art. 60.2) administered by each confederation; extraordinary drought decrees (art. 58)",
+        "data_confidence": "medium",
+        "source": "Ley de Aguas (RDL 1/2001) arts. 56, 58, 60, 81; RD 35/2023",
+        "source_url": "https://www.boe.es/buscar/act.php?id=BOE-A-2001-14276",
+        "gaps": "Confederation (CHE, CHJ, CHT) pages and municipal supply arrangements not opened; irrigation communities in the footprint not listed; the Tagus source near Frias de Albarracin is from standing-notes sources (Pueblos Vivos, es.wikipedia), not a hydrographic authority.",
+        "region_id": "teruel-uplands"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.1,
+          44.45
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "All surface and underground waters belong to the State demanio, with use by concession (D.Lgs. 152/2006 art. 144); water bodies on which residents of a comune or frazione exercise usi civici are collective goods (Law 168/2017 art. 3)",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "unknown",
+        "control_risk_notes": "No concession, utility or consortium data opened. The Unione's inner-areas strategy lists an irrigation network among its themes. Pre-research names frazione aqueduct consortia and micro-hydro, not verified.",
+        "drought_priority_mechanism": "Uses other than human consumption are allowed only within what the resource sustains and without harming quality (D.Lgs. 152/2006 art. 144 c.4)",
+        "data_confidence": "low",
+        "source": "D.Lgs. 152/2006 art. 144; Law 168/2017 art. 3 (Normattiva); Unione Montana Valle Maira SNAI page",
+        "source_url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2006-04-03;152~art144",
+        "gaps": "Who holds the aqueduct and irrigation rights in each commune, concession registers and micro-hydro concessions not opened.",
+        "region_id": "valle-maira"
       }
     },
     {
@@ -246,7 +356,7 @@
         "drought_priority_mechanism": "first-in-time first-in-right; domestic-use exemption up to 15,000 gallons/day under ORS 537.545",
         "data_confidence": "high",
         "source": "Oregon Water Resources Department Groundwater Resources (2022); Oregon Revised Statutes 537.545",
-        "source_url": "https://www.oregon.gov/owrd/programs/groundwater/Pages/default.aspx",
+        "source_url": "https://www.oregon.gov/owrd/programs/GWWL/GW/Pages/default.aspx",
         "gaps": "Dossier does not name specific senior irrigation district holders in target sub-basins.",
         "region_id": "cascadia"
       }
@@ -290,7 +400,7 @@
         "drought_priority_mechanism": "riparian reasonable-use rule; no prior appropriation",
         "data_confidence": "high",
         "source": "NC Division of Water Resources Water Wells and Groundwater Use; WRI Aqueduct 4.0",
-        "source_url": "https://deq.nc.gov/about/divisions/water-resources/water-resources-permits/wastewater-branch/water-supply-well-permits",
+        "source_url": "https://www.deq.nc.gov/about/divisions/water-resources/groundwater-resources/well-construction-permit-information",
         "gaps": "Dossier does not enumerate municipal-utility concession structures around Asheville.",
         "region_id": "southern-appalachians"
       }
@@ -333,7 +443,7 @@
         "control_risk_notes": "Karst aquifers respond to land use changes kilometres away, and conventional farming or development upstream can reach a spring head within years; CAFO contamination (nitrates, E. coli) is documented in northwest Arkansas karst systems near Benton/Washington counties.",
         "drought_priority_mechanism": "riparian reasonable-use rule; rainwater harvesting unlimited; no statewide volume cap",
         "data_confidence": "medium",
-        "source": "USGS Professional Paper 1854 (2024); USGS Springs of the Ozark Physiographic Province",
+        "source": "USGS Professional Paper 1854 (2019); USGS, Groundwater availability of the Ozark Plateaus aquifer system",
         "source_url": "https://www.usgs.gov/publications/groundwater-availability-ozark-plateaus-aquifer-system",
         "gaps": "Dossier does not name specific corporate CAFO operators or quantify their share of abstraction.",
         "region_id": "ozarks"
@@ -349,14 +459,14 @@
         ]
       },
       "properties": {
-        "water_rights_regime": "Prior appropriation doctrine; acequia community commons under NM Stat. 73-2-28; NM Office of the State Engineer adjudication",
+        "water_rights_regime": "acequia community commons under NMSA 73-2-1 et seq. (especially 73-2-21)",
         "water_rights_holder_type": "community_commons",
         "single_entity_control_risk": "low",
-        "control_risk_notes": "Acequia associations have statutory authority to veto water right transfers into or out of their ditch systems; acequia culture is the deepest living expression of commons-based water management in North America, governed by elected mayordomo and commissioners.",
-        "drought_priority_mechanism": "first-in-time first-in-right plus rotational acequia limpia; Upper Rio Grande fully appropriated with junior rights curtailed first",
-        "data_confidence": "high",
-        "source": "New Mexico Statutes 73-2-28 (2025); NM Office of the State Engineer Water Rights Division; New Mexico Water Advocates (2025)",
-        "source_url": "https://law.justia.com/codes/new-mexico/chapter-73/article-2/section-73-2-28/",
+        "control_risk_notes": "Acequia associations may require commissioner approval of water-right changes into or out of their ditch when their bylaws so provide, and may deny a change only if it would be detrimental to the ditch or its members, with a district-court appeal (NMSA 73-2-21(E)).",
+        "drought_priority_mechanism": "first-in-time first-in-right priority plus rotational acequia ditch cleaning (limpia); the dossier's statement that the Upper Rio Grande is fully appropriated and that junior rights are curtailed first was not verified",
+        "data_confidence": "medium",
+        "source": "NMSA 73-2-21 (Justia, as read in the 2026-10 re-verification) and 73-2-1 et seq.",
+        "source_url": "https://law.justia.com/codes/new-mexico/chapter-73/article-2/section-73-2-21/",
         "gaps": "Dossier does not assess specific risk of senior-rights consolidation by external buyers within named acequias.",
         "region_id": "northern-new-mexico"
       }
@@ -447,6 +557,116 @@
         "source_url": "https://www.conagua.gob.mx/CONAGUA07/Publicaciones/Publicaciones/SGP-6-10-EAM2010Ingles.pdf",
         "gaps": "Dossier does not document specific cases of corporate water capture in highland comunas; Atoyac contamination affects valley supply but not directly described as single-entity control.",
         "region_id": "oaxaca"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.75,
+          42.55
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "ECL section 15-1501 water-supply withdrawal permits (systems at or above a threshold volume; existing agricultural withdrawals registered before 15 February 2012 exempt); north of the divide the Great Lakes-St. Lawrence Basin Compact framework, south the Susquehanna River Basin Commission",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "Municipal supply is held by public commissions (e.g. Southern Cayuga Lake Intermunicipal Water Commission, Bolton Point, a joint entity of five member municipalities, drawing from Cayuga Lake); private wells and lake or spring sources elsewhere. Aqueduct stress is very low (0.015).",
+        "drought_priority_mechanism": "not verified; DEC drought procedures were not opened",
+        "data_confidence": "medium",
+        "source": "NY ECL section 15-1501; Southern Cayuga Lake Intermunicipal Water Commission; Great Lakes-St. Lawrence River Basin Water Resources Council",
+        "source_url": "https://www.nysenate.gov/legislation/laws/ENV/15-1501",
+        "gaps": "Threshold volume (ECL 15-1502) and SRBC thresholds not retrieved; riparian common-law position for small private withdrawals not verified.",
+        "region_id": "finger-lakes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.2,
+          38.0
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "Virginia State Water Control Law: Virginia Water Protection Permits condition withdrawals, with domestic and other existing beneficial uses the highest priority (Va. Code 62.1-44.15:22, 62.1-242); household wells and streams otherwise governed by common law (not sourced here). Lake Anna is owned and operated by Dominion Energy for cooling of the North Anna plant.",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "moderate",
+        "control_risk_notes": "Typical rural parcels rely on wells and streams (low concentration), but the footprint's largest water body, Lake Anna, is held by one private utility (Dominion) for plant cooling, and the James River Water Authority (Fluvanna and Louisa) proposed a pump station at Rassawek from 2018 until it agreed to an alternate route in March 2022. Aqueduct 2050 BAU stress is Medium-high.",
+        "drought_priority_mechanism": "Domestic and existing beneficial uses first; Emergency Virginia Water Protection Permit available for a drought-driven public-supply shortfall (62.1-44.15:22 C).",
+        "data_confidence": "medium",
+        "source": "Code of Virginia 62.1-44.15:22; WRI Aqueduct 4.0; Wikipedia, Lake Anna",
+        "source_url": "https://law.lis.virginia.gov/vacode/title62.1/chapter3.1/section62.1-44.15:22/",
+        "gaps": "Virginia DEQ withdrawal pages returned 403; riparian-rights doctrine and private-well rules not sourced; no county water authority data.",
+        "region_id": "virginia-piedmont"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.9,
+          47.9
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "Québec: surface water and groundwater are 'part of the common heritage of the Québec nation' (SQ 2009, c. 21, s. 1); withdrawals of 75,000 litres per day or more need ministerial authorization under the Environment Quality Act (s. 31.75), authorizations are transferable (s. 31.84)",
+        "water_rights_holder_type": "state",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "The 2009 Act makes water a collective resource that cannot be appropriated beyond Civil Code art. 913 conditions, and projected 2050 stress is Low to low-medium (area-weighted 0.079). Local control by a single holder was not analysed: no municipal, bottled-water or irrigation withdrawal data for the eight MRCs were opened.",
+        "drought_priority_mechanism": "Environment Quality Act s. 31.76 (inserted 2009): every authorization decision 'must give priority to satisfying public health, sanitation, civil protection and drinking water supply needs' and must reconcile aquatic-ecosystem needs with agriculture, industry, energy and recreation; s. 31.77 adds the effect on other persons' and municipalities' water-use rights. No regional drought-priority rule was opened",
+        "data_confidence": "medium",
+        "source": "Québec, An Act to affirm the collective nature of water resources (SQ 2009, c. 21); WRI Aqueduct 4.0",
+        "source_url": "https://www.publicationsduquebec.gouv.qc.ca/fileadmin/Fichiers_client/lois_et_reglements/LoisAnnuelles/en/2009/2009C21A.PDF",
+        "gaps": "Regulation (RPEP, Q-2, r. 35.2) not opened; well yields and municipal supply sources not researched.",
+        "region_id": "bas-saint-laurent"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.0,
+          40.5
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "Iowa: a permit is required to divert, store or withdraw water except for a nonregulated use under 25,000 gallons per day (Code 455B.268; definition in 455B.261). Missouri: major water users (100,000 gallons per day or more) must register with the Department of Natural Resources (RSMo 256.400, 256.410); other private-well and riparian rules not opened.",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "unknown",
+        "control_risk_notes": "Rural water associations (pre-research names Rathbun Regional Water Association) could not be verified; its website did not load. Ownership types and any dominant supplier per county were not established.",
+        "drought_priority_mechanism": "Iowa Code 455B.266: on a local water shortage petition, drought forecast, governor's disaster proclamation or local crisis, the department may restrict uses in this order: water conveyed across state boundaries; recreational or aesthetic uses; irrigation of hay, corn, soybeans, oats, grain sorghum or wheat; irrigation of other crops; manufacturing. Missouri equivalent not opened.",
+        "data_confidence": "low",
+        "source": "Iowa Code 2026 ch. 455B (Div. III, Part 4); RSMo 256.400 and 256.410",
+        "source_url": "https://www.legis.iowa.gov/docs/code/455B.pdf",
+        "gaps": "Missouri drought priority and groundwater rules; rural water district structure; county-level water supply control all unverified.",
+        "region_id": "ne-missouri-se-iowa"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.6,
+          44.9
+        ]
+      },
+      "properties": {
+        "water_rights_regime": "Not researched as a doctrine. Opened: private wells are unregulated and owners are responsible for testing and treatment (Maine CDC); the State declares itself trustee of its waters for Shoreland Zoning (38 MRS 435); great ponds are inland waters over 10 acres in a natural state (38 MRS 480-B); the St. Croix is a border river with a binational commission (St. Croix International Waterway Commission, eight commissioners appointed by the Governor of Maine and the Premier of New Brunswick).",
+        "water_rights_holder_type": "mixed",
+        "single_entity_control_risk": "low",
+        "control_risk_notes": "Supply is dispersed: more than half of Maine relied on private wells in 2023 (statewide, STS 2026). No county utility concentration was found. The practical risk is quantity and quality, not control: groundwater was at record monthly lows in many USGS wells in fall 2025 and Maine remained in hydrologic drought through winter 2025-26, with some residents deepening wells or seeking emergency supplies.",
+        "drought_priority_mechanism": "none identified for private wells; Maine Drought Task Force and well-owner guidance not opened",
+        "data_confidence": "medium",
+        "source": "Maine CDC Private Well Water; 38 MRS 435 and 480-B; Maine Climate Council STS 2026 Interim Climate Science Report; St. Croix International Waterway Commission",
+        "source_url": "https://www.maine.gov/dhhs/mecdc/healthy-living/health-and-safety/drinking-water-safety/private-well-water",
+        "gaps": "Groundwater and surface-water withdrawal doctrine (reasonable use or otherwise) not opened; county private-well share and any Great Pond access constraints not opened; Wabanaki water and fisheries rights (MITSC regulates fishing on certain waters within and bordering Indian territory) not read in detail.",
+        "region_id": "downeast-maine"
       }
     }
   ]

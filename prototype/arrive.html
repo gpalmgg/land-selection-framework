@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Land Selection Framework — How to arrive</title>
+  <meta name="description" content="Four stages for arriving in a place in good faith, with questions to carry at each stage and the signs that the answer is: not there." />
+  <link rel="canonical" href="https://land-selection-framework.regencommunity.tools/arrive.html" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Land Selection Framework — How to arrive",
+    "headline": "How to arrive",
+    "description": "Four stages for arriving in a place in good faith, with questions to carry at each stage and the signs that the answer is: not there.",
+    "url": "https://land-selection-framework.regencommunity.tools/arrive.html",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Land Selection Framework",
+      "url": "https://land-selection-framework.regencommunity.tools/"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "Land Selection Framework working group"
+    }
+  }
+  </script>
+
+  <!-- Open Graph / Twitter Card (the default card of api/og.js) -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://land-selection-framework.regencommunity.tools/arrive.html" />
+  <meta property="og:title" content="Land Selection Framework — How to arrive" />
+  <meta property="og:description" content="Four stages for arriving in a place in good faith, and the signs that the answer is: not there." />
+  <meta property="og:image" content="https://land-selection-framework.regencommunity.tools/api/og" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Land Selection Framework, How to arrive" />
+  <meta name="twitter:description" content="Four stages for arriving in a place in good faith, and the signs that the answer is: not there." />
+  <meta name="twitter:image" content="https://land-selection-framework.regencommunity.tools/api/og" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="theme-color" content="#f6f2eb" />
+  <meta name="theme-color" content="#17140f" media="(prefers-color-scheme: dark)" />
+
+  <!-- Fonts self-hosted (Fraunces, Spectral, Inter; SIL OFL 1.1). The ?v=fv1 font-set version must equal the @font-face URLs of src/styles/fonts.css. -->
+  <link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/fraunces-var-latin.woff2?v=fv1" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/spectral-400-latin.woff2?v=fv1" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/inter-var-latin.woff2?v=fv1" crossorigin />
+
+  <!-- The site's same-origin page-view tag. Not a third-party script; nothing else on this page is external. -->
+  <script defer src="/_vercel/insights/script.js"></script>
+
+  <!-- Two class names, set before first paint and never stored: "js" shows the region picker; "arrive-pending" (only when the address carries
+       ?region=) holds the height of the region block until src/pages/arrive.js has rendered it, so choosing a region by link shifts nothing.
+       A timer clears the hold if the module never runs. -->
+  <script>
+    (function () {
+      var h = document.documentElement;
+      h.classList.add('js');
+      if (/[?&]region=/.test(location.search)) {
+        h.classList.add('arrive-pending');
+        setTimeout(function () { h.classList.remove('arrive-pending'); }, 8000);
+      }
+    })();
+  </script>
+
+  <!-- One set of tokens for the whole site, then the shared pieces, then the long-read shell, then the blocks the region view reuses. -->
+  <link rel="stylesheet" href="./src/styles/tokens.css?v=b20261006100127" data-bust />
+  <link rel="stylesheet" href="./src/styles/fonts.css?v=b20261006100127" data-bust />
+  <link rel="stylesheet" href="./src/styles/theme-gate.css?v=b20261006100127" data-bust />
+  <link rel="stylesheet" href="./src/styles/base.css?v=b20261006100127" data-bust />
+  <link rel="stylesheet" href="./src/styles/rail.css?v=b20261006100127" data-bust />
+  <link rel="stylesheet" href="./src/styles/a11y.css?v=b20261006100127" data-bust />
+  <link rel="stylesheet" href="./src/styles/longread.css?v=b20261006100127" data-bust />
+  <link rel="stylesheet" href="./src/styles/reciprocity.css?v=b20261006100127" data-bust />
+  <link rel="stylesheet" href="./src/styles/way.css?v=b20261006100127" data-bust />
+  <link rel="stylesheet" href="./src/styles/ledger.css?v=b20261006100127" data-bust />
+  <link rel="stylesheet" href="./src/styles/colophon.css?v=b20261006100127" data-bust />
+
+  <!--s:modulepreload-->
+  <link rel="modulepreload" href="/src/data.js" />
+  <link rel="modulepreload" href="/lib/bio.js" />
+  <link rel="modulepreload" href="/lib/salutation.js" />
+  <link rel="modulepreload" href="/lib/evidence-render.js" />
+  <link rel="modulepreload" href="/data/regions.js" />
+  <link rel="modulepreload" href="/data/load-slim.js" />
+  <link rel="modulepreload" href="/data/v1-lookup.js" />
+  <link rel="modulepreload" href="/data/sources.js" />
+  <link rel="modulepreload" href="/data/layer-sources.js" />
+  <link rel="modulepreload" href="/data/bioregions.js" />
+  <link rel="modulepreload" href="/data/presets.js" />
+  <link rel="modulepreload" href="/data/reciprocity.js" />
+  <link rel="modulepreload" href="/data/land-standing.js" />
+  <!--/s-->
+
+  <style>
+    /* Page-specific rules only (tokens, no raw colour). Everything shared lives in the linked files above. */
+    .arrive-page .arrive-hero .lede { max-width: 58ch; }
+    .arrive-page .arrive-open {
+      font: italic 400 19px/1.65 var(--f-text); color: var(--ink-2);
+      max-width: 60ch; margin: 0 0 var(--s6);
+      padding: 0 0 0 var(--s4); border-left: 3px solid var(--accent);
+    }
+    .arrive-page .arrive-hero .toc { margin-top: var(--s5); }
+
+    /* the picker: a native select with a visible label. Hidden without JavaScript, where the noscript list stands in. */
+    .arrive-front { padding: var(--s7) var(--gutter) 0; }
+    .arrive-picker { display: none; max-width: var(--lr-col); }
+    .js .arrive-picker { display: block; }
+    .arrive-picker label {
+      display: block; margin: 0 0 var(--s2);
+      font: 600 var(--t-label)/1.4 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3);
+    }
+    .arrive-select {
+      display: block; width: min(100%, 28rem); min-height: 48px;
+      padding: 10px 14px; margin: 0;
+      font: 400 17px/1.3 var(--f-text); color: var(--ink);
+      background: var(--sheet); border: 1px solid var(--rule-strong); border-radius: var(--r-btn);
+    }
+    .arrive-pick-help { margin: var(--s3) 0 0; font: italic 400 15px/1.55 var(--f-text); color: var(--ink-3); max-width: 56ch; }
+    .arrive-nojs { max-width: var(--lr-col); }
+    .arrive-nojs h2 { font: 340 var(--t-h3)/1.1 var(--f-display); letter-spacing: -.012em; margin: 0 0 var(--s3); }
+    .arrive-nojs p { font: 400 16px/1.6 var(--f-text); color: var(--ink-2); margin: 0 0 var(--s4); max-width: 58ch; }
+    .arrive-nojs .region-links-h { font: 600 var(--t-label)/1.4 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: var(--s4) 0 var(--s2); }
+    .arrive-nojs ul { list-style: none; margin: 0; padding: 0; columns: 2 14rem; column-gap: var(--s6); }
+    .arrive-nojs li { break-inside: avoid; }
+    .arrive-nojs li a { display: inline-block; padding: 8px 0; font: 400 17px/1.3 var(--f-text); color: var(--accent); text-decoration: underline dotted; text-underline-offset: 4px; }
+    .arrive-bioregion {
+      margin: 0 0 var(--s5); padding: 0 0 var(--s4); border-bottom: 1px dotted var(--rule-strong);
+      font: 400 15.5px/1.65 var(--f-text); color: var(--ink-2); max-width: 62ch;
+    }
+
+    /* the region block: rendered from data by src/pages/arrive.js, held to the reading column. */
+    .arrive-region-wrap { padding: 0 var(--gutter); }
+    .arrive-region-block:empty { display: none; }
+    .arrive-pending .arrive-region-block:empty { display: block; min-height: 100vh; }
+    .arrive-pending .arrive-region-block:empty::before {
+      content: "Reading the region"; display: block; padding-top: var(--s5);
+      font: italic 400 17px/1.5 var(--f-text); color: var(--ink-3);
+    }
+    .arrive-region-block { max-width: var(--lr-col); margin: var(--s7) 0 0; scroll-margin-top: var(--s6); }
+    .arrive-region-block:focus { outline: none; }
+    .arrive-region-block .arrive-sal { margin: 0 0 var(--s3); font: italic 400 19px/1.4 var(--f-text); color: var(--host); }
+    .arrive-region-block .arrive-sal-label {
+      display: block; margin: 0 0 2px; font: 600 var(--t-label)/1.4 var(--f-ui); font-style: normal; letter-spacing: .14em; text-transform: uppercase; color: var(--host);
+    }
+    .arrive-region-block h2 { font: 340 var(--t-h2)/1.08 var(--f-display); letter-spacing: -.018em; text-wrap: balance; margin: 0 0 var(--s2); }
+    .arrive-region-block .arrive-country { margin: 0; font: 600 var(--t-label)/1.4 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+    .arrive-region-block h3.arrive-sub {
+      display: flex; align-items: center; gap: var(--s3);
+      margin: var(--s7) 0 0; font: 600 11px/1 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3);
+    }
+    .arrive-region-block h3.arrive-sub::after { content: ""; flex: 1; border-top: 1px dotted var(--rule-strong); }
+    .arrive-region-block .arrive-more { margin: var(--s6) 0 0; font: italic 400 16px/1.5 var(--f-text); }
+    .arrive-region-block .arrive-more a { color: var(--accent); text-decoration: underline dotted; text-underline-offset: 4px; }
+    .arrive-region-block .ls-arrive { display: none; }          /* this IS the arrive page: the link that points here is redundant */
+    .arrive-region-block .drawer-land-standing .ls-fc-group > :is(h2, h3, h4, h5, h6) { margin-top: var(--s3); }
+
+    /* stages */
+    .arrive-page .lr-chapter h2 .lr-num { margin-right: .35em; }
+    .arrive-page .lr-prose h3 {
+      font: italic 340 clamp(21px, 2vw, 25px)/1.2 var(--f-display); letter-spacing: -.008em; color: var(--ink);
+      margin: var(--s6) 0 var(--s3);
+    }
+    .arrive-questions { list-style: none; counter-reset: q; margin: 0; padding: 0; max-width: 64ch; }
+    .arrive-questions li {
+      counter-increment: q; position: relative;
+      padding: 0 0 var(--s4) 2.2em; margin: 0;
+      font: 400 17px/1.62 var(--f-text); color: var(--ink);
+    }
+    .arrive-questions li::before {
+      content: counter(q); position: absolute; left: 0; top: -.05em;
+      font: italic 340 24px/1.2 var(--f-display); color: var(--art);
+    }
+    .arrive-page .lr-prose .arrive-notthere-h { color: var(--accent); }
+    /* "Not there if": the look of .ls-notthere: a 3px accent bar down the left and a short bar before each item */
+    .arrive-notthere {
+      list-style: none; margin: 0; padding: var(--s3) var(--s4) var(--s3) var(--s4);
+      border-left: 3px solid var(--accent); background: var(--accent-wash);
+    }
+    .arrive-notthere li { position: relative; padding: 4px 0 4px 22px; font: 400 17px/1.6 var(--f-text); color: var(--ink); }
+    .arrive-notthere li::before { content: ""; position: absolute; left: 0; top: 1.05em; width: 11px; border-top: 2.5px solid var(--accent); }
+    .arrive-page .lr-prose .arrive-notthere { max-width: 62ch; margin: 0; }
+    .arrive-stage-region:empty { display: none; }
+    .arrive-hint {
+      margin: var(--s5) 0 0; padding: var(--s3) 0 var(--s3) var(--s4);
+      border-left: 2px dotted var(--rule-strong);
+      font: italic 400 16px/1.6 var(--f-text); color: var(--ink-2); max-width: 62ch;
+    }
+    .arrive-hint .arrive-hint-k { font: 600 var(--t-label)/1.4 var(--f-ui); font-style: normal; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-right: var(--s2); }
+    .arrive-hint a { color: var(--accent); text-decoration: underline dotted; text-underline-offset: 4px; }
+
+    /* the protocols and the closing line */
+    .arrive-protocols { list-style: none; margin: var(--s5) 0 0; padding: 0; border-top: 1px solid var(--ink); max-width: 64ch; }
+    .arrive-protocols li { padding: var(--s3) 0; border-bottom: 1px solid var(--rule-soft); }
+    .arrive-protocols a { font: 500 17px/1.35 var(--f-text); color: var(--ink); text-decoration: underline dotted; text-underline-offset: 4px; }
+    .arrive-protocols a:hover { color: var(--accent); }
+    .arrive-protocols .arrive-what { display: block; margin-top: 3px; font: 400 14px/1.5 var(--f-text); color: var(--ink-2); }
+    .arrive-protocols .arrive-checked { display: block; margin-top: 2px; font: 400 12px/1.5 var(--f-ui); color: var(--ink-3); }
+    .arrive-closing { margin: var(--s6) 0 0; font: italic 400 17px/1.6 var(--f-text); color: var(--ink-2); max-width: 58ch; }
+    .arrive-links { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s6); margin: var(--s6) 0 0; font: 500 14px/1.4 var(--f-ui); }
+    .arrive-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); text-decoration: underline dotted; text-underline-offset: 4px; }
+    .arrive-page .topbar svg.back-ico { width: 14px; height: 14px; margin-right: 8px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .arrive-page .colophon .cols ul a { color: var(--accent); }
+
+    @media (max-width: 767px) {
+      .arrive-front { padding-top: var(--s6); }
+      .arrive-region-block .arrive-sal { font-size: 18px; }
+    }
+    @media print {
+      .arrive-picker, .arrive-hint { display: none !important; }
+      .arrive-pending .arrive-region-block:empty { min-height: 0; }
+    }
+  </style>
+</head>
+<body class="longread-page arrive-page">
+<a class="skip-link" href="#main">Skip to main content</a>
+<aside id="rct-rail" aria-label="Regen Community Tools">
+  <div class="rct-wordmark">REGEN COMMUNITY TOOLS</div>
+  <nav>
+    <a href="https://compass.regencommunity.tools"><span class="rct-num">01 · People</span><span class="rct-nm">Community Compass</span></a>
+    <a href="https://atlas.regencommunity.tools"><span class="rct-num">02 · The Field</span><span class="rct-nm">The Living Atlas</span></a>
+    <a class="rct-current" href="https://land-selection-framework.regencommunity.tools" aria-current="page"><span class="rct-num">03 · The Ground</span><span class="rct-nm">Land Selection</span></a>
+    <a href="https://whoholds.regencommunity.tools"><span class="rct-num">04 · The Holding</span><span class="rct-nm">Who Holds This</span></a>
+    <a href="https://trail.regencommunity.tools"><span class="rct-num">05 · The Movement</span><span class="rct-nm">Nomad Trail</span></a>
+    <a href="https://commons.regencommunity.tools"><span class="rct-num">00 · The Other Beginning</span><span class="rct-nm">Community Commons</span></a>
+  </nav>
+  <div class="rct-foot"><a href="https://regencommunity.tools">regencommunity.tools</a></div>
+</aside>
+
+  <header class="topbar">
+    <div class="container lr-wrap">
+      <div class="row">
+        <a class="back" href="/"><svg class="back-ico" viewBox="0 0 16 10" aria-hidden="true" focusable="false"><path d="M15 5H2M6 1L2 5l4 4"/></svg>Back to the framework</a>
+        <span class="stamp">How to arrive</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="longread" tabindex="-1">
+
+  <section class="hero lr-hero arrive-hero">
+    <div class="container lr-wrap">
+      <div class="eyebrow">Land Selection Framework</div>
+      <h1>How to arrive</h1>
+      <svg class="lr-river-rule" viewBox="0 0 480 22" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M2 11C40 1 80 21 120 11S200 1 240 11 320 21 360 11 440 3 478 10" stroke-width="2.2"/></svg>
+      <p class="lede">Arriving is a relationship. It starts before you look at any land and it goes on for decades. These four stages are a way of asking, in order, what a place and its people are owed. They do not tell you where to go, and some answers will be: not there.</p>
+      <p class="arrive-open">This page is not a checklist you can finish. The tool filters regions and reads them closely; it does not decide for anyone. Where arriving in a place would harm the community already there, the honest answer is not to go. Where that is the answer, the tool has done its job.</p>
+      <nav class="toc" aria-label="The four stages">
+        <a href="#before-you-look"><span class="lr-num" aria-hidden="true">i</span> · Before you look</a>
+        <a href="#when-you-visit"><span class="lr-num" aria-hidden="true">ii</span> · When you visit</a>
+        <a href="#before-you-commit"><span class="lr-num" aria-hidden="true">iii</span> · Before you commit</a>
+        <a href="#the-first-years"><span class="lr-num" aria-hidden="true">iv</span> · The first years</a>
+      </nav>
+    </div>
+  </section>
+
+  <div class="arrive-front">
+    <div class="lr-wrap">
+      <p class="arrive-bioregion" id="bioregion">A bioregion is a place known by its water, its living systems and the people who belong to it. An ecoregion line is a scientific classification, drawn by others, and it is not the boundary of anyone's home. Both are here to help a reader see the place before the administrative map.</p>
+      <div class="arrive-picker">
+        <label for="arrive-region">Read the stages for a region</label>
+        <select id="arrive-region" class="arrive-select" aria-describedby="arrive-pick-help">
+          <option value="">No region chosen</option>
+        </select>
+        <p class="arrive-pick-help" id="arrive-pick-help">Choosing a region adds what the project has read about that place: whose land it is, the public bodies to read first, and the lawful way in. Nothing is stored.</p>
+      </div>
+      <noscript>
+        <div class="arrive-nojs">
+          <h2>Read a region closely</h2>
+          <p>The four stages below read in full without JavaScript. The choice of a region needs it. Each region has its own page, with whose land it is, the public bodies to read first and the way in.</p>
+          <!--s:regionlinks-->
+          <div class="region-links">
+            <p class="region-links-h">Europe</p>
+            <ul>
+              <li><a href="/region/alentejo.html">Alentejo</a></li>
+              <li><a href="/region/galicia.html">Galicia</a></li>
+              <li><a href="/region/transylvania.html">Transylvania</a></li>
+              <li><a href="/region/connemara.html">West Cork / Connemara</a></li>
+              <li><a href="/region/pembrokeshire.html">Pembrokeshire / West Wales</a></li>
+              <li><a href="/region/cevennes.html">Cévennes / Languedoc</a></li>
+              <li><a href="/region/south-tirol.html">South Tirol</a></li>
+              <li><a href="/region/asturias.html">Asturias</a></li>
+              <li><a href="/region/saxony-anhalt.html">Saxony-Anhalt rural</a></li>
+              <li><a href="/region/estonia-rural.html">Rural Estonia</a></li>
+              <li><a href="/region/scottish-highlands.html">Highlands (north-west Scotland)</a></li>
+              <li><a href="/region/north-karelia-kainuu.html">North Karelia and Kainuu</a></li>
+              <li><a href="/region/millevaches.html">Plateau de Millevaches (Limousin)</a></li>
+              <li><a href="/region/teruel-uplands.html">Teruel uplands and the Maestrazgo (Iberian System)</a></li>
+              <li><a href="/region/valle-maira.html">Valle Maira (Occitan valleys, Cuneo Alps)</a></li>
+            </ul>
+            <p class="region-links-h">North America</p>
+            <ul>
+              <li><a href="/region/cascadia.html">Cascadia</a></li>
+              <li><a href="/region/vermont.html">Vermont / Upper New England</a></li>
+              <li><a href="/region/southern-appalachians.html">Southern Appalachians</a></li>
+              <li><a href="/region/driftless.html">Driftless Area</a></li>
+              <li><a href="/region/ozarks.html">Ozarks</a></li>
+              <li><a href="/region/northern-new-mexico.html">Northern New Mexico</a></li>
+              <li><a href="/region/nova-scotia.html">Nova Scotia / Cape Breton</a></li>
+              <li><a href="/region/kootenays.html">BC Interior, Kootenays</a></li>
+              <li><a href="/region/quebec-eastern-townships.html">Québec Eastern Townships</a></li>
+              <li><a href="/region/oaxaca.html">Oaxaca highlands</a></li>
+              <li><a href="/region/finger-lakes.html">Finger Lakes (Cayuga and Seneca lake country)</a></li>
+              <li><a href="/region/virginia-piedmont.html">Virginia Piedmont (Louisa, Fluvanna and Orange)</a></li>
+              <li><a href="/region/bas-saint-laurent.html">Bas-Saint-Laurent (St. Lawrence south shore)</a></li>
+              <li><a href="/region/ne-missouri-se-iowa.html">Northeast Missouri / Southeast Iowa</a></li>
+              <li><a href="/region/downeast-maine.html">Downeast Maine (Washington County, Dawnland)</a></li>
+            </ul>
+          </div>
+          <!--/s-->
+        </div>
+      </noscript>
+    </div>
+  </div>
+
+  <div class="arrive-region-wrap">
+    <div class="lr-wrap">
+      <div class="arrive-region-block" id="region" tabindex="-1"></div>
+    </div>
+  </div>
+
+  <section class="block lr-chapter" id="before-you-look" aria-labelledby="h-before-you-look">
+    <div class="lr-wrap">
+      <p class="lr-eyebrow">Stage one of four</p>
+      <h2 id="h-before-you-look"><span class="lr-num" aria-hidden="true">i</span>Before you look</h2>
+      <div class="lr-prose">
+        <p class="first">Begin with who is arriving and why, and with who is already there. A place is known first through the people who hold it, and only then through its climate and its soil.</p>
+        <h3>Questions to carry</h3>
+        <ol class="arrive-questions">
+          <li>Who would arrive together, and for how long are you ready to stay? A route that is open to a family or a group is often closed to one buyer, and the reverse.</li>
+          <li>Whose land is this, and what do they say about it in their own words?</li>
+          <li>What is the place already doing without you: returning land, repopulating a village, keeping a commons?</li>
+          <li>Which language does the place work in, and can you work in it?</li>
+          <li>If the only thing drawing you is a low price or a mild climate, what is the place getting from your arrival?</li>
+        </ol>
+        <h3>Look for</h3>
+        <p>The host community's own pages (listed as first conversations on each region page); a published way of approaching them, where one exists; land that is being returned or repurchased.</p>
+        <h3 class="arrive-notthere-h">Not there if</h3>
+        <ul class="arrive-notthere">
+          <li>You would be choosing on price or climate alone.</li>
+          <li>The place is mid-way through a land return.</li>
+          <li>The people there have asked outsiders not to come.</li>
+        </ul>
+      </div>
+      <div class="arrive-region arrive-stage-region" aria-live="polite" data-stage="before-you-look"></div>
+    </div>
+  </section>
+
+  <section class="block lr-chapter" id="when-you-visit" aria-labelledby="h-when-you-visit">
+    <div class="lr-wrap">
+      <p class="lr-eyebrow">Stage two of four</p>
+      <h2 id="h-when-you-visit"><span class="lr-num" aria-hidden="true">ii</span>When you visit</h2>
+      <div class="lr-prose">
+        <p class="first">Visit as a guest, through a door the place has opened, and keep the visit small enough that the place can say no.</p>
+        <h3>Questions to carry</h3>
+        <ol class="arrive-questions">
+          <li>Is there a visiting route the place itself publishes (a newcomers' page, a visit programme, a regional welcome service)? Use that one.</li>
+          <li>Who has been asked, and who has not? Whose voice is missing from the rooms you are shown?</li>
+          <li>What is not for sale, not for visiting, not for photographing?</li>
+          <li>Where does your money go while you are there, and who is paid for your time?</li>
+          <li>Can you stay through more than one season before anything is decided?</li>
+        </ol>
+        <h3>Look for</h3>
+        <p>What neighbours say unprompted; who repairs the road, the ditch, the school; housing that local households are looking for.</p>
+        <h3 class="arrive-notthere-h">Not there if</h3>
+        <ul class="arrive-notthere">
+          <li>You are told no, or told to wait, and the visit goes ahead anyway.</li>
+          <li>You would be the reason a local household loses a rental.</li>
+        </ul>
+      </div>
+      <div class="arrive-region arrive-stage-region" aria-live="polite" data-stage="when-you-visit"></div>
+    </div>
+  </section>
+
+  <section class="block lr-chapter" id="before-you-commit" aria-labelledby="h-before-you-commit">
+    <div class="lr-wrap">
+      <p class="lr-eyebrow">Stage three of four</p>
+      <h2 id="h-before-you-commit"><span class="lr-num" aria-hidden="true">iii</span>Before you commit</h2>
+      <div class="lr-prose">
+        <p class="first">Commit means a lease, a membership, a job or, last, a purchase. Many of the routes on the region pages are not purchases. The lawful route and the relational route should be the same route.</p>
+        <h3>Questions to carry</h3>
+        <ol class="arrive-questions">
+          <li>Who holds first claim here (family, neighbours, co-owners, a commons, an assembly), and have you let them use it?</li>
+          <li>Does any part of your plan depend on a front-owner, a paper residence or a workaround? If so, it is not the route.</li>
+          <li>What will you write down, with the people already there, about what you will give and what you will not take?</li>
+          <li>Who can say no at this stage, and how will you hear it?</li>
+          <li>Have you taken local legal advice in the local language? (The site gives context, not legal advice.)</li>
+        </ol>
+        <h3>Look for</h3>
+        <p>Published rules read from the source (statute, commune, nation, trust); a named body that decides; a written understanding both sides can read.</p>
+        <h3 class="arrive-notthere-h">Not there if</h3>
+        <ul class="arrive-notthere">
+          <li>The land is named for return or under negotiation.</li>
+          <li>The seller is not the community's seller.</li>
+          <li>Your arrival depends on a route designed for someone else.</li>
+        </ul>
+      </div>
+      <div class="arrive-region arrive-stage-region" aria-live="polite" data-stage="before-you-commit"></div>
+    </div>
+  </section>
+
+  <section class="block lr-chapter" id="the-first-years" aria-labelledby="h-the-first-years">
+    <div class="lr-wrap">
+      <p class="lr-eyebrow">Stage four of four</p>
+      <h2 id="h-the-first-years"><span class="lr-num" aria-hidden="true">iv</span>The first years</h2>
+      <div class="lr-prose">
+        <p class="first">Standing is given, not claimed. For the first years the work is to be present, to carry a share of what the place carries, and to let others decide when you belong.</p>
+        <h3>Questions to carry</h3>
+        <ol class="arrive-questions">
+          <li>What are you doing in the commons: the ditch, the village association, the school, the forest?</li>
+          <li>Are you giving back in the form the place asks for, not the form you prefer?</li>
+          <li>What has changed since you arrived: rents, prices, who has left?</li>
+          <li>What would you do if your presence turned out to be harming the place? (Leaving, or giving land back, are both on the table.)</li>
+          <li>Over fifty to a hundred years, who will hold what you start?</li>
+        </ol>
+        <h3>Look for</h3>
+        <p>Invitations to take on a duty before invitations to speak; people who stay on after the novelty.</p>
+        <h3 class="arrive-notthere-h">Not there if</h3>
+        <ul class="arrive-notthere">
+          <li>You keep a calendar apart from the village.</li>
+          <li>Prices and rents near you are rising and people who were there before you are leaving.</li>
+        </ul>
+      </div>
+      <div class="arrive-region arrive-stage-region" aria-live="polite" data-stage="the-first-years"></div>
+    </div>
+  </section>
+
+  <section class="block lr-chapter" id="protocols" aria-labelledby="h-protocols">
+    <div class="lr-wrap">
+      <p class="lr-eyebrow">Read alongside</p>
+      <h2 id="h-protocols">Protocols behind these stages</h2>
+      <div class="lr-prose">
+        <p>These are references, not contacts. Each is a public text or a guide, checked on the date beside it.</p>
+      </div>
+      <ul class="arrive-protocols">
+        <li><a href="https://social.desa.un.org/issues/indigenous-peoples/united-nations-declaration-on-the-rights-of-indigenous-peoples" target="_blank" rel="noopener">UN Declaration on the Rights of Indigenous Peoples<span class="sr-only"> (opens in a new tab)</span></a><span class="arrive-what">The Declaration adopted by the General Assembly on 13 September 2007; free, prior and informed consent runs through it.</span><span class="arrive-checked">checked 5 October 2026</span></li>
+        <li><a href="https://laws-lois.justice.gc.ca/eng/acts/U-2.2/" target="_blank" rel="noopener">Canada: United Nations Declaration on the Rights of Indigenous Peoples Act<span class="sr-only"> (opens in a new tab)</span></a><span class="arrive-what">Canadian federal statute affirming the Declaration as a universal international human rights instrument.</span><span class="arrive-checked">checked 5 October 2026</span></li>
+        <li><a href="https://www.gida-global.org/" target="_blank" rel="noopener">Global Indigenous Data Alliance: CARE Principles<span class="sr-only"> (opens in a new tab)</span></a><span class="arrive-what">Collective benefit, authority to control, responsibility, ethics: principles for Indigenous control of Indigenous data.</span><span class="arrive-checked">checked 5 October 2026</span></li>
+        <li><a href="https://native-land.ca/resources/territory-acknowledgement/" target="_blank" rel="noopener">Native Land Digital: territory acknowledgement guide<span class="sr-only"> (opens in a new tab)</span></a><span class="arrive-what">A guide from a resource to learn more about Indigenous territories, languages, lands and ways of life.</span><span class="arrive-checked">checked 5 October 2026</span></li>
+      </ul>
+      <p class="arrive-closing">These are pointers to public bodies. None of them has agreed to be contacted, and none is a person. Read first; ask how they want to be approached; never assume.</p>
+      <p class="arrive-links"><a href="/">The framework and its regions</a><a href="/host.html">For people already here</a><a href="/deeper.html#ethics">The values this project is built on</a></p>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="colophon">
+    <div class="art" aria-hidden="true"><!--s:art:colophon--><svg viewBox="0 0 420 300" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true" focusable="false"><g class="lw-net"><path d="M248.7 9C329 90 275 204 251.3 294" stroke-width="2.4"/><path d="M151.9 22.2C157.3 55.3 268.9 64.3 288 82.3" stroke-width="1.7"/><path d="M207.2 55.7Q159.7 52.7 154.4 25.6" stroke-width="1"/><path d="M397.9 69.1C393.6 97 306.1 104.6 291.1 119.8" stroke-width="1.7"/><path d="M350 98.8Q277.1 96.3 269 73.4" stroke-width="1"/><path d="M120.2 77.3C127 113 266 122.7 289.7 142.2" stroke-width="1.7"/><path d="M201 116.4Q161 113.2 156.6 83.9" stroke-width="1"/><path d="M177.5 75.6C181.8 125.3 271 138.9 286.2 166" stroke-width="1.7"/><path d="M224.8 127.7Q173.7 123.2 168 82.5" stroke-width="1"/><path d="M140.9 147.1C146.3 181.4 257.1 190.7 276 209.5" stroke-width="1.7"/><path d="M208.7 185.6Q280 182.5 287.9 154.4" stroke-width="1"/><path d="M139.5 163C144.8 197.6 252.9 207 271.3 225.8" stroke-width="1.7"/><path d="M224.7 207.3Q282.7 204.2 289.1 175.9" stroke-width="1"/></g></svg><!--/s--></div>
+    <div class="container">
+      <p class="frame">Opinionated about method, quiet about preference. Read the data, set your own thresholds, decide for yourself.</p>
+      <div class="cols">
+        <div>
+          <h3>Who made this</h3>
+          <p>The framework was originated by Askja and is developed by a small working group of practitioners and researchers. The demonstration site was built by one member of that group, who holds the practitioner seat.</p>
+          <p>There is no public contact route yet; the working group will set one.</p>
+        </div>
+        <div>
+          <h3>How to read it</h3>
+          <ul>
+            <li>Thresholds filter; they never score or rank.</li>
+            <li>Land standing is qualitative and never a filter.</li>
+            <li>Every value carries its source and vintage.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Read next</h3>
+          <ul>
+            <li><a href="/">The framework and its regions</a></li>
+            <li><a href="/deeper.html">The framework, in depth</a></li>
+            <li><a href="/host.html">For people already here</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="stamp">prototype · open data sources, no commercial product · last updated <!--f:buildDate-->2026-10-06<!--/f--></p>
+    </div>
+  </footer>
+
+  <script type="module" src="./src/pages/arrive.js?v=b20261006100127" data-bust></script>
+</body>
+</html>

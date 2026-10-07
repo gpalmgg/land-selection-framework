@@ -1,0 +1,79 @@
+/* === The ledger, the trajectory chip and the climate and water context (MC-LEDGER, design 8.14) ===
+   Every dated value is one line: the criterion on a dotted leader, the number on the right, and the label, source,
+   vintage and licence in the same breath on the line beneath. Class names are the ones lib/evidence-render.js emits:
+   ul.ledger > li > span.nm + span.vv + div.sb, li.gap, .traj, .traj-na, .dir-ico, .meth; .ctx / .ctx-row.
+   Colour is never carried by a value: nothing here is green, red or ramp-coloured. No motion. */
+
+/* the block heading is the design's leaf-h: caps label with a dotted rule running out to the edge (still a real h4) */
+section.drawer-criteria > h4,
+section.drawer-ctx > h4 {
+  display: flex; align-items: center; gap: var(--s3);
+  margin: var(--s7) 0 var(--s3);
+  font: 600 11px/1 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3);
+}
+section.drawer-criteria > h4::after,
+section.drawer-ctx > h4::after { content: ""; flex: 1; border-top: 1px dotted var(--rule-strong); }
+
+.ledger { list-style: none; margin: 0; padding: 0; }
+.ledger li {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 10px;
+  padding: 12px 0 10px; border-bottom: 1px solid var(--rule-soft); align-items: baseline;
+}
+.ledger .nm { font: 500 17px/1.2 var(--f-text); color: var(--ink); display: flex; gap: 8px; align-items: baseline; min-width: 0; }
+.ledger .nm::after { content: ""; flex: 1; border-bottom: 1px dotted var(--rule-strong); transform: translateY(-3px); }
+.ledger .vv {
+  font: 400 21px/1 var(--f-text); color: var(--ink);
+  font-variant-numeric: tabular-nums lining-nums; text-align: right;
+}
+.ledger .vv small { font: 500 12px var(--f-ui); color: var(--ink-3); margin-left: 4px; }
+.ledger .sb { grid-column: 1 / -1; margin-top: 4px; font: 400 12.5px/1.5 var(--f-ui); color: var(--ink-3); overflow-wrap: anywhere; }
+.ledger .sb i { font: italic 400 14.5px var(--f-text); color: var(--ink-2); margin-right: 6px; }
+.ledger .sb a { color: var(--ink-2); font-weight: 600; text-decoration: underline dotted; text-underline-offset: 3px; }
+.ledger .sb a:hover { color: var(--accent); }
+
+/* trajectory chip: an outlined pill holding an inline-SVG direction icon and the words; neutral, never coloured by direction */
+.ledger .traj {
+  display: inline-block; font: 500 12px/1.3 var(--f-ui); color: var(--ink-2);
+  border: 1px solid var(--rule-strong); border-radius: 11px; padding: 2px 8px; margin: 0 6px 0 0;
+}
+.ledger .traj[data-status="projected"] { border-style: dashed; }   /* a projection is dashed, as everywhere else on the site */
+.dir-ico {
+  width: 11px; height: 11px; vertical-align: -1px; margin-right: 5px;
+  fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+}
+/* a trajectory that has no source says why, in a sentence; it is not a pill and never a wall of "not recorded" */
+.ledger .traj-na { display: block; margin-top: 2px; font: italic 400 13px/1.45 var(--f-text); color: var(--ink-3); }
+.ledger .meth { font: 500 11px/1 var(--f-ui); color: var(--ink-3); border-bottom: 1px dotted var(--rule-strong); }
+
+/* gap row: "not yet verified": the leader turns dashed ochre and the row keeps its place */
+.ledger li.gap .nm::after { border-bottom: 1.5px dashed var(--gap-line); }
+.ledger li.gap .vv { font: italic 400 17px var(--f-text); color: var(--gap); }
+.ledger li.gap .sb { color: var(--ink-2); }
+
+/* climate and water context, compact (drawer): two lines, each with its words, then one source line */
+.ctx { margin: 0; }
+.ctx-row {
+  display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 0 var(--s3);
+  padding: 9px 0; border-top: 1px solid var(--rule);
+}
+.ctx-row:last-child { border-bottom: 1px solid var(--rule); }
+.ctx-k { font: 600 var(--t-label)/1.4 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); padding-top: 3px; }
+.ctx-v { font: 400 15.5px/1.5 var(--f-text); color: var(--ink); }
+.ctx-shares { display: block; font: 400 12.5px/1.5 var(--f-ui); color: var(--ink-3); }
+.ctx-row.proj .ctx-v { border-left: 2px dashed var(--rule-strong); padding-left: var(--s3); }   /* projection: dashed, with the word */
+.ctx-names { margin: 6px 0 0; font: italic 400 14px/1.5 var(--f-text); color: var(--ink-3); }
+.ctx-note { margin: 6px 0 0; font: italic 400 14px/1.5 var(--f-text); color: var(--ink-3); }
+.ctx-src, .drawer-ctx .ctx-src {
+  margin: var(--s2) 0 0; font: 400 12.5px/1.5 var(--f-ui); color: var(--ink-3);
+}
+.ctx-src a, .ctx-more a { color: var(--ink-2); font-weight: 600; text-decoration: underline dotted; text-underline-offset: 3px; }
+.ctx-src a:hover, .ctx-more a:hover { color: var(--accent); }
+.ctx-more { margin: var(--s2) 0 0; font: italic 400 14.5px/1.5 var(--f-text); color: var(--ink-3); }
+
+@media (max-width: 767px) {
+  .ledger .vv { font-size: 20px; }
+  .ctx-row { grid-template-columns: 1fr; }
+  .ctx-k { padding: 0 0 2px; }
+}
+
+.ledger-note { margin: var(--s3) 0 0; font: italic 400 14px/1.5 var(--f-text); color: var(--ink-3); }

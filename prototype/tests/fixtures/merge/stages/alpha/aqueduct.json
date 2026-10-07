@@ -1,0 +1,14 @@
+{
+  "stage": "aqueduct", "id": "alpha", "status": "ok",
+  "method": { "version": "aqueduct40-basin-areaweighted-v1", "summary": "area-weighted over basins" },
+  "source": { "id": "aqueduct-40", "url": "https://www.wri.org/research/aqueduct-40", "licence": "CC BY 4.0" },
+  "scenario": { "id": "business-as-usual", "code": "SSP3-7.0", "year": 2050 },
+  "scenarioNote": "Aqueduct 4.0 technical note, business-as-usual.",
+  "footprint": { "id": "alpha", "kind": "bbox", "areaKm2": 31600 },
+  "inputs": [ { "file": "prototype/data/raw/aqueduct.gdb", "bytes": 772582596 } ],
+  "computedAt": "2026-10-05T11:32:15Z", "retrieved": "2023-08-04",
+  "coverage": { "future": { "fraction": 0.9161 } },
+  "baseline": { "bws": { "raw": 0.7105, "label": "Extremely High (>80%)" }, "drr": { "label": "Medium - High (0.6-0.8)" }, "iav": { "label": "Medium - High" }, "sev": { "label": "Low - Medium" }, "gtd": { "label": "Insignificant Trend" }, "rfr": { "label": "Low" } },
+  "bau2050": { "scenario": "business-as-usual", "code": "SSP3-7.0", "field": "bau50_ws_x_r", "raw": 1.5053, "label": "Extremely high (>80%)" },
+  "basins": [ { "name0": NaN, "a": 1.0 }, { "name0": "x", "a": Infinity } ]
+}

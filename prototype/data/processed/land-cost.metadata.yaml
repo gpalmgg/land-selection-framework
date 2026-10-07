@@ -2,22 +2,31 @@
 criterion: land_cost
 askja_metric: 10            # Economic and Legal Context (currently buried; r4-proposed first-class promotion)
 tier: 1                     # per-jurisdiction structured layer
-source: "Per-region dossiers (legal.md / regen.md / accessibility.md); each entry carries its primary cost-citation source where available in its `source` property"
-source_url: "data/research-dossier/<id>/{legal,regen,accessibility}.md (intermediate); see per-feature `source_url` for primary"
-vintage: "2026-05 compilation; per-feature `price_vintage` carries the cited figure's year"
+source: "Official land-price statistics where an opened source gave one (MAPA, CSO, Eurostat apri_lprc, Statistics Canada 32-10-0047-01, USDA NASS Land Values, Agenzia delle Entrate, Scottish Land Commission, National Land Survey of Finland); market reports and listings elsewhere, marked `not verified`. Each entry carries its source in `source` and `source_url`."
+source_url: "see per-feature `source_url` for the primary source"
+vintage: "2026-05 compilation; per-feature `price_vintage` carries the cited figure's year; re-verified and extended to 30 regions 2026-10"
 license: "Research dossiers internal; underlying primary sources carry their own licenses (typically open government / national agriculture-ministry data)"
 native_unit: "per-jurisdiction (point at region centroid)"
 time_framing: "state + trajectory"
-state: "current price-per-hectare range, currency, vintage (where dossier-supported; null otherwise)"
+state: "current price-per-hectare range, currency, vintage (where an opened source supports it; null otherwise)"
 trajectory: "per-feature `appreciation_trajectory` enum (stable|rising|rising_fast|volatile|unknown)"
 sovereignty_axes: [legal, material]
 red_line_underlying: none
 files:
-  - { path: land-cost.geojson, scope: "EU + NA", features: 20 }
+  - { path: land-cost.geojson, scope: "EU + NA", features: 30 }
   - { path: land-cost.json, kind: "structured extraction (human-verifiable intermediate)" }
-coverage: "20 of 20 in-scope regions ATTEMPTED; per-feature `data_confidence` records actual evidence strength (high|medium|low). Cost data in the dossiers is genuinely thinner than legal data; honest sparsity is surfaced, not hidden."
+coverage: "30 of 30 in-scope regions ATTEMPTED; per-feature `data_confidence` records actual evidence strength (high|medium|low). Where no price could be tied to an opened source the range is flagged `not verified` or left null and the band is `unknown`; honest sparsity is surfaced, not hidden."
 processing_method: "scripts/compile_per_jurisdiction.py land-cost reads the JSON intermediate + regions.js coords and emits the GeoJSON FeatureCollection. The JSON intermediate is extracted from the dossier files (LLM-assisted; human-verifiable per Spec Step 4)."
-notes: "Delivers r4 Finding 1b (land_cost as first-class criterion candidate). Behaves as a binding constraint in practice (Cascadia 3-5x Alentejo, Appalachian regen-premium, BC ALR pricing). Pairs with legal_ownership as the two 'first gate' criteria. data_confidence is the integrity field — read it before using a region's figure."
+notes: "Prices are per hectare in the currency of the source, never converted in the data. Delivers r4 Finding 1b (land_cost as first-class criterion candidate). A price can be a binding constraint in practice, so it is one of the qualitative filters (a filter, never a score). Pairs with legal_ownership as the two 'first gate' criteria. data_confidence is the integrity field — read it before using a region's figure."
+# Band definition (review issue D9). `affordability_band` is a filter value, never a score, and never a ranking:
+# it puts a region's stated price range in a price bucket so the filter can say what the bucket means in money.
+band_edges:
+  unit: "EUR-equivalent"       # edges are EUR per hectare; other currencies are converted at the ECB reference rates below
+  edges: [5000, 10000, 20000, 40000]   # four ascending edges, EUR-equivalent per hectare
+band_rule: "bucket = where the MIDDLE of the stored range ((price_per_ha_low + price_per_ha_high) / 2, converted to EUR per hectare) falls: cheapest below 5,000; low from 5,000 to below 10,000; moderate from 10,000 to below 20,000; premium from 20,000 to below 40,000; very_premium from 40,000. The token `cheapest` is an internal data value and is never shown: the filter prints the money range."
+band_unknown_rule: "affordability_band is `unknown` when the record has no price range or its data_confidence is `low` (the range could not be tied to an opened source, or it is only a dossier estimate). Such a region shows only under the 'any' and 'unknown' cost options, and its region page says why."
+band_fx: "ECB euro foreign exchange reference rates of 2026-10-05, currency units per 1 EUR: USD 1.1204, GBP 0.8472, CAD 1.5969, MXN 20.3348 (https://data-api.ecb.europa.eu/service/data/EXR). One date is used for every region; the stored prices are of 2022 to 2025, so a band is a coarse bucket and a region near an edge could fall either side."
+band_limits: "Where a stored range spans several land classes (the high end at least five times the low end) the record's `gaps` says so and the band is a rough bucket of its middle. A band says nothing about whether land is available, and a lower price bucket is not a recommendation."
 properties_schema:
   price_per_ha_low: "number or null"
   price_per_ha_high: "number or null"
@@ -26,7 +35,7 @@ properties_schema:
   price_notes: "string"
   appreciation_trajectory: "stable|rising|rising_fast|volatile|unknown"
   appreciation_notes: "string"
-  affordability_band: "cheapest|low|moderate|premium|very_premium|unknown"
+  affordability_band: "cheapest|low|moderate|premium|very_premium|unknown (see band_edges, band_rule and band_unknown_rule)"
   data_confidence: "high|medium|low"
   source: "string"
   source_url: "string"

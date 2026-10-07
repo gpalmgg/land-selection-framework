@@ -4,9 +4,15 @@
 // /api/og?<same params>), then redirects humans to the real app at /?<params>.
 //
 // Reached as /share?<params> via the rewrite in vercel.json. The Share buttons
-// in main.js copy this URL when thresholds/pins are active.
+// in main.js copy this URL when thresholds/pins are active. Also answers ?region=<id> (a region share that names the
+// place and its ecoregion; the card is /api/og?region=<id>) and ?page=deeper. Counts and sentences come from
+// data/site-facts.js, never from typed numbers.
 
 import { computeResult } from '../lib/result.js';
+import { qualFiltersFor } from '../lib/url-state.js';
+import { regions } from '../data/regions.js';
+import { bioregions } from '../data/bioregions.js';
+import { facts, countWord, CapWord, canon, site } from '../data/site-facts.js';
 
 // Edge runtime: native Request -> Response, matching api/og. No outbound fetch
 // here — it only renders an HTML shell with dynamic meta.
@@ -27,31 +33,66 @@ function header(req, name) {
   return typeof hs.get === 'function' ? hs.get(name) : hs[name];
 }
 
+// A link that chooses a qualitative filter (?q.*) needs the slim v1 lookup, which the edge bundle does not carry (the bundle
+// budget in scripts/release/check_edge_bundle.mjs). Such a link is never counted here: it gets the general description rather
+// than a number that could disagree with the page. (api/og.js and lib/og-card.js apply the same rule.)
+function hasUnappliedQual(sp) {
+  return qualFiltersFor({}).some((qf) => {
+    const v = sp.get(`q.${qf.id}`);
+    return !!v && v !== 'any' && qf.options.includes(v);
+  });
+}
+
+const MAX_NAMES = 8;
+
 export default async function handler(req) {
   const host = header(req, 'host') || 'land-selection-framework.regencommunity.tools';
   const proto = header(req, 'x-forwarded-proto') || 'https';
   const base = `${proto}://${host}`;
 
   const url = new URL(req.url, base);
-  const qs = url.searchParams.toString();
-  const { matching, anyActive } = computeResult(url.searchParams);
-  const appUrl = `${base}/${qs ? `?${qs}` : ''}`;
-  const ogImage = `${base}/api/og${qs ? `?${qs}` : ''}`;
+  const sp = url.searchParams;
+  const qs = sp.toString();
+  const regionId = sp.get('region');
+  const region = regionId ? regions.find((r) => r.id === regionId) : null;
 
-  const names = matching.map((r) => r.name);
-  const title = !anyActive
-    ? 'Land Selection Framework'
-    : matching.length === 0
-      ? 'Land Selection Framework — no regions match these criteria'
-      : matching.length === 1
-        ? `${names[0]} meets these criteria — Land Selection Framework`
-        : `${matching.length} regions meet these criteria — Land Selection Framework`;
+  // Counts and sentences come from the data (data/site-facts.js), never from typed numbers.
+  const stance = canon.stance;
+  const general = `${canon.descriptor} ${CapWord(facts.regions)} regions read across ${countWord(facts.criteria)} criteria. ${stance}`;
 
-  const desc = !anyActive
-    ? 'A bioregioning tool for communities seeking to belong to a place and help it flourish over a 50–100 year horizon, across twenty regions. It filters; it never scores or ranks.'
-    : matching.length === 0
-      ? 'No regions meet these thresholds — adjust them and explore. It filters; it never scores or ranks.'
-      : `Matching: ${names.join(', ')}. Eight criteria across twenty regions, held as questions of how to arrive in reciprocity. It filters; it never scores.`;
+  let title, desc, appUrl, ogImage;
+  if (region) {
+    // A region share names the place and its ecoregion (the bioregion layer), then the framing.
+    const eco = bioregions[region.id] && bioregions[region.id].primaryEcoregion;
+    title = `${region.name}, ${region.country} \u2014 ${site.name}`;
+    desc = `${region.name} (${region.country})${eco ? `, in the ${eco}` : ''}. Whose land it is, and what arriving asks of you. ${stance}`;
+    appUrl = `${base}/region/${region.id}.html`;
+    ogImage = `${base}/api/og?region=${encodeURIComponent(region.id)}`;
+  } else if (sp.get('page') === 'deeper') {
+    title = `${site.name} \u2014 In Depth`;
+    desc = 'The method, the case studies, the open design questions, and the sources behind every value.';
+    appUrl = `${base}/deeper.html`;
+    ogImage = `${base}/api/og?page=deeper`;
+  } else {
+    const { matching, total, anyActive } = computeResult(sp);
+    appUrl = `${base}/${qs ? `?${qs}` : ''}`;
+    ogImage = `${base}/api/og${qs ? `?${qs}` : ''}`;
+    const names = matching.map((r) => r.name);
+    if (!anyActive || hasUnappliedQual(sp)) {
+      title = site.name;
+      desc = general;
+    } else if (matching.length === 0) {
+      title = `No regions within these thresholds \u2014 ${site.name}`;
+      desc = `No regions are within these thresholds. Loosen a threshold to read more places. ${stance}`;
+    } else {
+      title = matching.length === 1
+        ? `${names[0]} is within these thresholds \u2014 ${site.name}`
+        : `${matching.length} of ${total} regions within these thresholds \u2014 ${site.name}`;
+      const shown = names.slice(0, MAX_NAMES).join(', ');
+      const more = names.length > MAX_NAMES ? `, and ${names.length - MAX_NAMES} more` : '';
+      desc = `Within these thresholds: ${shown}${more}. ${stance}`;
+    }
+  }
 
   const html = `<!doctype html>
 <html lang="en">
