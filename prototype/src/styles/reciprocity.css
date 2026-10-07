@@ -1,0 +1,213 @@
+/* ==========================================================================
+   reciprocity.css  -  the visual rules for Land standing (version 2) and the place strip (final-spec 8.11, 8.13; MC-DRAWER 2026-10)
+   BIO-4 (lib/bio.js) delivers the markup and the class hooks; this file draws them. The same markup appears in the region drawer
+   and, inside section.land-standing > .wrap, on every region page.
+   Land standing is qualitative: never scored, never a filter, never numbered, never coloured by its content. It is --host (whose
+   land) on --host-wash; the place strip is --river on --river-wash (the names of peoples belong under Whose land, never under Place).
+   No text here is faded with opacity. Colour comes from tokens only.
+   Markup contract:
+     .drawer-land-standing > .braid + h4.tag + p.ls-territory (+ details.ls-claims) + [.ls-contested] + .ls-row* (each optionally
+       followed by details.ls-claims) + [.ls-row.ls-trajectory] + [.ls-notthere] + [.ls-fc] + .ls-src + p.ls-provenance
+       + .ls-consent + a.ls-arrive
+     .place-strip > h4.tag + p.place + dl.place-dl + p.place-caption + p.place-note
+   ========================================================================== */
+
+.drawer-land-standing, .place-strip {
+  --braid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='56' viewBox='0 0 14 56'%3E%3Cpath d='M3 0C13 14 1 28 3 28S13 42 3 56' fill='none' stroke='black' stroke-width='1.7'/%3E%3Cpath d='M11 0C1 14 13 28 11 28S1 42 11 56' fill='none' stroke='black' stroke-width='1.7'/%3E%3C/svg%3E");
+  --stem: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='96' viewBox='0 0 12 96'%3E%3Cpath d='M6 0C10 12 2 24 6 36S10 60 6 72 2 90 6 96' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E");
+}
+
+/* ---------------------------------------------------------------- Land standing: the frame, the braid, the tag */
+.drawer-land-standing {
+  position: relative;
+  margin-top: var(--s6, 32px);
+  padding: var(--s5, 24px) var(--s5, 24px) var(--s5, 24px) calc(var(--s5, 24px) + 18px);
+  background: var(--host-wash);
+  border: 0; border-radius: 2px 22px 2px 2px;
+}
+.drawer-land-standing .braid {
+  position: absolute; left: 6px; top: 14px; bottom: 14px; width: 14px;
+  background: var(--host);
+  -webkit-mask: var(--braid) repeat-y 50% 0 / 14px 56px;
+          mask: var(--braid) repeat-y 50% 0 / 14px 56px;
+}
+/* the tag: the v2 block's h4.tag, and the plain h4 the v1 block still carries for an entry that is not yet verified */
+.drawer-land-standing > .tag,
+.drawer-land-standing > h4:not(.tag) {
+  margin: 0;
+  font: 600 var(--t-label, 10.5px)/1.4 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--host);
+}
+.drawer-land-standing > h4:not(.tag) { margin-bottom: var(--s3, 12px); }
+.tag-qual { color: var(--ink-3); letter-spacing: .06em; text-transform: none; font-weight: 500; }
+
+/* ---------------------------------------------------------------- the lead line: whose land, in full */
+.ls-territory {
+  font: italic 330 clamp(24px, 2.6vw, 29px)/1.2 var(--f-display); letter-spacing: -.01em;
+  color: var(--ink);
+  margin: var(--s3, 12px) 0 var(--s5, 24px); text-wrap: balance;
+}
+.ls-territory + .ls-claims { margin: calc(-1 * var(--s4, 16px)) 0 var(--s4, 16px) 0; }
+
+/* ---------------------------------------------------------------- rows: Tenure / Arriving in good faith / What it asks / trajectory */
+.ls-row {
+  display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 0;
+  margin: 0;
+  border-top: 1px solid var(--rule-strong);
+  border-top: 1px solid color-mix(in srgb, var(--host) 30%, transparent);
+}
+.ls-label {
+  padding: 13px 12px 13px 0;
+  font: 600 var(--t-label, 10.5px)/1.4 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+}
+.ls-val { padding: 10px 0; font: 400 16px/1.55 var(--f-text); color: var(--ink); }
+
+.ls-src { margin: var(--s3, 12px) 0 0; font: 400 12.5px/1.5 var(--f-ui); color: var(--ink-3); }
+.ls-src a, .ls-claims a, .ls-contested a, .ls-notthere a, .ls-fc a {
+  color: var(--ink-2); text-decoration: underline dotted; text-underline-offset: 3px;
+}
+/* the factual sentence that no nation or community named in the entry has reviewed it: same Inter 12.5px and colour as
+   .ls-src, no italics, never faded, readable at 390px and in print (review revision 2026-10-05, issue D11) */
+.ls-provenance {
+  margin: var(--s2, 8px) 0 0;
+  font: normal 400 12.5px/1.5 var(--f-ui); color: var(--ink-3); opacity: 1;
+}
+
+/* ---------------------------------------------------------------- per-row sources: a native <details>, a drawn chevron */
+.ls-claims { margin: -2px 0 6px 128px; }
+.ls-claims summary {
+  display: inline-flex; align-items: center; min-height: 28px; cursor: pointer; list-style: none;
+  font: 500 12px/1.3 var(--f-ui); color: var(--ink-2);
+  text-decoration: underline dotted; text-underline-offset: 3px;
+}
+.ls-claims summary::-webkit-details-marker { display: none; }
+.ls-claims summary::before {
+  content: ""; flex: none; width: 6px; height: 6px; margin: 0 9px 2px 1px;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg); transition: transform 0.2s;
+}
+.ls-claims[open] summary::before { transform: rotate(45deg); }
+.ls-claims ul { list-style: none; margin: 2px 0 6px; padding: 0; }
+.ls-claims li { padding: 4px 0; font: 400 12.5px/1.5 var(--f-ui); color: var(--ink-2); }
+.ls-claims li em { font: italic 400 14px/1.4 var(--f-text); color: var(--ink); margin-right: 6px; }
+
+/* ---------------------------------------------------------------- contested: authority is disputed or overlapping; the block names it and takes no side */
+.ls-contested {
+  margin: calc(-1 * var(--s3, 12px)) 0 var(--s4, 16px);
+  padding: var(--s3, 12px) var(--s4, 16px);
+  border: 1px dashed var(--rule-strong); border-radius: var(--r-btn, 2px 12px 2px 2px);
+  font: 400 14.5px/1.5 var(--f-text); color: var(--ink-2);
+  background: color-mix(in srgb, var(--sheet) 55%, transparent);
+}
+.ls-contested p { margin: 0; }
+.ls-sub {
+  margin: 0 0 4px;
+  font: 600 var(--t-label, 10.5px)/1.4 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+}
+.ls-links { list-style: none; margin: var(--s2, 8px) 0 0; padding: 0; font: 400 12.5px/1.5 var(--f-ui); }
+.ls-links li { padding: 2px 0; }
+
+/* ---------------------------------------------------------------- where the answer is NOT here: the region-specific refusal; a short bar before each form */
+.ls-notthere {
+  margin-top: var(--s4, 16px);
+  padding: var(--s4, 16px) var(--s4, 16px) var(--s3, 12px);
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 5%, var(--host-wash));
+}
+.ls-notthere .ls-sub { color: var(--accent); margin: 0; }
+.ls-nt-forms { list-style: none; margin: var(--s2, 8px) 0 0; padding: 0; }
+.ls-nt-forms li { position: relative; padding: 4px 0 4px 20px; font: 400 15.5px/1.55 var(--f-text); color: var(--ink); }
+.ls-nt-forms li::before { content: ""; position: absolute; left: 0; top: 1.05em; width: 11px; border-top: 2.5px solid var(--accent); }
+.ls-nt-basis { margin: var(--s2, 8px) 0 0; font: 400 12.5px/1.5 var(--f-ui); color: var(--ink-3); }
+
+/* ---------------------------------------------------------------- first conversations: PUBLIC bodies and protocols, never people; fixed kind order, never numbered */
+.ls-fc {
+  margin-top: var(--s5, 24px); padding-top: var(--s4, 16px);
+  border-top: 1px solid var(--rule-strong);
+  border-top: 1px solid color-mix(in srgb, var(--host) 30%, transparent);
+}
+.ls-fc > .ls-sub { color: var(--host); letter-spacing: .14em; margin: 0; }
+.ls-fc-sub { margin: 2px 0 0; font: italic 400 14.5px/1.5 var(--f-text); color: var(--ink-3); }
+.ls-fc-group > :is(h2, h3, h4, h5, h6) {
+  margin: var(--s4, 16px) 0 2px;
+  font: 600 var(--t-label, 10.5px)/1.3 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3);
+}
+.ls-fc-group ul { list-style: none; margin: 0; padding: 0; }
+.ls-fc-group li {
+  padding: 8px 0;
+  border-top: 1px solid var(--rule);
+  border-top: 1px solid color-mix(in srgb, var(--host) 18%, transparent);
+}
+.ls-fc-group li > a { display: inline; font: 500 15.5px/1.35 var(--f-text); color: var(--ink); }
+.ls-fc-what { display: block; margin-top: 2px; font: 400 14px/1.5 var(--f-text); color: var(--ink-2); }
+.ls-fc-checked { display: block; margin-top: 3px; font: 400 11.5px/1.4 var(--f-ui); color: var(--ink-3); }
+.ls-fc-foot { margin: var(--s3, 12px) 0 0; font: italic 400 13.5px/1.5 var(--f-text); color: var(--ink-3); }
+
+/* ---------------------------------------------------------------- the consent line: left blank; only in the drawer and on the region page */
+.ls-consent {
+  margin-top: var(--s4, 16px); padding-top: var(--s3, 12px);
+  border-top: 1px solid var(--rule-strong);
+  border-top: 1px solid color-mix(in srgb, var(--host) 30%, transparent);
+  font: 400 12.5px/1.5 var(--f-ui); color: var(--ink-3);
+}
+.ls-consent p { margin: 0; }
+.ls-consent-cap { font: italic 400 13.5px/1.4 var(--f-text); color: var(--ink-2); }
+.ls-consent-cap::before {
+  content: ""; display: block; width: min(260px, 70%); height: 26px; margin-bottom: 4px;
+  border-bottom: 1.5px solid var(--ink-2);
+}
+
+/* ---------------------------------------------------------------- How to arrive in {name} */
+.ls-arrive {
+  display: inline-block; margin-top: var(--s4, 16px);
+  font: italic 400 16px var(--f-text); color: var(--accent);
+  text-decoration: underline dotted; text-underline-offset: 4px;
+}
+.ls-arrive:hover { color: var(--ink); }
+.ls-arrow { margin-left: 8px; vertical-align: 0; }
+
+/* ---------------------------------------------------------------- the place strip: the descriptive place, where it sits, where the water goes */
+.place-strip {
+  position: relative;
+  margin-top: var(--s5, 24px);
+  padding: var(--s4, 16px) var(--s4, 16px) var(--s4, 16px) calc(var(--s4, 16px) + 16px);
+  background: var(--river-wash); border-radius: 2px 18px 2px 2px;
+}
+.place-strip::before {
+  content: ""; position: absolute; left: 5px; top: 12px; bottom: 12px; width: 12px;
+  background: var(--river);
+  -webkit-mask: var(--stem) repeat-y 50% 0 / 12px 96px;
+          mask: var(--stem) repeat-y 50% 0 / 12px 96px;
+}
+.place-strip > .tag {
+  margin: 0;
+  font: 600 var(--t-label, 10.5px)/1.4 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--river);
+}
+.place-strip .place { margin: var(--s2, 8px) 0 0; font: italic 400 20px/1.3 var(--f-text); color: var(--ink); }
+.place-dl { display: grid; grid-template-columns: 128px minmax(0, 1fr); margin: var(--s3, 12px) 0 0; }
+.place-dl > div { display: contents; }
+.place-dl dt, .place-dl dd {
+  margin: 0;
+  border-top: 1px solid var(--rule-strong);
+  border-top: 1px solid color-mix(in srgb, var(--river) 28%, transparent);
+}
+.place-dl dt { padding: 9px 10px 9px 0; font: 600 var(--t-label, 10.5px)/1.4 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.place-dl dd { padding: 7px 0; font: 400 15px/1.5 var(--f-text); color: var(--ink); }
+.place-caption { margin: var(--s3, 12px) 0 0; font: 400 12px/1.5 var(--f-ui); color: var(--ink-3); }
+.place-note { margin: var(--s2, 8px) 0 0; font: italic 400 13.5px/1.5 var(--f-text); color: var(--ink-3); }
+
+/* ---------------------------------------------------------------- phones: rows stack, the sources align left */
+@media (max-width: 767px) {
+  .drawer-land-standing { padding: var(--s4, 16px) var(--s4, 16px) var(--s4, 16px) calc(var(--s4, 16px) + 14px); }
+  .ls-row, .place-dl { grid-template-columns: minmax(0, 1fr); }
+  .ls-label, .place-dl dt { padding: 12px 0 2px; }
+  .ls-val, .place-dl dd { border-top: 0; padding: 0 0 10px; }
+  .ls-claims { margin-left: 0; }
+}
+
+/* ---------------------------------------------------------------- print: the Land standing block always prints in full */
+@media print {
+  .ls-claims > ul { display: block !important; }
+  .ls-claims summary { text-decoration: none; }
+  .ls-claims summary::before { display: none; }
+  .drawer-land-standing a[href^="http"]::after, .place-strip a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 10px; color: var(--ink-3); }
+}

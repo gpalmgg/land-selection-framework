@@ -1,0 +1,6 @@
+{
+  "baseline": { "landStanding": { "nova-scotia": { "territory": "Mi'kma'ki, unceded territory of the Mi'kmaq" }, "alentejo": { "territory": "Alentejano montado culture" } } },
+  "shipped": { "landStanding": { "nova-scotia": { "territory": "Mi'kma'ki, the territory of the Mi'kmaq" }, "alentejo": { "territory": "Alentejano montado culture" } } },
+  "baselineHtml": "<p>Nova Scotia sits in Mi'kma'ki, <b>unceded</b> territory. Treaties of peace and friendship did not transfer title to the land at all.</p>",
+  "shippedHtml": "<p>Nova Scotia sits in Mi'kma'ki, territory. Treaties of peace and friendship did not transfer title to the land at all.</p>"
+}

@@ -1,0 +1,22 @@
+{
+  "koppen": {
+    "source": { "name": "Beck et al. 2023", "url": "https://doi.org/10.1038/s41597-023-02549-6" },
+    "footprint": "cevennes",
+    "periods": {
+      "1961–1990": { "dominant": "Cfb", "shares": { "Cfb": 0.5, "Csa": 0.3, "Csb": 0.2 } },
+      "1991–2020": { "dominant": "Cfb", "shares": { "Cfb": 0.47, "Csa": 0.28, "Csb": 0.12, "Cfa": 0.13 } },
+      "2041–2070 SSP2-4.5": { "dominant": "Csa", "shares": { "Csa": 0.67, "Cfb": 0.27, "Csb": 0.06 } },
+      "2071–2099 SSP2-4.5": { "dominant": "Csa", "shares": { "Csa": 0.8, "Cfb": 0.2 } }
+    },
+    "note": "Shares are the fraction of the footprint area in each class at 1 km."
+  },
+  "water": {
+    "source": { "name": "WRI Aqueduct 4.0", "url": "https://www.wri.org/aqueduct" },
+    "footprint": "cevennes", "basins": 8,
+    "baselineStress": { "ratio": 0.016, "class": "Low (<10%)" },
+    "stress2050Bau": { "ratio": 0.06, "class": "Low (<10%)" },
+    "droughtRisk": "Medium (0.4-0.6)", "interannualVariability": "Low-medium", "seasonalVariability": "Low-medium",
+    "groundwaterTrend": "Insignificant Trend", "riverineFloodRisk": "Medium - High (2 in 1,000 to 6 in 1,000)",
+    "note": "WRI Aqueduct 4.0 indicators in WRI's own classes; this project does not combine or rescale them."
+  }
+}

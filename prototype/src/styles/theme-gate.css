@@ -1,0 +1,7 @@
+/* theme-gate.css: LIFTED by MC-A11Y (2026-10-06). The light-only gate (design decision D10) held the palette to light until every surface
+   was checked in dark. Evidence (tests/e2e/suites/a11y.py, the MC-A11Y e2e result file, "extra.a11y.dark_gate"):
+   rendered-text contrast 0 failures at 1280 dark and 390 light and dark on every surface, no hard-coded light colour left in
+   src/styles outside tokens.css (@media print excepted), dark screenshots of home, drawer, compare, map, region page and deeper viewed.
+   tokens.css now decides: `color-scheme: light dark` follows the OS, and there is still no on-page toggle.
+   This file is an empty tombstone, not deleted, because the region-page, deeper and arrive suites still expect it in the stylesheet
+   order. To restore light-only: put `:root { color-scheme: light; }` back here plus the light re-statement of the tokens' fallback block. */

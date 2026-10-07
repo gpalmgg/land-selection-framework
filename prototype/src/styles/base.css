@@ -1,0 +1,78 @@
+/* base.css: reset, the page frame and the pieces every page shares: skip link, focus ring, .sr-only, the wave, the Salutation and the
+   refusal band. Colour, type scale, space and the ripple come from tokens.css. */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; padding: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px; line-height: 1.55;
+  color: var(--ink); background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* the page makes room for the fixed rail column (rail.css turns it into a strip under 900px) */
+body { overflow-x: hidden; padding-left: var(--rail-w, 232px); }
+.container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+.serif { font-family: 'Spectral', Georgia, serif; }
+.mono { font-feature-settings: 'tnum' 1; font-variant-numeric: tabular-nums; }
+h1, h2, h3, h4 { margin: 0; color: var(--ink); }
+.eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent);
+}
+.small { font-size: 11.5px; color: var(--ink-3); }
+a { color: inherit; }
+/* Spectral has no 600 or 700: pin the serif headings to 500 so the UA bold is not synthesised (a later weight still wins). */
+h1.serif, h2.serif, h3.serif, h4.serif { font-weight: 500; }
+
+/* ---- skip link, focus ring, screen-reader text: one definition for every page ---- */
+.skip-link {
+  position: absolute;
+  left: 12px; top: 12px;
+  z-index: 3000;
+  transform: translateY(-300%);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 12px 20px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(26, 26, 26, 0.25);
+}
+.skip-link:focus { transform: none; outline: 3px solid var(--accent); outline-offset: 2px; }
+main#main:focus { outline: none; }      /* the skip link's target never paints its own ring */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible,
+summary:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+input[type="range"]:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+@media print {
+  .skip-link { display: none !important; }
+  html, body { background: #fff !important; color: #000 !important; }      /* print IS the export: black on white, on every page */
+  body { padding-left: 0; }                                                    /* the rail is hidden (rail.css), so the page gives its column back */
+}
+
+/* ---- the wave and the Salutation ("Whose land"): shared by the cards, the drawer, the compare view and the region page ---- */
+.wave {
+  height: 12px;
+  background: var(--region-ui, var(--region, var(--accent)));
+  -webkit-mask: var(--ripple) repeat-x 0 50% / 88px 12px;
+  mask: var(--ripple) repeat-x 0 50% / 88px 12px;
+}
+.salutation { display: flex; flex-direction: column; gap: 3px; margin: 0; }
+.sal-k {
+  font: 600 var(--t-label, 10.5px)/1.3 var(--f-ui);
+  letter-spacing: .14em; text-transform: uppercase; color: var(--host);
+}
+.sal-flag { font-weight: 500; letter-spacing: .06em; text-transform: none; color: var(--ink-3); }   /* real text: " - contested" */
+.sal-v { font: italic 400 18px/1.3 var(--f-text); color: var(--host); }
+
+/* ---- the refusal band: a river that runs, breaks and stops at a bar; the tool's stance, identical in every drawer and region page ---- */
+.refusal { padding: var(--s5, 24px) 0 0; }
+.refusal svg { display: block; width: 100%; max-width: 560px; height: 34px; color: var(--accent); overflow: visible; }
+.refusal p {
+  font: italic 330 clamp(24px, 2.4vw, 27px)/1.28 var(--f-display); letter-spacing: -.01em;
+  color: var(--ink); margin: var(--s3, 12px) 0 0; max-width: 17em;
+}
+.refusal small { display: block; font: 400 12.5px/1.5 var(--f-ui); color: var(--ink-3); margin-top: var(--s3, 12px); }

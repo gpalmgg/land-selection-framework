@@ -1,0 +1,9 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {"layer": "hospital-proximity"},
+  "features": [
+    {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-7.9, 38.6]}, "properties": {"region_id": "alpha", "nearest_hospital_km": 4.3}},
+    {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-9.4, 53.0]}, "properties": {"region_id": "beta-land", "nearest_hospital_km": 12.1}},
+    {"type": "Feature", "geometry": {"type": "Point", "coordinates": [-72.7, 44.0]}, "properties": {"region_id": "gamma", "nearest_hospital_km": 20.5}}
+  ]
+}

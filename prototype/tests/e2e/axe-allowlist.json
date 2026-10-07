@@ -1,0 +1,4 @@
+{
+  "_doc": "Reviewed allow-list for the a11y suite (MC-A11Y). Only axe impacts moderate and minor can be listed; serious and critical are never allow-listed. Every entry needs a rule, an impact and a reason. Optional: pages (fnmatch globs over the page path, default every page), target_contains (a substring of the axe target selector). An unused entry is reported by the suite.",
+  "entries": []
+}

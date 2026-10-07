@@ -1,0 +1,19 @@
+# Climate — Highlands (north-west Scotland), UK
+
+**Headline finding:** A cool, wet, oceanic climate that warms by roughly 1.4 degrees C by mid-century on a medium pathway and stays cool: the footprint mean is 8.6 degrees C for 2041-2060 (SSP2-4.5), against 7.2 degrees C for 1970-2000. The change that matters for settlement is not the temperature but the water: wetter winters, especially in the west, and more frequent summer drought.
+
+**Key data point (with vintage):** WorldClim CMIP6 v2.1 BIO1 (annual mean temperature), SSP2-4.5, 2041-2060, 2.5 arcminute grid, 17-model ensemble (ACCESS-CM2, ACCESS-ESM1-5, BCC-CSM2-MR, CanESM5, CMCC-ESM2, CNRM-CM6-1, CNRM-ESM2-1, EC-Earth3-Veg, GISS-E2-1-G, HadGEM3-GC31-LL, INM-CM5-0, IPSL-CM6A-LR, MIROC-ES2L, MIROC6, MPI-ESM1-2-HR, MRI-ESM2-0, UKESM1-0-LL; the GFDL-ESM4 file returned HTTP 404 and is excluded). Zonal mean over the footprint (1,208 grid cells, 11,607 km2, all-touched): **8.60 degrees C** (single-model range 7.63 to 9.60). Mean of the 3x3 cells around the coordinates (-5.1, 57.8): 8.53 (range 7.50 to 9.51). Historical WorldClim 2.1 BIO1 (1970-2000) over the same footprint: 7.23, so the ensemble change is about +1.4 degrees C. Retrieved 2026-10-04.
+
+**Supporting facts:**
+- The footprint is three Highland Council 2022 wards (North, West and Central Sutherland; Wester Ross, Strathpeffer and Lochalsh; Caol and Mallaig), 11,607 km2 after masking the Small Isles. Elevation of 339 Global Solar Atlas grid points inside it runs 4 to 883 m (mean 285 m), so the zonal mean blends sea-level glens and 800 m plateaus.
+- Context only, not a cell source: the UK Climate Projections 2018 (Met Office Hadley Centre) are built on RCP pathways, not SSPs, and must never be labelled SSP2-4.5. The Adaptation Scotland summary (August 2025) gives, for Scotland as a whole, winter rainfall +11 percent by 2050 on a high-emission pathway (10th-90th percentile -19 to +44 percent), summer rainfall -8 percent, an increase in winter rain larger in the west than the east, and smaller snow losses in the mountains (for example the Highlands) than in low ground. It also says extreme drought events could move from about one in 20 years to one in three.
+- Observed: the same summary quotes the Met Office saying the 2015-2024 mean winter temperature was 44 percent warmer than the 1961-1990 winter average.
+
+**Practitioner-relevant nuance:** The ensemble grid is coarse for a footprint this steep, so the cell reports the spread (7.6 to 9.6) rather than one confident figure. The mean is a mix of the coast and the uplands; a settlement at 20 m and one at 400 m will not feel the same year. Heavier winter rain on peat and steep ground is the design problem (drainage, access tracks, landslip), not heat. Wildfire and flood and landslip magnitudes for this footprint were not opened and are UNVERIFIED here.
+
+**Sources:**
+1. WorldClim CMIP6 future climate, bioclimatic variables, 2.5 arcmin. https://www.worldclim.org/data/cmip6/cmip6climate.html (files read from geodata.ucdavis.edu/cmip6/2.5m/<GCM>/ssp245/wc2.1_2.5m_bioc_<GCM>_ssp245_2041-2060.tif)
+2. WorldClim 2.1 historical bioclimatic variables, 1970-2000. https://geodata.ucdavis.edu/climate/worldclim/2_1/base/wc2.1_2.5m_bio.zip
+3. Adaptation Scotland, Climate Projections for Scotland - Summary (August 2025). https://adaptation.scot/app/uploads/2025/08/low-res-6440-climate-projections-report-aug-25.pdf
+4. Adaptation Scotland, Climate change trends and projections. https://adaptation.scot/scotland-and-climate-change/climate-change-trends-and-projections/
+5. Boundaries: ONS Open Geography, Wards (December 2024) Boundaries UK BFC, Highland wards S13002990, S13002994, S13003000. https://services1.arcgis.com/ESMARspQHYMw9BZ9/arcgis/rest/services/Wards_December_2024_Boundaries_UK_BFC/FeatureServer/0

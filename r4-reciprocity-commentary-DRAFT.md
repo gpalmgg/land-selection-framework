@@ -1,3 +1,8 @@
+> **SUPERSEDED** — the evidence-checked 2026-10 update of this addendum is staged at `upgrade-2026-10/tracks/docs/staged/r4-addendum-final.md` and its placement target is `source-docs/Land Project v1 r4 Overview.md`, under the heading "r4 Commentary — Addendum: Reciprocity & host-community standing".
+> This file is kept as the historical 2026-06-30 / 2026-07-04 draft, not as source of truth; the Taos population figure below could not be traced to an opened source and is not in the final text. To act on the addendum, read the placement target above instead.
+
+---
+
 # DRAFT — r4 reciprocity commentary for the source-docs
 
 **Status:** draft for Gustaf's approval. NOT yet appended to the source-docs (those are the immutable source of truth — append only on your sign-off). Written to slot into `Land Project v1 r4 Overview.md` as a dated addendum after the existing 2026-05-29 r4 commentary. Core argument drafted 2026-06-30; **strengthened 2026-07-04 with an evidence-grounding subsection** (named scholarship + a measured displacement case + concrete precedents) drawn from the multi-track research swarm (`research/site-enrichment-2026-07/`) and the Nova Scotia cross-axis triangulation (`research/nova-scotia-land-access/`).

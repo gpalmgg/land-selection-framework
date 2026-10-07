@@ -1,0 +1,87 @@
+{
+  "region": {
+    "id": "gap-region",
+    "continent": "north-america",
+    "name": "gap region",
+    "short": "gap",
+    "country": "Fixtureland",
+    "coords": [
+      -76.75,
+      42.55
+    ],
+    "blurb": "A fixture place described place-first.",
+    "accent": "#6a8a7a",
+    "_note": "x"
+  },
+  "values": {
+    "climate": {
+      "value": 11.2,
+      "unit": "°C",
+      "vintage": "2041–2060, SSP2-4.5",
+      "label": "Cool temperate",
+      "source": "Fixture source",
+      "sourceUrl": "https://example.org/data",
+      "_audit": "hand note"
+    },
+    "water_stress": {
+      "value": 0.015,
+      "unit": "ratio",
+      "vintage": "2041–2060, SSP2-4.5",
+      "label": "Low",
+      "source": "Fixture source",
+      "sourceUrl": "https://example.org/data"
+    },
+    "soil_carbon": {
+      "value": 33,
+      "unit": "g/kg",
+      "vintage": "2041–2060, SSP2-4.5",
+      "label": "Moderate",
+      "source": "Fixture source",
+      "sourceUrl": "https://example.org/data"
+    },
+    "forest_change": {
+      "value": -0.6,
+      "unit": "%/decade",
+      "vintage": "2041–2060, SSP2-4.5",
+      "label": "Slight loss",
+      "source": "Fixture source",
+      "sourceUrl": "https://example.org/data"
+    },
+    "solar_pv": {
+      "value": null,
+      "unit": "kWh/kWp/yr",
+      "reason": "The Global Solar Atlas API could not be reached for this footprint; not estimated."
+    },
+    "conflict": {
+      "value": 0,
+      "unit": "events",
+      "vintage": "2041–2060, SSP2-4.5",
+      "label": "None",
+      "source": "Fixture source",
+      "sourceUrl": "https://example.org/data"
+    },
+    "regen_network": {
+      "value": 9,
+      "unit": "sites",
+      "vintage": "2041–2060, SSP2-4.5",
+      "label": "Sparse",
+      "source": "Fixture source",
+      "sourceUrl": "https://example.org/data"
+    },
+    "population": {
+      "value": 48,
+      "unit": "p/km²",
+      "vintage": "2041–2060, SSP2-4.5",
+      "label": "Low",
+      "source": "Fixture source",
+      "sourceUrl": "https://example.org/data",
+      "trend": "up",
+      "notes": "a free-text note",
+      "license": "CC BY 4.0"
+    }
+  },
+  "extras": {
+    "landStanding": {}
+  },
+  "notes": []
+}

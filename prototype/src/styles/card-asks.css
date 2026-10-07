@@ -1,0 +1,75 @@
+/* card-asks.css: below the fold of a region card (final-spec 8.8, 8.23): the fold, "It asks of you", the footer (status + Pin).
+   One state vocabulary: a mark AND words, never colour alone. */
+
+/* ---- the fold: a dashed rule, two half-circle notches and a soft crease ---- */
+.region-card .fold {
+  position: relative; flex: none; height: 18px;
+  background: linear-gradient(to bottom, rgb(60 40 20 / .09), transparent 70%);
+  border-top: 1px dashed var(--rule-strong);
+}
+.region-card .fold::before,
+.region-card .fold::after {
+  content: ""; position: absolute; top: -9px; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--paper); border: 1px solid var(--rule);
+}
+.region-card .fold::before { left: -10px; clip-path: inset(0 0 0 50%); }
+.region-card .fold::after { right: -10px; clip-path: inset(0 50% 0 0); }
+/* The clipped-away half of each notch still counts as scrollable overflow and made #region-grid 9 px wider than its box
+   (test_scale cards-grid-no-overflow). Clipping the fold sideways removes it; the visible halves lie inside the card, and
+   overflow-y stays visible because the notches rise 9 px above the dashed rule. */
+.region-card .fold { overflow-x: clip; }
+
+/* ---- It asks of you: visible on the card with no click; the first sentence only ---- */
+.region-card .card-asks {
+  flex: 1; margin: 0; padding: 2px var(--s5, 24px) var(--s4, 16px);
+  background: var(--accent-wash); font-style: normal; font-size: inherit; line-height: inherit; color: var(--ink);
+}
+.region-card .card-asks-label {
+  display: block; margin: 12px 0 8px; margin-right: 0;
+  font: 600 var(--t-label, 10.5px)/1 var(--f-ui); letter-spacing: .16em; text-transform: uppercase; color: var(--accent);
+}
+.region-card .card-asks p { margin: 0; font: italic 400 16.5px/1.5 var(--f-text); color: var(--ink); }
+.region-grid .region-card.fail .card-asks { background: transparent; }
+.region-grid .region-card.fail .card-asks-label { color: var(--ink); }      /* full-strength ink, as the retired fade-compensation rule pinned it */
+
+/* ---- footer: the status (a mark + words) and the Pin. Clicks on the status fall through to the stretched name button. ---- */
+.region-card .card-foot {
+  position: relative; z-index: 1; flex: none; pointer-events: none;
+  display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s3, 12px);
+  padding: var(--s3, 12px) var(--s5, 24px) var(--s4, 16px);
+  border-top: 1px solid var(--rule);
+}
+.region-card .status {
+  display: flex; flex-direction: column; gap: 5px; min-width: 0; margin: 0;
+  font: 500 12.5px/1.3 var(--f-ui); letter-spacing: 0; text-transform: none; color: var(--ink-2);
+}
+.region-card .status[hidden] { display: none; }
+.region-card .status .st { display: inline-flex; align-items: center; gap: 8px; }
+.region-card .status i {
+  flex: none; width: 12px; height: 12px; border-radius: 50%; box-sizing: border-box;
+  background: var(--ink); border: 2px solid var(--ink); transition: all .3s;
+}
+.region-card .status .why { display: none; font: 400 12px/1.45 var(--f-ui); color: var(--ink-2); }
+/* a region with no verified figure for a moved criterion says so (neither within nor outside for that one) */
+.region-card .status .why.gap { display: block; color: var(--gap); }
+
+/* outside: a hatched mark with a dashed ring, and the reason */
+.region-grid .region-card.fail .status i {
+  background: repeating-linear-gradient(135deg, var(--hatch) 0 1.5px, transparent 1.5px 4px), var(--sheet);
+  border: 2px dashed var(--ink-3);
+}
+.region-grid .region-card.fail .status .why { display: block; }
+
+/* ---- Pin: the icon, "Pin" / "Pinned", aria-pressed. Pinned = ink-filled. A set the visitor builds; never ranked. ---- */
+.region-card .region-pin {
+  appearance: none; pointer-events: auto; cursor: pointer; flex: none; position: relative; z-index: 1;
+  display: inline-flex; align-items: center; gap: 7px; min-height: 36px; padding: 7px 11px 7px 9px;
+  background: transparent; color: var(--ink-2); border: 1px solid var(--rule-strong); border-radius: var(--r-btn, 2px 12px 2px 2px);
+  font: 500 12px/1 var(--f-ui); letter-spacing: 0; text-transform: none;
+  transition: background-color .15s, color .15s, border-color .15s;
+}
+.region-card .region-pin svg { width: 14px; height: 14px; flex: none; }
+.region-card .region-pin:hover { background: var(--paper-2); color: var(--ink); transform: none; }
+.region-card .region-pin:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.region-card .region-pin[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+@media (pointer: coarse), (max-width: 767px) { .region-card .region-pin { min-height: 44px; } }

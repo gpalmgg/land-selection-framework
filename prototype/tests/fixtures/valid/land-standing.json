@@ -1,0 +1,11 @@
+{
+  "territory": "Alentejano montado agro-pastoral culture, with large herdade estates and village commons",
+  "tenure": "Freehold under Portuguese land law; protected-zone parcels transact freely but rarely permit residential construction",
+  "entry": "Buy freehold only after verifying protected-zone status, and root into a sparse village rather than fencing off an estate",
+  "obligation": "Hold the montado's shared water and fire discipline with the neighbours who manage the landscape in common",
+  "source": "Portuguese Land Law DL 555/99 (consolidated, 2024)",
+  "sourceUrl": "https://dre.pt/web/guest/legislacao-consolidada/-/lc/34465475/view",
+  "sources": [{ "claim": "tenure", "label": "DL 555/99", "url": "https://dre.pt/web/guest/legislacao-consolidada/-/lc/34465475/view" }],
+  "territorySource": "Public record",
+  "territorySourceUrl": "https://dre.pt/web/guest/legislacao-consolidada/-/lc/34465475/view"
+}

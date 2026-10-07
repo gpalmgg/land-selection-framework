@@ -1,12 +1,12 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "source": "Per-region dossiers (accessibility.md / regen.md / stability.md / climate.md); each entry carries its primary citation where available in its `source` property",
-    "source_url": "data/research-dossier/<id>/{accessibility,regen,stability,climate}.md",
-    "vintage": "2026-05 compilation",
+    "source": "National and regional statistical offices (census and statistical-office pages) cited per entry in `source`; dossier readings are marked as such",
+    "source_url": "see per-feature `source_url` for the primary source",
+    "vintage": "2026-05 compilation; re-verified and extended to 30 regions 2026-10",
     "native_unit": "per-jurisdiction (point at region centroid)",
     "license": "Research dossiers internal; underlying primary sources carry their own licenses",
-    "note": "Delivers the Spec Step 1 explicit gap-candidate (Overview Open Q3 / Spec Step 1 top-down review). Population/demographic dimensions added under metric #1 as r4 proposed."
+    "note": "population_trend `volatile` is also used where the direction differs by area inside the region (the notes say how), because the enum has no `mixed`. Delivers the Spec Step 1 explicit gap-candidate (Overview Open Q3 / Spec Step 1 top-down review). Population/demographic dimensions added under metric #1 as r4 proposed."
   },
   "features": [
     {
@@ -29,7 +29,7 @@
         "rural_density_notes": "Alentejo population density ~22 inhabitants/km2 in 2023, roughly one-eighth Portugal's national average of ~111/km2.",
         "data_confidence": "high",
         "source": "accessibility.md, INE Portugal Censos 2021 and Pordata 2023",
-        "source_url": "https://www.ine.pt/scripts/db_censos_2021.html",
+        "source_url": "https://www.ine.pt/xportal/xmain?xpid=CENSOS21&xpgid=censos21_main",
         "gaps": "",
         "region_id": "alentejo"
       }
@@ -54,7 +54,7 @@
         "rural_density_notes": "Galicia overall density ~91 inhabitants/km2 in 2023, close to Spain national 95/km2, but bimodal with coastal arc dense and interior Ourense/Lugo at depopulation-frontier densities.",
         "data_confidence": "high",
         "source": "accessibility.md, IGE Galicia and INE 2023",
-        "source_url": "https://www.ige.gal/",
+        "source_url": "https://www.ige.gal/web/mostrar_actividade_estatistica.jsp?idioma=gl&codigo=0201001001",
         "gaps": "",
         "region_id": "galicia"
       }
@@ -94,8 +94,8 @@
         ]
       },
       "properties": {
-        "population_trend": "mixed",
-        "population_trend_notes": "West Cork experienced significant in-migration through 2020-2024; Connemara Gaeltacht core declining slowly but supported by Udaras na Gaeltachta investment.",
+        "population_trend": "volatile",
+        "population_trend_notes": "The trend differs by area, so no single direction fits: West Cork saw significant in-migration through 2020 to 2024, while the Connemara Gaeltacht core is declining slowly with Údarás na Gaeltachta investment.",
         "median_age_band": "moderate",
         "median_age_notes": "Median age in rural West Cork 2022: ~42 years; Connemara Gaeltacht core: ~43 years per CSO Census 2022.",
         "migration_dynamic": "mixed",
@@ -154,7 +154,7 @@
         "rural_density_notes": "Lozere ~15 inhabitants/km2 in 2024, France's lowest departement density; National Park des Cevennes ~24/km2 across 2,930 km2.",
         "data_confidence": "high",
         "source": "accessibility.md, INSEE 2024",
-        "source_url": "https://www.insee.fr/",
+        "source_url": "https://www.insee.fr/fr/accueil",
         "gaps": "",
         "region_id": "cevennes"
       }
@@ -204,7 +204,7 @@
         "rural_density_notes": "Asturias regional density ~95 inhabitants/km2 in 2023 but heavily concentrated in Oviedo-Gijon-Aviles belt; rural-interior comarca densities 10-30/km2.",
         "data_confidence": "high",
         "source": "accessibility.md, SADEI and INE 2023-2024",
-        "source_url": "https://www.sadei.es/",
+        "source_url": "https://www.sadei.es/inicio",
         "gaps": "",
         "region_id": "asturias"
       }
@@ -254,9 +254,134 @@
         "rural_density_notes": "Estonia national density ~30 inhabitants/km2 in 2024; Saaremaa ~12/km2 (~30,000 people on ~2,673 km2); Setomaa parish density ~5-7/km2.",
         "data_confidence": "high",
         "source": "accessibility.md, Statistics Estonia / Statistikaamet 2024",
-        "source_url": "https://www.stat.ee/",
+        "source_url": "https://stat.ee/en",
         "gaps": "",
         "region_id": "estonia-rural"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.1,
+          57.8
+        ]
+      },
+      "properties": {
+        "population_trend": "stable",
+        "population_trend_notes": "Three wards (footprint plus Small Isles): 25,992 (mid-2011), 25,803 (2016), 26,319 (mid-2021) per National Records of Scotland estimates on 2022 wards; Census 2022 26,859 (citypopulation.de, attributed NRS). Census 2011 to 2022 by ward: North, West and Central Sutherland 6,130 to 5,791; Wester Ross, Strathpeffer and Lochalsh 12,230 to 12,196; Caol and Mallaig 8,790 to 8,872.",
+        "median_age_band": "aging_fast",
+        "median_age_notes": "Median age (computed from NRS single-year ages, three wards): 47 (mid-2011), 50 (2016), 51 (mid-2021) against Scotland 41, 41, 42; share aged 65 and over 21.5, 24.7, 26.2 percent (Scotland 16.9, 18.5, 19.6); under-16s 16.9 to 13.8 percent (Scotland 17.3 to 16.6).",
+        "migration_dynamic": "unknown",
+        "migration_notes": "A flat population with a median age rising about four years in a decade implies in-migration offsetting natural decrease, but ward-level migration components were not opened; not asserted.",
+        "rural_density_signal": "very_low",
+        "rural_density_notes": "GHSL 2030 over the footprint 2.3 p/km2; Census 2022 over the three wards 2.3 p/km2 (ward range 1.2 to 4.3; Caol is a Fort William suburb and Strathpeffer is Inverness commuter belt) against Scotland about 70.",
+        "data_confidence": "high",
+        "source": "National Records of Scotland, Electoral ward population estimates (mid-2001 to mid-2021, 2022 wards); Scotland's Census 2022 via citypopulation.de",
+        "source_url": "https://www.nrscotland.gov.uk/publications/electoral-ward-population-estimates/",
+        "gaps": "Highlands and Islands Enterprise population work and Census 2022 ward age tables were not opened; migration components not found.",
+        "region_id": "scottish-highlands"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.7,
+          63.3
+        ]
+      },
+      "properties": {
+        "population_trend": "declining",
+        "population_trend_notes": "18 footprint municipalities: 253,464 (1990) to 219,348 (2025), -13.5%; the 14 smaller municipalities 124,574 to 76,809, -38.3%; Joensuu, Kontiolahti and Liperi grew; 15 of 18 shrank. Statistics Finland projection 2024: 220,356 (2024), 215,592 (2030), 208,607 (2040), 206,034 (2045), -5.3% 2024 to 2040.",
+        "median_age_band": "aging",
+        "median_age_notes": "Mean age 46.9 (national 44.1) and 29.6% aged 65+ (national 23.8%), 31 Dec 2025, population-weighted over the 18 municipalities; outside Joensuu and Kajaani mean age 50.5 and 35.4% 65+. The statistic is the mean, not the median.",
+        "migration_dynamic": "net_out",
+        "migration_notes": "Intermunicipal net migration across the 18 municipalities: -538 (2020), -298, -1,055, -1,261, -1,406, -1,468 (2025). International migration not included; foreign citizens are 5.4% of residents (3.4% outside the two hubs).",
+        "rural_density_signal": "very_low",
+        "rural_density_notes": "7.4 persons per km2 land area (national 18.6); 4.1 outside Joensuu and Kajaani; municipal densities from 1.4 (Ristijärvi) to 33.2 (Joensuu).",
+        "data_confidence": "high",
+        "source": "Statistics Finland, tables 11ra, 14wx, 11a2 (opened via PxWeb API 2026-10-04)",
+        "source_url": "https://statfin.stat.fi/PxWeb/api/v1/en/StatFin/vaerak/11ra.px",
+        "gaps": "Municipal projection uses the 2024 projection round and the 2024 municipal division (Nurmes already includes the former Valtimo).",
+        "region_id": "north-karelia-kainuu"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.0,
+          45.65
+        ]
+      },
+      "properties": {
+        "population_trend": "stable",
+        "population_trend_notes": "Sum of the 124 communes (INSEE, municipal population): 55,189 (1968), 40,515 (1999), 39,298 (2011), 38,950 (2016), 38,564 (2020), 38,746 (2023). Fifty years of loss have slowed to a plateau; 2011 to 2023 is -1.4%, 2020 to 2023 +0.5%.",
+        "median_age_band": "aging_fast",
+        "median_age_notes": "INSEE RP 2021 age bands: 32.7% aged 65 or over (France, all communes 20.5%), 10.7% aged 80 or over (6.1%); median roughly 54, interpolated from bands (France about 42).",
+        "migration_dynamic": "net_in",
+        "migration_notes": "The Parc's own count: migration balance +427 against natural change -469 (annual variation -42; period label ambiguous on its page, INSEE RP 2016-2022). Arrivals offset, but do not exceed, natural decline.",
+        "rural_density_signal": "very_low",
+        "rural_density_notes": "11.6 inhabitants per km2 (38,746 / 3,352); median commune 7.6; seven communes above 1,000 inhabitants (Meymac, Eymoutiers, Felletin, Chamberet, Treignac, Corrèze, Peyrat-le-Château) hold 28% of residents.",
+        "data_confidence": "high",
+        "source": "INSEE, Historique des populations communales 1876-2023; INSEE RP 2021 TD_POP1A; Parc naturel régional de Millevaches (revitalisation study page)",
+        "source_url": "https://www.insee.fr/fr/statistiques/3698339",
+        "gaps": "Period of the Parc migration figures is ambiguously labelled on its page; median age is interpolated from bands, not published.",
+        "region_id": "millevaches"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.2,
+          40.5
+        ]
+      },
+      "properties": {
+        "population_trend": "declining",
+        "population_trend_notes": "Footprint 86,954 (2011) to 83,172 (1 Jan 2025): -4.3%; outside Teruel city 51,666 to 46,517: -10.0%. Since the 2021 Padron the total is +2.0% (81,539 to 83,172); 90 of 180 municipalities grew 2021-25 (85 declined, 5 unchanged), and 37 grew over 2011-25 (140 declined, 3 unchanged). Maestrazgo -15.9% since 2011 and -3.9% since 2021; Cuencas Mineras -13.8%. INE Padron cifras oficiales, table 2899.",
+        "median_age_band": "aging",
+        "median_age_notes": "Mean age 46.7 and 24.6% aged 65 or more (population-weighted over the six comarcas, IAEST fichas, INE annual census 1 Jan 2025): Maestrazgo 50.3 / 30.4%, Sierra de Albarracin 50.6 / 28.6%, Gudar-Javalambre 45.6 / 22.5%. Median age itself not published at this level.",
+        "migration_dynamic": "mixed",
+        "migration_notes": "Foreign-national share 13.1% (weighted; Jiloca 17.6%, Gudar-Javalambre 16.3%, Albarracin 9.3%, IAEST 2025); the post-2021 gain is small and uneven; 85 of 180 municipalities are under 100 inhabitants.",
+        "rural_density_signal": "very_low",
+        "rural_density_notes": "7.5 p/km2 over 11,090 km2 (INE 2025), 4.4 outside Teruel city; median municipality 110 inhabitants; 158 of 180 under 500.",
+        "data_confidence": "high",
+        "source": "INE Padron (table 2899), IAEST Estadistica Local fichas for the six comarcas",
+        "source_url": "https://www.ine.es/jaxiT3/Tabla.htm?t=2899",
+        "gaps": "Median age not published; INE 2021 base partly reflects the 2021 census revision.",
+        "region_id": "teruel-uplands"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.1,
+          44.45
+        ]
+      },
+      "properties": {
+        "population_trend": "stable",
+        "population_trend_notes": "ISTAT 1 January: 13 comuni 11,555 (2019) to 11,458 (2025), -0.8 percent; the 11 mountain comuni 2,953 to 2,892, -2.1 percent. Long run is a century of loss in the high communes (Pettenati 2013: Macra 861 in 1931 to 52 in 2011; ISTAT 2025: 42).",
+        "median_age_band": "aging",
+        "median_age_notes": "ISTAT 2025: median age 49 over the 13 comuni and 53 in the 11 mountain comuni; 65 and over are 25.7 and 29.2 percent, under-15s 12.5 and 9.8 percent. National comparison not opened.",
+        "migration_dynamic": "net_in",
+        "migration_notes": "ISTAT registry flows 2019 to 2024: 13 comuni net +528 (internal -9, foreign +537; Dronero alone +345); 11 mountain comuni net +104 (internal +56, foreign +48) against natural change of -154 (101 births, 255 deaths). Arrivals offset about two thirds of natural loss in the mountain comuni; foreign flows are not newcomer-settler counts.",
+        "rural_density_signal": "low",
+        "rural_density_notes": "20.1 per km2 over the 13 comuni (ISTAT 2025 over OSM boundary area 568.8 km2), 5.9 per km2 over the 11 mountain comuni; Dronero holds 61 percent of residents.",
+        "data_confidence": "high",
+        "source": "ISTAT POSAS 2019-2025 and Bilancio demografico mensile 2019-2024; Pettenati 2013",
+        "source_url": "https://demo.istat.it/",
+        "gaps": "Registry flows are all moves, not purpose-built newcomer counts; Pettenati's evidence is newcomer-side only; ISTAT national median age not opened.",
+        "region_id": "valle-maira"
       }
     },
     {
@@ -274,12 +399,12 @@
         "median_age_band": "moderate",
         "median_age_notes": "Median age in Oregon 2022: 39.7 years per US Census ACS 2022, younger than EU peer regions with a significantly younger in-migration stream.",
         "migration_dynamic": "net_in",
-        "migration_notes": "Net-attracting younger, educated migrants from California and across the US; climate-haven migration noted; not building into an ageing, shrinking community but an arriving one.",
+        "migration_notes": "Net-attracting younger, educated migrants from California and across the US, including people moving for climate reasons (dossier statement, not verified); an arriving community, not an ageing, shrinking one.",
         "rural_density_signal": "low",
         "rural_density_notes": "Willamette Valley regional average ~55 persons/km2 per JRC GHSL R2023; rural hinterland 5-30/km2 with urban cores (Salem ~2,000/km2, Eugene ~1,800/km2).",
         "data_confidence": "high",
         "source": "accessibility.md, JRC GHSL R2023 and US Census 2020",
-        "source_url": "https://ghsl.jrc.ec.europa.eu/ghs_pop2023.php",
+        "source_url": "https://human-settlement.emergency.copernicus.eu/ghs_pop2023.php",
         "gaps": "",
         "region_id": "cascadia"
       }
@@ -299,7 +424,7 @@
         "median_age_band": "aging",
         "median_age_notes": "",
         "migration_dynamic": "net_in",
-        "migration_notes": "Climate-haven and back-to-the-land migration; the 1970s counterculture wave seeded durable infrastructure; new wave of climate-aware migrants continuing.",
+        "migration_notes": "Back-to-the-land migration (the 1970s counterculture wave seeded durable infrastructure) and a newer wave of migrants who say they move for climate reasons; both are dossier statements and were not verified.",
         "rural_density_signal": "low",
         "rural_density_notes": "Vermont statewide population density 27 persons/km2 per US Census 2020 (49th lowest state); highly rural counties Essex 9/km2 and Orleans 15/km2; agricultural/forested interior of central Vermont ~5-15 persons/km2.",
         "data_confidence": "high",
@@ -320,11 +445,11 @@
       },
       "properties": {
         "population_trend": "growing",
-        "population_trend_notes": "Climate-haven and back-to-the-land migration into Western North Carolina; Asheville Communities Network catalogued 41 intentional communities in beginning stages in WNC alone as of 2025, indicating exceptional pipeline density.",
+        "population_trend_notes": "In-migration into Western North Carolina of back-to-the-land and climate-motivated movers (dossier statement, not verified); Asheville Communities Network catalogued 41 intentional communities in beginning stages in WNC alone as of 2025.",
         "median_age_band": "unknown",
         "median_age_notes": "",
         "migration_dynamic": "net_in",
-        "migration_notes": "Regen-driven and climate-haven in-migration has driven land prices upward; the region has 30 years of institutional depth attracting practitioners.",
+        "migration_notes": "Regen-driven in-migration, including people moving for climate reasons, has pushed land prices up (dossier statement, not verified); the region has 30 years of institutional depth attracting practitioners.",
         "rural_density_signal": "moderate",
         "rural_density_notes": "Western NC 18-county regional density ~47 persons/km2 per WNC Vitality Index 2022; Buncombe County (Asheville hub) ~120-158/km2; surrounding rural counties (Haywood, Madison, Yancey, Mitchell, Avery) 15-40/km2.",
         "data_confidence": "medium",
@@ -352,7 +477,7 @@
         "migration_notes": "",
         "rural_density_signal": "very_low",
         "rural_density_notes": "Driftless core counties per 2020 Census: Vernon ~15.0 persons/km2, Crawford ~10.9/km2, Richland ~11.3/km2; 5-county regional average ~18.9/km2.",
-        "data_confidence": "medium",
+        "data_confidence": "low",
         "source": "accessibility.md, US Census Bureau 2020 Decennial Census",
         "source_url": "https://www.census.gov/quickfacts/vernoncountywisconsin",
         "gaps": "Dossier omits explicit recent population trend, median age, and migration figures for the Driftless core.",
@@ -370,13 +495,13 @@
       },
       "properties": {
         "population_trend": "declining",
-        "population_trend_notes": "Most Ozark counties have lost population in every census since 1980; Newton County had ~7,600 in 2020 down from peaks of ~13,000 in the early 20th century; Searcy County ~7,800 in 2020.",
+        "population_trend_notes": "Most Ozark counties have lost population in every census since 1980; Newton County had 7,225 people in 2020 (US Census); the historical peak of about 13,000 and the Searcy County figure were not verified.",
         "median_age_band": "aging",
         "median_age_notes": "Older median age 45-50 in core counties per accessibility.md demographic profile.",
         "migration_dynamic": "mixed",
         "migration_notes": "Outmigration of working-age adults dominant since 1980; Starlink-enabled first wave of knowledge-economy workers relocating to the region is a positive demographic signal but not enough to reverse decline.",
         "rural_density_signal": "very_low",
-        "rural_density_notes": "Newton County, AR: ~3.4 persons/km2; Searcy County: ~4.6/km2; Stone County: ~5.8/km2 per US Census 2020; all JRC GHSL fully rural.",
+        "rural_density_notes": "Newton County, AR: 3.4 persons/km2; Searcy County: 4.5/km2; Stone County: 7.9/km2 per US Census 2020 (Stone County: 12,359 people over 20.375 square miles); the JRC GHSL rural classification was not re-checked.",
         "data_confidence": "high",
         "source": "accessibility.md, US Census Bureau 2020",
         "source_url": "https://www.census.gov/quickfacts/newtoncountyarkansas",
@@ -402,7 +527,7 @@
         "migration_notes": "Dossier notes earthship and arts/tourism economy attract practitioners and inflate land values via earthship B and B and short-term rental operators, but does not quantify recent net migration.",
         "rural_density_signal": "very_low",
         "rural_density_notes": "Taos County population density 6.05 persons/km2 per US Census 2020 (population 34,489; land area 5,710 km2); 54.6% of residents live in rural areas.",
-        "data_confidence": "medium",
+        "data_confidence": "low",
         "source": "accessibility.md, US Census Bureau 2020",
         "source_url": "https://www.census.gov/quickfacts/taoscountynewmexico",
         "gaps": "Dossier omits explicit recent population trend, median age, and net migration data for Taos County.",
@@ -427,9 +552,9 @@
         "migration_notes": "Immigration-friendly context noted (international collaborators can join within 1-2 year pathway); NS PNP quota cut 50% in 2025 is referenced in MEMORY but not visible in these dossier files.",
         "rural_density_signal": "low",
         "rural_density_notes": "Nova Scotia provincial density 18.4 persons/km2 per Statistics Canada 2021 Census; Cape Breton Island overall ~38.7/km2 but Inverness County only ~6.1/km2; rural Cape Breton Highlands 2-5/km2.",
-        "data_confidence": "medium",
+        "data_confidence": "low",
         "source": "accessibility.md, Statistics Canada 2021 Census",
-        "source_url": "https://www12.statcan.gc.ca/census-recensement/2021/as-sa/fogs-spg/Page.cfm?lang=E",
+        "source_url": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810000201",
         "gaps": "Dossier omits explicit recent population trend, median age, and migration figures for Nova Scotia.",
         "region_id": "nova-scotia"
       }
@@ -452,9 +577,9 @@
         "migration_notes": "",
         "rural_density_signal": "very_low",
         "rural_density_notes": "Regional District of Central Kootenay density 2.8 persons/km2 per Statistics Canada 2021 Census (62,509 people over 22,265 km2); electoral sub-districts range from 0.3/km2 to 23.8/km2; Nelson city ~820/km2.",
-        "data_confidence": "medium",
+        "data_confidence": "low",
         "source": "accessibility.md, Statistics Canada 2021 Census",
-        "source_url": "https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/details/page.cfm?Lang=E",
+        "source_url": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810000201",
         "gaps": "Dossier omits explicit recent population trend, median age, and migration figures for the Kootenays.",
         "region_id": "kootenays"
       }
@@ -477,9 +602,9 @@
         "migration_notes": "Proximity to Montreal creates second-home demand pushing rural land prices upward through 2000s-2020s; no explicit migration data given.",
         "rural_density_signal": "moderate",
         "rural_density_notes": "Estrie administrative region ~33 persons/km2 per Statistics Canada 2021 Census (337,701 residents over 10,212 km2); Sherbrooke core >1,000/km2 with agricultural rural areas 5-20/km2.",
-        "data_confidence": "medium",
+        "data_confidence": "low",
         "source": "accessibility.md, Statistics Canada 2021 Census",
-        "source_url": "https://www12.statcan.gc.ca/census-recensement/2021/dp-pd/prof/details/page.cfm?Lang=E",
+        "source_url": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810000201",
         "gaps": "Dossier omits explicit recent population trend, median age, and migration figures for Estrie.",
         "region_id": "quebec-eastern-townships"
       }
@@ -502,11 +627,136 @@
         "migration_notes": "",
         "rural_density_signal": "low",
         "rural_density_notes": "Oaxaca state overall ~44 hab/km2 per INEGI Census 2020 (4,132,148 people over 93,758 km2); Valles Centrales jurisdiction 80.8/km2; Sierra Norte jurisdiction 22.9/km2.",
-        "data_confidence": "medium",
+        "data_confidence": "low",
         "source": "accessibility.md, INEGI Censo de Poblacion y Vivienda 2020",
         "source_url": "https://www.inegi.org.mx/contenidos/programas/ccpv/2020/doc/cpv2020_pres_res_oax.pdf",
         "gaps": "Dossier omits explicit recent population trend, median age, and net migration data for Oaxaca highlands.",
         "region_id": "oaxaca"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.75,
+          42.55
+        ]
+      },
+      "properties": {
+        "population_trend": "declining",
+        "population_trend_notes": "Five-county total 260,532 (2010 Census) to 258,474 (2020) = -0.8 percent; NYS estimates 258,470 (2020 base) to 253,282 (2024) = -2.0 percent with all five counties lower in 2024 than 2020. Tompkins +4.1 percent 2010-20 and -1.3 percent 2020-24; the other four -2.3 to -4.7 percent 2010-20.",
+        "median_age_band": "unknown",
+        "median_age_notes": "Not retrievable: api.census.gov required a key; data.census.gov and QuickFacts returned 403.",
+        "migration_dynamic": "unknown",
+        "migration_notes": "No migration series opened. Amish and Mennonite in-migration (an expectation from pre-research) not verified at county level: NY Amish population 25,220 in 60 settlements statewide (Young Center, 2025); Census of Agriculture shows Yates farms -3 percent 2017-22.",
+        "rural_density_signal": "moderate",
+        "rural_density_notes": "Census 2020: 46.3 persons/km2 over the five counties' land area (258,474 / 5,585 km2); Tompkins 86.0, Cayuga 42.6, Seneca 40.3, Yates 28.3, Schuyler 21.0; 35.1 outside Tompkins. GHSL R2023A 2030 over the footprint including lakes: 36.1.",
+        "data_confidence": "medium",
+        "source": "US Census Bureau TIGERweb Census 2010 and 2020; NYS Open Data population estimates (krt9-ym2k); JRC GHSL R2023A",
+        "source_url": "https://data.ny.gov/resource/krt9-ym2k.json",
+        "gaps": "Median age, migration flows, Amish/Mennonite settlement by county.",
+        "region_id": "finger-lakes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.2,
+          38.0
+        ]
+      },
+      "properties": {
+        "population_trend": "growing",
+        "population_trend_notes": "Census 2020 101,099 (Louisa 37,596, Orange 36,254, Fluvanna 27,249). 2025 estimates (Census, via Wikipedia): Louisa 42,924 (+14.2%), Orange 40,083 (+10.6%), Fluvanna 28,975 (+6.3%); total 111,982 (+10.8%). Weldon Cooper Center July 2025 projection: 114,363 in 2030, 122,352 in 2040, 136,307 in 2050.",
+        "median_age_band": "aging",
+        "median_age_notes": "Median age 2020: Louisa 45.2, Orange 44.6, Fluvanna 44.5 (Wikipedia citing Census); the band 'aging' is a judgement (no national median was re-checked here).",
+        "migration_dynamic": "net_in",
+        "migration_notes": "Growth of about 11% in five years at a median age above 44 implies in-migration; Louisa's growth is attributed to retirees settling near Lake Anna and to commuting access to Richmond, Fredericksburg and Charlottesville (Wikipedia). Not measured from migration flows.",
+        "rural_density_signal": "low",
+        "rural_density_notes": "34.8 per km2 of land (Census 2020, 3 counties); Louisa 29.3, Fluvanna 36.6, Orange 41.0; GHSL 2030 33.1. Borderline low/moderate by the slate's own bands.",
+        "data_confidence": "medium",
+        "source": "US Census 2020 (TIGERweb), Weldon Cooper Center projections July 2025, Wikipedia county articles for 2025 estimates and median age",
+        "source_url": "https://www.coopercenter.org/virginia-population-projections",
+        "gaps": "2025 estimates and median ages taken from Wikipedia citing the Census (Census API needs a key); migration flows not measured.",
+        "region_id": "virginia-piedmont"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.9,
+          47.9
+        ]
+      },
+      "properties": {
+        "population_trend": "growing",
+        "population_trend_notes": "Statistics Canada July 1 estimates for the eight census divisions: 203,798 (2001), 197,170 (2019), 199,319 (2021), 204,755 (2025): -3.3% over 2001-2019, then +3.8% over 2019-2025; every MRC grew 2021-2025 (+0.9% La Matapédia to +4.9% Rimouski-Neigette). The long-run level is still near 2001.",
+        "median_age_band": "aging_fast",
+        "median_age_notes": "2021 Census median age by MRC 46.8 (Rivière-du-Loup) to 56.8 (Les Basques), Québec 43.2; 65 and over 27.6% (23.7% in 2016; Québec 20.6%).",
+        "migration_dynamic": "net_in",
+        "migration_notes": "2023/2024, eight census divisions: births 1,413, deaths 2,445 (natural decrease 1,032); net intraprovincial +747, net interprovincial +44, immigrants 285, net non-permanent residents +1,794. Intraprovincial inflow peaked at +1,602 in 2020/2021; it was slightly negative in 2015/2016 to 2017/2018 (-2, -169, -132).",
+        "rural_density_signal": "low",
+        "rural_density_notes": "9.0 p/km² by the 2021 census (199,039 on 22,188 km²), about 6.0 outside the cities of Rimouski and Rivière-du-Loup; MRC densities 3.3 (La Matapédia) to 27.7 (Rivière-du-Loup).",
+        "data_confidence": "high",
+        "source": "Statistics Canada tables 98-10-0002-01, 98-10-0022-01, 17-10-0152-01, 17-10-0153-01",
+        "source_url": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1710015301",
+        "gaps": "2026 Census not yet released; 2023/2024 components are the latest published; migration by age not analysed.",
+        "region_id": "bas-saint-laurent"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.0,
+          40.5
+        ]
+      },
+      "properties": {
+        "population_trend": "declining",
+        "population_trend_notes": "Seven-county total 81,485 (Census 2010) to 77,567 (Census 2020), -4.8 percent; ACS 2020-2024 5-year estimates sum to 76,874. Six of seven counties fell 2010-2020 (Schuyler -9.0, Clark -7.1, Lee -6.4, Van Buren -4.8, Appanoose -4.4, Scotland -2.6); Davis County rose 4.1 percent.",
+        "median_age_band": "aging",
+        "median_age_notes": "ACS 2020-2024 5-year median age: Van Buren 44.7, Lee 43.6, Appanoose 43.5, Clark 43.5, Schuyler 39.2, Scotland 36.5, Davis 36.3; ACS 2024 1-year comparators: United States 39.2, Iowa 39.0, Missouri 39.4.",
+        "migration_dynamic": "unknown",
+        "migration_notes": "No migration series was opened.",
+        "rural_density_signal": "very_low",
+        "rural_density_notes": "Census 2020: 9.2 persons/km2 over the seven counties (land area 8,418 km2); 6.2 without Lee County (Keokuk, Fort Madison); county range 4.2 (Scotland) to 25.0 (Lee). GHSL 2030 projection 9.7.",
+        "data_confidence": "high",
+        "source": "US Census Bureau 2010 and 2020 decennial counts (TIGERweb); ACS 2020-2024 5-year via Census Reporter",
+        "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Census2020/MapServer",
+        "gaps": "Migration flows, cause of decline, and farm-consolidation data not retrieved; the pre-research description of 'shrinking small towns' is supported by the county counts but town-level figures were not opened.",
+        "region_id": "ne-missouri-se-iowa"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.6,
+          44.9
+        ]
+      },
+      "properties": {
+        "population_trend": "stable",
+        "population_trend_notes": "Census 32,856 (2010) to 31,095 (2020), -5.4%; estimates since: 31,107 base (April 2020), 31,507 (2022), 31,383 (2024). Deaths exceed births every year (2024: 260 births, 604 deaths, natural change -344), offset by net migration (2024 +286: domestic +231, international +55; 2022 +590). From 2012 to 2018 migration was net out (-43 to -140 a year, Vintage 2020 series).",
+        "median_age_band": "aging",
+        "median_age_notes": "Median age 48.6 and 27.2% aged 65 or over on 1 July 2024 (8,537 of 31,383), against 23.5% for Maine as a whole (330,265 of 1,405,012, summed from the same county file); median age was 48.5 in 2020, so the level is high but not rising fast.",
+        "migration_dynamic": "net_in",
+        "migration_notes": "Net in since 2019: +250 in 2019 and +335 in 2020 (Vintage 2020 series), +347 in 2021, +590 in 2022, +291 in 2023 and +286 in 2024 (Vintage 2024 series); net out 2012-2018. Domestic migration counts moves from any other US county, including other Maine counties; it is not a count of out-of-state buyers. Newcomers meet a county where an estimated 59% of households cannot afford to buy.",
+        "rural_density_signal": "very_low",
+        "rural_density_notes": "4.7 persons/km2 on land area (2020 Census); GHSL 2030 5.4; largest centres small (Calais, Machias, Eastport).",
+        "data_confidence": "high",
+        "source": "US Census Bureau Population Estimates Vintage 2024 (co-est2024-alldata, cc-est2024-agesex-all) and Vintage 2020 (co-est2020-alldata); 2020 Census via TIGERweb",
+        "source_url": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2024/counties/totals/co-est2024-alldata.csv",
+        "gaps": "Migration is estimates-based and domestic includes in-state moves; income and housing tenure not pulled (ACS needs an API key).",
+        "region_id": "downeast-maine"
       }
     }
   ]

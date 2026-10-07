@@ -1,0 +1,7 @@
+[
+  {
+    "path": "^[a-z0-9-]+\\.ruledOut\\[\\d+\\]$",
+    "pattern": "(prestanombre|front-owner|nominee)[^.]{0,80}(illegal|prohibited|not permitted|void|unlawful|ruled out)",
+    "reason": "A ruledOut entry may NAME a prohibited structure (for example a front-owner / prestanombre arrangement) as something the law excludes, never as an instruction. Reviewed at EV-TEST creation: the pattern only matches when the same sentence says the structure is illegal or excluded."
+  }
+]

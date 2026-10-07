@@ -1,0 +1,5 @@
+{
+  "alpha": { "kind": "bbox", "bounds": [-9, 37, -6.9, 39.7], "areaKm2": 31600 },
+  "beta-land": { "kind": "polygon", "bounds": [-10, 52, -8, 54], "areaKm2": 8000, "polygonFile": "footprints/beta-land.geojson" },
+  "gamma": { "kind": "bbox", "bounds": [-73, 43, -72, 45], "areaKm2": 7000 }
+}

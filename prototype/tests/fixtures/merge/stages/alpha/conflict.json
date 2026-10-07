@@ -1,0 +1,30 @@
+{
+  "stage": "conflict",
+  "id": "alpha",
+  "status": "ok",
+  "method": {
+    "version": "ucdp-ged-v25.1-200km-geodesic-v1"
+  },
+  "footprint": {
+    "id": "alpha",
+    "kind": "bbox"
+  },
+  "inputs": [
+    {
+      "file": "GEDEvent_v25_1.csv",
+      "bytes": 250393383
+    }
+  ],
+  "computedAt": "2026-10-05T11:32:15Z",
+  "retrieved": "2025-03-31",
+  "periods": {
+    "2013_2018": {
+      "events": 0
+    },
+    "2019_2024": {
+      "events": 44,
+      "nearestEventKm": 159,
+      "layerEquivalentEvents": 2
+    }
+  }
+}

@@ -1,9 +1,9 @@
 {
   "type": "FeatureCollection",
   "metadata": {
-    "source": "Per-region dossiers (legal.md / water.md / soil.md); contamination data was NOT a structured research focus, so the layer captures regulatory regime + known signals only",
-    "source_url": "data/research-dossier/<id>/{legal,water,soil}.md",
-    "vintage": "2026-05 compilation",
+    "source": "Official environment-agency and regulation pages opened (named per entry); contamination data was NOT a structured research focus, so the layer captures regulatory regime + known signals only, and dossier readings are marked `not verified`",
+    "source_url": "see per-feature `source_url`",
+    "vintage": "2026-05 compilation; re-verified and extended to 30 regions 2026-10",
     "native_unit": "per-jurisdiction (point at region centroid)",
     "license": "Research dossiers internal; underlying primary sources (national contamination registers) carry their own licenses",
     "note": "Carries red-line underlying data for soil-contamination-needing-5yr-remediation (Overview decision 9). V1 ships a thin honest version (regulatory regime + known signals); V2 would integrate national contamination registers (BASIAS/BASOL France, EPA Superfund US, Bundes-Bodenschutzgesetz Germany registers, etc.) for direct register hits per parcel."
@@ -41,14 +41,14 @@
         ]
       },
       "properties": {
-        "contamination_regulatory_regime": "unknown",
+        "contamination_regulatory_regime": "Real Decreto 9/2005 (national: list of potentially polluting soil activities and criteria for declaring contaminated soils); regional application not read",
         "contamination_register_availability": "unknown",
         "known_contamination_signal": "unknown",
         "known_contamination_notes": "water.md flags aquifer pollution as a binding constraint alongside summer low-flow management but does not specify source or sector.",
         "due_diligence_burden": "unknown",
         "data_confidence": "low",
-        "source": "Galicia water.md headline finding",
-        "source_url": "",
+        "source": "Real Decreto 9/2005 (BOE); Galicia water.md headline finding (dossier reading, not verified)",
+        "source_url": "https://www.boe.es/buscar/act.php?id=BOE-A-2005-895",
         "gaps": "No Spanish or Galician contamination regulatory regime cited, no register identified, no specific contamination drivers named.",
         "region_id": "galicia"
       }
@@ -66,11 +66,11 @@
         "contamination_regulatory_regime": "unknown",
         "contamination_register_availability": "unknown",
         "known_contamination_signal": "complex",
-        "known_contamination_notes": "water.md notes legacy agricultural and mining contamination in specific micro-watersheds, particularly downstream of former Communist-era industrial sites; recommends verifying via regional ANM groundwater monitoring network.",
+        "known_contamination_notes": "Dossier reading (not verified): legacy agricultural and mining contamination in specific micro-watersheds, particularly downstream of former Communist-era industrial sites; it recommends checking the regional groundwater monitoring network.",
         "due_diligence_burden": "moderate",
-        "data_confidence": "medium",
-        "source": "Transylvania water.md practitioner reading",
-        "source_url": "",
+        "data_confidence": "low",
+        "source": "Romanian Waters (pointer to the national water authority; no contamination register or site list was opened); Transylvania water.md practitioner reading (not verified)",
+        "source_url": "https://rowater.ro/",
         "gaps": "Romanian contamination law not cited, no explicit public-register URL or system named beyond ANM monitoring.",
         "region_id": "transylvania"
       }
@@ -88,11 +88,11 @@
         "contamination_regulatory_regime": "unknown",
         "contamination_register_availability": "unknown",
         "known_contamination_signal": "legacy_agriculture",
-        "known_contamination_notes": "water.md notes microbial contamination from poorly managed septic systems and peat-staining as primary private-supply quality issues; EPA Drinking Water Quality reports flag west-coast private supplies as country's main quality concern.",
+        "known_contamination_notes": "Dossier reading citing EPA drinking-water reports (not re-checked here): microbial contamination from poorly managed septic systems and peat staining as the main private-supply quality issues; west-coast private supplies are flagged as the country's main quality concern.",
         "due_diligence_burden": "moderate",
         "data_confidence": "low",
-        "source": "EPA Ireland Drinking Water Quality reports as cited in Connemara water.md",
-        "source_url": "",
+        "source": "EPA Ireland, Drinking water (overview page opened); Connemara water.md (dossier reading, not verified)",
+        "source_url": "https://www.epa.ie/our-services/monitoring--assessment/drinking-water/",
         "gaps": "No Irish soil-contamination statute or public register cited; no industrial legacy signals explored.",
         "region_id": "connemara"
       }
@@ -110,11 +110,11 @@
         "contamination_regulatory_regime": "unknown",
         "contamination_register_availability": "unknown",
         "known_contamination_signal": "legacy_agriculture",
-        "known_contamination_notes": "water.md notes private supplies (~3% nationally, higher in rural Pembrokeshire) face contamination risk from agriculture and septic drainage per DWI Wales annual reports. No Milford Haven petrochemical signal in dossier.",
+        "known_contamination_notes": "Dossier reading citing DWI annual reports (not re-checked here): private supplies (about 3% nationally, higher in rural Pembrokeshire) face contamination risk from agriculture and septic drainage. No Milford Haven petrochemical signal in the dossier.",
         "due_diligence_burden": "moderate",
         "data_confidence": "low",
-        "source": "DWI Wales annual reports as cited in Pembrokeshire water.md",
-        "source_url": "",
+        "source": "Drinking Water Inspectorate, Private water supplies (page opened); Pembrokeshire water.md (dossier reading, not verified)",
+        "source_url": "https://www.dwi.gov.uk/private-water-supplies/",
         "gaps": "No UK contaminated-land regime (Part 2A EPA 1990) cited, no public register, no explicit treatment of Milford Haven petrochemical legacy.",
         "region_id": "pembrokeshire"
       }
@@ -135,8 +135,8 @@
         "known_contamination_notes": "",
         "due_diligence_burden": "unknown",
         "data_confidence": "low",
-        "source": "Cevennes water.md and soil.md",
-        "source_url": "",
+        "source": "BRGM, groundwater monitoring (pointer; no contamination register was opened); Cevennes water.md and soil.md (dossier reading)",
+        "source_url": "https://www.brgm.fr/en/groundwater-monitoring",
         "gaps": "No French ICPE or BASOL/BASIAS register cited; no contamination signals discussed.",
         "region_id": "cevennes"
       }
@@ -157,8 +157,8 @@
         "known_contamination_notes": "",
         "due_diligence_burden": "unknown",
         "data_confidence": "low",
-        "source": "South Tirol water.md and soil.md",
-        "source_url": "",
+        "source": "Province of Bolzano, Agency for the Environment (pointer; no contamination register was opened); South Tirol water.md and soil.md (dossier reading)",
+        "source_url": "https://ambiente.provincia.bz.it/",
         "gaps": "No Italian D.Lgs 152/2006 contamination regime cited; intensive apple-orchard pesticide signal not explicitly assessed in dossier.",
         "region_id": "south-tirol"
       }
@@ -173,14 +173,14 @@
         ]
       },
       "properties": {
-        "contamination_regulatory_regime": "unknown",
-        "contamination_register_availability": "partial",
+        "contamination_regulatory_regime": "Real Decreto 9/2005 (national: list of potentially polluting soil activities and criteria for declaring contaminated soils); regional application not read",
+        "contamination_register_availability": "unknown",
         "known_contamination_signal": "complex",
-        "known_contamination_notes": "water.md documents legacy mining contamination (coal, mercury, fluorite, lead) affecting Aller, Caudal, Nalon mid-reach sub-basins; IGME/CSIC and Confederacion Hidrografica del Cantabrico monitor and progressively remediate. Practitioner reading recommends full water-quality panel (heavy metals, sulfates, hydrocarbons) for parcels with historical mining in catchment. Soil.md confirms more legacy industrial contamination in central valleys than Galicia.",
+        "known_contamination_notes": "Dossier reading (not verified): legacy mining contamination (coal, mercury, fluorite, lead) in the mid-reaches of the Aller, Caudal and Nalón sub-basins, monitored by IGME/CSIC and the Confederación Hidrográfica del Cantábrico; the practitioner advice is a full water-quality panel (heavy metals, sulfates, hydrocarbons) for parcels with historical mining in the catchment.",
         "due_diligence_burden": "high",
-        "data_confidence": "medium",
-        "source": "Asturias water.md, citing IGME/CSIC and Confederacion Hidrografica del Cantabrico",
-        "source_url": "",
+        "data_confidence": "low",
+        "source": "Real Decreto 9/2005 (BOE); Asturias water.md citing IGME/CSIC and the Confederación Hidrográfica del Cantábrico (dossier reading, not opened)",
+        "source_url": "https://www.boe.es/buscar/act.php?id=BOE-A-2005-895",
         "gaps": "Spanish Real Decreto 9/2005 contaminated-soils regime not cited; no specific public-register URL provided.",
         "region_id": "asturias"
       }
@@ -201,8 +201,8 @@
         "known_contamination_notes": "water.md notes Elbe, Saale and Mulde surface-water quality remains affected by historical mining and industrial legacy. Dossier does not name Bitterfeld, Leuna, or specific ex-GDR contamination sites.",
         "due_diligence_burden": "high",
         "data_confidence": "low",
-        "source": "Saxony-Anhalt water.md",
-        "source_url": "",
+        "source": "Umweltbundesamt, Water topic page (pointer; no contamination register was opened); Saxony-Anhalt water.md (dossier reading)",
+        "source_url": "https://www.umweltbundesamt.de/en/topics/water",
         "gaps": "German BBodSchG (Bundes-Bodenschutzgesetz) not cited, no Altlasten-Kataster reference, no parcel-level guidance for ex-GDR industrial heritage.",
         "region_id": "saxony-anhalt"
       }
@@ -223,10 +223,120 @@
         "known_contamination_notes": "soil.md recommends due-diligence on Soviet-era contamination (former military or agricultural-collective sites) is worth scoping. water.md notes Saaremaa surface-water contamination from agriculture and saltwater intrusion risk near coast.",
         "due_diligence_burden": "moderate",
         "data_confidence": "low",
-        "source": "Estonia-rural soil.md practitioner reading",
-        "source_url": "",
+        "source": "Estonian Environment Agency (pointer; no contamination register was opened); Estonia-rural soil.md practitioner reading",
+        "source_url": "https://keskkonnaagentuur.ee/en",
         "gaps": "Estonian environmental code not cited, no public contamination register named, no oil-shale-region treatment (northeast Estonia outside dossier scope).",
         "region_id": "estonia-rural"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.1,
+          57.8
+        ]
+      },
+      "properties": {
+        "contamination_regulatory_regime": "Environmental Protection Act 1990 Part IIA, administered by Highland Council with SEPA; the council keeps a public register and an inspection strategy",
+        "contamination_register_availability": "public",
+        "known_contamination_signal": "none_documented",
+        "known_contamination_notes": "Highland Council reports it has identified and remediated two contaminated sites in the whole council area (25-71 Joss Street, Invergordon; Zone A, Rear Garden, Boxwood, Tain), both outside the footprint (page last modified 2 July 2026). Part IIA records only formally determined sites: sheep-dip, mining or military legacy was not examined.",
+        "due_diligence_burden": "low",
+        "data_confidence": "low",
+        "source": "Highland Council, Land contamination (Part IIA register summary)",
+        "source_url": "https://www.highland.gov.uk/contaminatedland",
+        "gaps": "Register contents and the SEPA contaminated land pages were not opened; absence of a determination is not evidence of absence.",
+        "region_id": "scottish-highlands"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.7,
+          63.3
+        ]
+      },
+      "properties": {
+        "contamination_regulatory_regime": "Environmental Protection Act 527/2014 ch.14: the polluter must clean; if the polluter cannot be found or does not, the area holder who consented to the pollution or knew or should have known of the area's state when acquiring it must clean it, unless obviously unreasonable; otherwise the municipality (s.133). Assessment reports go to the Permit and Supervision Agency (s.135). Soil condition data sit in the national MATTI information system (about 29,000 areas recorded, over 7,000 remediation decisions).",
+        "contamination_register_availability": "unknown",
+        "known_contamination_signal": "legacy_mining",
+        "known_contamination_notes": "Sotkamo hosts the Talvivaara-Terrafame nickel-zinc mine (opened 1 October 2008 by Talvivaara; Talvivaara went bankrupt and Terrafame acquired the site in 2015, per Terrafame's own history page). Its environmental record was not checked against a regulator source. Outokumpu is the site of a former copper mine (the municipality is named after it). Ilomantsi has a gold-mining zone under municipal planning (Southern Gold Line partial master plan).",
+        "due_diligence_burden": "moderate",
+        "data_confidence": "low",
+        "source": "Finlex 527/2014 s.133-135; Terrafame history page (terrafame.com); Municipality of Ilomantsi",
+        "source_url": "https://www.finlex.fi/fi/lainsaadanto/2014/527",
+        "gaps": "The MATTI register itself and the SYKE/ELY records for Sotkamo and Outokumpu were not opened; the mine's contamination and leak history was not verified against a regulator page and is deliberately not asserted here; the Outokumpu mine fact is from a secondary source; whether MATTI entries are public per site was not verified.",
+        "region_id": "north-karelia-kainuu"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.0,
+          45.65
+        ]
+      },
+      "properties": {
+        "contamination_regulatory_regime": "Code de l'environnement L125-6 and L125-7: the State publishes secteurs d'information sur les sols (SIS), annexed to local urbanism documents; a seller or landlord of land in an SIS must inform the buyer or tenant in writing, with remedies if pollution makes the land unfit for the intended use; the map of former industrial sites is flagged in certificats d'urbanisme.",
+        "contamination_register_availability": "partial",
+        "known_contamination_signal": "unknown",
+        "known_contamination_notes": "Corrèze SIS layer (DDT19, 2020-2021 vintage, WFS opened 2026-10-04): 18 SIS in the département, 2 inside Parc communes: 'Salamanière' (Peyrelevade) and 'Le Jacquet' (Davignac), nature not stated in the layer. Creuse and Haute-Vienne SIS, BASOL/CASIAS and former uranium mine records (MIMAUSA) and radon potential on granite were NOT opened (Géorisques unreachable from the research host).",
+        "due_diligence_burden": "unknown",
+        "data_confidence": "low",
+        "source": "Code de l'environnement L125-6, L125-7; DDT19 'Secteurs d'Information sur les Sols (SIS) en Corrèze' (data.gouv.fr)",
+        "source_url": "https://www.data.gouv.fr/datasets/secteurs-dinformation-sur-les-sols-sis-en-correze",
+        "gaps": "Two of three départements not checked; uranium legacy and radon not verified for the perimeter.",
+        "region_id": "millevaches"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.2,
+          40.5
+        ]
+      },
+      "properties": {
+        "contamination_regulatory_regime": "Ley 7/2022 title VIII (state): activities potentially contaminating the soil, declaration procedure and autonomous inventories; RD 9/2005 criteria and standards",
+        "contamination_register_availability": "unknown",
+        "known_contamination_signal": "legacy_mining",
+        "known_contamination_notes": "Cuencas Mineras (30 municipalities) is a lignite mining comarca from the early 20th century; the last mine closed in 2003 (es.wikipedia). No site-level contamination data were opened. Nitrate pressure from pig farming in the Jiloca and Comunidad de Teruel was not checked.",
+        "due_diligence_burden": "unknown",
+        "data_confidence": "low",
+        "source": "Ley 7/2022 (BOE consolidated); RD 9/2005; es.wikipedia Cuencas Mineras (Teruel)",
+        "source_url": "https://www.boe.es/buscar/act.php?id=BOE-A-2022-5809",
+        "gaps": "Aragon's own inventory or register of declared contaminated soils was not located (aragon.es page 404); no Cuencas Mineras remediation records; nitrate vulnerable-zone designation for Teruel not checked.",
+        "region_id": "teruel-uplands"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.1,
+          44.45
+        ]
+      },
+      "properties": {
+        "contamination_regulatory_regime": "D.Lgs. 152/2006 Title V Part IV: the polluter is responsible for prevention and remediation (art. 242) and the regions keep the register of sites under remediation (art. 251)",
+        "contamination_register_availability": "unknown",
+        "known_contamination_signal": "none_documented",
+        "known_contamination_notes": "No contaminated site located for the 13 comuni; no valley-level register search was done. Regione Piemonte states about 1,800 potentially contaminated sites region-wide.",
+        "due_diligence_burden": "unknown",
+        "data_confidence": "low",
+        "source": "D.Lgs. 152/2006 arts. 242 and 251 (Normattiva); Regione Piemonte, Amianto, bonifiche, terre e rocce da scavo",
+        "source_url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2006-04-03;152~art251",
+        "gaps": "Public access to the Piemonte anagrafe and its entries for the footprint comuni not opened (ARPA Piemonte register); former mining, tannery or quarry sites not assessed.",
+        "region_id": "valle-maira"
       }
     },
     {
@@ -245,8 +355,8 @@
         "known_contamination_notes": "",
         "due_diligence_burden": "unknown",
         "data_confidence": "low",
-        "source": "Cascadia water.md and soil.md",
-        "source_url": "",
+        "source": "US EPA, Superfund (pointer; the Oregon DEQ site list was not opened); Cascadia water.md and soil.md (dossier reading)",
+        "source_url": "https://www.epa.gov/superfund",
         "gaps": "Oregon DEQ contaminated-site program and Willamette Valley agricultural-chemical legacy not addressed in dossier.",
         "region_id": "cascadia"
       }
@@ -267,8 +377,8 @@
         "known_contamination_notes": "",
         "due_diligence_burden": "unknown",
         "data_confidence": "low",
-        "source": "Vermont water.md, soil.md, legal.md",
-        "source_url": "",
+        "source": "Vermont DEC, Waste Management Division (pointer; no hazardous-sites list was opened); Vermont water.md, soil.md, legal.md (dossier reading)",
+        "source_url": "https://dec.vermont.gov/waste-management",
         "gaps": "Vermont DEC hazardous-sites list and any agricultural pesticide signals not addressed in dossier.",
         "region_id": "vermont"
       }
@@ -289,8 +399,8 @@
         "known_contamination_notes": "",
         "due_diligence_burden": "unknown",
         "data_confidence": "low",
-        "source": "Southern Appalachians water.md and soil.md",
-        "source_url": "",
+        "source": "NC DEQ (pointer; no contaminated-site list was opened); Southern Appalachians water.md and soil.md (dossier reading)",
+        "source_url": "https://www.deq.nc.gov/",
         "gaps": "Coal-mining legacy (acid mine drainage), coal-ash impoundment, and TVA-region industrial heritage not addressed in dossier.",
         "region_id": "southern-appalachians"
       }
@@ -333,8 +443,8 @@
         "known_contamination_notes": "water.md documents karst vulnerability: thin soil and fractured limestone allow rapid infiltration of surface pollutants; CAFO contamination (nitrates, E. coli) documented in northwest Arkansas karst systems near Benton/Washington counties per USGS science brief 2023. Site selection requires mapping contributing watershed not just parcel boundary.",
         "due_diligence_burden": "high",
         "data_confidence": "medium",
-        "source": "USGS science brief 2023 and TNC Ozark Highlands Karst Program as cited in Ozarks water.md",
-        "source_url": "https://www.nature.org/en-us/get-involved/how-to-help/places-we-protect/ozark-karst-program/",
+        "source": "USGS, Groundwater availability of the Ozark Plateaus aquifer system (page opened); the 2023 USGS science brief and TNC Ozark Highlands karst work cited by the dossier were not opened (not verified)",
+        "source_url": "https://www.usgs.gov/publications/groundwater-availability-ozark-plateaus-aquifer-system",
         "gaps": "Arkansas Department of Environmental Quality contaminated-sites register not named; no statutory regime cited.",
         "region_id": "ozarks"
       }
@@ -355,8 +465,8 @@
         "known_contamination_notes": "",
         "due_diligence_burden": "unknown",
         "data_confidence": "low",
-        "source": "Northern New Mexico water.md, soil.md, legal.md",
-        "source_url": "",
+        "source": "US EPA, Superfund (pointer; the New Mexico Environment Department site list was not opened); Northern New Mexico water.md, soil.md, legal.md (dossier reading)",
+        "source_url": "https://www.epa.gov/superfund",
         "gaps": "Legacy uranium and molybdenum mining contamination across northern New Mexico, and Los Alamos/LANL plume not addressed in dossier.",
         "region_id": "northern-new-mexico"
       }
@@ -376,9 +486,9 @@
         "known_contamination_signal": "legacy_agriculture",
         "known_contamination_notes": "water.md flags agricultural nitrate contamination in Annapolis Valley lowlands, manganese and iron in some overburden aquifers, and historic-era acid deposition affecting lake pH in central Nova Scotia as primary quality risks.",
         "due_diligence_burden": "moderate",
-        "data_confidence": "medium",
-        "source": "Nova Scotia water.md",
-        "source_url": "",
+        "data_confidence": "low",
+        "source": "Nova Scotia Environment and Climate Change (pointer; no contaminated-sites register was opened); Nova Scotia water.md (dossier reading)",
+        "source_url": "https://novascotia.ca/nse/",
         "gaps": "Statute named is water-resource law not a soil-contamination regime; no provincial contaminated-sites register cited.",
         "region_id": "nova-scotia"
       }
@@ -399,8 +509,8 @@
         "known_contamination_notes": "",
         "due_diligence_burden": "unknown",
         "data_confidence": "low",
-        "source": "Kootenays water.md, soil.md, legal.md",
-        "source_url": "",
+        "source": "BC Ministry of Environment (pointer; the BC Site Registry was not opened); Kootenays water.md, soil.md, legal.md (dossier reading)",
+        "source_url": "https://www2.gov.bc.ca/gov/content/environment",
         "gaps": "Historic hardrock mining legacy in West Kootenay (Trail smelter, Sullivan mine catchment) and BC Site Registry not addressed in dossier.",
         "region_id": "kootenays"
       }
@@ -421,8 +531,8 @@
         "known_contamination_notes": "water.md notes cyanobacteria blooms on Lac Brome and Lac Magog in warm summers driven by agricultural runoff (phosphorus from dairy-intensive farming); practitioner reading recommends well testing and proximity assessment to agricultural drains before purchase. Asbestos-mining legacy (regional history) not addressed in dossier.",
         "due_diligence_burden": "moderate",
         "data_confidence": "medium",
-        "source": "Quebec Eastern Townships water.md",
-        "source_url": "",
+        "source": "Ministère de l'Environnement du Québec, Terrains contaminés (page opened); Quebec Eastern Townships water.md (dossier reading, not verified)",
+        "source_url": "https://www.environnement.gouv.qc.ca/sol/terrains/",
         "gaps": "Quebec LQE (Loi sur la qualite de l'environnement) section IV.2.1 contaminated-sites regime and GTC public register not cited.",
         "region_id": "quebec-eastern-townships"
       }
@@ -443,10 +553,120 @@
         "known_contamination_notes": "water.md notes waterborne contamination from upstream agriculture as a practical constraint in Sierra Norte and valley settlements; water use governed internally by ejido/comunal assembly rules rather than Conagua licences.",
         "due_diligence_burden": "moderate",
         "data_confidence": "low",
-        "source": "Oaxaca water.md",
-        "source_url": "",
+        "source": "Profepa (pointer; no contamination register was opened); Oaxaca water.md (dossier reading)",
+        "source_url": "https://www.gob.mx/profepa",
         "gaps": "Mexican LGEEPA contamination regime and any state-level Oaxaca register not cited; mining-district legacy (Sierra Norte historical mineral extraction) not addressed.",
         "region_id": "oaxaca"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.75,
+          42.55
+        ]
+      },
+      "properties": {
+        "contamination_regulatory_regime": "NYS DEC remedial programmes (State Superfund / Registry of Inactive Hazardous Waste Disposal Sites, Brownfield Cleanup, Environmental Restoration, Voluntary Cleanup) plus RCRA records, all in the public DEC Environmental Site Remediation database",
+        "contamination_register_availability": "public",
+        "known_contamination_signal": "legacy_industrial",
+        "known_contamination_notes": "85 distinct DEC records in the five counties (Tompkins 28, Cayuga 21, Seneca 18, Yates 13, Schuyler 5); 8 State Superfund Class 02 sites: General Electric Co. (Auburn), Cayuga County Groundwater Contamination (Union Springs), Brillo Landfill (Victory), Seneca Army Depot (Romulus), NYSEG Geneva Border City MGP (Waterloo), NYSEG Ithaca Court St. MGP, Morse Industrial Corporation (Ithaca), Mercury Aircraft (Dresden); Former Ithaca Gun Factory (BCP, Active). Mostly urban, depot and industrial sites; agricultural pesticide legacy not assessed.",
+        "due_diligence_burden": "moderate",
+        "data_confidence": "medium",
+        "source": "NYS DEC Environmental Remediation Sites (data.ny.gov c6ci-rzpg)",
+        "source_url": "https://data.ny.gov/resource/c6ci-rzpg.json",
+        "gaps": "due_diligence_burden is a judgement (public searchable registry, many urban sites, rural parcels unassessed); EPA NPL status of Seneca Army Depot not verified from an official EPA page; agricultural contamination not assessed.",
+        "region_id": "finger-lakes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.2,
+          38.0
+        ]
+      },
+      "properties": {
+        "contamination_regulatory_regime": "unknown",
+        "contamination_register_availability": "unknown",
+        "known_contamination_signal": "legacy_mining",
+        "known_contamination_notes": "Mining history, not documented contamination: Mineral was the centre of gold mining in Louisa County with fifteen gold mines within two miles of the town, and a zinc and lead mine operated into the 1970s (Wikipedia, Mineral, Virginia). The pre-research gold-pyrite and sulphur-mine detail and DMME abandoned-mine inventory were not verified.",
+        "due_diligence_burden": "unknown",
+        "data_confidence": "low",
+        "source": "Wikipedia, Mineral, Virginia (secondary)",
+        "source_url": "https://en.wikipedia.org/wiki/Mineral,_Virginia",
+        "gaps": "Virginia DEQ and Virginia Energy (DMME) pages were unreachable (403/404); no register checked; check any parcel in the Mineral district against the abandoned-mine inventory and the DEQ remediation records before buying or building.",
+        "region_id": "virginia-piedmont"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.9,
+          47.9
+        ]
+      },
+      "properties": {
+        "contamination_regulatory_regime": "Québec Environment Quality Act (CQLR c. Q-2) contaminated-land regime, with the MELCCFP 'Répertoire des terrains contaminés' (GTC system) published as open data (CC BY 4.0, updated 2026-10-02); the Act's s. 31.68 list is referenced by the open-data catalogue. The Land Protection and Rehabilitation Policy was not opened",
+        "contamination_register_availability": "public",
+        "known_contamination_signal": "legacy_industrial",
+        "known_contamination_notes": "GTC register records inside the eight MRCs: 345 sites (343 point and 2 surface records) with 382 case files, 3.3% of the 10,506 point records province-wide; 307 file rehabilitations are completed, 23 initiated, 46 not started, 6 not necessary; contaminant text is dominated by petroleum hydrocarbons (429 mentions in the file fields) with PAH 79 mentions; sites by MRC: Rimouski-Neigette 87, Rivière-du-Loup 61, Témiscouata 50, Kamouraska 39, La Mitis 30. The pattern is town fuel and commercial sites, not a single mining or industrial legacy; the register is 'not an exhaustive inventory' and does not capture agricultural-input legacy such as pesticide residues",
+        "due_diligence_burden": "moderate",
+        "data_confidence": "medium",
+        "source": "MELCCFP, Répertoire des terrains contaminés (GTC), Données Québec (CC BY 4.0)",
+        "source_url": "https://www.donneesquebec.ca/recherche/dataset/repertoire-des-terrains-contamines-gtc",
+        "gaps": "Pre-research suggested legacy agriculture; the register shows hydrocarbon sites instead and holds no agricultural-input records, so agricultural legacy is unknown, not absent. Policy text and notice-in-land-register rules not opened.",
+        "region_id": "bas-saint-laurent"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.0,
+          40.5
+        ]
+      },
+      "properties": {
+        "contamination_regulatory_regime": "Iowa: Iowa DNR contaminated-sites section with a public Contaminated Sites Database, and two state programs, the State Lead Program (567 IAC 105.100) and the Land Recycling Program (567 IAC 105.200). Missouri regime not opened.",
+        "contamination_register_availability": "partial",
+        "known_contamination_signal": "unknown",
+        "known_contamination_notes": "No in-footprint contamination finding was verified. Pre-research expected legacy agriculture (nitrate, atrazine); no nitrate or pesticide dataset for these counties was opened. Nearby: the Iowa Army Ammunition Plant, an EPA National Priorities List site since 1989 (explosives had contaminated surface water beyond the installation boundary, per the cited page), is in Des Moines County about 8 miles west of Burlington, outside the footprint and roughly 70 km from the region point.",
+        "due_diligence_burden": "unknown",
+        "data_confidence": "low",
+        "source": "Iowa DNR, Contaminated Sites (iowadnr.gov, State Lead and Land Recycling programs; programs.iowadnr.gov database); Wikipedia, Iowa Army Ammunition Plant (EPA NPL listing, August 1989)",
+        "source_url": "https://www.iowadnr.gov/environmental-protection/land-quality/contaminated-sites",
+        "gaps": "No parcel-level or county-level contamination data; Missouri register not opened; nitrate and atrazine in private wells for these counties not retrieved.",
+        "region_id": "ne-missouri-se-iowa"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.6,
+          44.9
+        ]
+      },
+      "properties": {
+        "contamination_regulatory_regime": "Maine DEP Uncontrolled Hazardous Substance Sites Program (38 MRS ch. 13-B, 1361-1371; the state equivalent of Superfund), Brownfields program and a public Hazardous and Oil Spill reporting system; private wells are not regulated and owners test and treat (Maine CDC).",
+        "contamination_register_availability": "public",
+        "known_contamination_signal": "unknown",
+        "known_contamination_notes": "No county-specific contamination finding was opened. Statewide facts: Maine CDC says 1 in 10 Maine wells has too much arsenic (arsenic MCL 10 ppb), and recommends testing private wells annually for coliform, E. coli, nitrate and nitrite and every 3-5 years for arsenic, uranium, radon and others. Maine's PFAS farm problem is tied to licensed biosolids spreading sites (MFT and MOFGA run PFAS testing grants; Indigenous producers of food and medicine need not meet commercial-farm criteria); no Washington County tally was found. Blueberry-barren pesticide use was not documented against a primary source.",
+        "due_diligence_burden": "moderate",
+        "data_confidence": "low",
+        "source": "Maine DEP Uncontrolled Sites Program; Maine CDC Arsenic in Drinking Water and Private Well Water; Maine Farmland Trust PFAS page",
+        "source_url": "https://www.maine.gov/dep/spills/uncontrolledsites/index.html",
+        "gaps": "Washington County arsenic rate, PFAS site list, uncontrolled-site list and blueberry-barren pesticide record not opened; burden rated from the statewide private-well position.",
+        "region_id": "downeast-maine"
       }
     }
   ]

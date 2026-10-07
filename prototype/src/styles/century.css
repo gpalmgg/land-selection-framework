@@ -1,0 +1,70 @@
+/* === The Century Line (design 8.4): every criterion's data window against the 50 to 100 year horizon. Static markup from lib/century.js. === */
+.century-sec { padding: var(--s8) 0 0; }
+.century-sec .eyebrow { margin: 0; }
+.century-sec h2 { font: 340 var(--t-h2) / 1.08 var(--f-display); letter-spacing: -.018em; margin: var(--s3) 0 0; max-width: 13.5em; text-wrap: balance; }
+.century-sec .lead { font: 400 17px / 1.62 var(--f-text); color: var(--ink-2); max-width: 62ch; margin: var(--s4) 0 0; text-wrap: pretty; }
+.century {
+  --cl-label: 260px;
+  margin-top: var(--s6);
+  position: relative;
+  padding: var(--s5) var(--s5) var(--s4);
+  background: color-mix(in srgb, var(--art) 8%, var(--paper));
+  border: 1px solid var(--rule);
+  border-radius: var(--r-leaf);
+}
+.cl-head { display: grid; grid-template-columns: var(--cl-label) 1fr; align-items: end; margin-bottom: var(--s3); }
+.cl-axis { position: relative; height: 30px; font: 500 11px / 1 var(--f-ui); color: var(--ink-3); }
+.cl-axis span { position: absolute; bottom: 0; transform: translateX(-50%); font-variant-numeric: tabular-nums; }
+.cl-axis span::after { content: ""; position: absolute; left: 50%; bottom: -8px; height: 6px; width: 1px; background: var(--rule-strong); }
+.cl-rows { position: relative; }
+.cl-row { display: grid; grid-template-columns: var(--cl-label) 1fr; align-items: stretch; min-height: 46px; border-top: 1px solid color-mix(in srgb, var(--rule) 60%, transparent); }
+.cl-name { font: 500 13px / 1.25 var(--f-ui); color: var(--ink-2); padding: 8px 12px 8px 0; align-self: center; }
+.cl-name small { display: block; font: 400 11.5px / 1.35 var(--f-ui); color: var(--ink-3); margin-top: 3px; font-variant-numeric: tabular-nums; }
+.cl-track { position: relative; min-height: 100%; }
+/* the 50-100 year horizon, and now */
+.cl-track::before { content: ""; position: absolute; top: -1px; bottom: -1px; left: var(--now); width: var(--hz); background: color-mix(in srgb, var(--art) 13%, transparent); border-right: 1.5px dashed var(--art); }
+.cl-track::after { content: ""; position: absolute; top: -1px; bottom: -1px; left: var(--now); width: 0; border-left: 2px solid var(--ink); }
+.cl-seg {
+  position: absolute;
+  top: 50%;
+  margin-top: -6px;
+  height: 12px;
+  border-radius: 7px;
+  background: var(--c, var(--ink-3));
+  min-width: 12px;
+  border: 1px solid color-mix(in srgb, var(--c, var(--ink-3)) 60%, var(--ink));
+  z-index: 1;
+}
+.cl-seg.proj { background: repeating-linear-gradient(115deg, var(--c, var(--ink-3)) 0 3px, transparent 3px 6px); border-style: dashed; }
+.cl-seg.pt { width: 12px; margin-left: -6px; padding: 0; border-radius: 50%; }   /* a single-year window: a dot centred on the year */
+/* a criterion with no stated window: a hatched strip, never a bar, never a guess */
+.cl-none { position: absolute; left: 0; right: 0; top: 50%; height: 8px; margin-top: -4px; z-index: 1; border-top: 1px dashed var(--hatch); border-bottom: 1px dashed var(--hatch); background: repeating-linear-gradient(115deg, var(--hatch) 0 1px, transparent 1px 7px); opacity: .55; }
+.cl-nowin .cl-name small { font-style: italic; }
+.cl-foot { min-height: 34px; border-top: 0; }
+.cl-foot .cl-track::before, .cl-foot .cl-track::after { top: -1px; }
+.cl-foot b { position: absolute; bottom: 6px; z-index: 1; font: 600 var(--t-label) / 1 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
+.cl-foot .cl-now-l { left: var(--now); transform: translateX(calc(-100% - 8px)); }
+.cl-foot .cl-hz-l { right: calc(100% - var(--now) - var(--hz) + 10px); color: var(--ink-2); }
+.cl-key { display: flex; flex-wrap: wrap; gap: var(--s3) var(--s5); margin-top: var(--s5); font: 400 12.5px / 1.4 var(--f-ui); color: var(--ink-3); }
+.cl-key i { display: inline-block; width: 26px; height: 10px; border-radius: 6px; vertical-align: -1px; margin-right: 8px; border: 1px solid var(--ink-3); background: var(--ink-3); }
+.cl-key i.p { background: repeating-linear-gradient(115deg, var(--ink-3) 0 3px, transparent 3px 6px); border-style: dashed; }
+.cl-key i.h { background: color-mix(in srgb, var(--art) 22%, transparent); border: 0; border-right: 1.5px dashed var(--art); border-radius: 0; }
+.cl-note { font: italic 400 16.5px / 1.55 var(--f-text); color: var(--ink-2); margin: var(--s4) 0 0; max-width: 64ch; }
+
+@media (max-width: 1279px) { .cl-key { gap: var(--s2) var(--s4); } }
+@media (max-width: 767px) {
+  .century-sec { padding-top: var(--s7); }
+  .century { padding: var(--s4) var(--s3); --cl-label: 0px; }
+  .cl-head { grid-template-columns: 1fr; }
+  .cl-row { display: block; min-height: 0; padding: 9px 0 4px; }
+  .cl-name { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 0 0 4px; font-size: 12.5px; }
+  .cl-name small { margin: 0; text-align: right; max-width: 60%; }
+  .cl-track { height: 22px; min-height: 22px; }
+  .cl-seg { top: 5px; margin-top: 0; }
+  .cl-none { top: 7px; margin-top: 0; }
+  .cl-foot { min-height: 30px; padding-top: 0; }
+  .cl-foot .cl-name { display: none; }
+  .cl-foot .cl-hz-l { display: none; }
+  .cl-foot .cl-now-l { transform: none; left: calc(var(--now) + 8px); }
+}
+@media print { .century { break-inside: avoid; } }

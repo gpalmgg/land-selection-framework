@@ -1,0 +1,190 @@
+/* ==========================================================================
+   terms.css  -  host.html and terms-of-arrival.html (BIO-7, 2026-10).
+   Linked after longread.css on both pages. Tokens only on screen; the raw black and white of the PRINT block are deliberate
+   (a printed sheet is black on white whatever the screen palette).
+
+   host.html        body.longread-page.host-page: the long-read shell plus a few parts of its own
+                      .host-limits    what the entries are, and are not (before any example)
+                      .host-refusal   the commitment, as a pull-quote
+                      .host-ways      the three ways to use the page, as a numbered list
+                      .host-sheetnote the Indigenous-nations note, quoted from the sheet
+                      .host-example   one worked example: a quote from a public page, its gloss, its source and the date it was opened
+   terms-of-arrival.html  body.longread-page.terms-page: a PRINT INSTRUMENT. One column, Spectral on white, ruled blank lines,
+                      @page margins of 18mm. Rail, top line, print link and footer are hidden in print. No script is needed: the
+                      print button appears only when scripts run, the browser's own Print command does the same.
+   ========================================================================== */
+
+@page { margin: 18mm; }
+
+/* ------------------------------------------------------------------ host.html */
+.host-page .lr-hero .lede + .lede { margin-top: calc(-1 * var(--s3)); }
+
+.host-limits {
+  margin: var(--s6) 0 var(--s7);
+  padding: var(--s5) var(--s5) var(--s4);
+  background: var(--host-wash);
+  border: 1px solid var(--rule-strong);
+  border-left: 3px solid var(--host);
+  border-radius: var(--r-leaf);
+  max-width: 64ch;
+}
+.longread .lr-prose .host-limits h3 {
+  margin: 0 0 var(--s4);
+  font: 340 clamp(22px, 2.1vw, 27px)/1.2 var(--f-display);
+}
+.host-limits p { font: 400 17px/1.62 var(--f-text); color: var(--ink-2); margin: 0 0 var(--s3); max-width: none; }
+.host-limits p:last-child { margin-bottom: 0; }
+
+.lr-prose .host-refusal {
+  margin: var(--s6) 0 0;
+  padding: var(--s5) 0 0;
+  border-top: 1px solid var(--ink);
+  font: italic 330 clamp(24px, 3vw, 34px)/1.25 var(--f-display);
+  letter-spacing: -.012em;
+  color: var(--ink);
+  max-width: 18em;
+  text-wrap: balance;
+}
+
+.host-ways { list-style: none; counter-reset: way; margin: var(--s5) 0 var(--s6); padding: 0; max-width: 64ch; }
+.host-ways > li {
+  counter-increment: way;
+  position: relative;
+  padding: 0 0 0 var(--s7);
+  margin: 0 0 var(--s5);
+  font: 400 18.5px/1.65 var(--f-text);
+  color: var(--ink-2);
+}
+.host-ways > li::before {
+  content: counter(way);
+  position: absolute; left: 0; top: -.08em;
+  font: italic 340 34px/1 var(--f-display);
+  color: var(--art);
+}
+.host-ways a, .host-example a, .host-footer a { color: var(--accent); text-decoration: underline dotted; text-underline-offset: 4px; }
+.host-ways a:hover, .host-example a:hover { color: var(--ink); }
+
+.lr-prose .host-sheetnote {
+  margin: var(--s4) 0 0;
+  padding: var(--s3) var(--s4);
+  border-left: 3px solid var(--accent);
+  background: var(--accent-wash);
+  font: italic 400 17px/1.6 var(--f-text);
+  color: var(--ink-2);
+}
+
+.host-examples { list-style: none; margin: var(--s6) 0 0; padding: 0; }
+.host-example { margin: 0 0 var(--s6); max-width: 64ch; }
+.host-example.lr-closing { margin-top: 0; }
+.host-example .closing-label { margin-bottom: var(--s3); }
+.host-example blockquote { margin: 0 0 var(--s3); padding: 0; font: italic 400 19px/1.55 var(--f-text); color: var(--ink); }
+.host-example blockquote p { margin: 0; max-width: none; }
+.host-example blockquote + blockquote { margin-top: calc(-1 * var(--s1)); }
+.host-example .host-gloss { margin: 0 0 var(--s3); font: 400 16px/1.6 var(--f-text); font-style: normal; color: var(--ink-2); max-width: none; }
+.host-example .host-src {
+  margin: 0; padding-top: var(--s2); border-top: 1px dotted var(--rule-strong);
+  font: 400 12.5px/1.6 var(--f-ui); font-style: normal; color: var(--ink-3); overflow-wrap: anywhere;
+}
+.host-example .host-src a { font-size: inherit; }
+.lr-prose .host-close { margin: var(--s6) 0 0; font: italic 400 clamp(20px, 1.8vw, 23px)/1.5 var(--f-text); color: var(--ink); max-width: 40ch; }
+
+/* ------------------------------------------------------------------ terms-of-arrival.html: on screen */
+.terms-page { background: var(--paper); }
+.terms-chrome .row { align-items: center; }
+.terms-chrome .stamp { text-transform: uppercase; }
+.terms-main { padding: var(--s6) var(--gutter) var(--s8); }
+
+.terms-screen {
+  max-width: 760px; margin: 0 auto var(--s5);
+  font: 400 15px/1.6 var(--f-ui); color: var(--ink-2);
+}
+.terms-screen p { margin: 0 0 var(--s3); }
+.terms-screen a { color: var(--accent); text-decoration: underline dotted; text-underline-offset: 3px; }
+.terms-screen a:hover { color: var(--ink); }
+
+.print-link {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: 0 var(--s5); margin: var(--s2) 0 var(--s3);
+  background: var(--ink); color: var(--paper);
+  border: 0; border-radius: var(--r-btn);
+  font: 600 13px/1 var(--f-ui); letter-spacing: .04em;
+  cursor: pointer;
+}
+.print-link:hover { background: var(--accent); }
+.print-link[hidden] { display: none; }
+
+.terms-sheet {
+  max-width: 760px; margin: 0 auto;
+  padding: var(--s7) clamp(20px, 5vw, 56px) var(--s6);
+  background: var(--sheet);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-leaf);
+  box-shadow: var(--lift);
+  font: 400 17px/1.5 var(--f-text);
+  color: var(--ink);
+}
+.terms-sheet h1 {
+  font: 340 clamp(34px, 5.4vw, 52px)/1.04 var(--f-display);
+  letter-spacing: -.02em;
+  margin: 0 0 var(--s4);
+}
+.terms-note { margin: 0 0 var(--s4); max-width: 62ch; color: var(--ink-2); }
+.terms-nations {
+  margin: 0 0 var(--s6); padding: var(--s2) 0 var(--s2) var(--s4);
+  border-left: 3px solid var(--accent);
+  font-style: italic; color: var(--ink-2); max-width: 62ch;
+}
+.terms-field { margin: 0 0 var(--s5); break-inside: avoid; }
+.terms-field h2 { font: 500 19px/1.3 var(--f-text); color: var(--ink); margin: 0 0 var(--s1); }
+.terms-field h2 .num { color: var(--accent); font-variant-numeric: lining-nums; margin-right: .25em; }
+.terms-field .prompt { margin: 0 0 var(--s2); font-style: italic; font-size: 16px; line-height: 1.45; color: var(--ink-2); max-width: 62ch; }
+
+/* the ruled blank lines: 28px high, a 1px rule under each */
+.rules { --rule-h: 28px; display: block; }
+.rules i { display: block; height: var(--rule-h); border-bottom: 1px solid var(--rule-strong); }
+
+.terms-sign { margin: var(--s6) 0 var(--s5); break-inside: avoid; }
+.terms-sign .sign-label { font: 500 19px/1.3 var(--f-text); margin: 0 0 var(--s1); color: var(--ink); }
+.terms-sign .date-row { display: flex; align-items: flex-end; gap: var(--s3); margin-top: var(--s2); max-width: 340px; }
+.terms-sign .date-row span { font-style: italic; color: var(--ink-2); }
+.terms-sign .date-row .rules { flex: 1; }
+.terms-foot { margin: var(--s5) 0 0; display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--s2); break-inside: avoid; }
+.terms-foot .blank { display: inline-block; width: 9em; border-bottom: 1px solid var(--rule-strong); height: 1.2em; }
+.terms-version { margin: var(--s4) 0 0; font: 400 12.5px/1.5 var(--f-ui); color: var(--ink-3); }
+
+@media (max-width: 767px) {
+  .terms-main { padding-top: var(--s4); }
+  .terms-sheet { padding-top: var(--s6); }
+  .terms-field h2 { font-size: 18px; }
+  .terms-foot .blank { width: 7em; }
+}
+
+/* ------------------------------------------------------------------ print: the sheet is the document
+   Targets: two pages or fewer on A4 and on Letter (tests/e2e/suites/test_host.py measures both with page.pdf). The blank lines are
+   --rule-h high; if the copy ever grows, shorten the line before adding a page. */
+@media print {
+  body.terms-page, body.host-page { font-size: 12pt; }
+  .topbar, .terms-chrome, .print-link, .terms-screen, .terms-page .lr-footer, .host-page .lr-footer { display: none !important; }
+  .terms-main { padding: 0; }
+  .terms-sheet {
+    max-width: none; margin: 0; padding: 0;
+    background: #fff; border: 0; border-radius: 0; box-shadow: none;
+    font: 400 12pt/1.3 'Spectral', Georgia, 'Times New Roman', serif; color: #000;
+  }
+  .terms-sheet h1 { font: 500 17pt/1.1 'Spectral', Georgia, 'Times New Roman', serif; letter-spacing: 0; margin: 0 0 3mm; color: #000; }
+  .terms-note { margin: 0 0 2mm; max-width: none; color: #000; font-size: 11.5pt; line-height: 1.28; }
+  .terms-nations { margin: 0 0 3mm; padding: 0 0 0 3mm; border-left: 1.5pt solid #000; color: #000; max-width: none; font-size: 11.5pt; line-height: 1.28; }
+  .terms-field { margin: 0 0 2.4mm; break-inside: avoid; }
+  .terms-field h2 { font: 500 12pt/1.25 'Spectral', Georgia, 'Times New Roman', serif; margin: 0 0 .6mm; color: #000; break-after: avoid; }
+  .terms-field h2 .num { color: #000; }
+  .terms-field .prompt { font-size: 10.5pt; line-height: 1.3; margin: 0 0 .4mm; max-width: none; color: #000; }
+  .rules { --rule-h: 5.5mm; }
+  .rules i { border-bottom: 1px solid #000; }
+  .terms-sign { margin: 3.5mm 0 2.5mm; }
+  .terms-sign .sign-label { font-size: 12pt; margin: 0; color: #000; }
+  .terms-sign .date-row span { color: #000; }
+  .terms-foot { margin: 2.5mm 0 0; }
+  .terms-foot .blank { border-bottom: 1px solid #000; }
+  .terms-version { font: 400 8.5pt/1.3 'Spectral', Georgia, 'Times New Roman', serif; color: #000; margin-top: 2mm; }
+  .terms-page a, .host-page a { color: #000 !important; text-decoration: none !important; }
+}

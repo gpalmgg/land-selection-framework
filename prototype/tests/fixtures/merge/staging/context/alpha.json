@@ -1,0 +1,8 @@
+{
+  "regionId": "alpha",
+  "from": "evidence-track",
+  "set": {
+    "koppen.dominant": "Csb"
+  },
+  "evidence": []
+}

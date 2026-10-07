@@ -3,6 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "description": "Prototype for the Land Selection Framework. Static site + two edge functions (dynamic share card).",
+  "scripts": {
+    "test": "node tests/run.mjs",
+    "test:gates": "node tests/run.mjs --strict",
+    "test:core": "node --test tests/core",
+    "test:e2e": "/usr/bin/python3 tests/e2e/run_all.py",
+    "gen": "node scripts/gen_region_pages.mjs",
+    "gen:check": "node scripts/gen_region_pages.mjs --check",
+    "stamp": "node scripts/stamp_build.mjs --write",
+    "stamp:check": "node scripts/stamp_build.mjs --check"
+  },
   "dependencies": {
     "@vercel/og": "^0.6.5"
   }

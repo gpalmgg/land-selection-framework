@@ -1,0 +1,4 @@
+{
+  "worldclim-cmip6": { "name": "WorldClim 2.1 (CMIP6 downscaled)", "short": "WorldClim", "url": "https://www.worldclim.org/data/cmip6/cmip6climate.html", "license": "WorldClim terms: free for academic and other non-commercial use", "licenseUrl": "https://www.worldclim.org/about.html", "licenseStatus": "confirmed", "checked": "2026-10-04", "attribution": "Fick and Hijmans 2017; WorldClim 2.1", "version": "2.1" },
+  "soilgrids-2": { "name": "ISRIC SoilGrids 2.0", "url": "https://www.isric.org/explore/soilgrids", "license": "licence not confirmed", "licenseUrl": null, "licenseStatus": "unconfirmed", "checked": "2026-10-04", "attribution": "ISRIC World Soil Information" }
+}

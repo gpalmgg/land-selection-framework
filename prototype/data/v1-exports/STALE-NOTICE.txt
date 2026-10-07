@@ -1,0 +1,1 @@
+GeoPackage exports of 2026-05-29: 20 regions, values before the 2026-10 corrections; superseded by data/processed/*.json; not regenerated for the current slate.

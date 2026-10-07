@@ -1,0 +1,53 @@
+/* sources.css: per-value sources of a criterion as ledger lines (final-spec 8.9): <details class="sources">, collapsed; per region a name on
+   a dotted leader, the value, label, source, vintage, licence, retrieval date, method. A gap keeps its place. */
+.crit-card .sources { margin-top: var(--s5); border-top: 1px solid var(--rule); padding-top: var(--s2); }
+.crit-card .sources summary {
+  display: flex; align-items: center; gap: 10px; min-height: 44px; cursor: pointer; list-style: none;
+  font: 600 11px/1.3 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2);
+}
+.crit-card .sources summary::-webkit-details-marker { display: none; }
+.crit-card .sources summary::marker { content: ""; }
+.crit-card .sources summary::before {
+  content: ""; flex: none; width: 7px; height: 7px; margin: 0 3px 2px 1px;
+  border-right: 2px solid var(--ink-3); border-bottom: 2px solid var(--ink-3);
+  transform: rotate(-45deg); transition: transform .15s;
+}
+.crit-card .sources[open] summary::before { transform: rotate(45deg); }
+.crit-card .sources summary:hover { color: var(--ink); }
+
+.crit-card .sources ul { list-style: none; margin: var(--s2) 0 0; padding: 0; }
+.crit-card .sources li {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 10px; align-items: baseline;
+  padding: 11px 0 9px; border-bottom: 1px solid var(--rule-soft);
+}
+.crit-card .sources li .reg-name {
+  display: flex; gap: 8px; align-items: baseline; min-width: 0;
+  font: 500 16px/1.2 var(--f-text); color: var(--ink);
+}
+.crit-card .sources li .reg-name::after {
+  content: ""; flex: 1; min-width: 12px; border-bottom: 1px dotted var(--rule-strong); transform: translateY(-3px);
+}
+.crit-card .sources li .src-val {
+  font: 400 18px/1 var(--f-text); color: var(--ink); text-align: right; white-space: nowrap;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.crit-card .sources li .src-val small { font: 500 12px var(--f-ui); color: var(--ink-3); margin-left: 4px; }
+.crit-card .sources li .sb {
+  grid-column: 1 / -1; margin-top: 4px; font: 400 12.5px/1.5 var(--f-ui); color: var(--ink-3); overflow-wrap: anywhere;
+}
+.crit-card .sources li .sb i { font: italic 400 14px/1.45 var(--f-text); color: var(--ink-2); margin-right: 6px; }
+.crit-card .sources li .sb a { color: var(--ink-2); font-weight: 600; text-decoration: underline dotted; text-underline-offset: 3px; }
+.crit-card .sources li .sb a:hover { color: var(--accent); }
+.crit-card .sources li .sb .meth { font: 500 11px/1 var(--f-ui); color: var(--ink-3); border-bottom: 1px dotted var(--rule-strong); }
+
+/* a gap line: the row keeps its place; the leader is dashed ochre and the value says what it is */
+.crit-card .sources li.gap .reg-name::after { border-bottom: 1.5px dashed var(--gap-line); }
+.crit-card .sources li.gap .src-val { font: italic 400 16px var(--f-text); color: var(--gap); }
+
+@media (max-width: 767px) {
+  .crit-card .sources li .reg-name { font-size: 15px; }
+  .crit-card .sources li .src-val { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .crit-card .sources summary::before { transition: none; }
+}

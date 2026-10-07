@@ -1,0 +1,35 @@
+[
+  {
+    "region_id": "alpha",
+    "foreign_ownership": {
+      "allowed": "yes",
+      "notes": "Portugal allows foreign ownership of rural land with no nationality restriction."
+    },
+    "preemption_or_first_claim_holders": [],
+    "key_legal_restriction": "RAN-classified parcels rarely permit residential construction.",
+    "source": "Portuguese Land Law DL 555/99",
+    "source_url": "https://dre.pt/example"
+  },
+  {
+    "region_id": "beta-land",
+    "foreign_ownership": {
+      "allowed": "yes",
+      "notes": "Ireland has no restriction on foreign buyers."
+    },
+    "preemption_or_first_claim_holders": ["co-owners", "lessees"],
+    "key_legal_restriction": "Rural housing needs a local-need case.",
+    "source": "County Development Plan",
+    "source_url": "https://www.example.ie/plan"
+  },
+  {
+    "region_id": "gamma",
+    "foreign_ownership": {
+      "allowed": "yes",
+      "notes": "Vermont allows foreign ownership."
+    },
+    "preemption_or_first_claim_holders": [],
+    "key_legal_restriction": "Act 250 review applies above 10 acres.",
+    "source": "Vermont statutes",
+    "source_url": "https://legislature.vermont.gov/example"
+  }
+]

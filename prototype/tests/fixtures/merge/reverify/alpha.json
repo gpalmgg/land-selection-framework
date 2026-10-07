@@ -1,0 +1,33 @@
+{
+  "regionId": "alpha",
+  "corrections": [
+    {"file": "prototype/data/regions.js", "path": "values.alpha.climate.value", "old": "19.5", "new": "18.0", "evidence_url": "https://www.worldclim.org/data/cmip6/cmip6climate.html", "reason": "17-GCM ensemble zonal mean over the footprint = 18.0.", "confidence": "high"},
+    {"file": "prototype/data/regions.js", "path": "values.alpha.climate.label", "old": "Hot, dry", "new": "Hot and dry (2041–2060 ensemble)", "evidence_url": "https://www.worldclim.org/", "reason": "Label follows the corrected value.", "confidence": "medium"},
+    {"file": "prototype/data/regions.js", "path": "values.alpha.water_stress.value", "old": "0.7", "new": "1.5", "evidence_url": "https://www.wri.org/aqueduct", "reason": "Aqueduct 4.0 bau50_ws_x_r area-weighted over the footprint basins = 1.5.", "confidence": "high"},
+    {"file": "prototype/data/regions.js", "path": "values.alpha.climate.source", "old": "A source that is not there", "new": "WorldClim 2.1", "evidence_url": "https://www.worldclim.org/", "reason": "Wrong old value on purpose: must be reported stale.", "confidence": "medium"},
+    {"file": "prototype/data/regions.js", "path": "values.alpha.climate.vintage", "old": "2041–2060 SSP2-4.5", "new": "2041–2060, SSP2-4.5", "evidence_url": "https://www.worldclim.org/", "reason": "Low confidence: never applied.", "confidence": "low"},
+    {"file": "prototype/data/regions.js", "path": "regions[id='alpha'].blurb", "old": "It's hot in summer.", "new": "Summers are hot.", "evidence_url": "https://example.org/", "reason": "Sentence-level fix inside a longer blurb (the source holds an escaped apostrophe).", "confidence": "medium"},
+    {"file": "prototype/data/land-standing.js", "path": "'alpha'.tenure", "old": "Non-EU buyers face no purchase restriction.", "new": "Purchase rights depend on the buyer's circumstances; check the registry.", "evidence_url": "https://example.org/", "reason": "Foreign-purchase claim could not be supported.", "confidence": "high"},
+    {"file": "prototype/data/region-depth.js", "path": "regionDepth.alpha.asks (legal sentence)", "old": "Non-EU buyers face no purchase restriction.", "new": "Purchase rights depend on the buyer's circumstances.", "evidence_url": "https://example.org/", "reason": "Same claim in the asks text.", "confidence": "medium"},
+    {"file": "prototype/data/v1-lookup.js", "path": "v1Lookup.legal_ownership.alpha.foreign_ownership.notes", "old": "Portugal allows foreign ownership of rural land with no nationality restriction.", "new": "Portugal places no nationality restriction on buying rural land; foreign buyers need a tax number.", "evidence_url": "https://example.org/", "reason": "Wording tightened to the opened source.", "confidence": "medium"},
+    {"file": "prototype/data/v1-lookup.js", "path": "legal_ownership['beta-land'].preemption_or_first_claim_holders", "old": "[\"co-owners\", \"lessees\"]", "new": "[\"co-owners\",\"lessees\",\"neighbouring owners\"]", "evidence_url": "https://example.org/", "reason": "List of first-claim holders extended.", "confidence": "high"},
+    {"file": "prototype/deeper.html", "path": "#alpha case study (\"the most water-stressed region\")", "old": "the most water-stressed region in the set", "new": "among the more water-stressed regions in the set", "evidence_url": "https://example.org/", "reason": "Ranking gloss removed.", "confidence": "medium"},
+    {"file": "prototype/data/research-dossier/alpha/stability.md", "path": "Key data point", "old": "a", "new": "b", "evidence_url": "https://example.org/", "reason": "Dossier markdown is recorded only.", "confidence": "medium"},
+    {"file": "prototype/data/regions.js", "path": "values.alpha.climate.label / vintage", "old": "Hot and dry / 2023", "new": "Hot and dry / 2041–2060", "evidence_url": "https://example.org/", "reason": "Two fields in one item: never guessed.", "confidence": "medium"},
+    {"file": "prototype/data/land-standing.js", "path": "landStanding.alpha.obligation", "old": "Hold the shared water discipline with the neighbours", "new": "Join the village water committee", "evidence_url": "https://example.org/", "reason": "Follows the territory correction. Human review advised.", "confidence": "medium"},
+    {"file": "prototype/data/land-standing.js", "path": "landStanding.beta-land.territory", "old": "Gaeltacht Irish rural community", "new": "Gaeltacht community and the named commonage groups", "evidence_url": "https://example.org/", "reason": "HARM-SENSITIVE; needs human review before use. Names several groups.", "confidence": "medium"},
+    {"file": "prototype/data/v1-lookup.js", "path": "land_cost.alpha.price_notes", "old": "Dry parcels 8000 to 20000 EUR/ha.", "new": "Dry parcels 8000 to 20000 EUR/ha (Eurostat 2024).", "evidence_url": "https://example.org/", "reason": "Source added.", "confidence": "medium"},
+    {"file": "prototype/data/land-standing.js", "path": "landStanding.alpha.sourceUrl (and region-depth.js sourceUrl)", "old": "https://dre.pt/example", "new": "https://dre.pt/example/consolidated", "evidence_url": "https://example.org/", "reason": "Link moved; the depth entry cites the same page.", "confidence": "medium"},
+    {"file": "prototype/data/regions.js", "path": "values.alpha.soil_carbon.value", "old": "20", "new": "25", "evidence_url": "https://soilgrids.org", "reason": "The cell does not exist in the fixture: unresolved.", "confidence": "medium"}
+  ],
+  "newer_vintages": [
+    "Hansen GFC v1.12 exists; the cell cites v1.11.",
+    {"cell": "conflict", "current": "v25.1", "newer": "v26.1", "note": "A newer release exists.", "applicable_to_all_regions": true}
+  ],
+  "unverifiable": [
+    "'Largely unceded by treaty' (Land standing): no authoritative source retrieved either way.",
+    "Non-EU buyers face no purchase restriction (region-depth asks): not verified against the statute.",
+    "regen_network 30 ('25-35 within ~100 km'): the dossier itself marks the count UNVERIFIED.",
+    "v1 land_cost band is unverified for this region."
+  ]
+}

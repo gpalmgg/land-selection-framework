@@ -1,0 +1,14 @@
+{
+  "regionId": "beta-land",
+  "from": "docs-track",
+  "set": {
+    "blurb": "Atlantic hill country with blanket bog; place first."
+  },
+  "evidence": [
+    {
+      "claim": "c",
+      "sourceUrl": "https://example.org/e",
+      "openedOn": "2026-10-04"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "gap-region": {
+    "territory": "The people of gap-region",
+    "tenure": "Fee simple",
+    "entry": "Begin with the host community",
+    "obligation": "Listen first",
+    "source": "Fixture statute",
+    "sourceUrl": "https://example.org/statute"
+  },
+  "_sources": [
+    {
+      "url": "https://example.org"
+    }
+  ]
+}

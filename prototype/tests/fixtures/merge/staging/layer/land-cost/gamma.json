@@ -1,0 +1,14 @@
+{
+  "regionId": "gamma",
+  "from": "evidence-track",
+  "set": {
+    "price_notes": "Valley land, updated note."
+  },
+  "evidence": [
+    {
+      "claim": "c",
+      "sourceUrl": "https://example.org/e",
+      "openedOn": "2026-10-04"
+    }
+  ]
+}

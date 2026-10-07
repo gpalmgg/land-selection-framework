@@ -1,0 +1,1 @@
+{ "alentejo": { "kind": "bbox", "bounds": [-9.0, 37.0, -6.9, 39.7], "description": "Alentejo NUTS II region (box)", "basis": "area used by the 2026-10 reverify", "areaKm2": 31600, "marker": [-7.9, 38.6], "polygonFile": null } }

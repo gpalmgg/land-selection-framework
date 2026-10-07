@@ -1,0 +1,111 @@
+/* compare.css: "Your pins, side by side" (final-spec 8.15): ONE real table, the pinned regions as columns in pinned order (never
+   sorted); --cols sets the minimum width and the table scrolls inside its card. No totals, no highlight, no sorting. */
+.compare-backdrop {
+  position: fixed; inset: 0; z-index: 1100;
+  background: rgba(26, 22, 18, 0.42);
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; pointer-events: none;
+  visibility: hidden;                                              /* a closed compare view is not in the tab order or the a11y tree */
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+.compare-backdrop.open { opacity: 1; pointer-events: auto; visibility: visible; transition: opacity 0.3s ease, visibility 0s; }
+.compare-panel {
+  position: relative; box-sizing: border-box;
+  width: min(1180px, 100%); max-height: 90vh; overflow-x: hidden; overflow-y: auto;
+  padding: var(--s6, 32px);
+  background: var(--sheet); color: var(--ink);
+  border: 1px solid var(--ink); border-radius: var(--r-leaf, 3px 28px 3px 3px); box-shadow: var(--lift);
+  transform: translateY(12px) scale(0.99);
+  transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.compare-backdrop.open .compare-panel { transform: translateY(0) scale(1); }
+.compare-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.compare-head h3 {
+  margin: 0; font: 340 clamp(26px, 3vw, 38px)/1.1 var(--f-display, 'Fraunces', Georgia, serif); letter-spacing: -.015em;
+}
+.compare-close {
+  width: 40px; height: 40px; padding: 0; flex-shrink: 0;
+  background: var(--sheet); border: 1px solid var(--rule-strong); border-radius: 50%;
+  cursor: pointer; color: var(--ink-2);
+  display: flex; align-items: center; justify-content: center;
+  transition: background-color .2s, border-color .2s;
+}
+.compare-close:hover { background: var(--paper-2); border-color: var(--ink); color: var(--ink); }
+.compare-close:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.compare-close svg { width: 14px; height: 14px; }
+.compare-note { margin: 6px 0 0; font: italic 400 16px/1.5 var(--f-text); color: var(--ink-3); max-width: 60ch; }
+.compare-empty { font: 400 17px/1.6 var(--f-text); color: var(--ink-2); padding: 28px 0; max-width: 48ch; margin: 0; }
+.compare-body { min-width: 0; }
+
+.compare-panel .scroll-hint { display: none; margin: var(--s3, 12px) 0 0; font: italic 400 14px/1.4 var(--f-text); color: var(--ink-3); }
+
+/* ---- the table ---- */
+.compare-scroll { overflow-x: auto; margin-top: var(--s5, 24px); -webkit-overflow-scrolling: touch; }
+.compare-scroll:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.compare-table {
+  border-collapse: separate; border-spacing: 0; table-layout: fixed; width: 100%;
+  min-width: max(760px, calc(150px + var(--cols, 3) * 200px));
+}
+.compare-table caption {
+  text-align: left; padding-bottom: 10px;
+  font: 600 var(--t-label, 10.5px)/1.4 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3);
+}
+.compare-table th, .compare-table td { vertical-align: top; text-align: left; padding: 12px 14px 12px 0; }
+.compare-table thead th { border-bottom: 2px solid var(--ink); padding-bottom: 14px; background: var(--sheet); }
+.compare-table thead th:first-child { width: 150px; position: sticky; left: 0; z-index: 2; }
+.compare-table thead .wave { height: 8px; margin-bottom: 10px; -webkit-mask-size: 60px 8px; mask-size: 60px 8px; }
+.compare-table thead .salutation { margin-bottom: 4px; }
+.compare-table thead .sal-v { font-size: 14px; }
+.compare-table thead .name { font: 340 24px/1.1 var(--f-display, 'Fraunces', Georgia, serif); letter-spacing: -.012em; margin-top: 8px; }
+.compare-table thead .country { font: 600 var(--t-label, 10.5px)/1 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-top: 8px; }
+.compare-table tbody th[scope=row] {
+  position: sticky; left: 0; z-index: 1; background: var(--sheet); width: 150px; padding-right: 16px;
+  font: 600 var(--t-label, 10.5px)/1.4 var(--f-ui); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3);
+}
+.compare-table tbody th small { display: block; font: 400 11px/1.3 var(--f-ui); letter-spacing: 0; text-transform: none; margin-top: 3px; }
+
+/* the reciprocity bands: text per region, nothing counted */
+.compare-table tr.band th, .compare-table tr.band td { background: var(--host-wash); border-top: 1px solid var(--rule); }
+.compare-table tr.band.ask th, .compare-table tr.band.ask td { background: var(--accent-wash); }
+.compare-table tr.band.bio th, .compare-table tr.band.bio td { background: var(--river-wash); }
+.compare-table tr.band.bio th { color: var(--river); }
+.compare-table tr.band th { padding-left: 10px; }
+.compare-table tr.band td { padding-left: 10px; font: italic 400 15px/1.45 var(--f-text); color: var(--ink); }
+.compare-table tr.band td.none { color: var(--gap); }
+@supports (color: color-mix(in srgb, red, blue)) {
+  .compare-table tr.band th, .compare-table tr.band td { border-top-color: color-mix(in srgb, var(--host) 30%, transparent); }
+  .compare-table tr.band.ask th, .compare-table tr.band.ask td { border-top-color: color-mix(in srgb, var(--accent) 25%, transparent); }
+  .compare-table tr.band.bio th, .compare-table tr.band.bio td { border-top-color: color-mix(in srgb, var(--river) 28%, transparent); }
+}
+
+/* the eight criteria: value, label, trajectory, then the source and vintage line */
+.compare-table tr.crit th, .compare-table tr.crit td { border-top: 1px solid var(--rule); }
+.compare-table .v { font: 400 21px/1.1 var(--f-text); font-variant-numeric: tabular-nums lining-nums; }
+.compare-table .v small { font: 500 12px var(--f-ui); color: var(--ink-3); margin-left: 4px; }
+.compare-table .l { font: italic 400 14px/1.35 var(--f-text); color: var(--ink-2); margin-top: 3px; }
+.compare-table .t { margin-top: 5px; }
+.compare-table .s { font: 400 11.5px/1.45 var(--f-ui); color: var(--ink-3); margin-top: 4px; }
+.compare-table .s a { color: var(--ink-2); font-weight: 500; text-decoration: underline dotted; text-underline-offset: 3px; }
+.compare-table .s i { font: italic 400 13px var(--f-text); color: var(--ink-2); margin-right: 4px; }
+.compare-table .traj {
+  display: inline-block; font: 500 12px/1.3 var(--f-ui); color: var(--ink-2);
+  border: 1px solid var(--rule-strong); border-radius: 11px; padding: 2px 8px;
+}
+.compare-table .traj-na { display: block; font: italic 400 12.5px/1.4 var(--f-text); color: var(--ink-3); }
+.compare-table .dir-ico { width: 11px; height: 11px; vertical-align: -1px; margin-right: 5px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+/* a gap is neither within nor outside: dashed, in the gap ink, never a number */
+.compare-table td.gap .v { font: italic 400 16px var(--f-text); color: var(--gap); border-bottom: 1.5px dashed var(--gap-line); display: inline-block; }
+
+@media (max-width: 767px) {
+  .compare-backdrop { padding: 12px; }
+  .compare-panel { padding: var(--s4, 16px); max-height: 92vh; }
+  .compare-panel .scroll-hint { display: block; }
+  .compare-table { min-width: max(680px, calc(104px + var(--cols, 3) * 170px)); }
+  .compare-table thead th:first-child, .compare-table tbody th[scope=row] { width: 104px; padding-right: 8px; }
+  .compare-table tr.band th { padding-left: 6px; }
+}
+@media (pointer: coarse) {
+  .compare-close { width: 44px; height: 44px; }
+}

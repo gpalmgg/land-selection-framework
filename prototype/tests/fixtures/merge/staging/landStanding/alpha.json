@@ -1,0 +1,16 @@
+{
+  "regionId": "alpha",
+  "from": "bioregioning-track",
+  "set": {
+    "landStanding.displacement": "Depopulation of the villages has left common land under-used.",
+    "landStanding.entry": "Buy freehold only after meeting the village association",
+    "landStanding.invented_field": "x"
+  },
+  "evidence": [
+    {
+      "claim": "c",
+      "sourceUrl": "https://example.org/e",
+      "openedOn": "2026-10-04"
+    }
+  ]
+}

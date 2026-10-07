@@ -1,0 +1,10 @@
+{
+  "baseline": [
+    { "id": "water_stress", "higherIs": "worse", "rangeLabel": "score", "rangeMin": 0, "rangeMax": 1 },
+    { "id": "climate", "higherIs": "hotter", "rangeLabel": "°C", "rangeMin": 0, "rangeMax": 25 }
+  ],
+  "final": [
+    { "id": "water_stress", "higherIs": "worse", "rangeLabel": "ratio", "rangeMin": 0, "rangeMax": 2, "step": 0.01 },
+    { "id": "climate", "higherIs": "hotter", "rangeLabel": "°C", "rangeMin": 0, "rangeMax": 25 }
+  ]
+}

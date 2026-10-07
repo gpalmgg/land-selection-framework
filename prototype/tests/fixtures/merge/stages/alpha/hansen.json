@@ -1,0 +1,11 @@
+{
+  "stage": "hansen",
+  "region": "alpha",
+  "status": "ok",
+  "retrieved": "2026-10-05",
+  "method": "footprint-zonal",
+  "value": -3.2,
+  "tiles_used": [
+    "40N_010W"
+  ]
+}

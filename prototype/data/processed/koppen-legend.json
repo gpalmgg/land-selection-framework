@@ -1,0 +1,499 @@
+{
+ "id": "koppen-geiger",
+ "title": "Koppen-Geiger climate classes",
+ "attribution": "Beck et al. 2023, Scientific Data 10:724, CC BY 4.0 (0.1 degree raster, vectorised and simplified; boundaries are approximate)",
+ "citation": "Beck, H. E., McVicar, T. R., Vergopolan, N., Berg, A., Lutsko, N. J., Dufour, A., Zeng, Z., Jiang, X., van Dijk, A. I. J. M., Miralles, D. G. High-resolution (1 km) Koppen-Geiger maps for 1901-2099 based on constrained CMIP6 projections. Scientific Data 10, 724 (2023). https://doi.org/10.1038/s41597-023-02549-6",
+ "license": "CC BY 4.0",
+ "license_url": "https://creativecommons.org/licenses/by/4.0/",
+ "source": "Beck et al. 2023, Scientific Data 10:724",
+ "source_doi": "https://doi.org/10.1038/s41597-023-02549-6",
+ "dataset_doi": "https://doi.org/10.6084/m9.figshare.21789074.v2",
+ "dataset_url": "https://figshare.com/articles/dataset/High-resolution_1_km_K_ppen-Geiger_maps_for_1901-2099_based_on_constrained_CMIP6_projections/21789074",
+ "source_file_md5": "7fc2f5a15d4f5fe0ce59c9a9b502aa09",
+ "resolution": "0.1 degree raster (about 11 km), vectorised, simplified 0.05 degrees, parts under 0.02 square degrees dropped, coordinates rounded to 2 decimals",
+ "caveat": "Class boundaries are approximate at this resolution. The future layer is one scenario (SSP2-4.5), not a forecast. Class names follow the source legend.",
+ "groups": {
+  "A": "Tropical",
+  "B": "Arid",
+  "C": "Temperate",
+  "D": "Cold",
+  "E": "Polar"
+ },
+ "classes": [
+  {
+   "code": "Af",
+   "name": "Tropical, rainforest",
+   "group": "A",
+   "rgb": [
+    0,
+    0,
+    255
+   ],
+   "hex": "#0000ff"
+  },
+  {
+   "code": "Am",
+   "name": "Tropical, monsoon",
+   "group": "A",
+   "rgb": [
+    0,
+    120,
+    255
+   ],
+   "hex": "#0078ff"
+  },
+  {
+   "code": "Aw",
+   "name": "Tropical, savannah",
+   "group": "A",
+   "rgb": [
+    70,
+    170,
+    250
+   ],
+   "hex": "#46aafa"
+  },
+  {
+   "code": "BWh",
+   "name": "Arid, desert, hot",
+   "group": "B",
+   "rgb": [
+    255,
+    0,
+    0
+   ],
+   "hex": "#ff0000"
+  },
+  {
+   "code": "BWk",
+   "name": "Arid, desert, cold",
+   "group": "B",
+   "rgb": [
+    255,
+    150,
+    150
+   ],
+   "hex": "#ff9696"
+  },
+  {
+   "code": "BSh",
+   "name": "Arid, steppe, hot",
+   "group": "B",
+   "rgb": [
+    245,
+    165,
+    0
+   ],
+   "hex": "#f5a500"
+  },
+  {
+   "code": "BSk",
+   "name": "Arid, steppe, cold",
+   "group": "B",
+   "rgb": [
+    255,
+    220,
+    100
+   ],
+   "hex": "#ffdc64"
+  },
+  {
+   "code": "Csa",
+   "name": "Temperate, dry summer, hot summer",
+   "group": "C",
+   "rgb": [
+    255,
+    255,
+    0
+   ],
+   "hex": "#ffff00"
+  },
+  {
+   "code": "Csb",
+   "name": "Temperate, dry summer, warm summer",
+   "group": "C",
+   "rgb": [
+    200,
+    200,
+    0
+   ],
+   "hex": "#c8c800"
+  },
+  {
+   "code": "Csc",
+   "name": "Temperate, dry summer, cold summer",
+   "group": "C",
+   "rgb": [
+    150,
+    150,
+    0
+   ],
+   "hex": "#969600"
+  },
+  {
+   "code": "Cwa",
+   "name": "Temperate, dry winter, hot summer",
+   "group": "C",
+   "rgb": [
+    150,
+    255,
+    150
+   ],
+   "hex": "#96ff96"
+  },
+  {
+   "code": "Cwb",
+   "name": "Temperate, dry winter, warm summer",
+   "group": "C",
+   "rgb": [
+    100,
+    200,
+    100
+   ],
+   "hex": "#64c864"
+  },
+  {
+   "code": "Cwc",
+   "name": "Temperate, dry winter, cold summer",
+   "group": "C",
+   "rgb": [
+    50,
+    150,
+    50
+   ],
+   "hex": "#329632"
+  },
+  {
+   "code": "Cfa",
+   "name": "Temperate, no dry season, hot summer",
+   "group": "C",
+   "rgb": [
+    200,
+    255,
+    80
+   ],
+   "hex": "#c8ff50"
+  },
+  {
+   "code": "Cfb",
+   "name": "Temperate, no dry season, warm summer",
+   "group": "C",
+   "rgb": [
+    100,
+    255,
+    80
+   ],
+   "hex": "#64ff50"
+  },
+  {
+   "code": "Cfc",
+   "name": "Temperate, no dry season, cold summer",
+   "group": "C",
+   "rgb": [
+    50,
+    200,
+    0
+   ],
+   "hex": "#32c800"
+  },
+  {
+   "code": "Dsa",
+   "name": "Cold, dry summer, hot summer",
+   "group": "D",
+   "rgb": [
+    255,
+    0,
+    255
+   ],
+   "hex": "#ff00ff"
+  },
+  {
+   "code": "Dsb",
+   "name": "Cold, dry summer, warm summer",
+   "group": "D",
+   "rgb": [
+    200,
+    0,
+    200
+   ],
+   "hex": "#c800c8"
+  },
+  {
+   "code": "Dsc",
+   "name": "Cold, dry summer, cold summer",
+   "group": "D",
+   "rgb": [
+    150,
+    50,
+    150
+   ],
+   "hex": "#963296"
+  },
+  {
+   "code": "Dsd",
+   "name": "Cold, dry summer, very cold winter",
+   "group": "D",
+   "rgb": [
+    150,
+    100,
+    150
+   ],
+   "hex": "#966496"
+  },
+  {
+   "code": "Dwa",
+   "name": "Cold, dry winter, hot summer",
+   "group": "D",
+   "rgb": [
+    170,
+    175,
+    255
+   ],
+   "hex": "#aaafff"
+  },
+  {
+   "code": "Dwb",
+   "name": "Cold, dry winter, warm summer",
+   "group": "D",
+   "rgb": [
+    90,
+    120,
+    220
+   ],
+   "hex": "#5a78dc"
+  },
+  {
+   "code": "Dwc",
+   "name": "Cold, dry winter, cold summer",
+   "group": "D",
+   "rgb": [
+    75,
+    80,
+    180
+   ],
+   "hex": "#4b50b4"
+  },
+  {
+   "code": "Dwd",
+   "name": "Cold, dry winter, very cold winter",
+   "group": "D",
+   "rgb": [
+    50,
+    0,
+    135
+   ],
+   "hex": "#320087"
+  },
+  {
+   "code": "Dfa",
+   "name": "Cold, no dry season, hot summer",
+   "group": "D",
+   "rgb": [
+    0,
+    255,
+    255
+   ],
+   "hex": "#00ffff"
+  },
+  {
+   "code": "Dfb",
+   "name": "Cold, no dry season, warm summer",
+   "group": "D",
+   "rgb": [
+    55,
+    200,
+    255
+   ],
+   "hex": "#37c8ff"
+  },
+  {
+   "code": "Dfc",
+   "name": "Cold, no dry season, cold summer",
+   "group": "D",
+   "rgb": [
+    0,
+    125,
+    125
+   ],
+   "hex": "#007d7d"
+  },
+  {
+   "code": "Dfd",
+   "name": "Cold, no dry season, very cold winter",
+   "group": "D",
+   "rgb": [
+    0,
+    70,
+    95
+   ],
+   "hex": "#00465f"
+  },
+  {
+   "code": "ET",
+   "name": "Polar, tundra",
+   "group": "E",
+   "rgb": [
+    178,
+    178,
+    178
+   ],
+   "hex": "#b2b2b2"
+  },
+  {
+   "code": "EF",
+   "name": "Polar, frost",
+   "group": "E",
+   "rgb": [
+    102,
+    102,
+    102
+   ],
+   "hex": "#666666"
+  }
+ ],
+ "layers": {
+  "koppen-1991-2020-eu.geojson": {
+   "period": "1991-2020",
+   "continent": "eu",
+   "bbox": [
+    -12.0,
+    35.0,
+    40.0,
+    72.0
+   ],
+   "vintage": "1991-2020 climatology, constrained by observations",
+   "bytes": 291291,
+   "bytes_gzip": 51729,
+   "classes_present": [
+    "BWh",
+    "BWk",
+    "BSh",
+    "BSk",
+    "Csa",
+    "Csb",
+    "Cfa",
+    "Cfb",
+    "Cfc",
+    "Dsa",
+    "Dsb",
+    "Dsc",
+    "Dfa",
+    "Dfb",
+    "Dfc",
+    "ET"
+   ],
+   "parts_in": 912,
+   "parts_dropped": 97
+  },
+  "koppen-1991-2020-na.geojson": {
+   "period": "1991-2020",
+   "continent": "na",
+   "bbox": [
+    -126.0,
+    14.0,
+    -52.0,
+    60.0
+   ],
+   "vintage": "1991-2020 climatology, constrained by observations",
+   "bytes": 567368,
+   "bytes_gzip": 85938,
+   "classes_present": [
+    "Af",
+    "Am",
+    "Aw",
+    "BWh",
+    "BWk",
+    "BSh",
+    "BSk",
+    "Csa",
+    "Csb",
+    "Cwa",
+    "Cwb",
+    "Cfa",
+    "Cfb",
+    "Dsa",
+    "Dsb",
+    "Dsc",
+    "Dwa",
+    "Dwb",
+    "Dfa",
+    "Dfb",
+    "Dfc",
+    "ET"
+   ],
+   "parts_in": 1464,
+   "parts_dropped": 214
+  },
+  "koppen-2041-2070-ssp245-eu.geojson": {
+   "period": "2041-2070-ssp245",
+   "continent": "eu",
+   "bbox": [
+    -12.0,
+    35.0,
+    40.0,
+    72.0
+   ],
+   "vintage": "2041-2070 projection under SSP2-4.5 (one scenario, not a forecast)",
+   "bytes": 273066,
+   "bytes_gzip": 48487,
+   "classes_present": [
+    "BWh",
+    "BSh",
+    "BSk",
+    "Csa",
+    "Csb",
+    "Cfa",
+    "Cfb",
+    "Cfc",
+    "Dsa",
+    "Dsb",
+    "Dsc",
+    "Dfa",
+    "Dfb",
+    "Dfc",
+    "ET"
+   ],
+   "parts_in": 797,
+   "parts_dropped": 98
+  },
+  "koppen-2041-2070-ssp245-na.geojson": {
+   "period": "2041-2070-ssp245",
+   "continent": "na",
+   "bbox": [
+    -126.0,
+    14.0,
+    -52.0,
+    60.0
+   ],
+   "vintage": "2041-2070 projection under SSP2-4.5 (one scenario, not a forecast)",
+   "bytes": 508809,
+   "bytes_gzip": 77626,
+   "classes_present": [
+    "Af",
+    "Am",
+    "Aw",
+    "BWh",
+    "BWk",
+    "BSh",
+    "BSk",
+    "Csa",
+    "Csb",
+    "Cwa",
+    "Cwb",
+    "Cfa",
+    "Cfb",
+    "Dsa",
+    "Dsb",
+    "Dsc",
+    "Dwa",
+    "Dwb",
+    "Dfa",
+    "Dfb",
+    "Dfc",
+    "ET"
+   ],
+   "parts_in": 1330,
+   "parts_dropped": 206
+  }
+ }
+}

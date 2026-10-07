@@ -1,0 +1,13 @@
+{
+  "regionId": "beta-land",
+  "corrections": [
+    {"file": "prototype/data/regions.js", "path": "values['beta-land'].climate.value", "old": "11.4", "new": "11.0", "evidence_url": "https://www.worldclim.org/", "reason": "Footprint zonal mean of the ensemble = 11.0.", "confidence": "high"},
+    {"file": "prototype/data/regions.js", "path": "values['beta-land'].water_stress.label", "old": "Low", "new": "Low (area-weighted over 5 basins)", "evidence_url": "https://www.wri.org/aqueduct", "reason": "Label states the method.", "confidence": "medium"},
+    {"file": "prototype/data/regions.js", "path": "values['beta-land'].water_stress.value", "old": "0.08", "new": "0.01", "evidence_url": "https://www.wri.org/aqueduct", "reason": "Low confidence on purpose.", "confidence": "low"}
+  ],
+  "newer_vintages": ["UCDP GED v26.1 exists."],
+  "unverifiable": [
+    "Open freehold for any buyer (Land standing): not verified.",
+    "a statement about a shed that matters to nobody"
+  ]
+}

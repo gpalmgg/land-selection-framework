@@ -1,0 +1,39 @@
+/* notes.css: the mobile honesty notice and the suite note (design FS 8.19). Behaviour lives in src/ui/mobile-note.js. */
+
+/* --- Mobile honesty notice: shown below 768px, where the comparison view is narrower than the analysis wants; dismissal persists. */
+.mobile-note { display: none; }
+@media (max-width: 767px) {
+  .mobile-note {
+    display: flex; align-items: flex-start; gap: var(--s3, 12px);
+    padding: var(--s3, 12px) var(--gutter, 16px);
+    background: var(--paper-2);
+    border-bottom: 1px solid var(--rule);
+    font: 400 12.5px/1.5 var(--f-ui, 'Inter', system-ui, sans-serif);
+    color: var(--ink-2);
+  }
+  .mobile-note p { margin: 0; flex: 1; }
+  .mobile-note-x {
+    flex: none;
+    min-height: 44px; min-width: 44px;
+    padding: 0 var(--s3, 12px);
+    background: transparent;
+    border: 1px solid var(--rule-strong);
+    border-radius: var(--r-btn, 2px 12px 2px 2px);
+    font: 500 12px/1 var(--f-ui, 'Inter', system-ui, sans-serif);
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .mobile-note-x:hover { background: var(--paper-3); }
+}
+.mobile-note.dismissed { display: none !important; }
+@media print { .mobile-note { display: none !important; } }
+
+/* --- Suite note: one quiet cross-tool line; its tagline comes from the rail and states no tool count. */
+.suite-note {
+  margin-top: var(--s3, 12px);
+  font: 400 12px/1.6 var(--f-ui, 'Inter', system-ui, sans-serif);
+  color: var(--ink-3);
+}
+.suite-note a { color: var(--ink-2); text-decoration: underline dotted; text-underline-offset: 3px; }
+.suite-note a:hover { color: var(--accent); }

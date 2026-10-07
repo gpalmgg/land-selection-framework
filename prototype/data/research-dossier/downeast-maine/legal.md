@@ -1,0 +1,35 @@
+# Legal + Economic — Downeast Maine (Washington County, Dawnland), USA
+
+**Headline finding:** Maine law puts no bar on who may buy land and lets a group organise in several ways, but the legal map is only half of the question here. The county sits inside Dawnland, the Wabanaki homeland. The 1980 Maine Indian Claims Settlement Act and the Maine Implementing Act settled land claims on terms that the Wabanaki Alliance reports are widely regarded as a failure, tribal-state law is being reworked right now, and a Wabanaki-led land-return effort (11 projects, over 50,000 acres statewide) decides whether a given parcel should be sought at all. The statutory gates are subdivision review in towns, the Land Use Planning Commission in unorganized territory, and Shoreland Zoning near water. The honest answer for any parcel earmarked for return, or for arrival before listening to the Nations, is not there.
+
+**Key data point (with vintage):** Farm land and buildings in Washington County averaged **2,136 USD per acre in 2022** (Census of Agriculture, Table 8; 1,534 in 2017, +39%). Maine farm real estate averaged **3,400 USD per acre in 2026** (NASS Land Values, July 2026; 3,090 in 2022, +10%; US 4,500, +21% over the same four years); Maine cropland 4,700 and pasture 2,700 USD per acre (2026). Per hectare (x 2.47105): county 2022 5,278; state 2026 8,401 (cropland 11,614, pasture 6,672). Confidence: medium; farm-sector averages only, no forest, shorefront or house-price series found.
+
+**Supporting facts:**
+- Foreign and non-resident buyers: 'An alien may take, hold, convey and devise real estate or any interest therein' (33 MRS 451). Corporations and partnerships that hold, acquire or transfer agricultural land file an annual report with the Commissioner; a federal AFIDA copy suffices (7 MRS 33). Neither restricts purchase. Statutes as extracted by the Maine Revisor on 2025-10-20; later changes were not checked.
+- Subdivision: dividing land into 3 or more lots within 5 years, or placing 5 or more dwelling units on a tract, is a subdivision (30-A MRS 4401), reviewed by the municipality.
+- Shoreland Zoning is mandatory within 250 feet of great ponds, rivers and saltwater, within 250 feet of the upland edge of coastal and certain freshwater wetlands, and within 75 feet of streams (38 MRS 435). Great ponds are inland waters over 10 acres in a natural state (38 MRS 480-B).
+- Unorganized and deorganized townships: the Land Use Planning Commission is the planning and zoning authority over more than 10.4 million acres, including portions of downeast Maine (Chapter 10, Land Use Districts and Standards). LD 870 (132nd Legislature) adds a Wabanaki citizen to the Commission.
+- Current-use programmes: Farm and Open Space Tax Law (36 MRS 1101 ff; farmland of at least 5 contiguous acres with at least 2,000 USD gross farm income in 1 of 2 or 3 of 5 years); Tree Growth Tax Law (36 MRS 571 ff; forest land used primarily for growing trees for commercial use, with a certified forest management and harvest plan defined in the statute); Working Waterfront current-use valuation (36 MRS 1131 ff; land used predominantly, over 90%, for commercial fishing activity). Withdrawal penalties were not read.
+- Conservation easements: holders are governmental bodies or qualifying nonprofits (33 MRS 476); LD 1054 (132nd Legislature) adds federally recognized tribes.
+- Federal and state frame: Maine Indian Claims Settlement Act of 1980, Pub. L. 96-420, 25 U.S.C. 1721 et seq. (sections 1721 and 1724 are marked omitted from the Code as of special application); Maine Implementing Act, 30 MRS ch. 601. 30 MRS 6204 applies state law to Indians and Indian lands except as the Act provides; 30 MRS 6205 defines Passamaquoddy Indian territory, including lands in Centerville, Albany Township, T.19 M.D. and up to 100 acres in Calais.
+- The Wabanaki Alliance describes the Settlement Acts as requiring the Nations to give up their claim to dispossessed lands in exchange for a federally funded pathway to buy back 2.5% of 12 million acres unlawfully lost; it reports the 2020 task force's 22 consensus recommendations. In the 132nd Legislature LD 395 created a working group on extending federal beneficial laws (report due 2 December 2026), and LD 785 was amended considerably in committee. The 133rd Legislature begins in January 2027.
+- Tribal land inside the county: Indian Township Reservation 97.2 km2, Pleasant Point Reservation 1.5 km2, Passamaquoddy trust land about 62 km2: about 2.4% of county land, not available to buy.
+- Housing market: an estimated 59% of Washington County households cannot afford to buy a home (SCEC, 30 June 2026).
+
+**Practitioner-relevant nuance:** The statutes allow nearly anything a group might design; the practical limits are local zoning and the subdivision definition, well and septic, and above all relationship. Land that is held for return, or under negotiation, cannot be identified from outside; First Light's own published order of priority (Chiefs and Tribal councils, then the Wabanaki Commission, then Wabanaki nonprofits, then non-Native organizations and the public) is the guide to ask. Check also that the Maine Farmland Trust programme you hope to use still runs: it cut ten positions in July 2026.
+
+**Sources:**
+1. 33 MRS 451, Rights of aliens. https://legislature.maine.gov/statutes/33/title33sec451.html
+2. 7 MRS 33, Agricultural Land Interest Act, Report required. https://legislature.maine.gov/statutes/7/title7sec33.html
+3. 30-A MRS 4401, Definitions (subdivision). https://legislature.maine.gov/statutes/30-A/title30-Asec4401.html
+4. 38 MRS 435, Shoreland areas; 38 MRS 480-B, Definitions. https://legislature.maine.gov/statutes/38/title38sec435.html
+5. 36 MRS 1102 (Farm and Open Space), 573 (Tree Growth), 1132 (Working Waterfront). https://legislature.maine.gov/statutes/36/title36sec1102.html
+6. 33 MRS 476, Conservation easements. https://legislature.maine.gov/statutes/33/title33sec476.html
+7. Maine Land Use Planning Commission, About Us. https://www.maine.gov/dacf/lupc/about/index.shtml
+8. 30 MRS ch. 601 (6202, 6204, 6205). https://legislature.maine.gov/statutes/30/title30ch601sec0.html
+9. 25 U.S.C. 1721 et seq. (Pub. L. 96-420), notes. https://www.law.cornell.edu/uscode/text/25/1721
+10. Wabanaki Alliance, Understanding Tribal Sovereignty; MICSA Task Force explainer; 132nd Maine Legislature Scorecard. https://wabanakialliance.com/sovereignty/ ; https://wabanakialliance.com/taskforce-explainer/ ; https://wabanakialliance.com/132nd-maine-legislature-scorecard/
+11. Dawnland Return: Tributary Land Returns; Return (First Light). https://dawnlandreturn.org/first-light/land-return ; https://dawnlandreturn.org/first-light/lets-work-together/return
+12. USDA NASS Census of Agriculture 2022, Maine county data Tables 1 and 8. https://www.nass.usda.gov/Publications/AgCensus/2022/Full_Report/Volume_1,_Chapter_2_County_Level/Maine/st23_2_008_008.pdf
+13. USDA NASS Land Values 2026 Summary (July 2026). https://www.nass.usda.gov/Publications/Todays_Reports/reports/land0726.pdf
+14. Sunrise County Economic Council, Housing. https://sunrisecounty.org/housing/

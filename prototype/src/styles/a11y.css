@@ -1,0 +1,2 @@
+/* a11y.css: intentionally empty (MC-CSS-CLEANUP). Its rules live in base.css (skip link, focus ring, .sr-only), tokens.css (reduced
+   motion) and the components. It stays only because five pages still link it: MC-A11Y removes the links, then this file. */

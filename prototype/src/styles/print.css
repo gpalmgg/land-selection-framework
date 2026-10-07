@@ -1,0 +1,17 @@
+/* === Print: Print IS the export: no interactive or navigational chrome, just the framing, the comparison table and the attribution. === */
+@media print {
+  .map-wrap, .guided, .criteria, .contact,
+  .drawer-backdrop, .drawer-panel,
+  .compare-backdrop, .compare-panel,
+  button, .map-controls, .map-legend { display: none !important; }
+  .hero, .arrive, .regions-intro, .summary {
+    background: #fff !important; border-color: #999 !important;
+  }
+  .hero { padding: 24px 0 12px !important; }
+  section { break-inside: avoid; }
+  .sum-table { font-size: 10px !important; }
+  .sum-table th, .sum-table td { background: #fff !important; border-color: #bbb !important; }
+  .sum-table th, .sum-table td:first-child { color: #000 !important; }
+  .sum-table .v, .sum-table .lab { color: #000 !important; }
+  .suite-note, .suite-note a, a { color: #000 !important; }
+}
