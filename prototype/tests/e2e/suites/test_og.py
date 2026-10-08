@@ -372,7 +372,7 @@ def run(ctx):
     r.check("share-deeper", rc == 0 and (meta(html, "og:image") or "").endswith("/api/og?page=deeper"), "og:image=%r" % meta(html, "og:image"))
 
     # ---- fonts and the outbound log ----------------------------------------------------------------------------------------
-    for name in ("fraunces-og-roman.woff", "fraunces-og-italic.woff", "spectral-og-500.woff"):
+    for name in ("spectral-og-500.woff",):
         try:
             with urllib.request.urlopen(ctx.base + "/vendor/fonts/" + name, timeout=20) as resp:
                 body = resp.read()
@@ -382,7 +382,7 @@ def run(ctx):
             ok, detail = False, str(e)
         r.check("font-served:%s" % name, ok, detail)
     bad = [ln for ln in run_.fetch_lines if not (ln.startswith("same-origin") and "/vendor/fonts/" in ln)]
-    r.check("fetches-same-origin-fonts-only", not bad and len(run_.fetch_lines) >= 3, "%d fetch lines over %d runs; unexpected: %s" % (len(run_.fetch_lines), run_.runs, bad[:3]))
+    r.check("fetches-same-origin-fonts-only", not bad, "%d fetch lines over %d runs; unexpected: %s" % (len(run_.fetch_lines), run_.runs, bad[:3]))
 
     # ---- the fallback is loud ---------------------------------------------------------------------------------------------------
     rc, out, png, d = run_.og("fail-fonts", "region=alentejo", dump=False, env={"OG_FAIL_FONTS": "1"})

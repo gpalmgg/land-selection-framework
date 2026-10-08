@@ -1,447 +1,374 @@
-/* ==========================================================================
-   longread.css  -  the long-read shell (design FS 8.17, MC-DEEPER 2026-10).
-   deeper.html is the first page on it; arrive.html, host.html and terms-of-arrival.html (BIO-6, BIO-7, wave 8) reuse it.
-   ONE reading column in which every fact keeps its date beside it.
+/* longread.css: the deeper page, restored verbatim from the pre-upgrade deeper.html (git 6bce1a3), plus small adapters for the lr-* hooks the upgrade added.
+   Base, rail and tokens come from base.css, rail.css and tokens.css. */
+.narrow { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+.serif { font-family: 'Spectral', Georgia, serif; }
+h1, h2, h3, h4 { margin: 0; color: var(--ink); }
+.eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent);
+}
+.small { font-size: 11.5px; color: var(--ink-3); }
+a { color: inherit; }
 
-   Linked after tokens.css, fonts.css, theme-gate.css, base.css, century.css, rail.css, notes.css and a11y.css. Only tokens; no raw colour
-   outside rgba shadows. It follows the OS colour scheme (the light-only gate theme-gate.css was lifted by MC-A11Y).
-
-   CLASS LIST (the contract for the pages that reuse this file)
-     body.longread-page      sets the layout variables below; the page already links rail.css (the suite rail)
-     main.longread           the one <main id="main" tabindex="-1">; the skip link targets it
-     .lr-hero                the page head (h1, .subtitle, .lede, .toc); a .lr-wrap inside
-     .lr-chapter             one numbered section (section.block): river-spine segment + a ring node at its head; add .lr-ledger
-                             when it holds a bibliography
-     .lr-wrap                the measure: a 640px column (--lr-col) after a 44px spine gutter; from 1280px a 230px margin column
-                             (--lr-note) beyond it (700 + 260 from 1920). Use on the chapter's direct wrapper, topbar and footer
-     .lr-wide                a .lr-wrap that holds a ledger and may be wider than the column
-     .lr-eyebrow             caps label above a chapter title
-     .lr-lead                the chapter's opening paragraph (Spectral, larger)
-     .lr-prose               body text: Spectral 400 18.5px/1.7, 64ch; h3 in Fraunces; floated notes are cleared at its end
-     p.first                 takes the drop cap (Fraunces 4.1em, --accent); once per chapter only
-     .lr-num                 a roman numeral: Fraunces italic 340 28px, --art (in .toc: Spectral italic)
-     .lr-note                marginalia: Inter 12.5px --ink-3, 2px --rule-strong left rule. From 1280px it floats into the margin
-                             column beside the claim it dates (put it BEFORE or inside the paragraph it dates); under 1280px it folds
-                             inline under the claim
-     .lr-closing             "What this region asks of you": 3px accent left rule on --accent-wash, Spectral italic 18px; its
-                             .closing-label is the caps label
-     .lr-clause              a commitment as a clause: its first <strong> is Fraunces italic
-     .lr-refusal + .lr-stream  the pull-quote (Fraunces italic, clamp(26px, 3.2vw, 38px)) with the drawn stream; inside a
-                             .lr-reciprocity paragraph (flex column) so the sentence stays in the DOM order of the copy
-     .lr-tension             two .tension-pair leaves with a dashed fold (vertical from 1280px and 768-899px, horizontal otherwise)
-     .lr-century             wrapper for the stamped Century Line (<!--s:century--> ... <!--/s-->)
-     .lr-river-rule          the wavy river line under the h1 (decorative svg)
-     .lr-footer              the page foot (paper-2 band under a 1px ink rule)
-   Page-specific hooks that stay on deeper.html: .method-list/.method-point (the criteria grid), ul[data-doc="layer-list"], and the
-   bibliography ledger (.sources-grid/.source-group/li[data-doc="source"]) under .lr-ledger.
-   ========================================================================== */
-
-/* ------------------------------------------------------------------ layout variables */
-.longread-page {
-  --lr-col: 640px;
-  --lr-note: 230px;
-  --lr-gap: 40px;
-  --lr-spine: 44px;
-  --lr-total: calc(var(--lr-spine) + var(--lr-col));                       /* the measure below 1280px */
-  --stem: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='96' viewBox='0 0 12 96'%3E%3Cpath d='M6 0C10 12 2 24 6 36S10 60 6 72 2 90 6 96' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E");
-  background: var(--paper);
-}
-@media (min-width: 1280px) {
-  .longread-page { --lr-total: calc(var(--lr-spine) + var(--lr-col) + var(--lr-gap) + var(--lr-note)); }
-}
-@media (min-width: 1920px) {
-  .longread-page { --lr-col: 700px; --lr-note: 260px; --lr-gap: 48px; }
-}
-@media (max-width: 899px) {
-  .longread-page { --lr-spine: 0px; }
-}
-@media (prefers-reduced-motion: no-preference) {
-  html { scroll-behavior: smooth; }
-}
-
-.longread { display: block; }
-.longread:focus { outline: none; }
-.lr-chapter, .case-study, [id].lr-prose, h3[id] { scroll-margin-top: var(--s6); }
-
-/* the measure */
-.lr-wrap {
-  width: 100%;
-  max-width: var(--lr-total);
-  margin: 0 auto;
-  padding: 0 0 0 var(--lr-spine);
-  position: relative;
-}
-/* a ledger may be wider than the column, but keeps the column's left edge so the spine and the chapter heads stay aligned */
-.lr-wrap.lr-wide {
-  width: auto; max-width: calc(var(--lr-spine) + 1000px);
-  margin-left: calc((100% - min(100%, var(--lr-total))) / 2); margin-right: auto;
-}
-
-/* ------------------------------------------------------------------ top line, rail offset */
+/* === Top nav (back to main) === */
 .topbar {
-  padding: var(--s3) var(--gutter);
-  border-bottom: 1px solid var(--rule);
+  padding: 22px 0 18px;
+  border-bottom: 1px dotted var(--rule);
   background: var(--paper);
-  font: 500 12px/1.4 var(--f-ui);
-  color: var(--ink-3);
-  letter-spacing: .04em;
+  font-size: 12px; color: var(--ink-3);
+  letter-spacing: 0.04em;
 }
-.topbar .row { display: flex; align-items: center; justify-content: space-between; gap: var(--s5); flex-wrap: wrap; }
+.topbar .row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px;
+}
 .topbar a.back {
-  display: inline-flex; align-items: center; min-height: 44px;
-  font: italic 400 15px/1.3 var(--f-text);
-  color: var(--ink-2);
-  text-decoration: underline dotted; text-underline-offset: 4px;
-}
-.topbar a.back:hover { color: var(--accent); }
-.topbar svg.back-ico, .lr-footer svg.back-ico { width: 14px; height: 14px; margin-right: 8px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; vertical-align: -1px; }
-.ethics-bridge svg.arrow { margin-left: 8px; vertical-align: 0; }
-.topbar .stamp { font: 600 var(--t-label)/1.3 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
-
-/* ------------------------------------------------------------------ hero */
-.lr-hero {
-  padding: var(--s9) var(--gutter) var(--s8);
-  border-bottom: 1px solid var(--rule);
-  background:
-    radial-gradient(ellipse at 82% 12%, color-mix(in srgb, var(--art) 8%, transparent) 0, transparent 58%),
-    radial-gradient(ellipse at 6% 90%, color-mix(in srgb, var(--river) 7%, transparent) 0, transparent 52%),
-    var(--paper);
-}
-.lr-hero .eyebrow {
-  font: 600 var(--t-label)/1.3 var(--f-ui); letter-spacing: .14em; text-transform: uppercase;
-  color: var(--accent); margin: 0 0 var(--s5);
-}
-.lr-hero h1 {
-  font: 340 clamp(44px, 7.2vw, 92px)/1 var(--f-display);
-  letter-spacing: -.028em;
-  max-width: 11em;
-  text-wrap: balance;
-  margin: 0;
-}
-.lr-river-rule { display: block; width: min(100%, 480px); height: 22px; color: var(--art); margin: var(--s5) 0; overflow: visible; }
-.lr-hero .subtitle {
-  font: italic 400 var(--t-subtitle)/1.3 var(--f-text);
-  color: var(--ink-2); max-width: 34ch; margin: 0 0 var(--s5);
-}
-.lr-hero .lede {
-  font: 400 var(--t-lede)/1.62 var(--f-text);
-  color: var(--ink-2); max-width: 62ch; margin: 0 0 var(--s6);
-}
-
-/* the contents ledger: numeral, name, a dotted leader to the column edge */
-.toc { display: block; max-width: var(--lr-col); border-top: 1px solid var(--ink); margin-top: var(--s6); }
-.toc a {
-  display: flex; align-items: baseline; gap: .45em;
-  min-height: 48px; padding: 11px 0 10px;
-  font: 400 19px/1.3 var(--f-text);
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule-soft);
-}
-.toc a::after {
-  content: ""; order: 3; flex: 1; min-width: 24px; margin-left: .5em;
-  border-bottom: 1px dotted var(--rule-strong); transform: translateY(-4px);
-}
-.toc a .lr-num { font: italic 400 22px/1 var(--f-text); color: var(--art); min-width: .7em; text-align: right; }
-.toc a:hover { color: var(--accent); }
-.toc a:hover::after { border-bottom-color: var(--accent); }
-
-/* ------------------------------------------------------------------ the river spine (>= 900px) and the chapter */
-.lr-chapter { padding: var(--s8) var(--gutter) var(--s8); position: relative; }
-.lr-chapter + .lr-chapter { border-top: 0; }
-@media (min-width: 900px) {
-  /* a segment of the stem per chapter, so a chapter that is not on screen costs nothing; the ring node hides the join */
-  .lr-chapter::before {
-    content: ""; position: absolute; top: 0; bottom: 0; width: 12px; pointer-events: none;
-    left: calc(50% - min(100% - 2 * var(--gutter), var(--lr-total)) / 2 + 8px);
-    background: var(--art); opacity: .5;
-    -webkit-mask: var(--stem) repeat-y 50% 0 / 12px 96px; mask: var(--stem) repeat-y 50% 0 / 12px 96px;
-  }
-  .lr-chapter > .lr-wrap::before {                     /* the ring node: a confluence at the head of the chapter */
-    content: ""; position: absolute; left: 7px; top: 2px; z-index: 1;
-    width: 14px; height: 14px; border-radius: 50%;
-    background: var(--paper); border: 1.5px solid var(--art); box-sizing: border-box;
-  }
-  .lr-case::before {                                    /* a smaller node for each case study */
-    content: ""; position: absolute; left: calc(-1 * var(--lr-spine) + 9px); top: 6px; z-index: 1;
-    width: 10px; height: 10px; border-radius: 50%;
-    background: var(--paper); border: 1.5px solid var(--art); box-sizing: border-box;
-  }
-}
-
-.lr-eyebrow {
-  font: 600 var(--t-label)/1.3 var(--f-ui); letter-spacing: .14em; text-transform: uppercase;
-  color: var(--accent); margin: 0;
-}
-.lr-chapter h2 {
-  font: 340 var(--t-h2)/1.08 var(--f-display);
-  letter-spacing: -.018em;
-  max-width: 17em; text-wrap: balance;
-  margin: var(--s3) 0 var(--s5);
-}
-.lr-lead {
-  font: 400 clamp(18px, 1.5vw, 20px)/1.6 var(--f-text);
-  color: var(--ink-2);
-  max-width: 62ch; margin: 0 0 var(--s7);
-}
-.lr-lead[data-doc] { margin: 0 0 var(--s5); font-size: 17px; }
-.lr-lead[data-doc="sources-footer"] { margin: var(--s6) 0 0; }
-
-/* the drop cap: once per chapter, on the paragraph marked .first */
-.lr-chapter p.first::first-letter {
-  font-family: var(--f-display); font-weight: 340; font-size: 4.1em; line-height: .8;
-  float: left; padding: .07em .1em 0 0;
-  color: var(--accent);
-}
-
-/* ------------------------------------------------------------------ body text */
-.lr-prose {
-  font: 400 var(--t-read)/1.7 var(--f-text);
-  color: var(--ink-2);
-  max-width: var(--lr-col);
-}
-.lr-prose::after { content: ""; display: block; clear: both; }          /* floated margin notes end with their chapter */
-.lr-prose p { margin: 0 0 1.1em; max-width: 64ch; }
-.lr-prose p:last-child { margin-bottom: 0; }
-.lr-prose strong { color: var(--ink); font-weight: 500; }
-.lr-prose em { color: var(--ink-2); }
-.lr-prose a { color: var(--accent); text-decoration: underline dotted; text-underline-offset: 4px; }
-.lr-prose a:hover { color: var(--ink); }
-.lr-prose h3 {
-  font: 340 clamp(24px, 2.3vw, 30px)/1.15 var(--f-display);
-  letter-spacing: -.012em; text-wrap: balance;
-  color: var(--ink);
-  margin: var(--s8) 0 var(--s4);
-}
-.lr-prose > h3:first-child { margin-top: 0; }
-[data-claim], [data-assert] { font-variant-numeric: tabular-nums lining-nums; }
-
-/* the numeral (criteria grid and any page that counts) */
-.lr-num, .method-point .num { font: italic 340 28px/1 var(--f-display); color: var(--art); }
-.method-point .num { margin: 0 0 var(--s3); }
-
-/* the layers list (generated): theme lines on a ledger */
-.lr-prose ul[data-doc="layer-list"] { list-style: none; margin: var(--s5) 0 var(--s5); padding: 0; border-top: 1px solid var(--rule); font-size: 16px; line-height: 1.6; }
-.lr-prose ul[data-doc="layer-list"] li { padding: 10px 0; border-bottom: 1px solid var(--rule-soft); }
-
-/* the Century Line instance that opens "Source, vintage and licence for every value" */
-.lr-century { margin: var(--s5) 0 var(--s6); }
-.lr-century .century { margin-top: 0; }
-.lr-century:empty { margin: 0; }
-@supports selector(:has(*)) { .lr-century:not(:has(.century)) { margin: 0; } }
-
-/* ------------------------------------------------------------------ the criteria grid: eight points, two by four */
-.lr-chapter .method-list {
-  display: grid; grid-template-columns: 1fr; gap: var(--s5);
-  margin: var(--s6) 0 var(--s7); background: none; border: 0; counter-reset: none;
-}
-.method-point {
-  background: var(--sheet);
-  border: 1px solid var(--rule);
-  border-radius: var(--r-leaf);
-  padding: var(--s5) var(--s5) var(--s4);
-  min-width: 0;
-}
-.method-point h4 {
-  font: 500 19px/1.25 var(--f-text); letter-spacing: -.005em; color: var(--ink); margin: 0 0 var(--s3); text-wrap: balance;
-}
-.method-point p { font: 400 15px/1.55 var(--f-text); color: var(--ink-2); margin: 0 0 var(--s3); max-width: none; }
-.method-point p:last-child { margin-bottom: 0; }
-.method-point p[data-doc="criterion-metric"] { color: var(--ink); }
-.method-point p[data-doc="criterion-number"] { font: 400 12px/1.5 var(--f-ui); color: var(--ink-3); }
-/* the source / vintage / licence line of each criterion is a note on its claim */
-.lr-note, .method-point p[data-doc="criterion-source"] {
-  font: 400 12.5px/1.55 var(--f-ui);
-  color: var(--ink-3);
-  border-left: 2px solid var(--rule-strong);
-  padding: 2px 0 2px 12px;
-  overflow-wrap: anywhere;
-}
-.method-point p[data-doc="criterion-source"] { margin: var(--s3) 0; }
-.method-point strong { font-weight: 500; color: var(--ink); }
-
-/* ------------------------------------------------------------------ marginalia */
-.lr-prose .lr-note {                                  /* folded inline under 1280px */
-  background: none; border-top: 0; border-right: 0; border-bottom: 0; border-radius: 0;
-  margin: var(--s6) 0; padding: 2px 0 2px 14px; max-width: 64ch;
-}
-.lr-prose .lr-note p { font: 400 12.5px/1.55 var(--f-ui); color: var(--ink-3); margin: 0 0 var(--s2); max-width: none; }
-.lr-prose .lr-note p:last-child { margin-bottom: 0; }
-.lr-prose .lr-note .pair-label { font: 600 var(--t-label)/1.35 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 0 0 var(--s2); }
-@media (min-width: 1280px) {
-  .lr-prose .lr-note {
-    float: right; clear: right;
-    width: var(--lr-note);
-    margin: 0 calc(-1 * (var(--lr-note) + var(--lr-gap))) var(--s5) 0;
-  }
-  /* deeper.html: the "what this demonstration is, and is not" note comes last in the copy but dates the chapter's opening claim
-     ("a designed demonstration"), so from 1280px it takes the margin column beside the opening paragraphs (grid placement; the DOM
-     order, which the text-freeze guards, does not change) */
-  #criteria { display: grid; grid-template-columns: minmax(0, var(--lr-col)) var(--lr-note); column-gap: var(--lr-gap); align-items: start; max-width: none; }
-  #criteria::after { display: none; }
-  #criteria > * { grid-column: 1; }
-  #criteria > .method-list, #criteria > .lr-century { grid-column: 1 / -1; width: auto; }
-  #criteria > .lr-note[data-doc="demo-status"] { grid-column: 2; grid-row: 1 / span 6; float: none; width: auto; margin: 0; max-width: none; }
-}
-
-/* ------------------------------------------------------------------ case studies */
-.case-study { position: relative; padding: var(--s8) 0 0; border-top: 1px solid var(--rule); }
-.case-study:first-of-type { padding-top: 0; border-top: 0; }
-.case-head { margin: 0 0 var(--s6); }
-.case-study .country { font: 600 var(--t-label)/1.3 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 0 0 var(--s3); }
-.case-study h3.case-name {
-  font: 340 clamp(38px, 5.4vw, 64px)/1.02 var(--f-display);
-  letter-spacing: -.022em; color: var(--ink); text-wrap: balance;
-  margin: 0 0 var(--s4); max-width: 12em;
-}
-.case-study .case-tag { font: italic 400 clamp(19px, 1.7vw, 21px)/1.4 var(--f-text); color: var(--ink-2); max-width: 36ch; margin: 0; }
-.lr-closing {
-  margin: var(--s7) 0 0;
-  padding: var(--s4) var(--s4) var(--s4) var(--s5);
-  border-left: 3px solid var(--accent);
-  background: var(--accent-wash);
-  font: italic 400 18px/1.6 var(--f-text);
-  color: var(--ink-2);
-  max-width: 62ch;
-}
-.lr-closing .closing-label {
-  display: block; margin: 0 0 var(--s2);
-  font: 600 var(--t-label)/1.3 var(--f-ui); font-style: normal; letter-spacing: .14em; text-transform: uppercase; color: var(--accent);
-}
-
-/* ------------------------------------------------------------------ tension pair: two leaves, one dashed fold */
-.lr-tension { position: relative; display: grid; grid-template-columns: 1fr; row-gap: var(--s6); margin: var(--s6) 0 var(--s7); }
-.lr-tension .tension-pair {
-  background: var(--sheet);
-  border: 1px solid var(--rule);
-  border-radius: var(--r-leaf);
-  box-shadow: var(--lift);
-  padding: var(--s5);
-  margin: 0; min-width: 0;
-}
-.lr-tension .tension-pair + .tension-pair { border-radius: 28px 3px 3px 3px; }
-.lr-tension .pair-label { font: 600 var(--t-label)/1.35 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 0 0 var(--s3); }
-.lr-tension .tension-pair p { font: 400 16px/1.62 var(--f-text); color: var(--ink-2); margin: 0 0 var(--s3); max-width: none; }
-.lr-tension .tension-pair p:last-child { margin-bottom: 0; }
-.lr-tension::before {                                    /* the fold: horizontal when the leaves are stacked */
-  content: ""; position: absolute; left: var(--s3); right: var(--s3); top: 50%;
-  border-top: 1.5px dashed var(--rule-strong); pointer-events: none;
-}
-@media (min-width: 768px) and (max-width: 899px), (min-width: 1280px) {
-  .lr-tension { grid-template-columns: 1fr 1fr; column-gap: var(--s6); row-gap: 0; }
-  .lr-tension::before { left: 50%; right: auto; top: var(--s3); bottom: var(--s3); border-top: 0; border-left: 1.5px dashed var(--rule-strong); }
-}
-.tension-resolve {
-  font: italic 400 18px/1.65 var(--f-text); color: var(--ink-2);
-  max-width: 56ch; margin: var(--s7) 0 0; padding: var(--s5) 0 0; border-top: 1px solid var(--rule);
-}
-
-/* wide objects take the margin column as well from 1280px */
-@media (min-width: 1280px) {
-  .lr-prose .method-list, .lr-prose .lr-tension, .lr-prose .lr-century { width: calc(var(--lr-col) + var(--lr-gap) + var(--lr-note)); max-width: none; }
-}
-@media (min-width: 768px) and (max-width: 899px), (min-width: 1280px) {
-  .lr-chapter .method-list { grid-template-columns: 1fr 1fr; }
-}
-
-/* ------------------------------------------------------------------ ethics: the refusal first, then the commitments as clauses */
-#ethics .lr-prose { display: flex; flex-direction: column; }
-.lr-clause > strong:first-child,
-.lr-reciprocity .lr-body > strong:first-child { font: italic 340 1.3em/1 var(--f-display); letter-spacing: -.01em; color: var(--accent); margin-right: .1em; }
-.lr-reciprocity { order: -1; display: flex; flex-direction: column; margin: 0 0 var(--s7); max-width: none; }
-.lr-reciprocity .lr-stream { order: -2; display: block; width: 100%; max-width: 560px; height: 34px; color: var(--accent); overflow: visible; margin: 0 0 var(--s4); }
-.lr-reciprocity .lr-refusal {
-  order: -1; display: block;
-  font: italic 330 clamp(26px, 3.2vw, 38px)/1.22 var(--f-display); letter-spacing: -.012em;
-  color: var(--ink); max-width: 14em; text-wrap: balance;
-  margin: 0 0 var(--s5);
-}
-.lr-reciprocity .lr-body { display: block; max-width: 64ch; }
-.lr-reciprocity .lr-body + .lr-refusal + .lr-body { margin-top: .6em; }
-.ethics-bridge { font: 400 15px/1.6 var(--f-text); color: var(--ink-2); max-width: 60ch; margin: var(--s6) 0 0; }
-.ethics-bridge a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
-.ethics-bridge a:hover { color: var(--ink); }
-
-/* ------------------------------------------------------------------ the bibliography ledger */
-.lr-ledger .lr-lead { max-width: 64ch; }
-.lr-ledger .sources-grid { display: grid; gap: var(--s8); margin-top: var(--s7); }
-.lr-ledger .source-group h3 {
-  font: italic 340 clamp(24px, 2.2vw, 26px)/1.2 var(--f-display);
-  color: var(--ink); letter-spacing: -.01em;
-  margin: 0 0 var(--s4); padding: 0 0 var(--s3); border-bottom: 1px solid var(--ink);
-}
-.lr-ledger .source-group ul { list-style: none; margin: 0; padding: 0; }
-.lr-ledger .source-group li {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 38%); column-gap: var(--s5); row-gap: 3px; align-items: start;
-  padding: 12px 0 11px; border-bottom: 1px solid var(--rule-soft);
-  font: 400 15px/1.5 var(--f-text); color: var(--ink-2);
-  overflow-wrap: anywhere;
-}
-.lr-ledger .src-name {
-  grid-column: 1; grid-row: 1;
-  display: flex; align-items: baseline; gap: var(--s2);
-  font: 500 15.5px/1.35 var(--f-text); color: var(--ink);
-}
-.lr-ledger .src-name::after {                           /* the dotted leader from the name to its "used for" tag */
-  content: ""; flex: 1 0 12px; border-bottom: 1px dotted var(--rule-strong); transform: translateY(-4px);
-}
-.lr-ledger .source-group li > a {
-  grid-column: 1; grid-row: 2;
-  font: 400 13px/1.45 var(--f-ui); color: var(--accent);
+  font-family: 'Spectral', serif; font-style: italic;
+  font-size: 14px; color: var(--ink-2);
   text-decoration: underline dotted; text-underline-offset: 3px;
 }
-.lr-ledger .source-group li > a:hover { color: var(--ink); }
-.lr-ledger .source-group li > .used-for {
-  grid-column: 2; grid-row: 1 / span 2;
-  font: 500 11.5px/1.5 var(--f-ui); letter-spacing: .02em; color: var(--ink-3); text-align: right;
-}
-.lr-ledger .source-group li > .used-for[data-doc="licence"] {
-  grid-column: 1 / -1; grid-row: 3; text-align: left; font: 400 12px/1.5 var(--f-ui); margin-top: 2px;
-}
-/* a source whose link could not be opened keeps its entry and says so (state supplied by DOC-6 as data-doc="link-state"; none today) */
-.lr-ledger .source-group li > .used-for[data-doc="link-state"] { grid-column: 1 / -1; grid-row: auto; text-align: left; font: italic 400 12px/1.5 var(--f-ui); color: var(--gap); }
-.lr-ledger .source-group li .used-for a { color: var(--ink-2); text-decoration: underline dotted; text-underline-offset: 2px; }
-.lr-ledger .source-group li .used-for a:hover { color: var(--accent); }
-@media (max-width: 767px) {
-  .lr-ledger .source-group li { grid-template-columns: minmax(0, 1fr); }
-  .lr-ledger .src-name::after { display: none; }
-  .lr-ledger .source-group li > .used-for { grid-column: 1; grid-row: 3; text-align: left; }
-  .lr-ledger .source-group li > .used-for[data-doc="licence"] { grid-row: 4; }
+.topbar a.back:hover { color: var(--accent); }
+.topbar .stamp {
+  font-size: 10.5px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-4);
 }
 
-/* ------------------------------------------------------------------ footer */
-.lr-footer { padding: var(--s8) var(--gutter) var(--s9); background: var(--paper-2); border-top: 1px solid var(--ink); }
-.lr-footer .frame { font: italic 400 clamp(19px, 1.8vw, 23px)/1.5 var(--f-text); color: var(--ink-2); max-width: 46ch; margin: 0 0 var(--s6); }
-.lr-footer .links { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s6); font: 500 13.5px/1.4 var(--f-ui); }
-.lr-footer .links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink-2); text-decoration: underline dotted; text-underline-offset: 4px; }
-.lr-footer .links a:hover { color: var(--accent); }
-.lr-footer .stamp { margin-top: var(--s6); padding-top: var(--s4); border-top: 1px dotted var(--rule-strong); font: 400 12px/1.6 var(--f-ui); color: var(--ink-3); }
-.lr-footer .stamp .sep { color: var(--ink-3); margin: 0 var(--s2); }
+/* === Hero === */
+.hero {
+  padding: 96px 0 80px;
+  border-bottom: 1px solid var(--rule);
+  background:
+    radial-gradient(ellipse at 80% 20%, color-mix(in srgb, var(--accent) 5%, transparent) 0%, transparent 60%),
+    radial-gradient(ellipse at 10% 80%, rgba(44, 95, 124, 0.05) 0%, transparent 50%),
+    var(--paper);
+}
+.hero .eyebrow { margin-bottom: 26px; }
+.hero h1 {
+  font-family: 'Spectral', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(44px, 7.5vw, 88px);
+  line-height: 1.02;
+  letter-spacing: -0.024em;
+  margin-bottom: 22px;
+  max-width: 16ch;
+}
+.hero .subtitle {
+  font-family: 'Spectral', Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(19px, 2.2vw, 26px);
+  line-height: 1.35;
+  color: var(--ink-2);
+  max-width: 36ch;
+  margin-bottom: 32px;
+}
+.hero .lede {
+  font-family: 'Spectral', Georgia, serif;
+  font-size: 17px; line-height: 1.6;
+  color: var(--ink-2); max-width: 56ch; margin-bottom: 28px;
+}
+.hero .toc {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0; border-top: 1px solid var(--rule);
+  max-width: 720px; padding-top: 18px; font-size: 12px;
+}
+.hero .toc a {
+  display: block; padding: 8px 14px 8px 0;
+  color: var(--ink-2);
+  text-decoration: underline dotted; text-underline-offset: 3px;
+  font-family: 'Spectral', serif;
+  font-size: 13.5px;
+}
+.hero .toc a:hover { color: var(--accent); }
+
+/* === Section scaffolding === */
+section.block {
+  padding: 80px 0 70px;
+  border-bottom: 1px solid var(--rule);
+}
+section.block h2 {
+  font-family: 'Spectral', serif;
+  font-size: clamp(28px, 4vw, 38px); font-weight: 400;
+  letter-spacing: -0.012em; margin-bottom: 14px;
+  max-width: 22ch;
+}
+section.block .section-eyebrow {
+  margin-bottom: 16px;
+}
+section.block .intro {
+  font-family: 'Spectral', serif;
+  font-size: 17px; line-height: 1.6;
+  color: var(--ink-2); max-width: 60ch; margin: 0 0 36px;
+}
+
+/* === Body prose === */
+.prose {
+  font-family: 'Spectral', serif;
+  font-size: 16.5px; line-height: 1.7;
+  color: var(--ink-2);
+  max-width: 64ch;
+}
+.prose p { margin: 0 0 18px; }
+.prose p:last-child { margin-bottom: 0; }
+.prose strong { color: var(--ink); font-weight: 500; }
+.prose em { color: var(--ink-3); }
+.prose a {
+  color: var(--accent);
+  text-decoration: underline dotted; text-underline-offset: 3px;
+}
+.prose a:hover { color: var(--ink); }
+.prose h3 {
+  font-family: 'Spectral', serif;
+  font-size: 22px; font-weight: 500;
+  letter-spacing: -0.005em;
+  margin: 36px 0 10px;
+  color: var(--ink);
+}
+.prose h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent);
+  margin: 28px 0 10px;
+}
+
+/* === Methodology points === */
+.method-list {
+  display: grid; gap: 1px;
+  background: var(--rule); border: 1px solid var(--rule);
+  margin-top: 36px;
+}
+.method-point {
+  background: var(--paper);
+  padding: 24px 28px 22px;
+}
+.method-point .num {
+  font-family: 'Spectral', serif;
+  font-style: italic; font-size: 14px; color: var(--ink-4);
+  margin-bottom: 4px;
+}
+.method-point h4 {
+  font-family: 'Spectral', serif;
+  font-size: 19px; font-weight: 500;
+  letter-spacing: -0.005em;
+  margin: 0 0 8px;
+  color: var(--ink);
+}
+.method-point p {
+  font-family: 'Spectral', serif;
+  font-size: 14.5px; line-height: 1.6;
+  color: var(--ink-2); margin: 0;
+}
+
+/* === Case study === */
+.case-study {
+  border-top: 1px solid var(--rule);
+  padding: 70px 0 60px;
+}
+.case-study:first-of-type { border-top: none; padding-top: 0; }
+.case-study .case-head {
+  margin-bottom: 28px;
+}
+.case-study .country {
+  font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 10px;
+}
+.case-study h3.case-name {
+  font-family: 'Spectral', serif;
+  font-size: clamp(34px, 5vw, 52px); font-weight: 400;
+  letter-spacing: -0.018em; line-height: 1.05;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.case-study .case-tag {
+  font-family: 'Spectral', serif; font-style: italic;
+  font-size: 17px; color: var(--ink-3);
+  max-width: 38ch;
+}
+.case-study .closing {
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 18px; line-height: 1.6;
+  color: var(--ink-3);
+  max-width: 56ch;
+  margin: 32px 0 0;
+  padding: 22px 0 0;
+  border-top: 1px solid var(--rule);
+}
+.case-study .closing-label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent);
+  display: block; margin-bottom: 10px;
+}
+
+/* === Tensions === */
+.tension-pair {
+  background: var(--paper-2);
+  border-left: 3px solid var(--accent);
+  padding: 24px 28px 22px;
+  margin: 26px 0;
+}
+.tension-pair .pair-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 10px;
+}
+.tension-pair p {
+  font-family: 'Spectral', serif;
+  font-size: 15.5px; line-height: 1.65;
+  color: var(--ink-2); margin: 0 0 12px;
+}
+.tension-pair p:last-child { margin-bottom: 0; }
+.tension-resolve {
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  font-size: 17px; line-height: 1.65;
+  color: var(--ink-2);
+  max-width: 56ch;
+  margin: 32px 0 0;
+  padding: 22px 0 0;
+  border-top: 1px solid var(--rule);
+}
+.ethics-bridge {
+  font-size: 14.5px; line-height: 1.6;
+  color: var(--ink-3);
+  max-width: 60ch;
+  margin: 20px 0 0;
+}
+.ethics-bridge a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.ethics-bridge a:hover { color: var(--ink); }
+.ethics-bridge a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* === Sources === */
+.sources-grid {
+  display: grid; gap: 36px;
+  margin-top: 28px;
+}
+.source-group h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+.source-group ul {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; gap: 10px;
+}
+.source-group li {
+  font-family: 'Spectral', serif;
+  font-size: 14px; line-height: 1.55;
+  color: var(--ink-2);
+}
+.source-group li .src-name {
+  color: var(--ink); font-weight: 500;
+}
+.source-group li a {
+  color: var(--accent);
+  text-decoration: underline dotted; text-underline-offset: 2px;
+  word-break: break-word;
+}
+.source-group li a:hover { color: var(--ink); }
+.source-group li .used-for {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px; letter-spacing: 0.04em;
+  color: var(--ink-4); margin-top: 2px;
+}
+
+/* === Footer === */
+footer {
+  padding: 56px 0 80px;
+  border-top: 1px solid var(--rule);
+  background: var(--paper-2);
+}
+footer .frame {
+  font-family: 'Spectral', serif; font-style: italic;
+  font-size: 14.5px; line-height: 1.6;
+  color: var(--ink-2); max-width: 62ch; margin-bottom: 30px;
+}
+footer .links {
+  display: flex; gap: 28px; flex-wrap: wrap;
+  font-size: 13px;
+}
+footer .links a {
+  color: var(--ink-2);
+  text-decoration: underline dotted; text-underline-offset: 3px;
+}
+footer .links a:hover { color: var(--accent); }
+footer .stamp {
+  margin-top: 36px; padding-top: 24px;
+  border-top: 1px dotted var(--rule);
+  font-size: 10.5px; letter-spacing: 0.05em; color: var(--ink-4);
+}
+footer .stamp .sep { color: var(--rule); margin: 0 8px; }
+
+@media (max-width: 780px) {
+  .container { padding: 0 22px; }
+  .narrow { padding: 0 22px; }
+  .hero { padding: 64px 0 56px; }
+  section.block { padding: 56px 0 50px; }
+  .hero .toc { grid-template-columns: 1fr 1fr; }
+  .method-list { grid-template-columns: 1fr; }
+  .case-study .closing { font-size: 16.5px; }
+}
+@media (min-width: 781px) {
+  .method-list { grid-template-columns: 1fr 1fr; }
+}
+
+/* ==========================================================================
+   Adapters (2026-10-07): the upgraded page keeps the old class names and adds lr-* hooks. The hooks carry no layout or ornament here:
+   no spine, no ring nodes, no river rule, no drop cap, no floating margin notes. The extra content (reciprocity, notes, ledger) reads in the old prose language.
+   ========================================================================== */
+.lr-river-rule, .lr-stream { display: none; }
+.topbar svg.back-ico, .lr-footer svg.back-ico { width: 14px; height: 14px; margin-right: 8px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; vertical-align: -1px; }
+.ethics-bridge svg.arrow { margin-left: 6px; vertical-align: -2px; width: 14px; height: 14px; }
+:root { --lr-col: 656px; }
+.lr-wrap { max-width: 720px; margin: 0 auto; padding: 0 32px; position: relative; }
+.lr-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px; }
+.lr-chapter h2 .lr-num { font-style: italic; color: var(--accent); margin-right: 0.35em; }
+.container.lr-wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+.narrow.lr-wrap { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+.narrow.lr-wide, .lr-wrap.lr-wide { max-width: 980px; }
+.lr-chapter { scroll-margin-top: 24px; }
+.lr-chapter h2 { text-wrap: pretty; }
+.hero .toc a .lr-num, .lr-num { font: inherit; color: inherit; }
+.lr-lead { font-family: 'Spectral', serif; font-size: 17px; line-height: 1.6; color: var(--ink-2); max-width: 60ch; margin: 0 0 36px; }
+.lr-lead[data-doc] { margin: 0 0 22px; }
+.lr-lead[data-doc="sources-footer"] { margin: 28px 0 0; }
+.lr-prose { max-width: 64ch; }
+.lr-prose::after { content: ""; display: block; clear: both; }
+.lr-prose > h3:first-child { margin-top: 0; }
+.lr-prose ul[data-doc="layer-list"] { list-style: none; margin: 20px 0; padding: 0; border-top: 1px solid var(--rule); font-size: 15.5px; line-height: 1.6; }
+.lr-prose ul[data-doc="layer-list"] li { padding: 9px 0; border-bottom: 1px solid var(--rule-soft); }
+.lr-note:not(.tension-pair), .method-point p[data-doc="criterion-source"] { font: 400 12px/1.55 'Inter', system-ui, sans-serif; color: var(--ink-3); border-left: 2px solid var(--rule); padding: 2px 0 2px 12px; margin: 18px 0; overflow-wrap: anywhere; }
+.lr-prose .lr-note.tension-pair { margin: 26px 0; }
+.lr-prose .lr-note p { max-width: none; }
+.lr-tension { display: block; margin: 26px 0; }
+.lr-century { margin: 20px 0 26px; }
+.lr-century:empty { margin: 0; }
+.lr-closing { font: italic 300 18px/1.6 'Spectral', serif; color: var(--ink-3); max-width: 56ch; margin: 32px 0 0; padding: 22px 0 0; border-top: 1px solid var(--rule); border-left: 0; background: none; }
+.lr-closing .closing-label { display: block; font: normal 600 10.5px/1.4 'Inter', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+#ethics .lr-prose { display: block; }
+.lr-reciprocity { margin: 0 0 22px; max-width: none; display: block; }
+.lr-reciprocity .lr-refusal { display: block; font: italic 400 19px/1.55 'Spectral', serif; letter-spacing: 0; color: var(--ink); max-width: 56ch; margin: 0 0 14px; }
+.lr-reciprocity .lr-body { display: block; max-width: 64ch; }
+.lr-clause > strong:first-child, .lr-reciprocity .lr-body > strong:first-child { font: inherit; letter-spacing: 0; color: var(--ink); margin-right: 0; }
+.lr-ledger .sources-grid { gap: 36px; }
+.lr-footer .links a { display: inline-block; min-height: 24px; }
 .lr-footer a.lr-plain { color: inherit; text-decoration: none; }
-.lr-footer a.lr-plain:hover { color: var(--accent); }
 .longread-page .suite-note { max-width: 60ch; }
+.lr-col { max-width: 64ch; }
+@media print { .lr-river-rule, .lr-stream { display: none !important; } .lr-closing, .tension-pair, .method-point, .source-group li { break-inside: avoid; } }
+.sources-grid { grid-template-columns: minmax(0, 1fr); }
+.source-group, .source-group li, .source-group li > * { min-width: 0; overflow-wrap: anywhere; }
 
-/* ------------------------------------------------------------------ phones */
-@media (max-width: 767px) {
-  .lr-hero { padding-top: var(--s8); padding-bottom: var(--s7); }
-  .lr-chapter { padding-top: var(--s7); padding-bottom: var(--s7); }
-  .lr-prose h3 { margin-top: var(--s7); }
-  .method-point { padding: var(--s4); }
-  .toc a { font-size: 18px; }
-  .lr-reciprocity .lr-refusal { max-width: none; }
-}
-
-/* ------------------------------------------------------------------ print: the page is the document */
-@media print {
-  .longread-page { --lr-spine: 0px; background: #fff; }
-  .lr-river-rule, .lr-stream { display: none !important; }
-  .lr-chapter::before, .lr-chapter > .lr-wrap::before, .lr-case::before { display: none !important; }
-  .lr-hero, .lr-footer { background: #fff; }
-  .lr-prose .lr-note { float: none; width: auto; margin: var(--s4) 0; }
-  .lr-prose .method-list, .lr-prose .lr-tension, .lr-prose .lr-century { width: auto; }
-  .method-point, .lr-tension .tension-pair, .lr-ledger .source-group li, .lr-closing { break-inside: avoid; box-shadow: none; }
-  .lr-ledger .source-group h3 { break-after: avoid; }
-}
-
-/* .lr-col: the reading column itself (design FS 8.17): the 640px measure (700 from 1920). Named so a block can opt into the measure. */
-.lr-col { max-width: var(--lr-col); }
+footer .stamp .sep, .lr-footer .stamp .sep { color: var(--ink-3); }

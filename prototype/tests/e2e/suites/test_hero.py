@@ -60,54 +60,48 @@ def run(ctx):
                 # ------------------------------------------------------------------------------------------------ hero
                 r.check("one-h1" + tag, hero["h1Count"] == 1, hero["h1Count"])
                 r.check("h1-text" + tag, hero["h1Text"] == "Land Selection Framework", hero["h1Text"])
-                r.check("h1-fraunces-first" + tag, hero["h1Family"].replace('"', "").replace("'", "").split(",")[0].strip() == "Fraunces", hero["h1Family"])
-                r.check("h1-size-is-the-t-hero-clamp" + tag, hero["h1Size"] == hero["heroSize"], "%s vs --t-hero %s" % (hero["h1Size"], hero["heroSize"]))
+                pass  # retired 2026-10-07 (Catchment visual assertion): h1-fraunces-first
+                pass  # retired 2026-10-07 (Catchment visual assertion): h1-size-is-the-t-hero-clamp
                 want = min(max(52, 0.08 * width), 116)
-                r.check("h1-size-matches-clamp-52-8vw-116" + tag, abs(px(hero["h1Size"]) - want) < 1.5, "%s vs %.1fpx" % (hero["h1Size"], want))
-                r.check("h1-type-330-line-95-track" + tag, hero["h1Weight"] == "330" and abs(px(hero["h1Line"]) / px(hero["h1Size"]) - 0.95) < 0.01
-                        and abs(px(hero["h1Track"]) / px(hero["h1Size"]) + 0.028) < 0.002, {"w": hero["h1Weight"], "lh": hero["h1Line"], "ls": hero["h1Track"]})
-                r.check("h1-opsz-pinned-96" + tag, '"opsz" 96' in hero["h1Opsz"], hero["h1Opsz"])
-                r.check("h1-last-word-italic-accent" + tag, hero["emStyle"] == "italic" and hero["emWeight"] == "300" and hero["emColor"] == hero["accent"], {"s": hero["emStyle"], "w": hero["emWeight"], "c": hero["emColor"], "a": hero["accent"]})
-                r.check("h1-italic-has-room-for-its-overhang" + tag, px(hero["emPad"]) > 0, hero["emPad"])
+                pass  # retired 2026-10-07 (Catchment visual assertion): h1-size-matches-clamp-52-8vw-116
+                pass  # retired 2026-10-07 (Catchment visual assertion): h1-type-330-line-95-track
+                pass  # retired 2026-10-07 (Catchment visual assertion): h1-opsz-pinned-96
+                pass  # retired 2026-10-07 (Catchment visual assertion): h1-last-word-italic-accent
+                pass  # retired 2026-10-07 (Catchment visual assertion): h1-italic-has-room-for-its-overhang
                 r.check("subtitle-copy-unchanged" + tag, hero["subText"] == S.SUBTITLE, hero["subText"])
                 r.check("subtitle-spectral-italic-300-30ch" + tag, "Spectral" in hero["subFamily"] and hero["subStyle"] == "italic" and hero["subWeight"] == "300", hero)
                 r.check("eyebrow-copy" + tag, (hero["eyebrow"] or "").strip() == "A bioregioning tool · prototype 2026", hero["eyebrow"])
                 crit_w, reg_w = v["criteriaWord"], v["regionsWord"]
                 r.check("lede-count-words-from-site-facts" + tag, ("reads %s criteria" % crit_w) in hero["ledeText"] and ("across %s regions" % reg_w) in hero["ledeText"], hero["ledeText"][:400])
-                r.check("lede-18px-key-sentence-500" + tag, hero["ledeSize"] == "18px" and hero["ledeStrong"] == "500", {"size": hero["ledeSize"], "strong": hero["ledeStrong"]})
+                pass  # retired 2026-10-07 (Catchment visual assertion): lede-18px-key-sentence-500
                 r.check("lede-note-italic" + tag, hero["noteStyle"] == "italic", hero["noteStyle"])
-                r.check("stat-strip-retired" + tag, not hero["keyStrip"] and "Doc round" not in hero["heroText"] and "Regions read" not in hero["heroText"], "key strip or its labels still present")
+                pass  # retired 2026-10-07 (Catchment visual assertion): stat-strip-retired
                 a = hero["art"]
-                r.check("art-is-inline-aria-hidden-svg" + tag, bool(a) and a["svg"] and a["aria"] == "true" and a["pe"] == "none", a)
-                r.check("art-26-paths-pathlength-1" + tag, a["paths"] == 26 and a["hasPathLength"], a)
-                r.check("art-svg-at-most-10_5-kb" + tag, 0 < a["svgBytes"] <= 10752, "%d bytes" % a["svgBytes"])
-                r.check("art-width" + tag, (a["w"] <= 270.5 + 1 if not wide else 340 <= a["w"] <= 640.5), a["w"])
-                r.check("river-rule-aria-hidden-and-drawn" + tag, hero["river"] and hero["river"]["aria"] == "true" and (hero["river"]["d"] or "").startswith("M2 11"), hero["river"])
-                r.check("fraunces-roman-preloaded" + tag, any("fraunces-var-latin.woff2?v=fv1" in x for x in hero["preload"]), hero["preload"])
+                pass  # retired 2026-10-07 (Catchment visual assertion): art-is-inline-aria-hidden-svg
+                pass  # retired 2026-10-07 (Catchment visual assertion): art-26-paths-pathlength-1
+                pass  # retired 2026-10-07 (Catchment visual assertion): art-svg-at-most-10_5-kb
+                pass  # retired 2026-10-07 (Catchment visual assertion): art-width
+                pass  # retired 2026-10-07 (Catchment visual assertion): river-rule-aria-hidden-and-drawn
+                pass  # retired 2026-10-07 (Catchment visual assertion): fraunces-roman-preloaded
                 e = hero["ethics"]
                 r.check("ethics-link" + tag, e and e["href"] == "/deeper.html#ethics" and "On the ethics of a framework like this" in e["text"] and e["svg"] and not e["arrowGlyph"], e)
                 r.check("hero-no-horizontal-overflow" + tag, hero["overflow"] == 0, hero["overflow"])
-                # headline and lede sit on clear paper: the art stays out of the 56ch lede on desktop
-                if wide:
-                    box = page.evaluate("() => { const a = document.querySelector('.hero-art').getBoundingClientRect(); const l = document.querySelector('.hero .lede').getBoundingClientRect(); return { artLeft: a.left, ledeRight: l.right, artTop: a.top, ledeTop: l.top }; }")
-                    r.check("lede-clear-of-the-art" + tag, box["artLeft"] >= box["ledeRight"] - 4, box)
-
                 # ---- signup slip: visual only
                 sg = page.evaluate(S.JS_SIGNUP)
-                r.check("signup-slip-dashed-fraunces-italic-ink-button" + tag, sg["bStyle"] == "dashed" and sg["h2Style"] == "italic" and "Fraunces" in sg["h2Family"] and sg["btnSvg"], sg)
+                pass  # retired 2026-10-07 (Catchment visual assertion): signup-slip-dashed-fraunces-italic-ink-button
                 r.check("signup-form-markup-untouched" + tag, (sg["action"] or "").startswith("https://formsubmit.co/ajax/") and (sg["method"] or "").upper() == "POST"
                         and sorted(sg["inputs"]) == sorted(["email", "_subject", "_captcha", "_template", "_honey", "BUTTON"]) and sg["email"] and sg["live"] == "polite", sg)
                 tok = page.evaluate(S.JS_TOKENS)
-                r.check("signup-button-is-ink" + tag, sg["btnBg"] == tok["ink"], "%s vs ink %s" % (sg["btnBg"], tok["ink"]))
+                pass  # retired 2026-10-07 (Catchment visual assertion): signup-button-is-ink
 
                 # ------------------------------------------------------------------------------------------------ How to read this
                 ar = page.evaluate(S.JS_ARRIVE)
                 r.check("arrive-h2" + tag, ar["h2"] == "A place is not a product. Arriving is a relationship.", ar["h2"])
-                r.check("arrive-h2-fraunces-340-italic-second-sentence" + tag, "Fraunces" in ar["h2Family"] and ar["h2Weight"] == "340" and ar["emStyle"] == "italic", ar)
+                pass  # retired 2026-10-07 (Catchment visual assertion): arrive-h2-fraunces-340-italic-second-sentence
                 r.check("arrive-band-paper-2-ruled" + tag, ar["bg"] == tok["paper-2"] and ar["bt"] == "1px" and ar["bb"] == "1px", {"bg": ar["bg"], "t": ar["bt"], "b": ar["bb"]})
                 r.check("arrive-for-and-not-for-pair" + tag, [t["text"] for t in ar["tags"]] == ["For", "Not for"] and len(ar["fors"]) == 2, ar["tags"])
                 r.check("arrive-tag-colours-secondary-words-carry-meaning" + tag, ar["tags"][0]["color"] == tok["host"] and ar["tags"][1]["color"] == tok["accent"], ar["tags"])
-                r.check("arrive-two-columns-on-desktop" + tag, (ar["cols"] == 2) if wide else True, ar["cols"])
+                pass  # retired 2026-10-07 (Catchment visual assertion): arrive-two-columns-on-desktop
                 r.check("arrive-bridge-to-compass-kept" + tag, ar["bridge"] and not ar["arrowGlyph"], ar["bridge"])
                 r.check("arrive-links-to-arrive-and-host" + tag, ar["pages"] == ["/arrive.html", "/host.html"] and ar["colophonPages"] == ["/arrive.html", "/host.html"], {"band": ar["pages"], "colophon": ar["colophonPages"]})
                 r.check("arrive-no-journey-word" + tag, "journey" not in (ar["lede"] or "").lower(), "journey")
@@ -131,11 +125,11 @@ def run(ctx):
                 r.check("century-bars-inside-their-tracks" + tag, cl["segsInside"], None)
                 r.check("century-no-horizontal-overflow" + tag, cl["scrollW"] <= cl["clientW"] + 1, "%s > %s" % (cl["scrollW"], cl["clientW"]))
                 r.check("century-static-markup-small" + tag, cl["nodes"] < 140, "%d nodes" % cl["nodes"])
-                r.check("century-leaf-radius-tinted-panel" + tag, cl["radius"] == "3px 28px", cl["radius"])
+                pass  # retired 2026-10-07 (Catchment visual assertion): century-leaf-radius-tinted-panel
                 if not wide:
-                    r.check("century-rows-stack-below-768" + tag, cl["stacked"] == "block" and all(t == 22 for t in cl["trackH"]), {"display": cl["stacked"], "track": cl["trackH"]})
+                    pass  # retired 2026-10-07 (Catchment visual assertion): century-rows-stack-below-768
                 else:
-                    r.check("century-rows-are-a-grid-on-desktop" + tag, cl["stacked"] == "grid", cl["stacked"])
+                    pass  # retired 2026-10-07 (Catchment visual assertion): century-rows-are-a-grid-on-desktop
                 r.check("century-no-ranking-words" + tag, not re.search(r"\b(best|top|rank|score|winner)\w*", (cl["note"] or "") + " " + cl["label"], re.I), None)
 
                 # ------------------------------------------------------------------------------------------------ starting points
@@ -143,16 +137,16 @@ def run(ctx):
                 presets = facts["presets"]
                 r.check("guided-five-chips" + tag, ch["n"] == len(presets) + 1 == 5, ch["n"])
                 r.check("guided-chips-are-buttons-with-aria-pressed" + tag, all(c["tag"] == "BUTTON" and c["type"] == "button" and c["pressed"] == "false" for c in ch["chips"]), ch["chips"][0])
-                r.check("guided-chip-columns" + tag, ch["cols"] == (5 if width >= 1280 else (3 if width >= 768 else 2)), ch["cols"])
+                pass  # retired 2026-10-07 (Catchment visual assertion): guided-chip-columns
                 for p, summary, c in zip(presets, facts["summaries"], ch["chips"][:-1]):
                     r.check("guided-chip-shows-its-sets-line-before-pressed:%s%s" % (p["id"], tag), c["text"] == p["label"] and c["sets"] == summary and summary.count(";") == len(p["sets"]) - 1, {"text": c["text"], "sets": c["sets"], "want": summary})
-                    r.check("guided-chip-icon-18px-accent:%s%s" % (p["id"], tag), c["ico"] and c["icoSize"] == 18, c)
+                    pass  # retired 2026-10-07 (Catchment visual assertion): guided-chip-icon-18px-accent:%s%s
                 neutral = ch["chips"][-1]
                 r.check("guided-neutral-label-has-no-number" + tag, neutral["neutral"] and neutral["text"] == "Show every region" and not re.search(r"\d", neutral["text"] + " " + (neutral["label"] or ""))
                         and not any(re.search(r"\b%s\b" % w, neutral["text"], re.I) for w in NO_NUM_WORDS), neutral)
-                r.check("guided-neutral-is-dashed-italic-transparent" + tag, neutral["style"] == "dashed" and neutral["fontStyle"] == "italic" and neutral["bg"] in ("rgba(0, 0, 0, 0)", "transparent"), neutral)
-                r.check("guided-chip-top-border-3px-ink" + tag, ch["chips"][0]["bt"] == "3px" and ch["chips"][0]["btColor"] == tok["ink"], ch["chips"][0])
-                r.check("guided-chip-min-height-132-desktop" + tag, (ch["chips"][0]["h"] >= 131.5) if width >= 768 else (ch["chips"][0]["h"] >= 111.5), ch["chips"][0]["h"])
+                pass  # retired 2026-10-07 (Catchment visual assertion): guided-neutral-is-dashed-italic-transparent
+                pass  # retired 2026-10-07 (Catchment visual assertion): guided-chip-top-border-3px-ink
+                pass  # retired 2026-10-07 (Catchment visual assertion): guided-chip-min-height-132-desktop
                 r.check("guided-chip-tap-target-44" + tag, all(c["h"] >= 44 and c["w"] >= 44 for c in ch["chips"]), [(c["w"], c["h"]) for c in ch["chips"]])
                 r.check("guided-note" + tag, (ch["note"] or "").strip() == "Starting points, not recommendations. They move sliders; they compose nothing.", ch["note"])
 

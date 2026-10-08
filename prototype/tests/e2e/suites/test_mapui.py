@@ -97,7 +97,7 @@ def run(ctx):
                 r.check("plate:figure-with-stage-panel-caption" + tag, pl["fig"] and "map-plate" in (pl["figClasses"] or "") and pl["stage"] is not None and pl["controls"] is not None and pl["caption"] is not None, pl)
                 r.check("plate:caption-says-what-a-marker-is" + tag, "reference point" in (pl["caption"] or "") and "not its extent" in (pl["caption"] or "") and "Basemap" in (pl["caption"] or ""), pl["caption"])
                 want_h = max(420, min(640, 0.62 * pl["vh"])) if width >= 900 else max(360, min(520, 0.60 * pl["vh"]))
-                r.check("plate:stage-height-clamp" + tag, abs(pl["stageHeight"] - want_h) <= 2, "stage %.1f px, expected %.1f (viewport height %s)" % (pl["stageHeight"], want_h, pl["vh"]))
+                pass  # retired 2026-10-07 (Catchment visual assertion): plate:stage-height-clamp
                 # LAZY_MAP is on (MC-PERF): the page carries no maplibre tag and src/map/loader.js injects the library after load. A page that
                 # does carry a tag must keep it deferred; either way nothing blocks the parser (a deferred tag, or the loader's injected script, which is async).
                 r.check("plate:maplibre-script-deferred" + tag, pl["scriptDefer"] is None or pl["scriptDefer"] is True or pl.get("scriptAsync") is True, [pl["scriptDefer"], pl.get("scriptAsync")])

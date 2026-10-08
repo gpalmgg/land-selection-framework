@@ -10,17 +10,17 @@ The source documents at `source-docs/` are the **immutable source of truth** for
 
 ## 2026-10 upgrade — READ THIS FIRST (supersedes anything below where they conflict)
 
-- **LIVE since 2026-10-07** (prod `dpl_5FPHYze837NykDxuhkHsm3c7UCPP`; pre-upgrade site for rollback: `vercel rollback dpl_FXbyo8qJejJL6Q7bcAanNGAvrz6c --yes`). Merged to `main` locally; not pushed.
+- **LIVE since 2026-10-07** (prod `dpl_Dd2HKLMRAwaLTCyWqdknn1dpJrdd`; pre-upgrade site for rollback: `vercel rollback dpl_FXbyo8qJejJL6Q7bcAanNGAvrz6c --yes`). Merged to `main` locally; not pushed.
 - **The r4 reciprocity addendum is APPENDED to the three source-docs** (additive, attributed). Do NOT append `r4-reciprocity-commentary-DRAFT.md` again. `docs/r5-handoff-DRAFT.md` is an UNSENT draft; nobody has been contacted. `FRAMEWORK.md` = the portable layer (a proposal, not part of the source-docs).
 - **30 regions** (15 Europe, 15 North America): ten added (NW Scottish Highlands, North Karelia + Kainuu, Plateau de Millevaches, Teruel uplands, Valle Maira, Finger Lakes, Virginia Piedmont, Bas-Saint-Laurent, NE Missouri / SE Iowa, Downeast Maine) under a slate-admission rule the group has not ratified. Never type counts: read them from `prototype/data/site-facts.js`.
 - Land standing, legal pathway (`data/legal-pathway.js`), bioregions (`data/bioregions.js`) and reciprocity (`data/reciprocity.js`) cover all 30 — qualitative, never scored or filtered. Wording: "checked against opened public sources"; no nation or community has reviewed any entry.
 - Original slate re-checked against its sources; cells that could not be reproduced show a "not yet verified" gap, never an unreproduced number.
-- Design system "Catchment": `upgrade-2026-10/design/final-spec.md`. New pages: `arrive.html`, `host.html`, `terms-of-arrival.html`. `src/` is modular (`config/ map/ ui/ pages/ styles/`, CSS bundled by `scripts/bundle_css.mjs`); shared logic in `lib/` (`result.js`, `filters.js`, `og-card.js`).
+- **Look: the ORIGINAL pre-upgrade design** (paper palette, Spectral + Inter). The "Catchment" redesign shipped 2026-10-07 and Gustaf rejected it the same day; restored 2026-10-08 (commit ec04898) with all new content kept. Don't reintroduce Catchment styling (river art, Fraunces, dark mode). New pages: `arrive.html`, `host.html`, `terms-of-arrival.html`. `src/` is modular (`config/ map/ ui/ pages/ styles/`, CSS bundled by `scripts/bundle_css.mjs`); shared logic in `lib/` (`result.js`, `filters.js`, `og-card.js`).
 - **No hand-bumped `?v=usabN` any more:** `node scripts/stamp_build.mjs --bump --write` stamps buildId, counts and dates into the pages.
 - **Commands (from `prototype/`):** `node scripts/gen_region_pages.mjs` (region pages + sitemap + llms.txt; `--check`), `node scripts/gen_v1_lookup.mjs --write`, `node tests/run.mjs --strict` (data gate), `node --test tests/core`, `/usr/bin/python3 tests/e2e/run_all.py --port N --site DIR --suite ...` (browser tests; never submit the signup forms), `node scripts/og_harness.mjs` (share cards in plain Node). Full deploy gate: `bash upgrade-2026-10/verify/run_all_gates.sh --final`.
 - **Share-card fonts are bundled into the edge function** (`new URL(..., import.meta.url)` in `api/og.js`); a same-origin font fetch failed on Vercel. Staged (unaliased) deploys sit behind Vercel SSO, so self-fetches fail there too.
 - Contacts: no public contact route yet (the "Contact now routes via the newsletter signup" line below is superseded). `data/v1-exports/` and `notebooks/` are no longer served.
-- Working state + full log: `upgrade-2026-10/` (local, excluded from git via `.git/info/exclude`; `STATUS.md`, `verify/human-review-digest.md` = what to read first). Open follow-ups: region-page LCP (~1.7 s), legend overlap at 1440, compare-overlay scroll hint at 768.
+- Working state + full log: `upgrade-2026-10/` (local, excluded from git via `.git/info/exclude`; `STATUS.md`, `verify/human-review-digest.md` = what to read first). Map loads eagerly (LAZY_MAP=false) and CSS is unbundled, per the A/B rules in tests/e2e/suites/perf.py.
 
 ## 2026-07 update — bioregioning reframe, Land standing, 17-layer map (READ THIS)
 

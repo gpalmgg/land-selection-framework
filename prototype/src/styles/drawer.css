@@ -142,3 +142,51 @@ body.panel-open, body.overlay-open { overflow: hidden; }
   font: italic 400 16px var(--f-text); color: var(--accent);
   text-decoration: underline dotted; text-underline-offset: 4px;
 }
+
+/* ==========================================================================
+   RESTORED LOOK (2026-10-07): the pre-upgrade drawer: 540px paper panel on a hairline, accent bar over the name, 30px Spectral name,
+   paper-2 "asks" block with a 2px accent rule. The 12px wave and the large italic whose-land line are gone; Whose land stays, as a small
+   host-green line above the name.
+   ========================================================================== */
+.drawer-backdrop { background: rgba(26, 22, 18, 0.42); }
+#region-drawer .drawer-panel { width: 100%; max-width: 540px; background: var(--paper); border-left: 1px solid var(--rule); box-shadow: -20px 0 60px rgba(26, 22, 18, 0.18); transform: translateX(28px); transition: transform 0.36s cubic-bezier(0.22, 1, 0.36, 1); }
+#region-drawer.open .drawer-panel { transform: none; }
+#region-drawer .drawer-panel > .wave { display: none; }
+#region-drawer .drawer-close { top: 16px; right: 16px; width: 36px; height: 36px; background: var(--paper); border: 1px solid var(--rule); color: var(--ink-3); }
+#region-drawer .drawer-close:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+#region-drawer .drawer-close svg { width: 14px; height: 14px; }
+#region-drawer .drawer-body { padding: 40px 36px 44px; }
+#region-drawer .drawer-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; position: relative; padding: 8px 28px 0 0; margin-bottom: 14px; }
+#region-drawer .drawer-head::before { content: ''; position: absolute; top: -8px; left: 0; width: 56px; height: 3px; background: var(--accent-region, var(--accent)); }
+.drawer-sal { gap: 1px; margin: 0 0 8px; }
+.drawer-sal .sal-k { font: 600 9.5px/1.3 'Inter', system-ui, sans-serif; letter-spacing: 0.1em; color: var(--host); }
+.drawer-sal-v { font: italic 400 14px/1.35 'Spectral', Georgia, serif; letter-spacing: 0; color: var(--host); text-wrap: pretty; }
+#region-drawer .drawer-name { font: 500 30px/1.1 'Spectral', Georgia, serif; letter-spacing: -0.01em; margin: 0; text-wrap: pretty; }
+#region-drawer .drawer-country { font: 400 11.5px/1.3 'Inter', system-ui, sans-serif; letter-spacing: 0.08em; margin-top: 6px; }
+.drawer-tools { margin-right: 0; }
+#region-drawer .drawer-star { min-height: 0; padding: 8px 12px; border: 1px solid var(--rule); border-radius: 0; font: 500 11px/1 'Inter', sans-serif; letter-spacing: 0.04em; }
+#region-drawer .drawer-star:hover { background: var(--paper-2); border-color: var(--ink-3); }
+#region-drawer .drawer-star[aria-pressed="true"] { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+.drawer-blurb { font: 400 15px/1.6 'Spectral', Georgia, serif; color: var(--ink-2); margin: 0 0 22px; max-width: none; }
+.drawer-fulllink, .drawer-deeplink { margin: 0 0 22px; font: italic 400 14px 'Spectral', Georgia, serif; text-decoration: underline dotted; text-underline-offset: 3px; }
+.drawer-intro { margin: 0; }
+.drawer-asks { margin: 0 0 24px; padding: 16px 18px; background: var(--paper-2); border-left: 2px solid var(--accent); }
+.drawer-asks h4 { font: 600 10.5px/1.4 'Inter', system-ui, sans-serif; letter-spacing: 0.08em; margin: 0 0 10px; }
+.drawer-asks-text { font: 400 14.5px/1.6 'Spectral', Georgia, serif; font-style: normal; color: var(--ink-2); }
+.drawer-asks-src { font: 400 11px/1.5 'Inter', sans-serif; margin-top: 10px; }
+.drawer-body .refusal { margin: 0 0 24px; padding: 16px 18px; background: var(--paper-2); border-left: 2px solid var(--ink-3); }
+.drawer-body .refusal svg { display: none; }
+.drawer-body .refusal p { font: italic 400 14.5px/1.6 'Spectral', Georgia, serif; letter-spacing: 0; color: var(--ink-2); margin: 0; max-width: none; }
+.drawer-body .refusal small { font: 400 11px/1.5 'Inter', sans-serif; margin-top: 8px; }
+@media (max-width: 767px) {
+  #region-drawer .drawer-panel { top: auto; left: 0; right: 0; bottom: 0; width: 100%; max-width: 100%; max-height: 90vh; border-left: 0; border-top: 1px solid var(--rule); border-radius: 14px 14px 0 0; transform: translateY(32px); box-shadow: 0 -20px 60px rgba(26, 22, 18, 0.22); }
+  #region-drawer.open .drawer-panel { transform: none; }
+  #region-drawer .drawer-body { padding: 32px 22px 36px; }
+  #region-drawer .drawer-head { display: flex; }
+  .drawer-tools { order: 0; margin: 0; }
+  #region-drawer .drawer-name { font-size: 25px; }
+}
+@media (pointer: coarse), (max-width: 767px) {
+  #region-drawer .drawer-star { min-height: 44px; }
+  #region-drawer .drawer-close, .compare-close { width: 44px; height: 44px; }
+}

@@ -211,3 +211,46 @@
   .ls-claims summary::before { display: none; }
   .drawer-land-standing a[href^="http"]::after, .place-strip a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 10px; color: var(--ink-3); }
 }
+
+/* ==========================================================================
+   RESTORED LOOK (2026-10-07): Land standing and the place strip in the pre-upgrade drawer language: paper-2 panel, 2px host rule,
+   label/value rows, Spectral 14px values. The braid, the stem and the large italic lead line are gone; the content is not.
+   ========================================================================== */
+.drawer-land-standing { margin: 24px 0; padding: 16px 18px; background: var(--paper-2); border: 0; border-left: 2px solid var(--host); border-radius: 0; }
+.drawer-land-standing .braid, .place-strip::before { display: none; content: none; }
+.drawer-land-standing > .tag, .drawer-land-standing > h4:not(.tag) { font: 600 10.5px/1.4 'Inter', system-ui, sans-serif; letter-spacing: 0.08em; color: var(--host); margin: 0 0 12px; }
+.tag-qual { font-weight: 500; letter-spacing: 0.04em; text-transform: none; color: var(--ink-3); }
+.ls-territory { font: 400 14px/1.55 'Spectral', Georgia, serif; font-style: normal; letter-spacing: 0; color: var(--ink); margin: 0 0 12px; text-wrap: pretty; }
+.ls-row { grid-template-columns: 132px 1fr; gap: 12px; margin: 0 0 9px; border: 0; }
+.ls-label { padding: 3px 0 0; font: 600 10.5px/1.4 'Inter', system-ui, sans-serif; letter-spacing: 0.06em; color: var(--ink-3); }
+.ls-val { padding: 0; font: 400 14px/1.55 'Spectral', Georgia, serif; color: var(--ink-2); }
+.ls-claims { margin: -4px 0 10px 144px; }
+.ls-claims summary { min-height: 24px; font: 500 11.5px/1.3 'Inter', system-ui, sans-serif; }
+.ls-claims li { font: 400 12px/1.5 'Inter', system-ui, sans-serif; }
+.ls-claims li em { font: italic 400 13px/1.4 'Spectral', Georgia, serif; }
+.ls-src { margin-top: 8px; font: 400 11px/1.5 'Inter', sans-serif; color: var(--ink-3); }
+.ls-provenance { font: 400 11px/1.5 'Inter', sans-serif; color: var(--ink-3); }
+.ls-contested { background: var(--paper); border-radius: 0; font: 400 14px/1.5 'Spectral', Georgia, serif; }
+.ls-notthere { background: var(--paper); border-left: 2px solid var(--accent); margin-top: 14px; padding: 12px 14px; }
+.ls-nt-forms li { font: 400 14px/1.55 'Spectral', Georgia, serif; }
+.ls-nt-basis { font: 400 11px/1.5 'Inter', sans-serif; }
+.ls-fc { margin-top: 18px; padding-top: 14px; border-top: 1px dotted var(--rule); }
+.ls-fc-sub { font: italic 400 13px/1.5 'Spectral', Georgia, serif; }
+.ls-fc-group li { border-top: 1px dotted var(--rule); }
+.ls-fc-group li > a { font: 500 14px/1.35 'Spectral', Georgia, serif; }
+.ls-fc-what { font: 400 13px/1.5 'Spectral', Georgia, serif; }
+.ls-fc-checked { font: 400 10.5px/1.4 'Inter', sans-serif; }
+.ls-fc-foot { font: italic 400 12.5px/1.5 'Spectral', Georgia, serif; }
+.ls-consent { border-top: 1px dotted var(--rule); font: 400 11.5px/1.5 'Inter', sans-serif; }
+.ls-consent-cap { font: italic 400 13px/1.4 'Spectral', Georgia, serif; }
+.ls-arrive { font: italic 400 14px 'Spectral', Georgia, serif; text-decoration: underline dotted; }
+.place-strip { margin: 0 0 24px; padding: 16px 18px; background: var(--paper-2); border-left: 2px solid var(--river); border-radius: 0; }
+.place-strip > .tag { font: 600 10.5px/1.4 'Inter', system-ui, sans-serif; letter-spacing: 0.08em; color: var(--river); }
+.place-strip .place { font: italic 400 14.5px/1.45 'Spectral', Georgia, serif; margin: 8px 0 0; color: var(--ink-2); }
+.place-dl { grid-template-columns: 132px 1fr; margin: 10px 0 0; }
+.place-dl dt, .place-dl dd { border: 0; }
+.place-dl dt { padding: 3px 12px 9px 0; font: 600 10.5px/1.4 'Inter', system-ui, sans-serif; letter-spacing: 0.06em; }
+.place-dl dd { padding: 0 0 9px; font: 400 14px/1.55 'Spectral', Georgia, serif; color: var(--ink-2); }
+.place-caption { font: 400 11px/1.5 'Inter', sans-serif; }
+.place-note { font: italic 400 12.5px/1.5 'Spectral', Georgia, serif; }
+@media (max-width: 767px) { .ls-row, .place-dl { grid-template-columns: 1fr; gap: 2px; } .ls-claims { margin-left: 0; } .place-dl dt { padding-bottom: 0; } }

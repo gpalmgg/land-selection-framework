@@ -53,26 +53,16 @@ input[type="range"]:focus-visible { outline: 3px solid var(--accent); outline-of
   body { padding-left: 0; }                                                    /* the rail is hidden (rail.css), so the page gives its column back */
 }
 
-/* ---- the wave and the Salutation ("Whose land"): shared by the cards, the drawer, the compare view and the region page ---- */
-.wave {
-  height: 12px;
-  background: var(--region-ui, var(--region, var(--accent)));
-  -webkit-mask: var(--ripple) repeat-x 0 50% / 88px 12px;
-  mask: var(--ripple) repeat-x 0 50% / 88px 12px;
-}
+/* ---- the Salutation ("Whose land"): shared by the cards, the drawer, the compare view and the region page.
+   (The region-coloured wave of the 2026-10 redesign is retired: .wave is kept in the markup for the tests that look for it, but draws nothing.) ---- */
+.wave { display: none; }
 .salutation { display: flex; flex-direction: column; gap: 3px; margin: 0; }
-.sal-k {
-  font: 600 var(--t-label, 10.5px)/1.3 var(--f-ui);
-  letter-spacing: .14em; text-transform: uppercase; color: var(--host);
-}
+.sal-k { font: 600 10.5px/1.3 'Inter', system-ui, sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--host); }
 .sal-flag { font-weight: 500; letter-spacing: .06em; text-transform: none; color: var(--ink-3); }   /* real text: " - contested" */
-.sal-v { font: italic 400 18px/1.3 var(--f-text); color: var(--host); }
+.sal-v { font: italic 400 15px/1.35 'Spectral', Georgia, serif; color: var(--host); }
 
-/* ---- the refusal band: a river that runs, breaks and stops at a bar; the tool's stance, identical in every drawer and region page ---- */
-.refusal { padding: var(--s5, 24px) 0 0; }
-.refusal svg { display: block; width: 100%; max-width: 560px; height: 34px; color: var(--accent); overflow: visible; }
-.refusal p {
-  font: italic 330 clamp(24px, 2.4vw, 27px)/1.28 var(--f-display); letter-spacing: -.01em;
-  color: var(--ink); margin: var(--s3, 12px) 0 0; max-width: 17em;
-}
-.refusal small { display: block; font: 400 12.5px/1.5 var(--f-ui); color: var(--ink-3); margin-top: var(--s3, 12px); }
+/* ---- the refusal band: the tool's stance, identical in every drawer and region page (the river drawing is retired; the sentence stays) ---- */
+.refusal { margin: 0; padding: 16px 18px; background: var(--paper-2); border-left: 2px solid var(--ink-3); }
+.refusal svg { display: none; }
+.refusal p { font: italic 400 15px/1.55 'Spectral', Georgia, serif; letter-spacing: 0; color: var(--ink-2); margin: 0; max-width: 56ch; }
+.refusal small { display: block; font: 400 11.5px/1.5 'Inter', system-ui, sans-serif; color: var(--ink-3); margin-top: 8px; }

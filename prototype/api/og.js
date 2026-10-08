@@ -3,7 +3,7 @@
 // bare request the brand card. This file only loads the fonts and turns a Satori element tree into a PNG.
 //
 // Built without JSX: Satori (inside @vercel/og) consumes plain {type, props} element objects.
-// Fonts: three static woff files fetched from the SAME ORIGIN (/vendor/fonts/), once per cold start. There is no third-party font
+// Fonts: one static woff file fetched from the SAME ORIGIN (/vendor/fonts/), once per cold start. There is no third-party font
 // request. On any failure (a font that will not load, a render error) the function degrades to the static /og.png (302).
 
 import { ImageResponse } from '@vercel/og';
@@ -32,8 +32,6 @@ function baseOf(req) {
 // failed on Vercel (2026-10-07: every card fell back to /og.png although the font files were deployed). In plain Node
 // (scripts/og_harness.mjs) fetch() cannot read file: URLs, so each font falls back to the same-origin path there.
 const BUNDLED = {
-  '/vendor/fonts/fraunces-og-roman.woff': new URL('../vendor/fonts/fraunces-og-roman.woff', import.meta.url),
-  '/vendor/fonts/fraunces-og-italic.woff': new URL('../vendor/fonts/fraunces-og-italic.woff', import.meta.url),
   '/vendor/fonts/spectral-og-500.woff': new URL('../vendor/fonts/spectral-og-500.woff', import.meta.url),
 };
 async function fontBytes(path, origin) {

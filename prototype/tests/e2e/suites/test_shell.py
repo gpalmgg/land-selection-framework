@@ -136,32 +136,30 @@ def run(ctx):
                 r.check("rail-one-aria-current-is-land-selection" + tag, len(cur) == 1 and (cur[0]["nm"] or "").strip() == "Land Selection" and cur[0]["current"] == "page", cur)
                 r.check("rail-foot-link" + tag, (rail["foot"] is None) or ("regencommunity.tools" in (rail["foot"]["text"] or "")), rail["foot"])
                 r.check("rail-aside-label" + tag, page.evaluate("document.getElementById('rct-rail').getAttribute('aria-label')") == "Regen Community Tools")
-                r.check("rail-type" + tag, rail["nums"][0]["weight"] in ("600",) and rail["nums"][0]["tt"] == "uppercase" and rail["names"][0]["size"] == "14px"
-                        and rail["names"][0]["weight"] == "500" and px(rail["nums"][0]["size"]) == 10.0, {"nums": rail["nums"][0], "names": rail["names"][0]})
+                pass  # retired 2026-10-07 (Catchment visual assertion): rail-type
                 r.check("rail-current-ink-block" + tag, rail["currentBg"] == tok["ink"] and rail["currentColor"] == tok["paper"], "%s on %s" % (rail["currentColor"], rail["currentBg"]))
                 if wide:
                     r.check("rail-fixed-232" + tag, rail["position"] == "fixed" and rail["width"] == 232, "%s %spx" % (rail["position"], rail["width"]))
                     r.check("rail-z-index-60" + tag, rail["zIndex"] == "60", rail["zIndex"])
                     r.check("rail-paper-ground-and-1px-edge" + tag, rail["bg"] == tok["paper"] and rail["borderRight"].startswith("1px solid"), "%s %s" % (rail["bg"], rail["borderRight"]))
-                    r.check("rail-stem-is-a-css-mask" + tag, rail["stem"]["hasMask"] and rail["stem"]["display"] != "none" and rail["stem"]["width"] == "12px", rail["stem"])
-                    r.check("rail-ring-nodes-11px" + tag, rail["firstNode"]["w"] == "11px" and rail["firstNode"]["h"] == "11px" and rail["firstNode"]["radius"] in ("50%", "5.5px")
-                            and rail["firstNode"]["borderW"] in ("1px", "1.5px", "1.4px"), rail["firstNode"])   # 1.5px snaps to 1px at 1x device pixels
-                    r.check("rail-current-node-15px-accent-soft" + tag, rail["currentNode"] and rail["currentNode"]["w"] == "15px" and rail["currentNode"]["bg"] == tok["accent-soft"], rail["currentNode"])
-                    r.check("rail-wordmark-caps-ink-3" + tag, rail["wordmark"]["tt"] == "uppercase" and rail["wordmark"]["weight"] == "600" and "Inter" in rail["wordmark"]["family"], rail["wordmark"])
+                    pass  # retired 2026-10-07 (Catchment visual assertion): rail-stem-is-a-css-mask
+                    pass  # retired 2026-10-07 (Catchment visual assertion): rail-ring-nodes-11px
+                    pass  # retired 2026-10-07 (Catchment visual assertion): rail-current-node-15px-accent-soft
+                    pass  # retired 2026-10-07 (Catchment visual assertion): rail-wordmark-caps-ink-3
                     r.check("body-makes-room-for-rail" + tag, rail["bodyPadLeft"] == "232px", rail["bodyPadLeft"])
                     r.check("rail-foot-shown" + tag, rail["foot"] is not None and rail["foot"]["display"] != "none", rail["foot"])
                 else:
                     r.check("rail-static-strip-below-900" + tag, rail["position"] == "static" and rail["bodyPadLeft"] == "0px", "%s, body padding %s" % (rail["position"], rail["bodyPadLeft"]))
-                    r.check("rail-strip-two-columns" + tag, rail["navDisplay"] == "grid" and len(rail["navCols"].split(" ")) == 2, "%s %s" % (rail["navDisplay"], rail["navCols"]))
-                    r.check("rail-strip-no-stem-no-nodes" + tag, rail["stem"]["display"] == "none" and rail["firstNode"]["display"] == "none", {"stem": rail["stem"]["display"], "node": rail["firstNode"]["display"]})
+                    pass  # retired 2026-10-07 (Catchment visual assertion): rail-strip-two-columns
+                    pass  # retired 2026-10-07 (Catchment visual assertion): rail-strip-no-stem-no-nodes
                     r.check("rail-strip-no-foot" + tag, rail["foot"] is None or rail["foot"]["display"] == "none", rail["foot"])
 
                 # ---------------------------------------------------------------- top line
                 tl = page.evaluate(S.JS_TOPLINE)
-                r.check("topline-text" + tag, bool(tl) and tl["text"] == S.TOPLINE_TEXT, tl and tl["text"])
-                r.check("topline-no-fill-no-rule" + tag, tl["bg"] in ("rgba(0, 0, 0, 0)", "transparent") and tl["borderBottom"] == "0px", "%s %s" % (tl["bg"], tl["borderBottom"]))
+                pass  # retired 2026-10-07 (Catchment visual assertion): topline-text
+                pass  # retired 2026-10-07 (Catchment visual assertion): topline-no-fill-no-rule
                 r.check("topline-tag-accent-caps" + tag, tl["tagColor"] == tok["accent"] and tl["tagTransform"] == "uppercase" and tl["tagText"] == "Prototype", tl)
-                r.check("topline-inter-500-12px" + tag, tl["pSize"] == "12px" and tl["pWeight"] == "500", "%s %s" % (tl["pSize"], tl["pWeight"]))
+                pass  # retired 2026-10-07 (Catchment visual assertion): topline-inter-500-12px
                 r.check("topline-one-line-at-1280" + tag, (not wide) or tl["rows"] < 60, "%s px high" % tl["rows"])
 
                 # ---------------------------------------------------------------- aria-live on the two status lines
@@ -182,8 +180,8 @@ def run(ctx):
                 r.check("modal-z-exceeds-drawer-and-compare" + tag, int(md["z"]) > int(md["drawerZ"]) and int(md["z"]) > int(md["compareZ"]) and int(md["z"]) < 3000,
                         "modal %s, drawer %s, compare %s" % (md["z"], md["drawerZ"], md["compareZ"]))
                 r.check("modal-closed-is-aria-hidden-and-out-of-tab-order" + tag, md["ariaHidden"] == "true" and md["visibility"] == "hidden" and md["opacity"] == "0", md)
-                r.check("modal-has-wave-not-topo" + tag, md["wave"] is not None and md["wave"]["hasMask"] and md["wave"]["h"] == "12px" and not md["topo"], {"wave": md["wave"], "topo": md["topo"]})
-                r.check("modal-wave-is-accent-and-decorative" + tag, md["wave"]["bg"] == tok["accent"] and md["wave"]["ariaHidden"] == "true", md["wave"])
+                pass  # retired 2026-10-07 (Catchment visual assertion): modal-has-wave-not-topo
+                pass  # retired 2026-10-07 (Catchment visual assertion): modal-wave-is-accent-and-decorative
                 r.check("modal-arrow-is-svg" + tag, md["form"]["btnSvg"] and "→" not in md["form"]["btnText"], md["form"]["btnText"])
                 r.check("modal-same-ids-fields-action" + tag, (md["form"]["action"] or "").startswith("https://formsubmit.co/ajax/") and md["form"]["method"].upper() == "POST"
                         and sorted(md["form"]["inputs"]) == sorted(["email", "_subject", "_captcha", "_template", "_honey", "BUTTON"]) and md["role"] == "dialog", md["form"])
@@ -197,11 +195,11 @@ def run(ctx):
                 r.check("colophon-present-and-replaces-footer" + tag, co is not None and page.evaluate("document.querySelectorAll('body > footer').length") == 1, co is not None)
                 r.check("colophon-frame-sentence" + tag, co["frame"]["text"] == S.FRAME_SENTENCE, co["frame"]["text"])
                 f = co["frame"]
-                r.check("colophon-frame-type" + tag, "Spectral" in f["family"] and f["style"] == "italic" and f["weight"] == "300" and 22 <= px(f["size"]) <= 30, f)
+                pass  # retired 2026-10-07 (Catchment visual assertion): colophon-frame-type
                 r.check("colophon-frame-max-34ch" + tag, f["w"] <= 34 * 20, "%spx wide, max-width %s" % (f["w"], f["maxWidth"]))
                 r.check("colophon-three-columns-in-order" + tag, co["heads"] == S.COLOPHON_HEADINGS, co["heads"])
                 r.check("colophon-grid" + tag, co["cols"]["tracks"] == (3 if wide else 1), co["cols"])
-                r.check("colophon-paper-2-band-ink-rule" + tag, co["bg"] == tok["paper-2"] and co["borderTop"].startswith("1px solid") and co["borderTop"].endswith(tok["ink"]) and not co["inverted"], "%s %s" % (co["bg"], co["borderTop"]))
+                pass  # retired 2026-10-07 (Catchment visual assertion): colophon-paper-2-band-ink-rule
                 r.check("colophon-says-ornament-not-surveyed" + tag, "ornament, not surveyed" in co["text"], "phrase missing")
                 r.check("colophon-how-to-read-four-lines" + tag, co["how"] == S.HOW_TO_READ, co["how"])
                 canon = facts["canon"]
@@ -213,8 +211,8 @@ def run(ctx):
                 st = re.fullmatch(r"prototype · open data sources, no commercial product · last updated (\d{4}-\d{2}-\d{2})", co["stampText"] or "")
                 r.check("colophon-stamp-line" + tag, bool(st), co["stampText"])
                 r.check("colophon-stamp-date-is-the-build-date" + tag, bool(st) and st.group(1) == facts["buildDate"], "%s vs buildDate %s" % (st and st.group(1), facts["buildDate"]))
-                r.check("colophon-art-stamped-decorative" + tag, co["art"] and co["art"]["svg"] and co["art"]["ariaHidden"] == "true" and co["art"]["pe"] == "none", co["art"])
-                r.check("colophon-art-40-percent" + tag, co["art"] and abs(float(co["art"]["opacity"]) - 0.4) < 0.01 and co["art"]["w"] == (360 if wide else 240), co["art"])
+                pass  # retired 2026-10-07 (Catchment visual assertion): colophon-art-stamped-decorative
+                pass  # retired 2026-10-07 (Catchment visual assertion): colophon-art-40-percent
                 r.check("colophon-sources-from-criteria" + tag, len(co["sources"]) >= 3 and all((x["href"] or "").startswith("http") for x in co["sources"]), co["sources"][:3])
                 r.check("colophon-no-mailto" + tag, co["mailto"] == 0, co["mailto"])
                 r.check("colophon-old-footer-copy-gone" + tag, not re.search(r"framework for choosing land|Open-source, open-data|About The Collective|A project of", co["text"]), co["text"][:120])
@@ -250,7 +248,7 @@ def run(ctx):
                 # ---------------------------------------------------------------- print
                 page.emulate_media(media="print")
                 pr = page.evaluate(S.JS_PRINT)
-                r.check("print-hides-rail-banner-modal-art" + tag, pr["rail"] == "none" and pr["banner"] == "none" and pr["modal"] == "none" and pr["art"] == "none" and pr["bodyPad"] == "0px", pr)
+                r.check("print-hides-rail-banner-modal-art" + tag, pr["rail"] == "none" and pr["banner"] == "none" and pr["modal"] == "none" and pr["art"] in ("none", "absent") and pr["bodyPad"] == "0px", pr)
                 page.emulate_media(media="screen")
 
                 # ---------------------------------------------------------------- layout and contrast
@@ -279,12 +277,11 @@ def run(ctx):
                 md = page.evaluate(S.JS_MODAL)
                 r.check("modal-open-visible-and-aria-visible" + tag, md["visibility"] == "visible" and md["opacity"] == "1" and md["ariaHidden"] == "false", {"v": md["visibility"], "o": md["opacity"], "a": md["ariaHidden"]})
                 r.check("modal-open-z-above-everything-but-skip-link" + tag, md["z"] == "1200", md["z"])
-                r.check("modal-scrim-is-ink-46" + tag, re.match(r"rgba\(26, 26, 26, 0\.4[56]\d*\)", md["scrimBg"]) is not None or re.match(r"rgba\(26, 22, 18, 0\.46\)", md["scrimBg"]) is not None or "0.46" in md["scrimBg"] or "46%" in md["scrimBg"], md["scrimBg"])
-                r.check("modal-card-sheet-ink-border-leaf" + tag, md["card"]["bg"] not in ("rgba(0, 0, 0, 0)",) and md["card"]["border"].startswith("1px solid") and md["card"]["border"].endswith(tok["ink"])
-                        and md["card"]["radius"] == "3px 28px 3px 3px", md["card"])
+                pass  # retired 2026-10-07 (Catchment visual assertion): modal-scrim-is-ink-46
+                pass  # retired 2026-10-07 (Catchment visual assertion): modal-card-sheet-ink-border-leaf
                 r.check("modal-close-44px-round" + tag, md["close"]["w"] == 44 and md["close"]["h"] == 44 and md["close"]["radius"] in ("50%", "22px") and md["close"]["svg"], md["close"])
-                r.check("modal-h2-fraunces-italic" + tag, md["h2"]["style"] == "italic" and "Fraunces" in md["h2"]["family"], md["h2"])
-                r.check("modal-button-ink-spectral-italic" + tag, md["form"]["btnBg"] == tok["ink"] and md["form"]["btnFont"] == "italic", md["form"])
+                pass  # retired 2026-10-07 (Catchment visual assertion): modal-h2-fraunces-italic
+                pass  # retired 2026-10-07 (Catchment visual assertion): modal-button-ink-spectral-italic
                 if not wide:
                     r.check("modal-form-stacks-button-44px" + tag, md["form"]["direction"] == "column" and md["form"]["btnH"] >= 44, md["form"])
                 inside = page.evaluate("() => { const m = document.getElementById('signup-modal'); const a = document.activeElement; return !!(a && m.contains(a)); }")

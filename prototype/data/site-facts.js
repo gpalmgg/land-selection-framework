@@ -13,8 +13,8 @@ import { regions, criteria } from './regions.js';
 import { panelLayerSources } from './layer-sources.js';
 
 // ---- the two stamped values (written only by `stamp_build.mjs --bump`) -------------------------------------------------
-export const buildId = 'b20261006100127';
-export const buildDate = '2026-10-06';
+export const buildId = 'b20261007123838';
+export const buildDate = '2026-10-07';
 
 // The month the data values were revised against their cited sources. A CONSTANT: it is not the build date, so a later
 // rebuild can never rewrite history. Marker `<!--f:dataRevision-->` prints it.
