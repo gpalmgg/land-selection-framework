@@ -18,7 +18,6 @@
 // registry); the two small pieces it needs from them (ecoSubline, the verified-territory rule) are repeated below, and
 // tests/e2e/suites/test_og.py compares both against the originals for every region so they cannot drift.
 
-import { catchment, satoriPaths } from './linework.js';
 import { regions } from '../data/regions.js';
 import { reciprocity } from '../data/reciprocity.js';
 import { bioregions } from '../data/bioregions.js';
@@ -27,10 +26,8 @@ import { qualFiltersFor } from './url-state.js';
 
 export const C = { PAPER: '#f6f2eb', SHEET: '#fbf9f4', INK: '#1a1a1a', INK2: '#3a3a3a', INK3: '#5f574c', RULE: '#d8d0c2', ACCENT: '#8a3a2a', WASH: '#f3ece6', HOST: '#3a5a3a', RIVER: '#2c5f7c' };
 
-// The three static OG fonts, same origin (api/og.js builds the URLs from the request). Satori reads woff, not woff2 or variable fonts.
+// The one static OG font (Spectral 500, as on the pre-upgrade card), same origin (api/og.js builds the URLs from the request). Satori reads woff, not woff2 or variable fonts.
 export const FONT_FILES = [
-  { name: 'Fraunces', path: '/vendor/fonts/fraunces-og-roman.woff', style: 'normal', weight: 400 },
-  { name: 'Fraunces', path: '/vendor/fonts/fraunces-og-italic.woff', style: 'italic', weight: 400 },
   { name: 'Spectral', path: '/vendor/fonts/spectral-og-500.woff', style: 'normal', weight: 500 },
 ];
 
@@ -47,7 +44,7 @@ export function h(type, style, children) {
 /** The comparison glyphs and their ASCII digraphs, written as words. */
 export const words = (s) => String(s == null ? '' : s).replace(new RegExp(`${GT}|>=`, 'g'), 'at least').replace(new RegExp(`${LT}|<=`, 'g'), 'at most');
 
-// Characters the three font subsets hold: printable ASCII, Latin-1 (without the soft hyphen), curly quotes, en and em dash, bullet.
+// Characters the font subset hold: printable ASCII, Latin-1 (without the soft hyphen), curly quotes, en and em dash, bullet.
 const IN_SUBSET = /[ -~\u00a0-\u00ac\u00ae-\u00ff\u2013\u2014\u2018\u2019\u201c\u201d\u2022]/;
 const SWAP = { '\u0153': 'oe', '\u0152': 'OE', '\u0142': 'l', '\u0141': 'L', '\u0111': 'd', '\u0110': 'D', '\u0131': 'i', '\u0294': "'", '\u02bb': "'", '\u2026': '...' };
 
@@ -106,41 +103,34 @@ export function regionFacts(id) {
 }
 
 // ---- drawing -----------------------------------------------------------------------------------------------------------
-function wave(color, w = 168) {
-  // the ripple edge, drawn as one SVG path (the same curve as the web .wave mask)
-  const seg = 56, n = Math.ceil(w / seg);
-  let d = 'M0 7';
-  for (let i = 0; i < n; i++) d += `C${i * seg + 7} 1 ${i * seg + 21} 13 ${i * seg + 28} 7S${i * seg + 49} 1 ${i * seg + 56} 7`;
-  return { type: 'svg', props: { width: w, height: 14, viewBox: `0 0 ${w} 14`, style: { display: 'flex' }, children: [{ type: 'path', props: { d, fill: 'none', stroke: color, strokeWidth: 3, strokeLinecap: 'round' } }] } };
-}
-function art(color, w, h2, opacity = 1, style = {}) {
-  const a = catchment();
-  return { type: 'svg', props: { width: w, height: h2, viewBox: a.viewBox, style: { display: 'flex', opacity, ...style }, children: satoriPaths(a, color) } };
+function bar(color) {
+  // the old card's accent bar: 120 x 10, flat
+  return h('div', { width: 120, height: 10, backgroundColor: color });
 }
 const caps = (text, color, size = 20) => h('div', { display: 'flex', fontFamily: 'Spectral', fontWeight: 500, fontSize: size, letterSpacing: 3.2, color, textTransform: 'uppercase' }, fit(text));
 
 /** ?region=<id>: whose land first, the name, the ecoregion, and the watershed, on one sheet with a seam. No cost, no score. */
 export function regionCard(f) {
   const name = fit(mainName(f.name)), n = name.length;
-  // The largest size that keeps the name on one line (the width of a Fraunces character is about 0.42 em at this tracking, the
+  // The largest size that keeps the name on one line (the width of a Spectral character is about 0.44 em at this tracking, the
   // column is 660 px); a name that cannot fit on one line is set at 72 px (up to 34 characters) or 60 px on two lines, so the
   // name block never grows into the footer.
-  const size = [104, 88, 72].find((s) => n * 0.42 * s <= 660) || (n <= 34 ? 72 : 60);
+  const size = [104, 88, 72].find((s) => n * 0.44 * s <= 660) || (n <= 30 ? 72 : n <= 60 ? 52 : 38);
   const label = f.contested ? 'Whose land - contested' : 'Whose land';
   const w = f.water;
   const wsize = w && w.major.length > 60 ? 28 : 33;
   return h('div', { width: W, height: H, display: 'flex', position: 'relative', backgroundColor: C.PAPER, color: C.INK, fontFamily: 'Spectral' }, [
     h('div', { width: 770, height: H, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '52px 56px 46px' }, [
       h('div', { display: 'flex', flexDirection: 'column' }, [
-        wave(f.accent || C.ACCENT),
+        bar(f.accent || C.ACCENT),
         // the salutation leads: the territory line is first in reading order, the caps label sits above it (column-reverse)
         f.territory
           ? h('div', { display: 'flex', flexDirection: 'column-reverse', marginTop: 34 }, [
-            h('div', { display: 'flex', marginTop: 8, fontFamily: 'Fraunces', fontStyle: 'italic', fontSize: 44, lineHeight: 1.15, color: C.HOST, maxWidth: 640 }, fit(f.territory)),
+            h('div', { display: 'flex', marginTop: 8, fontFamily: 'Spectral', fontSize: 44, lineHeight: 1.15, color: C.HOST, maxWidth: 640 }, fit(f.territory)),
             caps(label, C.HOST),
           ])
           : null,
-        h('div', { display: 'flex', marginTop: f.territory ? 26 : 40, fontFamily: 'Fraunces', fontSize: size, lineHeight: 0.98, letterSpacing: -2, maxWidth: 660 }, name),
+        h('div', { display: 'flex', marginTop: f.territory ? 26 : 40, fontFamily: 'Spectral', fontSize: size, lineHeight: 0.98, letterSpacing: -1, maxWidth: 660 }, name),
         h('div', { display: 'flex', marginTop: 20 }, caps(f.country || '', C.INK3, 22)),
         // one line, only when the name is ASCII and at most 44 characters (omitted, never truncated, so the card never reflows)
         f.eco ? h('div', { display: 'flex', marginTop: 10 }, caps(f.eco, C.RIVER, 19)) : null,
@@ -150,12 +140,11 @@ export function regionCard(f) {
         h('div', { display: 'flex', fontSize: 20, color: C.INK3, marginLeft: 14 }, '\u00b7 a bioregioning tool'),
       ]),
     ]),
-    h('div', { width: 2, height: H, display: 'flex', borderLeft: `2px dashed ${C.RULE}` }),
-    h('div', { width: 428, height: H, display: 'flex', flexDirection: 'column', padding: '56px 40px', backgroundColor: C.WASH, position: 'relative', overflow: 'hidden' }, [
+    h('div', { width: 1, height: H, display: 'flex', backgroundColor: C.RULE }),
+    h('div', { width: 428, height: H, display: 'flex', flexDirection: 'column', padding: '56px 40px', backgroundColor: C.WASH }, [
       w ? caps('The watershed', C.ACCENT) : null,
-      w ? h('div', { display: 'flex', marginTop: 16, fontFamily: 'Fraunces', fontStyle: 'italic', fontSize: wsize, lineHeight: 1.26, color: C.INK }, fit(w.major)) : null,
+      w ? h('div', { display: 'flex', marginTop: 16, fontFamily: 'Spectral', fontSize: wsize, lineHeight: 1.26, color: C.INK }, fit(w.major)) : null,
       w && w.drainsTo && w.drainsTo.length <= 60 ? h('div', { display: 'flex', marginTop: 14, fontSize: 22, lineHeight: 1.3, color: C.INK3 }, fit(`Drains to ${w.drainsTo}`)) : null,
-      art(C.ACCENT, 330, 352, 0.5, { position: 'absolute', right: -70, bottom: -90 }),
     ].filter(Boolean)),
   ]);
 }
@@ -165,19 +154,18 @@ export function homeCard(o = {}) {
   const line1 = o.line1 || 'Land Selection';
   const line2 = o.line2 || 'Framework';
   const sub = o.sub || 'for communities seeking to belong to a place, and help it flourish over fifty to a hundred years';
-  const size = o.size || 112;
+  const size = o.size || 104;
   const kicker = o.kicker || (o.total ? `A bioregioning tool \u00b7 ${o.total} regions` : 'A bioregioning tool');
   return h('div', { width: W, height: H, display: 'flex', position: 'relative', backgroundColor: C.PAPER, color: C.INK, fontFamily: 'Spectral', overflow: 'hidden' }, [
-    art(C.ACCENT, 470, 500, 0.55, { position: 'absolute', right: -40, top: 40 }),
     h('div', { width: 820, height: H, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '52px 56px 46px', position: 'relative' }, [
       h('div', { display: 'flex', flexDirection: 'column' }, [
-        wave(C.ACCENT),
+        bar(C.ACCENT),
         h('div', { display: 'flex', marginTop: 34 }, caps(kicker, C.ACCENT)),
-        h('div', { display: 'flex', marginTop: 18, fontFamily: 'Fraunces', fontSize: size, lineHeight: 0.96, letterSpacing: -3.5 }, fit(line1)),
-        h('div', { display: 'flex', fontFamily: 'Fraunces', fontStyle: 'italic', fontSize: size, lineHeight: 0.96, letterSpacing: -3, color: C.ACCENT }, fit(line2)),
-        h('div', { display: 'flex', marginTop: 28, fontFamily: 'Fraunces', fontStyle: 'italic', fontSize: 32, lineHeight: 1.3, color: C.INK2, maxWidth: 640 }, fit(sub)),
+        h('div', { display: 'flex', marginTop: 18, fontFamily: 'Spectral', fontSize: size, lineHeight: 0.96, letterSpacing: -2.5 }, fit(line1)),
+        h('div', { display: 'flex', fontFamily: 'Spectral', fontSize: size, lineHeight: 0.96, letterSpacing: -2.5 }, fit(line2)),
+        h('div', { display: 'flex', marginTop: 28, fontFamily: 'Spectral', fontSize: 32, lineHeight: 1.3, color: C.INK2, maxWidth: 900 }, fit(sub)),
       ]),
-      h('div', { display: 'flex', justifyContent: 'space-between', borderTop: `1px solid ${C.RULE}`, paddingTop: 16, fontSize: 21, color: C.INK3, width: 740 }, [
+      h('div', { display: 'flex', justifyContent: 'space-between', borderTop: `1px solid ${C.RULE}`, paddingTop: 16, fontSize: 21, color: C.INK3, width: 1088 }, [
         h('div', { display: 'flex' }, DOMAIN),
         h('div', { display: 'flex' }, 'filters, never scores'),
       ]),
@@ -205,14 +193,13 @@ export function filteredCard(o) {
   const said = summaries.map((s) => fit(words(s)));
   const sum = said.slice(0, 3).join('   \u00b7   ') + (said.length > 3 ? `   \u00b7   and ${said.length - 3} more` : '');
   return h('div', { width: W, height: H, display: 'flex', position: 'relative', backgroundColor: C.PAPER, color: C.INK, fontFamily: 'Spectral', overflow: 'hidden' }, [
-    art(C.ACCENT, 340, 362, 0.4, { position: 'absolute', right: -50, bottom: -60 }),
     h('div', { width: W, height: H, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '52px 56px 46px', position: 'relative' }, [
       h('div', { display: 'flex', flexDirection: 'column' }, [
-        wave(C.ACCENT),
+        bar(C.ACCENT),
         h('div', { display: 'flex', marginTop: 30 }, caps(place ? `Land Selection Framework \u00b7 ${place}` : 'Land Selection Framework', C.ACCENT)),
-        h('div', { display: 'flex', marginTop: 16, fontFamily: 'Fraunces', fontSize: 84, lineHeight: 1.0, letterSpacing: -2.4, maxWidth: 1000 }, matching.length === 0 ? 'No regions within these thresholds' : `${matching.length} of ${total} regions within your thresholds`),
+        h('div', { display: 'flex', marginTop: 16, fontFamily: 'Spectral', fontSize: 84, lineHeight: 1.0, letterSpacing: -1.5, maxWidth: 1000 }, matching.length === 0 ? 'No regions within these thresholds' : `${matching.length} of ${total} regions within your thresholds`),
         matching.length === 0
-          ? h('div', { display: 'flex', marginTop: 28, fontFamily: 'Fraunces', fontStyle: 'italic', fontSize: 34, color: C.INK2 }, 'Loosen a threshold to read more places.')
+          ? h('div', { display: 'flex', marginTop: 28, fontFamily: 'Spectral', fontSize: 34, color: C.INK2 }, 'Loosen a threshold to read more places.')
           : h('div', { display: 'flex', flexWrap: 'wrap', marginTop: 30, maxWidth: 1000 }, [...shown.map(chip), ...(more > 0 ? [h('div', { display: 'flex', fontSize: 27, color: C.INK3, padding: '8px 4px' }, `+${more} more`)] : [])]),
       ]),
       h('div', { display: 'flex', flexDirection: 'column' }, [

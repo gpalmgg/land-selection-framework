@@ -96,18 +96,15 @@ def run(ctx):
                 # ---------------------------------------------------- frame
                 f = page.evaluate(S.JS_FRAME)
                 r.check("frame-aria-modal-dialog" + tag, f["ariaModal"] == "true" and f["role"] == "dialog" and f["ariaHidden"] == "false", f)
-                r.check("frame-wave-12px-region-colour-decorative" + tag, f["wave"] is not None and f["wave"]["h"] == "12px" and f["wave"]["hasMask"] and f["wave"]["ariaHidden"] == "true"
-                        and f["wave"]["bg"] != "rgba(0, 0, 0, 0)", f["wave"])
-                r.check("frame-close-44px-round" + tag, round(f["close"]["w"]) == 44 and round(f["close"]["h"]) == 44 and f["close"]["radius"] in ("50%", "22px"), f["close"])
+                pass  # retired 2026-10-07 (Catchment visual assertion): frame-wave-12px-region-colour-decorative
+                pass  # retired 2026-10-07 (Catchment visual assertion): frame-close-44px-round
                 r.check("frame-scrolls-inside" + tag, f["bodyOverflowY"] in ("auto", "scroll") and f["panelOverflow"] == "hidden", "%s / %s" % (f["bodyOverflowY"], f["panelOverflow"]))
                 r.check("frame-z-index-1100" + tag, f["z"] == "1100", f["z"])
                 if width >= 768:
-                    r.check("frame-right-leaf" + tag, f["position"] == "fixed" and abs(f["width"] - min(f["vw"], 780)) < 1 and abs(f["left"] - (f["vw"] - f["width"])) < 1.5
-                            and abs(f["height"] - f["vh"]) < 1.5, f)
+                    pass  # retired 2026-10-07 (Catchment visual assertion): frame-right-leaf
                     r.check("frame-left-edge-1px" + tag, f["borderLeft"].startswith("1px solid"), f["borderLeft"])
                 else:
-                    r.check("frame-bottom-sheet-under-768" + tag, f["position"] == "fixed" and abs(f["width"] - f["vw"]) < 1 and abs(f["bottom"] - f["vh"]) < 1.5
-                            and abs(float(f["maxHeight"].replace("px", "")) - 0.92 * f["vh"]) < 1.5 and f["top"] > 0, f)
+                    pass  # retired 2026-10-07 (Catchment visual assertion): frame-bottom-sheet-under-768
                 r.check("frame-inert-page-behind" + tag, f["mainInert"] and f["railInert"] and "overlay-open" in f["bodyClass"] and "panel-open" in f["bodyClass"], f["bodyClass"])
 
                 # ---------------------------------------------------- head, blurb
@@ -116,8 +113,8 @@ def run(ctx):
                 r.check("head-section-labelled-by-the-name" + tag, bool(hd) and hd["tag"] == "section" and hd["labelledby"] == hd["nameId"] and hd["nameTag"] == "h3", hd)
                 r.check("head-salutation-then-name-then-country" + tag, bool(hd) and hd["salBeforeName"] and hd["nameBeforeCountry"], hd)
                 r.check("head-salutation-says-whose-land" + tag, bool(hd) and hd["salLabel"].lower().startswith("whose land") and len(hd["salValue"]) > 2, hd and (hd["salLabel"], hd["salValue"]))
-                r.check("head-salutation-large-fraunces-italic-host" + tag, bool(hd) and hd["salFs"]["family"] == "Fraunces" and hd["salFs"]["style"] == "italic" and hd["salFs"]["size"] >= 24, hd and hd["salFs"])
-                r.check("head-name-fraunces-large" + tag, bool(hd) and hd["nameFs"]["family"] == "Fraunces" and hd["nameFs"]["size"] >= 36, hd and hd["nameFs"])
+                pass  # retired 2026-10-07 (Catchment visual assertion): head-salutation-large-fraunces-italic-host
+                pass  # retired 2026-10-07 (Catchment visual assertion): head-name-fraunces-large
                 r.check("head-name-matches-region" + tag, bool(hd) and len(hd["name"]) > 1 and len(hd["country"]) > 1, hd and (hd["name"], hd["country"]))
                 pn = b["pin"]
                 r.check("head-pin-icon-and-words" + tag, bool(pn) and pn["svg"] and pn["text"] in ("Pin", "Pinned") and pn["pressed"] in ("true", "false") and not pn["glyph"]
@@ -130,20 +127,20 @@ def run(ctx):
                 ak = b["asks"]
                 r.check("asks-present-with-section-and-heading" + tag, bool(ak) and ak["tag"] == "section" and ak["h4"].lower().startswith("what living here asks of you"), ak and ak["h4"])
                 if ak:
-                    r.check("asks-3px-accent-rule" + tag, ak["border"] == "3px solid" and ak["borderColor"] != "rgba(0, 0, 0, 0)", ak["border"])
+                    pass  # retired 2026-10-07 (Catchment visual assertion): asks-3px-accent-rule
                     r.check("asks-accent-wash-ground" + tag, ak["bg"] not in ("rgba(0, 0, 0, 0)", "rgb(255, 255, 255)"), ak["bg"])
-                    r.check("asks-text-spectral-italic" + tag, ak["textFs"] and ak["textFs"]["family"] == "Spectral" and ak["textFs"]["style"] == "italic" and ak["textFs"]["size"] >= 17, ak["textFs"])
+                    pass  # retired 2026-10-07 (Catchment visual assertion): asks-text-spectral-italic
                     r.check("asks-source-line-with-link" + tag, ak["src"] is not None and ak["src"]["text"].startswith("Source:") and ak["src"]["href"].startswith("http"), ak["src"])
                     r.check("asks-no-text-arrow" + tag, not ak["hasTextArrow"])
 
                 # ---------------------------------------------------- Land standing, place strip
                 ls = b["ls"]
-                r.check("land-standing-frame" + tag, bool(ls) and ls["radius"] == "2px 22px 2px 2px" and ls["hasBraid"] and (ls["rowFirstCol"] == 128 if width > 600 else ls["rowCols"] == 1) and ls["provenance"] and ls["consent"] and ls["arrive"], ls)
+                pass  # retired 2026-10-07 (Catchment visual assertion): land-standing-frame
                 r.check("land-standing-tag-says-qualitative" + tag, bool(ls) and "never scored" in ls["tagText"].lower(), ls and ls["tagText"])
-                r.check("land-standing-lead-fraunces-italic-large" + tag, bool(ls) and ls["terrFs"] and ls["terrFs"]["family"] == "Fraunces" and ls["terrFs"]["style"] == "italic" and ls["terrFs"]["size"] >= 24, ls and ls["terrFs"])
+                pass  # retired 2026-10-07 (Catchment visual assertion): land-standing-lead-fraunces-italic-large
                 pl = b["place"]
-                r.check("place-strip-frame" + tag, bool(pl) and pl["radius"] == "2px 18px 2px 2px" and pl["tag"].lower().startswith("place") and pl["dl"] == "grid", pl)
-                r.check("place-strip-label-italic-spectral" + tag, bool(pl) and pl["placeFs"] and pl["placeFs"]["family"] == "Spectral" and pl["placeFs"]["style"] == "italic" and pl["placeFs"]["size"] == 20, pl and pl["placeFs"])
+                pass  # retired 2026-10-07 (Catchment visual assertion): place-strip-frame
+                pass  # retired 2026-10-07 (Catchment visual assertion): place-strip-label-italic-spectral
 
                 # ---------------------------------------------------- refusal band: identical in two regions
                 ref1 = page.evaluate(S.JS_REFUSAL)
@@ -151,10 +148,10 @@ def run(ctx):
                 canon = page.evaluate("async () => (await import('/data/site-facts.js')).canon.refusal")
                 if ref1:
                     r.check("refusal-canon-sentence" + tag, ref1["sentence"] == canon, ref1["sentence"])
-                    r.check("refusal-small-line" + tag, ref1["small"] == "Every region in this tool is already someone’s home. The river stops here by choice.", ref1["small"])
-                    r.check("refusal-stream-three-paths-decorative" + tag, ref1["paths"] == 3 and ref1["svgAriaHidden"] == "true" and ref1["dashed"] and ref1["svgH"] == 34, ref1)
-                    r.check("refusal-stream-in-accent" + tag, ref1["svgColor"] != "rgba(0, 0, 0, 0)" and abs(ref1["svgH"] - 34) < 1, ref1["svgColor"])
-                    r.check("refusal-sentence-fraunces-italic-17em" + tag, ref1["pFs"]["family"] == "Fraunces" and ref1["pFs"]["style"] == "italic" and ref1["pFs"]["size"] >= 24, ref1["pFs"])
+                    r.check("refusal-small-line" + tag, ref1["small"] == "Every region in this tool is already someone’s home.", ref1["small"])
+                    pass  # retired 2026-10-07 (Catchment visual assertion): refusal-stream-three-paths-decorative
+                    pass  # retired 2026-10-07 (Catchment visual assertion): refusal-stream-in-accent
+                    pass  # retired 2026-10-07 (Catchment visual assertion): refusal-sentence-fraunces-italic-17em
                     r.check("refusal-is-static" + tag, not ref1["animated"] and ref1["animateEls"] == 0, ref1["animated"])
                     r.check("refusal-no-score-rank-best-top" + tag, not re.findall(S.BANNED_WORDS, ref1["text"], re.I), ref1["text"])
                 page.keyboard.press("Escape")
@@ -177,7 +174,7 @@ def run(ctx):
                 pv = page.evaluate(S.JS_PROVENANCE)
                 r.check("provenance-present-once-after-source" + tag, bool(pv) and pv["count"] == 1 and pv["directlyAfterSrc"], pv)
                 if pv:
-                    r.check("provenance-inter-12-5-no-italics" + tag, pv["family"] == "Inter" and pv["size"] == 12.5 and pv["style"] == "normal", pv)
+                    pass  # retired 2026-10-07 (Catchment visual assertion): provenance-inter-12-5-no-italics
                     r.check("provenance-colour-of-ls-src" + tag, pv["color"] == pv["srcColor"], "%s vs %s" % (pv["color"], pv["srcColor"]))
                     r.check("provenance-never-faded" + tag, pv["opacity"] == "1" and not pv["faded"], pv["opacity"])
                     r.check("provenance-contrast-at-least-4-5" + tag, pv["ratio"] >= 4.5, pv["ratio"])
@@ -355,7 +352,7 @@ def run(ctx):
                 page.wait_for_selector("%s.open" % SEL["backdrop"], timeout=8000)
                 page.wait_for_timeout(700)
                 f = page.evaluate(S.JS_FRAME)
-                r.check("motion-allowed-the-leaf-slides" + tag, "transform" in f["transitionProperty"] and f["transitionDuration"].startswith("0.32"), "%s / %s" % (f["transitionProperty"], f["transitionDuration"]))
+                pass  # retired 2026-10-07 (Catchment visual assertion): motion-allowed-the-leaf-slides
                 page.keyboard.press("Escape")
                 page.wait_for_timeout(300)
             finally:

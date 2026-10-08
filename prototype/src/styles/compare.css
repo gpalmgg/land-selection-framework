@@ -109,3 +109,38 @@
 @media (pointer: coarse) {
   .compare-close { width: 44px; height: 44px; }
 }
+
+/* ==========================================================================
+   RESTORED LOOK (2026-10-07): the pre-upgrade shortlist table: a hairline panel, paper-2 header and first column, one dotted-free grid.
+   The coloured bars, washes and large Fraunces name are gone; the Whose land / asks / place bands stay, as plain rows.
+   ========================================================================== */
+.compare-panel { width: 100%; max-width: 960px; padding: 32px 32px 36px; background: var(--paper); border: 1px solid var(--rule); border-radius: 0; box-shadow: 0 30px 80px rgba(26, 22, 18, 0.25); }
+.compare-head h3 { font: 500 24px/1.2 'Spectral', Georgia, serif; letter-spacing: -0.008em; }
+.compare-close { width: 36px; height: 36px; background: var(--paper); border: 1px solid var(--rule); color: var(--ink-3); }
+.compare-close:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.compare-note { font: italic 400 14px/1.5 'Spectral', Georgia, serif; }
+.compare-scroll { margin-top: 18px; border: 1px solid var(--rule); }
+.compare-table { border-collapse: collapse; background: var(--paper); font-size: 12.5px; }
+.compare-table caption { padding: 10px 12px; background: var(--paper-2); border-bottom: 1px solid var(--rule-soft); font: 600 10.5px/1.4 'Inter', sans-serif; letter-spacing: 0.06em; }
+.compare-table th, .compare-table td { padding: 10px 12px; border-bottom: 1px solid var(--rule-soft); border-right: 1px solid var(--rule-soft); }
+.compare-table thead th { background: var(--paper-2); border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
+.compare-table thead th:first-child { background: var(--paper-2); }
+.compare-table thead .wave { display: none; }
+.compare-table thead .name { font: 600 11px/1.3 'Inter', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); margin-top: 4px; }
+.compare-table thead .country { font: 400 10.5px/1.3 'Inter', sans-serif; letter-spacing: 0; text-transform: none; margin-top: 2px; }
+.compare-table thead .sal-k { font: 600 9.5px/1.3 'Inter', sans-serif; letter-spacing: 0.1em; }
+.compare-table thead .sal-v { font: italic 400 12.5px/1.35 'Spectral', serif; }
+.compare-table tbody th[scope=row] { background: var(--paper-2); font: 500 13px/1.3 'Spectral', serif; letter-spacing: 0; text-transform: none; color: var(--ink); }
+.compare-table tbody th small { font: 400 10.5px/1.3 'Inter', sans-serif; }
+.compare-table tr.band th, .compare-table tr.band td, .compare-table tr.band.ask th, .compare-table tr.band.ask td, .compare-table tr.band.bio th, .compare-table tr.band.bio td { background: var(--paper); border-top: 0; }
+.compare-table tr.band th { background: var(--paper-2); color: var(--ink); padding-left: 12px; }
+.compare-table tr.band td { padding-left: 12px; font: italic 400 13px/1.45 'Spectral', serif; color: var(--ink-2); }
+.compare-table tr.band td.none { color: var(--gap); }
+.compare-table tr.crit th, .compare-table tr.crit td { border-top: 0; }
+.compare-table .v { font: 500 13px/1.3 'Inter', sans-serif; }
+.compare-table .v small { font: 400 10.5px 'Inter', sans-serif; }
+.compare-table .l { font: 400 10.5px/1.35 'Inter', sans-serif; color: var(--ink-3); }
+.compare-table .s { font: 400 10.5px/1.45 'Inter', sans-serif; }
+.compare-table .s i { font: italic 400 12px 'Spectral', serif; }
+.compare-table .traj { border-radius: 0; font: 500 11px/1.3 'Inter', sans-serif; border-color: var(--rule); }
+.compare-table td.gap .v { font: italic 400 13px 'Spectral', serif; border-bottom-width: 1px; }

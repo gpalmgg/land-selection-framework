@@ -56,7 +56,7 @@ Thirty regions, listed in the order the data declares them. The order is not a r
 
 ## How the data is dated and licensed
 
-Every value on a region page prints its source, its vintage (the period the number describes) and its licence. Values were revised against their cited sources in 2026-10 (site built 2026-10-06). A licence the provider's own page did not state reads "licence not confirmed"; none is inferred. Native units are kept; nothing is resampled to a common grid.
+Every value on a region page prints its source, its vintage (the period the number describes) and its licence. Values were revised against their cited sources in 2026-10 (site built 2026-10-07). A licence the provider's own page did not state reads "licence not confirmed"; none is inferred. Native units are kept; nothing is resampled to a common grid.
 
 - Climate trajectory, window 2041–2060: [WorldClim 2.1, CMIP6 downscaled future climate](https://www.worldclim.org/data/cmip6/cmip6climate.html). Licence: WorldClim terms: free for academic and other non-commercial use; redistribution or commercial use needs prior permission.
 - Water stress, window 2050 (30-year period centred on 2050): [WRI Aqueduct 4.0 Water Risk](https://www.wri.org/data/aqueduct-global-maps-40-data). Licence: CC BY 4.0.
@@ -77,5 +77,5 @@ Land standing, region depth and the way in are written text, each with its own s
 
 ## How to cite
 
-Land Selection Framework working group (framework originated by Askja). Land Selection Framework, data revision 2026-10, built 2026-10-06. https://land-selection-framework.regencommunity.tools/
+Land Selection Framework working group (framework originated by Askja). Land Selection Framework, data revision 2026-10, built 2026-10-07. https://land-selection-framework.regencommunity.tools/
 For one region, cite its page, for example https://land-selection-framework.regencommunity.tools/region/alentejo.html, and name the criterion and its source and vintage as printed there.

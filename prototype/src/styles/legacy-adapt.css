@@ -1,0 +1,456 @@
+/* legacy-adapt.css: the components added in the 2026-10 upgrade, written in the restored pre-upgrade language (Spectral + Inter, warm paper,
+   terracotta accent, hairline grids, square corners, no ornament). Where the upgraded markup differs from the old (the hero wrappers, the
+   map plate, the region card's whose-land line, the criterion plot, the pin button, the gap state), the old rules are mapped onto it here. */
+
+/* ================= page head ================= */
+.hero h1 em, .arrive h2 em { font-style: normal; color: inherit; }
+.arrive .arrive-grid { display: block; }
+.arrive h2 { max-width: 26ch; }
+.arrive .arrive-pages { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 16px 0 0; font: 500 13px/1.5 'Inter', system-ui, sans-serif; }
+.arrive .arrive-pages a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.ico-arrow { width: 13px; height: 13px; vertical-align: -1px; margin-left: 3px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.hero .signup-card .arrow, .modal-form .arrow { width: 15px; height: 15px; vertical-align: -3px; margin-left: 2px; }
+.hero .signup-card .blurb { margin: 0 0 22px; }
+
+/* ================= guided entry ================= */
+.guided .guided-inner { display: grid; grid-template-columns: 1fr 1.05fr; gap: 44px; align-items: center; }
+.guided .guided-sub { margin-top: 0; }
+.guided-chip { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; text-align: left; font-family: 'Inter', system-ui, sans-serif; }
+.guided-chip .ico { display: none; }
+.guided-chip .t { font: 500 13.5px/1.3 'Inter', system-ui, sans-serif; letter-spacing: 0.01em; }
+.guided-chip .sets { font: 400 11.5px/1.45 'Inter', system-ui, sans-serif; color: var(--ink-3); max-width: 34ch; }
+.guided-chip:hover .sets, .guided-chip[aria-pressed="true"] .sets { color: var(--paper-3); }
+.guided-chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.guided-chip.neutral .t { font-style: normal; }
+.guided-note { font: italic 400 13.5px/1.5 'Spectral', Georgia, serif; color: var(--ink-3); margin: 14px 0 0; }
+@media (max-width: 880px) { .guided .guided-inner { grid-template-columns: 1fr; gap: 22px; } }
+
+/* ================= map ================= */
+.map-plate #map { position: absolute; inset: 0; }
+.map-plate .map-controls .title { min-height: 0; padding: 0 0 6px; border: 0; width: 100%; font: 600 10px/1 'Inter', system-ui, sans-serif; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); cursor: pointer; }
+.map-plate .map-controls .title .n { font-size: 10.5px; color: var(--ink-3); }
+.map-plate .map-controls .title .caret { display: block; width: 7px; height: 7px; margin: -3px 2px 0 6px; border-color: var(--ink-4); }
+.map-plate .map-controls.collapsed .map-panel-body, .map-plate .map-controls.collapsed .map-legend { display: none; }
+.map-plate .map-controls .map-panel-body { flex: 1 1 auto; min-height: 0; overflow: hidden; }
+.map-plate .map-controls .map-scroll { overflow-y: auto; padding: 0; max-height: 330px; }
+.map-plate .map-panel-actions { padding: 4px 0 6px; gap: 6px; }
+.map-controls .map-action { min-height: 30px; padding: 0 10px; font: 600 10.5px/1 'Inter', system-ui, sans-serif; letter-spacing: 0.06em; text-transform: uppercase; background: transparent; border: 1px solid var(--rule); border-radius: 0; color: var(--ink-2); }
+.map-controls .map-action:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+/* base structure of the layer list (from the upgrade); the skin follows */
+/* groups */
+.map-controls .map-group + .map-group { border-top: 1px solid color-mix(in srgb, var(--rule) 70%, transparent); margin-top: 6px; }
+.map-controls .map-toggle-group-label {
+  appearance: none; display: flex; align-items: center; gap: 8px; width: 100%; min-height: 44px; margin: 0; padding: 0; background: none; border: 0;
+  cursor: pointer; text-align: left; color: var(--ink-3); border-top: 0;
+  font: 600 var(--t-label, 10.5px)/1 var(--f-ui); letter-spacing: .14em; text-transform: uppercase;
+}
+.map-controls .map-toggle-group-label:hover { color: var(--ink); }
+.map-controls .map-toggle-group-label .gn { margin-left: auto; font-weight: 500; letter-spacing: .04em; text-transform: none; font-size: 11.5px; color: var(--ink-3); }
+.map-controls .map-toggle-group-label .caret { flex: none; width: 7px; height: 7px; border-right: 2px solid var(--ink-3); border-bottom: 2px solid var(--ink-3); transform: rotate(45deg); margin: -3px 2px 0 2px; transition: transform .15s var(--ease); }
+.map-controls .map-group:not(.open) .map-toggle-group-label .caret { transform: rotate(-45deg); margin-top: 0; }
+.map-controls .map-group-body[hidden] { display: none; }
+
+/* a layer row: leaf checkbox, swatch + name, then the mandatory source line */
+.map-plate .map-toggle {
+  appearance: none; display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 10px; row-gap: 1px; align-items: start;
+  width: 100%; min-height: 44px; margin: 0; padding: 8px 0; background: none; border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--rule) 70%, transparent); text-align: left; color: var(--ink); cursor: pointer;
+  font: 500 13px/1.25 var(--f-ui);
+}
+.map-plate .map-group-body > .map-toggle:first-child { border-top: 0; }
+.map-plate .map-toggle:hover { color: var(--ink); background: color-mix(in srgb, var(--paper-2) 60%, transparent); }
+.map-toggle .dot {
+  grid-row: 1 / span 2; width: 20px; height: 20px; margin-top: 1px; border: 1.5px solid var(--rule-strong); border-radius: 5px 50% 5px 50%;
+  background: var(--sheet); opacity: 1;   /* a leaf-shaped checkbox (layers stack, so not radios); the state is aria-pressed */
+}
+.map-toggle[aria-pressed="true"] .dot { border-color: var(--ink); background: radial-gradient(circle, var(--paper) 0 3.5px, transparent 4px), var(--ink); }
+.map-toggle .name { grid-column: 2; font: 500 13px/1.25 var(--f-ui); color: var(--ink); }
+.map-toggle .name .sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; background: var(--c, var(--ink-3)); border: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); }
+.map-toggle .src { grid-column: 2; font: 400 11.5px/1.4 var(--f-ui); color: var(--ink-3); }   /* source, vintage, licence: required on every layer */
+.map-toggle .src .gap, .map-legend .gap { font-style: italic; color: var(--gap); }
+.map-controls .map-layer-note { margin: 0 0 6px 32px !important; font: italic 400 12px/1.4 var(--f-text) !important; color: var(--ink-3) !important; }
+
+.map-controls .map-panel-body { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.map-controls #map-ext-slot:empty { display: none; }
+.map-controls #map-ext-slot { padding: 6px 0 4px; }
+.map-controls .map-group + .map-group { border-top: 1px dotted var(--rule); margin-top: 8px; }
+.map-controls .map-toggle-group-label { min-height: 30px; font: 600 9.5px/1 'Inter', system-ui, sans-serif; letter-spacing: 0.10em; color: var(--ink-3); }
+.map-plate .map-toggle { grid-template-columns: 14px minmax(0, 1fr); column-gap: 8px; min-height: 36px; padding: 5px 0; border-top: 0; font: 400 12px/1.3 'Inter', system-ui, sans-serif; }
+.map-plate .map-toggle:hover { background: none; color: var(--ink); }
+.map-toggle .dot { width: 10px; height: 10px; border: 0; border-radius: 50%; margin-top: 4px; background: var(--toggle-color, var(--ink-3)); opacity: 0.35; }
+.map-toggle[aria-pressed="true"] .dot { background: var(--toggle-color, var(--ink-3)); opacity: 1; border: 0; }
+.map-toggle .name { font: 400 13px/1.25 'Spectral', Georgia, serif; color: var(--ink-2); }
+.map-toggle .name .sw { display: none; }
+.map-toggle .src { font: 400 10.5px/1.35 'Inter', system-ui, sans-serif; color: var(--ink-3); }
+.map-plate .map-legend { position: static; max-width: none; max-height: 140px; margin: 8px -14px -10px; padding: 8px 14px 10px; background: var(--paper-2); border: 0; border-top: 1px solid var(--rule); border-radius: 0; box-shadow: none; font-size: 11.5px; }
+.map-wrap .map-caption { position: absolute; left: 0; right: 0; top: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 20px; padding: 8px 2px 0; font: 400 11.5px/1.5 'Inter', system-ui, sans-serif; color: var(--ink-3); }
+.map-wrap .map-caption b { font: 600 10px/1.5 'Inter', system-ui, sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2); margin-right: 8px; }
+.regions-intro .map-wrap { margin-bottom: 76px; }
+.map-wrap .maplibregl-ctrl-group { border-radius: 2px; }
+/* markers: the old filled disc with a paper ring */
+.continent-switcher { display: flex; gap: 2px; margin: 0 0 18px; border-bottom: 1px solid var(--rule); }
+.continent-tab { font: 600 14px/1.2 'Inter', system-ui, sans-serif; letter-spacing: 0.01em; color: var(--ink-3); background: none; border: 0; border-bottom: 2px solid transparent; border-radius: 0; padding: 9px 18px 11px; margin-bottom: -1px; cursor: pointer; min-height: 44px; }
+.continent-tab:hover { color: var(--ink); background: none; }
+.continent-tab.active, .continent-tab[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); background: none; margin-bottom: -1px; padding-bottom: 11px; }
+@media (max-width: 899px) {
+  .map-wrap.map-plate { height: auto; border: 0; background: none; margin-bottom: 48px; }
+  .map-plate .map-stage { position: relative; height: 420px; border: 1px solid var(--rule); background: var(--paper-3); }
+  .map-plate .map-controls { position: static; width: auto; max-width: none; max-height: none; margin-top: 10px; }
+  .map-plate .map-controls .map-scroll { max-height: none; }
+  .map-wrap .map-caption { position: static; padding: 10px 0 0; }
+  .regions-intro .map-wrap { margin-inline: 0; }
+}
+
+/* ================= region cards ================= */
+#region-grid, .region-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 0; align-items: stretch; }
+.region-grid .region-card { position: relative; display: flex; flex-direction: column; min-width: 0; background: var(--paper); border: 0; border-radius: 0; box-shadow: none; padding: 22px 22px 22px; cursor: pointer; transition: opacity 0.3s, background 0.2s; transform: none; }
+.region-grid .region-card::before { content: ''; position: absolute; top: 0; left: 0; height: 3px; width: 36%; background: var(--accent-region, var(--region, var(--accent))); }
+.region-grid .region-card:hover { background: var(--paper-2); transform: none; box-shadow: none; border-color: transparent; }
+.region-grid .region-card:focus-within { transform: none; box-shadow: none; outline: 2px solid var(--accent); outline-offset: -2px; }
+@supports selector(:has(*)) { .region-grid .region-card:focus-within:not(:has(:focus-visible)) { outline: none; } }
+.region-grid .region-card .wave, .region-card .fold { display: none; }
+.region-card .card-body { padding: 0; display: flex; flex-direction: column; flex: 1 1 auto; }
+.region-card .name { order: 1; margin: 0 0 2px; padding-right: 26px; font: 500 22px/1.2 'Spectral', Georgia, serif; letter-spacing: -0.005em; color: var(--ink); }
+.region-card .desc { order: 2; margin: 0 0 2px; font: italic 400 13px/1.4 'Spectral', Georgia, serif; color: var(--ink-3); }
+.region-card .country { order: 3; margin: 0 0 12px; font: 400 11.5px/1.3 'Inter', system-ui, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.region-card .salutation { order: 4; margin: 0 0 10px; padding: 7px 0 7px 10px; border-left: 2px solid var(--host); gap: 1px; }
+.region-card .sal-k { font: 600 9.5px/1.3 'Inter', system-ui, sans-serif; letter-spacing: 0.1em; color: var(--host); }
+.region-card .sal-v { font: italic 400 13px/1.35 'Spectral', Georgia, serif; color: var(--host); }
+.region-card .place-line { order: 5; margin: 0 0 8px; font: italic 400 12.5px/1.4 'Spectral', Georgia, serif; color: var(--river); display: block; overflow: visible; -webkit-line-clamp: unset; }
+.region-card .blurb { order: 6; font: 400 13.5px/1.55 'Spectral', Georgia, serif; color: var(--ink-2); }
+.region-card .region-open { all: unset; box-sizing: border-box; display: block; cursor: pointer; color: inherit; font: inherit; letter-spacing: inherit; text-align: left; overflow-wrap: anywhere; }
+.region-card .region-open::after { content: ""; position: absolute; inset: 0; z-index: 0; border-radius: 0; }
+.region-card .region-open:focus-visible { outline: none; }
+.region-card .card-asks { font: italic 400 12.5px/1.5 'Spectral', Georgia, serif; color: var(--ink-3); margin: 8px 0 0; padding: 0; background: none; border: 0; }
+.region-card .card-asks p { display: inline; margin: 0; font: inherit; color: inherit; }
+.region-card .card-asks-label { font: 600 10.5px/1.5 'Inter', system-ui, sans-serif; font-style: normal; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin-right: 6px; display: inline; }
+.region-card .card-foot { margin-top: auto; padding: 12px 0 0; border: 0; display: flex; flex-direction: column; align-items: stretch; gap: 8px; pointer-events: none; }
+.region-card .status { margin: 2px 0 0; font: 600 10.5px/1.4 'Inter', system-ui, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pass); }
+.region-card .status[hidden] { display: none; }
+.region-card .status .st { display: inline-flex; align-items: center; gap: 6px; }
+.region-card .status .st i { display: none; }
+.region-card .status .why { display: block; margin-top: 3px; font: italic 400 12px/1.4 'Spectral', Georgia, serif; text-transform: none; letter-spacing: 0; color: var(--ink-2); }
+.region-card .status .why:empty { display: none; }
+.region-card .status .why.gap { color: var(--gap); }
+.region-card.fail .status { color: var(--fail); }
+/* outside the thresholds: the old site faded the card to 32%; that failed AA, so the card is recessed (paper-2) with a short tab instead */
+.region-grid .region-card.fail { opacity: 1; background: var(--paper-2); }
+.region-grid .region-card.fail::before { width: 18%; }
+.region-card .region-pin { align-self: flex-start; position: relative; z-index: 1; pointer-events: auto; min-height: 30px; padding: 5px 10px 5px 8px; gap: 6px; background: transparent; border: 1px solid var(--rule); border-radius: 0; color: var(--ink-2); font: 600 10.5px/1 'Inter', system-ui, sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+.region-card .region-pin svg { width: 13px; height: 13px; }
+.region-card .region-pin:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.region-card .region-pin[aria-pressed="true"] { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+@media (pointer: coarse), (max-width: 767px) { .region-card .region-pin { min-height: 44px; } }
+
+/* ================= onboarding, presets, field filters ================= */
+.preset-chip { border-radius: 0; min-height: 36px; }
+.qual-filter { min-height: 36px; }
+.qual-filter-select { border-radius: 0; min-height: 36px; }
+.qual-note { flex: 1 0 100%; margin: 0; max-width: 72ch; font: italic 400 13.5px/1.5 'Spectral', Georgia, serif; color: var(--ink-3); }
+
+/* ================= result bar ================= */
+.match-bar { margin-bottom: 14px; }
+.match-bar .count { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; font: 500 22px/1.2 'Spectral', serif; }
+.match-bar .count .num { font: 500 22px/1 'Spectral', Georgia, serif; letter-spacing: -0.005em; color: var(--ink); }
+.match-bar .txt { margin: 0; font: italic 400 16px/1.35 'Spectral', Georgia, serif; color: var(--ink-3); max-width: none; }
+.match-bar .txt small { display: block; font: 400 12px/1.45 'Inter', system-ui, sans-serif; font-style: normal; color: var(--ink-3); margin-top: 4px; max-width: 56ch; }
+.match-bar .txt small:empty { display: none; }
+.match-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.match-actions .btn { appearance: none; display: inline-flex; align-items: center; gap: 7px; min-height: 36px; padding: 8px 14px; background: transparent; color: var(--ink-2); border: 1px solid var(--rule); border-radius: 0; font: 500 11px/1 'Inter', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: all 0.15s; }
+.match-actions .btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.match-actions .btn.copied { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.match-actions .btn svg { width: 13px; height: 13px; }
+.match-actions .share-note { font: 400 11px/1.3 'Inter', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); opacity: 0; transition: opacity 0.25s ease; pointer-events: none; }
+.match-actions .share-note.visible { opacity: 1; }
+.match-bar .share { display: inline-block; }
+.match-regions { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 14px; }
+.match-regions:empty { display: none; }
+.region-chip { border-radius: 0; min-height: 30px; }
+.region-chip.more { background: transparent; border-style: dashed; font-style: italic; }
+.region-chip.gap { background: var(--gap-wash); border: 1px dashed var(--gap-line); }
+.region-chip.gap:hover { background: var(--ink); border-color: var(--ink); }
+.match-gaps { flex: 1 0 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 4px; padding-top: 8px; border-top: 1px dotted var(--rule); }
+.match-gaps-label { font: 600 10.5px/1.2 'Inter', system-ui, sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gap); }
+
+/* ================= criteria ================= */
+.criteria { padding: 60px 0 40px; }
+.crit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 0; }
+.crit-grid > .crit-card { background: var(--paper); border: 0; border-radius: 0; padding: 26px 26px 22px; display: flex; flex-direction: column; gap: 0; min-width: 0; color: var(--ink); }
+.crit-card .head { display: block; margin-bottom: 0; min-width: 0; }
+.crit-card .head .eyebrow { margin: 0 0 6px; font: 600 10.5px/1.3 'Inter', system-ui, sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+.crit-grid .crit-card .head h3 { font: 500 22px/1.15 'Spectral', serif; letter-spacing: -0.005em; margin: 0 0 4px; color: var(--ink); }
+.crit-grid .crit-card .metric { font: 400 11.5px/1.5 'Inter', system-ui, sans-serif; letter-spacing: 0.02em; text-transform: none; color: var(--ink-3); margin: 0 0 14px; }
+.crit-grid .crit-card .framing { font: 400 13.5px/1.55 'Spectral', serif; color: var(--ink-2); margin: 0 0 14px; }
+.crit-card .epoch { display: flex; align-items: center; gap: 8px; margin: 0 0 14px; padding: 0; border: 0; border-radius: 0; font: 500 11px/1.4 'Inter', system-ui, sans-serif; letter-spacing: 0.03em; color: var(--ink-2); width: auto; }
+.crit-card .epoch i { flex: none; width: 16px; height: 6px; margin: 0; border-radius: 0; background: var(--ink-3); }
+.crit-card .epoch i.p { background: repeating-linear-gradient(115deg, var(--ink-3) 0 3px, transparent 3px 6px); outline: 0; }
+.crit-card .epoch.unstated { border: 0; color: var(--gap); }
+.crit-grid .crit-card .slider-filter-note { margin: 0 0 12px; padding: 0; border: 0; font: italic 400 12px/1.5 'Spectral', serif; color: var(--ink-3); }
+.crit-card .credit { margin: 0 0 8px; font: 400 10.5px/1.5 'Inter', system-ui, sans-serif; color: var(--ink-3); }
+.crit-card .scenario { margin: 0 0 14px; font: italic 400 12px/1.5 'Spectral', serif; color: var(--ink-3); }
+
+.crit-card .plot { min-width: 0; margin-top: 4px; }
+.crit-card .ruler-head { position: static; background: var(--paper-2); padding: 12px 14px 12px; margin-bottom: 8px; border-left: 2px solid var(--rule); }
+.crit-card .plot-grid { display: grid; column-gap: 12px; align-items: center; }
+.crit-card .ruler-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "lab val" "rul rul"; row-gap: 0; padding: 0; }
+.crit-card .slider-label { font: 600 10.5px/1.2 'Inter', system-ui, sans-serif; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.crit-card .slider-val { font: 500 16px/1.2 'Spectral', serif; letter-spacing: 0; color: var(--ink); text-align: right; font-variant-numeric: tabular-nums; }
+.crit-card .slider-val .u { font: 400 11px 'Inter', sans-serif; color: var(--ink-3); margin-left: 3px; }
+.crit-card .ruler { position: relative; height: 26px; }
+.crit-card .ruler .line, .crit-card .ruler .zone { display: none; }
+.crit-card .ruler input[type="range"] { position: absolute; left: 0; top: 0; width: 100%; height: 26px; margin: 0; padding: 0; background: transparent; -webkit-appearance: none; appearance: none; cursor: pointer; touch-action: pan-y; }
+.crit-card .ruler input[type="range"]::-webkit-slider-runnable-track { height: 4px; background: var(--rule-strong); border: 0; margin-top: 11px; }
+.crit-card .ruler input[type="range"]::-moz-range-track { height: 4px; background: var(--rule-strong); border: 0; }
+.crit-card .ruler input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; box-sizing: border-box; width: 18px; height: 18px; margin-top: -7px; background: var(--ink); border: 2px solid var(--paper); border-radius: 0; box-shadow: 0 1px 3px rgba(0,0,0,0.2); cursor: pointer; transition: none; }
+.crit-card .ruler input[type="range"]::-moz-range-thumb { box-sizing: border-box; width: 18px; height: 18px; background: var(--ink); border: 2px solid var(--paper); border-radius: 0; box-shadow: 0 1px 3px rgba(0,0,0,0.2); cursor: pointer; }
+.crit-card .ruler input[type="range"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 0; }
+.crit-card .ticks-row { display: block; }
+.crit-card .ticks-row > span { display: none; }
+.crit-card .ticks { position: relative; height: 14px; margin: 0 9px; font: 400 10.5px/1 'Inter', system-ui, sans-serif; color: var(--ink-3); }
+.crit-card .slider-hint { margin: 0 0 12px; font: italic 400 12px/1.5 'Spectral', serif; color: var(--ink-3); min-height: 0; }
+.crit-card .hint-gap { font: italic 400 12px/1.5 'Spectral', serif; color: var(--gap); }
+.crit-card .bar-rows { display: flex; flex-direction: column; gap: 8px; margin: 0 0 16px; will-change: transform; }
+/* PERF 2026-10-08: each criterion card is its own compositor layer. A slider tick re-wraps the "Within:" hint and flips rows, which shifts the card (and, through scroll anchoring, its neighbour) inside the page layer and re-rastered the whole viewport of text rows per tick (software GL: p50 80 ms, p95 140 ms on the 45-region stress site); as a layer the card is painted once, only the flipped rows repaint, and shifts are a layer move. The rows (.bar-rows) are a layer of their own too: card layer alone measured p50 ~60 ms, card + rows p50 ~27 ms, p95 ~50 ms. No visual change. */
+.crit-card { will-change: transform; }
+.crit-card .bar-row { display: grid; grid-template-columns: 90px minmax(0, 1fr) 96px; align-items: start; gap: 12px; min-height: 0; padding: 0; border: 0; font-size: 12px; position: relative; }
+.crit-card .bar-row .reg { font: 500 13px/1.3 'Spectral', serif; color: var(--ink-2); letter-spacing: -0.005em; white-space: normal; overflow-wrap: anywhere; }
+.crit-card .bar-row .reg small { display: none; }
+.crit-card .bar-track { position: relative; height: 8px; margin: 6px 0 0; background: var(--paper-3); }
+.crit-card .bar-track .axis, .crit-card .bar-track .zone { display: none; }
+.crit-card .bar-track .pt { position: absolute; left: 0; top: 0; width: calc(var(--v, 0) * 100%); height: 100%; margin: 0; border: 0; border-radius: 0; background: var(--region-ui, var(--region, var(--accent))); transition: width 0.4s ease; }
+.crit-card .bar-row.fail .pt { background: var(--rule-strong); border: 0; }
+.crit-card .bar-threshold { display: none; position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--ink); border: 0; left: calc(var(--p) * 100%); pointer-events: none; will-change: auto; transform: none; }
+.crit-card[data-active="true"] .bar-threshold { display: block; }
+.crit-card .bar-val { font: 500 13px/1.25 'Inter', system-ui, sans-serif; font-variant-numeric: tabular-nums; color: var(--ink); text-align: right; min-width: 0; }
+.crit-card .bar-val .vu { font: 400 10.5px 'Inter', sans-serif; color: var(--ink-3); }
+.crit-card .bar-val small { display: block; margin-top: 1px; font: 400 10.5px/1.35 'Inter', system-ui, sans-serif; color: var(--ink-3); overflow-wrap: anywhere; -webkit-line-clamp: unset; line-clamp: unset; }
+.crit-card .bar-row.gap .bar-track { background: repeating-linear-gradient(90deg, var(--gap-line) 0 6px, transparent 6px 10px) 0 50% / 100% 2px no-repeat, var(--paper-3); }
+.crit-card .bar-row.gap .bar-val .gap-v { font: italic 400 13px/1.3 'Spectral', serif; color: var(--gap); }
+.crit-card .plot-key { list-style: none; margin: 0 0 14px; padding: 0; border: 0; display: flex; flex-wrap: wrap; gap: 4px 16px; font: 400 10.5px/1.3 'Inter', system-ui, sans-serif; color: var(--ink-3); }
+.crit-card .plot-key li { display: flex; align-items: center; gap: 6px; }
+.crit-card .plot-key .k { display: inline-block; flex: none; width: 14px; height: 6px; border-radius: 0; border: 0; }
+.crit-card .plot-key .k.fill { background: var(--ink-3); }
+.crit-card .plot-key .k.open { background: var(--rule-strong); border: 0; }
+.crit-card .plot-key .k.cut { width: 2px; height: 12px; background: var(--ink); border: 0; }
+.crit-card .plot-key .k.gapk { width: 18px; height: 0; border-top: 2px dashed var(--gap-line); }
+.crit-card .footer { grid-column: auto; margin-top: auto; padding-top: 14px; border-top: 1px dotted var(--rule); font: 400 10.5px/1.45 'Inter', system-ui, sans-serif; color: var(--ink-3); }
+.crit-card .footer b { font-weight: 600; color: var(--ink-2); }
+@media (max-width: 880px) { .crit-grid { grid-template-columns: 1fr; } .crit-card .bar-row { grid-template-columns: 76px minmax(0, 1fr) 88px; } }
+@media (max-width: 480px) { .crit-grid > .crit-card { padding: 22px 18px 18px; } .crit-card .bar-row { grid-template-columns: 64px minmax(0, 1fr) 84px; gap: 8px; } .crit-card .bar-row .reg { font-size: 12px; } }
+@media (pointer: coarse), (max-width: 599px) { .crit-card .ruler { height: 44px; } .crit-card .ruler input[type="range"] { height: 44px; } .crit-card .ruler input[type="range"]::-webkit-slider-runnable-track { margin-top: 20px; } .crit-card .ruler input[type="range"]::-webkit-slider-thumb { width: 28px; height: 28px; margin-top: -12px; } .crit-card .ruler input[type="range"]::-moz-range-thumb { width: 28px; height: 28px; } }
+
+/* ================= summary table ================= */
+.summary .scroll-hint { display: none; margin: 0 0 12px; font: italic 400 13px/1.4 'Spectral', serif; color: var(--ink-3); }
+.sum-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--rule); background: var(--paper); }
+.sum-wrap:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.sum-wrap .sum-table { width: auto; min-width: 100%; border: 0; border-collapse: collapse; background: var(--paper); font-size: 12.5px; }
+.sum-wrap .sum-table th, .sum-wrap .sum-table td { padding: 10px 12px; text-align: left; vertical-align: top; border: 0; border-bottom: 1px solid var(--rule-soft); border-right: 1px solid var(--rule-soft); transition: none; }
+.sum-wrap .sum-table thead th { position: static; min-width: 124px; max-width: 200px; background: var(--paper-2); font: 600 11px/1.2 'Inter', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); }
+.sum-wrap .sum-table thead th:first-child { position: sticky; left: 0; z-index: 2; min-width: 170px; max-width: 220px; }
+.sum-wrap .sum-table tbody th[scope="row"] { position: sticky; left: 0; z-index: 1; min-width: 170px; max-width: 220px; background: var(--paper-2); font: 500 13px/1.3 'Spectral', serif; letter-spacing: 0; text-transform: none; color: var(--ink); }
+.sum-wrap .sum-table td { min-width: 124px; max-width: 200px; }
+.sum-wrap .sum-table .sum-name { display: flex; align-items: center; gap: 8px; }
+.sum-wrap .sum-table .swatch { display: inline-block; flex: none; width: 8px; height: 8px; border-radius: 50%; margin: 0; background: var(--region-ui, var(--region, var(--accent))); }
+.sum-wrap .sum-table thead .small { display: block; margin-top: 3px; font: 400 10.5px/1.2 'Inter', sans-serif; letter-spacing: 0; text-transform: none; color: var(--ink-3); }
+.sum-wrap .sum-table .crit-src { display: block; margin-top: 5px; font: 400 10px/1.4 'Inter', sans-serif; letter-spacing: 0; text-transform: none; color: var(--ink-3); }
+.sum-wrap .sum-table .crit-src a { color: var(--ink-3); text-decoration: underline dotted; text-underline-offset: 2px; }
+.sum-wrap .sum-table .v { font: 500 13px/1.35 'Inter', sans-serif; font-variant-numeric: tabular-nums; color: var(--ink); }
+.sum-wrap .sum-table .lab { display: block; margin-top: 3px; font: 400 10.5px/1.35 'Inter', sans-serif; color: var(--ink-3); }
+.sum-wrap .sum-table .vin { display: block; margin-top: 3px; font: 400 10.5px/1.35 'Inter', sans-serif; color: var(--ink-3); }
+.sum-wrap .sum-table td.gap .v { display: inline-block; font: italic 400 13px/1.35 'Spectral', serif; color: var(--gap); border-bottom: 1px dashed var(--gap-line); }
+.sum-wrap .sum-table td.sum-land .sal-v { font: italic 400 12.5px/1.35 'Spectral', serif; color: var(--host); }
+.sum-wrap .sum-table td.sum-land .sal-v.none { color: var(--gap); }
+.sum-wrap .sum-table td.sum-land .sal-flag { display: block; margin-top: 2px; font: 500 10.5px/1.3 'Inter', sans-serif; letter-spacing: 0.02em; color: var(--ink-3); }
+.sum-wrap .sum-table th.region-fail, .sum-wrap .sum-table td.region-fail { background: var(--paper-3); opacity: 1; }
+@media (max-width: 767px) { .summary .scroll-hint { display: block; } .sum-wrap .sum-table thead th:first-child, .sum-wrap .sum-table tbody th[scope="row"] { min-width: 120px; max-width: 132px; } }
+
+/* ================= further reading, colophon ================= */
+.contact .invitation-cta + .invitation-cta { margin-top: 18px; }
+/* ---- criteria: grid areas, ticks, value lines ---- */
+.crit-card .ruler-row .slider-label { grid-area: lab; }
+.crit-card .ruler-row .ruler { grid-area: rul; }
+.crit-card .ruler-row .slider-val { grid-area: val; }
+.crit-card .ticks span { position: absolute; top: 0; transform: translateX(-50%); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.crit-card .ticks span[hidden] { display: none; }
+.crit-card .ticks { margin: 0 9px; }
+.crit-card .bar-row { grid-template-columns: 90px minmax(0, 1fr) 124px; }
+.crit-card .bar-val small { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
+.crit-card .bar-val small.vi { -webkit-line-clamp: 2; line-clamp: 2; }
+.crit-card .hint-more { appearance: none; background: none; border: 0; padding: 0 2px; margin: 0; cursor: pointer; font: inherit; color: var(--ink-2); text-decoration: underline dotted; text-underline-offset: 3px; }
+.crit-card .hint-more[hidden] { display: none; }
+@media (max-width: 880px) { .crit-card .bar-row { grid-template-columns: 76px minmax(0, 1fr) 108px; } }
+@media (max-width: 480px) { .crit-card .bar-row { grid-template-columns: 64px minmax(0, 1fr) 100px; } }
+.qual-filter { max-width: 100%; }
+.qual-filter-select { max-width: 100%; }
+@media (max-width: 600px) { .qual-filter { width: 100%; flex-direction: column; align-items: flex-start; gap: 4px; } .qual-filter-select { width: 100%; } }
+
+/* ================= legend, map markers and library chrome (structure unchanged from the upgrade; skin restored) ================= */
+.map-legend[hidden], .map-legend[aria-hidden="true"] { display: none; }
+.map-legend:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+.map-legend .lg-title { margin: 0 0 4px; font: 600 10px/1 var(--f-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.map-legend .lg-layer { margin: 0; }
+.map-legend .lg-layer + .lg-layer { margin-top: 10px; padding-top: 8px; border-top: 1px dotted var(--rule-strong); }
+.map-legend .lg-name { margin: 0; font: 600 12px/1.3 var(--f-ui); color: var(--ink); }
+.map-legend .lg-sub { margin: 1px 0 0; font: italic 400 12px/1.35 var(--f-text); color: var(--ink-3); }
+.map-legend .lg-row { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
+.map-legend .lg-end { font: 500 11px/1 var(--f-ui); color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.map-legend .lg-ramp { display: inline-block; flex: none; width: 64px; height: 8px; border: 1px solid var(--rule-strong); border-radius: 2px; background: var(--ramp, var(--ink-3)); }
+.map-legend .lg-sw { display: inline-block; flex: none; width: 14px; height: 10px; border-radius: 2px; border: 1px solid color-mix(in srgb, var(--ink) 30%, transparent); background: var(--c, var(--ink-3)); }
+.map-legend .lg-sw.dot { width: 11px; height: 11px; border-radius: 50%; }
+.map-legend .lg-classes { list-style: none; margin: 6px 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 3px; }
+.map-legend .lg-classes li { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.map-legend .lg-cl { min-width: 0; overflow-wrap: anywhere; }
+.map-legend .lg-group { margin: 8px 0 0; font: 600 10px/1.3 var(--f-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.map-legend .lg-note { margin: 6px 0 0; font: italic 400 12px/1.4 var(--f-text); color: var(--ink-3); }
+.map-legend .lg-src { margin: 8px 0 0; padding-top: 6px; border-top: 1px dotted var(--rule-strong); font: 400 11px/1.4 var(--f-ui); color: var(--ink-3); }
+.map-legend.many .lg-name { font-size: 12.5px; }
+
+/* ---------- region markers ---------- a 0x0 anchor; the chip is a paper centre in a 4px region-coloured ring, a 44px .hit area is the tap
+   target. The label pill takes the first free side (labels.js) or is dropped. Outside the thresholds = a dashed ring, never hidden. */
+.map-wrap .region-marker { z-index: 2; width: 0; height: 0; cursor: pointer; font-weight: 400; background: none; border: 0; box-shadow: none; transition: none; }
+.map-wrap .region-marker .hit { position: absolute; left: -22px; top: -22px; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; }
+.map-wrap .region-marker .chip {
+  position: relative; box-sizing: border-box; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--sheet); color: var(--ink); font: 700 13px/1 var(--f-ui); letter-spacing: 0;
+  border: 4px solid var(--region-ui, var(--accent)); box-shadow: 0 0 0 2px var(--sheet), 0 2px 0 2px rgb(0 0 0 / .12);
+}
+.map-wrap .region-marker .chip.two { font-size: 11px; letter-spacing: -.02em; }
+.map-wrap .region-marker.dim .chip { background: var(--ground-out); border-style: dashed; border-width: 3px; }
+.map-wrap .region-label {
+  position: absolute; left: 21px; top: -11px; z-index: 1; display: block; width: max-content; max-width: 220px;
+  font: 600 11px/1 var(--f-ui); color: var(--ink); white-space: nowrap; pointer-events: none;
+  background: color-mix(in srgb, var(--sheet) 94%, transparent); border: 1px solid var(--rule-strong); padding: 4px 8px; border-radius: 12px;
+}
+.map-wrap .region-label .nm { display: block; max-width: 200px; overflow: hidden; text-overflow: ellipsis; }
+.map-wrap .region-label small {
+  display: none; width: max-content; max-width: 190px; margin-top: 3px; white-space: normal;
+  font: italic 400 11.5px/1.3 var(--f-text); color: var(--host);   /* the Salutation: shown when the marker is touched or focused */
+}
+.map-wrap .region-marker.flip .region-label { left: auto; right: 21px; }
+.map-wrap .region-marker.above .region-label { left: 0; top: auto; bottom: 21px; transform: translateX(-50%); }
+.map-wrap .region-marker.below .region-label { left: 0; top: 21px; transform: translateX(-50%); }
+.map-wrap .region-marker.nolabel .region-label { display: none; }
+.map-wrap .region-marker:hover, .map-wrap .region-marker:focus-visible { z-index: 6; }
+.map-wrap .region-marker:hover .region-label, .map-wrap .region-marker:focus-visible .region-label { display: block; }
+.map-wrap .region-marker:hover .region-label small, .map-wrap .region-marker:focus-visible .region-label small { display: block; }
+.map-wrap .region-marker.hover-measure .region-label { display: block; }
+.map-wrap .region-marker.hover-measure .region-label small { display: block; }
+.map-wrap .region-marker:focus-visible { outline: none; }
+.map-wrap .region-marker:focus-visible .chip { outline: 3px solid var(--accent); outline-offset: 4px; }
+
+/* ---------- MapLibre's own chrome ---------- */
+.map-wrap .maplibregl-ctrl-group { border-radius: var(--r-leaf-s); }
+.map-wrap .maplibregl-ctrl button:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+
+/* Graceful fallback if the map library or tiles fail to load */
+.map-fallback {
+  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 24px; font: 400 15px/1.6 var(--f-text); color: var(--ink-3);
+}
+.map-fallback strong { color: var(--ink-2); font-weight: 500; }
+
+@media (max-width: 899px), (pointer: coarse) {
+  /* every tap target inside the plate is at least 44px */
+  .map-wrap .maplibregl-ctrl-group button { width: 44px; height: 44px; }
+  .map-wrap .maplibregl-ctrl-attrib.maplibregl-compact { min-height: 44px; padding-right: 44px; margin: 6px; border-radius: 22px; }
+  .map-wrap .maplibregl-ctrl-attrib-button { width: 44px; height: 44px; border-radius: 22px; background-repeat: no-repeat; background-position: center; background-size: 24px; }
+  .map-wrap .maplibregl-ctrl-group button .maplibregl-ctrl-icon { background-position: center; background-repeat: no-repeat; }
+  .map-wrap .maplibregl-ctrl-attrib.maplibregl-compact-show { padding: 6px 44px 6px 12px; }
+}
+
+
+/* old marker skin: a filled disc with a paper ring; paper label tags */
+.map-wrap .region-marker .chip.two { font-size: 11px; }
+.map-wrap .region-label { font: 500 11.5px/1.2 'Spectral', Georgia, serif; background: var(--paper); border: 1px solid var(--rule); border-radius: 0; padding: 1px 7px; }
+.map-wrap .region-label small { font: italic 400 11px/1.3 'Spectral', Georgia, serif; }
+.map-plate .map-legend { position: static; max-width: none; margin: 8px -14px -10px; padding: 8px 14px 10px; background: var(--paper-2); border: 0; border-top: 1px solid var(--rule); border-radius: 0; box-shadow: none; font-size: 11.5px; flex: none; max-height: 150px; overflow: auto; }
+
+/* ---- bioregion labels (structure from the upgrade) ---- */
+/* bioregions.css: the bioregion label layer (design 8.6, src/map/bioregions.js) and its legend swatches. Labels: Spectral italic in
+   --river with a --river-wash halo, aria-hidden, never clickable; MapLibre markers (.bio-anchor), below zoom 5 only core labels show. */
+.map-wrap .bio-anchor { z-index: 1; width: 0; height: 0; pointer-events: none; }
+.map-wrap .bio-anchor.nolabel { display: none; }
+.bio-label {
+  position: absolute; left: 0; top: 22px; transform: translateX(-50%); width: max-content; max-width: 104px;
+  font: italic 400 11.5px/1.2 var(--f-text); color: var(--river); text-align: center; pointer-events: none;
+  text-shadow: 0 0 3px var(--river-wash), 0 0 3px var(--river-wash), 0 0 2px var(--river-wash);
+}
+.map-wrap .bio-anchor.above .bio-label { top: auto; bottom: 22px; }
+
+/* Legend swatches for the extension's rows: a dashed line for ecoregion boundaries, a solid one for rivers. */
+.map-legend .lg-sw.dash { width: 26px; height: 0; border: 0; border-top: 1.5px dashed var(--river); border-radius: 0; background: none; }
+.map-legend .lg-sw.line { width: 26px; height: 0; border: 0; border-top: 2px solid var(--river); border-radius: 0; background: none; }
+
+/* ---- state fixes: a recessed row is never faded (AA); fills move by transform, not width (slider ticks stay cheap); modal sits above the drawer ---- */
+.crit-card .bar-row.fail, .bar-row.fail { opacity: 1; }
+.sum-table th.region-fail, .sum-table td.region-fail { opacity: 1; }
+.crit-card .bar-track .pt { width: 100%; transform: scaleX(var(--v, 0)); transform-origin: 0 50%; transition: none; }
+.modal-backdrop { z-index: 1200; }
+.hero-cta-arrow svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; vertical-align: -3px; }
+@media (pointer: coarse), (max-width: 767px) {
+  .preset-chip, .guided-chip, .match-actions .btn, .region-chip, .qual-filter-select, .continent-tab, .map-plate .map-controls .title, .map-controls .map-action, .map-plate .map-toggle, .map-controls .map-toggle-group-label, #region-drawer .drawer-star, #region-drawer .drawer-close, .compare-close, .modal-close, .map-wrap .map-caption a { min-height: 44px; min-width: 44px; }
+  #region-drawer .drawer-close, .compare-close { width: 44px; height: 44px; }
+}
+.region-card .region-pin { width: auto; height: auto; top: auto; right: auto; font-size: 10.5px; }
+
+/* ---- map plate: the old hairline frame, with the layer panel docked beside the map (an overlay would cover the markers) ---- */
+.map-wrap.map-plate { margin: 0 0 32px; position: relative; width: 100%; height: 520px; display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 0; background: var(--paper-3); border: 1px solid var(--rule); padding: 0; border-radius: 0; }
+.map-plate .map-stage { position: relative; inset: auto; height: 100%; min-width: 0; background: var(--paper-3); border: 0; }
+.map-plate .map-controls { position: static; width: auto; max-width: none; height: 100%; max-height: none; display: flex; flex-direction: column; background: var(--paper); border: 0; border-left: 1px solid var(--rule); box-shadow: none; padding: 12px 14px 0; overflow: hidden; contain: none; border-radius: 0; }
+.map-plate .map-controls.collapsed { height: 100%; }
+.map-plate .map-controls .map-panel-body { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+.map-plate .map-controls .map-scroll { flex: 1 1 auto; max-height: none; min-height: 0; overflow-y: auto; padding: 0; }
+.map-plate .map-legend { flex: none; max-height: 150px; overflow: auto; margin: 8px -14px 0; }
+@media (max-width: 899px) {
+  .map-wrap.map-plate { display: block; height: auto; border: 0; background: none; }
+  .map-plate .map-stage { height: 420px; border: 1px solid var(--rule); }
+  .map-plate .map-controls { height: auto; margin-top: 10px; border: 1px solid var(--rule); padding-bottom: 0; }
+  .map-plate .map-controls.collapsed { height: auto; }
+  .map-plate .map-controls .map-scroll { overflow: visible; }
+  .map-plate .map-legend { max-height: 260px; }
+}
+.regions-intro .map-wrap, .map-wrap.map-plate { margin-bottom: 96px; }
+
+/* the old marker/label rules position by transform and bottom: reset them, the upgraded markup positions by left/top and the sides */
+.map-wrap .region-marker.dim { opacity: 1; transform: none; }
+.map-wrap .region-marker:hover { transform: none; }
+.map-wrap .region-label { bottom: auto; transform: none; }
+.map-wrap .region-marker.above .region-label, .map-wrap .region-marker.below .region-label { transform: translateX(-50%); }
+.map-wrap .region-marker.dim .chip { background: var(--ground-out); color: var(--ink); border: 3px dashed var(--ink-3); }
+.map-plate .map-toggle, .map-controls .map-toggle-group-label, .map-controls .map-action { min-height: 44px; }
+.map-plate .map-controls .title { min-height: 44px; align-items: center; }
+.map-plate .map-controls .title .n { text-transform: none; letter-spacing: 0.04em; }
+@media (max-width: 480px) { .regions-intro .map-wrap, .map-wrap.map-plate { margin-inline: -8px; } }
+@media (min-width: 768px) and (pointer: fine) { .match-actions .btn, .qual-filter-select { min-height: 40px; } }
+
+/* the threshold line moves by transform on its own layer (a slider tick costs no layout); elsewhere `left` does the job */
+@supports (width: 1cqw) {
+  .crit-card .bar-track { container-type: inline-size; }
+  .crit-card .bar-threshold { left: 0; will-change: transform; transform: translateX(calc(var(--p) * 100cqw)); }
+}
+
+/* ---- a11y over the old look (WCAG 2.2 AA): the marker keeps a paper centre (white-on-colour text failed 4.5:1), closed modals are not focusable, 3px focus rings, 24px+ link targets ---- */
+.map-wrap .region-marker .chip { width: 30px; height: 30px; background: var(--paper); color: var(--ink); font: 700 13px/1 'Inter', system-ui, sans-serif; border: 4px solid var(--region-ui, var(--accent)); box-shadow: 0 0 0 2px var(--paper), 0 2px 6px rgba(0,0,0,0.18); }
+.map-wrap .region-marker .chip.two { font-size: 11px; letter-spacing: -0.02em; }
+.modal-backdrop { visibility: hidden; transition: opacity 0.3s ease, visibility 0s linear 0.3s; }
+.modal-backdrop.visible { visibility: visible; transition: opacity 0.3s ease, visibility 0s; }
+.modal-close { width: 44px; height: 44px; }
+[class]:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.region-card:focus-visible { outline-offset: -3px; }
+.signup-card input[type="email"]:focus-visible, .modal-form input[type="email"]:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.stamp .sep, .stamp .sep, footer .stamp .sep { color: var(--ink-3); }
+.colophon li a, .colophon .cols li a { display: inline-block; padding: 4px 0; }
+.colophon li { margin: 0; }
+/* slider ticks restyle every row of every criterion: keep each row's layout and style self-contained so a tick costs little */
+.crit-card .bar-row { contain: layout style; }
+.crit-card .bar-val small, .crit-card .bar-val small.vi { display: block; max-height: 2.8em; overflow: hidden; -webkit-line-clamp: unset; line-clamp: unset; }
+@media (max-width: 480px) { .regions-intro .map-wrap, .map-wrap.map-plate { margin-inline: -8px; } }
+@media print { .modal-backdrop, .compare-backdrop, .drawer-backdrop { display: none !important; } }
+.crit-card .bar-row .reg { overflow-wrap: break-word; hyphens: auto; }
+.region-grid .region-card:focus-within { outline: 3px solid var(--accent); outline-offset: -3px; }
+@supports selector(:has(*)) { .region-grid .region-card:focus-within:not(:has(:focus-visible)) { outline: none; } }
+@media (max-width: 899px) { .map-wrap.map-plate { width: auto; } }
+.map-wrap .maplibregl-ctrl-attrib a, .maplibregl-map .maplibregl-ctrl-attrib a { text-decoration: underline !important; }
+[class]:focus-visible, input[type="range"]:focus-visible { outline-width: 3px !important; outline-style: solid !important; outline-color: var(--accent) !important; }
+@supports selector(:has(*)) { .region-grid .region-card:focus-within:not(:has(:focus-visible)) { outline: none !important; } }
+.map-wrap .region-marker:focus-visible { outline: none !important; }

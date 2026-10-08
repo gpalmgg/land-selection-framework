@@ -1,94 +1,23 @@
-/* colophon.css: who made this, how to read it, sources cited (design FS 8.19); shared by index, deeper and the region pages.
-   footer.colophon > .art + .container > p.frame, .cols, .notes, p.stamp. */
-.colophon {
-  position: relative;
-  margin-top: var(--s9, 112px);
-  padding: var(--s8, 72px) 0 var(--s7, 48px);
-  background: var(--paper-2);
-  border-top: 1px solid var(--ink);
-  overflow: hidden;
-}
-
-/* the faint colophon drawing (fixed seed, decorative, aria-hidden) bleeds off the right edge */
-.colophon .art {
-  position: absolute; right: -20px; top: -10px;
-  width: 360px;
-  color: var(--art);
-  opacity: 0.4;
-  pointer-events: none;
-}
-.colophon .art svg { display: block; width: 100%; height: auto; }
-
-.colophon .container { position: relative; }
-
-.colophon .frame {
-  max-width: 34ch;
-  margin: 0;
-  font: italic 300 clamp(22px, 2.6vw, 30px)/1.35 var(--f-text, 'Spectral', Georgia, serif);
-  color: var(--ink);
-}
-
-.colophon .cols {
-  position: relative;
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--s6, 32px);
-  max-width: 980px;
-  margin-top: var(--s7, 48px);
-}
-
-.colophon h3,
-.colophon h4 {
-  margin: 0 0 var(--s3, 12px);
-  font: 600 11px/1 var(--f-ui, 'Inter', system-ui, sans-serif);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.colophon p,
-.colophon li {
-  font: 400 15px/1.6 var(--f-text, 'Spectral', Georgia, serif);
-  color: var(--ink-2);
-}
-.colophon .cols p { margin: 0 0 var(--s3, 12px); }
-.colophon .cols p:last-child { margin-bottom: 0; }
+/* colophon.css: who made this, how to read it, sources cited; shared by index, region and arrive pages. Restored (2026-10-07) to the
+   pre-upgrade footer: paper-2 band on a hairline, Spectral 13px columns, small-caps Inter headings. The faint drawing is gone.
+   footer.colophon > .container > p.frame, .cols, p.colophon-pages, .notes, p.stamp. */
+.colophon { margin: 0; padding: 60px 0 80px; border-top: 1px solid var(--rule); background: var(--paper-2); }
+.colophon .art { display: none; }
+.colophon .frame { margin: 0 0 36px; max-width: 62ch; font: italic 400 14.5px/1.6 'Spectral', Georgia, serif; color: var(--ink-2); }
+.colophon .cols { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; font-size: 12px; color: var(--ink-3); max-width: none; margin: 0; }
+.colophon h3, .colophon h4 { margin: 0 0 10px; font: 600 10.5px/1.4 'Inter', system-ui, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); }
+.colophon .cols p { margin: 0 0 12px; font: 400 13px/1.6 'Spectral', Georgia, serif; color: var(--ink-3); }
 .colophon ul { list-style: none; margin: 0; padding: 0; }
-.colophon li { padding: 6px 0; border-top: 1px solid var(--rule); }
-.colophon li:first-child { border-top: 0; }
-.colophon a { color: var(--ink-2); text-decoration: underline dotted; text-underline-offset: 3px; }
+.colophon li { margin: 0 0 4px; padding: 0; border: 0; font: 400 12px/1.5 'Inter', system-ui, sans-serif; color: var(--ink-3); }
+.colophon .cols a, .colophon li a { color: var(--ink-2); text-decoration: underline dotted; text-underline-offset: 2px; }
 .colophon a:hover { color: var(--accent); }
-
-/* the standing notes under the columns: status of the work, and the revision of the values */
-.colophon .notes {
-  position: relative;
-  max-width: 980px;
-  margin-top: var(--s6, 32px);
-  padding-top: var(--s4, 16px);
-  border-top: 1px solid var(--rule);
-}
-.colophon .notes p {
-  margin: 0 0 var(--s2, 8px);
-  max-width: 62ch;
-  font: italic 400 14px/1.55 var(--f-text, 'Spectral', Georgia, serif);
-  color: var(--ink-3);
-}
-.colophon .notes p:last-child { margin-bottom: 0; }
-
-.colophon .stamp {
-  position: relative;
-  margin: var(--s6, 32px) 0 0;
-  font: 500 11.5px/1.5 var(--f-ui, 'Inter', system-ui, sans-serif);
-  letter-spacing: 0.02em;
-  color: var(--ink-3);
-}
-
-@media (max-width: 899px) {
-  .colophon .cols { grid-template-columns: 1fr; gap: var(--s5, 24px); }
-  .colophon .art { width: 240px; }
-}
-
-@media print {
-  .colophon { margin-top: 24px; padding: 16px 0 0; background: #fff !important; border-top: 1px solid #000; }
-  .colophon .art { display: none; }
-  .colophon p, .colophon li, .colophon h3, .colophon h4, .colophon .stamp, .colophon .frame, .colophon .notes p { color: #000 !important; }
-}
+.colophon .colophon-pages { margin: 24px 0 0; font: 500 12.5px/1.5 'Inter', system-ui, sans-serif; }
+.colophon .colophon-pages a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; margin-right: 18px; }
+.colophon .notes { margin-top: 24px; max-width: 74ch; padding: 0; border: 0; }
+.colophon .notes p { margin: 0 0 6px; max-width: none; font: 400 12.5px/1.6 'Spectral', Georgia, serif; font-style: normal; color: var(--ink-3); }
+.colophon .stamp { margin: 36px 0 0; padding-top: 24px; border-top: 1px dotted var(--rule); font: 400 10.5px/1.4 'Inter', system-ui, sans-serif; letter-spacing: 0.05em; color: var(--ink-4); }
+@media (max-width: 880px) { .colophon .cols { grid-template-columns: 1fr; gap: 28px; } }
+@media print { .colophon { margin-top: 24px; padding: 16px 0 0; background: #fff !important; border-top: 1px solid #000; } .colophon p, .colophon li, .colophon h3, .colophon h4, .colophon .stamp, .colophon .frame, .colophon .notes p { color: #000 !important; } }
+/* link targets in the footer lists are at least 24px high (WCAG 2.2 target size) */
+.colophon li a, .colophon .cols li a, .colophon .colophon-pages a { display: inline-block; padding: 4px 0; min-height: 24px; }
+.colophon li { margin: 0; }

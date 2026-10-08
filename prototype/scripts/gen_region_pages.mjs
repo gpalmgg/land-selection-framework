@@ -47,7 +47,7 @@ import { esc, safeUrl, ledgerRowHtml, legalPathwayHtml, contextHtml, fmtNumber }
 import { qualLabel } from '../lib/qual-labels.js';
 import { salutation, salutationLabel } from '../lib/salutation.js';
 import { landStandingV2Html, placeStripHtml, waterLine } from '../lib/bio.js';
-import { REFUSAL, catchment, colophonArt, svg as lineworkSvg } from '../lib/linework.js';
+import { REFUSAL } from '../lib/linework.js';
 import { loadV1Layers, V1_LAYERS, bandMeta } from './gen_v1_lookup.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -380,7 +380,7 @@ function landStandingBlock(r) {
 
 // The refusal band: the tool's stance, identical on every page (it is never a verdict on a place). Static: no animation.
 function refusalBand() {
-  return `<section class="refusal" aria-label="Where arriving would harm"><svg viewBox="${REFUSAL.viewBox}" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="${REFUSAL.river}" stroke-width="2.2"/><path d="${REFUSAL.gap}" stroke-width="2.2" stroke-dasharray="2 7"/><path d="${REFUSAL.bar}" stroke-width="3.2"/></svg><p>${esc(canon.refusal)}</p><small>Every region in this tool is already someone’s home. The river stops here by choice.</small></section>`;
+  return `<section class="refusal" aria-label="Where arriving would harm"><p>${esc(canon.refusal)}</p><small>Every region in this tool is already someone’s home.</small></section>`;
 }
 
 function asksBlock(r) {
@@ -629,7 +629,6 @@ function colophon() {
   // the same wording the home page's colophon carries: the data revision month as written (2026-10)
   const revision = canon.revision.replace('{{data_revision}}', dataRevision.month);
   return `<footer class="colophon">
-    <div class="art" aria-hidden="true">${lineworkSvg(colophonArt())}</div>
     <div class="container">
       <p class="frame">Opinionated about method, quiet about preference. Read the data, set your own thresholds, decide for yourself.</p>
       <div class="cols">
@@ -700,11 +699,9 @@ function page(r) {
 <meta name="twitter:image" content="${esc(ogImage)}" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="theme-color" content="#f6f2eb" />
-<meta name="theme-color" content="#17140f" media="(prefers-color-scheme: dark)" />
-<!-- Fonts self-hosted (Fraunces, Spectral, Inter; SIL OFL 1.1). The three faces used above the fold are preloaded; the URLs equal the @font-face URLs in fonts.css (?v=fv1). -->
-<link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/fraunces-var-latin.woff2?v=fv1" crossorigin />
-<link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/spectral-400-latin.woff2?v=fv1" crossorigin />
-<link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/inter-var-latin.woff2?v=fv1" crossorigin />
+<!-- Fonts self-hosted (Spectral, Inter; SIL OFL 1.1). The two faces used above the fold are preloaded; the URLs equal the @font-face URLs in fonts.css (?v=fv2). -->
+<link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/spectral-400-latin.woff2?v=fv2" crossorigin />
+<link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/inter-var-latin.woff2?v=fv2" crossorigin />
 ${sheets}
 <script type="application/ld+json">${jsonld}</script>
 ${INSIGHTS}
@@ -717,8 +714,6 @@ ${RAIL}
 <main id="main" tabindex="-1">
   <div class="rp-wrap">
     <article class="rp" style="--region:${esc(accent)}">
-      <div class="wave" aria-hidden="true"></div>
-      <div class="rp-art" aria-hidden="true">${lineworkSvg(catchment())}</div>
       <div class="rp-in">
         <nav class="crumbs" aria-label="Breadcrumb"><ul><li><a href="/">${esc(site.name)}</a></li><li><a href="/#region-grid">Regions</a></li><li><span aria-current="page">${esc(r.name)}</span></li></ul></nav>
         ${salutationHtml(r)}

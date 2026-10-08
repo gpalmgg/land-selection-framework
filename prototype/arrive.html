@@ -43,12 +43,10 @@
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="theme-color" content="#f6f2eb" />
-  <meta name="theme-color" content="#17140f" media="(prefers-color-scheme: dark)" />
 
-  <!-- Fonts self-hosted (Fraunces, Spectral, Inter; SIL OFL 1.1). The ?v=fv1 font-set version must equal the @font-face URLs of src/styles/fonts.css. -->
-  <link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/fraunces-var-latin.woff2?v=fv1" crossorigin />
-  <link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/spectral-400-latin.woff2?v=fv1" crossorigin />
-  <link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/inter-var-latin.woff2?v=fv1" crossorigin />
+  <!-- Fonts self-hosted (Spectral, Inter; SIL OFL 1.1). The ?v=fv2 font-set version must equal the @font-face URLs of src/styles/fonts.css. -->
+  <link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/spectral-400-latin.woff2?v=fv2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/inter-var-latin.woff2?v=fv2" crossorigin />
 
   <!-- The site's same-origin page-view tag. Not a third-party script; nothing else on this page is external. -->
   <script defer src="/_vercel/insights/script.js"></script>
@@ -68,17 +66,17 @@
   </script>
 
   <!-- One set of tokens for the whole site, then the shared pieces, then the long-read shell, then the blocks the region view reuses. -->
-  <link rel="stylesheet" href="./src/styles/tokens.css?v=b20261006100127" data-bust />
-  <link rel="stylesheet" href="./src/styles/fonts.css?v=b20261006100127" data-bust />
-  <link rel="stylesheet" href="./src/styles/theme-gate.css?v=b20261006100127" data-bust />
-  <link rel="stylesheet" href="./src/styles/base.css?v=b20261006100127" data-bust />
-  <link rel="stylesheet" href="./src/styles/rail.css?v=b20261006100127" data-bust />
-  <link rel="stylesheet" href="./src/styles/a11y.css?v=b20261006100127" data-bust />
-  <link rel="stylesheet" href="./src/styles/longread.css?v=b20261006100127" data-bust />
-  <link rel="stylesheet" href="./src/styles/reciprocity.css?v=b20261006100127" data-bust />
-  <link rel="stylesheet" href="./src/styles/way.css?v=b20261006100127" data-bust />
-  <link rel="stylesheet" href="./src/styles/ledger.css?v=b20261006100127" data-bust />
-  <link rel="stylesheet" href="./src/styles/colophon.css?v=b20261006100127" data-bust />
+  <link rel="stylesheet" href="./src/styles/tokens.css?v=b20261007123838" data-bust />
+  <link rel="stylesheet" href="./src/styles/fonts.css?v=b20261007123838" data-bust />
+  <link rel="stylesheet" href="./src/styles/theme-gate.css?v=b20261007123838" data-bust />
+  <link rel="stylesheet" href="./src/styles/base.css?v=b20261007123838" data-bust />
+  <link rel="stylesheet" href="./src/styles/rail.css?v=b20261007123838" data-bust />
+  <link rel="stylesheet" href="./src/styles/a11y.css?v=b20261007123838" data-bust />
+  <link rel="stylesheet" href="./src/styles/longread.css?v=b20261007123838" data-bust />
+  <link rel="stylesheet" href="./src/styles/reciprocity.css?v=b20261007123838" data-bust />
+  <link rel="stylesheet" href="./src/styles/way.css?v=b20261007123838" data-bust />
+  <link rel="stylesheet" href="./src/styles/ledger.css?v=b20261007123838" data-bust />
+  <link rel="stylesheet" href="./src/styles/colophon.css?v=b20261007123838" data-bust />
 
   <!--s:modulepreload-->
   <link rel="modulepreload" href="/src/data.js" />
@@ -100,14 +98,14 @@
     /* Page-specific rules only (tokens, no raw colour). Everything shared lives in the linked files above. */
     .arrive-page .arrive-hero .lede { max-width: 58ch; }
     .arrive-page .arrive-open {
-      font: italic 400 19px/1.65 var(--f-text); color: var(--ink-2);
+      font: italic 400 14.5px/1.65 var(--f-text); color: var(--ink-3);
       max-width: 60ch; margin: 0 0 var(--s6);
-      padding: 0 0 0 var(--s4); border-left: 3px solid var(--accent);
+      padding: 0 0 0 var(--s4); border-left: 2px solid var(--accent-soft);
     }
     .arrive-page .arrive-hero .toc { margin-top: var(--s5); }
 
     /* the picker: a native select with a visible label. Hidden without JavaScript, where the noscript list stands in. */
-    .arrive-front { padding: var(--s7) var(--gutter) 0; }
+    .arrive-front { padding: var(--s7) 0 0; }
     .arrive-picker { display: none; max-width: var(--lr-col); }
     .js .arrive-picker { display: block; }
     .arrive-picker label {
@@ -134,7 +132,7 @@
     }
 
     /* the region block: rendered from data by src/pages/arrive.js, held to the reading column. */
-    .arrive-region-wrap { padding: 0 var(--gutter); }
+    .arrive-region-wrap { padding: 0; }
     .arrive-region-block:empty { display: none; }
     .arrive-pending .arrive-region-block:empty { display: block; min-height: 100vh; }
     .arrive-pending .arrive-region-block:empty::before {
@@ -162,8 +160,8 @@
     /* stages */
     .arrive-page .lr-chapter h2 .lr-num { margin-right: .35em; }
     .arrive-page .lr-prose h3 {
-      font: italic 340 clamp(21px, 2vw, 25px)/1.2 var(--f-display); letter-spacing: -.008em; color: var(--ink);
-      margin: var(--s6) 0 var(--s3);
+      font: 500 20px/1.25 var(--f-text); letter-spacing: -.005em; color: var(--ink);
+      margin: 32px 0 10px;
     }
     .arrive-questions { list-style: none; counter-reset: q; margin: 0; padding: 0; max-width: 64ch; }
     .arrive-questions li {
@@ -173,13 +171,13 @@
     }
     .arrive-questions li::before {
       content: counter(q); position: absolute; left: 0; top: -.05em;
-      font: italic 340 24px/1.2 var(--f-display); color: var(--art);
+      font: italic 400 20px/1.3 var(--f-text); color: var(--accent);
     }
     .arrive-page .lr-prose .arrive-notthere-h { color: var(--accent); }
     /* "Not there if": the look of .ls-notthere: a 3px accent bar down the left and a short bar before each item */
     .arrive-notthere {
       list-style: none; margin: 0; padding: var(--s3) var(--s4) var(--s3) var(--s4);
-      border-left: 3px solid var(--accent); background: var(--accent-wash);
+      border-left: 2px solid var(--accent); background: var(--paper-2);
     }
     .arrive-notthere li { position: relative; padding: 4px 0 4px 22px; font: 400 17px/1.6 var(--f-text); color: var(--ink); }
     .arrive-notthere li::before { content: ""; position: absolute; left: 0; top: 1.05em; width: 11px; border-top: 2.5px solid var(--accent); }
@@ -246,7 +244,6 @@
     <div class="container lr-wrap">
       <div class="eyebrow">Land Selection Framework</div>
       <h1>How to arrive</h1>
-      <svg class="lr-river-rule" viewBox="0 0 480 22" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M2 11C40 1 80 21 120 11S200 1 240 11 320 21 360 11 440 3 478 10" stroke-width="2.2"/></svg>
       <p class="lede">Arriving is a relationship. It starts before you look at any land and it goes on for decades. These four stages are a way of asking, in order, what a place and its people are owed. They do not tell you where to go, and some answers will be: not there.</p>
       <p class="arrive-open">This page is not a checklist you can finish. The tool filters regions and reads them closely; it does not decide for anyone. Where arriving in a place would harm the community already there, the honest answer is not to go. Where that is the answer, the tool has done its job.</p>
       <nav class="toc" aria-label="The four stages">
@@ -476,10 +473,10 @@
           </ul>
         </div>
       </div>
-      <p class="stamp">prototype · open data sources, no commercial product · last updated <!--f:buildDate-->2026-10-06<!--/f--></p>
+      <p class="stamp">prototype · open data sources, no commercial product · last updated <!--f:buildDate-->2026-10-07<!--/f--></p>
     </div>
   </footer>
 
-  <script type="module" src="./src/pages/arrive.js?v=b20261006100127" data-bust></script>
+  <script type="module" src="./src/pages/arrive.js?v=b20261007123838" data-bust></script>
 </body>
 </html>

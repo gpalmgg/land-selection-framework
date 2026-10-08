@@ -1,3 +1,0 @@
-/* footer.css: only the index-specific rule left from the retired page footer (the colophon is colophon.css). The home page fills
-   #sources-list from the criteria (src/ui/sources-list.js), which sets the link colour inline; this keeps focus and hover in step. */
-#sources-list a:hover { color: var(--accent) !important; }

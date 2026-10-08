@@ -3,14 +3,13 @@
 // When true, the map library is requested by src/map/loader.js instead of by a <script defer> in index.html (the page then has no
 // maplibre tag; the markers `<!-- maplibre:begin -->` and `<!-- maplibre:end -->` in index.html bracket the two tags, and
 // tests/e2e/suites/perf.py rewrites them to build both variants).
-// MC-PERF (2026-10-06): ADOPTED, and forced by the budget rather than by the A/B gain rule. The first A/B (loader injecting the
-// script as soon as the map starts) gained under 100 ms of throttled LCP, so it was left off. But the home page then fetched the
-// 217 KB library (plus the basemap tiles it triggers) before its load event, and bytes at the load event were 826 KB against the
-// 700 KB hard limit (G8), which no amount of trimming the app's own 313 KB reached. The loader now WAITS (src/map/loader.js
-// mapGate: idle after load with a 2.5 s cap, or #map within 600 px of the viewport), which puts the library and the first tiles
-// after the load event. The cost is that the map is created up to a couple of seconds after load; it is on screen before a visitor
-// can scroll to it, and the cards, criteria and thresholds (the page's first job) no longer wait behind it.
-export const LAZY_MAP = true;
+// RESTORE-PERF (2026-10-07): OFF. The A/B rule (perf-budget.json ab.lazy_map) does not adopt it: the throttled LCP gain is 60 ms
+// against a 150 ms threshold, and the gated map appears 2.59 s after load on desktop, past the 2.5 s cap. The eager page's bytes at
+// load are 601 KB against the 700 KB hard limit (G8), so the budget no longer forces it either (an earlier run measured 826 KB). The lazy gate also made slider interaction janky: the library's onload task plus the map's
+// first software-GL frames (about 2.4 s of main-thread work) land seconds after load, exactly when a visitor starts to drag a
+// slider (frame p95 212 ms, main-thread p95 143 ms on the 45-region stress site; eager: 49 ms and 14 ms).
+// To go lazy again, flip this word AND the maplibre:begin/end block in index.html (tests/e2e/suites/perf.py set_lazy() does both).
+export const LAZY_MAP = false;
 
 // Which basemap the map starts with (src/map/basemap.js). 'esri' is the keyless Esri Light Gray raster pair (the
 // default); 'openfreemap' skips Esri and starts on the OpenFreeMap positron vector style, the same style the map

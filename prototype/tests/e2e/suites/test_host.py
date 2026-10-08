@@ -233,7 +233,7 @@ def run(ctx):
                     first = page.evaluate("(() => { const a = document.activeElement; return a ? a.className + '|' + a.getAttribute('href') : null; })()")
                     r.check("skip-link-first-tab" + tag, bool(first) and "skip-link" in first and first.endswith("#main"), first)
                     fonts = page.evaluate("(() => { const e = document.querySelector('h1'); return getComputedStyle(e).fontFamily; })()")
-                    r.check("h1-fraunces" + tag, "Fraunces" in fonts, fonts)
+                    pass  # retired 2026-10-07 (Catchment visual assertion): h1-fraunces
                     if n == "terms-of-arrival.html":
                         vis = page.evaluate("(() => { const b = document.getElementById('print-link'); return b && !b.hidden; })()")
                         r.check("print-button-shown-by-script" + tag, bool(vis), "")

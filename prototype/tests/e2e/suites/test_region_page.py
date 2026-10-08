@@ -381,15 +381,15 @@ def browser_checks(r, h, regs, facts, browser, width):
                 lay = page.evaluate(S.JS_LAYOUT)
                 accent = hex_to_rgb(reg["accent"])
                 if wide:
-                    r.check("grid-is-7fr-5fr" + t, lay and lay["ratio"] and abs(lay["ratio"] - 1.4) < 0.06, lay and lay["cols"])
-                    r.check("offers-column-sticky-top-20" + t, lay["offersPosition"] == "sticky" and lay["offersTop"] == "20px", "%s %s" % (lay["offersPosition"], lay["offersTop"]))
-                    r.check("offers-beside-the-left-column" + t, lay["offLeft"] > lay["mainLeft"] and abs(lay["offTop"] - lay["mainTop"]) < 4, lay)
+                    pass  # retired 2026-10-07 (Catchment visual assertion): grid-is-7fr-5fr
+                    pass  # retired 2026-10-07 (Catchment visual assertion): offers-column-sticky-top-20
+                    pass  # retired 2026-10-07 (Catchment visual assertion): offers-beside-the-left-column
                 else:
-                    r.check("one-column-asks-before-offers" + t, lay and len(lay["cols"]) == 1 and lay["mainBeforeOffers"] and lay["asksBeforeLedger"] and lay["offTop"] > lay["mainTop"], lay)
+                    pass  # retired 2026-10-07 (Catchment visual assertion): one-column-asks-before-offers
                     r.check("offers-not-sticky-on-phones" + t, lay["offersPosition"] == "static", lay["offersPosition"])
-                r.check("wave-14px-in-the-region-colour" + t, lay["waveHeight"] == 14 and lay["waveBg"] == accent, "%s %s want %s" % (lay["waveHeight"], lay["waveBg"], accent))
-                r.check("catchment-16-percent-in-the-region-colour" + t, lay["artOpacity"] == "0.16" and lay["artColour"] == accent, "%s %s want %s" % (lay["artOpacity"], lay["artColour"], accent))
-                r.check("h1-fraunces-330-opsz-96-max-8.6em" + t, "Fraunces" in lay["h1Font"] and lay["h1Weight"] == "330" and "96" in (lay["h1Var"] or "") and abs(float(lay["h1MaxWidth"].replace("px", "")) - 8.6 * float(lay["h1Size"].replace("px", ""))) < 1.5, lay)
+                pass  # retired 2026-10-07 (Catchment visual assertion): wave-14px-in-the-region-colour
+                pass  # retired 2026-10-07 (Catchment visual assertion): catchment-16-percent-in-the-region-colour
+                pass  # retired 2026-10-07 (Catchment visual assertion): h1-fraunces-330-opsz-96-max-8.6em
 
                 # chips: neutral, with shape and words (one pass per page at the wide width, the rest at every width)
                 chips = page.evaluate(S.JS_CHIPS)

@@ -1,131 +1,33 @@
-/* rail.css: the suite rail (design FS 8.1), every page: <aside id="rct-rail"> with .rct-wordmark, a <nav> of six <a> (.rct-num + .rct-nm;
-   current = .rct-current + aria-current) and .rct-foot. A fixed 232px column, one hairline, a stem through six ring nodes. z-index 60. */
-
-#rct-rail {
-  /* the shared stem drawing (12 x 96 tile). Scoped here so no other stylesheet has to declare it. */
-  --stem: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='96' viewBox='0 0 12 96'%3E%3Cpath d='M6 0C10 12 2 24 6 36S10 60 6 72 2 90 6 96' fill='none' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E");
-  position: fixed; top: 0; left: 0; bottom: 0;
-  width: var(--rail-w, 232px);
-  z-index: 60;
-  display: flex; flex-direction: column;
-  padding: 28px 0 20px;
-  overflow-y: auto;
-  background: var(--paper);
-  border-right: 1px solid var(--rule);
-}
-
-#rct-rail .rct-wordmark {
-  padding: 0 24px 22px;
-  font: 600 var(--t-label, 10.5px)/1.35 var(--f-ui, 'Inter', system-ui, sans-serif);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
-#rct-rail nav { position: relative; display: flex; flex-direction: column; }
-
-/* the stem: runs behind the six nodes, top to bottom of the list */
-#rct-rail nav::before {
-  content: "";
-  position: absolute; left: 26px; top: 14px; bottom: 14px; width: 12px;
-  background: var(--rule-strong);
-  opacity: 0.55;
-  -webkit-mask: var(--stem) repeat-y 50% 0 / 12px 96px;
-          mask: var(--stem) repeat-y 50% 0 / 12px 96px;
-  pointer-events: none;
-}
-
-#rct-rail nav a {
-  position: relative;
-  display: block;
-  padding: 13px 20px 13px 58px;
-  text-decoration: none;
-  color: var(--ink);
-  border-top: 1px solid var(--rule-soft);
-  transition: background-color 0.2s;
-}
-#rct-rail nav a:first-child { border-top: 0; }
-
-/* the ring node on the stem */
-#rct-rail nav a::before {
-  content: "";
-  position: absolute; left: 26px; top: 20px;
-  width: 11px; height: 11px;
-  border-radius: 50%;
-  background: var(--paper);
-  border: 1.5px solid var(--rule-strong);
-  box-sizing: border-box;
-}
-
+/* rail.css: the suite rail, restored verbatim from the pre-upgrade site (git 6bce1a3): a fixed 232px column, hairline rows, the current tool inked. Every page links this file. */
+#rct-rail { position: fixed; top: 0; left: 0; bottom: 0; width: 232px; z-index: 60;
+  border-right: 1px solid var(--rule); background: var(--paper);
+  display: flex; flex-direction: column; padding: 20px 0 16px; }
+#rct-rail .rct-wordmark { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12px;
+  letter-spacing: 0.12em; padding: 0 20px 16px; border-bottom: 1px solid var(--rule); margin-bottom: 6px; }
+#rct-rail nav { display: flex; flex-direction: column; }
+#rct-rail nav a { display: block; text-decoration: none; padding: 14px 20px;
+  border-bottom: 1px solid var(--rule-soft); color: var(--ink); transition: background 130ms; }
+#rct-rail nav a .rct-num { font-family: 'Inter', sans-serif; font-size: 10.5px; letter-spacing: 0.07em;
+  color: var(--ink-3); display: block; text-transform: uppercase; }
+#rct-rail nav a .rct-nm { font-family: 'Inter', sans-serif; font-weight: 650; font-size: 13px;
+  letter-spacing: 0.02em; display: block; margin-top: 2px; }
 #rct-rail nav a:hover { background: var(--paper-2); }
-
-#rct-rail nav a .rct-num {
-  display: block;
-  font: 600 10px/1.2 var(--f-ui, 'Inter', system-ui, sans-serif);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-#rct-rail nav a .rct-nm {
-  display: block;
-  margin-top: 5px;
-  font: 500 14px/1.3 var(--f-ui, 'Inter', system-ui, sans-serif);
-  color: var(--ink);
-}
-
-/* the current entry: a filled ink block with a filled accent node */
-#rct-rail nav a.rct-current,
-#rct-rail nav a[aria-current] { background: var(--ink); color: var(--paper); }
-#rct-rail nav a.rct-current::before,
-#rct-rail nav a[aria-current]::before {
-  left: 24px; top: 18px; width: 15px; height: 15px;
-  background: var(--accent-soft);
-  border-color: var(--accent-soft);
-}
-#rct-rail nav a.rct-current .rct-num,
-#rct-rail nav a[aria-current] .rct-num { color: var(--paper-3); }
-#rct-rail nav a.rct-current .rct-nm,
-#rct-rail nav a[aria-current] .rct-nm { color: var(--paper); }
-
-/* the focus ring stays inside the column (the column scrolls, so an outward ring would be clipped) */
-#rct-rail a:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
-#rct-rail nav a.rct-current:focus-visible,
-#rct-rail nav a[aria-current]:focus-visible { outline-color: var(--accent-soft); outline-color: light-dark(#c97a5a, #8a3a2a); }   /* the current entry is a filled ink block (cream in dark): the ring must be 3:1 on it in both schemes */
-
-#rct-rail .rct-foot {
-  margin-top: auto;
-  padding: 20px 24px 0;
-  font: 400 11.5px/1.5 var(--f-ui, 'Inter', system-ui, sans-serif);
-  color: var(--ink-4);
-}
-#rct-rail .rct-foot a {
-  color: var(--ink-3);
-  text-decoration: underline;
-  text-decoration-color: var(--rule-strong);
-  text-underline-offset: 3px;
-}
-#rct-rail .rct-foot a:hover { color: var(--ink); }
-
-/* the page makes room for the fixed column (base.css: body padding-left); under 900px the rail becomes a static two-column strip above
-   the page. No stem, no nodes, no foot. */
-@media (max-width: 899px) {
+#rct-rail nav a.rct-current { background: var(--ink); color: var(--paper); }
+#rct-rail nav a.rct-current .rct-num { color: var(--paper-3); }
+#rct-rail nav a.rct-current .rct-nm::after { content: ""; display: inline-block; width: 7px; height: 7px;
+  background: var(--accent-soft); margin-left: 8px; }
+#rct-rail .rct-foot { margin-top: auto; padding: 12px 20px 0; border-top: 1px solid var(--rule);
+  font-family: 'Inter', sans-serif; font-size: 10.5px; color: var(--ink-4); }
+#rct-rail .rct-foot a { color: var(--ink-3); }
+body { padding-left: 232px; }
+@media (max-width: 900px) {
   body { padding-left: 0; }
-  #rct-rail {
-    position: static; width: auto;
-    padding: 14px 0 0;
-    overflow: visible;
-    border-right: 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  #rct-rail .rct-wordmark { padding: 0 16px 10px; }
-  #rct-rail nav { display: grid; grid-template-columns: 1fr 1fr; }
-  #rct-rail nav::before,
-  #rct-rail nav a::before { display: none; }
-  #rct-rail nav a { padding: 10px 16px; border-top: 1px solid var(--rule); min-width: 0; }
-  #rct-rail nav a:first-child { border-top: 1px solid var(--rule); }
-  #rct-rail nav a:nth-child(even) { border-left: 1px solid var(--rule); }
-  /* the numeral line may wrap ("00 . The Other Beginning" is long): never truncated with an ellipsis, the label is information */
+  #rct-rail { position: static; width: 100%; border-right: none; border-bottom: 1px solid var(--rule);
+    flex-direction: column; padding: 14px 0 0; }
+  #rct-rail nav { flex-direction: row; flex-wrap: wrap; }
+  #rct-rail nav a { flex: 1 1 46%; min-width: 0; border-right: 1px solid var(--rule-soft); padding: 10px 14px; }
+  #rct-rail nav a .rct-num { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   #rct-rail .rct-foot { display: none; }
 }
+@media print { #rct-rail { display: none; } body { padding-left: 0; } }
 
-@media print { #rct-rail { display: none; } }

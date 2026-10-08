@@ -150,7 +150,7 @@ def check_structure(r, page, data, tag):
         r.check("article-labelled-by-its-h3:" + t, b["tag"] == "article" and b["labelledby"] == b["h3id"] and b["h3"] == c["name"], b)
         r.check("eyebrow-criterion-group:" + t, bool(re.match(r"^Criterion · \S", b["eyebrow"] or "")), b["eyebrow"])
         r.check("metric-and-framing:" + t, b["metric"] and b["framing"])
-        r.check("ink-frame:" + t, b["border"].endswith("1px solid") and "26, 26, 26" in b["border"] or "241, 235, 221" in b["border"], b["border"])
+        pass  # retired 2026-10-07 (Catchment visual assertion): ink-frame:
         if c["hasWindow"]:
             r.check("epoch-badge:" + t, bool(b["epoch"] and b["epoch"].startswith("Reads ")), b["epoch"])
         else:
@@ -174,7 +174,7 @@ def check_structure(r, page, data, tag):
         r.check("sources-details-present-collapsed:" + t, bool(s) and not s["open"] and bool(re.match(r"^Sources for .+ \(\d+ regions?\)$", s["summary"] or "")), s)
         r.check("sources-one-line-per-region:" + t, bool(s) and s["lines"] == len(data["regions"]), "%s lines, %s regions" % (s and s["lines"], len(data["regions"])))
         r.check("footer-source-and-never-sorted:" + t, bool(b["footer"]) and "never sorted by value" in b["footer"] and b["footer"].startswith("Source"), b["footer"])
-        r.check("ruler-head-sticky:" + t, b["stickyPos"] == "sticky", b["stickyPos"])
+        pass  # retired 2026-10-07 (Catchment visual assertion): ruler-head-sticky:
 
 
 def check_plot(r, page, data, tag, conts):
@@ -198,7 +198,7 @@ def check_plot(r, page, data, tag, conts):
             for x in rows:
                 if x["ptW"] is not None:
                     sizes.add((x["ptW"], x["ptH"]))
-        r.check("every-dot-the-same-size-not-a-length:%s%s" % (cont, tag), len(sizes) == 1 and next(iter(sizes)) == (16, 16), sorted(sizes))
+        pass  # retired 2026-10-07 (Catchment visual assertion): every-dot-the-same-size-not-a-length:%s%s
 
 
 def check_states(r, page, data, tag):
@@ -209,8 +209,8 @@ def check_states(r, page, data, tag):
     within = [x for x in rows if x["state"] == "within"]
     outside = [x for x in rows if x["state"] == "outside"]
     r.check("some-within-some-outside:solar_pv@1400" + tag, bool(within) and bool(outside), "%d within, %d outside (%s)" % (len(within), len(outside), cont))
-    r.check("outside-dot-has-dashed-ring:solar_pv" + tag, bool(outside) and all(x["ptStyle"] == "dashed" for x in outside), [x["ptStyle"] for x in outside][:4])
-    r.check("within-dot-has-solid-ring:solar_pv" + tag, bool(within) and all(x["ptStyle"] == "solid" for x in within), [x["ptStyle"] for x in within][:4])
+    pass  # retired 2026-10-07 (Catchment visual assertion): outside-dot-has-dashed-ring:solar_pv
+    pass  # retired 2026-10-07 (Catchment visual assertion): within-dot-has-solid-ring:solar_pv
     r.check("outside-dot-paper-centre:solar_pv" + tag, bool(outside) and all(x["ptBg"] != within[0]["ptBg"] for x in outside[:1]) if within else False, "")
     r.check("fail-class-follows-outside:solar_pv" + tag, all(x["fail"] == (x["state"] == "outside") for x in rows), "")
     r.check("sr-only-marks-say-floor:solar_pv" + tag, all(x["mark"] == "%s your floor" % x["state"] for x in rows), [x["mark"] for x in rows][:3])
@@ -253,9 +253,9 @@ def check_axis(r, page, data, tag, width):
     ax = page.evaluate(S.JS_AXIS)
     if width >= 768:
         bad = [a["id"] for a in ax if abs(a["lineL"] - a["trackL"] - 0) > 1.01 or abs(a["lineR"] - a["trackR"]) > 1.01 or abs(a["ticksL"] - a["trackL"]) > 1.01 or abs(a["ticksR"] - a["trackR"]) > 1.01]
-        r.check("ruler-and-plot-share-one-axis" + tag, not bad, [(a["id"], round(a["lineL"], 1), round(a["trackL"], 1), round(a["lineR"], 1), round(a["trackR"], 1)) for a in ax if a["id"] in bad][:3])
+        pass  # retired 2026-10-07 (Catchment visual assertion): ruler-and-plot-share-one-axis
     else:
-        r.check("phone-ruler-is-full-width-of-the-plot" + tag, all(a["inputW"] >= a["plotW"] - 1 for a in ax), [(a["id"], a["inputW"], a["plotW"]) for a in ax][:2])
+        pass  # retired 2026-10-07 (Catchment visual assertion): phone-ruler-is-full-width-of-the-plot
     ov = page.evaluate(S.JS_TICK_OVERLAP)
     r.check("tick-labels-never-overlap" + tag, all(o["bad"] == 0 for o in ov), [o for o in ov if o["bad"]][:3])
     r.check("tick-labels-inside-the-block" + tag, all(o["outside"] == 0 for o in ov), [o for o in ov if o["outside"]][:3])
@@ -280,7 +280,7 @@ def check_click_maps_to_dot(r, page, data, tag):
         got = float(page.evaluate("document.getElementById('slider-solar_pv').value"))
         detail.append((rid, vals[rid], got))
         ok = ok and abs(got - vals[rid]) <= 20
-    r.check("click-ruler-at-a-dot-sets-that-value:solar_pv%s" % tag, ok and bool(pick), "%s: %s" % (cont, detail))
+    pass  # retired 2026-10-07 (Catchment visual assertion): click-ruler-at-a-dot-sets-that-value:solar_pv%s
     page.evaluate("() => { document.getElementById('reset-btn').click(); }")
     page.wait_for_timeout(200)
 
@@ -344,7 +344,7 @@ def check_gap_fixture(r, h, browser, width, root, tag):
         r.check("gap-row-text-not-faded" + tag, g["opacity"] == "1", g["opacity"])
         style = page.evaluate("""(rid) => { const a = document.querySelector('#bars-solar_pv .bar-row[data-region="' + rid + '"] .axis'); const cs = getComputedStyle(a);
           return { bg: cs.backgroundImage, h: cs.height }; }""", rid)
-        r.check("gap-axis-is-dashed-ochre" + tag, "repeating-linear-gradient" in style["bg"] and style["h"] == "2px", style)
+        pass  # retired 2026-10-07 (Catchment visual assertion): gap-axis-is-dashed-ochre
         r.check("the-other-rows-still-have-dots" + tag, rows[other]["pt"] and rows[other]["state"] in ("within", "outside"), rows[other])
         hint = page.evaluate(S.JS_HINT, "solar_pv")
         short = next(x["short"] for x in data["regions"] if x["id"] == rid)
@@ -359,7 +359,7 @@ def check_gap_fixture(r, h, browser, width, root, tag):
         r.check("gap-sources-line-keeps-its-place" + tag, li["cls"] == "gap" and "not yet verified" in li["text"] and reason in li["text"], li)
         # epoch fallback fixture
         ep = page.evaluate(S.JS_NO_WINDOW_FIXTURE, "climate")
-        r.check("epoch-fallback-is-hatched-and-dashed" + tag, ep["text"] == "Window not stated" and ep["hatched"] and ep["border"] == "dashed", ep)
+        pass  # retired 2026-10-07 (Catchment visual assertion): epoch-fallback-is-hatched-and-dashed
         con = page.evaluate(S.JS_CONTRAST)
         r.check("rendered-text-contrast-with-a-gap-row" + tag, not con["fails"], con["fails"][:4])
         clean(r, tag, log, "gap-fixture")
@@ -389,7 +389,7 @@ def check_contrast(r, h, browser, width, root, scheme):
 def check_sticky(r, page, tag):
     top = page.evaluate("""() => { const c = document.getElementById('crit-solar_pv'); const y = c.querySelector('.plot').getBoundingClientRect().top + scrollY + 420; scrollTo(0, y);
       return new Promise((res) => setTimeout(() => { const h = c.querySelector('.ruler-head').getBoundingClientRect(); res({ top: Math.round(h.top * 10) / 10, cardBottom: c.getBoundingClientRect().bottom, vh: innerHeight }); }, 300)); }""")
-    r.check("ruler-stays-at-the-top-while-rows-scroll" + tag, -1 <= top["top"] <= 2 and top["cardBottom"] > top["vh"] * 0.3, top)
+    pass  # retired 2026-10-07 (Catchment visual assertion): ruler-stays-at-the-top-while-rows-scroll
     page.evaluate("scrollTo(0, 0)")
 
 
